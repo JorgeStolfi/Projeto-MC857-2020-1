@@ -1,0 +1,1 @@
+Este diretório é onde fica a base de dados da loja ("MC857.sqlite3")
