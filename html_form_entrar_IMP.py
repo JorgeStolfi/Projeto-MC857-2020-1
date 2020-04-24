@@ -1,0 +1,4 @@
+
+def gera():
+  return None
+  
