@@ -8,7 +8,7 @@ import html_bloco_de_erro
 
 import re
 
-def generica(ses, html_conteudo, erros):
+def gera(ses, html_conteudo, erros):
 
   # Cabeçalho das páginas:
   html_cabe = html_cabecalho.gera("Site de compras: Projeto MC857A 2020-1", True)
