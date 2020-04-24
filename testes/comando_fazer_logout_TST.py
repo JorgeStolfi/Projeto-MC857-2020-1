@@ -2,10 +2,10 @@
 
 # Interfaces usadas por este script:
 
-import html_bloco_de_usuario
 import base_sql
 import tabelas
 import usuario
+import produto
 import sessao
 import compra
 import utils_testes
@@ -19,23 +19,22 @@ assert res == None
 sys.stderr.write("Criando alguns objetos...\n")
 tabelas.cria_todos_os_testes()
 
-# Testes das funções de {gera_html_elem}:
+# Testes das funções de {html_bloco_de_erro}:
 
 def testa(rotulo, *args):
   """Testa {funcao(*args)}, grava resultado 
   em "testes/saida/html_{modulo}.{rotulo}.html"."""
-  
-  modulo = html_bloco_de_usuario
-  frag = True
-  utils_testes.testa_gera_html(modulo, modulo.gera, rotulo, frag, *args)
 
-usr1_ident = "U-00000001"
-usr1 = usuario.busca_por_identificador(usr1_ident)
-usr2_ident = "U-00000002"
-usr5_ident = "U-00000005"
+ses = sessao.busca_por_identificador("S-00000001")
+assert ses != None
+assert sessao.aberta(ses)
 
-testa("N-F",  usr1_ident, usr1)
-testa("N-T", usr1_ident, usr1)
-testa("10-F",  usr1_ident, usr1)
-testa("10-T", usr1_ident, usr1 )
+usr = sessao.obtem_usuario(ses)
+assert usr != None
 
+sessao.fecha(ses)
+
+if ses:
+    testa("N", "Você errou, meu amigo!")
+else:
+    testa("S", "Você acertou, meu amigo!")

@@ -1,0 +1,3 @@
+Script de teste foi rodado para o módulo "html_cabecalho". Foram gerados dois arquivos HTML na pasta de "testes/saida":
+- "html_cabecalho.gera.G.html": página HTML em branco com texto grande "TESTÃO".
+- "html_cabecalho.gera.P.html":página HTML em branco com texto pequeno "TESTINHO".

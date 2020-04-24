@@ -1,0 +1,22 @@
+Bernardo do Amaral Teodosio - 167494
+
+Nesta aula, fui designado para rodar os testes do módulo html_form_alterar_usuario
+
+De início, após os problemas iniciais da aula com arquivos faltando, consegui rodar o servidor normalmente em meu ambiente (Mac OS).
+
+Criei o arquivo .gitignore na minha branch, para evitar que alguns arquivos específicos da minha máquina como .DS_Store, e pastas relativas à minha IDE e ao cache do python fosse commitados no repositório.
+
+Após ajudar os colegas com seus problemas, tentei rodar o meu teste executando o arquivo testa.sh, passando como argumento o meu módulo html_form_alterar_usuario
+
+Tive vários erros, por conta de arquivos errados. Inicialmente, tive problemas com o arquivo gera_html_form sendo referenciado no meu arquivo de testes. Troquei as referências apenas para html_form.
+
+Em seguida, comentei o import do módulo produto (não existente) e também as funções no arquivo relativas a este módulo.
+
+Tentando rodar novamente, tive vários erros relativos ao arquivo sessao_IMP, pois as funções "aberta" e "obtem_usuario" nele possuíam um argumento a mais que o necessário. Fiz a correção para esses argumentos não serem mais utilizados.
+
+Tentando rodar novamente, tive mais problemas, pois vi que meu arquivo de testes não testa, de fato, nada.
+Além disso, vi que há um erro também na função "testa", na chamada de testa_gera_html, pois falta o valor do argumento pretty. Apesar de entender que deveria ser um booleano, optei por não corrigir esse erro, já que meu arquivo não testaria efetivamente nada.
+
+Observei também que o arquivo comando_alterar_usuario está vazio.
+
+Sendo assim, concluo que o meu teste rodou, mas não gerou o arquivo final HTML esperado.
