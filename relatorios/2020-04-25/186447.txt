@@ -1,0 +1,4 @@
+No arquivo /Projeto-MC857-2020-1/utils_testes_IMP.py, comentei 
+"from bs4 import BeautifulSoup as bsoup  # Pretty-print of HTML"
+
+E no arquivo /Projeto-MC857-2020-1/testes/html_tabela_TST.py, comentei o "import produto"
