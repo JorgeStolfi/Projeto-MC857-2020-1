@@ -76,19 +76,19 @@ def obtem_atributos(ses):
 
 def obtem_usuario(ses):
   global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.obtem_atributos(ses)
+  return objeto.obtem_atributo(ses,'usr')
 
 def aberta(ses):
   global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.obtem_atributos(ses)
+  return objeto.obtem_atributo(ses,'abrt')
 
 def obtem_cookie(ses):
   global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.obtem_atributos(ses,'cookie')
+  return objeto.obtem_atributo(ses,'cookie')
 
 def obtem_carrinho(ses):
   global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.obtem_atributos(ses,'carrinho')
+  return objeto.obtem_atributo(ses,'carrinho')
 
 def busca_por_identificador(id):
   global cache, nome_tb, letra_tb, colunas, diags
