@@ -4,13 +4,13 @@
 # escrevem formulários HTML5.
 
 # Interfaces usadas por este script:
-import gera_html_form
+import html_form
 import usuario
 import identificador
 import base_sql
 import tabelas
 import sessao
-import produto
+# import produto
 import compra
 import utils_testes
 
@@ -26,9 +26,9 @@ tabelas.cria_todos_os_testes()
 # Testes das funções de {gera_html_form}:
 
 def testa(rotulo,  funcao, *args):
-  """Testa {funcao(*args)}, grava resultado 
+  """Testa {funcao(*args)}, grava resultado
   em "testes/saida/gera_html_form.{rotulo}.html"."""
-  
+
   modulo = gera_html_form
   frag = True
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, *args)
@@ -41,12 +41,12 @@ usr1 = sessao.obtem_usuario(ses)
 assert usr1 != None
 
 prod1_ident = "P-00000001"
-prod1 = produto.busca_por_identificador(prod1_ident)
-assert prod1 != None
+# prod1 = produto.busca_por_identificador(prod1_ident)
+# assert prod1 != None
 
 prod2_ident = "P-00000002"
-prod2 = produto.busca_por_identificador(prod2_ident)
-assert prod2 != None
+# prod2 = produto.busca_por_identificador(prod2_ident)
+# assert prod2 != None
 
 cpr1_ident = "C-00000001"
 cpr1 = compra.busca_por_identificador(cpr1_ident)

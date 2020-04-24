@@ -1,0 +1,10 @@
+Consegui rodar o servidor normalmente.
+
+Na hora de rodar o teste, tive alguns problemas e fui resolvendo alguns conforme apareciam.
+
+- Renomeei as referências para do módulo {gera_html_form} para só {html_form} no arquivo de teste
+- Comentei as referências ao módulo {produto} no arquivo de teste
+
+Depois, começou a dar uns erros de referências a variáveis não declaradas, por exemplo {buscar_produtos} e, como não temos contexto para saber o que essa variável deveria ser, não fiz mais nada a partir daí.
+
+Também adicionei um arquivo .gitignore que ignora a pasta __pycache__ na hora de comitar no repositório para evitar comitar arquivos desnecessários.
