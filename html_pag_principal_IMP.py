@@ -1,6 +1,7 @@
 import sessao
 import usuario
 import html_pag_generica
+import html_bloco_texto
 from utils_testes import erro_prog, mostra
 
 # Outras interfaces usadas por este módulo:
@@ -25,5 +26,5 @@ def gera(ses, erros):
   bloco_texto2 =  html_bloco_texto.gera(texto2, None,"Courier","16px","normal","5px","center", cor_texto, cor_fundo)
   bloco_texto3 =  html_bloco_texto.gera(texto3, None,"Courier","16px","normal","5px","center", cor_texto, cor_fundo)
   conteudo = bloco_texto1 + bloco_texto2 + bloco_texto3
-  pagina = html_pag_generica(ses, conteudo, erros)
+  pagina = html_pag_generica.gera(ses, conteudo, erros)
   return pagina
