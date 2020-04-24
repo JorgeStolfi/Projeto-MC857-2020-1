@@ -6,7 +6,7 @@ import gera_html_elem; from gera_html_elem import *
 import base_sql
 import tabelas
 import usuario
-import produto
+#import produto
 import sessao
 import compra
 import utils_testes
