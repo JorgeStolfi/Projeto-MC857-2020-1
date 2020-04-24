@@ -11,12 +11,12 @@
 
 import tabelas
 import usuario
-import produto
+#import produto
 import compra
 import sessao
 import gera_html_pag
 import base_sql
-from produto import ObjProduto
+#from produto import ObjProduto
 import utils_testes
 
 import sys
@@ -46,7 +46,7 @@ cpr = compra.busca_por_identificador(cpr_ident)
 #qtd teste
 qtd = 2.3
 #produto teste
-prod1 = produto.busca_por_identificador("P-00000001")
+#prod1 = produto.busca_por_identificador("P-00000001")
 lista_prod = ["P-00000001", "P-00000002"]
 
 # Testes das funções de {gera_html_pag}:
@@ -78,7 +78,7 @@ for tag, erros in (
 
   testa("principal", tag, gera_html_pag.principal, ses, erros)
 
-  testa("produto", tag, gera_html_pag.mostra_produto, ses, cpr_ident, prod1, qtd, erros)
+  #testa("produto", tag, gera_html_pag.mostra_produto, ses, cpr_ident, prod1, qtd, erros)
 
   testa("lista_de_produtos", tag, gera_html_pag.lista_de_produtos, ses, lista_prod, erros)
 
