@@ -1,0 +1,3 @@
+ Rodei o servidor.
+ Tentei rodar {testa.sh} no windows.
+ Tentei sem sucesso resolver o problema de conflito do git bash no windows com o sh.

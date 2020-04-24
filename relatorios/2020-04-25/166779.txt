@@ -1,0 +1,2 @@
+Dado que recebi o módulo html_estilo_de_botão, o testei, gerando um arquivo html com o output de chamada do módulo. Esse output é um texto que contém a formatação do botão.
+Para verificar se meu módulo está funcionando corretamente, fiz um teste com o módulo html_botao_simples, que chama o módulo de gerar estilo de botão. Visto que os dois parecem condizendes com as suas chamadas - a borda, a cor de fundo e tudo mais - parece que não há um problema com o módulo apresentado.

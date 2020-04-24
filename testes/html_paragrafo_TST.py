@@ -2,11 +2,10 @@
 
 # Interfaces usadas por este script:
 
-import gera_html_elem; from gera_html_elem import *
+import html_paragrafo; from html_paragrafo import *
 import base_sql
 import tabelas
 import usuario
-import produto
 import sessao
 import compra
 import utils_testes
@@ -23,10 +22,10 @@ tabelas.cria_todos_os_testes()
 # Testes das funções de {gera_html_elem}:
 
 def testa(rotulo,  funcao, *args):
-  """Testa {funcao(*args)}, grava resultado 
+  """Testa {funcao(*args)}, grava resultado
   em "testes/saida/gera_html_elem.{rotulo}.html"."""
-  
-  modulo = gera_html_elem
+
+  modulo = html_paragrafo
   frag = True
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, *args)
 
@@ -39,7 +38,7 @@ assert usr != None
 unome = usuario.obtem_atributos(usr)['nome']
 
 prod1_ident = "P-00000001"
-prod1 = produto.busca_por_identificador(prod1_ident)
+# prod1 = produto.busca_por_identificador(prod1_ident)
 prod2_ident = "P-00000002"
 prod5_ident = "P-00000005"
 

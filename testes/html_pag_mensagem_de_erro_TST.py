@@ -14,7 +14,7 @@ import usuario
 import produto
 import compra
 import sessao
-import gera_html_pag
+import html_pag_generica
 import base_sql
 from produto import ObjProduto
 import utils_testes
@@ -49,26 +49,26 @@ qtd = 2.3
 prod1 = produto.busca_por_identificador("P-00000001")
 lista_prod = ["P-00000001", "P-00000002"]
 
-# Testes das funções de {gera_html_pag}:
+# Testes das funções de {html_pag_generica}:
 
 def testa(nome, tag, funcao, *args):
   """Testa {funcao(*args)}, grava resultado 
-  em "testes/saida/gera_html_pag.{nome}_{tag}.html"."""
+  em "testes/saida/html_pag_generica.{nome}_{tag}.html"."""
   
-  modulo = gera_html_pag
+  modulo = html_pag_generica
   frag = False
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, *args)
   
 # !!! Completar !!!
 
 msg = "voce cometeu um erro, rapaz"
-testa("mensagem_de_erro", "S", gera_html_pag.mensagem_de_erro, ses, msg)
+testa("mensagem_de_erro", "S", html_pag_generica.mensagem_de_erro, ses, msg)
 
 msg = "voce cometeu um erro, rapaz\ne outro erro também"
-testa("mensagem_de_erro", "M", gera_html_pag.mensagem_de_erro, ses, msg)
+testa("mensagem_de_erro", "M", html_pag_generica.mensagem_de_erro, ses, msg)
 
 msg = ["voce cometeu um erro, rapaz", "e outro erro também",]
-testa("mensagem_de_erro", "L", gera_html_pag.mensagem_de_erro, ses, msg)
+testa("mensagem_de_erro", "L", html_pag_generica.mensagem_de_erro, ses, msg)
 
 for tag, erros in ( 
     ("N", None), 
@@ -76,24 +76,24 @@ for tag, erros in (
     ("E", ["Mensagem UM", "Mensagem DOIS", "Mensagem TRÊS",])
   ):
 
-  testa("principal", tag, gera_html_pag.principal, ses, erros)
+  testa("principal", tag, html_pag_generica.principal, ses, erros)
 
-  testa("produto", tag, gera_html_pag.mostra_produto, ses, cpr_ident, prod1, qtd, erros)
+  testa("produto", tag, html_pag_generica.mostra_produto, ses, cpr_ident, prod1, qtd, erros)
 
-  testa("lista_de_produtos", tag, gera_html_pag.lista_de_produtos, ses, lista_prod, erros)
+  testa("lista_de_produtos", tag, html_pag_generica.lista_de_produtos, ses, lista_prod, erros)
 
-  testa("cadastrar_usuario", tag, gera_html_pag.cadastrar_usuario, ses, usr1_atrs,["erro 1", "erro 2",])
+  testa("cadastrar_usuario", tag, html_pag_generica.cadastrar_usuario, ses, usr1_atrs,["erro 1", "erro 2",])
 
-  testa("alterar_usuario", tag, gera_html_pag.alterar_usuario, ses, usr1_id, usr1_atrs, ["erro bobo", "erro genial",])
+  testa("alterar_usuario", tag, html_pag_generica.alterar_usuario, ses, usr1_id, usr1_atrs, ["erro bobo", "erro genial",])
 
   conteudo = "Teste do método genérico"
 
-  testa("generica", tag, gera_html_pag.generica,ses, conteudo, erros)
+  testa("generica", tag, html_pag_generica.generica,ses, conteudo, erros)
 
-  testa("mostra_carrinho", tag, gera_html_pag.mostra_carrinho, ses, erros)
+  testa("mostra_carrinho", tag, html_pag_generica.mostra_carrinho, ses, erros)
 
-  testa("mostra_compra_False", tag, gera_html_pag.mostra_compra, ses, cpr, erros)
-  testa("mostra_compra_True", tag, gera_html_pag.mostra_compra, ses, cpr, erros)
+  testa("mostra_compra_False", tag, html_pag_generica.mostra_compra, ses, cpr, erros)
+  testa("mostra_compra_True", tag, html_pag_generica.mostra_compra, ses, cpr, erros)
 
 
 

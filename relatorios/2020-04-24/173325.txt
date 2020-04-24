@@ -1,0 +1,77 @@
+O módulo avaliado foi {html_input.py}.
+
+Esse módulo é utilizado para gerar o código HTML de um campo de dados.
+
+O script de teste utilizado é {html_input_TST.py}. No script de testes são
+executados 11 testes que geram 11 paginas html contendo os campos de dados
+gerados. Os teste executados são:
+
+teste 1:
+Gera uma label 'Peso' um campo de dados do tipo 'text'. Os atributos do campo de
+dados são: o atributo 'name' tem o valor 'peso', o atributo 'id' tem o valor
+'peso' e o atributo 'dica (ou placeholder)' tem o valor 'Máximo 50 kg'.
+
+teste 2:
+Gera uma label 'Peso' um campo de dados do tipo 'text'. Os atributos do campo de
+dados são: o atributo 'name' tem o valor 'peso', o atributo 'id' tem o valor
+'peso' e o atributo 'value' tem o valor '30 kg'.
+
+teste 3:
+Gera uma label 'Peso' um campo de dados do tipo 'text'. Os atributos do campo
+de dados são:  atributo 'name' tem o valor 'peso', o atributo 'id' tem o valor
+'peso' e o atributo 'value' tem o valor
+'30 kg'. Porem, o campo tem o valor configurado como read-only, logo não pode ser
+alterado.
+
+teste 4:
+Gera uma label 'Peso (kg)' um campo de dados do tipo 'number' que só aceita
+caracteres numtem o valorricos. Os atributo do campo de dados são: o atributo
+'name' tem o valor 'peso', o atributo 'id' tem o valor 'peso' e o atributo 'dica
+(ou placeholder)' tem o valor 'Máximo 50 kg'.
+
+teste 5:
+Gera uma label 'Peso (kg)' um campo de dados do tipo 'number' com os seguintes
+atributos. O atributo 'name' tem o valor 'peso', o atributo 'id' tem o valor
+'peso' e o 'value' tem o valor '30'.
+
+teste 6:
+Gera uma label 'Peso (kg)' um campo de dados do tipo 'number' com os seguintes
+atributos. O atributo 'name' tem o valor 'peso', o atributo 'id' tem o valor
+'peso' e o 'value' tem o valor '30'. Portem o valorm, o campo tem o valor
+configurado como read-only, logo não pode ser alterado.
+
+teste 7:
+Gera uma label 'Email' um campo de dados do tipo 'email'. Os atributos do campo
+de dados são: o atributo 'name' tem o valor 'email', o atributo 'id' tem o valor
+'email' e o atributo 'dica (ou placeholder)' tem o valor '{user}@{host}'.
+
+teste 8:
+Gera uma label 'Email' um campo de dados do tipo 'email'. Os atributos do campo
+de dados são: o atributo 'name' tem o valor 'email', o atributo 'id' tem o valor
+'email' e o atributo 'value' tem o valor 'jose@tatu.gov.br'.
+
+teste 9:
+Gera uma label 'Senha' um campo de dados do tipo 'password', esse tipo
+substitui as letras digitadas no campo por um "ponto" para proteger o valor
+digitado. Os atributos do campo
+de dados são: o atributo 'name' tem o valor 'senha', o atributo 'id' tem o valor
+'senha' e o atributo 'dica (ou placeholder)' tem o valor 'Máximo 2 letras'.
+
+teste 10:
+Gera uma label 'Senha' um campo de dados do tipo 'password', esse tipo
+substitui as letras digitadas no campo por um "ponto" para proteger o valor
+digitado. Os atributos do campo
+de dados são: o atributo 'name' tem o valor 'senha', o atributo 'id' tem o valor
+'senha' e o atributo 'value' tem o valor '99', mas, como o campo é do tipo
+'password' o valor 99 é substituído por dois pontos.
+
+teste 11:
+Não gera labels, somente um campo de dados do tipo 'hidden', este campo não
+aparece visualmente no browser. Os atributos do campo
+de dados são: o atributo 'name' tem o valor 'user', o atributo 'id' tem o valor
+'user' e o atributo 'value' tem o valor 'U-12345678'. Além disso, o campo é
+configurado como read-only, logo, não pode ser alterado.
+
+Conclusão:
+Todos os testes geraram as paginas com os campos conforme foram configurados sem
+nenhum erro.
