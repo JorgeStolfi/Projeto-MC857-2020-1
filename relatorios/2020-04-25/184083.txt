@@ -1,0 +1,6 @@
+Minha task: html_pag_mensagem_de_erro_TST.py
+
+Eu alterei o import do gera_html_pag para import html_pag_generica (acredito que seja o novo nome)
+Alem disso dei replace em todos gera_html_pag para html_pag_generica
+Ate ai acredito que esteja ok.
+O problema é o modulo produto, que não achei nenhum substituto e provavelmente é o "core" desse projeto.
