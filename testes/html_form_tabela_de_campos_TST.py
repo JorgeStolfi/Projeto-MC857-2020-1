@@ -4,17 +4,16 @@
 # escrevem formulários HTML5.
 
 # Interfaces usadas por este script:
-import gera_html_form
-import usuario
-import identificador
 import base_sql
-import tabelas
-import sessao
-import produto
 import compra
+#import gera_html_form
+import identificador
+#import produto
+import sessao
+#import sys
+import tabelas
+import usuario
 import utils_testes
-
-import sys
 
 sys.stderr.write("Conectando com base de dados...\n")
 res = base_sql.conecta("DB",None,None)
