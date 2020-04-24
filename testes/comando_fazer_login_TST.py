@@ -24,6 +24,7 @@ ok_global = True # Vira {False} se um teste falha.
 # Função de teste:
 
 def verifica_login(email, senha, deveria_logar):
+  global ok_global
   dados = {
     "email": email,
     "senha": senha
