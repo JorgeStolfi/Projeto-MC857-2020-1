@@ -11,7 +11,7 @@ import comando_fazer_login
 import comando_fazer_logout
 
 import html_bloco_texto
-import html_dic 
+import html_div 
 import html_pag_principal
 import html_pag_mensagem_de_erro
 
