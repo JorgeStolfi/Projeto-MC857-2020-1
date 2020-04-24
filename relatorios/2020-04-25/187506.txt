@@ -1,0 +1,1 @@
+Consegui rodar o servidor local. Me baseei no modulo comando_cadastrar_usuario para realizar o modulo comando_alterar_usuario. ao testar o modulo rodando o teste para html_pah_alterar_usuario_TST encontrei algum erros, o teste estava usando produtos e está usando também um modulo gera_html_pag, mas esse arquivo não existe, portanto ele não consegue importar e rodar. 
