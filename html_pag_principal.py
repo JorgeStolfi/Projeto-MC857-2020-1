@@ -12,4 +12,4 @@ def gera(ses, erros):
   O parâmetro {ses} é um objeto da classe {ObjSessao} que 
   representa a sessão de login corrente; ou {None} se o usuário
   nao está logado"""
-  return html_pag_principal_IMP.principal(ses, erros)
+  return html_pag_principal_IMP.gera(ses, erros)
