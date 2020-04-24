@@ -1,3 +1,15 @@
+Inicialmente, fui na pasta do projeto e dei o seguinte comando
+		pip3 install bs4
+
+Em seguida, dei o comando:
+
+		python3 servidor.py
+
+O servidor foi aberto em localhost:8081/
+
+
+----------------------------------------------
+
 Rodei o sessao.py
 
 Originou os seguintes erros:
