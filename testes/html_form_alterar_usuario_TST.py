@@ -4,7 +4,7 @@
 # escrevem formulários HTML5.
 
 # Interfaces usadas por este script:
-import gera_html_form
+import html_form
 import usuario
 import identificador
 import base_sql
@@ -23,13 +23,13 @@ assert res == None
 sys.stderr.write("Criando alguns objetos...\n")
 tabelas.cria_todos_os_testes()
 
-# Testes das funções de {gera_html_form}:
+# Testes das funções de {html_form}:
 
 def testa(rotulo,  funcao, *args):
   """Testa {funcao(*args)}, grava resultado 
-  em "testes/saida/gera_html_form.{rotulo}.html"."""
+  em "testes/saida/html_form.{rotulo}.html"."""
   
-  modulo = gera_html_form
+  modulo = html_form
   frag = True
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, *args)
 
