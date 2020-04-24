@@ -1,0 +1,19 @@
+Relatório:
+
+Foi instalada a biblioteca BS4 e rodou-se p arquivo servidor.py
+
+- pip3 install bs4
+- python3 servidor.py
+
+Foi aberto o link http://localhost:8081/ e o servidor foi carregado
+
+//-----
+
+Execução de arquivo de teste para o usuario.py
+./testa.sh usuario.py
+
+Foi obtido a seguinte resposta:
+=== testando módulo usuário =============================
+/usr/local/Cellar/python/3.7.7/Frameworks/Python.framework/Versions/3.7/Resources/Python.app/Contents/MacOS/Python: can't open file 'testes/usuário_TST.py': [Errno 2] No such file or directory
+!! testes/saida/usuário.html is empty
+testes/saida/usuário.html
