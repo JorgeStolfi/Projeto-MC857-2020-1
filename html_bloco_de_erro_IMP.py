@@ -1,16 +1,18 @@
 import html_bloco_texto
+import html_paragrafo
 import html_botao_simples
+import re
 
-def bloco_de_erro(msg):
+def gera(msg):
   fam_fonte = "Courier"
   # Cabeçalho espalhafatoso:
-  html_tit = bloco_texto("ERRO!", None, fam_fonte, "24px", "bold", "5px", "left", "#880000", None)
+  html_tit = html_bloco_texto.gera("ERRO!", None, fam_fonte, "24px", "bold", "5px", "left", "#880000", None)
 
   # Processa quebras de linha em {msg}:
   msg = re.sub(r'\n', r'<br/>\n', msg)
 
   # Formata a mensagem:
-  html_msg = bloco_texto(msg, None, fam_fonte, "20px", "bold", "5px", "left", "#000000", None)
+  html_msg = html_bloco_texto.gera(msg, None, fam_fonte, "20px", "bold", "5px", "left", "#000000", None)
 
   # Contrói o botão "OK":
   html_botao = html_botao_simples.gera("OK", 'principal', None, '#55ee55')
