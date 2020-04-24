@@ -36,7 +36,7 @@ def gera(ses, html_conteudo, erros):
   erros = [ er for er in erros if len(er) > 0 ]
   if len(erros) != 0:
     erros = "<br/>\n" + "<br/>\n".join(erros)
-    html_erros = html_bloco_de_erro(erros) + "\n"
+    html_erros = html_bloco_de_erro.gera(erros) + "\n"
   else:
     html_erros = ""
 
