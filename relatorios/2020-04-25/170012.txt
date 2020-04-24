@@ -1,0 +1,4 @@
+- Subi o servidor
+- Tentei rodar o teste de 'html_form_dados_de_usuario'
+- Removi os problemas com produto e gera_html
+- Crio o usuario, entretanto o arquivo de teste ainda da erro na execucao do arquivo html_form_dados_de_usuario, pois faltam alguns argumentos

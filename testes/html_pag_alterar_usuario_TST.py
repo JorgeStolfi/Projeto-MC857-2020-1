@@ -4,9 +4,6 @@
 # retornam cadeias de caracteres que são
 # páginas completas em HTML5
 
-# !!! Fazer este programa de teste funcionar !!!
-# !!! Ele ptecisa chamar cada função da interface pelo menos uma vez, gravando arquivos ".html" separados. !!!
-
 #Interfaces utilizados por este teste
 
 import tabelas
@@ -44,7 +41,6 @@ cpr = compra.busca_por_identificador(cpr_ident)
 #qtd teste
 qtd = 2.3
 
-
 # Testes das funções de {gera_html_pag}:
 
 def testa(nome, tag, funcao, *args):
@@ -73,7 +69,6 @@ for tag, erros in (
   ):
 
   testa("principal", tag, gera_html_pag.principal, ses, erros)
-
 
   testa("cadastrar_usuario", tag, gera_html_pag.cadastrar_usuario, ses, usr1_atrs,["erro 1", "erro 2",])
 

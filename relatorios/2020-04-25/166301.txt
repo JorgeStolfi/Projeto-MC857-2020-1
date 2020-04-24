@@ -1,0 +1,1 @@
+Rodei o servidor, mas tive alguns erros em relação ao python e ao meu path que necessitaram configurações extras pra instalação de pacotes

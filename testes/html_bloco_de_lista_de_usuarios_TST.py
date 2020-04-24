@@ -6,7 +6,6 @@ import html_bloco_de_lista_de_usuarios
 import base_sql
 import tabelas
 import usuario
-import produto
 import sessao
 import compra
 import utils_testes
@@ -26,10 +25,11 @@ def testa(rotulo,  funcao, *args):
   
   modulo = html_bloco_de_lista_de_usuarios
   frag = True
-  utils_testes.testa_gera_html(modulo, modulo.gera, rotulo, frag, *args)
+  pretty = True
+  utils_testes.testa_gera_html(modulo, getattr(modulo, funcao), rotulo, frag, pretty, *args)
 
 usr1_ident = "U-00000001"
 usr2_ident = "U-00000002"
 usr5_ident = "U-00000005"
 
-testa("N", gera, [usr1_ident,usr5_ident,usr2_ident])
+testa("N", "gera", [usr1_ident,usr5_ident,usr2_ident])

@@ -1,0 +1,10 @@
+COnsegui rodar o ./servidor.py e acessar o localhost.
+
+Porém não consegui rodar meu _TST.py.
+
+Minha arquivo é o html_pag_alterar_usuario.py.
+
+Tive problemas com o "import produto", e comentei essa chamada e suas referências.
+
+Mas além disso, tive problema com o "import gera_html_pag", e nao consegui resolver este problema, pois este import é utilizado em todos os lugares. 
+
