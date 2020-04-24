@@ -1,0 +1,5 @@
+# Tomei a liberdade de criar um arquivo .gitignore para o repositório, de forma a facilitar o desenvolvimento de alunos que usam diferentes editores de texto / IDEs e sistemas operacionais
+.idea/
+.DS_Store
+__pycache__/
+
