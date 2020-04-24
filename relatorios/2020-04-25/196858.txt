@@ -1,0 +1,56 @@
+Inicialmente, fui na pasta do projeto e dei o seguinte comando
+		pip3 install bs4
+
+Em seguida, dei o comando:
+
+		python3 servidor.py
+
+O servidor foi aberto em localhost:8081/
+
+
+----------------------------------------------
+
+Rodei o sessao.py
+
+Originou os seguintes erros:
+
+Traceback (most recent call last):
+  File "/Users/felipesemissatto/Desktop/MC857/AULA 02/Projeto-MC857-2020-1/sessao.py", line 8, in <module>
+    import sessao_IMP; from sessao_IMP import ObjSessao_IMP
+  File "/Users/felipesemissatto/Desktop/MC857/AULA 02/Projeto-MC857-2020-1/sessao_IMP.py", line 2, in <module>
+    import sessao
+  File "/Users/felipesemissatto/Desktop/MC857/AULA 02/Projeto-MC857-2020-1/sessao.py", line 8, in <module>
+    import sessao_IMP; from sessao_IMP import ObjSessao_IMP
+ImportError: cannot import name 'ObjSessao_IMP' from 'sessao_IMP' (/Users/felipesemissatto/Desktop/MC857/AULA 02/Projeto-MC857-2020-1/sessao_IMP.py)
+
+
+-----------------------------------------------
+
+Após isso, entrei pelo terminal no projeto e dei o comando: 
+
+./testa.sh sessao
+
+Que teve como saída:
+
+   base_sql_IMP.conecta: conectando com a base
+Inicializando módulo {usuario}, limpando tabela, criando usuários para teste:
+Inicializando módulo {produtos}, limpando tabela, criando produtos para teste:
+Inicializando módulo {compra}, limpando tabela, criando compras para teste:
+Inicializando módulo {sessao}, limpando tabela:
+Obtendo dois usuários para teste:
+testando {sessao.cria}:
+----------------------------------------------------------------------
+verificando sessão s1
+Traceback (most recent call last):
+  File "testes/sessao_TST.py", line 95, in <module>
+    verifica_sessao("s1", s1, sident1, usr1, True, scook1, cmp1)
+  File "testes/sessao_TST.py", line 54, in verifica_sessao
+    ok = sessao.verifica_objeto(ses, ident, atrs)
+AttributeError: module 'sessao' has no attribute 'verifica_objeto'
+!! testes/saida/sessao.html is empty
+testes/saida/sessao.html
+
+
+No file sessao_TST.py originou o erro:
+
+ModuleNotFoundError: No module named 'base_sql'
