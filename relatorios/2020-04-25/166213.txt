@@ -1,0 +1,4 @@
+Corrigidos vários erros no módulo {bloco_de_usuario}.
+Removido import de {produto}.
+Removidos parâmetros desnecessários na chamada {testa}.
+Entre outras menores correções.
