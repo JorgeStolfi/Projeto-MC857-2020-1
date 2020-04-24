@@ -76,11 +76,11 @@ def obtem_atributos(ses):
 
 def obtem_usuario(ses):
   global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.obtem_atributos(ses,'usr')
+  return objeto.obtem_atributos(ses)
 
 def aberta(ses):
   global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.obtem_atributos(ses,'abrt')
+  return objeto.obtem_atributos(ses)
 
 def obtem_cookie(ses):
   global cache, nome_tb, letra_tb, colunas, diags
