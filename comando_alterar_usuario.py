@@ -1,33 +1,22 @@
-# Implementação do módulo {comando_alterar_usuario}.
+import comando_alterar_usuario_IMP
 
-import html_pag_login
-import html_pag_alterar_usuario
-import usuario
-import sessao
-from utils_testes import erro_prog, mostra
-from valida_campo import ErroAtrib
-import re
-import sys
-
-def msg_campo_obrigatorio(nome_do_campo):
-  return "O campo %s é obrigatório." % nome_do_campo
 
 def processa(ses, args):
-  # Determina se o usuário corrente {usr_ses} é administrador:
-  if ses == None:
-    admin = False
-  else:
-    usr_ses = sessao.obtem_usuario(ses)
-    assert usr_ses != None
-    admin = usuario.obtem_atributos(usr_ses)['administrador']
+    """Esta função é chamada quando o usuário aperta o botão "Alterar"
+    em um formulário para alterar um usuário, após ter preenchido
+    os campos do mesmo.
 
-  # Tenta editar o usuário:
-  try:
-    usuario.confere_e_elimina_conf_senha(args)
-    usr = usuario.muda_atributos(args)
-    pag = html_pag_login.gera(ses, None)   
-  except ErroAtrib as ex:
-    erros = ex.args[0]
-    # Repete a página de cadastrar com os mesmos argumentos e mens de erro:
-    pag = html_pag_alterar_usuario.gera(ses, args, erros)
-  return pag
+    Os dados do usuário devem estar definidos no dicionário {args}.
+    Deve haver um campo 'senha' com valor não nulo, um campo 'conf_senha'
+    com o mesmo valor e um campo 'id_usuario' não nulo.
+
+    Se os dados forem aceitáveis, a função altera o usuário {usr},
+    na base de dado; e retorna um formulário
+    para o usuário fazer login (com campos para email e senha,
+    e um botão "Entrar").
+
+    Se os dados não forem aceitáveis, a função devolve o
+    mesmo formulário de alterar usuário, com os mesmos
+    dados nos campos preenchidos, com uma ou mais mensagens de erro
+    adequadas."""
+    return comando_alterar_usuario_IMP.processa(ses, args)
