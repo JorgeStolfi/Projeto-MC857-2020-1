@@ -26,7 +26,7 @@ def testa(rotulo, *args):
   modulo = html_pag_principal
   funcao = modulo.gera
   frag = False  # {True} se for apenas um fragmento HTML, {False} se for página completa.
-  pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
+  pretty = False # Se {True}, formata HTML para legibilidade (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
 for tag, erros in ( 
