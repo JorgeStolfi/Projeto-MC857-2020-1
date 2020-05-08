@@ -35,10 +35,11 @@ def testa(rotulo, *args):
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
+
+# Tags: N - Nenhum erro = String erros vazia e E - Existem erros = Mensagens de erro na String erros
 for tag, erros in ( 
-    ("N", None), 
-    ("V", []), 
-    ("E", ["Mensagem UM", "Mensagem DOIS", "Mensagem TRÊS",])
+    ("N", ""),  
+    ("E", "Mensagem do(s) erro(s)")
   ):
   rotulo = tag + "_" + erros
-  testa(rotulo, ses, usr1_id, erros)
+  testa(rotulo, ses, usr1_id, usuario.obtem_atributos(usr1), erros)
