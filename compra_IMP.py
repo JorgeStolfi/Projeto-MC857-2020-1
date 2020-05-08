@@ -1,7 +1,7 @@
 import objeto
 import usuario
 import compra
-
+import assento
 import tabela_generica
 import tabelas
 import conversao_sql
@@ -104,7 +104,7 @@ def muda_atributos(cpr, mods_mem):
   erros = valida_atributos(cpr, mods_mem)
   if len(erros) != 0: raise ErroAtrib(erros)
   
-  objeto.muda_atributos(cpr, mods_mem, cache, nome_tb, letra_tb, colunas)
+  objeto.muda_atributos(cpr, mods_mem, cache, nome_tb, letra_tb, colunas, def_obj_mem)
   return
 
 def fecha(cpr):
