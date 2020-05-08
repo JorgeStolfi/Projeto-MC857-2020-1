@@ -1,6 +1,16 @@
 #! /usr/bin/python3
 
-import html_rodape; from html_rodape import gera
-import utils_testes; from utils_testes import testa_gera_html as testa
+import html_rodape
+import utils_testes
 
-testa(html_rodape, gera, "N", True, False)
+def testa(rotulo, *args):
+  """Testa {funcao(*args)}, grava resultado 
+  em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
+  
+  modulo = html_rodape
+  funcao = modulo.gera
+  frag = True  # {True} se for apenas um fragmento HTML, {False} se for página completa.
+  pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
+  utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
+
+testa("N")

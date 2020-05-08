@@ -61,7 +61,7 @@ def def_obj_mem(obj, id, atrs_SQL):
     obj = ObjTeste(id, atrs_mem)
   else:
     assert obj.id == id
-    mods_mem = conversao_sql.dict_SQL_para_dict_mem(atrs_SQL, colunas, True)
+    mods_mem = conversao_sql.dict_SQL_para_dict_mem(atrs_SQL, colunas, True, tabelas.id_para_objeto)
     # Modifica os atributos:
     for chave, val in mods_mem.items():
       val_velho = obj.atrs[chave]
@@ -117,17 +117,17 @@ obj1_mods = {
   'coisa': 109,
   'lhufas': "cento e nove"
 }
-objeto.muda_atributos(obj1, obj1_mods)
+objeto.muda_atributos(obj1, obj1_mods, cache, nome_tb, letra_tb, colunas, def_obj_mem)
 obj1_atrs_m = obj1_atrs
 for k, v in obj1_mods.items():
   obj1_atrs_m[k] = v
 verifica_objeto("obj1_d", obj1, obj1_id, obj1_atrs_m)
 
-objeto.muda_atributos(obj2, obj2_atrs) # Não deveria mudar os atributos
+objeto.muda_atributos(obj2, obj2_atrs, cache, nome_tb, letra_tb, colunas, def_obj_mem) # Não deveria mudar os atributos
 verifica_objeto("obj2", obj2, obj2_id, obj2_atrs)
 
 obj2_atrs_m = obj3_atrs.copy()
-objeto.muda_atributos(obj2, obj2_atrs_m) # Deveria assumir os valores do obj3
+objeto.muda_atributos(obj2, obj2_atrs_m, cache, nome_tb, letra_tb, colunas, def_obj_mem) # Deveria assumir os valores do obj3
 verifica_objeto("obj2_m", obj2, obj2_id, obj2_atrs_m)
 
 # ----------------------------------------------------------------------

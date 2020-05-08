@@ -1,6 +1,6 @@
 # Implementação do módulo {comando_cadastrar_usuario}.
 
-import html_pag_entrar
+import html_pag_login
 import html_pag_cadastrar_usuario
 import usuario
 import sessao
@@ -25,7 +25,7 @@ def processa(ses, args):
   try:
     usuario.confere_e_elimina_conf_senha(args)
     usr = usuario.cria(args)
-    pag = html_pag_entrar.gera(ses, None)
+    pag = html_pag_login.gera(ses, None)
   except ErroAtrib as ex:
     erros = ex.args[0]
     # Repete a página de cadastrar com os mesmos argumentos e mens de erro:

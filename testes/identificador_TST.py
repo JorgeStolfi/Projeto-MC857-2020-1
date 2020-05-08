@@ -1,7 +1,6 @@
 #! /usr/bin/python3
 
 import sys
-from bs4 import BeautifulSoup as bsoup  # Pretty-print of HTML
 import identificador
 from utils_testes import erro_prog, mostra
 

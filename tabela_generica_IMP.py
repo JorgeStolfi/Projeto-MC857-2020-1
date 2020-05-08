@@ -41,6 +41,7 @@ def cria_tabela(nome_tb, cols):
   colunas = constroi_colunas_SQL(cols)
   res = base_sql.executa_comando_CREATE_TABLE(nome_tb, colunas);
   if res != None:
+    sys.stderr.write("CREATE TABLE = \"%s\"\n" % str(res))
     assert type(res) is str
     erro_prog("CREATE_TABLE falhou " + str(res))
   return

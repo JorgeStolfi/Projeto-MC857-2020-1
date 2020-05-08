@@ -1,7 +1,17 @@
 #! /usr/bin/python3
 
-import html_cabecalho; from html_cabecalho import gera
-import utils_testes; from utils_testes import testa_gera_html as testa
+import html_cabecalho
+import utils_testes
 
-testa(html_cabecalho, gera, "P", True, False, "TESTINHO", False)
-testa(html_cabecalho, gera, "G", True, False, "TESTÃO", True)
+def testa(rotulo, *args):
+  """Testa {funcao(*args)}, grava resultado 
+  em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
+  
+  modulo = html_cabecalho
+  funcao = modulo.gera
+  frag = True  # {True} se for apenas um fragmento HTML, {False} se for página completa.
+  pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
+  utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
+
+testa("P", "TESTINHO", False)
+testa("G", "TESTÃO", True)

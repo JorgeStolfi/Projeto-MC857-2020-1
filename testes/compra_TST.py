@@ -20,9 +20,6 @@ base_sql.conecta("DB",None,None)
 sys.stderr.write("Inicializando módulo {usuario}, limpando tabela, criando usuários para teste:\n")
 usuario.cria_testes()
 
-sys.stderr.write("Inicializando módulo {produtos}, limpando tabela, criando produtos para teste:\n")
-compra.cria_testes()
-
 sys.stderr.write("Inicializando módulo {compra}, limpando tabela, criando compras para teste:\n")
 compra.cria_testes()
 
@@ -44,7 +41,7 @@ cmp2 = compra.busca_por_identificador("C-00000003")
 ok_global = True # Vira {False} se um teste falha.
 
 def verifica_compra(rotulo, cpr, ident, usr, abrt, cookie, carrinho):
-  """Testes básicos de consistência do objeto {cpr} da classe {ObjCompra}, dados
+  """Testes básicos de consistência do objeto {cpr} da classe {Objeto_Compra}, dados
   {ident} e {atrs} esperados."""
   global ok_global
 
@@ -53,7 +50,7 @@ def verifica_compra(rotulo, cpr, ident, usr, abrt, cookie, carrinho):
   atrs = { 'usr': usr, 'abrt': abrt, 'cookie': cookie, 'carrinho': carrinho }
   ok = compra.verifica_objeto(cpr, ident, atrs)
   
-  if cpr != None and type(cpr) is compra.ObjCompra:
+  if cpr != None and type(cpr) is compra.Objeto_Compra:
     
     sys.stderr.write("testando {obtem_usuario()}:\n")
     usr1 = compra.obtem_usuario(cpr)
@@ -89,7 +86,7 @@ def verifica_compra(rotulo, cpr, ident, usr, abrt, cookie, carrinho):
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {compra.cria}:\n")
 scook1 = "ABCDEFGHIJK"
-s1 = compra.cria(usr1, scook1, cmp1)
+s1 = compra.cria(usr1)
 sindice1 = 1
 sident1 = "S-00000001"
 verifica_compra("s1", s1, sident1, usr1, True, scook1, cmp1)

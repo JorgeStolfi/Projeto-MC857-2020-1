@@ -7,7 +7,7 @@ def nome_de_usuario(rotulo, val, nulo_ok):
   if val == None and not nulo_ok: return [ "campo '%s' não pode ser omitido" % rotulo, ]
   erros = []
   if type(val) is not str:
-    erros += [ "campo '%s' deve ser string" % rotulo ]
+    erros += [ "campo '%s' = \"%s\" deve ser string" % (rotulo, str(val)) ]
   else:
     n = len(val)
     if n < 6:
@@ -21,7 +21,7 @@ def CPF(rotulo, val, nulo_ok):
   if val == None and not nulo_ok: return [ "campo '%s' não pode ser omitido" % rotulo, ]
   erros = []
   if type(val) is not str:
-    erros += [ "campo '%s' deve ser string" % rotulo ]
+    erros += [ "campo '%s' = \"%s\" deve ser string" % (rotulo, str(val)) ]
   elif not re.match(r'^[0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2}$', val):
     erros += [ "campo '%s' tem formato inválido, deveria ser 'xxx.xxx.xxx-xx'" % rotulo ]
   # !!! Verificar dígitos de controle !!!

@@ -1,7 +1,9 @@
 #! /bin/bash
 
 # Uso: "testa.sh {MODULO}"
-# Executa "testes/{MODULO}_TST.py" e manda a saída "stdsaida" para testes/saida/{MODULO}.html
+# Executa "testes/{MODULO}_TST.py" com o {PYTHONPATH} correto,
+# e manda a saída "stdout" (se não for vazia)
+# para testes/saida/{MODULO}.html
 
 modulo="$1"; shift  # 
 opref="testes/saida/${modulo}"

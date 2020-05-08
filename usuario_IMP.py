@@ -1,4 +1,4 @@
-# Implementação do módulo {usuario} e da classe {ObjUsuario}.
+# Implementação do módulo {usuario} e da classe {Objeto_Usuario}.
 
 import objeto
 import usuario
@@ -9,6 +9,7 @@ import conversao_sql
 import identificador
 import valida_campo; from valida_campo import ErroAtrib
 from utils_testes import erro_prog, mostra
+import sys
 
 # VARIÁVEIS GLOBAIS DO MÓDULO
 
@@ -16,7 +17,7 @@ nome_tb = "usuarios"
   # Nome da tabela na base de dados.
 
 cache = {}.copy()
-  # Dicionário que mapeia identificadores para os objetos {ObjUsuario} na memória.
+  # Dicionário que mapeia identificadores para os objetos {Objeto_Usuario} na memória.
   # Todo objeto dessa classe que é criado é acrescentado a esse dicionário,
   # a fim de garantir a unicidadde dos objetos.
 
@@ -38,9 +39,9 @@ colunas = \
 diags = False
   # Quando {True}, mostra comandos e resultados em {stderr}.
 
-# Definição interna da classe {ObjUsuario}:
+# Definição interna da classe {Objeto_Usuario}:
 
-class ObjUsuario_IMP(objeto.Objeto):
+class Objeto_Usuario_IMP(objeto.Objeto):
 
   def __init__(self, id, atrs):
     global cache, nome_tb, letra_tb, colunas
@@ -63,7 +64,7 @@ def cria(atrs_mem):
   if len(erros) != 0: raise ErroAtrib(erros)
 
   usr = objeto.cria(atrs_mem, cache, nome_tb, letra_tb, colunas, def_obj_mem)
-  assert type(usr) is usuario.ObjUsuario
+  assert type(usr) is usuario.Objeto_Usuario
   return usr
 
 def muda_atributos(usr, mods_mem):
@@ -83,10 +84,14 @@ def obtem_atributos(usr):
   global cache, nome_tb, letra_tb, colunas, diags
   return objeto.obtem_atributos(usr)
 
+def obtem_atributo(usr, chave):
+  global cache, nome_tb, letra_tb, colunas, diags
+  return objeto.obtem_atributo(usr,chave)
+
 def busca_por_identificador(id):
   global cache, nome_tb, letra_tb, colunas, diags
   usr = objeto.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
-  assert type(usr) is usuario.ObjUsuario
+  assert type(usr) is usuario.Objeto_Usuario
   return usr
 
 def busca_por_email(em):
@@ -132,9 +137,11 @@ def cria_testes():
     ]
   for atrs in lista_atrs:
     usr = cria(atrs)
-    assert usr != None and type(usr) is usuario.ObjUsuario
+    assert usr != None and type(usr) is usuario.Objeto_Usuario
+    id_usr = usuario.obtem_identificador(usr)
+    nome = usuario.obtem_atributo(usr,'nome')
+    sys.stderr.write("usuário %s = \"%s\" criado\n" % (id_usr, nome))
   return
-
 
 def confere_e_elimina_conf_senha(args):
 
@@ -149,6 +156,14 @@ def confere_e_elimina_conf_senha(args):
    
   # Remove o campo 'conf_senha', não mais necessários
   if 'conf_senha' in args: del args['conf_senha']
+  return
+
+def verifica(usr, id, atrs):
+  return objeto.verifica(usr, usuario.Objeto_Usuario, id, atrs, cache, nome_tb, letra_tb, colunas, def_obj_mem)
+
+def diagnosticos(val):
+  global cache, nome_tb, letra_tb, colunas, diags
+  diags = val
   return
 
 # FUNÇÕES INTERNAS
@@ -221,15 +236,14 @@ def valida_atributos(usr, atrs_mem):
       # sys.stderr.write("\n\n  valida_atributos: chave = '" + chave + "' val = '" + str(val) + "' id_bus = " + str(id_bus) + "\n\n")
       if (id_bus != None) and ((usr == None) or (id_bus != usr.id)):
         erros.append("usuário com '" + chave + "' = '" + val + "' já existe: " + id_bus)
-
   return erros
 
 def def_obj_mem(obj, id, atrs_SQL):
-  """Se {obj} for {None}, cria um novo objeto da classe {ObjUsuario} com
+  """Se {obj} for {None}, cria um novo objeto da classe {Objeto_Usuario} com
   identificador {id} e atributos {atrs_SQL}, tais como extraidos
   da tabela de sessoes. O objeto *NÃO* é inserido na base de dados.
 
-  Se {obj} não é {None}, deve ser um objeto da classe {ObjUsuario}; nesse
+  Se {obj} não é {None}, deve ser um objeto da classe {Objeto_Usuario}; nesse
   caso a função altera os atributos de {obj} conforme especificado em
   {atrs_SQL}. A entrada correspondente na base de dados *NÃO* é alterada.
 
@@ -246,7 +260,7 @@ def def_obj_mem(obj, id, atrs_SQL):
   return obj
     
 def cria_obj_mem(id, atrs_SQL):
-  """Cria um novo objeto da classe {ObjUsuario} com
+  """Cria um novo objeto da classe {Objeto_Usuario} com
   identificador {id} e atributos {atrs_SQL}, tais como extraidos
   da tabela de sessoes. O objeto *NÃO* é inserido na base de dados.
   
@@ -272,11 +286,11 @@ def cria_obj_mem(id, atrs_SQL):
       if id_bus != None:
         erro_prog("usuário com '" + chave + "' = '" + val + "' já existe: " + id + " " + id_bus)
     
-  obj = usuario.ObjUsuario(id, atrs_mem)
+  obj = usuario.Objeto_Usuario(id, atrs_mem)
   return obj
   
 def modifica_obj_mem(obj, atrs_SQL):
-  """O parâmetro {obj} deve ser um objeto da classe {ObjUsuario}; nesse
+  """O parâmetro {obj} deve ser um objeto da classe {Objeto_Usuario}; nesse
   caso a função altera os atributos de {obj} conforme especificado em
   {atrs_SQL}.  A entrada correspondente da base de dados *NÃO* é alterada.
 
@@ -308,11 +322,3 @@ def modifica_obj_mem(obj, atrs_SQL):
       erro_prog("tipo do campo '" + chave + "' incorreto")
     obj.atrs[chave] = val
   return obj
-
-def verifica(usr, id, atrs):
-  return objeto.verifica(usr, usuario.ObjUsuario, id, atrs, cache, nome_tb, letra_tb, colunas, def_obj_mem)
-
-def diagnosticos(val):
-  global cache, nome_tb, letra_tb, colunas, diags
-  diags = val
-  return
