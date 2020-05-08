@@ -66,6 +66,10 @@ def testa_cria_trecho(rotulo, ident, atrs):
   verifica_trecho(rotulo, trc, ident, atrs)
   return trc
  
+def test_busca_por_origem(cod):
+  erro_prog("Função {objeto.busca_por_campo} não implementada")
+  return
+
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {trecho.cria}:\n")
 
