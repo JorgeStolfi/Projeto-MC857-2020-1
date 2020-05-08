@@ -13,14 +13,6 @@ def msg_campo_obrigatorio(nome_do_campo):
   return "O campo %s é obrigatório." % nome_do_campo
 
 def processa(ses, args):
-  # Determina se o usuário corrente {usr_ses} é administrador:
-  if ses == None:
-    admin = False
-  else:
-    usr_ses = sessao.obtem_usuario(ses)
-    assert usr_ses != None
-    admin = usuario.obtem_atributos(usr_ses)['administrador']
-  
   # Tenta criar o usuário:
   try:
     usuario.confere_e_elimina_conf_senha(args)
