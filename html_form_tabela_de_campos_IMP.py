@@ -1,6 +1,8 @@
-import sys
 import html_label
 import html_input
+import html_tabela
+from utils_testes import erro_prog
+import sys
 
 def gera(dados_linhas, atrs, admin):
   sys.stderr.write("TABELA: atrs = %s\n" %str(atrs))
@@ -12,16 +14,16 @@ def gera(dados_linhas, atrs, admin):
       # Valor corrente do atributo:
       val = (atrs[chave] if chave in atrs else None)
       # Converte {rot} para rótulo HTML:
-      html_rotulo = html_label.gera(rot, ": ")
+      ht_rotulo = html_label.gera(rot, ": ")
       # Cria o elemento "<input .../>":
-      html_campo = campo_editavel(tipo, chave, val, dica)
-      if html_campo != None:
-        linhas.append((html_rotulo, html_campo,))
+      ht_campo = campo_editavel(tipo, chave, val, dica)
+      if ht_campo != None:
+        linhas.append((ht_rotulo, ht_campo,))
 
   # Monta a tabela com os fragmentos HTML:
-  html_tabela = html_tabela.gera(linhas)
+  ht_tabela = html_tabela.gera(linhas)
 
-  return html_tabela
+  return ht_tabela
 
 def campo_editavel(tipo, chave, val, dica):
   """Retorna o HTML de um item "input" do formulário
@@ -38,23 +40,23 @@ def campo_editavel(tipo, chave, val, dica):
 
   # Converte val para HTML:
   if val == None:
-    html_valor = None
+    ht_valor = None
   elif type(val) is str:
-    html_valor = val
+    ht_valor = val
   elif type(val) is bool:
-    html_valor = ('on' if val else 'off')
+    ht_valor = ('on' if val else 'off')
   elif type(val) is float:
-    html_valor = ("%.2f" % val)
+    ht_valor = ("%.2f" % val)
   elif type(val) is int:
-    html_valor = ("%d" % val)
+    ht_valor = ("%d" % val)
   else:
     erro_prog("valor inválido = \"" + str(val) + "\"")
 
   # Dica e valor inicial são mutuamente exclusivos:
-  if html_valor == None:
-    html_dica = dica
+  if ht_valor == None:
+    ht_dica = dica
   else:
-    html_dica = None
+    ht_dica = None
 
-  html_campo = html_input.gera(None, tipo, chave, html_valor, html_dica, None)
-  return html_campo
+  ht_campo = html_input.gera(None, tipo, chave, ht_valor, True, ht_dica, None)
+  return ht_campo

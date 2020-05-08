@@ -8,10 +8,10 @@ import re
 import sys
 
 def gera(logado, nome_usuario, admin):
-  html_menu = gera_linha(gera_botoes_linha_1(logado, nome_usuario, admin))
+  ht_menu = gera_linha(gera_botoes_linha_1(logado, nome_usuario, admin))
   if admin:
-    html_menu += gera_linha(gera_botoes_linha_2())
-  return html_menu
+    ht_menu += gera_linha(gera_botoes_linha_2())
+  return ht_menu
 
 def gera_linha(botoes):
   """Monta uma linha do menu geral, dada uma lista de fragmentos HTML que
@@ -30,12 +30,12 @@ def gera_botoes_linha_1(logado, nome_usuario, admin):
   usuário está logado."""
 
   # Botões da primeira linha que sempre aparecem:
-  html_bt_principal = html_botao_simples.gera("Principal", 'principal', None, '#60a3bc')
-  # html_bt_ofertas = html_botao_simples.gera("Ofertas", 'ver_ofertas', None, '#ffdd22')
-  html_bt_ofertas = None
-  # html_fm_buscar = html_form_buscar_site.gera()
-  html_fm_buscar = None
-  botoes = ( html_bt_principal, html_bt_ofertas, html_fm_buscar)
+  ht_bt_principal = html_botao_simples.gera("Principal", 'principal', None, '#60a3bc')
+  # ht_bt_ofertas = html_botao_simples.gera("Ofertas", 'ver_ofertas', None, '#ffdd22')
+  ht_bt_ofertas = None
+  # ht_fm_buscar = html_form_buscar_site.gera()
+  ht_fm_buscar = None
+  botoes = ( ht_bt_principal, ht_bt_ofertas, ht_fm_buscar)
   if logado:
     # Gera outros botões de usuario normal logado
     botoes += gera_botoes_linha_1_logado(nome_usuario, admin)
@@ -73,7 +73,7 @@ def gera_botoes_linha_1_deslogado():
 
 def gera_botoes_linha_2():
   """Gera uma lista de fragmentos de HTML com os botões da linha 2 do menu
-  geral.  Estes botãoes são mostrados apenas se o usuário está logado
+  geral.  Estes botões são mostrados apenas se o usuário está logado
   e é um administrador."""
 
   botoes = (

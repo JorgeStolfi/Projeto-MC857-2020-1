@@ -1,6 +1,6 @@
 #! /usr/bin/python3
 
-import html_pag_entrar
+import html_pag_login
 import tabelas
 import sessao
 import base_sql
@@ -22,7 +22,7 @@ def testa(rotulo, *args):
   """Testa {funcao(*args)}, grava resultado 
   em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
   
-  modulo = html_pag_entrar
+  modulo = html_pag_login
   funcao = modulo.gera
   frag = False  # {True} se for apenas um fragmento HTML, {False} se for página completa.
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).

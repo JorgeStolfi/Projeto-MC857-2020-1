@@ -314,6 +314,9 @@ def processa_comando(tipo, ses, dados):
       args = dados['form_data']; del dados['form_data'] # Campos do formulário.
     else:
       assert False
+      
+    # Remove parenteses e colchetes supérfluos em {args}:
+    args = descasca_argumentos(args)
 
     # Despacha o comando:
     # !!! Completar a lista abaixo com todos os módulos {comando_*.py} que existem. !!!
@@ -394,3 +397,15 @@ def formata_dados_http(cmd,args,resto):
   conteudo = html_bloco_texto.gera(texto, None,"Courier","18px","normal","5px","left", None, None)
   conteudo = "<hr/>\n" + html_div.gera("background-color:#bbbbbb;", conteudo) + "<hr/>\n"
   return conteudo
+
+def descasca_argumentos(args):
+  """Dado um dicionário de argumentos extraídos de um comando GET ou POST,
+  devolve uma cópia do mesmo onde cada valor que é uma tupla ou lista de 1
+  é substituído por esse elemento."""
+  args_new = {}.copy()
+  for ch, val in args.items():
+    if val != None and (type(val) is list or type(val) is tuple):
+      if len(val) == 1:
+        val = val[0]
+    args_new[ch] = val
+  return args_new

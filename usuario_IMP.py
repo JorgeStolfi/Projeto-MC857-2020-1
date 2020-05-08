@@ -9,6 +9,7 @@ import conversao_sql
 import identificador
 import valida_campo; from valida_campo import ErroAtrib
 from utils_testes import erro_prog, mostra
+import sys
 
 # VARIÁVEIS GLOBAIS DO MÓDULO
 
@@ -137,6 +138,9 @@ def cria_testes():
   for atrs in lista_atrs:
     usr = cria(atrs)
     assert usr != None and type(usr) is usuario.Objeto_Usuario
+    id_usr = usuario.obtem_identificador(usr)
+    nome = usuario.obtem_atributo(usr,'nome')
+    sys.stderr.write("usuário %s = \"%s\" criado\n" % (id_usr, nome))
   return
 
 def confere_e_elimina_conf_senha(args):

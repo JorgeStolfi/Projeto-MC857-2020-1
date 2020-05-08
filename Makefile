@@ -39,7 +39,7 @@ MODULOS := \
  \
   html_form \
   html_form_tabela_de_campos \
-  html_form_entrar \
+  html_form_login \
  \
   html_bloco_erro \
  \
@@ -56,7 +56,7 @@ MODULOS := \
  \
   html_pag_alterar_usuario \
   html_pag_cadastrar_usuario \
-  html_pag_entrar \
+  html_pag_login \
   html_pag_generica \
   html_pag_mensagem_de_erro \
   html_pag_principal \
@@ -80,9 +80,9 @@ MODULOS_A_CONVERTER := \
   comando_ver_ofertas \
 
 # O que "make" deve fazer:
-all: todos_os_testes
+# all: todos_os_testes
 # all: teste_unico
-# all: roda_servidor
+all: roda_servidor
 
 # Roda todos os módulos de teste:
 todos_os_testes:
@@ -104,5 +104,4 @@ teste_unico:
 	./testa.sh ${MODULO}
 
 roda_servidor:
-	./cria_base_de_teste.py
 	( ./servidor.py & sleep 1000 )

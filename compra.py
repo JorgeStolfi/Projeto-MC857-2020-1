@@ -1,9 +1,7 @@
 # Este módulo define a classe de objetos {Objeto_Compra}, que
-# representa uma lista de passagens compradas por um cliente 
+# representa uma lista de bilhetes comprados por um cliente 
 # da loja virtual.
 # 
-# Nas funções abaixo, {usr} é um objeto da classe {Objeto_Usuario}
-# que representa o cliente.
 
 # Interfaces importadas por esta interface:
 import usuario
@@ -11,22 +9,14 @@ import usuario
 # Implementaçao deste módulo:
 import compra_IMP; from compra_IMP import Objeto_Compra_IMP
 
-def inicializa(limpa):
-  """Inicializa o modulo, criando a tabela "compras" na base de dados.
-  Deve ser chamada apenas uma vez no ínicio da execução do servidor, 
-  depois de chamar {base_sql.conecta}. Não retorna nenhum valor.  
-  Se o parâmetro booleano {limpa} for {True}, apaga todas as linhas da tabela
-  SQL, resetando o contador em 0."""
-  compra_IMP.inicializa(limpa)
-
 class Objeto_Compra(Objeto_Compra_IMP):
-  """Um objeto desta classe representa uma lista de compras 
-  feita por um cliente da loja virtual.
+  """Um objeto desta classe representa um pedido de compra
+  feito por um cliente, consistindo de uma lista de bilhetes.
   Os atributos deste objeto, por enquanto, são:
     
     'cliente'  {Objeto_Usuario} o cliente que fez ou está fazendo o pedido de compra.
-    'status'   {str}        o estado do pedido.
-    'itens'    {list}       os itens (passagens individuais) do pedido de compra.
+    'status'   {str}            o estado do pedido.
+    'itens'    {list}           os itens (bilhetes individuais) do pedido de compra.
 
   O atributo 'status' por enquanto, pode ser:
 
@@ -60,6 +50,17 @@ class Objeto_Compra(Objeto_Compra_IMP):
   que é atribuído quando a linha é criada. Além disso, cada linha tem
   uma coluna da tabela (um campo) para cada um dos atributos do pedido de compra
   (menos o identificador). """
+
+# Nas funções abaixo, {cliente} é um objeto da classe {Objeto_Usuario}
+# que representa o cliente.
+
+def inicializa(limpa):
+  """Inicializa o modulo, criando a tabela "compras" na base de dados.
+  Deve ser chamada apenas uma vez no ínicio da execução do servidor, 
+  depois de chamar {base_sql.conecta} e {assento.inicializa}.  Não retorna nenhum valor.  
+  Se o parâmetro booleano {limpa} for {True}, apaga todas as linhas da tabela
+  SQL, resetando o contador em 0."""
+  compra_IMP.inicializa(limpa)
  
 def cria(cliente):
   """Cria um novo objeto da classe {Objeto_Compra}, associada ao {cliente} (um
@@ -83,10 +84,10 @@ def obtem_atributos(cpr):
   exceto identificador e a lista de itens."""
   return compra_IMP.obtem_atributos(cpr)
 
-def obtem_atributo(usr, chave):
-  """Retorna o atributo do usuário {usr} com a {chave} dada. 
-  Equivale a {obtem_atributos(usr)[chave]}"""
-  return compra_IMP.obtem_atributo(usr, chave)
+def obtem_atributo(cpr, chave):
+  """Retorna o atributo da compra {cpr} com a {chave} dada. 
+  Equivale a {obtem_atributos(cpr)[chave]}"""
+  return compra_IMP.obtem_atributo(cpr, chave)
 
 def obtem_cliente(cpr):
   """Retorna o objeto da classe {Objeto_Usuario} correspondente ao usuario que

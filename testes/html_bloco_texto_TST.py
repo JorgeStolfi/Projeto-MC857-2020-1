@@ -27,4 +27,4 @@ def cria_pagina():
   return pagina
 
 pag = cria_pagina()
-testa_modulo_html(html_bloco_texto, "diversos", pag, True, False)
+testa_modulo_html(ht_bloco_texto, "diversos", pag, True, False)

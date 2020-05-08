@@ -7,9 +7,9 @@ import tabela_generica
 import tabelas
 import conversao_sql
 import identificador
-# import compra
 import valida_campo; from valida_campo import ErroAtrib
 from utils_testes import erro_prog, mostra
+import sys
 
 # VARIÁVEIS GLOBAIS DO MÓDULO
  
@@ -129,6 +129,10 @@ def cria_testes():
     carrinho = compra.busca_por_identificador(id_carrinho)
     ses = cria(usr, cookie, carrinho)
     assert ses != None and type(ses) is sessao.Objeto_Sessao
+    id_ses = sessao.obtem_identificador(ses)
+    usr = sessao.obtem_usuario(ses)
+    id_usr = usuario.obtem_identificador(usr) if usr != None else "ninguém"
+    sys.stderr.write("sessão %s de %s criada\n" % (id_ses, id_usr))
   return
 
 def verifica(ses, id, atrs):

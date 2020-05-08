@@ -8,10 +8,10 @@ import html_bloco_erro
 
 import re
 
-def gera(ses, html_conteudo, erros):
+def gera(ses, ht_conteudo, erros):
 
   # Cabeçalho das páginas:
-  html_cabe = html_cabecalho.gera("VIAGENS OITO-CINCO-SETE", True)
+  ht_cabe = html_cabecalho.gera("VIAGENS OITO-CINCO-SETE", True)
 
   # Menu geral no alto da página:
   logado = (ses != None)
@@ -22,7 +22,7 @@ def gera(ses, html_conteudo, erros):
   else:
     nome_usuario = None
     admin = False
-  html_menu = html_menu_geral.gera(logado, nome_usuario, admin)
+  ht_menu = html_menu_geral.gera(logado, nome_usuario, admin)
 
   # Mensagens de erro:
   if erros == None:
@@ -36,19 +36,19 @@ def gera(ses, html_conteudo, erros):
   erros = [ er for er in erros if len(er) > 0 ]
   if len(erros) != 0:
     erros = "<br/>\n" + "<br/>\n".join(erros)
-    html_erros = html_bloco_erro.gera(erros) + "\n"
+    ht_erros = html_bloco_erro.gera(erros) + "\n"
   else:
-    html_erros = ""
+    ht_erros = ""
 
   # Rodapé da página:
-  html_roda = html_rodape.gera()
+  ht_roda = html_rodape.gera()
 
   # Monta a página:
   pagina = \
-    html_cabe + "<br/>\n" + \
-    html_menu + "<br/>\n" + \
-    html_erros + "<br/>\n" + \
-    html_conteudo + "<br/>\n" + \
-    html_roda
+    ht_cabe + "<br/>\n" + \
+    ht_menu + "<br/>\n" + \
+    ht_erros + "<br/>\n" + \
+    ht_conteudo + "<br/>\n" + \
+    ht_roda
   return pagina
 

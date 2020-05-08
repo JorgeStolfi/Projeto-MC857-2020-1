@@ -7,14 +7,6 @@
 # Implementaçao deste módulo:
 import sessao_IMP; from sessao_IMP import Objeto_Sessao_IMP
 
-def inicializa(limpa):
-  """Inicializa o modulo, criando a tabela "sessoes" na base de dados.
-  Deve ser chamada apenas uma vez no ínicio da execução do servidor, 
-  depois de chamar {base_sql.conecta}. Não retorna nenhum valor.  
-  Se o parâmetro booleano {limpa} for {True}, apaga todas as linhas da tabela
-  SQL, resetando o contador em 0."""
-  sessao_IMP.inicializa(limpa)
-
 class Objeto_Sessao(Objeto_Sessao_IMP):
   """Um objeto desta classe representa uma sessao de acesso ao
   servidor.  Os atributos deste objeto, por enquanto, são:
@@ -46,6 +38,14 @@ class Objeto_Sessao(Objeto_Sessao_IMP):
   uma coluna da tabela (um campo) para cada um dos atributos da sessão
   (menos o identificador)."""
   pass
+
+def inicializa(limpa):
+  """Inicializa o modulo, criando a tabela "sessoes" na base de dados.
+  Deve ser chamada apenas uma vez no ínicio da execução do servidor, 
+  depois de chamar {base_sql.conecta}. Não retorna nenhum valor.  
+  Se o parâmetro booleano {limpa} for {True}, apaga todas as linhas da tabela
+  SQL, resetando o contador em 0."""
+  sessao_IMP.inicializa(limpa)
  
 def cria(usr, cookie, carrinho):
   """Cria um novo objeto da classe {Objeto_Sessao}, associada ao usuário {usr},

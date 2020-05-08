@@ -1,6 +1,7 @@
 import objeto
 import usuario
-import compra
+import trecho
+import assento
 
 import tabela_generica
 import tabelas
@@ -13,15 +14,15 @@ import sys
 # VARIÁVEIS GLOBAIS DO MÓDULO
  
 cache = {}.copy()
-  # Dicionário que mapeia identificadores para os objetos {Objeto_Compra} na memória.
+  # Dicionário que mapeia identificadores para os objetos {Objeto_Trecho} na memória.
   # Todo objeto dessa classe que é criado é acrescentado a esse dicionário,
   # a fim de garantir a unicidade dos objetos.
 
-nome_tb = "compras"
+nome_tb = "trechos"
   # Nome da tabela na base de dados.
  
-letra_tb = "C"
-  # Prefixo comum dos identificadores de compra.
+letra_tb = "T"
+  # Prefixo comum dos identificadores de trecho.
 
 colunas = None
   # Descrição das colunas da tabela na base de dados.
@@ -31,110 +32,111 @@ diags = False
 
 # Definição interna da classe {Objeto_Usuario}:
 
-class Objeto_Compra_IMP(objeto.Objeto):
+class Objeto_Trecho_IMP(objeto.Objeto):
 
-  def __init__(self, id, atrs, itens):
+  def __init__(self, id, atrs, assentos):
     global cache, nome_tb, letra_tb, colunas, diags
     objeto.Objeto.__init__(self, id, atrs)
-    self.itens = itens.copy()
+    self.assentos = assentos.copy()
 
 # Implementações:
 
 def inicializa(limpa):
   global cache, nome_tb, letra_tb, colunas, diags
-  # Descrição da tabela "compras". 
+  # Descrição da tabela "trechos". 
   colunas = \
-    ( ( "cliente",      usuario.Objeto_Usuario, 'TEXT',    False ),  # Objeto/id do usuário logado no pedido de compra.
-      ( "status",       type("foo"),        'TEXT',    False ),  # Estado do pedido de compra ('aberto', etc.).
+    ( ( "codigo",       type("foo"), 'TEXT',    False ),  # Código do trecho na empresa (p. ex. "AZ 4623").
+      ( "origem",       type("foo"), 'TEXT',    False ),  # Sigla da estação/porto/aeroporto de orígem.
+      ( "destino",      type("foo"), 'TEXT',    False ),  # Sigla da estação/porto/aeroporto de destino.
+      ( "dt_partida",   type("foo"), 'TEXT',    False ),  # Data e hora UTC de partida "{YYYY}-{MM}-{DD} {hh}:{mm}".
+      ( "dt_chegada",   type("foo"), 'TEXT',    False ),  # Data e hora UTC de chegada "{YYYY}-{MM}-{DD} {hh}:{mm}".
     )
   if limpa:
     tabela_generica.limpa_tabela(nome_tb, colunas)
   else:
     tabela_generica.cria_tabela(nome_tb, colunas)
  
-def cria(cliente):
+def cria(atrs_mem):
   global cache, nome_tb, letra_tb, colunas, diags
-  
-  atrs_mem = { 'cliente': cliente, 'status': 'aberto' }
 
   erros = valida_atributos(None, atrs_mem)
   if len(erros) != 0: raise ErroAtrib(erros)
 
-  cpr = objeto.cria(atrs_mem, cache, nome_tb, letra_tb, colunas, def_obj_mem)
-  assert type(cpr) is compra.Objeto_Compra
-  return cpr
+  trc = objeto.cria(atrs_mem, cache, nome_tb, letra_tb, colunas, def_obj_mem)
+  assert type(trc) is trecho.Objeto_Trecho
+  return trc
 
-def obtem_identificador(cpr):
+def obtem_identificador(trc):
   global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.obtem_identificador(cpr)
+  return objeto.obtem_identificador(trc)
 
-def obtem_atributos(cpr):
+def obtem_atributos(trc):
   global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.obtem_atributos(cpr)
+  return objeto.obtem_atributos(trc)
 
-def obtem_atributo(cpr, chave):
+def obtem_atributo(trc, chave):
   global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.obtem_atributo(cpr,chave)
+  return objeto.obtem_atributo(trc,chave)
 
-def obtem_cliente(cpr):
+def obtem_assentos(trc):
   global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.obtem_atributo(cpr, 'cliente')
-
-def obtem_status(cpr):
-  global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.obtem_atributo(cpr, 'status')
-
-def obtem_itens(cpr):
-  global cache, nome_tb, letra_tb, colunas, diags
-  id_cpr = obtem_identificador(cpr)
-  return assento.busca_por_compra(id_cpr)
+  id_trc = obtem_identificador(trc)
+  return assento.busca_por_trecho(id_trc)
 
 def busca_por_identificador(id):
   global cache, nome_tb, letra_tb, colunas, diags
-  cpr = objeto.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
-  return cpr
+  trc = objeto.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
+  return trc
 
-def busca_por_cliente(id_cliente):
+def busca_por_codigo_e_data(cod,dt):
   erro_prog("Função não implementada")
   return None
 
-def muda_atributos(cpr, mods_mem):
+def muda_atributos(trc, mods_mem):
   global cache, nome_tb, letra_tb, colunas, diags
 
-  erros = valida_atributos(cpr, mods_mem)
+  erros = valida_atributos(trc, mods_mem)
   if len(erros) != 0: raise ErroAtrib(erros)
   
-  objeto.muda_atributos(cpr, mods_mem, cache, nome_tb, letra_tb, colunas)
+  objeto.muda_atributos(trc, mods_mem, cache, nome_tb, letra_tb, colunas, def_obj_mem)
   return
-
-def fecha(cpr):
-  global cache, nome_tb, letra_tb, colunas, diags
-  if (cpr is not None) and (compra.obtem_atributo(cpr,'status')):
-    mods_mem = { 'status': 'pagando' }
-    muda_atributos(cpr, mods_mem)
 
 def cria_testes():
   global cache, nome_tb, letra_tb, colunas, diags
   inicializa(True)
-  # Identificador de usuários e lista de assentos de cada pedido de compra:
-  lista_ups = \
-    [
-      ("U-00000001", ("A-00000001", "A-00000003", )),
-      ("U-00000001", ("A-00000004", "A-00000006", "A-00000002", )),
-      ("U-00000002", ("A-00000005", ))
+  # Atributos dos trechos:
+  lista_trechos = \
+    [ {
+        'codigo':      "AZ 4024",
+        'origem':      "VCP",
+        'destino':     "SDU",
+        'dt_partida':  "2020-05-08 12:45",
+        'dt_chegada':  "2020-05-08 13:40",
+      },
+      {
+        'codigo':      "AZ 4036",
+        'origem':      "SDU",
+        'destino':     "VCP",
+        'dt_partida':  "2020-05-08 19:45",
+        'dt_chegada':  "2020-05-08 20:40",
+      },
+      {
+        'codigo':      "GO 2333",
+        'origem':      "SDU",
+        'destino':     "VCP",
+        'dt_partida':  "2020-05-08 19:33",
+        'dt_chegada':  "2020-05-08 20:27",
+      },
     ]
-  for id_cliente, ids_assentos in lista_ups:
-    cliente = usuario.busca_por_identificador(id_cliente)
-    cpr = cria(cliente)
-    assert cpr != None and type(cpr) is compra.Objeto_Compra
-    id_cpr = compra.obtem_identificador(cpr)
-    usr = compra.obtem_cliente(cpr)
-    id_usr = usuario.obtem_identificador(usr) if usr != None else "ninguém"
-    sys.stderr.write("compra %s de %s criada\n" % (id_cpr, id_usr))
+  for atrs in lista_trechos:
+    trc = cria(atrs)
+    assert trc != None and type(trc) is trecho.Objeto_Trecho
+    id_trc = trecho.obtem_identificador(trc)
+    sys.stderr.write("trecho %s criado\n" % id_trc)
   return
 
-def verifica(cpr, id, atrs):
-  return objeto.verifica(cpr, compra.Objeto_Compra, id, atrs, cache, nome_tb, letra_tb, colunas, def_obj_mem)
+def verifica(trc, id, atrs):
+  return objeto.verifica(trc, trecho.Objeto_Trecho, id, atrs, cache, nome_tb, letra_tb, colunas, def_obj_mem)
 
 def diagnosticos(val):
   global cache, nome_tb, letra_tb, colunas, diags
@@ -143,13 +145,13 @@ def diagnosticos(val):
 
 # FUNÇÕES INTERNAS
 
-def valida_atributos(cpr, atrs_mem):
+def valida_atributos(trc, atrs_mem):
   """Faz validação nos atributos {atrs_mem}. Devolve uma lista 
   de strings com descrições dos erros encontrados.
   
-  Se {cpr} é {None}, supõe que um novo pedido de compras está sendo criado.
-  Se {cpr} não é {None}, supõe que {atrs_mem} sao alterações a aplicar nesse
-  pedido de compra. """
+  Se {trc} é {None}, supõe que um novo pedido de trechos está sendo criado.
+  Se {trc} não é {None}, supõe que {atrs_mem} sao alterações a aplicar nesse
+  pedido de trecho. """
   global cache, nome_tb, letra_tb, colunas, diags
   
   erros = [].copy();
@@ -157,13 +159,13 @@ def valida_atributos(cpr, atrs_mem):
   return erros
 
 def def_obj_mem(obj, id, atrs_SQL):
-  """Se {obj} for {None}, cria um novo objeto da classe {Objeto_Compra} com
+  """Se {obj} for {None}, cria um novo objeto da classe {Objeto_Trecho} com
   identificador {id} e atributos {atrs_SQL}, tais como extraidos
-  da tabela de compras.  Extrai a lista de itens da tabela
+  da tabela de trechos.  Extrai a lista de assentos da tabela
   correspondente, se houver. O objeto *NÃO* é inserido na base de dados. 
   
-  Se {obj} não é {None}, deve ser um objeto da classe {Objeto_Compra}; nesse
-  caso a função altera os atributos de {obj}, exceto a lista de itens,
+  Se {obj} não é {None}, deve ser um objeto da classe {Objeto_Trecho}; nesse
+  caso a função altera os atributos de {obj}, exceto a lista de assentos,
   conforme especificado em {atrs_SQL}. A entrada correspondente na 
   base de dados *NÃO* é alterada.
   
@@ -171,11 +173,11 @@ def def_obj_mem(obj, id, atrs_SQL):
   equivalentes na memória. Se os parâmetros forem inválidos ou incompletos,
   retorna uma ou mais mensagens de erro, na forma de uma lista de strings."""
   global cache, nome_tb, letra_tb, colunas, diags
-  if diags: mostra(0, "compra_IMP.def_obj_mem(" + str(obj) + ", " + id + ", " + str(atrs_SQL) + ") ...")
+  if diags: mostra(0, "trecho_IMP.def_obj_mem(" + str(obj) + ", " + id + ", " + str(atrs_SQL) + ") ...")
   if obj == None:
     atrs_mem = conversao_sql.dict_SQL_para_dict_mem(atrs_SQL, colunas, False, tabelas.id_para_objeto)
     if diags: mostra(2, "criando objeto, atrs_mem = " + str(atrs_mem))
-    obj = compra.Objeto_Compra(id, atrs_mem, [].copy())
+    obj = trecho.Objeto_Trecho(id, atrs_mem, [].copy())
   else:
     assert obj.id == id
     mods_mem = conversao_sql.dict_SQL_para_dict_mem(atrs_SQL, colunas, True, tabelas.id_para_objeto)

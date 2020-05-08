@@ -1,6 +1,6 @@
 import html_tabela_IMP
 
-def tabela(linhas):
+def gera(linhas):
   """Gera o HTML para uma tabela "<table>...</table>".
   
   O parâmetro {linhas} deve ser uma lista ou tupla cujos elementos descrevem as linhas.

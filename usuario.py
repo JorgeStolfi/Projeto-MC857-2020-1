@@ -1,19 +1,8 @@
-# Este módulo define a classe de objetos {Objeto_Usuario}, que
-# representa um usuário do sistema (administrador ou cliente).
-
-# Implementação deste módulo e da classe {Objeto_Usuario}:
 import usuario_IMP; from usuario_IMP import Objeto_Usuario_IMP
 
-def inicializa(limpa):
-  """Inicializa o modulo, criando a tabela de usuários na base de dados.
-  Não retorna nenhum valor. Deve ser chamada apenas uma vez no ínicio da
-  execução do servidor, depois de chamar {base_sql.conecta}. 
-  Se o parâmetro booleano {limpa} for {True}, apaga todas as linhas da tabela
-  SQL, resetando o contador em 0."""
-  usuario_IMP.inicializa(limpa)
-
 class Objeto_Usuario(Objeto_Usuario_IMP):
-  """Um objeto desta classe representa um usuário da loja e
+  """Um objeto desta classe representa um usuário
+  do sistema (administrador ou cliente) e
   armazena seus atributos.  É uma subclasse de {Objeto}.
   
   O identificador de um usuário é uma string da forma
@@ -51,6 +40,14 @@ class Objeto_Usuario(Objeto_Usuario_IMP):
   uma coluna da tabela (um campo) para cada um dos atributos do usuário."""
   pass
 
+def inicializa(limpa):
+  """Inicializa o modulo, criando a tabela de usuários na base de dados.
+  Não retorna nenhum valor. Deve ser chamada apenas uma vez no ínicio da
+  execução do servidor, depois de chamar {base_sql.conecta}. 
+  Se o parâmetro booleano {limpa} for {True}, apaga todas as linhas da tabela
+  SQL, resetando o contador em 0."""
+  usuario_IMP.inicializa(limpa)
+
 def cria(atrs_mem):
   """Cria um novo objeto da classe {Objeto_Usuario}, com os atributos especificados
   pelo dicionário Python {atrs}, acrescentando-o à tabéla de usuários da base de dados.
@@ -72,8 +69,8 @@ def muda_atributos(usr, mods_mem):
   Os valores atuais desses atributos são substituídos pelos valores
   correspondentes em {mods}.
 
-  Se o 'email' ou 'CPF' for alterado, não pode existir nenum outro 
-  usuário na tabela com mesmo email.
+  Se o 'email' for alterado, não pode existir nenum outro 
+  usuário na tabela com mesmo email.  Idem se o 'CPF' for alterado.
   
   Em caso de sucesso, não devolve nenhum resultado. Caso contrário,
   levanta a exceção {ErroAtrib} com uma lista de mensagens de erro."""

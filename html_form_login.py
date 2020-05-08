@@ -1,4 +1,4 @@
-import html_form_entrar_IMP
+import html_form_login_IMP
 
 def gera():
   """Retorna o HTML do formulário para login do usuário.
@@ -8,4 +8,4 @@ def gera():
   Quando o usuário clicar no botão 'Entrar', será emitido um comando POST
   com ação {fazer_login}.  Os argumentos desse
   POST são { 'email': {email}, 'senha': {senha} }."""
-  return html_form_entrar_IMP.gera()
+  return html_form_login_IMP.gera()
