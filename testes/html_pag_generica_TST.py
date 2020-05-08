@@ -29,11 +29,10 @@ def testa(rotulo, *args):
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 # Sessao de teste
 ses = sessao.busca_por_identificador("S-00000001")
-sys.stderr.write(str(ses))
 for tag, erros in ( 
     ("N", None), 
     ("V", []), 
-    ("E", ["Mensagem UM", "Mensagem DOIS", "Mensagem TRÊS",]),
+    ("E", ["Mensagem UM", "Mensagem DOIS", "Mensagem TRÊS",])
   ):
   rotulo = tag
   testa(rotulo, ses, "Viagens Oito-Cinco-Sete" ,erros)
