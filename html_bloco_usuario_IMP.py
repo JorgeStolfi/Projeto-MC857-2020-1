@@ -1,12 +1,14 @@
 import usuario
 import html_paragrafo
 import html_span
+import html_bloco_texto
 
 def gera(usr):
   atrs = usuario.obtem_atributos(usr)
 
   estilo_parag = "\n display:block; word-wrap:break-word;  width: 100%;\n  margin-top: 10px;\n  margin-bottom: 2px;\n  text-indent: 0px;\n  line-height: 75%;"
 
+  bloco_texto = html_bloco_texto.gera
   nome = atrs['nome']
   ht_nome = html_paragrafo.gera(estilo_parag, bloco_texto(nome, None, "Courier", "20px", "bold", "2px", "left", "#263238", None))
 
