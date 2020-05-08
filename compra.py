@@ -1,15 +1,15 @@
-# Este módulo define a classe de objetos {ObjCompra}, que
+# Este módulo define a classe de objetos {Objeto_Compra}, que
 # representa uma lista de passagens compradas por um cliente 
 # da loja virtual.
 # 
-# Nas funções abaixo, {usr} é um objeto da classe {ObjUsuario}
+# Nas funções abaixo, {usr} é um objeto da classe {Objeto_Usuario}
 # que representa o cliente.
 
 # Interfaces importadas por esta interface:
 import usuario
 
 # Implementaçao deste módulo:
-import compra_IMP; from compra_IMP import ObjCompra_IMP
+import compra_IMP; from compra_IMP import Objeto_Compra_IMP
 
 def inicializa(limpa):
   """Inicializa o modulo, criando a tabela "compras" na base de dados.
@@ -19,12 +19,12 @@ def inicializa(limpa):
   SQL, resetando o contador em 0."""
   compra_IMP.inicializa(limpa)
 
-class ObjCompra(ObjCompra_IMP):
+class Objeto_Compra(Objeto_Compra_IMP):
   """Um objeto desta classe representa uma lista de compras 
   feita por um cliente da loja virtual.
   Os atributos deste objeto, por enquanto, são:
     
-    'cliente'  {ObjUsuario} o cliente que fez ou está fazendo o pedido de compra.
+    'cliente'  {Objeto_Usuario} o cliente que fez ou está fazendo o pedido de compra.
     'status'   {str}        o estado do pedido.
     'itens'    {list}       os itens (passagens individuais) do pedido de compra.
 
@@ -54,7 +54,7 @@ class ObjCompra(ObjCompra_IMP):
   Cada pedido de compra do sistema é representada por uma
   linha na tabela "compras" da base SQL em disco. Apenas algumas dessas
   linhas são representadas também na memória por objetos da classe
-  {ObjCompra}.
+  {Objeto_Compra}.
   
   Cada linha da tabela tem um índice inteiro (chave primária) distinto,
   que é atribuído quando a linha é criada. Além disso, cada linha tem
@@ -62,8 +62,8 @@ class ObjCompra(ObjCompra_IMP):
   (menos o identificador). """
  
 def cria(cliente):
-  """Cria um novo objeto da classe {ObjCompra}, associada ao {cliente} (um
-  objeto da classe {ObjUsuario}), acrescentando-o à tabela de compras da
+  """Cria um novo objeto da classe {Objeto_Compra}, associada ao {cliente} (um
+  objeto da classe {Objeto_Usuario}), acrescentando-o à tabela de compras da
   base de dados. inicialmente aberta, com o cookie inicial {cookie} e
   carrinho de pedidos de compra {carrinho}. O status será inicialmente
   'aberto'. Atribui um identificador único à compra, derivado do seu
@@ -83,15 +83,20 @@ def obtem_atributos(cpr):
   exceto identificador e a lista de itens."""
   return compra_IMP.obtem_atributos(cpr)
 
+def obtem_atributo(usr, chave):
+  """Retorna o atributo do usuário {usr} com a {chave} dada. 
+  Equivale a {obtem_atributos(usr)[chave]}"""
+  return compra_IMP.obtem_atributo(usr, chave)
+
 def obtem_cliente(cpr):
-  """Retorna o objeto da classe {ObjUsuario} correspondente ao usuario que
+  """Retorna o objeto da classe {Objeto_Usuario} correspondente ao usuario que
   montou ou está montando o pedido de compra {cpr}.  Equivale a 
-  {compra.obtem_atributos(cpr)['cliente']}. """
+  {compra.obtem_atributo(cpr,'cliente')}. """
   return compra_IMP.obtem_cliente(cpr)
 
 def obtem_status(cpr):
   """Retorna o estado do pedido de compra {cpr} ('aberto', 'pagando', etc.).
-  Equivale a {compra.obtem_atributos(cpr)['status']}."""
+  Equivale a {compra.obtem_atributos(cpr,'status')}."""
   return compra_IMP.obtem_status(cpr)
 
 def obtem_itens(cpr):
@@ -100,7 +105,7 @@ def obtem_itens(cpr):
 
 def busca_por_identificador(id):
   """Localiza um pedido de compra com identificador {id} (uma string da forma
-  "C-{NNNNNNNN}"), e devolve a mesma na forma de um objeto da classe {ObjCompra}.
+  "C-{NNNNNNNN}"), e devolve a mesma na forma de um objeto da classe {Objeto_Compra}.
   Se tal compra não existe, devolve {None}."""
   return compra_IMP.busca_por_identificador(id)
 
@@ -114,7 +119,7 @@ def busca_por_cliente(id_cliente):
 def muda_atributos(cpr, mods_mem):
   """Recebe um dicionário Python {mods_mem} cujas chaves são um subconjunto
   dos nomes de atributos do pedido de compra (exceto o identificador e a lista 
-  de itens). Troca os valores desses atributos no objeto {cpr} da classe {ObjCompra}
+  de itens). Troca os valores desses atributos no objeto {cpr} da classe {Objeto_Compra}
   pelos valores correspondentes em {mods_mem}.  Também altera esses 
   campos na base de dados. Os valores devem estar no formato de
   atributos na memória."""
@@ -126,6 +131,17 @@ def fecha(cpr):
   compra_IMP.fecha(cpr)
 
 # DEPURAÇÂO
+
+def verifica(cpr, id, atrs):
+  """Faz testes de consistência básicos de um objeto {cpr} de classe {Objeto_Compra}, 
+  dados o identificador esperado {id}, e os atributos esperados {atrs}.
+  
+  Especificamente, verifica as funções {obtem_identificador(cpr)},
+  {obtem_atributos(cpr)} e {busca_por_identificador(id)}.
+  
+  Devolve {True} se os testes deram certo, {False} caso contrário. Também
+  imprme diagnósticos em {sys.stderr}."""
+  return compra_IMP.verifica(cpr, id, atrs)
 
 def cria_testes():
   """Limpa a tabela de pedidos de compras com {inicializa(True)}, e cria alguns 

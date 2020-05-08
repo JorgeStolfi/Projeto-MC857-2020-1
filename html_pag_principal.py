@@ -9,7 +9,7 @@ import html_pag_principal_IMP
 
 def gera(ses, erros):
   """Retorna a página de entrada da loja (homepage).
-  O parâmetro {ses} é um objeto da classe {ObjSessao} que 
+  O parâmetro {ses} é um objeto da classe {Objeto_Sessao} que 
   representa a sessão de login corrente; ou {None} se o usuário
   nao está logado"""
   return html_pag_principal_IMP.gera(ses, erros)

@@ -1,6 +1,6 @@
 # Funções para manipular tabelas da base de dados.
 
-# Uma tabela de objetos de uma certa classe ({ObjUsuario}, {ObjPassagem}, etc) 
+# Uma tabela de objetos de uma certa classe ({Objeto_Usuario}, {Objeto_Bilhete}, etc) 
 # consiste de uma tabela da base SQL, mais um cache de objetos
 # na memória.  
 #
@@ -10,7 +10,7 @@
 #
 # Este módulo supõe que cada objeto tem um identificador único da forma 
 # "{X}-{NNNNNNNN}", onde {X} é uma letra que indica o tipo dos objetos
-# armazenados na tabela ("U" para {ObjUsuario}, "P" para {ObjPassagem}, etc.), 
+# armazenados na tabela ("U" para {Objeto_Usuario}, "P" para {Objeto_Bilhete}, etc.), 
 # e {NNNNNNNN} é o índice do objeto na tabela SQL, formatado como 8 
 # algarismos decimais.  
 #
@@ -38,7 +38,7 @@
 #     construir ou modificar objetos na memória, dados seus atributos na
 #     base de dados. Ela recebe parâmetros {(obj,ident,atrs_SQL)} onde
 #     {obj} é {None} ou um objeto da classe associaada à tabela
-#     ({ObjUsuario}, {ObjPassagem}, etc.); {ident} é um identificador de
+#     ({Objeto_Usuario}, {Objeto_Bilhete}, etc.); {ident} é um identificador de
 #     objetos dessa classe ("U-{NNNNNNNN}", "P-{NNNNNNNN}", etc.); e
 #     {atrs_SQL} é um dicionário que associa nomes de colunas a seus
 #     valores.
@@ -89,7 +89,7 @@ def cria_tabela(nome_tb, cols):
   que tem tipo {bool} na memória é gravado na base como um valor de tipo SQL
   'INTEGER', que é 0 se {False}, 1 se {True}.  Se o valor de um atributo na
   memória é um objeto {obj} (por exemplo, o atributo 'usr' de uma sessão, que é
-  um {ObjUsuario}), a coluna correspondente na base de dados terá tipo 
+  um {Objeto_Usuario}), a coluna correspondente na base de dados terá tipo 
   SQL 'INTEGER', e o valor será o índice do objeto {obj} na sua 
   respectiva tabela.
   

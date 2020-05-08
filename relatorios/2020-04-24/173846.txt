@@ -1,5 +1,0 @@
-Relatório 24-04-2020
-Guilherme Mendeleh Perrotta - RA173846
-
-Recebi o módulo html_menu_geral.py.
-Consegui rodar o servidor e consegui rodar os testes.

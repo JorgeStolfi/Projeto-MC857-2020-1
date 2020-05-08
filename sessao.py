@@ -1,11 +1,11 @@
-# Este módulo define a classe de objetos {ObjSessao}, que
+# Este módulo define a classe de objetos {Objeto_Sessao}, que
 # representa uma sessão de 'login' de um cliente da loja virtual.
 # 
-# Nas funções abaixo, {usr} é um objeto da classe {ObjUsuario}
+# Nas funções abaixo, {usr} é um objeto da classe {Objeto_Usuario}
 # que representa o cliente.
 
 # Implementaçao deste módulo:
-import sessao_IMP; from sessao_IMP import ObjSessao_IMP
+import sessao_IMP; from sessao_IMP import Objeto_Sessao_IMP
 
 def inicializa(limpa):
   """Inicializa o modulo, criando a tabela "sessoes" na base de dados.
@@ -15,14 +15,14 @@ def inicializa(limpa):
   SQL, resetando o contador em 0."""
   sessao_IMP.inicializa(limpa)
 
-class ObjSessao(ObjSessao_IMP):
+class Objeto_Sessao(Objeto_Sessao_IMP):
   """Um objeto desta classe representa uma sessao de acesso ao
   servidor.  Os atributos deste objeto, por enquanto, são:
     
-    'usr'      {ObjUsuario} o usuário que fez login na sessão.
+    'usr'      {Objeto_Usuario} o usuário que fez login na sessão.
     'abrt'     {bool}       estado da sessao.
     'cookie'   {str}        cookie da sessao.
-    'carrinho' {ObjCompra}  o carrinho de compras associado à sessao.
+    'carrinho' {Objeto_Compra}  o carrinho de compras associado à sessao.
     
   Outros atributos (data, IP, etc.) poderão ser acrescentados no futuro.
   
@@ -39,7 +39,7 @@ class ObjSessao(ObjSessao_IMP):
   Cada sessão do sistema -- aberta ou fechada -- é representada por uma
   linha na tabela "sessoes" da base SQL em disco. Apenas algumas dessas
   linhas são representadas também na memória por objetos da classe
-  {ObjSessao}.
+  {Objeto_Sessao}.
   
   Cada linha da tabela tem um índice inteiro (chave primária) distinto,
   que é atribuído quando a linha é criada. Além disso, cada linha tem
@@ -48,7 +48,7 @@ class ObjSessao(ObjSessao_IMP):
   pass
  
 def cria(usr, cookie, carrinho):
-  """Cria um novo objeto da classe {ObjSessao}, associada ao usuário {usr},
+  """Cria um novo objeto da classe {Objeto_Sessao}, associada ao usuário {usr},
   inicialmente aberta, com o cookie inicial {cookie} e carrinho de compras {carrinho}.
   Também acrescenta a sessão à base de dados.  Em caso de sucesso, retorna o objeto.
   Atribui um identificador único à sessão, derivado do seu índice na tabela.
@@ -64,33 +64,41 @@ def obtem_atributos(ses):
   exceto identificador."""
   return sessao_IMP.obtem_atributos(ses)
 
+def obtem_atributo(ses, chave):
+  """Retorna o atributo da sessão {ses} com a {chave} dada.
+  Equivale a {obtem_atributos(ses)[chave]}"""
+  return sessao_IMP.obtem_atributo(ses, chave)
+
 def obtem_usuario(ses):
-  """Retorna o objeto da classe {ObjUsuario} correspondente ao usuario que
-  fez login na sessao {ses}.  Equivale a {sessao.obtem_atributos(ses)['usr']}. """
+  """Retorna o objeto da classe {Objeto_Usuario} correspondente ao usuario que
+  fez login na sessao {ses}.  Equivale a {sessao.obtem_atributo(ses,'usr')}. """
   return sessao_IMP.obtem_usuario(ses)
 
 def aberta(ses):
   """Retorna o estado da sessão {ses}: {True} se a sessao ainda esta aberta, 
-  {False} se o usuário deu logout.  Equivale a {sessao.obtem_atributos(ses)['abrt']}."""
+  {False} se o usuário deu logout.  Equivale a {sessao.obtem_atributo(ses,'abrt')}."""
   return sessao_IMP.aberta(ses)
 
 def obtem_cookie(ses):
-  """Devolve o cookie da sessão {ses} """
+  """Devolve o cookie da sessão {ses}. 
+  Equivale a {sessao.obtem_atributos(ses,'cookie')}."""
   return sessao_IMP.obtem_cookie(ses)
 
 def obtem_carrinho(ses):
+  """Devolve o carrinho de compras da sessão {ses}. 
+  Equivale a {sessao.obtem_atributos(ses,'carrinho')}."""
   return sessao_IMP.obtem_carrinho(ses)
 
 def busca_por_identificador(id):
   """Localiza uma sessao com identificador {id} (uma string da forma
-  "S-{NNNNNNNN}"), e devolve a mesma na forma de um objeto da classe {ObjSessao}.
+  "S-{NNNNNNNN}"), e devolve a mesma na forma de um objeto da classe {Objeto_Sessao}.
   Se tal sessão não existe, devolve {None}."""
   return sessao_IMP.busca_por_identificador(id)
 
 def muda_atributos(ses, mods_mem):
   """Recebe um dicionário Python {mods_mem} cujas chaves são um subconjunto
   dos nomes de atributos da sessão (exceto o identificador). Troca os 
-  valores desses atributos no objeto {ses} da classe {ObjSessao}
+  valores desses atributos no objeto {ses} da classe {Objeto_Sessao}
   pelos valores correspondentes em {mods_mem}.  Também altera esses 
   campos na base de dados. Os valores devem estar no formato de
   atributos na memória."""
@@ -103,6 +111,17 @@ def fecha(ses):
   sessao_IMP.fecha(ses)
 
 # DEPURAÇÂO
+
+def verifica(ses, id, atrs):
+  """Faz testes de consistência básicos de um objeto {ses} de classe {Objeto_Sessao}, 
+  dados o identificador esperado {id}, e os atributos esperados {atrs}.
+  
+  Especificamente, verifica as funções {obtem_identificador(ses)},
+  {obtem_atributos(obj)} e {busca_por_identificador(id)}.
+  
+  Devolve {True} se os testes deram certo, {False} caso contrário. Também
+  imprme diagnósticos em {sys.stderr}."""
+  return sessao_IMP.verifica(ses, id, usr, atrs)
 
 def cria_testes():
   """Limpa a tabela de sessoes com {inicializa(True)}, e cria três sessões

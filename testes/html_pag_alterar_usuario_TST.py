@@ -1,22 +1,13 @@
 #! /usr/bin/env python3
 
-# Este programa pode ser usado para testar funções que
-# retornam cadeias de caracteres que são
-# páginas completas em HTML5
-
-#Interfaces utilizados por este teste
-
+import html_pag_alterar_usuario
 import tabelas
 import usuario
-import compra
 import sessao
-import gera_html_pag
 import base_sql
 import utils_testes
 
 import sys
-
-# Cria alguns produtos:
 
 sys.stderr.write("Conectando com base de dados...\n")
 res = base_sql.conecta("DB",None,None)
@@ -24,61 +15,30 @@ assert res == None
 
 sys.stderr.write("Criando alguns objetos...\n")
 tabelas.cria_todos_os_testes()
-#usuario teste
-usr1_id = usuario.busca_por_CPF("123.456.789-00")
-usr1 = usuario.busca_por_identificador(usr1_id)
-usr1_atrs = usuario.obtem_atributos(usr1)
 
-#sessao de teste
+# Sessao de teste:
 ses = sessao.busca_por_identificador("S-00000001")
+assert ses != None
 
-#carrinho de teste
+# Usuario teste:
+usr1 = sessao.obtem_usuario(ses)
+assert usr1 != None
+usr1_id = usuario.obtem_identificador(usr1)
 
-carr = sessao.obtem_carrinho(ses)
-cpr_ident = "C-00000003"
-cpr = compra.busca_por_identificador(cpr_ident)
-
-#qtd teste
-qtd = 2.3
-
-# Testes das funções de {gera_html_pag}:
-
-def testa(nome, tag, funcao, *args):
+def testa(rotulo, *args):
   """Testa {funcao(*args)}, grava resultado
-  em "testes/saida/gera_html_pag.{nome}_{tag}.html"."""
+  em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
 
-  modulo = gera_html_pag
-  frag = False
-  utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, *args)
+  modulo = html_pag_alterar_usuario
+  funcao = modulo.gera
+  frag = False  # {True} se for apenas um fragmento HTML, {False} se for página completa.
+  pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
+  utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-# !!! Completar !!!
-
-msg = "voce cometeu um erro, rapaz"
-testa("mensagem_de_erro", "S", gera_html_pag.mensagem_de_erro, ses, msg)
-
-msg = "voce cometeu um erro, rapaz\ne outro erro também"
-testa("mensagem_de_erro", "M", gera_html_pag.mensagem_de_erro, ses, msg)
-
-msg = ["voce cometeu um erro, rapaz", "e outro erro também",]
-testa("mensagem_de_erro", "L", gera_html_pag.mensagem_de_erro, ses, msg)
-
-for tag, erros in (
-    ("N", None),
-    ("V", []),
+for tag, erros in ( 
+    ("N", None), 
+    ("V", []), 
     ("E", ["Mensagem UM", "Mensagem DOIS", "Mensagem TRÊS",])
   ):
-
-  testa("principal", tag, gera_html_pag.principal, ses, erros)
-
-  testa("cadastrar_usuario", tag, gera_html_pag.cadastrar_usuario, ses, usr1_atrs,["erro 1", "erro 2",])
-
-  testa("alterar_usuario", tag, gera_html_pag.alterar_usuario, ses, usr1_id, usr1_atrs, ["erro bobo", "erro genial",])
-
-  conteudo = "Teste do método genérico"
-
-  testa("generica", tag, gera_html_pag.generica,ses, conteudo, erros)
-
-  testa("mostra_carrinho", tag, gera_html_pag.mostra_carrinho, ses, erros)
-
-  testa("mostra_compra_False", tag, gera_html_pag.mostra_compra, ses, cpr, erros)
-  testa("mostra_compra_True", tag, gera_html_pag.mostra_compra, ses, cpr, erros)
+  rotulo = tag + "_" + erros
+  testa(rotulo, ses, usr1_id, erros)

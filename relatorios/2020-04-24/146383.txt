@@ -1,4 +1,0 @@
-Rodei o teste compra_TST.py
-Foram identificados alguns erros devido aos métodos faltantes e que não existe documentação do que estes métodos faltantes devem fazer.
-
-Não foi possível concluir os testes sem mais especificações.

@@ -36,8 +36,8 @@ def processa(ses, dados):
   return pag, ses_nova
 
 def define_carrinho(usr, id_usuario):
-  """Esta funcao busca por compras em aberto do usuário {usr}. Se houver alguma nessa 
-  condicao, entao uma delas sera usada como carrinho, caso contrario, será criado
+  """Esta função busca por compras em aberto do usuário {usr}. Se houver alguma nessa 
+  condição, então uma delas sera usada como carrinho, caso contrário será criado
   um novo carrinho vazio."""
   # !!! Deveria retornar a lista de todas as compras em aberto, não apenas a primeira encontrada. !!!
   lista_id_compras = compra.busca_por_usuario(id_usuario)

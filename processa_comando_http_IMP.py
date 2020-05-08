@@ -5,10 +5,14 @@
 import sessao
 import usuario
 
+import comando_solicitar_pag_cadastrar_usuario
 import comando_cadastrar_usuario
+import comando_solicitar_pag_alterar_usuario
 import comando_alterar_usuario
+import comando_solicitar_pag_login
 import comando_fazer_login
 import comando_fazer_logout
+import comando_ver_objeto
 
 import html_bloco_texto
 import html_div 
@@ -317,32 +321,32 @@ def processa_comando(tipo, ses, dados):
       # Acesso sem comando, ou usuário apertou "Principal" no menu geral.
       pag =  html_pag_principal.gera(ses, [])
 
-    elif cmd == '/solicitar_form_de_login':
+    elif cmd == '/solicitar_pag_login':
       # Usuário apertou o botão "Entrar" (login) do menu geral:
       # ATENÇÃO: Este comando só mostra o formulário de login, não muda a sessão ainda.
-      pag = comando_solicitar_form_de_login.processa(ses, args)
-
-    elif cmd == '/fazer_logout':
-      # Usuário apertou o botão "Sair" (logout) do menu geral:
-      # ATENÇÃO: devolve também a nova sessão (que geralmente vai ser {None}).
-      pag, ses_nova = comando_fazer_logout.processa(ses, args)
+      pag = comando_solicitar_pag_login.processa(ses, args)
 
     elif cmd == '/fazer_login':
       # Usuário preencheu o formulário de login apertou "Entrar":
       # ATENÇÃO: devolve também a nova sessão (que pode ser {None} se o login não deu certo).
       pag, ses_nova = comando_fazer_login.processa(ses, args)
 
-    elif cmd == '/solicitar_form_de_cadastrar_usuario':
+    elif cmd == '/fazer_logout':
+      # Usuário apertou o botão "Sair" (logout) do menu geral:
+      # ATENÇÃO: devolve também a nova sessão (que geralmente vai ser {None}).
+      pag, ses_nova = comando_fazer_logout.processa(ses, args)
+
+    elif cmd == '/solicitar_pag_cadastrar_usuario':
       # Usuário apertou o botão "Cadastrar" do menu geral:
-      pag = comando_solicitar_form_de_cadastrar_usuario.processa(ses, args)
+      pag = comando_solicitar_pag_cadastrar_usuario.processa(ses, args)
 
     elif cmd == '/cadastrar_usuario':
       # Usuário apertou "Cadastrar" em formulário de cadastrar usuário:
       pag = comando_cadastrar_usuario.processa(ses, args)
 
-    elif cmd == '/solicitar_form_de_alterar_usuario':
+    elif cmd == '/solicitar_pag_alterar_usuario':
       # Usuário apertou o botão "Minha Conta" do menu geral:
-      pag = comando_solicitar_form_de_alterar_usuario.processa(ses, args)
+      pag = comando_solicitar_pag_alterar_usuario.processa(ses, args)
 
     elif cmd == '/alterar_usuario':
       # Usuário apertou "Confirmar" em formulário de alterar usuário:

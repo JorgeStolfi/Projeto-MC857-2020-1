@@ -1,8 +1,8 @@
-# Este módulo define a classe de objetos {ObjUsuario}, que
+# Este módulo define a classe de objetos {Objeto_Usuario}, que
 # representa um usuário do sistema (administrador ou cliente).
 
-# Implementação deste módulo e da classe {ObjUsuario}:
-import usuario_IMP; from usuario_IMP import ObjUsuario_IMP
+# Implementação deste módulo e da classe {Objeto_Usuario}:
+import usuario_IMP; from usuario_IMP import Objeto_Usuario_IMP
 
 def inicializa(limpa):
   """Inicializa o modulo, criando a tabela de usuários na base de dados.
@@ -12,7 +12,7 @@ def inicializa(limpa):
   SQL, resetando o contador em 0."""
   usuario_IMP.inicializa(limpa)
 
-class ObjUsuario(ObjUsuario_IMP):
+class Objeto_Usuario(Objeto_Usuario_IMP):
   """Um objeto desta classe representa um usuário da loja e
   armazena seus atributos.  É uma subclasse de {Objeto}.
   
@@ -44,7 +44,7 @@ class ObjUsuario(ObjUsuario_IMP):
   Cada usuário do sistema -- cliente ou funcionário, ativo ou bloqueado
   -- é representado por uma linha na tabela "usuarios" da base SQL em
   disco. Apenas algumas dessas linhas são representadas também na memória por objetos
-  da classe {ObjUsuario}.
+  da classe {Objeto_Usuario}.
 
   Cada linha da tabela tem um índice inteiro (chave primária) distinto,
   que é atribuído quando a linha é criada. Além disso, cada linha tem
@@ -52,7 +52,7 @@ class ObjUsuario(ObjUsuario_IMP):
   pass
 
 def cria(atrs_mem):
-  """Cria um novo objeto da classe {ObjUsuario}, com os atributos especificados
+  """Cria um novo objeto da classe {Objeto_Usuario}, com os atributos especificados
   pelo dicionário Python {atrs}, acrescentando-o à tabéla de usuários da base de dados.
   Atribui um identificador único ao usuário, derivado do seu índice na tabela.
   
@@ -64,7 +64,7 @@ def cria(atrs_mem):
   return usuario_IMP.cria(atrs_mem)
 
 def muda_atributos(usr, mods_mem):
-  """Modifica alguns atributos do objeto {usr} da classe {ObjUsuario},
+  """Modifica alguns atributos do objeto {usr} da classe {Objeto_Usuario},
   registrando as alterações na base de dados.
 
   O parâmetro {mods} deve ser um dicionário cujas chaves são um
@@ -87,6 +87,11 @@ def obtem_atributos(usr):
   """Retorna um dicionário Python que é uma cópia dos atributos do usuário,
   exceto identificador."""
   return usuario_IMP.obtem_atributos(usr)
+
+def obtem_atributo(usr, chave):
+  """Retorna o atributo do usuário {usr} com a {chave} dada. 
+  Equivale a {obtem_atributos(usr)[chave]}"""
+  return usuario_IMP.obtem_atributo(usr, chave)
 
 def busca_por_identificador(id_usuario):
   """Localiza um usuario com identificador {id_usuario} (uma string da forma
@@ -122,11 +127,11 @@ def confere_e_elimina_conf_senha(args):
 # FUNÇÕES PARA DEPURAÇÃO
 
 def verifica(usr, id, atrs):
-  """Faz testes de consistência básicos de um objeto {usr} de classe {ObjUsuario}, 
+  """Faz testes de consistência básicos de um objeto {usr} de classe {Objeto_Usuario}, 
   dados o identificador esperado {id}, e os atributos esperados {atrs}.
   
   Especificamente, verifica as funções {obtem_identificador(usr)},
-  {obtem_atributos(obj)} e {busca_por_identificador(id)}.
+  {obtem_atributos(usr)} e {busca_por_identificador(id)}.
   
   Devolve {True} se os testes deram certo, {False} caso contrário. Também
   imprme diagnósticos em {sys.stderr}."""

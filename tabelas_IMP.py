@@ -28,8 +28,8 @@ def id_para_objeto(id):
 def cria_todos_os_testes():
   # A ordem é importante:
   usuario.cria_testes() # Não tem atributos de tipo objeto.
-  compra.cria_testes()  # Tem atributos de tipo {ObjUsuario}.
-  sessao.cria_testes()  # Tem atributos de tipo {ObjUsuario}.
+  compra.cria_testes()  # Tem atributos de tipo {Objeto_Usuario}.
+  sessao.cria_testes()  # Tem atributos de tipo {Objeto_Usuario}.
   
 
 

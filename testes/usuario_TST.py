@@ -22,7 +22,7 @@ usuario.inicializa(True)
 ok_global = True # Vira {False} se um teste falha.
 
 def verifica_usuario(rotulo, usr, ident, atrs):
-  """Testes básicos de consistência do objeto {usr} da classe {ObjUsuario}, dados 
+  """Testes básicos de consistência do objeto {usr} da classe {Objeto_Usuario}, dados 
   {ident} e {atrs} esperados."""
   global ok_global
 
@@ -30,7 +30,7 @@ def verifica_usuario(rotulo, usr, ident, atrs):
   sys.stderr.write("verificando usuário %s\n" % rotulo)
   ok = usuario.verifica(usr, ident, atrs)
 
-  if usr != None and type(usr) is usuario.ObjUsuario:
+  if usr != None and type(usr) is usuario.Objeto_Usuario:
     
     # ----------------------------------------------------------------------
     sys.stderr.write("testando {busca_por_email()}:\n")
@@ -116,11 +116,11 @@ for k, v in usr1_mods.items():
   usr1_d_atrs[k] = v
 verifica_usuario("usr1_d", usr1, uident1, usr1_d_atrs)
 
-if type(usr2) is usuario.ObjUsuario:
+if type(usr2) is usuario.Objeto_Usuario:
   usuario.muda_atributos(usr2, usr2_atrs) # Não deveria mudar os atributos
   verifica_usuario("usr2", usr2, uident2, usr2_atrs)
 
-if type(usr2) is usuario.ObjUsuario:
+if type(usr2) is usuario.Objeto_Usuario:
   usr2_m_atrs = usr3_atrs.copy()
   usr2_m_atrs['CPF'] = usr2_atrs['CPF'] # Não pode alterar CPF.
   usr2_m_atrs['email'] = usr2_atrs['email'] # Vamos manter email.

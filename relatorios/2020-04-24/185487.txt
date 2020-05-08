@@ -1,9 +1,0 @@
-Relatório
-
-Minha tarefa era testar o arquivo html_paragrafo, o módulo em si parece bem simples,
-porém ao rodar o teste tive problema, pois pedia um gera_html_elem que não existia,
-troquei isso pelo módulo que eu estava tentando testar, html_paragrafo, mas novamente
-tive um problema com um módulo, o produto, exclui esse módulo e onde o mesmo é chamado
-no teste, resolveu esse problema e todos problemas com módulos sumiram.
-Porém não consegui rodar o teste em si pois deu um problema interno em outro módulo,
-do qual não tive tempo de entender e conseguir resolver o mesmo.

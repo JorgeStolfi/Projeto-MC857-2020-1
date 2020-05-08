@@ -4,14 +4,14 @@ import usuario
 import html_cabecalho
 import html_menu_geral
 import html_rodape
-import html_bloco_de_erro
+import html_bloco_erro
 
 import re
 
 def gera(ses, html_conteudo, erros):
 
   # Cabeçalho das páginas:
-  html_cabe = html_cabecalho.gera("Site de compras: Projeto MC857A 2020-1", True)
+  html_cabe = html_cabecalho.gera("VIAGENS OITO-CINCO-SETE", True)
 
   # Menu geral no alto da página:
   logado = (ses != None)
@@ -36,7 +36,7 @@ def gera(ses, html_conteudo, erros):
   erros = [ er for er in erros if len(er) > 0 ]
   if len(erros) != 0:
     erros = "<br/>\n" + "<br/>\n".join(erros)
-    html_erros = html_bloco_de_erro.gera(erros) + "\n"
+    html_erros = html_bloco_erro.gera(erros) + "\n"
   else:
     html_erros = ""
 

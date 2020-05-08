@@ -4,7 +4,7 @@ import sys
 import re
 import inspect
 import json
-
+from bs4 import BeautifulSoup as bsoup  # Pretty-print of HTML
 
 def erro_prog(mens):
   fr = inspect.stack()[2]

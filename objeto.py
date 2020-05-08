@@ -1,5 +1,5 @@
 # Este módulo define a classe geral de objetos {Objeto}, 
-# superclasse de objetos como {ObjUsuario}, {ObjPassagem}, etc.
+# superclasse de objetos como {Objeto_Usuario}, {Objeto_Bilhete}, etc.
 
 # Implementação deste módulo e da classe {Objeto}:
 import objeto_IMP; from objeto_IMP import Objeto_IMP
@@ -9,7 +9,7 @@ class Objeto(Objeto_IMP):
   
     {identificador}   uma string da forma "{X}-{NNNNNNNN}" onde
                       {X} é uma letra que identifica o tipo do objeto
-                      ('U' para ObjUsuario, 'S' para ObjSessao, etc)
+                      ('U' para Objeto_Usuario, 'S' para Objeto_Sessao, etc)
                       e {NNNNNNNN} é o índice na tabela correspondente
                       da base de dados, formatado em 8 algarismos
                       

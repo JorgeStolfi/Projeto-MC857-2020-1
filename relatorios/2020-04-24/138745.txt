@@ -1,9 +1,0 @@
-Na aula de hoje fizemos o troubleshooting do projeto para conseguir subir o servidor e executar o teste de um módulo.
-
-- Consegui executar o servidor, após as alterações feitas pelo Professor e instalar a biblioteca bs4.
-- Consigo executar o script de teste nos módulos que existem.
-- Criei um arquivo de testes comando_fazer_login_TST.py que ainda não existia para fazer o teste do comando_fazer_login.
-Cheguei até o ponto onde mesmo após executar cria_todos_os_testes() e tentar executar o login com um usuário existente, a sessão não é criada e portanto o login não parece estar acontecendo.
-Além disso preciso entender melhor como gerar os arquivos de finais de teste.
-
-Próximos passos seriam tentar identificar a razão da sessão não ser criada e entender melhor como são feitos os testes.

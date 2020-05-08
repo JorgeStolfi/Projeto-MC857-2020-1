@@ -4,7 +4,6 @@
 import base_sql
 import tabelas
 import sys
-from bs4 import BeautifulSoup as bsoup  # Pretty-print of HTML
 
 # ----------------------------------------------------------------------
 
@@ -16,17 +15,45 @@ assert res == None
 
 sys.stderr.write("Abrindo as tabelas...\n")
 tabelas.inicializa_todas(False)
+tabelas.cria_todos_os_testes()
 
 # ----------------------------------------------------------------------
-sys.stderr.write("testando {utils_testes.verifica_objeto}\n") 
+sys.stderr.write("verificando usuário %s\n" % "usr1") 
 
-# ----------------------------------------------------------------------
-sys.stderr.write("verificando objeto %s\n" % "obj1") 
-obj1_id = "U-00000001"
-obj1 = usuario.busca_por_identificador(obj1_id)
-assert obj1 != None
-obj1_atrs = usuario.obtem_atributos(obj1)
-tabelas.verifica_objeto(usuario, ObjUsuario, obj1, obj1_id, obj1_atrs)
+usr1_id = "U-00000001"
+usr1 = usuario.busca_por_identificador(usr1_id)
+assert usr1 != None
+usr1_atrs = usuario.obtem_atributos(usr1)
+usuario.verifica(usr1, usr1_id, usr1_atrs)
+
+assert usr1 == tabelas.id_para_opbjeto(usr1_id)
+
 sys.stderr.write("\n")
 
-# !!! Testar obj_para_indice, indice_para_obj, cria_todos_os_testes
+# ----------------------------------------------------------------------
+sys.stderr.write("verificando sessão %s\n" % "ses1") 
+
+ses1_id = "S-00000001"
+ses1 = sessao.busca_por_identificador(ses1_id)
+assert ses1 != None
+ses1_atrs = sessao.obtem_atributos(ses1)
+sessao.verifica(ses1, ses1_id, ses1_atrs)
+
+assert ses1 == tabelas.id_para_opbjeto(ses1_id)
+
+sys.stderr.write("\n")
+
+# ----------------------------------------------------------------------
+sys.stderr.write("verificando compra %s\n" % "cpr1") 
+
+cpr1_id = "C-00000001"
+cpr1 = compra.busca_por_identificador(cpr1_id)
+assert cpr1 != None
+cpr1_atrs = compra.obtem_atributos(cpr1)
+compra.verifica(cpr1, cpr1_id, cpr1_atrs)
+
+assert cpr1 == tabelas.id_para_opbjeto(cpr1_id)
+
+sys.stderr.write("\n")
+
+

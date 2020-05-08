@@ -14,7 +14,7 @@ def gera(atrs, admin):
 
   O formulário conterá um botão 'Cadastrar' (de tipo 'submit').
   Quando o usuário clicar nesse botão, será emitido um comando POST com ação
-  {cadastrar_usuario}.  Os argumentos desse POST são todos os atributos da classe {ObjUsuario},
+  {cadastrar_usuario}.  Os argumentos desse POST são todos os atributos da classe {Objeto_Usuario},
   com os valores de {atrs} que o usuário deve ter preenchido.  Um argumento
   adicional 'conf_senha' conterá a confirmação de senha.
 

@@ -48,8 +48,8 @@ def gera_botoes_linha_1_logado(nome_usuario, admin):
   """Gera uma lista de fragmentos HTML com os botões da linha 1 do menu
   geral, para um usuário que está logado."""
   botoes_sempre = (
-      html_botao_simples.gera("Minha Conta", 'solicitar_form_de_alterar_usuario', None, '#eeeeee'),
-      html_botao_simples.gera("Contato", 'solicitar_form_de_contato', None, '#eeeeee'),
+      html_botao_simples.gera("Minha Conta", 'solicitar_pag_alterar_usuario', None, '#eeeeee'),
+      html_botao_simples.gera("Contato", 'solicitar_pag_contato', None, '#eeeeee'),
       html_botao_simples.gera("Sair", 'fazer_logout', None, '#eeeeee'),
       gera_nome_usuario(nome_usuario)
     )
@@ -66,8 +66,8 @@ def gera_botoes_linha_1_deslogado():
   """Gera uma lista de fragmentos HTML com os botões da linha 1 do menu
   geral, para um usuário que não está logado."""
   botoes = (
-    html_botao_simples.gera("Entrar", 'solicitar_form_de_login', None, '#55ee55'),
-    html_botao_simples.gera("Cadastrar", 'solicitar_form_de_cadastrar_usuario', None, '#eeeeee'),
+    html_botao_simples.gera("Entrar", 'solicitar_pag_login', None, '#55ee55'),
+    html_botao_simples.gera("Cadastrar", 'solicitar_pag_cadastrar_usuario', None, '#eeeeee'),
   )
   return botoes
 
@@ -77,8 +77,8 @@ def gera_botoes_linha_2():
   e é um administrador."""
 
   botoes = (
-    html_botao_simples.gera("Acrescentar trecho", "solicitar_form_de_acrescentar_trecho", None, '#ffdd22'),
-    # html_botao_simples.gera("Alterar trecho", "solicitar_form_de_alterar_trecho", None, '#ffdd22'),
+    html_botao_simples.gera("Acrescentar trecho", "solicitar_pag_acrescentar_trecho", None, '#ffdd22'),
+    # html_botao_simples.gera("Alterar trecho", "solicitar_pag_alterar_trecho", None, '#ffdd22'),
     # html_form_passageiros.gera(),
     # html_form_buscar_objeto.gera(),
   )

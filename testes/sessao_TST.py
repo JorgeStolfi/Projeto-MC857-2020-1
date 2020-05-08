@@ -20,9 +20,6 @@ base_sql.conecta("DB",None,None)
 sys.stderr.write("Inicializando módulo {usuario}, limpando tabela, criando usuários para teste:\n")
 usuario.cria_testes()
 
-sys.stderr.write("Inicializando módulo {produtos}, limpando tabela, criando produtos para teste:\n")
-compra.cria_testes()
-
 sys.stderr.write("Inicializando módulo {compra}, limpando tabela, criando compras para teste:\n")
 compra.cria_testes()
 
@@ -44,16 +41,16 @@ cmp2 = compra.busca_por_identificador("C-00000003")
 ok_global = True # Vira {False} se um teste falha.
 
 def verifica_sessao(rotulo, ses, ident, usr, abrt, cookie, carrinho):
-  """Testes básicos de consistência do objeto {ses} da classe {ObjSessao}, dados
+  """Testes básicos de consistência do objeto {ses} da classe {Objeto_Sessao}, dados
   {ident} e {atrs} esperados."""
   global ok_global
 
   sys.stderr.write("%s\n" % ("-" * 70))
   sys.stderr.write("verificando sessão %s\n" % rotulo)
   atrs = { 'usr': usr, 'abrt': abrt, 'cookie': cookie, 'carrinho': carrinho }
-  ok = sessao.verifica_objeto(ses, ident, atrs)
+  ok = sessao.verifica(ses, ident, atrs)
   
-  if ses != None and type(ses) is sessao.ObjSessao:
+  if ses != None and type(ses) is sessao.Objeto_Sessao:
     
     sys.stderr.write("testando {obtem_usuario()}:\n")
     usr1 = sessao.obtem_usuario(ses)
@@ -92,7 +89,7 @@ scook1 = "ABCDEFGHIJK"
 s1 = sessao.cria(usr1, scook1, cmp1)
 sindice1 = 1
 sident1 = "S-00000001"
-verifica_sessao("s1", s1, sident1, usr1, True, scook1, cmp1)
+verifica_sessao("s1", s1, sident1, usr1, True)
 
 scook2 = "BCDEFGHIJKL"
 s2 = sessao.cria(usr2, scook2, cmp2)

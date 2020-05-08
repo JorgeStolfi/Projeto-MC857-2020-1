@@ -5,12 +5,12 @@
 import tabelas_IMP
 
 # Os principais objetos:
-import usuario; # from usuario import ObjUsuario
-import sessao; # from sessao import ObjSessao
+import usuario; # from usuario import Objeto_Usuario
+import sessao; # from sessao import Objeto_Sessao
 
 def inicializa_todas(limpa):
   """Inicializa as tabelas da base de dados para os objetos
-  das classes {ObjUsuario} e {ObjSessao},
+  das classes {Objeto_Usuario} e {Objeto_Sessao},
   criando-as se necessário, e criando os caches 
   de objetos na memória.   Nao retorna nenhum resultado.
   

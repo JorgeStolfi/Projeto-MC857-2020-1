@@ -1,5 +1,0 @@
-No arquivo /Projeto-MC857-2020-1/utils_testes_IMP.py, comentei 
-"from bs4 import BeautifulSoup as bsoup  # Pretty-print of HTML"
-
-E no arquivo /Projeto-MC857-2020-1/testes/html_tabela_TST.py, comentei o "import produto"
-O teste continuou com alguns erros de import no arquivo object.py, na passagens de argumentos para "objeto.obtem_atributos(ses,'abrt')"

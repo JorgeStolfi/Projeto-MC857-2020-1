@@ -1,4 +1,0 @@
-Exclui todas as referências ao módulo { produto } e ao módulo { gera_html }.
-Não foi encontrado o usuário com o CPF do arquivo de teste e as linhas seguintes deram erro, então foram comentadas.
-Deu erro ao tentar pegar o carrinho da sessao, então também comentei esta linha (talvez algum erro no próprio modulo de sessão).
-As linhas que foram comentadas acho que serão úteis algum dia, por isso não foram excluídas.

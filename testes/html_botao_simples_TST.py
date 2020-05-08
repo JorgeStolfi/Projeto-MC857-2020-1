@@ -1,16 +1,24 @@
 #! /usr/bin/python3
 
 import html_botao_simples
-from html_botao_simples import gera
+import utils_testes
 
-from utils_testes import testa_gera_html as testa
+def testa(rotulo, *args):
+  """Testa {funcao(*args)}, grava resultado 
+  em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
+  
+  modulo = html_botao_simples
+  funcao = modulo.gera
+  frag = True  # {True} se for apenas um fragmento HTML, {False} se for página completa.
+  pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
+  utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-testa(html_botao_simples, gera, "simples_Principal", True, False, "Principal", 'principal', None, '#60a3bc')
+testa("Principal", "Principal", 'principal', None, '#60a3bc')
 
-testa(html_botao_simples, gera, "simples_Entrar", True, False, "Entrar", 'solicitar_form_de_login', None, '#55ee55')
+testa("Entrar",    "Entrar", 'solicitar_pag_login', None, '#55ee55')
 
-testa(html_botao_simples, gera, "simples_Sair", True, False, "Sair", 'fazer_logout', None, '#60a3bc')
+testa("Sair",      "Sair", 'fazer_logout', None, '#60a3bc')
 
-testa(html_botao_simples, gera, "simples_Cadastrar", True, False, "Cadastrar", 'solicitar_form_de_cadastrar_usuario', None, '#60a3bc')
+testa("simples_Cadastrar", "Cadastrar", 'solicitar_pag_cadastrar_usuario', None, '#60a3bc')
 
-testa(html_botao_simples, gera, "simples_OK", True, False, "OK", 'principal', None, '#55ee55')
+testa("simples_OK",        "OK", 'principal', None, '#55ee55')

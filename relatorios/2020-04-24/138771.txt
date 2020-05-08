@@ -1,6 +1,0 @@
-Ola professor.
-
-Nesta aula eu criei o arquivo na pasta teste chamado "comando_fazer_logout_TST.py",
-com o ojetivo de testar a funcao que faz logout.
-
-Tentei criar um usuario, pegar a sessao e chamar a funcao de logout, e confirmar que a sessao foi fechada.

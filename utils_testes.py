@@ -49,7 +49,7 @@ def testa_modulo_html(modulo, rotulo, res, frag, pretty):
   utils_testes_IMP.testa_modulo_html(modulo, rotulo, res, frag, pretty)
 
 def testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args):
-  """Chama a função {{modulo}.{funcao}} com os argumentos {*args}.
+  """Chama a função {funcao} do módulo {modulo} com os argumentos {*args}.
   Grava o resultado {res} da chamada em "testes/saida/{modulo}.{funcao}.{rotulo}.html",
   usando {testa_modulo_html}."""
   utils_testes_IMP.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)

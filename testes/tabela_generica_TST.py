@@ -8,7 +8,6 @@ from utils_testes import erro_prog, mostra
 
 # Para diagnóstico:
 import sys
-from bs4 import BeautifulSoup as bsoup  # Pretty-print of HTML
 
 def mostra_obj(rotulo, obj, id, atrs):
   """Imprime usuário {obj} e compara seus atributos com {id,atrs}."""

@@ -1,7 +1,6 @@
 #! /usr/bin/python3
 
 import sys
-from bs4 import BeautifulSoup as bsoup  # Pretty-print of HTML
 import base_sql
 
 base_sql.conecta("DB",None,None)
