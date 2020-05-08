@@ -1,0 +1,3 @@
+Criado o módulo comando_ver_objeto a partir do módulo comando_fazer_login.
+Feitas adaptações necessárias conforme a necessidade de testes no módulo comando_ver_objeto: testado o caso em que um usuário inexistente tenta fazer login
+e falha.
