@@ -29,7 +29,7 @@ def gera(id_usuario, atrs, admin, texto_bt, cmd):
     ( "Documento",        "text",     "documento",     "Número, tipo, órgão", False, ),
     ( "Senha",            "password", "senha",         None,                  False, ),
     ( "Confirmar senha",  "password", "conf_senha",    None,                  False, ),
-    ( "Administrador",    "checkbox", "administrador", None,                  False, ),
+    ( "Administrador",    "checkbox", "administrador", None,                  True, ),
   )
 
   ht_tabela = html_form_tabela_de_campos.gera(dados_linhas, atrs, admin)

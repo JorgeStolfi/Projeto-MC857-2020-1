@@ -10,6 +10,8 @@ def gera(dados_linhas, atrs, admin):
   # Converte os dados brutos das linhas para fragmentos HTML:
   linhas = [].copy()
   for rot, tipo, chave, dica, adm_only in dados_linhas:
+    sys.stderr.write("admin: "+str(admin)+"\n")
+    sys.stderr.write("Adm_only: "+str(adm_only)+"\n")
     if admin or not adm_only:
       # Valor corrente do atributo:
       val = (atrs[chave] if chave in atrs else None)
