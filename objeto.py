@@ -69,9 +69,11 @@ def busca_por_campo_unico(chave, val, cache, nome_tb, letra_tb, colunas):
   tem valor {val}, supondo que ele é único. Se
   encontrar, devolve o identificador desse objeto (NÃO o objeto),
   senão devolve {None}"""
+  return objeto_IMP.busca_por_campo_unico(chave, val, cache, nome_tb, letra_tb, colunas)
+
+def busca_por_campo(chave, val, cache, nome_tb, letra_tb, colunas):
+  # !!! FALTANDO !!!
   
-  def busca_por_campo(chave, val, cache, nome_tb, letra_tb, colunas):
-    
 # FUNÇÕES PARA DEPURAÇÃO
 
 def verifica(obj, tipo, id, atrs, cache, nome_tb, letra_tb, colunas, def_obj_mem):
