@@ -1,0 +1,9 @@
+Relatório
+
+A minha tarefa nesta aula era testar o módulo html_pag_mensagem_de_erro, ao rodar o teste pela primeira vez
+aparecia um erro na função {extrai_nomes_de_colunas_SQL} do módulo {sessao}, pois ele chegava nesse ponto do código
+com a variável {cols} nula.
+Fazendo um pouco de investigação junto ao professor descobrimos que faltava inicalizar e criar testes de
+diversos módulos: {sessao}, {compra} e {usuario}.
+Ao inicializar e criar os teste de cada um dos módulos, funcionou rodar o teste e os htmls foram gerados com sucesso,
+então o módulo está, aparentemente, funcionando corretamente.
