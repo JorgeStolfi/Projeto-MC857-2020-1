@@ -121,7 +121,7 @@ def verifica(ses, id, atrs):
   
   Devolve {True} se os testes deram certo, {False} caso contrário. Também
   imprme diagnósticos em {sys.stderr}."""
-  return sessao_IMP.verifica(ses, id, usr, atrs)
+  return sessao_IMP.verifica(ses, id, atrs)
 
 def cria_testes():
   """Limpa a tabela de sessoes com {inicializa(True)}, e cria três sessões
