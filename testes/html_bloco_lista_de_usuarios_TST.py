@@ -29,6 +29,8 @@ def testa(rotulo, *args):
 
 usr1_ident = "U-00000001"
 usr2_ident = "U-00000002"
-usr5_ident = "U-00000005"
+# usr5_ident = "U-00000005" # usuario 5 nao existe
+usr3_ident = "U-00000003"
 
-testa("N", [usr1_ident,usr5_ident,usr2_ident])
+# testa("N", [usr1_ident,usr5_ident,usr2_ident]) # este teste nao funciona pois usuario  5 nao existe nos testes
+testa("N", [usr1_ident,usr3_ident,usr2_ident]) # este teste funciona pois todos usuarios sao criados
