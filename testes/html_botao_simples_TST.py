@@ -4,9 +4,9 @@ import html_botao_simples
 import utils_testes
 
 def testa(rotulo, *args):
-  """Testa {funcao(*args)}, grava resultado 
+  """Testa {funcao(*args)}, grava resultado
   em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
-  
+
   modulo = html_botao_simples
   funcao = modulo.gera
   frag = True  # {True} se for apenas um fragmento HTML, {False} se for página completa.
@@ -22,3 +22,7 @@ testa("Sair",      "Sair", 'fazer_logout', None, '#60a3bc')
 testa("simples_Cadastrar", "Cadastrar", 'solicitar_pag_cadastrar_usuario', None, '#60a3bc')
 
 testa("simples_OK",        "OK", 'principal', None, '#55ee55')
+
+testa("url_args_valido",        "Teste com parâmetros de URL válidos", 'principal', {"key1":"val1"}, '#55ee55')
+
+testa("url_args_invalido",        "Teste com parâmetros de URL inválidos", 'principal', {"valid_key":"inv&lid_value", "inv&lid_key": "valid_value"}, '#55ee55')

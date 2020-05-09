@@ -105,7 +105,7 @@ def muda_atributos(ses, mods_mem):
   erros = valida_atributos(ses, mods_mem)
   if len(erros) != 0: raise ErroAtrib(erros)
   
-  objeto.muda_atributos(ses, mods_mem, cache, nome_tb, letra_tb, colunas)
+  objeto.muda_atributos(ses, mods_mem, cache, nome_tb, letra_tb, colunas, def_obj_mem)
   return
 
 def fecha(ses):

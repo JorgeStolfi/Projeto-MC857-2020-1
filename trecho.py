@@ -92,6 +92,11 @@ def obtem_assentos(trc):
   """Devolve uma lista com os identificadores dos assentos do trecho."""
   return trecho_IMP.obtem_assentos(trc)
 
+def busca_por_origem(cod):
+  """Devolve uma lista de identificadores (NÃO objetos) de todos os trechos
+  através de uma string codigo de origem do aeroporto."""
+  return trecho_IMP.busca_por_origem(cod)
+
 def busca_por_codigo_e_data(cod, dt):
   """Localiza um trecho cujo 'codigo' é {cod} e 'dt_partida'
   é {dt}, e devolve o identificador do mesmo (não o objeto);

@@ -1,0 +1,67 @@
+Minha tarefa foi corrigir o arquivo sessao.py. Consegui corrigir os erros do teste,
+porem, nao consegui identificar o erro causado na criaçao do objeto - que resultam
+em um erro no tipo do objeto 'sessao.Objeto_Sessao'.
+
+saida obtida:
+=== testando módulo sessao =============================
+Conectando com base de dados...
+    base_sql_IMP.conecta: conectando com a base
+Inicializando módulo {usuario}, limpando tabela, criando usuários para teste:
+usuário U-00000001 = "José Primeiro" criado
+usuário U-00000002 = "João Segundo" criado
+usuário U-00000003 = "Juca Terceiro" criado
+Inicializando módulo {compra}, limpando tabela, criando compras para teste:
+compra C-00000001 de U-00000001 criada
+compra C-00000002 de U-00000001 criada
+compra C-00000003 de U-00000002 criada
+Inicializando módulo {sessao}, limpando tabela:
+Obtendo dois usuários para teste:
+testando {sessao.cria}:
+----------------------------------------------------------------------
+verificando sessão s1
+  File /home/tpet/Documents/UNICAMP/stolfi/Projeto-MC857-2020-1/objeto_IMP.py, line 98, in verifica: ** erro tipo do objeto <class 'sessao.Objeto_Sessao'> inválido
+testando {obtem_usuario()}:
+testando {aberta()}:
+testando {obtem_cookie()}:
+testando {obtem_carrinho()}:
+  File testes/sessao_TST.py, line 80, in verifica_sessao: ** erro teste falhou
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+verificando sessão s2
+  File /home/tpet/Documents/UNICAMP/stolfi/Projeto-MC857-2020-1/objeto_IMP.py, line 98, in verifica: ** erro tipo do objeto <class 'sessao.Objeto_Sessao'> inválido
+testando {obtem_usuario()}:
+testando {aberta()}:
+testando {obtem_cookie()}:
+testando {obtem_carrinho()}:
+  File testes/sessao_TST.py, line 80, in verifica_sessao: ** erro teste falhou
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+verificando sessão s3
+  File /home/tpet/Documents/UNICAMP/stolfi/Projeto-MC857-2020-1/objeto_IMP.py, line 98, in verifica: ** erro tipo do objeto <class 'sessao.Objeto_Sessao'> inválido
+testando {obtem_usuario()}:
+testando {aberta()}:
+testando {obtem_cookie()}:
+testando {obtem_carrinho()}:
+  File testes/sessao_TST.py, line 80, in verifica_sessao: ** erro teste falhou
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+verificando sessão fecha s1
+  File /home/tpet/Documents/UNICAMP/stolfi/Projeto-MC857-2020-1/objeto_IMP.py, line 98, in verifica: ** erro tipo do objeto <class 'sessao.Objeto_Sessao'> inválido
+testando {obtem_usuario()}:
+testando {aberta()}:
+testando {obtem_cookie()}:
+testando {obtem_carrinho()}:
+  File testes/sessao_TST.py, line 80, in verifica_sessao: ** erro teste falhou
+----------------------------------------------------------------------
+  File testes/sessao_TST.py, line 115, in <module>: ** erro: - teste falhou
+Traceback (most recent call last):
+  File "testes/sessao_TST.py", line 115, in <module>
+    erro_prog("- teste falhou")
+  File "/home/tpet/Documents/UNICAMP/stolfi/Projeto-MC857-2020-1/utils_testes.py", line 14, in erro_prog
+    utils_testes_IMP.erro_prog(mens)
+  File "/home/tpet/Documents/UNICAMP/stolfi/Projeto-MC857-2020-1/utils_testes_IMP.py", line 12, in erro_prog
+    assert False
+AssertionError
+!! testes/saida/sessao.html is empty
+removed 'testes/saida/sessao.html'
+======================================================================

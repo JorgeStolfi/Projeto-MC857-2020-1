@@ -28,4 +28,69 @@ def testa(rotulo, *args):
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-testa("N")
+
+# Teste01: {atrs} = {None} e {admin} = {True}
+atr = None
+admin = True
+
+testa("Vazio_Admin", atr, admin)
+
+# Teste02: {atrs} = {None} e {admin} = {False}
+atr = None
+admin = False
+
+testa("Vazio_Comum", atr, admin)
+
+# Teste03: {atrs} = valores e {admin} = {True}
+atr = {'nome':'usario teste',
+       'senha':'1234567890',
+       'email':'test@email.com',
+       'CPF':'123.456.789-00',
+       'telefone':'+55(19)9999-9999',
+       'documento':'12.123.123-1'}
+admin = True
+
+testa("Valores_Admin", atr, admin)
+
+# Teste04: {atrs} = valores e {admin} = {False}
+atr = {'nome':'usario teste',
+       'senha':'1234567890',
+       'email':'test@email.com',
+       'CPF':'123.456.789-00',
+       'telefone':'+55(19)9999-9999',
+       'documento':'12.123.123-1'}
+admin = False
+
+testa("Valores_Comum", atr, admin)
+
+# Teste05: {atrs} = valores menos a senha e {admin} = {True}
+atr = {'nome':'usario teste',
+       'email':'test@email.com',
+       'CPF':'123.456.789-00',
+       'telefone':'+55(19)9999-9999',
+       'documento':'12.123.123-1'}
+admin = True
+
+testa("Sem_Senha_Admin", atr, admin)
+
+# Teste06: {atrs} = valores menos a senha e {admin} = {False}
+atr = {'nome':'usario teste',
+       'email':'test@email.com',
+       'CPF':'123.456.789-00',
+       'telefone':'+55(19)9999-9999',
+       'documento':'12.123.123-1'}
+admin = False
+
+testa("Sem_Senha_Comum", atr, admin)
+
+# Teste07: {atrs} = somente o nome e {admin} = {True}
+atr = {'nome':'usario teste'}
+admin = True
+
+testa("Nome_Admin", atr, admin)
+
+# Teste08: {atrs} = somente o nome e {admin} = {False}
+atr = {'nome':'usario teste'}
+admin = False
+
+testa("Nome_Admin", atr, admin)
