@@ -1,0 +1,5 @@
+Estou mexendo no arquivo html_pag_generica
+O import tinha um errinho de escrita na primeira linha (import html_pag_generica )
+Faltava um argumento na funcao testa, uma string para ser printada no arquivo html gerado. (testa(rotulo, ses, "Viagens Oito-Cinco-Sete" ,erros))
+Coloquei o "Viagens Oito-Cinco-Sete" como a string, mas se preferir podemos alterar.
+
