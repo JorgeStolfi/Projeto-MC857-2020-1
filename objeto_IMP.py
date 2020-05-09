@@ -81,6 +81,10 @@ def busca_por_campo_unico(chave, val, cache, nome_tb, letra_tb, colunas):
     id = res[0];
     return id
   
+
+def busca_por_campo(chave, val, cache, nome_tb, letra_tb, colunas):
+  return None
+
 # FUNÇÕES PARA DEPURAÇÃO
 
 def diagnosticos(val):

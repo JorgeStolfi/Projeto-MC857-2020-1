@@ -88,6 +88,10 @@ def busca_por_identificador(id):
   trc = objeto.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
   return trc
 
+def busca_por_origem(cod):
+  global cache, nome_tb, letra_tb, colunas, diags
+  return objeto.busca_por_campo("codigo", cod, cache, nome_tb, letra_tb, colunas)
+
 def busca_por_codigo_e_data(cod,dt):
   erro_prog("Função não implementada")
   return None
