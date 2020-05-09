@@ -1,0 +1,17 @@
+A minha tarefa nesse dia foi entender e executar os testes do comando_alterar_usuario.
+
+Primeiramente percebi o módulo não estava com interface e implementação, apenas a implementação diretamente em comando_alterar_usuario.py.
+Então eu renomeei o comando_alterar_usuario.py para comando_alterar_usuario_IMP.py e criei a interface expondo apenas a função processa.
+
+Como não existia arquivo de teste, criei o comando_alterar_usuario_IMP.py e implementei dois testes que passavam pelos dois fluxos principais da função processa.
+Um com uma atualização de sucesso, alterando o nome do usuário e outro tentando atualizar o CPF com um valor inválido.
+
+A implementação estava incorreta nos dois fluxos.
+No fluxo de sucesso, a função usuario.muda_atributos dependia de dois atributos, o usuário antigo que será atualizado e um dicionário do campos com os valores novos.
+Para funcionar, eu tive primeiro que obter o usuário cadastrado usando usuario.busca_por_identificador e aí sim chamar a função que atualiza passando o args vindo do POST removendo id_usuario (que não é um campo atualizável).
+
+No fluxo de erro, a função html_pag_alterar_usuario.gera precisava do id_usuario para gerar o html. Apenas adicionei o parâmetro que recebo via args.
+
+Adicionei também um assert para garantir que o id_usuario seja passado, pois sem ele é impossível passar por qualquer fluxo.
+
+Agora é possível executar os testes desse comando com sucesso, gerando os HTMLs corretos de cada fluxo e verificando a corretude da solução.
