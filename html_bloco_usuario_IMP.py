@@ -8,6 +8,7 @@ def gera(usr):
 
   estilo_parag = "\n display:block; word-wrap:break-word;  width: 100%;\n  margin-top: 10px;\n  margin-bottom: 2px;\n  text-indent: 0px;\n  line-height: 75%;"
 
+  bloco_texto = html_bloco_texto.gera
   nome = atrs['nome']
   ht_nome = html_paragrafo.gera(estilo_parag, html_bloco_texto.gera(nome, None, "Courier", "20px", "bold", "2px", "left", "#263238", None))
 
