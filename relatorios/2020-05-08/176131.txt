@@ -1,0 +1,5 @@
+Na aula de hoje, fui responsável por rodar o teste do html_pag_alterar_usuario.py. 
+A princípio html_pag_alterar_usuario_TST.py não funcionava, todavia, fiz alterações
+no código desse teste para que ele funcionasse de acordo com o esperado. As mudanças
+feitas estão sinalizadas por um comentário no código. Os html gerados foram checados
+no browser Google Chrome e estão exibindo o que era esperado.
