@@ -25,14 +25,12 @@ def testa(rotulo, *args):
   """Testa {funcao(*args)}, grava resultado 
   em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
   modulo = comando_fazer_logout
-  funcao = modulo.processa
-  assert FALSE # Não implementado!
+  res = modulo.processa(args[0], *args)
+  assert res
+  sys.stdout.write(res[0])
 
 ses = sessao.busca_por_identificador("S-00000001")
 assert ses != None
 assert sessao.aberta(ses)
 
 testa("A", ses)
-
-sessao.fecha(ses)
-testa("F", ses)
