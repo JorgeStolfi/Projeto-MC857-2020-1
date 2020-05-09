@@ -1,0 +1,3 @@
+A minha tarefa era criar o botão "Meu Carrinho" no modulo html_menu_geral e testar para ver se o botão estava funcionando.
+Testei e o botão já estava implementado, aparecendo somente quando o temos um cliente logado, caso contrario
+(admin ou descolado) o botão não aparece.
