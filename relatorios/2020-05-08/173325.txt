@@ -1,0 +1,90 @@
+Relatório da atividade do dia 08/05/2020
+
+Tarefa: Avaliar html_form_cadastrar_usuario.py
+
+================================================================================================================
+Dependência:
+
+A implementação do `html_form_cadastrar_usuario` depende da implementação do módulo `html_form_dados_de_usuario`.
+
+================================================================================================================
+Funções:
+
+A interface html_form_cadastrar_usuario possui uma única função chamada {gera}.
+A função recebe como argumento as variáveis {atrs} e {admin}. O primeiro
+argumento pode ser um dicionário ou o valor {None}. Já o segundo, é o um
+booleano que se for {True} criar um check-box no formulário que permitirá
+especificar o usuário como administrador.
+
+================================================================================================================
+Testes:
+
+Inicialmente, o arquivo de testes `testes/html_form_cadastrar_usuario_TST.py` não possuía nenhum teste.
+
+Foram desenvolvidos os seguintes testes para avaliar o módulo:
+
+
+Teste 01: Passar o valor {None} para a variável {atrs} e {True} para a variável {admin}.
+Os campos de dados foram inicializados com os atributos {values} vazios,
+fazendo com que o valor do atributo {hint} ficasse visível. O checkbox do
+Administrador foi criado. Como esperado. Os resultados estão mostrando os
+valores esperados.
+
+
+Teste 02: Passar o valor {None} para a variável {atrs} e {False} para a variável {admin}.
+Os campos de dados foram inicializados com os atributos {values} vazios,
+fazendo com que o valor do atributo {hint} ficasse visível. Entretanto, o checkbox do
+Administrador foi criado esse resultado não era esperado.
+
+O problema do checkbox pode ser resolvido ao modificar o arquivo
+html_form_dados_de_usuario_IMP.py, na variável {dados_linha} modificar o ultimo
+campo do rótulo {Administrador} para {True}.
+
+
+Teste 03: Passar um conjunto de valores para a variável {atrs} e {True} para a variável {admin}.
+Os campos de dados foram inicializados com os atributos {values} conforme os
+dados da variável {atrs}. Contudo, o campo da senha não foi preenchido por mais
+que ela tenha sido informada em {atrs}, esse resultado é o esperado. O checkbox
+do Administrador foi criado como esperado.
+
+
+Teste 04: Passar um conjunto de valores para a variável {atrs} e {False} para a variável {admin}.
+Os campos de dados foram inicializados com os atributos {values} conforme os
+dados da variável {atrs}. Contudo, o campo da senha não foi preenchido por mais
+que ela tenha sido informada em {atrs}, esse resultado é o esperado. O checkbox
+do Administrador foi criado esse resultado não era esperado.
+
+O problema do checkbox pode ser resolvido ao modificar o arquivo
+html_form_dados_de_usuario_IMP.py, na variável {dados_linha} modificar o ultimo
+campo do rótulo {Administrador} para {True}.
+
+
+Teste 05: Passar um conjunto de valores sem a senha para a variável {atrs} e {True} para a variável {admin}.
+Os campos de dados foram inicializados com os atributos {values} conforme os
+dados da variável {atrs}. O checkbox do Administrador foi criado como esperado.
+
+
+Teste 06: Passar um conjunto de valores sem a senha para a variável {atrs} e {False} para a variável {admin}.
+Os campos de dados foram inicializados com os atributos {values} conforme os
+dados da variável {atrs}. O checkbox do Administrador foi criado, esse
+resultado não era esperado.
+
+O problema do checkbox pode ser resolvido ao modificar o arquivo
+html_form_dados_de_usuario_IMP.py, na variável {dados_linha} modificar o ultimo
+campo do rótulo {Administrador} para {True}.
+
+
+Teste 07: Passar somente o nome para a variável {atrs} e {True} para a variável {admin}.
+O campo do nome foi inicializados com o atributo {value} conforme a variável
+{atrs}, os demais campos ficaram vazios com o conteúdo do atributo {hints}. O
+checkbox do Administrador foi criado como esperado.
+
+
+Teste 06: Passar somente o nome para a variável {atrs} e {False} para a variável {admin}.
+O campo do nome foi inicializados com o atributo {value} conforme a variável
+{atrs}, os demais campos ficaram vazios com o conteúdo do atributo {hints}. O
+checkbox do Administrador foi criado, esse resultado não era como esperado.
+
+O problema do checkbox pode ser resolvido ao modificar o arquivo
+html_form_dados_de_usuario_IMP.py, na variável {dados_linha} modificar o ultimo
+campo do rótulo {Administrador} para {True}.
