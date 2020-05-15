@@ -1,1 +1,0 @@
-Criei o teste para comando_solicitar_pag_login.
