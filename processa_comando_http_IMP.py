@@ -13,6 +13,7 @@ import comando_solicitar_pag_login
 import comando_fazer_login
 import comando_fazer_logout
 import comando_ver_objeto
+import comando_solicitar_pag_buscar_trecho
 
 import html_bloco_texto
 import html_div 
@@ -359,6 +360,10 @@ def processa_comando(tipo, ses, dados):
       # Usuário apertou o botão "Ver Objeto" ou equivalente no menu geral:
       pag = comando_ver_objeto.processa(ses, args)
       
+    elif cmd == '/solicitar_pag_buscar_trecho':
+      # Usuário apertou o botão "Buscar Trecho" do menu geral:
+      pag = comando_solicitar_pag_buscar_trecho.processa(ses, args)
+
     else:
       # Comando não identificado
       pag =  html_pag_mensagem_de_erro.gera(ses, ("** comando POST \"%s\" inválido" % cmd))
