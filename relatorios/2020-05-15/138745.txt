@@ -1,0 +1,23 @@
+A minha tarefa de hoje foi implementar {comando_solicita_pag_criar_roteiro}.
+
+Tudo ocorreu bem, consegui criar todos os arquivos e realizar todos os testes sem problemas.
+
+ Criei os seguintes arquivos:
+ - comando_solicitar_pag_criar_roteiro
+ - comando_solicitar_pag_criar_roteiro_IMP
+ - html_pag_criar_roteiro
+ - html_pag_criar_roteiro_IMP
+ - html_form_criar_roteiro
+ - html_form_criar_roteiro_IMP
+ - comando_solicita_pag_criar_roteiro_TST
+
+comando_solicita_pag_criar_roteiro recebe a sessão de um usuário administrador e retorna a página de criar roteiro.
+
+html_pag_criar_roteiro faz verificações sobre a sessão, pois ela precisa estar definida e o usuário dono precisa ser administrador.
+Se qualquer uma desses requisitos não forem atingidos, é retornado uma página apenas com o erro correspondente.
+Se os requisitos forem cumpridos, ele retorna uma página contendo o formulário (a ser desenvolvido em outra atividade por outra pessoa).
+
+html_form_criar_roteiro e sua implementação são apenas placeholders, retorna um fragmento com um div para ser desenvolvido depois.
+
+Criei 3 cenários de testes passando por todos os fluxos visíveis por enquanto, uma pessoa não logada, um usuário não administrador e outro usuário administrador requisitando a página.
+Os testes geram as páginas correspondentes na saída com sucesso.
