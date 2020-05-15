@@ -33,9 +33,8 @@ def gera_botoes_linha_1(logado, nome_usuario, admin):
   ht_bt_principal = html_botao_simples.gera("Principal", 'principal', None, '#60a3bc')
   # ht_bt_ofertas = html_botao_simples.gera("Ofertas", 'ver_ofertas', None, '#ffdd22')
   ht_bt_ofertas = None
-  # ht_fm_buscar = html_form_buscar_site.gera()
-  ht_fm_buscar = None
-  botoes = ( ht_bt_principal, ht_bt_ofertas, ht_fm_buscar)
+  ht_bt_buscar = html_botao_simples.gera("Buscar", 'solicitar_pag_buscar_trecho', None, '#eeeeee')
+  botoes = ( ht_bt_principal, ht_bt_ofertas, ht_bt_buscar)
   if logado:
     # Gera outros botões de usuario normal logado
     botoes += gera_botoes_linha_1_logado(nome_usuario, admin)
