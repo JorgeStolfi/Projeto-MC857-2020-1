@@ -6,6 +6,7 @@ import sessao
 import usuario
 
 import comando_solicitar_pag_cadastrar_usuario
+import comando_solicitar_pag_ofertas
 import comando_cadastrar_usuario
 import comando_solicitar_pag_alterar_usuario
 import comando_alterar_usuario
@@ -13,6 +14,7 @@ import comando_solicitar_pag_login
 import comando_fazer_login
 import comando_fazer_logout
 import comando_ver_objeto
+import comando_solicitar_pag_buscar_trecho
 
 import html_bloco_texto
 import html_div 
@@ -343,6 +345,10 @@ def processa_comando(tipo, ses, dados):
       # Usuário apertou o botão "Cadastrar" do menu geral:
       pag = comando_solicitar_pag_cadastrar_usuario.processa(ses, args)
 
+    elif cmd == '/solicitar_pag_ofertas':
+      # Usuário apertou o botão "Ofertas" do menu geral:
+      pag = comando_solicitar_pag_ofertas.processa(ses, "Lista de ofertas")
+
     elif cmd == '/cadastrar_usuario':
       # Usuário apertou "Cadastrar" em formulário de cadastrar usuário:
       pag = comando_cadastrar_usuario.processa(ses, args)
@@ -359,6 +365,10 @@ def processa_comando(tipo, ses, dados):
       # Usuário apertou o botão "Ver Objeto" ou equivalente no menu geral:
       pag = comando_ver_objeto.processa(ses, args)
       
+    elif cmd == '/solicitar_pag_buscar_trecho':
+      # Usuário apertou o botão "Buscar Trecho" do menu geral:
+      pag = comando_solicitar_pag_buscar_trecho.processa(ses, args)
+
     else:
       # Comando não identificado
       pag =  html_pag_mensagem_de_erro.gera(ses, ("** comando POST \"%s\" inválido" % cmd))
