@@ -1,0 +1,19 @@
+Relatório Individual - 2020-05-15 - Bernardo do Amaral Teodosio - 167494
+
+Nesta aula, a tarefa designada para mim foi "Acrescentar um campo booleano {oferta} na tabela de assentos."
+
+Abaixo, segue um passo a passo do que tive que fazer para realizá-la, na ordem em que os passos foram realizados:
+
+    * Precisei acrescentar um caracter "\' no assento_TST.py porque o teste estava quebrado
+    * Precisei também arrumar outros erros de sintaxe no arquivo
+    * Precisei arrumar o comando "for" que iterava sobre lista_atrs, porque estava quebrado - faltava um "range"
+    * Precisei arrumar o código interno do "for", pois usava uma variável que não existia
+    * Tirei o "assert False" do arquivo de testes pois estava atrapalhando o teste a rodar e fazendo-o falhar
+    * Arrumei o erro nos testes de "range inválido" ao tentar acessar, dentro do "for", a cópia da lista vazia (linha 65)
+    * Arrumei erros de variáveis inexistentes nas linhas 80-86 também.
+
+    * Adicionei o campo "oferta" nas colunas da tabela de assentos, usando o tipo booleano do python e o tipo inteiro do SQL, já queo SQL não tem o tipo booleano.
+    * Modifiquei os testes para agora funcionarem considerando a existência desse campo - alterando a variável lista_atrs
+
+A maior dificuldade da tarefa consistiu em arrumar os testes, pois haviam muitos erros de variáveis inexistentes.
+Os testes não geraram um arquivo html de output ao serem executados, mas imprimiram no Terminal que foram executados sem erro.

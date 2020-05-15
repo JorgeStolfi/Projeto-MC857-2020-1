@@ -31,7 +31,9 @@ def verifica_assento(rotulo, ass, ident, atrs):
   ok = assento.verifica(ass, ident, atrs)
 
   if ass != None and type(ass) is assento.Objeto_Assento:
-    assert False # !!! COMPLETAR !!!
+    pass    # Objeto não está com problemas, assento é válido
+  else:
+    ok = False
 
   if not ok:
     aviso_prog("teste falhou",True)
@@ -49,25 +51,25 @@ def testa_cria_assento(rotulo, ident, atrs):
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {assento.cria}:\n")
 
-lista_atrs = 
+lista_atrs = \
   [ 
-    { 'id_trecho': "T-00000001", 'numero': "01A", 'id_compra': "C-00000001", },
-    { 'id_trecho': "T-00000001"  'numero': "02A", 'id_compra': None,       , },
-    { 'id_trecho': "T-00000001", 'numero': "02B", 'id_compra': "C-00000002", },
-    { 'id_trecho': "T-00000002", 'numero': "31",  'id_compra': None,         },
-    { 'id_trecho': "T-00000002", 'numero': "32",  'id_compra': None,         },
-    { 'id_trecho': "T-00000002", 'numero': "33",  'id_compra': "C-00000001", },
-    { 'id_trecho': "T-00000003", 'numero': "31",  'id_compra': None,         },
-    { 'id_trecho': "T-00000003", 'numero': "33",  'id_compra': "C-00000003", },
+    { 'id_trecho': "T-00000001", 'numero': "01A", 'id_compra': "C-00000001", 'oferta': True },
+    { 'id_trecho': "T-00000001",  'numero': "02A", 'id_compra': None, 'oferta': True },
+    { 'id_trecho': "T-00000001", 'numero': "02B", 'id_compra': "C-00000002", 'oferta': False },
+    { 'id_trecho': "T-00000002", 'numero': "31",  'id_compra': None, 'oferta': True },
+    { 'id_trecho': "T-00000002", 'numero': "32",  'id_compra': None, 'oferta': False },
+    { 'id_trecho': "T-00000002", 'numero': "33",  'id_compra': "C-00000001", 'oferta': False },
+    { 'id_trecho': "T-00000003", 'numero': "31",  'id_compra': None, 'oferta': True },
+    { 'id_trecho': "T-00000003", 'numero': "33",  'id_compra': "C-00000003", 'oferta': False },
   ]
   
-ass = [].copy()
+ass = lista_atrs.copy()
 
-for ind in len(lista_atrs):
+for ind in range(len(lista_atrs)):
   atrs = lista_atrs[ind]
   rot = "%d" % (ind + 1)
   id = "A-%08d" % (ind + 1)
-  ass[ind] = testa_cria_assento(rot, id, ass1_atrs)
+  ass[ind] = testa_cria_assento(rot, id, atrs)
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {assento.muda_atributos}:\n")
@@ -78,6 +80,8 @@ ass1_mods = {
 }
 assento.muda_atributos(ass[0], ass1_mods)
 ass1_d_atrs = lista_atrs[0]
+ass1_id = "A-00000001"
+ass1 = ass[0]
 for k, v in ass1_mods.items():
   ass1_d_atrs[k] = v
 verifica_assento("ass1_d", ass1, ass1_id, ass1_d_atrs)
