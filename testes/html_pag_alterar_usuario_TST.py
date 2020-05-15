@@ -24,6 +24,7 @@ assert ses != None
 usr1 = sessao.obtem_usuario(ses)
 assert usr1 != None
 usr1_id = usuario.obtem_identificador(usr1)
+usr1_atrs = usuario.obtem_atributos(usr1)
 
 def testa(rotulo, *args):
   """Testa {funcao(*args)}, grava resultado
@@ -35,10 +36,13 @@ def testa(rotulo, *args):
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
+# Testes com erros em vérios formatos:
 for tag, erros in ( 
-    ("N", None), 
+    ("N", None),
     ("V", []), 
-    ("E", ["Mensagem UM", "Mensagem DOIS", "Mensagem TRÊS",])
+    ("B", "Mensagem UM\nMensagem DOIS\nMensagem TRÊS"),
+    ("L", ["Mensagem UM", "Mensagem DOIS", "Mensagem TRÊS",]),
+    ("LB", ["Mensagem UM-A\nMensagem UM-B", "Mensagem DOIS", "Mensagem TRÊS",]),
   ):
-  rotulo = tag + "_" + erros
-  testa(rotulo, ses, usr1_id, erros)
+  rotulo = tag
+  testa(rotulo, ses, usr1_id, usr1_atrs, erros)

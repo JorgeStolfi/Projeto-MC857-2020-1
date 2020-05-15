@@ -1,0 +1,22 @@
+Relatório RA 169601
+
+Consegui rodar o teste de primeira, mas ao ver que o arquivo .html gerado como saída era um documento HTML completo fui entender o que o teste fazia. Vi que a função {gera} do módulo {html_botao_simples} de fato retorna só o código HTML referente ao botão e esse botão é inserido na página completa da saída pela função {testa_gera_html} do módulo {utils_testes}. Até aí tudo certo.
+
+Depois, comecei a testar se o botão gerado tem o comportamento esperado.
+
+- A cor de fundo é a mesma passada como parâmetro.
+- O texto do botão é o mesmo passado como parâmetro.
+- Ao clicar no botão, o comando 'GET' emitido é para o {URL} dado como parâmetro.
+- Ao passar o parâmetro {args} como {None}, nenhum atributo é passado para o URL.
+
+Porém, reparei que não tinha nehum teste passando argumentos de URL. Então adicionei mais dois testes com rótulos 'url_args_valido', 'url_args_invalido'.
+
+O primeiro passa um parâmetro de URL com um valor válido e outro com valor vazio {""} (que também é válido, mas não é adicionado no URL final).
+
+O segundo passa um parâmetro com um caracter inválido segundo a especificação do módulo.
+
+Para ambos os testes, o módulo gerou os URLs com os parâmetros passados. Apesar desse ser o comportamento esperado para o primeiro, o segundo com caracteres inválidos não deveria fazê-lo.
+
+Para corrigir esse problema, adicionei uma validação de caracteres válidos no módulo que aplica uma expressão regular contra todos os valores de {key} e {val} que a função recebe como parâmetro. Com isso, o módulo passou a não incluir parâmetros com caracteres inválidos no URL e o teste com rótulo {url_args_invalido} passou a produzir o resultado esperado.
+
+Com isso, o módulo passou a ter todos os comportamentos esperados e o arquivo de testes contempla todos eles.

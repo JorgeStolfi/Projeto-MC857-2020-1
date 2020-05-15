@@ -40,7 +40,7 @@ def define_carrinho(usr, id_usuario):
   condição, então uma delas sera usada como carrinho, caso contrário será criado
   um novo carrinho vazio."""
   # !!! Deveria retornar a lista de todas as compras em aberto, não apenas a primeira encontrada. !!!
-  lista_id_compras = compra.busca_por_usuario(id_usuario)
+  lista_id_compras = compra.busca_por_cliente(id_usuario)
   if not lista_id_compras:
     return compra.cria(usr)
   else:

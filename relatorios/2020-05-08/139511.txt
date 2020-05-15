@@ -1,0 +1,2 @@
+Estudei o módulo comando_fazer_login, que não está criando sessão para usuário já existente.
+Verifiquei que o problema está na chamada da função {usuario.busca_por_email()} que invoca funções de outros módulos {objeto-> tabela_generica -> base_sql}, e não consegue retornar um {id_usuario}.

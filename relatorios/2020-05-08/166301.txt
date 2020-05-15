@@ -1,0 +1,2 @@
+Teste tentava fazer compra.verifica_objeto, que é da classe objeto. Arrumado pra compra.verifica
+Testes falham pois tenta comparar a sessão com a compra, classe teste compra_TST foi feita para testar sessao. Alterado pra testar obtem_identificador de compra

@@ -15,7 +15,9 @@ def gera(id_usuario, atrs, admin):
   administrador, e vai mostrar também o campo {id_usuario} como "readonly".
 
   Se {admin} for {False}, supõe-se que o formulário foi
-  pedido pelo próprio {usr}, que é um cliente comum.
+  pedido pelo próprio {usr}, que é um cliente comum. Nesse caso não
+  haverá o checkbox "administrador", e o campo {id_usuario} será
+  "hidden".
 
   O formulário conterá um botão 'Alterar' (de tipo 'submit').
   Quando o usuário clicar nesse botão, será emitido um comando POST com ação

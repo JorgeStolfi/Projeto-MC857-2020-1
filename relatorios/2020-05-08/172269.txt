@@ -1,0 +1,16 @@
+Gabriel Marinho da Costa - RA172269
+
+modified:   html_form_IMP.py
+modified:   html_form_dados_de_usuario_IMP.py
+modified:   html_form_tabela_de_campos_IMP.py
+modified:   html_input_IMP.py
+modified:   testes/html_form_alterar_usuario_TST.py
+
+included:
+testes/saida/html_form_alterar_usuario.gera.TESTE_ADM.html
+testes/saida/html_form_alterar_usuario.gera.TESTE_NO_ADM.html
+
+
+Alguns arquivos estavam dando erro por concatenar com um objeto e não uma str(Objeto), entao alterei mesmo não sendo o meu arquivo de teste.
+
+Precisei modificar o arquivo html_form_alterar_usuario para usar a classe correta e gerar os htmls adequados para se alterar o cadastro de um usuário de acordo com a permissão. Foi necessário também alterar um arquivo diferente para a funcionalidade de permissão, para exibir o checkbox de administrador no formulario, funcionar.

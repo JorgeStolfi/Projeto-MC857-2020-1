@@ -22,6 +22,7 @@ def testa(rotulo, *args):
   pretty = False  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-testa("1", "Você errou, meu amigo!")
-testa("2", "Você errou, meu amigo!\nE errou de novo!")
-testa("L", [ "Você errou, meu amigo!", "E errou de novo!" ])
+testa("simple", "ERROR MESSAGE")
+testa("linebreak", "ERROR MESSAGE\nERROR DESCRIPTION")
+testa("multiple_arguments", [ "ERROR MESSAGE", "ERROR DESCRIPTION"])
+testa("all_combined", [ "ERROR TITLE", "ERROR DESCRIPTION 1\nERROR DESCRIPTION 2"])

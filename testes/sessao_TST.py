@@ -9,7 +9,7 @@ import sessao
 import usuario
 import identificador
 import utils_testes
-from utils_testes import erro_prog, mostra
+from utils_testes import erro_prog, mostra, aviso_prog
 
 
 # ----------------------------------------------------------------------
@@ -89,7 +89,7 @@ scook1 = "ABCDEFGHIJK"
 s1 = sessao.cria(usr1, scook1, cmp1)
 sindice1 = 1
 sident1 = "S-00000001"
-verifica_sessao("s1", s1, sident1, usr1, True)
+verifica_sessao("s1", s1, sident1, usr1, True, scook1, cmp1)
 
 scook2 = "BCDEFGHIJKL"
 s2 = sessao.cria(usr2, scook2, cmp2)

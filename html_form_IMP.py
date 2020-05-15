@@ -10,6 +10,6 @@ def gera(conteudo):
     "  font-family: " + fam_fonte + ";" + \
     "  font-size: " + tam_fonte + ";" + \
     "  padding: 5px;"
-  form = "<form>" + conteudo + "</form>"
+  form = "<form>" + str(conteudo) + "</form>"
   ht = html_span.gera(estilo, form)
   return ht

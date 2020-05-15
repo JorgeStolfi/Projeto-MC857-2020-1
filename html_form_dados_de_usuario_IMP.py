@@ -1,14 +1,14 @@
 import html_input
 import html_botao_submit
 import html_botao_simples
-import html_form_tabela_de_campos 
+import html_form_tabela_de_campos
 import html_form
 
-def gera(id_usuario, atrs, admin, texto_bt, cmd):
+def gera(id_usuario, atrs, admin, texto_bt, post_url):
   if id_usuario != None:
     novo = False
     # Inclui campo 'id_usuario' no formulário:
-    if admin != None:
+    if admin:
       # Mostra o id do usuario somente se quem está alterando é administrador:
       ht_id_usuario = html_input.gera(None, "readonly", "id_usuario", id_usuario, True, None, None)
     else:
@@ -29,12 +29,12 @@ def gera(id_usuario, atrs, admin, texto_bt, cmd):
     ( "Documento",        "text",     "documento",     "Número, tipo, órgão", False, ),
     ( "Senha",            "password", "senha",         None,                  False, ),
     ( "Confirmar senha",  "password", "conf_senha",    None,                  False, ),
-    ( "Administrador",    "checkbox", "administrador", None,                  False, ),
+    ( "Administrador",    "checkbox", "administrador", None,                  True, ),
   )
 
   ht_tabela = html_form_tabela_de_campos.gera(dados_linhas, atrs, admin)
 
-  ht_submit = html_botao_submit.gera(texto_bt, cmd, None, '#55ee55')
+  ht_submit = html_botao_submit.gera(texto_bt, post_url, None, '#55ee55')
 
   ht_cancel = html_botao_simples.gera("Cancelar", 'principal', None, '#ee5555')
 
@@ -44,4 +44,3 @@ def gera(id_usuario, atrs, admin, texto_bt, cmd):
     ( "    " + ht_submit + "\n" ) + \
     ( "    " + ht_cancel + "\n" )
   return html_form.gera(ht_campos)
-
