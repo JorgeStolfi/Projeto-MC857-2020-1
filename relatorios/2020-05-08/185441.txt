@@ -1,5 +1,0 @@
-- Rodei o teste correspondente ao módulo html_pag_login
-- Verifiquei que o teste estava gerando três páginas com variadas formas de apresentar uma mensagem de erro
-- Rótulo "N" sem mensagens, rótulo "V" com uma lista vazia de mensagens e rótulo "E" com três mensagens
-- Criei um rótulo com um erro novo para verificar o funcionamento do código, mas removi já que não era uma alteração essencial
-- O módulo está funcionando
