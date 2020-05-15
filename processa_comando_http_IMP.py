@@ -15,10 +15,11 @@ import comando_solicitar_pag_login
 import comando_fazer_login
 import comando_fazer_logout
 import comando_ver_objeto
+import comando_solicitar_pag_buscar_compras
 import comando_solicitar_pag_buscar_trecho
 
 import html_bloco_texto
-import html_div 
+import html_div
 import html_pag_principal
 import html_pag_mensagem_de_erro
 import html_pag_contato
@@ -72,7 +73,7 @@ class Processador_de_pedido_HTTP(BaseHTTPRequestHandler):
 
     # Extrai os dados do comando HTTP na forma de um dicionário:
     dados = self.extrai_dados(tipo)
-    
+
     if tipo == 'GET' and dados['real_path'][0:9] == '/imagens/':
       # Pedido de uma imagem:
       nome_imagem = dados['real_path'][1:]
@@ -318,7 +319,7 @@ def processa_comando(tipo, ses, dados):
       args = dados['form_data']; del dados['form_data'] # Campos do formulário.
     else:
       assert False
-      
+
     # Remove parenteses e colchetes supérfluos em {args}:
     args = descasca_argumentos(args)
 
@@ -367,11 +368,14 @@ def processa_comando(tipo, ses, dados):
       # Usuário apertou o botão "Ver Objeto" ou equivalente no menu geral:
       pag = comando_ver_objeto.processa(ses, args)
 
+    elif cmd == '/buscar_compras':
+      # Usuário apertou o botão "Ver Objeto" ou equivalente no menu geral:
+      pag = comando_solicitar_pag_buscar_compras.processa(ses, dados)
+      
     elif cmd == '/solicitar_pag_contato':
       # Usuário apertou o botão "Contato" do menu geral:
       #pag =  html_pag_contato.gera(ses, [])
       pag = comando_solicitar_pag_contato.processa(ses, args)
-
       
     elif cmd == '/solicitar_pag_buscar_trecho':
       # Usuário apertou o botão "Buscar Trecho" do menu geral:
