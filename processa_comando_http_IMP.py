@@ -5,6 +5,7 @@
 import sessao
 import usuario
 
+import comando_solicitar_pag_contato
 import comando_solicitar_pag_cadastrar_usuario
 import comando_cadastrar_usuario
 import comando_solicitar_pag_alterar_usuario
@@ -18,6 +19,7 @@ import html_bloco_texto
 import html_div 
 import html_pag_principal
 import html_pag_mensagem_de_erro
+import html_pag_contato
 
 import utils_testes
 from utils_testes import erro_prog, mostra
@@ -358,6 +360,12 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/ver_objeto':
       # Usuário apertou o botão "Ver Objeto" ou equivalente no menu geral:
       pag = comando_ver_objeto.processa(ses, args)
+
+    elif cmd == '/solicitar_pag_contato':
+      # Usuário apertou o botão "Contato" do menu geral:
+      #pag =  html_pag_contato.gera(ses, [])
+      pag = comando_solicitar_pag_contato.processa(ses, args)
+
       
     else:
       # Comando não identificado

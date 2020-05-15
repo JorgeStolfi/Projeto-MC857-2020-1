@@ -1,0 +1,1 @@
+Criadas as funções e arquivos para fazer funcionar o botão Contato do menu principal, abrindo uma página com um número de telefone.
