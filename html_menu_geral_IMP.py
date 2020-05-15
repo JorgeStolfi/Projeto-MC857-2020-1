@@ -31,8 +31,7 @@ def gera_botoes_linha_1(logado, nome_usuario, admin):
 
   # Botões da primeira linha que sempre aparecem:
   ht_bt_principal = html_botao_simples.gera("Principal", 'principal', None, '#60a3bc')
-  # ht_bt_ofertas = html_botao_simples.gera("Ofertas", 'ver_ofertas', None, '#ffdd22')
-  ht_bt_ofertas = None
+  ht_bt_ofertas = html_botao_simples.gera("Ofertas", 'solicitar_pag_ofertas', None, '#ffdd22')
   # ht_fm_buscar = html_form_buscar_site.gera()
   ht_fm_buscar = None
   botoes = ( ht_bt_principal, ht_bt_ofertas, ht_fm_buscar)

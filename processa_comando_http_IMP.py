@@ -6,6 +6,7 @@ import sessao
 import usuario
 
 import comando_solicitar_pag_cadastrar_usuario
+import comando_solicitar_pag_ofertas
 import comando_cadastrar_usuario
 import comando_solicitar_pag_alterar_usuario
 import comando_alterar_usuario
@@ -342,6 +343,10 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/solicitar_pag_cadastrar_usuario':
       # Usuário apertou o botão "Cadastrar" do menu geral:
       pag = comando_solicitar_pag_cadastrar_usuario.processa(ses, args)
+
+    elif cmd == '/solicitar_pag_ofertas':
+      # Usuário apertou o botão "Ofertas" do menu geral:
+      pag = comando_solicitar_pag_ofertas.processa(ses, "Lista de ofertas")
 
     elif cmd == '/cadastrar_usuario':
       # Usuário apertou "Cadastrar" em formulário de cadastrar usuário:
