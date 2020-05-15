@@ -49,25 +49,25 @@ def testa_cria_assento(rotulo, ident, atrs):
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {assento.cria}:\n")
 
-lista_atrs = 
-  [ 
-    { 'id_trecho': "T-00000001", 'numero': "01A", 'id_compra': "C-00000001", },
-    { 'id_trecho': "T-00000001"  'numero': "02A", 'id_compra': None,       , },
-    { 'id_trecho': "T-00000001", 'numero': "02B", 'id_compra': "C-00000002", },
-    { 'id_trecho': "T-00000002", 'numero': "31",  'id_compra': None,         },
-    { 'id_trecho': "T-00000002", 'numero': "32",  'id_compra': None,         },
-    { 'id_trecho': "T-00000002", 'numero': "33",  'id_compra': "C-00000001", },
-    { 'id_trecho': "T-00000003", 'numero': "31",  'id_compra': None,         },
-    { 'id_trecho': "T-00000003", 'numero': "33",  'id_compra': "C-00000003", },
+lista_atrs = \
+  [
+    { 'id_trecho': "T-00000001", 'numero': "01A", 'id_compra': "C-00000001", 'bagagens': 0,    },
+    { 'id_trecho': "T-00000001", 'numero': "02A", 'id_compra': None,         'bagagens': None, },
+    { 'id_trecho': "T-00000001", 'numero': "02B", 'id_compra': "C-00000002", 'bagagens': 1,    },
+    { 'id_trecho': "T-00000002", 'numero': "31",  'id_compra': None,         'bagagens': None, },
+    { 'id_trecho': "T-00000002", 'numero': "32",  'id_compra': None,         'bagagens': None, },
+    { 'id_trecho': "T-00000002", 'numero': "33",  'id_compra': "C-00000001", 'bagagens': 2,    },
+    { 'id_trecho': "T-00000003", 'numero': "31",  'id_compra': None,         'bagagens': None, },
+    { 'id_trecho': "T-00000003", 'numero': "33",  'id_compra': "C-00000003", 'bagagens': 3,    },
   ]
-  
-ass = [].copy()
 
-for ind in len(lista_atrs):
+ass = lista_atrs.copy()
+
+for ind in range(len(lista_atrs)):
   atrs = lista_atrs[ind]
   rot = "%d" % (ind + 1)
   id = "A-%08d" % (ind + 1)
-  ass[ind] = testa_cria_assento(rot, id, ass1_atrs)
+  ass[ind] = testa_cria_assento(rot, id, atrs)
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {assento.muda_atributos}:\n")
@@ -77,6 +77,8 @@ ass1_mods = {
   'id_compra': "C-00000005",
 }
 assento.muda_atributos(ass[0], ass1_mods)
+ass1 = ass[0]
+ass1_id = "A-00000001"
 ass1_d_atrs = lista_atrs[0]
 for k, v in ass1_mods.items():
   ass1_d_atrs[k] = v
