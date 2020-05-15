@@ -2,5 +2,8 @@ Relatório
 
 Minha tarefa nessa semana foi criar o módulo {comando_solicitar_pag_acrescentar_trecho}, eu me baseei no módulo
 {comando_solicitar_pag_cadastrar_usuario} para criar esse novo módulo, criei o arquivo de interface e de implementação
-do módulo, a implementação depende da criação do módulo {html_pag_acrescentar_trecho} que foi feita por outro aluno
+do módulo.
+A interface chama a implementação do módulo, também documentei o que o comando deve receber e retornar, me baseando na
+documentação do módulo supracitado.
+A implementação depende da criação do módulo {html_pag_acrescentar_trecho} que foi feita por outro aluno
 na mesma aula, portanto apenas retornei uma string informando que falta a implementação desse módulo.
