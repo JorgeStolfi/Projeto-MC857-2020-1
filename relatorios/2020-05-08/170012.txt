@@ -1,3 +1,0 @@
-Os testes em html_botao_submit_TST.py já estavam feitos e funcionando corretamente.
-
-Os testes criam um botão input para cadastrar um usuario, alterar um usuario e fazer o login de um usuario.
