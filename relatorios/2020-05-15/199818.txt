@@ -1,0 +1,5 @@
+Impletação dos arquivos html_form_acrescentar_trecho_IMP e html_form_acrescentar_trecho.
+
+Arquivos que implementam formulário para nova passagem, com campos de texto e submissão. Também foram implementados testes para as funções.
+
+Foram utilizadas como base os arquivos html_form_cadastrar_usuario_IMP, trecho_IMP e html_form_dados_de_usuario.

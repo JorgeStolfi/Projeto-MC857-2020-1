@@ -1,0 +1,10 @@
+Relatório 8/5/2020 MC857
+
+André Papoti de Oliveira 166380
+
+	Durante esta aula fiquei responsável pelos arquivos fazer o botao "Minha Conta"	funcionar.
+	No primeiro teste que realizei vi que o botão estava causando um crash no servidor tanto pra constas padrao quanto para contas de administrador.
+	Ao inspecionar os arquivos responsaveis percebi que em comando_solicitar_pag_alterar_usuario_IMP.py existe uma chamada de html_pag_alterar_usuario.gera com os argumentos (ses, args["id_usuario"], atrs, erros), porem args["id_usuario"], atrs e erros não existem e por isso causam o erro.
+	Para corrigir o problema substitui os argumentos passados por (ses, None, None, None) e desta forma o botao funcionou de forma correta e sem prejudicar o resultado da pagina esperado. 
+	O argumento  args["id_usuario"] é redundante pois na pagina chamada a informacao do id do usuario é obtida através da sessão ses. Ambos atrs e erros não são utilizados na página
+	

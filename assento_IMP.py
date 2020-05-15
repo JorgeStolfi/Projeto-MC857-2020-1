@@ -30,6 +30,7 @@ colunas = \
     ( 'id_trecho',   type("foo"), 'TEXT',    False ), # Identificador "T-{NNNNNNNN}" do trecho
     ( 'id_compra',   type("foo"), 'TEXT',    True  ), # Identificador "C-{NNNNNNNN}" da compra, ou {None}.
     ( 'numero',      type("foo"), 'TEXT',    False ), # Número da poltrona no veículo
+    ( 'preco' ,      type("foo"), 'TEXT',    False ), # 15-05 criaçao da coluna de preços
   )
   # Descrição das colunas da tabela na base de dados.
   
@@ -106,14 +107,14 @@ def cria_testes():
   inicializa(True)
   lista_atrs = \
     [ 
-      { 'id_trecho': "T-00000001", 'numero': "01A", 'id_compra': "C-00000001", },
-      { 'id_trecho': "T-00000001", 'numero': "02A", 'id_compra': None,         },
-      { 'id_trecho': "T-00000001", 'numero': "02B", 'id_compra': "C-00000002", },
-      { 'id_trecho': "T-00000002", 'numero': "31",  'id_compra': None,         },
-      { 'id_trecho': "T-00000002", 'numero': "32",  'id_compra': None,         },
-      { 'id_trecho': "T-00000002", 'numero': "33",  'id_compra': "C-00000001", },
-      { 'id_trecho': "T-00000003", 'numero': "31",  'id_compra': None,         },
-      { 'id_trecho': "T-00000003", 'numero': "33",  'id_compra': "C-00000003", },
+      { 'id_trecho': "T-00000001", 'numero': "01A", 'id_compra': "C-00000001", 'preco': "10" },
+      { 'id_trecho': "T-00000001", 'numero': "02A", 'id_compra': None, 'preco': "0"  },
+      { 'id_trecho': "T-00000001", 'numero': "02B", 'id_compra': "C-00000002", 'preco': "11" },
+      { 'id_trecho': "T-00000002", 'numero': "31",  'id_compra': None, 'preco': "0"  },
+      { 'id_trecho': "T-00000002", 'numero': "32",  'id_compra': None, 'preco': "0"  },
+      { 'id_trecho': "T-00000002", 'numero': "33",  'id_compra': "C-00000001", 'preco': "12"},
+      { 'id_trecho': "T-00000003", 'numero': "31",  'id_compra': None, 'preco': "0"  },
+      { 'id_trecho': "T-00000003", 'numero': "33",  'id_compra': "C-00000003", 'preco': "13"},
     ]
   for atrs in lista_atrs:
     ass = cria(atrs)
@@ -151,7 +152,7 @@ def valida_atributos(ass, atrs_mem):
   
   # Validade dos campos fornecidos:
   # !!! Completar !!!
-      
+
   # Verifica completude:
   nargs = 0 # Número de campos em {atrs_mem} reconhecidos.
   for chave, tipo_mem, tipo_sql, nulo_ok in colunas:
