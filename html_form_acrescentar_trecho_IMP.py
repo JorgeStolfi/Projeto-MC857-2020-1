@@ -1,6 +1,4 @@
-# html_form_acrescentar_trecho_IMP
 
-# Imports trecho_IMP
 import trecho_IMP; from trecho_IMP import Objeto_Trecho_IMP
 import objeto
 import usuario

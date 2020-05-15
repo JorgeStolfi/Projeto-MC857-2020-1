@@ -1,4 +1,3 @@
-# html_form_acrescentar_trecho
 
 import html_form_acrescentar_trecho_IMP
 
@@ -51,3 +50,4 @@ def diagnosticos(val):
   impressão em {sys.stderr} de mensagens de diagnóstico pelas 
   funções deste módulo."""
   trecho_IMP.diagnosticos(val)
+
