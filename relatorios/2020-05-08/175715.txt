@@ -1,6 +1,0 @@
-Notas do dia:
-1. O programa de teste executa e termina sem erros utilizando a linha de comando "./testa.sh html_menu_geral".
-2. Inspecionei os arquivos de saida, todos foram abertos normalmente, entretanto, como esperado, os botoes ainda nao tem funcao.
-3. Para tornar a interface mais moderna seria interessante utilizar o framework Django, muito popular no desenvolvimento de aplicacoes web com python.
-4. Geralmente no desenvolvimento comercial usa-se ferramentas para separar a implementacao python do codigo que define a interface. Isso facilita e acelera o trabalho dos designers.
-5. Tarefa finalizada.
