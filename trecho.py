@@ -103,6 +103,12 @@ def busca_por_codigo_e_data(cod, dt):
   ou {None} se não existir tal trecho."""
   return trecho_IMP.busca_por_codigo_e_data(cod, dt)
 
+def busca_por_origem_e_destino(origem, destino):
+  """Localiza um trecho cujo 'origem' é {origem} e 'destino'
+  é {destino}, e devolve o identificador do mesmo (não o objeto);
+  ou {None} se não existir tal trecho."""
+  return trecho_IMP.busca_por_origem_e_destino(origem, destino)
+
 # FUNÇÕES PARA DEPURAÇÃO
 
 def verifica(trc, id, atrs):
