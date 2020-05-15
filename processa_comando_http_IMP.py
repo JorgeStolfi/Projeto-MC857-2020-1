@@ -13,9 +13,10 @@ import comando_solicitar_pag_login
 import comando_fazer_login
 import comando_fazer_logout
 import comando_ver_objeto
+import comando_solicitar_pag_buscar_compras
 
 import html_bloco_texto
-import html_div 
+import html_div
 import html_pag_principal
 import html_pag_mensagem_de_erro
 
@@ -68,7 +69,7 @@ class Processador_de_pedido_HTTP(BaseHTTPRequestHandler):
 
     # Extrai os dados do comando HTTP na forma de um dicionário:
     dados = self.extrai_dados(tipo)
-    
+
     if tipo == 'GET' and dados['real_path'][0:9] == '/imagens/':
       # Pedido de uma imagem:
       nome_imagem = dados['real_path'][1:]
@@ -314,7 +315,7 @@ def processa_comando(tipo, ses, dados):
       args = dados['form_data']; del dados['form_data'] # Campos do formulário.
     else:
       assert False
-      
+
     # Remove parenteses e colchetes supérfluos em {args}:
     args = descasca_argumentos(args)
 
@@ -358,7 +359,11 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/ver_objeto':
       # Usuário apertou o botão "Ver Objeto" ou equivalente no menu geral:
       pag = comando_ver_objeto.processa(ses, args)
-      
+
+    elif cmd == '/buscar_compras':
+      # Usuário apertou o botão "Ver Objeto" ou equivalente no menu geral:
+      pag = comando_solicitar_pag_buscar_compras.processa(ses, dados)
+
     else:
       # Comando não identificado
       pag =  html_pag_mensagem_de_erro.gera(ses, ("** comando POST \"%s\" inválido" % cmd))
