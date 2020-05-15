@@ -3,6 +3,8 @@
 
 import base_sql
 import tabelas
+import usuario
+import compra
 import sys
 
 # ----------------------------------------------------------------------
@@ -18,7 +20,7 @@ tabelas.inicializa_todas(False)
 tabelas.cria_todos_os_testes()
 
 # ----------------------------------------------------------------------
-sys.stderr.write("verificando usuário %s\n" % "usr1") 
+sys.stderr.write("verificando tabela \"usuarios\" usr = %s\n" % "usr1") 
 
 usr1_id = "U-00000001"
 usr1 = usuario.busca_por_identificador(usr1_id)
@@ -31,7 +33,7 @@ assert usr1 == tabelas.id_para_opbjeto(usr1_id)
 sys.stderr.write("\n")
 
 # ----------------------------------------------------------------------
-sys.stderr.write("verificando sessão %s\n" % "ses1") 
+sys.stderr.write("verificando tabela \"sessao\", ses = %s\n" % "ses1") 
 
 ses1_id = "S-00000001"
 ses1 = sessao.busca_por_identificador(ses1_id)
@@ -44,7 +46,7 @@ assert ses1 == tabelas.id_para_opbjeto(ses1_id)
 sys.stderr.write("\n")
 
 # ----------------------------------------------------------------------
-sys.stderr.write("verificando compra %s\n" % "cpr1") 
+sys.stderr.write("verificando tabela \"compras\" cpr = %s\n" % "cpr1") 
 
 cpr1_id = "C-00000001"
 cpr1 = compra.busca_por_identificador(cpr1_id)
@@ -56,4 +58,5 @@ assert cpr1 == tabelas.id_para_opbjeto(cpr1_id)
 
 sys.stderr.write("\n")
 
-
+# ----------------------------------------------------------------------
+assert False # !!! INCOMPLETO - TESTAR TABELAS "assentos", "trechos"

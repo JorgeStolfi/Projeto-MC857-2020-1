@@ -95,8 +95,8 @@ def busca_por_identificador(id):
   return cpr
 
 def busca_por_cliente(id_cliente):
-  erro_prog("Função não implementada")
-  return None
+  res = objeto.busca_por_campo('cliente', id_cliente, cache, nome_tb, letra_tb, colunas)
+  return res
 
 def muda_atributos(cpr, mods_mem):
   global cache, nome_tb, letra_tb, colunas, diags

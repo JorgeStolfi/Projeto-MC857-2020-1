@@ -136,7 +136,7 @@ def cria_testes():
   return
 
 def verifica(ses, id, atrs):
-  return objeto.verifica(ses, usuario.Objeto_Usuario, id, atrs, cache, nome_tb, letra_tb, colunas, def_obj_mem)
+  return objeto.verifica(ses, sessao.Objeto_Sessao, id, atrs, cache, nome_tb, letra_tb, colunas, def_obj_mem)
 
 def diagnosticos(val):
   global cache, nome_tb, letra_tb, colunas, diags

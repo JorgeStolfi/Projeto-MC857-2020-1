@@ -7,7 +7,7 @@ import tabelas
 import usuario
 import sessao
 import compra
-from utils_testes import erro_prog, aviso_prog, mostra
+import utils_testes; from utils_testes import erro_prog, aviso_prog, mostra
 import comando_ver_objeto
 
 import sys
@@ -19,26 +19,29 @@ assert res == None
 sys.stderr.write("Criando alguns objetos...\n")
 tabelas.cria_todos_os_testes()
 
+ses1 = sessao.busca_por_identificador("S-00000001")
+
 ok_global = True # Vira {False} se um teste falha.
 # ----------------------------------------------------------------------
 # Função de teste:
 
-def verifica_comando_ver_objeto(email, senha, deveria_logar):
-  global ok_global
-  dados = {
-    "email": email,
-    "senha": senha
-  }
-  pag, ses = comando_ver_objeto.processa(None, dados)
-
-  if ((not deveria_logar) and ses != None):
-    ok_global = False
-    aviso_prog("Gerou gerou uma nova sessão para o email " + str(email), True)
-    
-
-# ----------------------------------------------------------------------
-# Executa chamadas
-verifica_comando_ver_objeto("nao_existo@gmail.com", "123456789", False)
+def testa(rotulo, *args):
+  """Testa {funcao(*args)}, grava resultado 
+  em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
+  modulo = comando_ver_objeto
+  funcao = modulo.processa
+  frag = False
+  pretty = False
+  utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
+  
+for tag, id in ( \
+    ("U", "U-00000001"),
+    ("S", "S-00000001"),
+    ("T", "T-00000001"),
+    ("C", "C-00000001"),
+    ("A", "A-00000001"),
+  ):
+  testa(tag, ses1, {'id': id})
 
 # ----------------------------------------------------------------------
 # Veredito final:

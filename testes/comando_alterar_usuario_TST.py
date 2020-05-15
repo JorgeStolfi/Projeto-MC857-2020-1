@@ -40,7 +40,7 @@ def testa_atualiza_atributo_com_sucesso():
         'id_usuario': "U-00000001",
         'nome': novo_nome,
     }
-    testa("Atualiza com sucesso", ses, args)
+    testa("Suc", ses, args)
 
     updated_user = usuario.busca_por_identificador("U-00000001")
 
@@ -53,7 +53,7 @@ def testa_atualiza_atributo_invalido():
         'id_usuario': "U-00000001",
         'CPF': cpf_invalido,
     }
-    testa("Tenta atualizar com CPF invalido", ses, args)
+    testa("Inv", ses, args)
 
     updated_user = usuario.busca_por_identificador("U-00000001")
 

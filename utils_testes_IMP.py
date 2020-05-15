@@ -6,15 +6,24 @@ import inspect
 import json
 from bs4 import BeautifulSoup as bsoup  # Pretty-print of HTML
 
+def mostra_pilha(n):
+  """Para uso por {erro_prog} e {aviso_prog}. Mostra as {n} 
+  chamadas na pilha anteriores a essas funções."""
+  stack = inspect.stack()
+  if 5 + n >= len(stack): n = len(stack) - 5;
+  for k in range(n):
+    fr = stack[2+n-k]
+    sys.stderr.write("  File %s, line %d, in %s\n" % (fr[1],fr[2],fr[3]))
+
 def erro_prog(mens):
-  fr = inspect.stack()[2]
-  sys.stderr.write("  File %s, line %d, in %s: ** erro: %s\n" % (fr[1],fr[2],fr[3],mens))
+  sys.stderr.write("    ** erro: %s\n" % mens)
   assert False
 
 def aviso_prog(mens, grave):
-  fr = inspect.stack()[2]
+  sys.stderr.write("Traceback (most recent call last):\n")
+  mostra_pilha(20)
   tipo = ("** erro" if grave else "!! aviso")
-  sys.stderr.write("  File %s, line %d, in %s: %s %s\n" % (fr[1],fr[2],fr[3],tipo,mens))
+  sys.stderr.write("    %s %s\n" % (tipo,mens))
   return
 
 def mostra(ind,mens):

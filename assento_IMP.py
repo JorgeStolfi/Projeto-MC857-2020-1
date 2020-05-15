@@ -2,6 +2,7 @@
 
 import objeto
 import assento
+import trecho
 
 import tabela_generica
 import tabelas

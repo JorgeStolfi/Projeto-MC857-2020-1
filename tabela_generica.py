@@ -170,6 +170,11 @@ def busca_por_campo(nome_tb, let, cols, chave, valor, res_cols):
   devolve uma lista vazia."""
   return tabela_generica_IMP.busca_por_campo(nome_tb, let, cols, chave, valor, res_cols)
 
+def busca_por_dois_campos(nome_tb, let, cols, chave1, valor1, chave2, valor2, res_cols):
+  """Semelhante a {busca_por_campo}, mas procura objetos que tem valor {valor1} na colunas {chave1} 
+  e {valor2} na coluna {chave2}."""
+  return tabela_generica_IMP.busca_por_dois_campos(nome_tb, let, cols, chave1, valor1, chave2, valor2, res_cols)
+
 def busca_por_semelhanca(nome_tb, let, cols, chaves, valores):
   #@TODO documentar interface
   # Devolve lista de identificadores (não objetos)

@@ -93,8 +93,8 @@ def busca_por_origem(cod):
   return objeto.busca_por_campo("codigo", cod, cache, nome_tb, letra_tb, colunas)
 
 def busca_por_codigo_e_data(cod,dt):
-  erro_prog("Função não implementada")
-  return None
+  global cache, nome_tb, letra_tb, colunas, diags
+  return objeto.busca_por_dois_campos("codigo", cod, 'dt_partida', dt, cache, nome_tb, letra_tb, colunas)
 
 def muda_atributos(trc, mods_mem):
   global cache, nome_tb, letra_tb, colunas, diags

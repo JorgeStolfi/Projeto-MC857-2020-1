@@ -8,7 +8,7 @@ def gera(id_usuario, atrs, admin, texto_bt, post_url):
   if id_usuario != None:
     novo = False
     # Inclui campo 'id_usuario' no formulário:
-    if admin != None:
+    if admin:
       # Mostra o id do usuario somente se quem está alterando é administrador:
       ht_id_usuario = html_input.gera(None, "readonly", "id_usuario", id_usuario, True, None, None)
     else:

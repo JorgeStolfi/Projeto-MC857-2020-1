@@ -46,7 +46,7 @@ def verifica_compra(rotulo, cpr, ident, cliente, status):
 
   sys.stderr.write("%s\n" % ("-" * 70))
   sys.stderr.write("verificando compra %s\n" % rotulo)
-  atrs = { 'cliente': cliente, 'status': 'aberto' }
+  atrs = { 'cliente': cliente, 'status': status }
   ok = compra.verifica(cpr, ident, atrs)
   
   if cpr != None and type(cpr) is compra.Objeto_Compra:
@@ -79,19 +79,16 @@ def verifica_compra(rotulo, cpr, ident, cliente, status):
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {compra.cria}:\n")
-scook1 = "ABCDEFGHIJK"
 compra1 = compra.cria(usr1)
 compraIndice1 = 1
 compraId1 = "C-00000001"
 verifica_compra("c1", compra1, compraId1, usr1, 'aberto')
 
-scook2 = "BCDEFGHIJKL"
 compra2 = compra.cria(usr2)
 compraIndice2 = 2
 compraId2 = "C-00000002"
 verifica_compra("c2", compra2, compraId2, usr2, 'aberto')
 
-scook3 = "CDEFGHIJKLM"
 compra3 = compra.cria(usr1)
 compraIndice3 = 3
 compraId3 = "C-00000003"
@@ -99,7 +96,7 @@ verifica_compra("c3", compra3, compraId3, usr1, 'aberto')
 
 sys.stderr.write("testando {compra.fecha}:\n")
 compra.fecha(compra1)
-verifica_compra("fecha c1", compra1, compraId1, usr1,'pagando')
+verifica_compra("fecha_c1", compra1, compraId1, usr1, 'pagando')
 
 # ----------------------------------------------------------------------
 # Veredito final:
