@@ -1,0 +1,11 @@
+Retirei o telefone e documento e adicionei o botão "Ver" com um endpoint para "solicitar_pag_alterar_usuario" e argumento sendo o id do usuário
+em questão. As mudanças foram feitas em html_bloco_usuario_IMP ao invés da sugerida html_bloco_lista_de_usuarios_IMP por dois motivos:
+
+1 - html_bloco_lista_de_usuarios_IMP somente faz um loop que chama html_bloco_usuario_IMP diversas vezes, então faz sentido a customização do
+bloco pra cada usuário ser responsabilidade de html_bloco_usuario_IMP
+
+2- a documentação de html_bloco_usuario sugere que sua implementação faça o que a task se referia, tirando o fato de ser referir a função do Ver 
+de chamar a função comando_alterar_usuario ao invés da função solicitar_pag_alterar_usuario, que faz mais sentido e é o que foi sugerido em aula.
+Logo, foi necessária a mudança da documento de html_bloco_usuario.
+
+Além disso, foram tirando linhas de código comentadas de html_bloco_lista_de_usuarios_TST.
