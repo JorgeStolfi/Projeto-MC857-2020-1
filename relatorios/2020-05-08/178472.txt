@@ -1,7 +1,0 @@
-Verifiquei o módulo html_pag_cadastrar_usuario.
-Entendi como ele funciona e modifiquei o arquivo TST.
-Exclui o import da html_pag_gera e adicionei dois tipos de testes: um com o usuário existente 
-(id: 'U-0000001) e outro com um usuário genérico que criei (é só alterar a variável que está
-sendo passada para a função testa).
-Não consegui compreender os conceitos dos erros (as tags), mas como já estava feito, deixei 
-como estava.
