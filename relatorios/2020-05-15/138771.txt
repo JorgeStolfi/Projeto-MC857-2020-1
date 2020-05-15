@@ -1,0 +1,24 @@
+Ola, Luiz Antonio Andia 138771
+
+Minha tarefa:
++138771 criar módulo {comando_solicitar_pag_buscar_trecho}. Supor que existe {html_form_buscar_trecho}
+
+Nesse lab fiz:
+1 -> adicionei um botao "Buscar Trecho" no arquivo {{html_menu_geral_IMP.py}}
+
+2 -> adicionei o comando no arquivo {{processa_comando_http_IMP.py}}
+
+3 -> criei os arquivos:
+    {{comando_solicitar_pag_buscar_trecho.py}}
+    {{comando_solicitar_pag_buscar_trecho_IMP.py}}
+Eles são o arquivo que chamam o {{html_pag_buscar_trecho.py}}
+
+4 -> criei os arquivos:
+    {{html_pag_buscar_trecho.py}}
+    {{html_pag_buscar_trecho_IMP.py}}
+Eles são o arquivo que chamam o {{html_form_buscar_trecho.py}}
+
+5 -> criei os arquivos:
+    {{html_form_buscar_trecho.py}}
+    {{html_form_buscar_trecho_IMP.py}}
+Eles são o arquivo deveriam criar o html, como é tarefa de outro aluno, coloquei um html simples, apenas para ficar facil testar.
