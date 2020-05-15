@@ -1,0 +1,20 @@
+Criando comando {comando_acrescentar_trecho}:
+
+1) criei os arquivos comando_acrescentar_trecho_IMP.py e comando_acrescentar_trecho.py;
+
+2) no arquivo comando_acrescentar_trecho, eu defini a função processa
+
+		def processa(ses, trc, id, atrs):
+
+3) no arquivo comando_acrescentar_trecho_IMP, implementei a função processa(ses, trc, id, atrs) baseando-se na função processa(sei, args) do arquivo comando_cadastrar_usuario_IMP
+
+
+** !!!OBSERVACAO!!! **
+
+Para que o código funcionasse, eu supus:
+
+	1) que existe import html_pag_solicitar_pag_acrescentar_trecho -> função implementada por outro colega;
+	2) que a função html_pag_solicitar_pag_acrescentar_trecho.gera(ses, trc, id, atrs, erros) existe -> função implementada por outro colega;
+	3) que existe valida_campo_trecho, que faz os testes de campo para atributos de trecho;
+
+Portanto, como não existiam, fiz essas linhas comentadas
