@@ -18,6 +18,7 @@ class Objeto_Assento(Objeto_Assento_IMP):
     'id_trecho'    identificador "T-{NNNNNNNN}" do trecho de que este assento é parte.
     'id_compra'    identificador "C-{NNNNNNNN}" da compra, ou {None} se livre.
     'numero'       número da poltrona no veículo
+    'bagagens'     quantidade de bagagens relacionadas a compra, ou {None} se livre.
     
   Outros atributos (como preço, limite de bagagem, classe, etc.) poderão 
   ser acrescentados no futuro.
