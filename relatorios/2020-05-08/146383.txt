@@ -1,2 +1,0 @@
-Foi identificado um bug no métdo `muda_atributos` do arquivo `sessao_IMP.py`.
-Foi adicionado a escrita para o arquivo `comando_fazer_logout.html`.
