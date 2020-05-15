@@ -1,0 +1,6 @@
+Testei o `html_pag_principal.py` utilizando o comando `./testa.sh html_pag_principal`. O arquivo de teste desse módulo conecta com o banco de dados;
+cria os objetos de teste; desses objetos, busca uma das sessões criadas; por fim, chama a única função do módulo (`gera`) três vezes.
+A primeira chamada cria a página `html_pag_principal.gera.N.html`, onde é passado um None como a lista de erros que é um dos parâmetros do `gera`, 
+além da sessão. A segunda chamada passa uma lista vazia de erros e gera `html_pag_principal.gera.V.html`. Por fim, uma chamada é feita com uma
+lista contendo três erros, gerando a página `html_pag_principal.gera.E.html`. Todas as três páginas foram corretamente criadas e somente um typo
+foi corrigido no arquivo de teste do módulo.

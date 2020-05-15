@@ -1,0 +1,18 @@
+- Rodei o teste correspondente ao módulo usuário.py
+- Verifiquei que o teste estava gerando a seguine mensagem de erro:
+
+  File testes/usuario_TST.py, line 136, in <module>: ** erro: - teste falhou
+Traceback (most recent call last):
+  File "testes/usuario_TST.py", line 136, in <module>
+    erro_prog("- teste falhou")
+  File "/Users/joaoflores/Documents/GitHub/Projeto-MC857-2020-1/utils_testes.py", line 14, in erro_prog
+    utils_testes_IMP.erro_prog(mens)
+  File "/Users/joaoflores/Documents/GitHub/Projeto-MC857-2020-1/utils_testes_IMP.py", line 12, in erro_prog
+    assert False
+AssertionError
+!! testes/saida/usuario.html is empty
+testes/saida/usuario.html
+
+- Tal erro ocorreu porque a função de busca não estar encontrando o usuário que havia acabado de ser criado
+- Com isso, conclui-se que a função de busca não está funcionando de acordo, mesmo que o usuário de fato tenha sido criado
+

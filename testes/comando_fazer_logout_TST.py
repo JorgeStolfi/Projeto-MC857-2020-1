@@ -19,20 +19,17 @@ assert res == None
 sys.stderr.write("Criando alguns objetos...\n")
 tabelas.cria_todos_os_testes()
 
-# Testes das funções de {html_bloco_erro}:
-
 def testa(rotulo, *args):
   """Testa {funcao(*args)}, grava resultado 
   em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
   modulo = comando_fazer_logout
   funcao = modulo.processa
-  assert FALSE # Não implementado!
+  frag = False
+  pretty = False
+  utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
 ses = sessao.busca_por_identificador("S-00000001")
 assert ses != None
 assert sessao.aberta(ses)
 
-testa("A", ses)
-
-sessao.fecha(ses)
-testa("F", ses)
+testa("A", ses, {})

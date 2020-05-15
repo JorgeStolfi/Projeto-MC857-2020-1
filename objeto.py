@@ -64,11 +64,23 @@ def busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem):
   Se tal objeto não existe, devolve {None}."""
   return objeto_IMP.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
 
+def busca_por_campo(chave, val, cache, nome_tb, letra_tb, colunas):
+  """Procura objetos cujo atributo {chave}
+  tem valor {val}. Devolve uma lista, possivelmente vazia,
+  com os identificadores desses objetos (NÃO os objetos)."""
+  return objeto_IMP.busca_por_campo(chave, val, cache, nome_tb, letra_tb, colunas)
+
+def busca_por_dois_campos(chave1, val1, chave2, val2, cache, nome_tb, letra_tb, colunas):
+  """Procura objetos cujos atributos {chave1} e {chave2}
+  tem valores {val1} e {val2}, respectivamente. Devolve uma lista, possivelmente vazia,
+  com os identificadores desses objetos (NÃO os objetos)."""
+  return objeto_IMP.busca_por_dois_campos(chave1, val1, chave2, val2, cache, nome_tb, letra_tb, colunas)
+
 def busca_por_campo_unico(chave, val, cache, nome_tb, letra_tb, colunas):
-  """Procura objeto cujo atributo {chave}
-  tem valor {val}, supondo que ele é único. Se
-  encontrar, devolve o identificador desse objeto (NÃO o objeto),
-  senão devolve {None}"""
+  """Procura objeto cujo atributo {chave} tem valor {val}, supondo que ele 
+  é único. Se encontrar, devolve o identificador desse objeto (NÃO o objeto),
+  senão devolve {None}.  Dá erro se houver mais de um objeto nessas condições."""
+  return objeto_IMP.busca_por_campo_unico(chave, val, cache, nome_tb, letra_tb, colunas)
   
 # FUNÇÕES PARA DEPURAÇÃO
 

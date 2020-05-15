@@ -1,0 +1,5 @@
+Minha issue hoje foi o módulo "html_form_login".
+
+Como não existia arquivo de teste para o módulo, escrevi o caso de teste html_form_login_TST.py.
+
+Consegui executar o comando: ./testa.sh htl_form_login, e gerei o .html referente a esse módulo (adicionado na pasta do relatorio).

@@ -5,7 +5,6 @@ import base_sql
 import tabela_generica
 import tabelas
 import compra
-import compra
 import usuario
 import identificador
 import utils_testes
@@ -40,42 +39,37 @@ cmp2 = compra.busca_por_identificador("C-00000003")
 
 ok_global = True # Vira {False} se um teste falha.
 
-def verifica_compra(rotulo, cpr, ident, usr, abrt, cookie, carrinho):
+def verifica_compra(rotulo, cpr, ident, cliente, status):
   """Testes básicos de consistência do objeto {cpr} da classe {Objeto_Compra}, dados
   {ident} e {atrs} esperados."""
   global ok_global
 
   sys.stderr.write("%s\n" % ("-" * 70))
-  sys.stderr.write("verificando sessão %s\n" % rotulo)
-  atrs = { 'usr': usr, 'abrt': abrt, 'cookie': cookie, 'carrinho': carrinho }
-  ok = compra.verifica_objeto(cpr, ident, atrs)
+  sys.stderr.write("verificando compra %s\n" % rotulo)
+  atrs = { 'cliente': cliente, 'status': status }
+  ok = compra.verifica(cpr, ident, atrs)
   
   if cpr != None and type(cpr) is compra.Objeto_Compra:
     
-    sys.stderr.write("testando {obtem_usuario()}:\n")
-    usr1 = compra.obtem_usuario(cpr)
-    if usr1 != usr:
-      aviso_prog("retornou " + str(usr1) + ", deveria ter retornado " + str(usr),True)
+    sys.stderr.write("testando {obtem_cliente()}:\n")
+    usr1 = compra.obtem_cliente(cpr)
+    if usr1 != cliente:
+      aviso_prog("retornou " + str(usr1) + ", deveria ter retornado " + str(cliente),True)
       ok = False
+
+    sys.stderr.write("testando {obtem_status()}:\n")
+    status1 = compra.obtem_status(cpr)
+    if status1 != status:
+      aviso_prog("retornou " + str(status1) + ", deveria ter retornado " + str(status),True)
+      ok = False
+    
+    # erro na implementação de assento
+    # sys.stderr.write("testando {obtem_itens()}:\n")
+    # itens1 = compra.obtem_itens(cpr)
+    # if itens1 != usr:
+    #   aviso_prog("retornou " + str(itens1) + ", deveria ter retornado " + str(usr),True)
+    #   ok = False
       
-    sys.stderr.write("testando {aberta()}:\n")
-    abrt1 = compra.aberta(cpr)
-    if abrt1 != abrt:
-      aviso_prog("retornou " + str(abrt1) + ", deveria ter retornado " + str(abrt),True)
-      ok = False
-       
-    sys.stderr.write("testando {obtem_cookie()}:\n")
-    cookie1 = compra.obtem_cookie(cpr)
-    if cookie1 != cookie:
-      aviso_prog("retornou " + str(cookie1) + ", deveria ter retornado " + str(cookie),True)
-      ok = False
-      
-    sys.stderr.write("testando {obtem_carrinho()}:\n")
-    carrinho1 = compra.obtem_carrinho(cpr)
-    if carrinho1 != carrinho:
-      aviso_prog("retornou " + str(carrinho1) + ", deveria ter retornado " + str(carrinho),True)
-      ok = False
- 
   if not ok:
     aviso_prog("teste falhou",True)
     ok_global = False
@@ -85,26 +79,24 @@ def verifica_compra(rotulo, cpr, ident, usr, abrt, cookie, carrinho):
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {compra.cria}:\n")
-scook1 = "ABCDEFGHIJK"
-s1 = compra.cria(usr1)
-sindice1 = 1
-sident1 = "S-00000001"
-verifica_compra("s1", s1, sident1, usr1, True, scook1, cmp1)
+compra1 = compra.cria(usr1)
+compraIndice1 = 1
+compraId1 = "C-00000001"
+verifica_compra("c1", compra1, compraId1, usr1, 'aberto')
 
-scook2 = "BCDEFGHIJKL"
-s2 = compra.cria(usr2, scook2, cmp2)
-sindice2 = 2
-sident2 = "S-00000002"
-verifica_compra("s2", s2, sident2, usr2, True, scook2, cmp2)
+compra2 = compra.cria(usr2)
+compraIndice2 = 2
+compraId2 = "C-00000002"
+verifica_compra("c2", compra2, compraId2, usr2, 'aberto')
 
-scook3 = "CDEFGHIJKLM"
-s3 = compra.cria(usr1, scook3, cmp1)
-sindice3 = 3
-sident3 = "S-00000003"
-verifica_compra("s3", s3, sident3, usr1, True, scook3, cmp1)
+compra3 = compra.cria(usr1)
+compraIndice3 = 3
+compraId3 = "C-00000003"
+verifica_compra("c3", compra3, compraId3, usr1, 'aberto')
 
-compra.fecha(s1)
-verifica_compra("fecha s1", s1, sident1, usr1, False, scook1, cmp1)
+sys.stderr.write("testando {compra.fecha}:\n")
+compra.fecha(compra1)
+verifica_compra("fecha_c1", compra1, compraId1, usr1, 'pagando')
 
 # ----------------------------------------------------------------------
 # Veredito final:

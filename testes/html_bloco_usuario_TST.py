@@ -34,8 +34,8 @@ usr1 = usuario.busca_por_identificador(usr1_ident)
 usr2_ident = "U-00000002"
 usr5_ident = "U-00000005"
 
-testa("N-F",  usr1_ident, usr1)
-testa("N-T", usr1_ident, usr1)
-testa("10-F",  usr1_ident, usr1)
-testa("10-T", usr1_ident, usr1 )
+testa("N-F",  usr1)
+testa("N-T", usr1)
+testa("10-F", usr1)
+testa("10-T", usr1 )
 

@@ -31,7 +31,7 @@ def verifica_assento(rotulo, ass, ident, atrs):
   ok = assento.verifica(ass, ident, atrs)
 
   if ass != None and type(ass) is assento.Objeto_Assento:
-    
+    assert False # !!! COMPLETAR !!!
 
   if not ok:
     aviso_prog("teste falhou",True)

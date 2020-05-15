@@ -135,6 +135,28 @@ def busca_por_campo(nome_tb, let, cols, chave, valor, res_cols):
       res = identificador.de_lista_de_indices(let, res)
   return res
 
+def busca_por_dois_campos(nome_tb, let, cols, chave1, valor1, chave2, valor2, res_cols):
+  # Converte {valor1} e {valor2} para string na linguagem SQL:
+  valor1 = base_sql.codifica_valor(valor1)
+  valor2 = base_sql.codifica_valor(valor2)
+
+  # Supõe que o cache é um subconjuto da base em disco, então procura só na última:
+  cond = chave1 + " = " + valor1 + " AND " + chave2 + " = " + valor2
+  if res_cols == None:
+    cols = ['indice']
+  else:
+    cols = res_cols
+  res = base_sql.executa_comando_SELECT(nome_tb, cond, cols)
+  if res == None:
+    res = [].copy()
+  elif type(res) is str:
+    erro_prog("SELECT falhou " + str(res))
+  else:
+    if res_cols == None:
+      # Converte lista de índices para lista de identificadores:
+      res = identificador.de_lista_de_indices(let, res)
+  return res
+
 def busca_por_semelhanca(nome_tb, let, cols, chaves, valores):
   cond = ""
   for key in chaves:

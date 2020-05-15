@@ -1,14 +1,8 @@
-import comando_fazer_login_IMP
+import comando_ver_objeto_IMP
 
-# !!! Testar este módulo !!!
-
-def processa(ses, dados):
-  """Esta função é chamada quando o usuário (que não deve estar cadastrado) 
-  aperta o botão "Entrar" no formulário de login.  Recebe no dicionário {dados}
-  os campos 'email' e 'senha' que o usuário preencheu nesse formulário. 
-  Deve criar uma nova uma sessão para esse usuário, com um novo cookie; 
-  e devolver a página de entrada.
-  
-  ATENÇÃO: esta função também devolve a nova sessão {ses_nova},
-  que pode ser {ses} se o login falhou."""
-  return comando_fazer_login_IMP.processa(ses, dados)
+def processa(ses, args):
+  """Essa função retorna uma página HTML com as informações referentes ao 
+  objeto cujo identificador é {args['id']}.  A classe do objeto é
+  determinada pela primeira letra ("U" para {Objeto_Usuario},  
+  "C" para {Objeto_Compra}, etc."""
+  return comando_ver_objeto_IMP.processa(ses, args)

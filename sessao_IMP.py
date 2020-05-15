@@ -105,7 +105,7 @@ def muda_atributos(ses, mods_mem):
   erros = valida_atributos(ses, mods_mem)
   if len(erros) != 0: raise ErroAtrib(erros)
   
-  objeto.muda_atributos(ses, mods_mem, cache, nome_tb, letra_tb, colunas)
+  objeto.muda_atributos(ses, mods_mem, cache, nome_tb, letra_tb, colunas, def_obj_mem)
   return
 
 def fecha(ses):
@@ -136,7 +136,7 @@ def cria_testes():
   return
 
 def verifica(ses, id, atrs):
-  return objeto.verifica(ses, usuario.Objeto_Usuario, id, atrs, cache, nome_tb, letra_tb, colunas, def_obj_mem)
+  return objeto.verifica(ses, sessao.Objeto_Sessao, id, atrs, cache, nome_tb, letra_tb, colunas, def_obj_mem)
 
 def diagnosticos(val):
   global cache, nome_tb, letra_tb, colunas, diags
