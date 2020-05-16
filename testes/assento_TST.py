@@ -31,8 +31,9 @@ def verifica_assento(rotulo, ass, ident, atrs):
   sys.stderr.write("verificando assento %s\n" % rotulo)
   ok = assento.verifica(ass, ident, atrs)
 
-#  if ass != None and type(ass) is assento.Objeto_Assento:
-#    assert False # !!! COMPLETAR !!!
+  if ass != None and type(ass) is assento.Objeto_Assento:
+    sys.stderr.write("assento ocupado\n")
+    return # assert False !!! COMPLETAR !!!
 
   if not ok:
     aviso_prog("teste falhou",True)
@@ -63,23 +64,25 @@ def testa_lista_livres(trc, trc_id, atrs):
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {assento.cria}:\n")
 
-lista_atrs = [
-    { 'id_trecho': "T-00000001", 'numero': "01A", 'id_compra': "C-00000001", },
-    { 'id_trecho': "T-00000001",  'numero': "02A", 'id_compra': None,        },
-    { 'id_trecho': "T-00000001", 'numero': "02B", 'id_compra': "C-00000002", },
-    { 'id_trecho': "T-00000002", 'numero': "31",  'id_compra': None,         },
-    { 'id_trecho': "T-00000002", 'numero': "32",  'id_compra': None,         },
-    { 'id_trecho': "T-00000002", 'numero': "33",  'id_compra': "C-00000001", },
-    { 'id_trecho': "T-00000003", 'numero': "31",  'id_compra': None,         },
-    { 'id_trecho': "T-00000003", 'numero': "33",  'id_compra': "C-00000003", },
+lista_atrs = \
+  [
+    { 'id_trecho': "T-00000001", 'numero': "01A", 'id_compra': "C-00000001", 'preco': "10", 'bagagens': 0,    },
+    { 'id_trecho': "T-00000001", 'numero': "02A", 'id_compra': None,         'preco': "0",  'bagagens': None, },
+    { 'id_trecho': "T-00000001", 'numero': "02B", 'id_compra': "C-00000002", 'preco': "11", 'bagagens': 1,    },
+    { 'id_trecho': "T-00000002", 'numero': "31",  'id_compra': None,         'preco': "0",  'bagagens': None, },
+    { 'id_trecho': "T-00000002", 'numero': "32",  'id_compra': None,         'preco': "0",  'bagagens': None, },
+    { 'id_trecho': "T-00000002", 'numero': "33",  'id_compra': "C-00000001", 'preco': "12", 'bagagens': 2,    },
+    { 'id_trecho': "T-00000003", 'numero': "31",  'id_compra': None,          preco': "0",  'bagagens': None, },
+    { 'id_trecho': "T-00000003", 'numero': "33",  'id_compra': "C-00000003", 'preco': "13", 'bagagens': 3,    },
   ]
 
-ass = [].copy()
-
-for ind, atrs in enumerate(lista_atrs):
+     
+ass = [ None ]*len(lista_atrs)
+for ind in range(len(lista_atrs)):
+  atrs = lista_atrs[ind]
   rot = "%d" % (ind + 1)
   id = "A-%08d" % (ind + 1)
-  ass.append(testa_cria_assento(rot, id, atrs))
+  ass[ind] = testa_cria_assento(rot, id, atrs)
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {assento.muda_atributos}:\n")
@@ -91,10 +94,15 @@ ass1_mods = {
 ass1 = ass[0]
 ass1_id = "A-00000001"
 assento.muda_atributos(ass[0], ass1_mods)
+ass1 = ass[0]
+ass1_id = "A-00000001"
 ass1_d_atrs = lista_atrs[0]
 for k, v in ass1_mods.items():
   ass1_d_atrs[k] = v
-verifica_assento("ass1_d", ass1, ass1_id, ass1_d_atrs)
+
+ass1 = ass[1]
+ass1_id = "C-00000005"
+verifica_assento("ass1_d", ass1, ass1_id, ass1_d_atrs)  #
 
 ass2_atrs = lista_atrs[1]
 ass2 = ass[1]

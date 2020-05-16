@@ -1,0 +1,5 @@
+Criado o módulo {html_form_alterar_trecho} baseado no módulo {html_form_alterar_usuario}. Foram criados os arquivos html_form_alterar_trecho.py e 
+html_form_alterar_trecho_IMP.py do módulo.
+A implementação, por sua vez, importa o módulo {html_form_dados_de_trecho} e chama seu método gera que retorna uma página HTML com os campos do trecho
+para modificação no navegador e posterior gravação no banco de dados.
+
