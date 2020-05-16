@@ -103,6 +103,18 @@ def busca_por_codigo_e_data(cod, dt):
   ou {None} se não existir tal trecho."""
   return trecho_IMP.busca_por_codigo_e_data(cod, dt)
 
+def busca_por_origem_e_destino(origem, destino):
+  """Localiza um trecho cujo 'origem' é {origem} e 'destino'
+  é {destino}, e devolve o identificador do mesmo (não o objeto);
+  ou {None} se não existir tal trecho."""
+  return trecho_IMP.busca_por_origem_e_destino(origem, destino)
+
+def busca_por_dias(dt):
+  """Localiza trechos com 'dt_partida' igual a {dt} em dias (desconsiderando as horas),
+  e devolve os identificadores dos mesmos (não o objeto) ex: ['T-00000001'];
+  ou [] (tupla vazia) se não existir nenhum trecho com a data."""
+  return trecho_IMP.busca_por_dias(dt)
+
 # FUNÇÕES PARA DEPURAÇÃO
 
 def verifica(trc, id, atrs):

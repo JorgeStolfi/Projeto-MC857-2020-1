@@ -1,0 +1,9 @@
+Foram criados 2 arquivos:
+- comando_solicitar_pag_escolher_pagamento.py
+- comando_solicitar_pag_escolher_pagamento_IMP.py
+- html_pag_escolher_pagamento.py
+- html_pag_escolher_pagamento_IMP.py
+
+Ao acionar o comando_solicitar_pag_escolher_pagamento retonra uma página que contém o formulário para a escolha do pagamento.
+O formulário que será gerado pelo módulo "html_form_escolher_pagamento" ainda não foi criado,
+portanto eu deixei apenas comentado a chamada dele no arquivo "comando_solicitar_pag_escolher_pagamento_IMP.py" para quando ele for criado, precisamos apenas descomentar.

@@ -1,5 +1,7 @@
-import html_pag_mensagem_de_erro
+import html_bloco_sessao
+import html_pag_generica
 
 def gera(ses, ses1):
-  # !!! IMPLEMENTAR !!!
-  return html_pag_mensagem_de_erro.gera(ses, "função {html_pag_ver_sessao} não implementada")
+  ht_bloco_ses = html_bloco_sessao.gera(ses1)
+  pag = html_pag_generica.gera(ses, ht_bloco_ses, None)
+  return pag

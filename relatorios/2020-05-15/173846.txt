@@ -1,0 +1,16 @@
+Relatório 173846 - 15/05
+
+Módulo: html_pag_ver_trecho
+Tarefa: implementar o módulo html_pag_ver_trecho
+
+Estudei o exemplo para ver o que deveria implementar e decidi criar uma página
+que mostra os atributos do trecho e depois a sua lista de assentos.
+
+1) Utilizei trecho.obtem_atributos e html_tabela para mostrar os atributos.
+
+2) Tentei utilizar trecho.obtem_assentos e html_bloco_lista_de_assentos para
+mostrar os assentos, mas estas funções estão com problemas então deixei
+comentado.
+
+3) O meu módulo não tinha arquivo de teste, então eu o implementei. Verifiquei a
+página gerada e funcionou como esperado.

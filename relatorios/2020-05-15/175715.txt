@@ -1,0 +1,4 @@
+1. Criei dois arquivos, comando_alterar_trecho.py (interface) comando_alterar_trecho_IMP.py (implementacao)
+2. Em analogia com o modulo comando_alterar_usuario, identifico a sessao e depois tento alterar o trecho a partir de seu id
+3. Criei um arquivo de teste chamado comando_alterar_trecho_TST.py
+4. O teste nao executado ate a conclusao, ocorreu um erro no modulo identificador_IMP.py

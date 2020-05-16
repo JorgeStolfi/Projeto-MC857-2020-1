@@ -27,13 +27,15 @@ letra_tb = "A"
 
 colunas = \
   (
-    ( 'id_trecho',   type("foo"), 'TEXT',    False ), # Identificador "T-{NNNNNNNN}" do trecho
+    ( 'id_trecho',   type("foo"), 'TEXT',    False ), # Identificador "T-{NNNNNNNN}" do trecho.
     ( 'id_compra',   type("foo"), 'TEXT',    True  ), # Identificador "C-{NNNNNNNN}" da compra, ou {None}.
-    ( 'numero',      type("foo"), 'TEXT',    False ), # Número da poltrona no veículo
     ( 'oferta',      type(False), 'INTEGER', False ), # Campo "oferta" da tabela de assentos (2020-05-15)
+    ( 'numero',      type("foo"), 'TEXT',    False ), # Número da poltrona no veículo.
+    ( 'bagagens',    type(25),    'INTEGER', True  ), # Quantidade de bagagens relacionadas a reserva, ou {None}.
+    ( 'preco' ,      type("foo"), 'TEXT',    False ), # Preço da passagm neste assento.
   )
   # Descrição das colunas da tabela na base de dados.
-  
+
 diags = False
   # Quando {True}, mostra comandos e resultados em {stderr}.
 
@@ -102,19 +104,24 @@ def busca_por_compra(cpr):
   id_cpr = trecho.obtem_identificador(cpr)
   return objeto.busca_por_campo('id_compra', id_cpr, cache, nome_tb, letra_tb, colunas)
 
+def lista_livres(trc):
+    global cache, nome_tb, letra_tb, colunas, diags
+    id_trc = trecho.obtem_identificador(trc)
+    return objeto.busca_por_dois_campos('id_trecho', id_trc, 'id_compra', None, cache, nome_tb, letra_tb, colunas)
+
 def cria_testes():
   global cache, nome_tb, letra_tb, colunas, diags
   inicializa(True)
   lista_atrs = \
     [ 
-      { 'id_trecho': "T-00000001", 'numero': "01A", 'id_compra': "C-00000001", },
-      { 'id_trecho': "T-00000001", 'numero': "02A", 'id_compra': None,         },
-      { 'id_trecho': "T-00000001", 'numero': "02B", 'id_compra': "C-00000002", },
-      { 'id_trecho': "T-00000002", 'numero': "31",  'id_compra': None,         },
-      { 'id_trecho': "T-00000002", 'numero': "32",  'id_compra': None,         },
-      { 'id_trecho': "T-00000002", 'numero': "33",  'id_compra': "C-00000001", },
-      { 'id_trecho': "T-00000003", 'numero': "31",  'id_compra': None,         },
-      { 'id_trecho': "T-00000003", 'numero': "33",  'id_compra': "C-00000003", },
+      { 'id_trecho': "T-00000001", 'numero': "01A", 'id_compra': "C-00000001", 'preco': "10", 'bagagens': 0,    },
+      { 'id_trecho': "T-00000001", 'numero': "02A", 'id_compra': None,         'preco': "0",  'bagagens': None, },
+      { 'id_trecho': "T-00000001", 'numero': "02B", 'id_compra': "C-00000002", 'preco': "11", 'bagagens': 1,    },
+      { 'id_trecho': "T-00000002", 'numero': "31",  'id_compra': None,         'preco': "0",  'bagagens': None, },
+      { 'id_trecho': "T-00000002", 'numero': "32",  'id_compra': None,         'preco': "0",  'bagagens': None, },
+      { 'id_trecho': "T-00000002", 'numero': "33",  'id_compra': "C-00000001", 'preco': "12", 'bagagens': 2,    },
+      { 'id_trecho': "T-00000003", 'numero': "31",  'id_compra': None,         'preco': "0",  'bagagens': None, },
+      { 'id_trecho': "T-00000003", 'numero': "33",  'id_compra': "C-00000003,  'preco': "13", 'bagagens': 3,    },
     ]
   for atrs in lista_atrs:
     ass = cria(atrs)
@@ -137,22 +144,22 @@ def diagnosticos(val):
 # FUNÇÕES INTERNAS
 
 def valida_atributos(ass, atrs_mem):
-  """Faz validações específicas nos atributos {atrs_mem}. Devolve uma lista 
+  """Faz validações específicas nos atributos {atrs_mem}. Devolve uma lista
   de strings com descrições dos erros encontrados.
-  
+
   Se {ass} é {None}, supõe que um novo usuário está sendo criado. Se {ass}
   não é {None}, supõe que {atrs_mem} sao alterações a aplicar nesse
   usuário.
-  
+
   Em qualquer caso, não pode haver na base nenhum usuário
   com mesmo email ou CPF. """
   global cache, nome_tb, letra_tb, colunas, diags
-  
+
   erros = [].copy();
-  
+
   # Validade dos campos fornecidos:
   # !!! Completar !!!
-      
+
   # Verifica completude:
   nargs = 0 # Número de campos em {atrs_mem} reconhecidos.
   for chave, tipo_mem, tipo_sql, nulo_ok in colunas:
@@ -164,7 +171,7 @@ def valida_atributos(ass, atrs_mem):
   if nargs < len(atrs_mem):
     # Não deveria ocorrer:
     erro_prog("campos espúrios em {atrs_mem} = " + str(atrs_mem) + "")
-    
+
   # Verifica unicidade de email e CPF:
   # !!! Completar !!!
 
@@ -190,15 +197,15 @@ def def_obj_mem(obj, id, atrs_SQL):
     modifica_obj_mem(obj, atrs_SQL)
   if diags: mostra(2,"obj = " + str(obj))
   return obj
-    
+
 def cria_obj_mem(id, atrs_SQL):
   """Cria um novo objeto da classe {Objeto_Assento} com
   identificador {id} e atributos {atrs_SQL}, tais como extraidos
   da tabela de sessoes. O objeto *NÃO* é inserido na base de dados.
-  
+
   Os valores em {atr_SQL} são convertidos para valores
   equivalentes na memória."""
-  
+
   global cache, nome_tb, letra_tb, colunas, diags
 
   # Converte atributos para formato na memória.  Todos devem estar presentes:
@@ -210,7 +217,7 @@ def cria_obj_mem(id, atrs_SQL):
 
   obj = assento.Objeto_Assento(id, atrs_mem)
   return obj
-  
+
 def modifica_obj_mem(obj, atrs_SQL):
   """O parâmetro {obj} deve ser um objeto da classe {Objeto_Assento}; nesse
   caso a função altera os atributos de {obj} conforme especificado em
