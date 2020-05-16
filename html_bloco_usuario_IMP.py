@@ -2,6 +2,7 @@ import usuario
 import html_paragrafo
 import html_span
 import html_bloco_texto
+import html_botao_simples
 
 def gera(usr):
   atrs = usuario.obtem_atributos(usr)
@@ -18,13 +19,11 @@ def gera(usr):
   CPF = atrs['CPF']
   ht_CPF = html_paragrafo.gera(estilo_parag, html_bloco_texto.gera(CPF, None, "Courier", "20px", "bold", "2px", "left", "#263238", None))
 
-  telefone = atrs['telefone']
-  ht_telefone = html_paragrafo.gera(estilo_parag, html_bloco_texto.gera(telefone, None, "Courier", "20px", "bold", "2px", "left", "#263238", None))
-
-  documento = atrs['documento']
-  ht_documento = html_paragrafo.gera(estilo_parag, html_bloco_texto.gera(documento, None, "Courier", "20px", "bold", "2px", "left", "#263238", None))
-
-  ht_final = ht_nome + ht_email + ht_CPF + ht_telefone + ht_documento
+  # solicitar_pag_alterar_usuario precisa ser um dicionário com um único campo id_usuario
+  bt_arg = {'id_usuario': usuario.obtem_identificador(usr)}
+  bt_ver = html_botao_simples.gera("Ver", "solicitar_pag_alterar_usuario", bt_arg, "#eeeeee")
+  
+  ht_final = ht_nome + ht_email + ht_CPF + bt_ver
   bloco_final = html_span.gera("\n display: inline-block;", ht_final)
   
   width_pct = ("33%")
