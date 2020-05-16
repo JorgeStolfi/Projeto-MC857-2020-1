@@ -27,10 +27,11 @@ letra_tb = "A"
 
 colunas = \
   (
-    ( 'id_trecho',   type("foo"), 'TEXT',    False ), # Identificador "T-{NNNNNNNN}" do trecho
+    ( 'id_trecho',   type("foo"), 'TEXT',    False ), # Identificador "T-{NNNNNNNN}" do trecho.
     ( 'id_compra',   type("foo"), 'TEXT',    True  ), # Identificador "C-{NNNNNNNN}" da compra, ou {None}.
-    ( 'numero',      type("foo"), 'TEXT',    False ), # Número da poltrona no veículo
-    ( 'preco' ,      type("foo"), 'TEXT',    False ), # 15-05 criaçao da coluna de preços
+    ( 'numero',      type("foo"), 'TEXT',    False ), # Número da poltrona no veículo.
+    ( 'bagagens',    type(25),    'INTEGER', True  ), # Quantidade de bagagens relacionadas a reserva, ou {None}.
+    ( 'preco' ,      type("foo"), 'TEXT',    False ), # Preço da passagm neste assento.
   )
   # Descrição das colunas da tabela na base de dados.
   
@@ -107,14 +108,14 @@ def cria_testes():
   inicializa(True)
   lista_atrs = \
     [ 
-      { 'id_trecho': "T-00000001", 'numero': "01A", 'id_compra': "C-00000001", 'preco': "10" },
-      { 'id_trecho': "T-00000001", 'numero': "02A", 'id_compra': None, 'preco': "0"  },
-      { 'id_trecho': "T-00000001", 'numero': "02B", 'id_compra': "C-00000002", 'preco': "11" },
-      { 'id_trecho': "T-00000002", 'numero': "31",  'id_compra': None, 'preco': "0"  },
-      { 'id_trecho': "T-00000002", 'numero': "32",  'id_compra': None, 'preco': "0"  },
-      { 'id_trecho': "T-00000002", 'numero': "33",  'id_compra': "C-00000001", 'preco': "12"},
-      { 'id_trecho': "T-00000003", 'numero': "31",  'id_compra': None, 'preco': "0"  },
-      { 'id_trecho': "T-00000003", 'numero': "33",  'id_compra': "C-00000003", 'preco': "13"},
+      { 'id_trecho': "T-00000001", 'numero': "01A", 'id_compra': "C-00000001", 'preco': "10", 'bagagens': 0,    },
+      { 'id_trecho': "T-00000001", 'numero': "02A", 'id_compra': None,         'preco': "0",  'bagagens': None, },
+      { 'id_trecho': "T-00000001", 'numero': "02B", 'id_compra': "C-00000002", 'preco': "11", 'bagagens': 1,    },
+      { 'id_trecho': "T-00000002", 'numero': "31",  'id_compra': None,         'preco': "0",  'bagagens': None, },
+      { 'id_trecho': "T-00000002", 'numero': "32",  'id_compra': None,         'preco': "0",  'bagagens': None, },
+      { 'id_trecho': "T-00000002", 'numero': "33",  'id_compra': "C-00000001", 'preco': "12", 'bagagens': 2,    },
+      { 'id_trecho': "T-00000003", 'numero': "31",  'id_compra': None,         'preco': "0",  'bagagens': None, },
+      { 'id_trecho': "T-00000003", 'numero': "33",  'id_compra': "C-00000003,  'preco': "13", 'bagagens': 3,    },
     ]
   for atrs in lista_atrs:
     ass = cria(atrs)
