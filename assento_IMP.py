@@ -29,6 +29,7 @@ colunas = \
   (
     ( 'id_trecho',   type("foo"), 'TEXT',    False ), # Identificador "T-{NNNNNNNN}" do trecho.
     ( 'id_compra',   type("foo"), 'TEXT',    True  ), # Identificador "C-{NNNNNNNN}" da compra, ou {None}.
+    ( 'oferta',      type(False), 'INTEGER', False ), # Campo "oferta" da tabela de assentos (2020-05-15)
     ( 'numero',      type("foo"), 'TEXT',    False ), # Número da poltrona no veículo.
     ( 'bagagens',    type(25),    'INTEGER', True  ), # Quantidade de bagagens relacionadas a reserva, ou {None}.
     ( 'preco' ,      type("foo"), 'TEXT',    False ), # Preço da passagm neste assento.
