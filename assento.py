@@ -2,13 +2,13 @@ import assento_IMP; from assento_IMP import Objeto_Assento_IMP
 
 class Objeto_Assento(Objeto_Assento_IMP):
   """Um objeto desta classe representa um assento em determinado trecho
-  (ou seja, em uma determinada viagem de um determinado veículo 
+  (ou seja, em uma determinada viagem de um determinado veículo
   numa viagem uma entre duas escalas, em uma determinada data e hora). É
   uma subclasse de {Objeto}.
-  
+
   O identificador de um assento é uma string da forma
   "A-{NNNNNNNN}" onde {NNNNNNNN} é o índice na tabela (vide abaixo)
-  formatado em 8 algarismos.  Todo assento é parte de um 
+  formatado em 8 algarismos.  Todo assento é parte de um
   único trecho, e pode estar reservado para no maximo um
   pedido de compra.
 
@@ -22,7 +22,7 @@ class Objeto_Assento(Objeto_Assento_IMP):
     
   Outros atributos (como preço, limite de bagagem, classe, etc.) poderão 
   ser acrescentados no futuro.
-  
+
   REPRESENTAÇÃO NA BASE DE DADOS
 
   Cada assento (como definido aqui) é representado por uma linha na
@@ -38,7 +38,7 @@ class Objeto_Assento(Objeto_Assento_IMP):
 def inicializa(limpa):
   """Inicializa o modulo, criando a tabela de assentos na base de dados.
   Não retorna nenhum valor. Deve ser chamada apenas uma vez no ínicio da
-  execução do servidor, depois de chamar {base_sql.conecta} e {assento.inicializa}. 
+  execução do servidor, depois de chamar {base_sql.conecta} e {assento.inicializa}.
   Se o parâmetro booleano {limpa} for {True}, apaga todas as linhas da tabela
   SQL, resetando o contador em 0."""
   assento_IMP.inicializa(limpa)
@@ -47,10 +47,10 @@ def cria(atrs_mem):
   """Cria um novo objeto da classe {Objeto_Assento}, com os atributos especificados
   pelo dicionário Python {atrs}, acrescentando-o à tabéla de assentos da base de dados.
   Atribui um identificador único ao assento, derivado do seu índice na tabela.
-  
+
   Não pode haver outro assento com mesmo 'id_trecho' e 'numero'.
-  
-  Em caso de sucesso, retorna o objeto criado.  Caso contrário, 
+
+  Em caso de sucesso, retorna o objeto criado.  Caso contrário,
   levanta a exceção {ErroAtrib} com uma lista de mensagens
   de erro."""
   return assento_IMP.cria(atrs_mem)
@@ -64,9 +64,9 @@ def muda_atributos(ass, mods_mem):
   Os valores atuais desses atributos são substituídos pelos valores
   correspondentes em {mods}.
 
-  Se o 'id_trecho' ou 'numero' for alterado, não pode existir nenum outro 
+  Se o 'id_trecho' ou 'numero' for alterado, não pode existir nenum outro
   assento na tabela com esses mesmos dados.
-  
+
   Em caso de sucesso, não devolve nenhum resultado. Caso contrário,
   levanta a exceção {ErroAtrib} com uma lista de mensagens de erro."""
   assento_IMP.muda_atributos(ass, mods_mem)
@@ -81,7 +81,7 @@ def obtem_atributos(ass):
   return assento_IMP.obtem_atributos(ass)
 
 def obtem_atributo(ass, chave):
-  """Retorna o atributo do assento {ass} com a {chave} dada. 
+  """Retorna o atributo do assento {ass} com a {chave} dada.
   Equivale a {obtem_atributos(ass)[chave]}"""
   return assento_IMP.obtem_atributo(ass, chave)
 
@@ -104,12 +104,12 @@ def busca_por_compra(cpr):
 # FUNÇÕES PARA DEPURAÇÃO
 
 def verifica(ass, id, atrs):
-  """Faz testes de consistência básicos de um objeto {ass} de classe {Objeto_Assento}, 
+  """Faz testes de consistência básicos de um objeto {ass} de classe {Objeto_Assento},
   dados o identificador esperado {id}, e os atributos esperados {atrs}.
-  
+
   Especificamente, verifica as funções {obtem_identificador(ass)},
   {obtem_atributos(ass)} e {busca_por_identificador(id)}.
-  
+
   Devolve {True} se os testes deram certo, {False} caso contrário. Também
   imprme diagnósticos em {sys.stderr}."""
   return assento_IMP.verifica(ass, id, atrs)
@@ -117,13 +117,17 @@ def verifica(ass, id, atrs):
 def cria_testes():
   """Limpa a tabela de assentos com {inicializa(True)}, e cria pelo menos três assentos
   para fins de teste, incluindo-os na tabela.  Não devolve nenhum resultado.
-  
-  Deve ser chamada apenas uma vez no ínicio da execução do programa, 
-  depois de chamar {base_sql.conecta}.""" 
+
+  Deve ser chamada apenas uma vez no ínicio da execução do programa,
+  depois de chamar {base_sql.conecta}."""
   assento_IMP.cria_testes()
+
+def lista_livres(trc):
+  """Retorna uma lista dos assentos do trecho {trc} que estão livres."""
+  assento_IMP.lista_livres(trc)
 
 def diagnosticos(val):
   """Habilita (se {val=True}) ou desabilita (se {val=False}) a
-  impressão em {sys.stderr} de mensagens de diagnóstico pelas 
+  impressão em {sys.stderr} de mensagens de diagnóstico pelas
   funções deste módulo."""
   assento_IMP.diagnosticos(val)

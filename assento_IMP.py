@@ -34,7 +34,7 @@ colunas = \
     ( 'preco' ,      type("foo"), 'TEXT',    False ), # Preço da passagm neste assento.
   )
   # Descrição das colunas da tabela na base de dados.
-  
+
 diags = False
   # Quando {True}, mostra comandos e resultados em {stderr}.
 
@@ -103,6 +103,11 @@ def busca_por_compra(cpr):
   id_cpr = trecho.obtem_identificador(cpr)
   return objeto.busca_por_campo('id_compra', id_cpr, cache, nome_tb, letra_tb, colunas)
 
+def lista_livres(trc):
+    global cache, nome_tb, letra_tb, colunas, diags
+    id_trc = trecho.obtem_identificador(trc)
+    return objeto.busca_por_dois_campos('id_trecho', id_trc, 'id_compra', None, cache, nome_tb, letra_tb, colunas)
+
 def cria_testes():
   global cache, nome_tb, letra_tb, colunas, diags
   inicializa(True)
@@ -138,19 +143,19 @@ def diagnosticos(val):
 # FUNÇÕES INTERNAS
 
 def valida_atributos(ass, atrs_mem):
-  """Faz validações específicas nos atributos {atrs_mem}. Devolve uma lista 
+  """Faz validações específicas nos atributos {atrs_mem}. Devolve uma lista
   de strings com descrições dos erros encontrados.
-  
+
   Se {ass} é {None}, supõe que um novo usuário está sendo criado. Se {ass}
   não é {None}, supõe que {atrs_mem} sao alterações a aplicar nesse
   usuário.
-  
+
   Em qualquer caso, não pode haver na base nenhum usuário
   com mesmo email ou CPF. """
   global cache, nome_tb, letra_tb, colunas, diags
-  
+
   erros = [].copy();
-  
+
   # Validade dos campos fornecidos:
   # !!! Completar !!!
 
@@ -165,7 +170,7 @@ def valida_atributos(ass, atrs_mem):
   if nargs < len(atrs_mem):
     # Não deveria ocorrer:
     erro_prog("campos espúrios em {atrs_mem} = " + str(atrs_mem) + "")
-    
+
   # Verifica unicidade de email e CPF:
   # !!! Completar !!!
 
@@ -191,15 +196,15 @@ def def_obj_mem(obj, id, atrs_SQL):
     modifica_obj_mem(obj, atrs_SQL)
   if diags: mostra(2,"obj = " + str(obj))
   return obj
-    
+
 def cria_obj_mem(id, atrs_SQL):
   """Cria um novo objeto da classe {Objeto_Assento} com
   identificador {id} e atributos {atrs_SQL}, tais como extraidos
   da tabela de sessoes. O objeto *NÃO* é inserido na base de dados.
-  
+
   Os valores em {atr_SQL} são convertidos para valores
   equivalentes na memória."""
-  
+
   global cache, nome_tb, letra_tb, colunas, diags
 
   # Converte atributos para formato na memória.  Todos devem estar presentes:
@@ -211,7 +216,7 @@ def cria_obj_mem(id, atrs_SQL):
 
   obj = assento.Objeto_Assento(id, atrs_mem)
   return obj
-  
+
 def modifica_obj_mem(obj, atrs_SQL):
   """O parâmetro {obj} deve ser um objeto da classe {Objeto_Assento}; nesse
   caso a função altera os atributos de {obj} conforme especificado em

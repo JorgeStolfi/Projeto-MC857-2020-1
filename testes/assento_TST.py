@@ -1,6 +1,7 @@
 #! /usr/bin/python3
 
 import assento
+import trecho
 import tabela_generica
 import base_sql
 import identificador
@@ -22,7 +23,7 @@ assento.inicializa(True)
 ok_global = True # Vira {False} se um teste falha.
 
 def verifica_assento(rotulo, ass, ident, atrs):
-  """Testes básicos de consistência do objeto {ass} da classe {Objeto_Assento}, dados 
+  """Testes básicos de consistência do objeto {ass} da classe {Objeto_Assento}, dados
   {ident} e {atrs} esperados."""
   global ok_global
 
@@ -40,13 +41,26 @@ def verifica_assento(rotulo, ass, ident, atrs):
 
   sys.stderr.write("%s\n" % ("-" * 70))
   return
- 
+
 def testa_cria_assento(rotulo, ident, atrs):
   """Testa criação de assento com atributos com {atrs}. Retorna o assento."""
   ass = assento.cria(atrs)
   verifica_assento(rotulo, ass, ident, atrs)
   return ass
- 
+
+def testa_lista_livres(trc, trc_id, atrs):
+  """Testa retorno da função lista_livres."""
+  ass = assento.lista_livres(trc)
+  livres = [sub['numero'] for sub in atrs if sub['id_trecho'] == trechos[1] and sub['id_compra'] == None]
+  ok = (ass == livres)
+  if not ok:
+    aviso_prog("teste falhou",True)
+    ok_global = False
+
+  sys.stderr.write(trc_id, "ok\n")
+  sys.stderr.write("%s\n" % ("-" * 70))
+  return
+
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {assento.cria}:\n")
 
@@ -77,6 +91,8 @@ ass1_mods = {
   'numero': "45",
   'id_compra': "C-00000005",
 }
+ass1 = ass[0]
+ass1_id = "A-00000001"
 assento.muda_atributos(ass[0], ass1_mods)
 ass1 = ass[0]
 ass1_id = "A-00000001"
@@ -94,6 +110,16 @@ if type(ass2) is assento.Objeto_Assento:
   assento.muda_atributos(ass2, ass2_atrs) # Não deveria mudar os atributos
   ass2_id = "A-00000002"
   verifica_assento("ass2", ass2, ass2_id, ass2_atrs)
+
+# ----------------------------------------------------------------------
+sys.stderr.write("testando {assento.lista_livres}:\n")
+
+# Listando ids de trechos existentes na lista_atrs
+trechos = list(set([sub['id_trecho'] for sub in lista_atrs]))
+trechos.sort()
+for trc_id in trechos:
+  trc = trecho.busca_por_identificador(trc_id)
+  testa_lista_livres(trc, trc_id, lista_atrs)
 
 # ----------------------------------------------------------------------
 # Veredito final:
