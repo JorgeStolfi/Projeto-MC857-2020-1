@@ -1,0 +1,27 @@
+- Corrigi erros existentes no código do assento_TST, que não funcionava inicialmente
+  - Eu acabei comentando duas linhas da função verifica_assento porque estava dando AssertionError e não tenho certeza do que deveria estar acontecendo naquela parte
+- Criei função lista_livres(trc) em assento que retorna os ids dos assentos livres do trecho {trc} (id_compra = None)
+- Criei o teste de lista_livres em assento_TST
+  - O teste depende de um objeto {trc}, para conseguir o objeto a partir do id é necessário usar o trecho.busca_por_identificador, porém essa função não está funcionando da maneira esperada.
+    De qualquer maneira, o teste está criado.
+    Erro retornado:
+    Traceback (most recent call last):
+      File "testes/assento_TST.py", line 113, in <module>
+        trc = trecho.busca_por_identificador(trc_id)
+      File "/home/paulo/Documentos/Unicamp/MC857/2020-05-15/Projeto-MC857-2020-1/trecho.py", line 89, in busca_por_identificador
+        return trecho_IMP.busca_por_identificador(id_trecho)
+      File "/home/paulo/Documentos/Unicamp/MC857/2020-05-15/Projeto-MC857-2020-1/trecho_IMP.py", line 88, in busca_por_identificador
+        trc = objeto.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
+      File "/home/paulo/Documentos/Unicamp/MC857/2020-05-15/Projeto-MC857-2020-1/objeto.py", line 65, in busca_por_identificador
+        return objeto_IMP.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
+      File "/home/paulo/Documentos/Unicamp/MC857/2020-05-15/Projeto-MC857-2020-1/objeto_IMP.py", line 60, in busca_por_identificador
+        obj = tabela_generica.busca_por_identificador(nome_tb, cache, letra_tb, colunas, def_obj_mem, id)
+      File "/home/paulo/Documentos/Unicamp/MC857/2020-05-15/Projeto-MC857-2020-1/tabela_generica.py", line 148, in busca_por_identificador
+        return tabela_generica_IMP.busca_por_identificador(nome_tb, cache, let, cols, def_obj, ident)
+      File "/home/paulo/Documentos/Unicamp/MC857/2020-05-15/Projeto-MC857-2020-1/tabela_generica_IMP.py", line 87, in busca_por_identificador
+        return busca_por_identificador_e_indice(nome_tb, cache, let, cols, def_obj, ident, ind)
+      File "/home/paulo/Documentos/Unicamp/MC857/2020-05-15/Projeto-MC857-2020-1/tabela_generica_IMP.py", line 100, in busca_por_identificador_e_indice
+        col_nomes = extrai_nomes_de_colunas_SQL(cols)
+      File "/home/paulo/Documentos/Unicamp/MC857/2020-05-15/Projeto-MC857-2020-1/tabela_generica_IMP.py", line 30, in extrai_nomes_de_colunas_SQL
+        for cp in cols:
+    TypeError: 'NoneType' object is not iterable

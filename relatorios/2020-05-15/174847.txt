@@ -1,0 +1,12 @@
+Relatorio do dia 15-05
+
+RA 174847
+
+Minha tarefa hoje foi imlementar a função "trecho.busca_por_dias" no arquivo trecho.py.
+
+Adicionei a declaração da função no trecho.py e sua implementação no trecho_IMP.py.
+
+Na minha função, recebo uma data completa "D" e chamo a função tabela_generica.busca_por_semelhanca, 
+passando D[:10] (apenas os 10 primeiros caracteres da data) como parametro de busca.
+
+Também adicionei um teste para a função no arquivo trecho_TST.py, onde chamo a função e verifico seu comportamento.

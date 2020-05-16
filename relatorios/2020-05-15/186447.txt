@@ -1,0 +1,6 @@
+Implementação do comando_criar_roteiro.
+
+Criei o metodo processa, que recebe o codigo da origem e do destino pesquisado.
+O algoritmo que processa a busca dos trechos ainda será implementado, sendo que somente considerei que o retorno deste método será uma lista de trechos.
+A pagina pagina html com os trechos é chamada tendo como argumentos a lista de trechos recebidos.
+Acredito que tenha que ser implementado um tratamento de erro para caso os dados recebidos sejam invalidos.

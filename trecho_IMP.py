@@ -100,6 +100,12 @@ def busca_por_origem_e_destino(origem, destino):
   global cache, nome_tb, letra_tb, colunas, diags
   return objeto.busca_por_dois_campos("origem", origem, 'destino', destino, cache, nome_tb, letra_tb, colunas)
 
+def busca_por_dias(dt):
+  global cache, nome_tb, letra_tb, colunas, diags
+  chaves = ["dt_partida"]
+  valores = [dt[:10]]
+  return tabela_generica.busca_por_semelhanca(nome_tb, letra_tb, colunas, chaves, valores)
+
 def muda_atributos(trc, mods_mem):
   global cache, nome_tb, letra_tb, colunas, diags
 

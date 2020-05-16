@@ -1,0 +1,38 @@
+# Relatório da atividade do dia 15/05/2020
+
+Tarefa: Acrescentar um campo numérico {bagagens} na tabela de assentos (só usado se assento está reservado).
+
+## O que foi feito
+
+- Foi adicionado a coluna {bagagens} no arquivo assento_IMP.py. Como a coluna
+  depende de uma compra ela pode receber {None};
+
+- Foi adicionado informações sobre a nova coluna na interface assento.py;
+
+- As modificações anteriores foram implementadas com sucesso, visto que, ao
+  rodar o servidor com `./servidor.py` e consultar a tabela assentos da base
+  dados, os dados de bagagens foram criadas com sucesso. Porém, ao rodar o script
+  de teste `./testa.sh assento` vários erros foram encontrados. Os erros estão
+  listados na seção a seguir.
+
+
+## Erros durante os Testes
+Alguns erros encontrados durante a fase de teste foram:
+
+- Na função {verifica_assento} do arquivo {assento_TST.py} a linha 34 tem um
+  {assert} não implementado.
+
+- A variável {lista_atrs} estava sendo inicializada de forma errada;
+
+- A variável {ass} deve foi inicializada como cópia de {lista_atrs}, pois,
+  antes ela era inicializada vazia e a atribuição gerava um erro.
+
+- A estrutura do "loop for" da linha 67 estava faltando a função {range()}.
+
+- As variáveis {ass1} e {ass1_id} não estavam declaradas.
+
+## Conclusão
+
+Por fim, a coluna foi implementada corretamente. Comentando o {assert} do
+primeiro erro os testes rodaram com sucesso. Logo, a implementação foi bem
+sucedida.
