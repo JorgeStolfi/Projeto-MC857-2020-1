@@ -1,0 +1,25 @@
+Estava responsável pelo módulo comando_solicitar_pag_ofertas e por adicionar o botão de Ofertas ao menu principal.
+
+Esse módulo é responsável por requerir a página de ofertas.
+
+Esse módulo possui apenas um método que é o "processa", que simplesmente chama a função principal, 'gera', de outro módulo, o 'html_pag_ofertas'. Esse método recebe dois parâmetros, a sessão e o dicionário de argumentos. Por ora, ela não existe, mas acredito que, pelo menos inicialmente, esses parâmetros não farão diferença para o resultado final (mas podem, como coloquei na documentação do método comando_solicitar_pag_ofertas.processa())
+
+Então para concluir as atividades do dia, fiz o seguinte:
+
+01. Criar dois novos arquivos: 'comando_solicitar_pag_ofertas' e 'comando_solicitar_pag_ofertas_IMP', com base nos semelhantes para a página de login.
+02. Incluir o IMP na interface
+03. Documentar as classes e métodos adequadamente
+04. No IMP incluir o 'html_pag_ofertas' e no IMP.processa(), chamar html_pag_ofertas.gera()
+05. Como não um 'html_pag_ofertas', criei um para teste que cria uma página genérica (html_pag_generica) considerando o parâmetro 'args' como apenas uma string para mensagem. Esse módulo foi feito sem divisão de interface e implementação, uma vez que era apenas para teste
+
+06. No módulo 'html_menu_geral', descomentei a linha que adicionava o botão de ofertas
+07. Apaguei a linha que anulava esse botão e troquei o método a ser acionado para o comando correto (solicitar_pag_ofertas)
+
+08. No módulo 'processa_comando_http', que processa os comandos dos botões (entre outros) foi preciso incluir o módulo 'comando_solicitar_pag_ofertas' e adicionar o tratamento correto para o comando atribuído ao botão em 7 (página /solicitar_pag_ofertas chama comando_solicitar_pag_ofertas.processa).
+08.a) Como, por ora, a página só recebe uma string, passei uma string de teste ao invés do dicionário de argumentos. Pecisa ser trocado quando o 'html_pag_ofertas' for implementado.
+
+09. Criado arquivo 'comando_solicitar_pag_ofertas_TST' com base no semelhante para a página de login.
+10. Ao invés de apenas requerir uma sessão, peguei as 3 sessões de teste e uma anônima, e criei uma frase para cada sessão.
+11. Iterei os testes gerando um pra cada par sessão frase com um id de teste para cada sessão (0 => Anônima; 1 => S-00000001; 2 => S-00000002; 3 => S-00000003;)
+
+No final, todas as páginas de teste foram criadas normalmente.

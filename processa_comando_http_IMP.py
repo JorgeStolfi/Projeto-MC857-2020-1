@@ -5,7 +5,9 @@
 import sessao
 import usuario
 
+import comando_solicitar_pag_contato
 import comando_solicitar_pag_cadastrar_usuario
+import comando_solicitar_pag_ofertas
 import comando_cadastrar_usuario
 import comando_solicitar_pag_alterar_usuario
 import comando_alterar_usuario
@@ -13,11 +15,14 @@ import comando_solicitar_pag_login
 import comando_fazer_login
 import comando_fazer_logout
 import comando_ver_objeto
+import comando_solicitar_pag_buscar_compras
+import comando_solicitar_pag_buscar_trecho
 
 import html_bloco_texto
-import html_div 
+import html_div
 import html_pag_principal
 import html_pag_mensagem_de_erro
+import html_pag_contato
 
 import utils_testes
 from utils_testes import erro_prog, mostra
@@ -68,7 +73,7 @@ class Processador_de_pedido_HTTP(BaseHTTPRequestHandler):
 
     # Extrai os dados do comando HTTP na forma de um dicionário:
     dados = self.extrai_dados(tipo)
-    
+
     if tipo == 'GET' and dados['real_path'][0:9] == '/imagens/':
       # Pedido de uma imagem:
       nome_imagem = dados['real_path'][1:]
@@ -314,7 +319,7 @@ def processa_comando(tipo, ses, dados):
       args = dados['form_data']; del dados['form_data'] # Campos do formulário.
     else:
       assert False
-      
+
     # Remove parenteses e colchetes supérfluos em {args}:
     args = descasca_argumentos(args)
 
@@ -343,6 +348,10 @@ def processa_comando(tipo, ses, dados):
       # Usuário apertou o botão "Cadastrar" do menu geral:
       pag = comando_solicitar_pag_cadastrar_usuario.processa(ses, args)
 
+    elif cmd == '/solicitar_pag_ofertas':
+      # Usuário apertou o botão "Ofertas" do menu geral:
+      pag = comando_solicitar_pag_ofertas.processa(ses, "Lista de ofertas")
+
     elif cmd == '/cadastrar_usuario':
       # Usuário apertou "Cadastrar" em formulário de cadastrar usuário:
       pag = comando_cadastrar_usuario.processa(ses, args)
@@ -358,7 +367,20 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/ver_objeto':
       # Usuário apertou o botão "Ver Objeto" ou equivalente no menu geral:
       pag = comando_ver_objeto.processa(ses, args)
+
+    elif cmd == '/buscar_compras':
+      # Usuário apertou o botão "Ver Objeto" ou equivalente no menu geral:
+      pag = comando_solicitar_pag_buscar_compras.processa(ses, dados)
       
+    elif cmd == '/solicitar_pag_contato':
+      # Usuário apertou o botão "Contato" do menu geral:
+      #pag =  html_pag_contato.gera(ses, [])
+      pag = comando_solicitar_pag_contato.processa(ses, args)
+      
+    elif cmd == '/solicitar_pag_buscar_trecho':
+      # Usuário apertou o botão "Buscar Trecho" do menu geral:
+      pag = comando_solicitar_pag_buscar_trecho.processa(ses, args)
+
     else:
       # Comando não identificado
       pag =  html_pag_mensagem_de_erro.gera(ses, ("** comando POST \"%s\" inválido" % cmd))

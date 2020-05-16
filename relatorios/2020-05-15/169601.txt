@@ -1,0 +1,13 @@
+RA 169601
+
+Tarefa "Fazer o botão 'Minhas compras' funcionar"
+
+Fiz um primeiro teste para ver o comportamento inicial desse botão e ao clicar nele no site, uma mensagem de erro dizendo "** comando POST "/buscar_compras" inválido". Ou seja, o servidor não identificava a rota "/buscar_compras" como uma página válida.
+
+Para resolver isso, criei os módulos {comando_solicitar_pag_buscar_compras} a partir do {comando_solicitar_pag_cadastrar_usuario} e o módulo {html_bloco_lista_de_compras} a partir do {html_bloco_lista_de_assentos}.
+
+Módulo {html_bloco_lista_de_compras}: Gera uma tabela HTML em que cada linha corresponde ao bloco HTML gerado pelo módulo {html_bloco_resumo_de_compra.gera({cpr})} onde {cpr} é um objeto que representa uma compra do usuario.
+
+Módulo {comando_solicitar_pag_buscar_compras}: Chama o módulo {html_bloco_lista_de_compras}, cria uma página HTML genérica cujo conteúdo é a tabela HTML gerada pelo segundo módulo e devolve essa página.
+
+Finalmente, alterei o módulo {processa_comando} incluindo o {comando_solicitar_pag_buscar_compras} e adicionando mais um caso nas condições que despacham o comando para, se {cmd} for 'buscar_compras', processar usar o módulo {comando_solicitar_pag_buscar_compras} para obter a página html com a listagem das compras do usuário cujo id está na sessão.
