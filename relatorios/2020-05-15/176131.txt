@@ -1,0 +1,14 @@
+Na aula de hoje, fui encarregado de testar o módulo html_bloco_lista_de_assentos. 
+
+Primeiramente, foi necessário fazer alguns ajustes na implementação do módulo para
+que ele funcionasse de acordo. Coisas como importar módulos que faltavam, corrigir
+sintaxes errôneas e ajustar chamadas de funções.
+
+Com a implementação do módulo sem alertar nenhum erro pelo compilador/IDE, desenvolvi
+seu módulo de testes, isto é, implementei html_bloco_lista_de_assentos.TST. Para tal,
+primeiramente inicializei o BD e chamei a função responsável pela criação das tabelas 
+de testes. Então, defini a função testa para o módulo que deveria ser testado.
+
+Por fim, testei o módulo fornecendo a lista de todos os identificadores de assentos teste que 
+foram criados. O módulo gerou o html como esperado (inspecionei no browser), e o resultado
+foi gravado em testes/saída com o rótulo "Assentos".
