@@ -1,0 +1,5 @@
+Fui responsavle por criar o form de metodos de pagamento
+Primeiro foi necessario implementar um helper para gerar o codigo html radio button com uma label
+Logo em seguida implementei o metodo de escolher o pagamento 
+E por fim a funcao para testar.
+
