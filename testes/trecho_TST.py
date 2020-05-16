@@ -41,6 +41,7 @@ def verifica_trecho(rotulo, trc, ident, atrs):
       aviso_prog("retornou " + str(ident1) + ", deveria ter retornado " + str(ident),True)
       ok = False
 
+
   if not ok:
     aviso_prog("teste falhou",True)
     ok_global = False
@@ -58,6 +59,20 @@ def test_busca_por_origem(cod):
   erro_prog("Função {objeto.busca_por_campo} não implementada")
   return
 
+def testa_busca_por_dias(ident, atrs):
+  """ Testa um retorno valido do metodo busca_por_dias"""
+  global ok_global
+   # ----------------------------------------------------------------------
+  sys.stderr.write("testando {busca_por_dias()}:\n")
+  dt1 = atrs['dt_partida']
+  ident1 = trecho.busca_por_dias(dt1)
+  if ident1 != [ ident ] and ident1 != ident:
+    aviso_prog("retornou " + str(ident1) + ", deveria ter retornado " + str(ident),True)
+    ok_global = False
+
+  return
+
+  
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {trecho.cria}:\n")
 
@@ -95,6 +110,10 @@ trc3_id = "T-00000003"
 trc3 = testa_cria_trecho("trc3", trc3_id, trc3_atrs)
 
 # ----------------------------------------------------------------------
+testa_busca_por_dias([trc1_id, trc2_id], trc1_atrs)
+testa_busca_por_dias(trc3_id, trc3_atrs)
+
+# ----------------------------------------------------------------------
 sys.stderr.write("testando {trecho.muda_atributos}:\n")
 
 trc1_mods = {
@@ -115,6 +134,7 @@ if type(trc2) is trecho.Objeto_Trecho:
   trc2_m_atrs = trc3_atrs.copy()
   trecho.muda_atributos(trc2, trc2_m_atrs) # Deveria assumir os valores do trc3
   verifica_trecho("trc2_m", trc2, trc2_id, trc2_m_atrs)
+
 
 # ----------------------------------------------------------------------
 # Veredito final:
