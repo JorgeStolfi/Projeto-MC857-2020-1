@@ -1,0 +1,1 @@
+Adicionei um caso de teste em html_pag_cadastrar_usuario_TST.py em que há uma sessão cujo usuário é administrador.
