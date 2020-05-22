@@ -197,7 +197,7 @@ def valida_atributos(usr, atrs_mem):
   if 'administrador' in atrs_mem:
     erros += valida_campo.cidade_UF('Administrador', atrs_mem['administrador'], False)
   if 'documento' in atrs_mem:
-    erros += valida_campo.cidade_UF('Documento', atrs_mem['documento'], True)
+    erros += valida_campo.documento('Documento', atrs_mem['documento'], True)
      
   # Pega a senha, se tiver:
   if 'senha' in atrs_mem:
