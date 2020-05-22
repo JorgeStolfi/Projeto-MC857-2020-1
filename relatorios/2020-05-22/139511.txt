@@ -1,0 +1,3 @@
+- Verifiquei os tipos de dados de {ses} e usuario
+- Como não consegui compreender como utilisar as funçoes de criaçoes de testes dos outros módulos, por isso não consegui implementar a função
+
