@@ -24,7 +24,15 @@ assert sessao1 != None
 usuario1 = usuario.busca_por_identificador("U-00000001")
 assert usuario1 != None
 
-# Teste: sessão não existe
-#html1 = comando_solicitar_pag_alterar_usuario.processa(None, args1)
+def testa(rotulo, *args):
+    """Testa {funcao(*args)}, grava resultado
+    em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
 
-# Teste: id_usuario vazio
+    modulo = comando_solicitar_pag_alterar_usuario
+    funcao = modulo.processa
+    frag = False  # {True} se for apenas um fragmento HTML, {False} se for página completa.
+    pretty = True  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
+    utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
+
+testa("Sucesso", sessao1, usuario1)
+testa("Error", None, None)
