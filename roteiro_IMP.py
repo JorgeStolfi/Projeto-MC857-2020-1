@@ -1,4 +1,5 @@
-
+import trecho
+from utils_testes import erro_prog
 
 def descobre_todos(origem, destino, dia_min, dia_max):
   if origem == destino:

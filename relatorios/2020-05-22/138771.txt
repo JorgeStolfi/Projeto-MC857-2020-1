@@ -1,0 +1,16 @@
+Ola, Luiz Antonio Andia 138771
+
+Minha tarefa:
+138771 comando_criar_roteiro: TST: implementar.
+
+Nesse lab fiz:
+1 -> corrigi a especificação do comando_criar_roteiro no arquivo {{comando_criar_roteiro.py}}
+
+2 -> refiz a função no arquivo {{comando_criar_roteiro_IMP.py}}
+    2.1 -> passei a receber 4 valores 'origem', 'destino', 'dia_min' e 'dia_max'
+    2.2 -> verifico se eles tem valores, caso nao -> raise um erro dizendo que falta os parametros
+    2.3 -> chamei a função que descobre os roteiros baseado nesses parametros
+    2.4 -> chamei a função que devolve o html desses roteiros
+    2.5 -> chamei a funcao que gera um pag html completa, e coloca o html dos roteiros no meio
+
+3 -> corrigi imports no arquivo {{roteiro_IMP}}:
