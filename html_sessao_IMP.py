@@ -21,9 +21,5 @@ def gera(ses):
 
   #Formata um linha em html que exibe todos os atributos da sessao. Esta linha pode ser concatenada com outras linhas do mesmo tipo sem perder forma
   linha_formatada = '<hr/><p><b>ID sessao:</b> {0} | <b>ID usuario:</b> {1} | <b>ID compra:</b> {2} | <b>Status sessao:</b> <font color="{3}">{4}</font><p>'.format(id_ses, id_usr, id_cpr, "green" if abrt else "red", "Aberta" if abrt else "Fechada")
-  linha_formatada += linha_formatada
-  linha_formatada += linha_formatada
-  linha_formatada += linha_formatada
-  linha_formatada += linha_formatada
 
   return linha_formatada
