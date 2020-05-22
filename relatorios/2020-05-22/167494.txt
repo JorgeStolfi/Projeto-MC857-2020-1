@@ -18,4 +18,7 @@ Na criação do teste (onde vários arquivos foram modificados):
     * Precisei modificar o html_lista_de_trechos_IMP pois chamava o gera do html_lista_de_poltronas com parâmetros a menos
     * No html_poltrona, removi o parâmetro ses da chamada de html_poltrona_IMP.gera, pois estava dando erro
 
+Por fim:
+    * Visando uma melhor colaboração e melhor desenvolvimento do projeto por todos os alunos e facilitar o trabalho do professor, adicionei o caminho testes/saida/ no gitignore do projeto, evitando assim que arquivos de saída dos testes (.html) fossem incluídos involuntariamente em futuras branchs / pull requests.
+
 A maior dificuldade da tarefa consistiu em criar o teste, pois a criação do mesmo me fez encontrar diversos arquivos, de diversos outros módulos, que estavam com problemas (alguns, bem básicos). Tive que corrigir todos estes problemas para que o meu teste pudesse funcionar.
