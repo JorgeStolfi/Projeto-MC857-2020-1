@@ -97,7 +97,7 @@ def busca_por_trecho(trc):
   id_trc = trecho.obtem_identificador(trc)
   unico = False
   ids_poltronas = objeto.busca_por_campo('id_trecho', id_trc, unico, cache, nome_tb, letra_tb, colunas)
-  return ids
+  return ids_poltronas
 
 def busca_por_compra(cpr):
   global cache, nome_tb, letra_tb, colunas, diags

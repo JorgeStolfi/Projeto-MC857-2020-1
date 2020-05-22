@@ -3,7 +3,8 @@ import poltrona
 import html_texto
 
 def gera(trc):
-  id_trecho = trecho.obtem_identificador(trc)  
+  id_trecho = trecho.obtem_identificador(trc)
+  # id_trecho = trc
   atrs_trecho = trecho.obtem_atributos(trc)
   ids_poltronas = poltrona.busca_por_trecho(trc)
   # atributos trecho

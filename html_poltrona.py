@@ -17,4 +17,4 @@ def gera(ses, pol):
   O resultado não é um string, mas uma tupla com um string separado 
   para cada campo ou botão.  Esta tupla deve ser usada como uma linha do
   argumento de {html_tabela}."""
-  return html_poltrona_IMP.gera(ses, pol)
+  return html_poltrona_IMP.gera(pol)
