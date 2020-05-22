@@ -16,15 +16,25 @@ assert res == None
 sys.stderr.write("Criando alguns objetos...\n")
 tabelas.cria_todos_os_testes()
 
-# Sessao de teste:
+# Sessao de teste usuario 1:
 ses = sessao.busca_por_identificador("S-00000001")
 assert ses != None
 
-# Usuario teste:
+# Usuario teste 1 (nao administrador):
 usr1 = sessao.obtem_usuario(ses)
 assert usr1 != None
 usr1_id = usuario.obtem_identificador(usr1)
 usr1_atrs = usuario.obtem_atributos(usr1)
+
+# Sessao de teste usuario 2:
+ses = sessao.busca_por_identificador("S-00000004")
+assert ses != None
+
+# Usuario teste 2 (administrador):
+usr2 = sessao.obtem_usuario(ses)
+assert usr2 != None
+usr2_id = usuario.obtem_identificador(usr2)
+usr2_atrs = usuario.obtem_atributos(usr2)
 
 def testa(rotulo, *args):
   """Testa {funcao(*args)}, grava resultado
@@ -36,13 +46,24 @@ def testa(rotulo, *args):
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-# Testes com erros em vérios formatos:
-for tag, erros in ( 
+# Testes com erros em vários formatos para usuario 1:
+for tag, erros in (
     ("N", None),
-    ("V", []), 
+    ("V", []),
     ("B", "Mensagem UM\nMensagem DOIS\nMensagem TRÊS"),
     ("L", ["Mensagem UM", "Mensagem DOIS", "Mensagem TRÊS",]),
     ("LB", ["Mensagem UM-A\nMensagem UM-B", "Mensagem DOIS", "Mensagem TRÊS",]),
   ):
   rotulo = tag
   testa(rotulo, ses, usr1_id, usr1_atrs, erros)
+
+# Testes com erros em vários formatos para usuario 2:
+for tag, erros in (
+    ("N-adm", None),
+    ("V-adm", []),
+    ("B-adm", "Mensagem UM\nMensagem DOIS\nMensagem TRÊS"),
+    ("L-adm", ["Mensagem UM", "Mensagem DOIS", "Mensagem TRÊS",]),
+    ("LB-adm", ["Mensagem UM-A\nMensagem UM-B", "Mensagem DOIS", "Mensagem TRÊS",]),
+  ):
+  rotulo = tag
+  testa(rotulo, ses, usr2_id, usr2_atrs, erros)
