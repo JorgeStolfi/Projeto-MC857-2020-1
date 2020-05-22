@@ -72,3 +72,68 @@ def documento(rotulo, val, nulo_ok):
 def administrador(rotulo, val, nulo_ok):
   # !!! Implementar !!!
   return []
+
+def id_trecho(rotulo, val, nulo_ok):
+  if val == None and not nulo_ok: return [ "campo '%s' não pode ser omitido" % rotulo, ]
+  erros = []
+  if type(val) is not str:
+    erros += [ "campo '%s' = \"%s\" deve ser string" % (rotulo, str(val)) ]
+  else:
+    n = len(val)
+    if n < 10:
+      erros += [ "campo '%s' (%d caracteres) muito curto" % (rotulo,n), ]
+    elif n > 10:
+      erros += [ "campo '%s' (%d caracteres) muito longo" % (rotulo,n), ]
+    elif n == 10:
+      if val[:2] != str("T-"):
+        erros += [ "campo '%s' = \"%s\" deve ser comecar com T-" % (rotulo, str(val)) ]
+  return erros
+
+def id_compra(rotulo, val, nulo_ok):
+  if val == None and not nulo_ok: return [ "campo '%s' não pode ser omitido" % rotulo, ]
+  erros = []
+  if type(val) is not str:
+    erros += [ "campo '%s' = \"%s\" deve ser string" % (rotulo, str(val)) ]
+  else:
+    n = len(val)
+    if n < 10:
+      erros += [ "campo '%s' (%d caracteres) muito curto" % (rotulo,n), ]
+    elif n > 10:
+      erros += [ "campo '%s' (%d caracteres) muito longo" % (rotulo,n), ]
+    elif n == 10:
+      if val[:2] != str("C-"):
+        erros += [ "campo '%s' = \"%s\" deve ser comecar com C-" % (rotulo, str(val)) ]
+  return erros
+
+def oferta(rotulo, val, nulo_ok):
+  if val == None and not nulo_ok: return [ "campo '%s' não pode ser omitido" % rotulo, ]
+  erros = []
+  if type(val) is not bool:
+    erros += [ "campo '%s' = \"%s\" deve ser booleano" % (rotulo, str(val)) ]
+  return erros
+
+def numero(rotulo, val, nulo_ok):
+  if val == None and not nulo_ok: return [ "campo '%s' não pode ser omitido" % rotulo, ]
+  erros = []
+  if type(val) is not str:
+    erros += [ "campo '%s' = \"%s\" deve ser integer" % (rotulo, str(val)) ]
+  return erros
+
+def bagagens(rotulo, val, nulo_ok):
+  if val == None and not nulo_ok: return [ "campo '%s' não pode ser omitido" % rotulo, ]
+  erros = []
+  if type(val) is not int:
+    erros += [ "campo '%s' = \"%s\" deve ser integer" % (rotulo, str(val)) ]
+  return erros
+
+def preco(rotulo, val, nulo_ok):
+  if val == None and not nulo_ok: return [ "campo '%s' não pode ser omitido" % rotulo, ]
+  erros = []
+  if type(val) is not str:
+    erros += [ "campo '%s' = \"%s\" deve ser integer" % (rotulo, str(val)) ]
+  #else: 
+    #if(val.find(".") == -1):
+    #   erros += [ "campo '%s' = \"%s\" deve ter formatado os centavos no formato 00.00" % (rotulo, str(val)) ]
+  return erros
+
+
