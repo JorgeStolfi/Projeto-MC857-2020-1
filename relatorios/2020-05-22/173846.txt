@@ -1,0 +1,16 @@
+Relatório 22/05 - 173846
+
+Tarefa: html_resumo_de_trecho_IMP e html_resumo_de_trecho_TST
+
+Para a implementação, tive que colocar o poltrona.busca_por_trecho(obj_trecho)
+dentro de um try...except pois ela está com problemas. O retorno do meu módulo
+estava incompleto então arrumei, agora a saída está pronta pra gerar uma tabela.
+
+O módulo de teste não existia, então o implementei. Como a saída é um tupla tive
+que implementar um decorator que gera uma string visualizável. Também testei o tipo
+do retorno.
+
+Para a interface, mudei o nome do argumento 'trc' para 'objeto_trecho' e arrumei
+a docstring. A interface estava com a docstring do resumo_compra.
+
+Executei o teste e o resultado está como esperado.
