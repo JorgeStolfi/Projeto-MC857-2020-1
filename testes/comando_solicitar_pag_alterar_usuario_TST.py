@@ -25,7 +25,7 @@ usuario1 = usuario.busca_por_identificador("U-00000001")
 assert usuario1 != None
 
 def testa(rotulo, *args):
-    """Testa {funcao(*args)}, grava resultado
+    """Testa {comando_solicitar_pag_alterar_usuario.processa(*args)}, grava resultado
     em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
 
     modulo = comando_solicitar_pag_alterar_usuario
