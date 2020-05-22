@@ -1,0 +1,2 @@
+O erro no teste, na verdade, era um erro na funcao "busca por CPF" 
+em que ela retornava semrpe "None" por nao ter retorno.

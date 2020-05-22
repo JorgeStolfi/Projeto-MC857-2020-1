@@ -1,6 +1,5 @@
 #! /usr/bin/python3
-
-import usuario
+import usuario  
 import tabela_generica
 import base_sql
 import identificador
@@ -30,15 +29,14 @@ def verifica_usuario(rotulo, usr, ident, atrs):
   sys.stderr.write("verificando usuário %s\n" % rotulo)
   ok = usuario.verifica(usr, ident, atrs)
 
-  if usr != None and type(usr) is usuario.Objeto_Usuario:
-    
+  if usr != None and type(usr) is usuario.Objeto_Usuario:   
     # ----------------------------------------------------------------------
     sys.stderr.write("testando {busca_por_email()}:\n")
     em1 = atrs['email']
     ident1 = usuario.busca_por_email(em1)
     if ident1 != ident:
       aviso_prog("retornou " + str(ident1) + ", deveria ter retornado " + str(ident),True)
-      ok = False
+      ok = False 
 
     # ----------------------------------------------------------------------
     sys.stderr.write("testando {busca_por_CPF()}:\n")
@@ -46,8 +44,7 @@ def verifica_usuario(rotulo, usr, ident, atrs):
     ident1 = usuario.busca_por_CPF(CPF1)
     if ident1 != ident:
       aviso_prog("retornou " + str(ident1) + ", deveria ter retornado " + str(ident),True)
-      ok = False
-
+      ok = False 
   if not ok:
     aviso_prog("teste falhou",True)
     ok_global = False
@@ -114,7 +111,8 @@ usuario.muda_atributos(usr1, usr1_mods)
 usr1_d_atrs = usr1_atrs
 for k, v in usr1_mods.items():
   usr1_d_atrs[k] = v
-verifica_usuario("usr1_d", usr1, uident1, usr1_d_atrs)
+verifica_usuario("usr1_d", usr1, uident1, usr1_d_atrs) 
+
 
 if type(usr2) is usuario.Objeto_Usuario:
   usuario.muda_atributos(usr2, usr2_atrs) # Não deveria mudar os atributos

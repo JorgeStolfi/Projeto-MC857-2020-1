@@ -105,6 +105,8 @@ def busca_por_CPF(CPF):
   unico = True
   id = objeto.busca_por_campo('CPF', CPF, unico, cache, nome_tb, letra_tb, colunas)
 
+  return id
+
 def cria_testes():
   global cache, nome_tb, letra_tb, colunas, diags
   inicializa(True)
