@@ -56,7 +56,7 @@ def inicializa(limpa):
 
 def cria(atrs_mem):
   global cache, nome_tb, letra_tb, colunas, diags
-  if diags: mostra(0,"poltrona_IMP.cria(" + str(atrs) + ") ...")
+  if diags: mostra(0,"poltrona_IMP.cria(" + str(atrs_name) + ") ...")
 
   erros = valida_atributos(None, atrs_mem)
   if len(erros) != 0: raise ErroAtrib(erros)
@@ -97,7 +97,14 @@ def busca_por_trecho(trc):
   id_trc = trecho.obtem_identificador(trc)
   unico = False
   ids_poltronas = objeto.busca_por_campo('id_trecho', id_trc, unico, cache, nome_tb, letra_tb, colunas)
-  return ids
+  return ids_poltronas
+
+def busca_por_numero(trc):
+  global cache, nome_tb, letra_tb, colunas, diags
+  id_trc = trecho.obtem_identificador(trc)
+  unico = False
+  ids_poltronas = objeto.busca_por_campo('numero', id_trc, unico, cache, nome_tb, letra_tb, colunas)
+  return ids_poltronas
 
 def busca_por_compra(cpr):
   global cache, nome_tb, letra_tb, colunas, diags
@@ -200,18 +207,33 @@ def valida_atributos(pol, atrs_mem):
   """Faz validações específicas nos atributos {atrs_mem}. Devolve uma lista
   de strings com descrições dos erros encontrados.
 
-  Se {pol} é {None}, supõe que um novo usuário está sendo criado. Se {pol}
-  não é {None}, supõe que {atrs_mem} sao alterações a aplicar nesse
-  usuário.
+  Se {pol} é {None}, supõe que uma novo poltrona está sendo criado. Se {pol}
+  não é {None}, supõe que {atrs_mem} sao alterações a aplicar essa
+  poltrona.
 
-  Em qualquer caso, não pode haver na base nenhum usuário
-  com mesmo email ou CPF. """
+  Em qualquer caso, não pode haver, ao mesmo tempo, duas poltronas com o mesmo número e trecho. """
+
   global cache, nome_tb, letra_tb, colunas, diags
 
   erros = [].copy();
 
   # Validade dos campos fornecidos:
   # !!! Completar !!!
+  # Campos identificador de T trechos e de  C compra trecho ou compra existe 
+  # Validade dos campos fornecidos:
+  if 'id_trecho' in atrs_mem:
+    erros += valida_campo.id_trecho('id_trecho', atrs_mem['id_trecho'], False)
+  if 'id_compra' in atrs_mem:
+    erros += valida_campo.id_compra('id_compra', atrs_mem['id_compra'], False)
+  if 'oferta' in atrs_mem:
+    erros += valida_campo.oferta('Oferta', atrs_mem['oferta'], False)
+  if 'numero' in atrs_mem:
+    erros += valida_campo.numero('Numero', atrs_mem['numero'], False)
+  if 'bagagens' in atrs_mem:
+    erros += valida_campo.bagagens('Bagagens', atrs_mem['bagagens'], False)
+  if 'preco' in atrs_mem:
+    erros += valida_campo.preco('Preco', atrs_mem['preco'], True)
+
 
   # Verifica completude:
   nargs = 0 # Número de campos em {atrs_mem} reconhecidos.
@@ -227,7 +249,20 @@ def valida_atributos(pol, atrs_mem):
 
   # Verifica unicidade de email e CPF:
   # !!! Completar !!!
-
+  # duas poltronas com mesmo trecho && mesmo numero
+  #for chave in ('id_trecho', 'numero'):
+  #  # Exige atributo {chave} único:
+  #  flag_trecho = None
+  #  flag_numero = None
+  #  if chave in atrs_mem:
+  #    val = atrs_mem[chave]
+  #    if chave == 'id_trecho':
+  #      flag_trecho = busca_por_trecho(val)
+  #    elif chave == 'numero':
+  #      flag_numero = busca_por_numero(val)
+  #     #sys.stderr.write("\n\n  valida_atributos: chave = '" + chave + "' val = '" + str(val) + "' flag_trecho = " + str(id_bus) + "\n\n")
+  #  if ((flag_trecho != None) and ((pol == None) or (flag_trecho != pol.id_trecho)) and (flag_numero != None) and ((pol == None) or (flag_numero != pol.numero))  ) :
+  #    erros.append("trecho" + flag_trecho  + "e numero de poltrona " + flag_numero + " ja existe", flag_trecho, flag_numero)
   return erros
 
 def def_obj_mem(obj, id, atrs_SQL):
