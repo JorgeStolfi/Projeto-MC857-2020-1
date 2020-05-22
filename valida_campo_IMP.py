@@ -130,7 +130,7 @@ def preco(rotulo, val, nulo_ok):
   if val == None and not nulo_ok: return [ "campo '%s' não pode ser omitido" % rotulo, ]
   erros = []
   if type(val) is not str:
-    erros += [ "campo '%s' = \"%s\" deve ser integer" % (rotulo, str(val)) ]
+    erros += [ "campo '%s' = \"%s\" deve ser string" % (rotulo, str(val)) ]
   #else: 
     #if(val.find(".") == -1):
     #   erros += [ "campo '%s' = \"%s\" deve ter formatado os centavos no formato 00.00" % (rotulo, str(val)) ]
