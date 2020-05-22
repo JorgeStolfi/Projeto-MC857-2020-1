@@ -64,6 +64,37 @@ def documento(rotulo, val, nulo_ok):
 def administrador(rotulo, val, nulo_ok):
   """ !!! documentar !!! """
   return valida_campo_IMP.administrador(rotulo, val, nulo_ok)
- 
+
+def id_trecho(rotulo, val, nulo_ok):
+  """Exige que o parâmetro {val} seja um string com aparência de
+  id trecho, inicinado com T- seguido de oito numeros. 
+  ex: T-{NNNNNNNN}"""
+  return valida_campo_IMP.id_trecho(rotulo, val, nulo_ok) 
+
+def id_compra(rotulo, val, nulo_ok):
+  """Exige que o parâmetro {val} seja um string com aparência de
+  compra trecho, inicinado com C- seguido de oito numeros. 
+  ex: C-{NNNNNNNN}"""
+  return valida_campo_IMP.id_compra(rotulo, val, nulo_ok) 
+
+def oferta(rotulo, val, nulo_ok):
+  """Exige que o parâmetro {val} seja um booleano, se for true é uma ferta
+  caso contrario nao """
+  return valida_campo_IMP.oferta(rotulo, val, nulo_ok) 
+
+def numero(rotulo, val, nulo_ok):
+  """Exige que o parâmetro {val} seja uma string, com aparência de
+  numero de poltrona"""
+  return valida_campo_IMP.numero(rotulo, val, nulo_ok) 
+
+def bagagens(rotulo, val, nulo_ok):
+  """Exige que o parâmetro {val} seja um numero"""
+  return valida_campo_IMP.bagagens(rotulo, val, nulo_ok) 
+
+def preco(rotulo, val, nulo_ok):
+  """Exige que o parâmetro {val} seja uma string com formato 00.00"""
+  return valida_campo_IMP.preco(rotulo, val, nulo_ok) 
+
+
 # !!! Completar !!!
 
