@@ -2,3 +2,5 @@ Nesta atividade precisaria alterar o arquivo "comando_solicitar_pag_alterar_usua
 para que ele se fato testasse o módulo e gerasse o arquivo .html na pasta testes/saida.
 
 Foi necessário implementar a função "testa" passando os parâmetros necessários.
+
+Foram adicionado um teste de sucesso e outro de erro.
