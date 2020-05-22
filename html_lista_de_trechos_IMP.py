@@ -1,7 +1,7 @@
-
-import trecho
-import html_trecho
+import html_lista_de_poltronas
 import html_tabela
+import html_trecho
+import poltrona
 
 def gera(ses, trcs, detalhe):
   linhas = [].copy()
