@@ -35,8 +35,9 @@ def verifica_trecho(rotulo, trc, ident, atrs):
     # ----------------------------------------------------------------------
     sys.stderr.write("testando {busca_por_codigo_e_data()}:\n")
     cod1 = atrs['codigo']
-    dt1 = atrs['dt_partida']
-    ident1 = trecho.busca_por_codigo_e_data(cod1, dt1)
+    dia1 = atrs['dia_partida']
+    hora1 = atrs['hora_partida']
+    ident1 = trecho.busca_por_codigo_e_data(cod1, dia1, hora1)
     if ident1 != [ ident ]:
       aviso_prog("retornou " + str(ident1) + ", deveria ter retornado " + str(ident),True)
       ok = False
@@ -56,7 +57,16 @@ def testa_cria_trecho(rotulo, ident, atrs):
   return trc
  
 def test_busca_por_origem(cod):
-  erro_prog("Função {objeto.busca_por_campo} não implementada")
+  """ Testa um retorno valido do metodo busca_por_origem"""
+  global ok_global
+   # ----------------------------------------------------------------------
+  sys.stderr.write("testando {busca_por_origem()}:\n")
+  cod1 = atrs['origem']
+  ident1 = trecho.busca_por_origem(cod1)
+  if ident1 != [ ident ] and ident1 != ident:
+    aviso_prog("retornou " + str(ident1) + ", deveria ter retornado " + str(ident),True)
+    ok_global = False
+
   return
 
 def testa_busca_por_dias(ident, atrs):
@@ -64,8 +74,8 @@ def testa_busca_por_dias(ident, atrs):
   global ok_global
    # ----------------------------------------------------------------------
   sys.stderr.write("testando {busca_por_dias()}:\n")
-  dt1 = atrs['dt_partida']
-  ident1 = trecho.busca_por_dias(dt1)
+  dia1 = atrs['dia_partida']
+  ident1 = trecho.busca_por_dias(dia1)
   if ident1 != [ ident ] and ident1 != ident:
     aviso_prog("retornou " + str(ident1) + ", deveria ter retornado " + str(ident),True)
     ok_global = False
@@ -80,8 +90,10 @@ trc1_atrs = {
   'codigo':      "AZ 4024",
   'origem':      "VCP",
   'destino':     "SDU",
-  'dt_partida':  "2020-05-08 12:45",
-  'dt_chegada':  "2020-05-08 13:40",
+  'dia_partida': "2020-05-08",
+  'hora_partida': "12:45",
+  'dia_chegada': "2020-05-08",
+  'hora_chegada': "13:40",
 }
 trc1_ind = 1
 trc1_id = "T-00000001"
@@ -91,8 +103,10 @@ trc2_atrs = {
   'codigo':      "AZ 4036",
   'origem':      "SDU",
   'destino':     "VCP",
-  'dt_partida':  "2020-05-08 19:45",
-  'dt_chegada':  "2020-05-08 20:40",
+  'dia_partida': "2020-05-08",
+  'hora_partida': "19:45",
+  'dia_chegada': "2020-05-08",
+  'hora_chegada': "20:40",
 }
 trc2_ind = 2
 trc2_id = "T-00000002"
@@ -102,8 +116,10 @@ trc3_atrs = {
   'codigo':      "AZ 4036",
   'origem':      "SDU",
   'destino':     "VCP",
-  'dt_partida':  "2020-05-09 19:45",
-  'dt_chegada':  "2020-05-09 20:40",
+  'dia_partida': "2020-05-09",
+  'hora_partida': "19:45",
+  'dia_chegada': "2020-05-09",
+  'hora_chegada': "20:40",
 }
 trc3_ind = 2
 trc3_id = "T-00000003"
@@ -118,7 +134,8 @@ sys.stderr.write("testando {trecho.muda_atributos}:\n")
 
 trc1_mods = {
   'codigo': "GO 2331",
-  'dt_partida': "2020-05-08 12:33",
+  'dia_partida': "2020-05-08",
+  'hora_partida': "12:33",
 }
 trecho.muda_atributos(trc1, trc1_mods)
 trc1_d_atrs = trc1_atrs

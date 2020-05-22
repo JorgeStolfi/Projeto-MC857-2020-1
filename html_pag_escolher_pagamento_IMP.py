@@ -4,7 +4,7 @@ import usuario
 import html_cabecalho
 import html_menu_geral
 import html_rodape
-import html_bloco_erro
+import html_erro
 
 import re
 
@@ -36,7 +36,7 @@ def gera(ses, ht_conteudo, erros):
   erros = [ er for er in erros if len(er) > 0 ]
   if len(erros) != 0:
     erros = "<br/>\n" + "<br/>\n".join(erros)
-    ht_erros = html_bloco_erro.gera(erros) + "\n"
+    ht_erros = html_erro.gera(erros) + "\n"
   else:
     ht_erros = ""
 

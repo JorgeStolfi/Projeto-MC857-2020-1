@@ -1,10 +1,10 @@
 import html_pag_generica
-import html_bloco_texto
+import html_texto
 import html_paragrafo
 import html_tabela
-# import html_bloco_lista_de_assentos
+# import html_lista_de_poltronas
 
-from trecho import obtem_atributos, obtem_assentos
+from trecho import obtem_atributos, obtem_poltronas
 
 def gera(sessao, obj_trecho):
 
@@ -16,17 +16,17 @@ def gera(sessao, obj_trecho):
     atributos = obtem_atributos(obj_trecho)
     linhas = []
     for titulo, valor in zip(titulos, atributos.values()):
-        ht_titulo = html_paragrafo.gera(estilo_parag, html_bloco_texto.gera(titulo, None, "Courier", "20px", "bold", "2px", "left", "#263238", None))
-        ht_valor = html_paragrafo.gera(estilo_parag, html_bloco_texto.gera(valor, None, "Courier", "20px", None, "2px", "left", "#263238", None))
+        ht_titulo = html_paragrafo.gera(estilo_parag, html_texto.gera(titulo, None, "Courier", "20px", "bold", "2px", "left", "#263238", None))
+        ht_valor = html_paragrafo.gera(estilo_parag, html_texto.gera(valor, None, "Courier", "20px", None, "2px", "left", "#263238", None))
         linhas.append([ht_titulo, ht_valor])
 
     tabela = html_tabela.gera(linhas)
 
-    # ids = obtem_assentos(obj_trecho)
+    # ids = obtem_poltronas(obj_trecho)
     ids = []
-    assentos = ""
-    # assentos = html_bloco_lista_de_assentos.gera(sessao, None, obj_trecho, ids, False)
+    poltronas = ""
+    # poltronas = html_lista_de_poltronas.gera(sessao, None, obj_trecho, ids, False)
 
-    conteudo = tabela + "<br/>" + assentos
+    conteudo = tabela + "<br/>" + poltronas
 
     return html_pag_generica.gera(sessao, tabela, None)

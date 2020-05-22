@@ -60,47 +60,20 @@ def busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem):
   obj = tabela_generica.busca_por_identificador(nome_tb, cache, letra_tb, colunas, def_obj_mem, id)
   return obj
 
-def busca_por_palavra(pal, cache, nome_tb, letra_tb, colunas, chaves, valores):
-  lista = tabela_generica.busca_por_semelhanca(nome_tb, letra_tb, colunas, chaves, valores)
-  return lista
-     
-def busca_por_campo(chave, val, cache, nome_tb, letra_tb, colunas):
+def busca_por_campo(chave, val, unico, cache, nome_tb, letra_tb, colunas):
   global diags
-  res = tabela_generica.busca_por_campo(nome_tb, letra_tb, colunas, chave, val, None)
-  if res == None: res = [].copy() # Just in case.
-  if type(res) is list or type(res) is tuple:
-    return res
-  elif type(res) is str:
-    erro_prog("busca na tabela falhou, res = " + res)
+  ids = tabela_generica.busca_por_campo(nome_tb, letra_tb, colunas, chave, val, None)
+  if unico:
+    return identificador.unico_elemento(ids)
   else:
-    erro_prog("busca na tabela devolveu resultado inválido, res = \"" + str(res) + "\"")
+    return ids
     
-def busca_por_dois_campos(chave1, val1, chave2, val2, cache, nome_tb, letra_tb, colunas):
+def busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas):
   global diags
-  res = tabela_generica.busca_por_dois_campos(nome_tb, letra_tb, colunas, chave1, val1, chave2, val2, None)
+  res = tabela_generica.busca_por_campos(nome_tb, letra_tb, colunas, args, None)
   if res == None: res = [].copy() # Just in case.
   if type(res) is list or type(res) is tuple:
     return res
-  elif type(res) is str:
-    erro_prog("busca na tabela falhou, res = " + res)
-  else:
-    erro_prog("busca na tabela devolveu resultado inválido, res = \"" + str(res) + "\"")
-
-def busca_por_campo_unico(chave, val, cache, nome_tb, letra_tb, colunas):
-  global diags
-  res = tabela_generica.busca_por_campo(nome_tb, letra_tb, colunas, chave, val, None)
-  if res == None:
-    # Não achou ninguém?
-    return None
-  elif type(res) is list or type(res) is tuple:
-    if len(res) == 0:
-      # Não achou ninguém:
-      return None
-    elif len(res) == 1:
-      id = res[0];
-      return id
-    else:
-      erro_prog("campo '" + chave + "' val = '" + str(val) + "' duplicado - res = " + str(res))
   elif type(res) is str:
     erro_prog("busca na tabela falhou, res = " + res)
   else:

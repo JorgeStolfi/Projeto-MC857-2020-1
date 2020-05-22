@@ -57,7 +57,7 @@ class Objeto_Compra(Objeto_Compra_IMP):
 def inicializa(limpa):
   """Inicializa o modulo, criando a tabela "compras" na base de dados.
   Deve ser chamada apenas uma vez no ínicio da execução do servidor, 
-  depois de chamar {base_sql.conecta} e {assento.inicializa}.  Não retorna nenhum valor.  
+  depois de chamar {base_sql.conecta} e {poltrona.inicializa}.  Não retorna nenhum valor.  
   Se o parâmetro booleano {limpa} for {True}, apaga todas as linhas da tabela
   SQL, resetando o contador em 0."""
   compra_IMP.inicializa(limpa)

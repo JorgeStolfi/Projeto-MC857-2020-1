@@ -28,7 +28,7 @@ assert usr1 != None
 usr1_atrs = usuario.obtem_atributos(usr1)
 usuario.verifica(usr1, usr1_id, usr1_atrs)
 
-assert usr1 == tabelas.id_para_opbjeto(usr1_id)
+assert usr1 == tabelas.id_para_objeto(usr1_id)
 
 sys.stderr.write("\n")
 
@@ -59,4 +59,4 @@ assert cpr1 == tabelas.id_para_opbjeto(cpr1_id)
 sys.stderr.write("\n")
 
 # ----------------------------------------------------------------------
-assert False # !!! INCOMPLETO - TESTAR TABELAS "assentos", "trechos"
+assert False # !!! INCOMPLETO - TESTAR TABELAS "poltronas", "trechos"

@@ -135,13 +135,15 @@ def busca_por_campo(nome_tb, let, cols, chave, valor, res_cols):
       res = identificador.de_lista_de_indices(let, res)
   return res
 
-def busca_por_dois_campos(nome_tb, let, cols, chave1, valor1, chave2, valor2, res_cols):
-  # Converte {valor1} e {valor2} para string na linguagem SQL:
-  valor1 = base_sql.codifica_valor(valor1)
-  valor2 = base_sql.codifica_valor(valor2)
-
-  # Supõe que o cache é um subconjuto da base em disco, então procura só na última:
-  cond = chave1 + " = " + valor1 + " AND " + chave2 + " = " + valor2
+def busca_por_campos(nome_tb, let, cols, args, res_cols):
+  # Supõe que o cache é um subconjuto da base em disco, então procura só na última.
+  # Converte {args} para condição na linguagem SQL:
+  cond = ""
+  sep = ""
+  for ch,val in args.items():
+    val_sql = base_sql.codifica_valor(val)
+    cond = cond + sep + ch + " = " + val_sql
+    sep = " AND "
   if res_cols == None:
     cols = ['indice']
   else:
@@ -167,16 +169,9 @@ def busca_por_semelhanca(nome_tb, let, cols, chaves, valores):
   if res != None and type(res) is str:
     erro_prog("SELECT falhou " + str(res))
   sys.stderr.write("busca_por_semelhanca: res = " + str(res) + "\n")
-  return identificador.de_lista_de_indices(let, res)
+  res = identificador.de_lista_de_indices(let, res)
+  return res
 
-def busca_por_valor(nome_tb, let, cols, chaves, valores):
-  cond = "preco < " + str(valores)
-  res = base_sql.executa_comando_SELECT(nome_tb, cond, ['indice'])
-  if res != None and type(res) is str:
-    erro_prog("SELECT falhou " + str(res))
-  sys.stderr.write("busca_por_valor: res = " + str(res) + "\n")
-  return identificador.de_lista_de_indices(let, res)
- 
 def limpa_tabela(nome_tb, cols):
   res = base_sql.executa_comando_DROP_TABLE(nome_tb);
   if res != None:

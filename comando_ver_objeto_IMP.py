@@ -2,13 +2,13 @@ import usuario
 import compra
 import sessao
 import trecho
-import assento
+import poltrona
 
 import html_pag_ver_usuario
 import html_pag_ver_compra
 import html_pag_ver_sessao
 import html_pag_ver_trecho
-import html_pag_ver_assento
+import html_pag_ver_poltrona
 
 import html_pag_mensagem_de_erro
 
@@ -30,8 +30,8 @@ def processa(ses, args):
       ses1 = sessao.busca_por_identificador(id)
       pag = html_pag_ver_sessao.gera(ses, ses1)
     elif letra == "A":
-      ass = assento.busca_por_identificador(id)
-      pag = html_pag_ver_assento.gera(ses, ass)
+      pol = poltrona.busca_por_identificador(id)
+      pag = html_pag_ver_poltrona.gera(ses, pol)
     else: 
       pag = html_pag_mensagem_de_erro.gera(ses, "Classe de objeto \"" + letra + "\" inválida")
     return pag

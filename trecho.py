@@ -15,10 +15,13 @@ class Objeto_Trecho(Objeto_Trecho_IMP):
     'codigo'       código do trecho na empresa (p. ex. "AZ 4623").
     'origem'       sigla da estação/porto/aeroporto de orígem.
     'destino'      sigla da estação/porto/aeroporto de destino.
-    'dt_partida'   data e hora de partida (string UTC "{YYYY}-{MM}-{DD} {hh}:{mm}").
-    'dt_chegada'   data e hora de chegada (string UTC "{YYYY}-{MM}-{DD} {hh}:{mm}").
+    'dia_partida'  data de partida (string "{YYYY}-{MM}-{DD}").
+    'hora_partida' horário de partida (string "{hh}:{mm}").
+    'dia_chegada'  data de chegada (string "{YYYY}-{MM}-{DD}").
+    'hora_chegada' horário de chegada (string "{hh}:{mm}").
     
-  Outros atributos poderão ser acrescentados no futuro.
+  As datas e horários são sempre referentes ao fuso horário UTC.  Outros atributos 
+  poderão ser acrescentados no futuro.
   
   REPRESENTAÇÃO NA BASE DE DADOS
 
@@ -35,7 +38,7 @@ class Objeto_Trecho(Objeto_Trecho_IMP):
 def inicializa(limpa):
   """Inicializa o modulo, criando a tabela de trechos na base de dados.
   Não retorna nenhum valor. Deve ser chamada apenas uma vez no ínicio da
-  execução do servidor, depois de chamar {base_sql.conecta} e {assento.inicializa}. 
+  execução do servidor, depois de chamar {base_sql.conecta} e {poltrona.inicializa}. 
   Se o parâmetro booleano {limpa} for {True}, apaga todas as linhas da tabela
   SQL, resetando o contador em 0."""
   trecho_IMP.inicializa(limpa)
@@ -45,7 +48,7 @@ def cria(atrs_mem):
   pelo dicionário Python {atrs}, acrescentando-o à tabéla de trechos da base de dados.
   Atribui um identificador único ao trecho, derivado do seu índice na tabela.
   
-  Não pode haver outro trecho com mesmo 'codigo' e 'dt_partida'.
+  Não pode haver outro trecho com mesmo 'codigo', 'data_partida', e 'hora_partida'.
   
   Em caso de sucesso, retorna o objeto criado.  Caso contrário, 
   levanta a exceção {ErroAtrib} com uma lista de mensagens
@@ -61,8 +64,8 @@ def muda_atributos(trc, mods_mem):
   Os valores atuais desses atributos são substituídos pelos valores
   correspondentes em {mods}.
 
-  Se o 'codigo' ou 'dt_partida' for alterado, não pode existir nenum outro 
-  trecho na tabela com esses mesmos dados.
+  Se o 'codigo', 'dia_partida', ou 'hora_partida' for alterado, não 
+  pode existir nenum outro trecho na tabela com esses mesmos dados.
   
   Em caso de sucesso, não devolve nenhum resultado. Caso contrário,
   levanta a exceção {ErroAtrib} com uma lista de mensagens de erro."""
@@ -88,32 +91,35 @@ def busca_por_identificador(id_trecho):
   Se tal trecho não existe, devolve {None}."""
   return trecho_IMP.busca_por_identificador(id_trecho)
 
-def obtem_assentos(trc):
-  """Devolve uma lista com os identificadores dos assentos do trecho."""
-  return trecho_IMP.obtem_assentos(trc)
+def obtem_poltronas(trc):
+  """Devolve uma lista com os identificadores das poltronas do trecho."""
+  return trecho_IMP.obtem_poltronas(trc)
 
 def busca_por_origem(cod):
   """Devolve uma lista de identificadores (NÃO objetos) de todos os trechos
   através de uma string codigo de origem do aeroporto."""
   return trecho_IMP.busca_por_origem(cod)
 
-def busca_por_codigo_e_data(cod, dt):
-  """Localiza um trecho cujo 'codigo' é {cod} e 'dt_partida'
-  é {dt}, e devolve o identificador do mesmo (não o objeto);
-  ou {None} se não existir tal trecho."""
+def busca_por_codigo_e_data(cod, dia, hora):
+  """Localiza um trecho cujo 'codigo' é {cod}, 'dia_partida'
+  é {dia}, e 'hora_partida' é {hora}, e devolve o identificador 
+  do mesmo (não o objeto); ou {None} se não existir tal trecho.
+  Nãodeve existir mais de um trecho nessas condições."""
   return trecho_IMP.busca_por_codigo_e_data(cod, dt)
 
 def busca_por_origem_e_destino(origem, destino):
-  """Localiza um trecho cujo 'origem' é {origem} e 'destino'
-  é {destino}, e devolve o identificador do mesmo (não o objeto);
-  ou {None} se não existir tal trecho."""
+  """Localiza trechos cujo atributo 'origem' é {origem} e cujo 'destino'
+  é {destino}.  Devolve uma lista dos identificadores desses trechos (NÃO os trechos), 
+  por exemplo ['T-00000001', 'T-00000025'].
+  Devolve uma lista vazia se não existir nenhum trecho nessas condições."""
   return trecho_IMP.busca_por_origem_e_destino(origem, destino)
 
-def busca_por_dias(dt):
-  """Localiza trechos com 'dt_partida' igual a {dt} em dias (desconsiderando as horas),
-  e devolve os identificadores dos mesmos (não o objeto) ex: ['T-00000001'];
-  ou [] (tupla vazia) se não existir nenhum trecho com a data."""
-  return trecho_IMP.busca_por_dias(dt)
+def busca_por_dias(dia):
+  """Localiza trechos com 'dia_partida' igual a {dia},
+  e devolve uma lista com os identificadores dos mesmos (não os objetos), 
+  por exemplo ['T-00000001', 'T-00000025'].
+  Devolve uma  lista vazia se não existir nenhum trecho nessas condições."""
+  return trecho_IMP.busca_por_dias(dia)
 
 # FUNÇÕES PARA DEPURAÇÃO
 

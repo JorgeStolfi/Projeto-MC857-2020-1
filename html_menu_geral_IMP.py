@@ -1,5 +1,5 @@
 import html_botao_simples
-import html_bloco_texto
+import html_texto
 from utils_testes import erro_prog
 
 # Outros módulos importados por esta implementação:
@@ -33,7 +33,7 @@ def gera_botoes_linha_1(logado, nome_usuario, admin):
   ht_bt_principal = html_botao_simples.gera("Principal", 'principal', None, '#60a3bc')
   ht_bt_ofertas = html_botao_simples.gera("Ofertas", 'solicitar_pag_ofertas', None, '#ffdd22')
   ht_bt_buscar = html_botao_simples.gera("Buscar", 'solicitar_pag_buscar_trecho', None, '#eeeeee')
-  botoes = ( ht_bt_principal, ht_bt_ofertas, ht_fm_buscar)
+  botoes = ( ht_bt_principal, ht_bt_ofertas, ht_bt_buscar)
   if logado:
     # Gera outros botões de usuario normal logado
     botoes += gera_botoes_linha_1_logado(nome_usuario, admin)
@@ -85,4 +85,4 @@ def gera_botoes_linha_2():
 
 def gera_nome_usuario(nome_usuario):
   """Gera o texto "Oi {nome}" para o menu geral."""
-  res = html_bloco_texto.gera("Oi " + nome_usuario, "inline_block", "Courier", "18px", "bold", None, None, None, None),
+  res = html_texto.gera("Oi " + nome_usuario, "inline_block", "Courier", "18px", "bold", None, None, None, None),

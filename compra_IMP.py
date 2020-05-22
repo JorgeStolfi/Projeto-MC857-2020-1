@@ -1,7 +1,7 @@
 import objeto
 import usuario
 import compra
-import assento
+import poltrona
 import tabela_generica
 import tabelas
 import conversao_sql
@@ -87,7 +87,8 @@ def obtem_status(cpr):
 def obtem_itens(cpr):
   global cache, nome_tb, letra_tb, colunas, diags
   id_cpr = obtem_identificador(cpr)
-  return assento.busca_por_compra(id_cpr)
+  ids_poltronas = poltrona.busca_por_compra(id_cpr)
+  return ids_poltronas
 
 def busca_por_identificador(id):
   global cache, nome_tb, letra_tb, colunas, diags
@@ -95,8 +96,9 @@ def busca_por_identificador(id):
   return cpr
 
 def busca_por_cliente(id_cliente):
-  res = objeto.busca_por_campo('cliente', id_cliente, cache, nome_tb, letra_tb, colunas)
-  return res
+  unico = False
+  ids_compras = objeto.busca_por_campo('cliente', id_cliente, unico, cache, nome_tb, letra_tb, colunas)
+  return ids_compras
 
 def muda_atributos(cpr, mods_mem):
   global cache, nome_tb, letra_tb, colunas, diags
@@ -116,14 +118,14 @@ def fecha(cpr):
 def cria_testes():
   global cache, nome_tb, letra_tb, colunas, diags
   inicializa(True)
-  # Identificador de usuários e lista de assentos de cada pedido de compra:
+  # Identificador de usuários e lista de poltronas de cada pedido de compra:
   lista_ups = \
     [
       ("U-00000001", ("A-00000001", "A-00000003", )),
       ("U-00000001", ("A-00000004", "A-00000006", "A-00000002", )),
       ("U-00000002", ("A-00000005", ))
     ]
-  for id_cliente, ids_assentos in lista_ups:
+  for id_cliente, ids_poltronas in lista_ups:
     cliente = usuario.busca_por_identificador(id_cliente)
     cpr = cria(cliente)
     assert cpr != None and type(cpr) is compra.Objeto_Compra

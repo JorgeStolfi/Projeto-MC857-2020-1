@@ -96,11 +96,14 @@ def busca_por_identificador(id):
 
 def busca_por_email(em):
   global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.busca_por_campo_unico('email', em, cache, nome_tb, letra_tb, colunas)
+  unico = True
+  id  = objeto.busca_por_campo('email', em, unico, cache, nome_tb, letra_tb, colunas)
+  return id
 
 def busca_por_CPF(CPF):
   global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.busca_por_campo_unico('CPF', CPF, cache, nome_tb, letra_tb, colunas)
+  unico = True
+  id = objeto.busca_por_campo('CPF', CPF, unico, cache, nome_tb, letra_tb, colunas)
 
 def cria_testes():
   global cache, nome_tb, letra_tb, colunas, diags
@@ -282,7 +285,8 @@ def cria_obj_mem(id, atrs_SQL):
       erro_prog("falta atributo '" + chave + "'")
     else:
       val = atrs_mem[chave]
-      id_bus = objeto.busca_por_campo_unico(chave, val, cache, nome_tb, letra_tb, colunas)
+      unico = True
+      id_bus = objeto.busca_por_campo(chave, val, unico, cache, nome_tb, letra_tb, colunas)
       if id_bus != None:
         erro_prog("usuário com '" + chave + "' = '" + val + "' já existe: " + id + " " + id_bus)
     
@@ -309,7 +313,8 @@ def modifica_obj_mem(obj, atrs_SQL):
   for chave in ('CPF', 'email'):
     if chave in mods_mem:
       val = mods_mem[chave]
-      id_bus = objeto.busca_por_campo_unico(chave, val, cache, nome_tb, letra_tb, colunas)
+      unico = True
+      id_bus = objeto.busca_por_campo(chave, val, unico, cache, nome_tb, letra_tb, colunas)
       if id_bus != None and id_bus != obj.id:
         erro_prog("usuário com '" + chave + "' = '" + val + "' já existe: " + id + " " + id_bus)
 

@@ -63,7 +63,7 @@ def verifica_compra(rotulo, cpr, ident, cliente, status):
       aviso_prog("retornou " + str(status1) + ", deveria ter retornado " + str(status),True)
       ok = False
     
-    # erro na implementação de assento
+    # erro na implementação de poltrona
     # sys.stderr.write("testando {obtem_itens()}:\n")
     # itens1 = compra.obtem_itens(cpr)
     # if itens1 != usr:

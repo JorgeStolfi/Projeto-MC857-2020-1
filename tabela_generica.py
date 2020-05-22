@@ -170,24 +170,17 @@ def busca_por_campo(nome_tb, let, cols, chave, valor, res_cols):
   devolve uma lista vazia."""
   return tabela_generica_IMP.busca_por_campo(nome_tb, let, cols, chave, valor, res_cols)
 
-def busca_por_dois_campos(nome_tb, let, cols, chave1, valor1, chave2, valor2, res_cols):
-  """Semelhante a {busca_por_campo}, mas procura objetos que tem valor {valor1} na colunas {chave1} 
-  e {valor2} na coluna {chave2}."""
-  return tabela_generica_IMP.busca_por_dois_campos(nome_tb, let, cols, chave1, valor1, chave2, valor2, res_cols)
+def busca_por_campos(nome_tb, let, cols, args, res_cols):
+  """Semelhante a {busca_por_campo}, mas procura linhas com certos valores 
+  em certas colunas, especificados pelo dicionário {args}.  Especificamente,
+  para cada par {ch,val} em {args}, exige que a coluna {ch} da tabela
+  tenha valor {val}."""
+  return tabela_generica_IMP.busca_por_campos(nome_tb, let, cols, args, res_cols)
 
 def busca_por_semelhanca(nome_tb, let, cols, chaves, valores):
-  #@TODO documentar interface
+  # !!! Documentar interface !!!
   # Devolve lista de identificadores (não objetos)
   return tabela_generica_IMP.busca_por_semelhanca(nome_tb, let, cols, chaves, valores)
-
-def busca_por_valor(nome_tb, let, cols, chaves, valores):
-  """Procura na tabela {nome_tb} objetos cujo o valor {preco}
-  na coluna de nome {chave} eh menor que valores.
-  
-  Devolve uma lista com os *identificadores* dos objetos
-  encontrados (não os objetos em si). Se nenhuma linha
-  satisfizer o critério da busca, devolve uma lista vazia."""
-  return tabela_generica_IMP.busca_por_valor(nome_tb, let, cols, chaves, valores)
 
 def limpa_tabela(nome_tb, cols):
   """Apaga todas as entradas da tabela {nome_tb}, e reinicializa o

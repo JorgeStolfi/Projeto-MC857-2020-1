@@ -9,13 +9,6 @@ def processa(ses, args):
   
   O dicionário de argumentos {args} é irrelevantes e pode ser {None}.
   
-  A sessão corrente {ses} pode ser {None}; se não for, deve estar
-  aberta. Se {ses} não for {None} e o dono dela for um administrador do
-  site, a página retornada terá a opção de tornar o novo usuário um
-  administrador, também.
-  
-  Se a sessão corrente {ses} for {None}, ou o dono dela não for um administrador,
-  a página retornada não terá essa opção e só permitirá criar outro usuário
-  comum (cliente)."""
+  A sessão corrente {ses} pode ser {None}."""
   return comando_solicitar_pag_buscar_trecho_IMP.processa(ses, args)
 

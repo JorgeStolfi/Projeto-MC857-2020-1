@@ -1,10 +1,11 @@
 import comando_solicitar_pag_acrescentar_trecho_IMP
 
 def processa(ses, args):
-  """Esta função é chamada quando o usuário solicita acrescentar trecho um trecho
+  """Esta função é chamada quando o administrador aperta o botão "Acescentar Trecho"
+  no menu.
 
-  A função retorna uma página HTML {pag} com o formulário que mostra os
-  dados de um certo trecho.
+  A função retorna uma página HTML {pag} com o formulário que permite ao administrador
+  especificar os dados do novo trecho a ser inserido na tabela de trechos.
 
   O argumento {ses} deve ser uma sessão atualmente aberta.
 

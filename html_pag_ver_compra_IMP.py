@@ -1,6 +1,6 @@
 import compra
 import html_pag_mensagem_de_erro
-import html_bloco_resumo_de_compra
+import html_resumo_de_compra
 
 def gera(ses, cpr):
   id_cpr = compra.obtem_identificador(cpr)
@@ -8,14 +8,14 @@ def gera(ses, cpr):
   atrs_compra = compra.obtem_atributos(cpr)
   
   # Cabeçalho da compra:
-  ht_resumo = html_bloco_resumo_de_compra.gera(cpr)
+  ht_resumo = html_resumo_de_compra.gera(cpr)
   
   # Lista de itens da compra
-  ids_assentos = compra.obtem_assentos(cpr)
-  detalhe_assento = True
-  ht_itens = html_bloco_lista_de_assentos(ses, cpr, ids_assentos, detalhe_assento)
+  ids_poltronas = compra.obtem_poltronas(cpr)
+  detalhe_poltrona = True
+  ht_itens = html_lista_de_poltronas(ses, cpr, ids_poltronas, detalhe_poltrona)
   
-  ht_conteudo = ht_resumo + "<br/>" + ht_assentos
+  ht_conteudo = ht_resumo + "<br/>" + ht_poltronas
   
   pag = html_pag_generica.gera(ses, ht_conteudo, None)
   return pag

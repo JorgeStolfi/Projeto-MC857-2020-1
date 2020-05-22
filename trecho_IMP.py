@@ -1,7 +1,7 @@
 import objeto
 import usuario
 import trecho
-import assento
+import poltrona
 
 import tabela_generica
 import tabelas
@@ -34,10 +34,10 @@ diags = False
 
 class Objeto_Trecho_IMP(objeto.Objeto):
 
-  def __init__(self, id, atrs, assentos):
+  def __init__(self, id, atrs, poltronas):
     global cache, nome_tb, letra_tb, colunas, diags
     objeto.Objeto.__init__(self, id, atrs)
-    self.assentos = assentos.copy()
+    self.poltronas = poltronas.copy()
 
 # Implementações:
 
@@ -48,8 +48,10 @@ def inicializa(limpa):
     ( ( "codigo",       type("foo"), 'TEXT',    False ),  # Código do trecho na empresa (p. ex. "AZ 4623").
       ( "origem",       type("foo"), 'TEXT',    False ),  # Sigla da estação/porto/aeroporto de orígem.
       ( "destino",      type("foo"), 'TEXT',    False ),  # Sigla da estação/porto/aeroporto de destino.
-      ( "dt_partida",   type("foo"), 'TEXT',    False ),  # Data e hora UTC de partida "{YYYY}-{MM}-{DD} {hh}:{mm}".
-      ( "dt_chegada",   type("foo"), 'TEXT',    False ),  # Data e hora UTC de chegada "{YYYY}-{MM}-{DD} {hh}:{mm}".
+      ( "dia_partida",  type("foo"), 'TEXT',    False ),  # Data UTC de partida, "{YYYY}-{MM}-{DD}".
+      ( "hora_partida", type("foo"), 'TEXT',    False ),  # Hora UTC de partida, "{hh}:{mm}".
+      ( "dia_chegada",  type("foo"), 'TEXT',    False ),  # Data UTC de chegada, "{YYYY}-{MM}-{DD}".
+      ( "hora_chegada", type("foo"), 'TEXT',    False ),  # Hora UTC de chegada, "{hh}:{mm}".
     )
   if limpa:
     tabela_generica.limpa_tabela(nome_tb, colunas)
@@ -78,10 +80,10 @@ def obtem_atributo(trc, chave):
   global cache, nome_tb, letra_tb, colunas, diags
   return objeto.obtem_atributo(trc,chave)
 
-def obtem_assentos(trc):
+def obtem_poltronas(trc):
   global cache, nome_tb, letra_tb, colunas, diags
   id_trc = obtem_identificador(trc)
-  return assento.busca_por_trecho(id_trc)
+  return poltrona.busca_por_trecho(id_trc)
 
 def busca_por_identificador(id):
   global cache, nome_tb, letra_tb, colunas, diags
@@ -90,21 +92,34 @@ def busca_por_identificador(id):
 
 def busca_por_origem(cod):
   global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.busca_por_campo("codigo", cod, cache, nome_tb, letra_tb, colunas)
+  unico = False
+  ids = objeto.busca_por_campo('codigo', cod, unico, cache, nome_tb, letra_tb, colunas)
+  return ids
 
-def busca_por_codigo_e_data(cod,dt):
+def busca_por_codigo_e_data(cod, dia, hora):
   global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.busca_por_dois_campos("codigo", cod, 'dt_partida', dt, cache, nome_tb, letra_tb, colunas)
+  args = { 'codigo': cod, 'dia_partida': dia, 'hora_partida': hora }
+  unico = True
+  id = objeto.busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas, unico)
+  if id == None:
+    return None
+  else:
+    return busca_por_identificador(id)
 
 def busca_por_origem_e_destino(origem, destino):
   global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.busca_por_dois_campos("origem", origem, 'destino', destino, cache, nome_tb, letra_tb, colunas)
+  args = { 'origem': origem, 'destino': destino }
+  unico = False
+  ids = objeto.busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas)
+  return ids
 
-def busca_por_dias(dt):
+def busca_por_dias(dia):
   global cache, nome_tb, letra_tb, colunas, diags
-  chaves = ["dt_partida"]
-  valores = [dt[:10]]
-  return tabela_generica.busca_por_semelhanca(nome_tb, letra_tb, colunas, chaves, valores)
+  chave = "dia_partida"
+  valor = dia
+  unico = False
+  ids = objeto.busca_por_campo(chave, valor, unico, nome_tb, letra_tb, colunas)
+  return ids
 
 def muda_atributos(trc, mods_mem):
   global cache, nome_tb, letra_tb, colunas, diags
@@ -120,26 +135,59 @@ def cria_testes():
   inicializa(True)
   # Atributos dos trechos:
   lista_trechos = \
-    [ {
-        'codigo':      "AZ 4024",
-        'origem':      "VCP",
-        'destino':     "SDU",
-        'dt_partida':  "2020-05-08 12:45",
-        'dt_chegada':  "2020-05-08 13:40",
+    [ { # T-00000001
+        'codigo':       "AZ 4024",
+        'origem':       "VCP",
+        'destino':      "SDU",
+        'dia_partida':  "2020-05-08",
+        'hora_partida': "12:45",
+        'dia_chegada':  "2020-05-08",
+        'hora_chegada': "13:40",
       },
-      {
-        'codigo':      "AZ 4036",
-        'origem':      "SDU",
-        'destino':     "VCP",
-        'dt_partida':  "2020-05-08 19:45",
-        'dt_chegada':  "2020-05-08 20:40",
+      { # T-00000002
+        'codigo':       "AZ 4036",
+        'origem':       "SDU",
+        'destino':      "VCP",
+        'dia_partida':  "2020-05-08",
+        'hora_partida': "19:45",
+        'dia_chegada':  "2020-05-08",
+        'hora_chegada': "20:40",
       },
-      {
-        'codigo':      "GO 2333",
-        'origem':      "SDU",
-        'destino':     "VCP",
-        'dt_partida':  "2020-05-08 19:33",
-        'dt_chegada':  "2020-05-08 20:27",
+      { # T-00000003
+        'codigo':       "GO 2133",
+        'origem':       "SDU",
+        'destino':      "VCP",
+        'dia_partida':  "2020-05-08",
+        'hora_partida': "19:33",
+        'dia_chegada':  "2020-05-08",
+        'hora_chegada': "20:27",
+      },
+      { # T-00000004
+        'codigo':       "AZ 4044",
+        'origem':       "SDU",
+        'destino':      "POA",
+        'dia_partida':  "2020-05-08",
+        'hora_partida': "19:33",
+        'dia_chegada':  "2020-05-09",
+        'hora_chegada': "06:25",
+      },
+      { # T-00000005
+        'codigo':       "AZ 4092",
+        'origem':       "POA",
+        'destino':      "MAO",
+        'dia_partida':  "2020-05-09",
+        'hora_partida': "07:40",
+        'dia_chegada':  "2020-05-09",
+        'hora_chegada': "13:20",
+      },
+      { # T-00000006
+        'codigo':       "GO 2121",
+        'origem':       "SDU",
+        'destino':      "MAO",
+        'dia_partida':  "2020-05-08",
+        'hora_partida': "15:00",
+        'dia_chegada':  "2020-05-08",
+        'hora_chegada': "19:33",
       },
     ]
   for atrs in lista_trechos:
@@ -175,11 +223,11 @@ def valida_atributos(trc, atrs_mem):
 def def_obj_mem(obj, id, atrs_SQL):
   """Se {obj} for {None}, cria um novo objeto da classe {Objeto_Trecho} com
   identificador {id} e atributos {atrs_SQL}, tais como extraidos
-  da tabela de trechos.  Extrai a lista de assentos da tabela
+  da tabela de trechos.  Extrai a lista de poltronas da tabela
   correspondente, se houver. O objeto *NÃO* é inserido na base de dados. 
   
   Se {obj} não é {None}, deve ser um objeto da classe {Objeto_Trecho}; nesse
-  caso a função altera os atributos de {obj}, exceto a lista de assentos,
+  caso a função altera os atributos de {obj}, exceto a lista de poltronas,
   conforme especificado em {atrs_SQL}. A entrada correspondente na 
   base de dados *NÃO* é alterada.
   

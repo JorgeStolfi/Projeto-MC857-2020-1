@@ -3,6 +3,6 @@
 import html_pag_buscar_trecho
 
 def processa(ses, args):
-  pag = html_pag_buscar_trecho.gera(ses, None, None)
+  pag = html_pag_buscar_trecho.gera(ses, {}, None)
   return pag
     

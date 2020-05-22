@@ -5,20 +5,23 @@
 import sessao
 import usuario
 
-import comando_solicitar_pag_contato
 import comando_solicitar_pag_cadastrar_usuario
-import comando_solicitar_pag_ofertas
 import comando_cadastrar_usuario
 import comando_solicitar_pag_alterar_usuario
 import comando_alterar_usuario
+import comando_solicitar_pag_acrescentar_trecho
+import comando_acrescentar_trecho
 import comando_solicitar_pag_login
 import comando_fazer_login
 import comando_fazer_logout
+import comando_solicitar_pag_contato
+import comando_solicitar_pag_ofertas
 import comando_ver_objeto
-import comando_solicitar_pag_buscar_compras
+import comando_ver_minhas_compras
 import comando_solicitar_pag_buscar_trecho
+import comando_buscar_trecho
 
-import html_bloco_texto
+import html_texto
 import html_div
 import html_pag_principal
 import html_pag_mensagem_de_erro
@@ -325,6 +328,9 @@ def processa_comando(tipo, ses, dados):
 
     # Despacha o comando:
     # !!! Completar a lista abaixo com todos os módulos {comando_*.py} que existem. !!!
+    sys.stderr.write("!! processa_comando: cmd = %s\n" % cmd)
+    sys.stderr.write("!! processa_comando: ses = %s\n" % \
+      (sessao.obtem_identificador(ses) if ses != None else "None"))
     if cmd == '' or cmd == '/' or cmd == '/principal':
       # Acesso sem comando, ou usuário apertou "Principal" no menu geral.
       pag =  html_pag_principal.gera(ses, [])
@@ -348,10 +354,6 @@ def processa_comando(tipo, ses, dados):
       # Usuário apertou o botão "Cadastrar" do menu geral:
       pag = comando_solicitar_pag_cadastrar_usuario.processa(ses, args)
 
-    elif cmd == '/solicitar_pag_ofertas':
-      # Usuário apertou o botão "Ofertas" do menu geral:
-      pag = comando_solicitar_pag_ofertas.processa(ses, "Lista de ofertas")
-
     elif cmd == '/cadastrar_usuario':
       # Usuário apertou "Cadastrar" em formulário de cadastrar usuário:
       pag = comando_cadastrar_usuario.processa(ses, args)
@@ -364,14 +366,26 @@ def processa_comando(tipo, ses, dados):
       # Usuário apertou "Confirmar" em formulário de alterar usuário:
       pag = comando_alterar_usuario.processa(ses, args)
 
+    elif cmd == '/solicitar_pag_acrescentar_trecho':
+      # Usuário apertou o botão "Acrescentar Trecho" do menu de administrador:
+      pag = comando_solicitar_pag_acrescentar_trecho.processa(ses, args)
+
+    elif cmd == '/acrescentar_trecho':
+      # Usuário apertou o botão "Acrescentar" no formulário de acrescentar trecho:
+      pag = comando_acrescentar_trecho.processa(ses, args)
+
     elif cmd == '/ver_objeto':
       # Usuário apertou o botão "Ver Objeto" ou equivalente no menu geral:
       pag = comando_ver_objeto.processa(ses, args)
 
     elif cmd == '/buscar_compras':
-      # Usuário apertou o botão "Ver Objeto" ou equivalente no menu geral:
-      pag = comando_solicitar_pag_buscar_compras.processa(ses, dados)
+      # Usuário apertou o botão "Buscar compras" ou equivalente no menu geral:
+      pag = comando_ver_minhas_compras.processa(ses, args)
       
+    elif cmd == '/solicitar_pag_ofertas':
+      # Usuário apertou o botão "Ofertas" do menu geral:
+      pag = comando_solicitar_pag_ofertas.processa(ses, args)
+
     elif cmd == '/solicitar_pag_contato':
       # Usuário apertou o botão "Contato" do menu geral:
       #pag =  html_pag_contato.gera(ses, [])
@@ -380,6 +394,10 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/solicitar_pag_buscar_trecho':
       # Usuário apertou o botão "Buscar Trecho" do menu geral:
       pag = comando_solicitar_pag_buscar_trecho.processa(ses, args)
+      
+    elif cmd == '/buscar_trecho':
+      # Usuário apertou o botão "Buscar" na página de buscar trecho:
+      pag = comando_buscar_trecho.processa(ses, args)
 
     else:
       # Comando não identificado
@@ -395,6 +413,8 @@ def processa_comando(tipo, ses, dados):
     args = {}.copy()
     pag =  html_pag_mensagem_de_erro.gera(ses, ("** comando \"%s\" não implementado" % tipo))
 
+  sys.stderr.write("!! processa_comando: pag = %s\n" % pag)
+  
   if mostra_cmd:
     # Acrescenta os dados para depuração:
     pag = re.sub(r'</body>', ("<br/>%s<br/><br/></body>" % formata_dados_http(cmd,args,dados)), pag)
@@ -416,7 +436,7 @@ def formata_dados_http(cmd,args,resto):
   texto = ("Resposta a comando HTTP \"%s\" recebido com dados principais:" % tipo)
   texto = texto + ("<br/>cmd = \"%s\"<br/>args =<br/>%s" % (cmd, args_lin))
   texto = texto + ("<br/><hr/>Outros dados:<br/>%s" % resto_lin)
-  conteudo = html_bloco_texto.gera(texto, None,"Courier","18px","normal","5px","left", None, None)
+  conteudo = html_texto.gera(texto, None,"Courier","18px","normal","5px","left", None, None)
   conteudo = "<hr/>\n" + html_div.gera("background-color:#bbbbbb;", conteudo) + "<hr/>\n"
   return conteudo
 

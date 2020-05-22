@@ -1,9 +1,7 @@
-import html_pag_generica
+import html_pag_ofertas_IMP
 
-def gera(ses, args):
-  """Retorna uma página genérica com a mensagem {msg},
-  !!APENAS PARA TESTE, POR ORA!!.
-
-  A página terá um botão "OK" que, quando clicado, gera um comando
-  "GET" com URL "principal"."""
-  return html_pag_generica.gera(ses, args, None)
+def gera(ses, trcs):
+  """Devolve uma página HTML com uma lista de trechos em oferta.
+  A lista em si é formatada com {html_lista_de_trechos.gera},
+  com {detalhe=False}."""
+  return html_pag_ofertas_IMP.gera(ses, trcs)
