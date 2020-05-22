@@ -12,9 +12,9 @@ MODULOS_BUG := ${shell gawk '/^[*]/{ print $$2; }' modulos.txt} \
 MODULOS := ${MODULOS_OK} ${MODULOS_BUG}
 # MODULOS := ${MODULOS_BUG}
 
-all: todos_os_testes
+# all: todos_os_testes
 # all: teste_unico
-# all: roda_servidor
+all: roda_servidor
 
 # Roda todos os módulos de teste:
 todos_os_testes:
