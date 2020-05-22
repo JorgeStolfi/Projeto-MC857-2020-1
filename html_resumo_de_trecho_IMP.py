@@ -20,6 +20,6 @@ def gera(trc):
   ht_destino = html_texto.gera(destino, None, None, None, None, None, None, None, None)
   ht_dt_partida = html_texto.gera(dt_partida, None, None, None, None, None, None, None, None)
   ht_dt_chegada = html_texto.gera(dt_chegada, None, None, None, None, None, None, None, None)
-  ht_num_poltronas = html_texto.gera(num_poltronas, None, None, None, None, None, None, None, None)
+  ht_num_poltronas = html_texto.gera(str(num_poltronas), None, None, None, None, None, None, None, None)
   ht_campos = ( ht_codigo, ht_origem, ht_destino, ht_dt_partida, ht_dt_chegada, ht_num_poltronas )
   return ht_campos
