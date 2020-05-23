@@ -34,4 +34,4 @@ def obtem_resumo(rot):
   Mais atributos podem ser acrescentados mais tarde.
     
   O roteiro {rot} deve ter pelo menos um trecho."""
-  return resumo_IMP.obtem_resumo(rot)
+  return roteiro_IMP.obtem_resumo(rot)

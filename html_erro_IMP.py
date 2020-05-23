@@ -6,13 +6,13 @@ import re
 def gera(msg):
   fam_fonte = "Courier"
   # Cabeçalho espalhafatoso:
-  ht_tit = html_texto.gera("ERRO!", None, fam_fonte, "24px", "bold", "5px", "left", "#880000", None)
+  ht_tit = html_texto.gera("Não foi possível completar a operação", None, fam_fonte, "24px", "bold", "5px", "left", "#880000", None)
   
   if type(msg) is list or type(msg) is tuple:
     msg = "\n".join(msg)
 
   # Processa quebras de linha em {msg}:
-  msg = re.sub(r'\n', r'<br/>\n', msg)
+  msg = re.sub(r'\n', r'<br/>Erro: \n', msg)
 
   # Formata a mensagem:
   ht_msg = html_texto.gera(msg, None, fam_fonte, "20px", "bold", "5px", "left", "#000000", None)

@@ -3,23 +3,51 @@
 # Interfaces usadas por este script:
 
 import html_form
-import base_sql
-import tabelas
-import usuario
-import sessao
-import compra
-import utils_testes
+import html_label
+import html_input
+import html_tabela
+import html_botao_submit
+from utils_testes import testa_modulo_html
 
 import sys
 
-def testa(rotulo, *args):
-  """Testa {funcao(*args)}, grava resultado 
-  em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
+def cria_form_completo():
+  linhas = [].copy()
   
-  modulo = html_form
-  funcao = modulo.gera
-  frag = True  # {True} se for apenas um fragmento HTML, {False} se for página completa.
-  pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
-  utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
+  # cria campo de teste comum
+  ht_rotulo = html_label.gera("campo de texto", ": ")
+  ht_campo = html_input.gera(None, "text", "texto", None, True, None, None)
+  linhas.append((ht_rotulo, ht_campo,))
 
-assert False # !!! INCOMPLETO !!!
+  # cria campo de senha
+  ht_rotulo = html_label.gera("campo de senha", ": ")
+  ht_campo = html_input.gera(None, "password", "senha", None, True, None, None)
+  linhas.append((ht_rotulo, ht_campo,))
+
+  # cria campo numerico
+  ht_rotulo = html_label.gera("campo numerico", ": ")
+  ht_campo = html_input.gera(None, "number", "numero", None, True, None, None)
+  linhas.append((ht_rotulo, ht_campo,))
+
+  # cria campo escondido
+  ht_rotulo = html_label.gera("campo escondido", ": ")
+  ht_campo = html_input.gera(None, "hidden", "hidden", None, True, None, None)
+  linhas.append((ht_rotulo, ht_campo,))
+
+  # Monta a tabela com os fragmentos HTML:
+  ht_tabela = html_tabela.gera(linhas)
+
+  # cria botao de interacao com o formulario
+  ht_botao = html_botao_submit.gera("Botao", 'url test', None, '#55ee55')
+
+  # counteudo do formulario
+  ht_campos = \
+    ht_tabela + \
+    ht_botao
+
+  # cria formulario de teste
+  formulario = html_form.gera(ht_campos)
+  return formulario
+
+form_completo = cria_form_completo()
+testa_modulo_html(html_form, "completo", form_completo, True, False)

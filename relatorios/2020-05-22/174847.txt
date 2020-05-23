@@ -1,0 +1,10 @@
+Relatorio 22/05/2020
+
+RA 174847 - Miguel Augusto
+
+TAREFA: html_roteiro: IMP: conferir/implementar. TST: implementar.
+
+
+Verifiquei o html_roteiro_IMP, e comentei a chamada da funcao html_lista_de_trechos.gera(), para ser adicionada num segundo momento.
+
+Corrigi o html_roteiro_TST, e consegui gerar o html referente aos testes. 

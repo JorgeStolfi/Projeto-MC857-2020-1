@@ -1,0 +1,5 @@
+RA 169601
+
+A tarefa de hoje foi "html_pag_alterar_usuario: TST: não mostra ticbox "administrador" quando é admin". Olhando o arquivo de teste desse módulo reparei que o teste em si estava correto, ele só não testava para o caso de um usuário que é administrador.
+
+Para contemplar todos os casos necessários, repliquei o teste que já era feito para o usuário da sessão {S-00000001} (José Primeiro), que não é um administrador e passei o id de sessão {S-00000004}, referente ao usuário Juca Terceiro, que é um administrador. Também alterei os rótulos passados como parâmetros nos testes do segundo usuário com o sufixo "-adm" e o resultado são os arquivos HTML referentes ao primeiro usuário (sem o tickbox de administrador) e ao segundo usuário (com o tickbox) como esperado.

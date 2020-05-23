@@ -1,0 +1,22 @@
+Estava responsável pelo arquivo de teste do módulo comando_solicitar_pag_escolher_pagamento.
+
+Esse módulo é responsável por requerir a página com as formas de pagamento.
+
+Esse módulo possui apenas um método que é o "processa", que recebe dois parâmetros, a sessão e o dicionário de argumentos. Porém, ao contrário da maioria dos "comando_solicitar_pag" ele não simpĺesmente chama o comando "gera" de um "html_pag", pois o metodo html_pag_escolher_pagamento.gera() precisa de 3 parâmetros, não apenas. Esse terceiro parâmetro é o de conteúdo. Então, no método processa, é chamado também o método html_form_escolher_pagamento.gera(), que recebe como parâmetro um título e uma URL para uma requisição POST e retorna a lista de formas de pagamento e botões que fazem a requisição do pagamento. Então, com o conteúdo em mãos, chama-se o método que gera o html, passando a sessão, esse conteudo e os erros.
+
+Porém, as linhas referentes à chamada desse form no método processa estão comentadas, esperando que ele fique pronto. Ele parece já estar pronto, mas tentei chamá-lo e não alterou em nada os resultados do teste.
+
+Então para concluir as atividades do dia, fiz o seguinte:
+
+01. Copiei o conteúdo do arquivo comando_solicitar_pag_criar_roteiro_TST.py para o comando_solicitar_pag_escolher_pagamento_TST.py
+02. Alterei as chamadas de módulo
+03. Rodei o teste e as páginas foram geradas com sucesso
+04. Analisei como funcionava a geração dessa página até chegar no html_form_escolher_pagamento
+05. Tentei estabalecer um padrão de como passar os parâmetros do html_form_escolher_pagamento desde o comando_solicitar_pag_escolher_pagamento_TST
+06. O padrão que escolhi foi dentro do dicionario 'args', uma chave 'form' que recebe um dicionario com as chaves 'titulo' e 'post_url'
+07. Descomentei o import e a chamada
+08. Rodei os testes de novo, mas os resultados foram os mesmos
+09. Optive por manter o dicionario no arquivo de testes, mas não commitar as alterações nos demais arquivos 
+10. Rodei o teste de novo e, em todos os casos, todas as páginas de teste foram criadas normalmente.
+
+OBS: A documentação do comando_solicitar_pag_escolher_pagamento e do html_pag_escolher_pagamento indicam que a página só deve ser carregada se for uma sessão aberta de usuário, porém, a página foi gerada sem erros e mesmo para usuários anônimos. Investiguei e notei que nenhum dos 3 módulos envolvidos fazem tal validação para abortar o processo ou gerar um erro.

@@ -1,13 +1,12 @@
 import trecho
-import html_texto
 import poltrona
+import html_texto
 import html_lista_de_poltronas
 import html_resumo_de_trecho
 import html_tabela
 
 def gera(ses, trc, detalhe):
   linha_resumo = html_resumo_de_trecho.gera(trc)
-
   if detalhe:
     # Cabeçalho como bloco texto + lista de poltronas:
     ht_resumo = " ".join(linha_resumo) 

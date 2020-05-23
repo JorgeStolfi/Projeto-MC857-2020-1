@@ -1,9 +1,15 @@
 # Implementação do módulo {comando_criar_roteiro}.
 
-import comando_criar_roteiro_IMP.py
+import comando_criar_roteiro_IMP
 
 def processa(ses, args):
-    """Esta funcao é chamada para buscar os trechos disponiveis,
-    a partir do codigo de origem e de destino recebido recebidos
-    como argumentos"""
-  return comando_criar_roteiro_IMP.processa(ses,arg)
+    """Esta funcao é chamada quando não existe um trecho direto entre a origem e o destino do 
+    usuario, entao ele pede para o sistema encontrar um roteiro que atenda as necessidade de
+    origem e destino. Essa função recebe 4 argumentos são eles:
+    ['origem']
+    ['destino']
+    ['dia_min']
+    ['dia_max']
+    Ela devolve um pagina html para mostrar os roteiros encontrados.
+    """
+    return comando_criar_roteiro_IMP.processa(ses,args)
