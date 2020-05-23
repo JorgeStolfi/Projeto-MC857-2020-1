@@ -61,7 +61,7 @@ def testa_lista_livres(trc, trc_id, atrs):
 
   sys.stderr.write(trc_id, "ok\n")
   sys.stderr.write("%s\n" % ("-" * 70))
-  return
+  return livres
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {poltrona.cria}:\n")
