@@ -7,6 +7,7 @@ import base_sql
 import tabelas
 import roteiro
 import utils_testes
+import sessao
 
 import sys
 
@@ -33,7 +34,7 @@ rot = rots[0]
 testa("NF", None, rot, False) # Sem login, sem detalhes.
 testa("NT", None, rot, True) # Sem login, com detalhes.
 
-ses1 = session.busca_por_identificador("S-00000001")
+ses1 = sessao.busca_por_identificador("S-00000001")
 
 testa("LF", ses1, rot, False) # Com login, sem detalhes.
 testa("LT", ses1, rot, True) # Com login, com detalhes.
