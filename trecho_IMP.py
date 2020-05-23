@@ -173,7 +173,7 @@ def cria_testes():
         'origem':       "SDU",
         'destino':      "POA",
         'dia_partida':  "2020-05-08",
-        'hora_partida': "19:33",
+        'hora_partida': "20:00",
         'dia_chegada':  "2020-05-09",
         'hora_chegada': "06:25",
       },
