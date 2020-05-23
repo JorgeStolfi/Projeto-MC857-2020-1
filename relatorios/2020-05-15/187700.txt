@@ -1,4 +1,0 @@
-Foi me dado a tarefa " html_bloco_resumo_de_trecho: implementar (vide {html_bloco_resumo_de_compra})",
-consegui conclui-la sem problemas, gerando os arquivos:
-- html_bloco_resumo_de_trecho.py
-- html_bloco_resumo_de_trecho_IMP.py
