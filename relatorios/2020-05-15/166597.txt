@@ -1,8 +1,0 @@
-A tarefa de hoje foi criar a página para acrescentar um trecho a viagem do usuário.
-Baseando se no módulo de alterar usuário, foram criados os seguintes arquivos:
-- "html_pag_acrescentar_trecho": define a interface do módulo
-- "html_pag_acrescentar_trecho_IMP": implementa a interface de "html_pag_acrescentar_trecho"
-- "html_form_acrescentar_trecho": define a interface do formulário de acrescentar trecho
-- "html_form_acrescentar_trecho_IMP: implementa o formulário. Como este módulo nao se refere a esta atividade, ele apenas retorna uma div com valor qualquer.
- 
-A página recebe o id do trecho que deve ser adicionado a viagem do usuário da sessao.
