@@ -1,7 +1,7 @@
 import trecho
+import poltrona
 import html_texto
 import html_resumo_de_trecho
-import poltrona
 import html_lista_de_poltronas
 
 def gera(ses, trc, detalhe):

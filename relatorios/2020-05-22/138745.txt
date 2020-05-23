@@ -1,0 +1,26 @@
+Nesse dia a minha tarefa foi:
+comando_buscar_trecho: IMP: corrigir de acordo com a especificação na interface. Em caso de erro deve re-apresentar
+a página com o formulário de busca, com os dados de {args} já preenchidos, mais as mensagens de erro.
+
+Iniciei lendo a especificação da interface, que diz possibilitar a busca com qualquer subset do Objeto_Trecho.
+A implementação anterior apenas usava a origem e destino, portanto a primeira coisa que fiz foi possibilitar a passagem e uso
+de outros atributos. Para isso criei uma função verifica_pelo_menos_um_campo que valida os atributos passados para que eles
+sejam válidos ao restante do sistema, estão definidos e garante que pelo menos um esteja preechido para a busca.
+
+Criei uma função chamada busca em trecho.py (e em trecho_IMP.py) que recebe um subset de Objeto_Trecho e busca qualquer trecho
+que condiza com esse subset, assim como as outros funções de busca, ela retorna uma lista de identificadores.
+
+Como o html_lista_de_trechos espera uma lista de trechos, primeiro eu mapeio os identificadores recebidos na parte anterior
+em Objeto_Trechos, com essa coleção de trechos, consigo passar para a geração do fragmento HTML e finalmente gerar a busca
+de resultados com sucesso.
+
+Existiam alguns problemas nos arquivos que geram esse HTML, então fiz as correções para que fosse possível realizar a geração
+correta deles:
+    - Linha 100 de poltrona_IMP estava com o retorno incorreto
+    - Adicionei os imports de poltrona e html_lista_de_poltronas em html_lista_de_trechos_IMP.py
+    - Alterei num_poltronas para str(num_poltronas) na linha 23 de html_resumo_de_trecho_IMP.py
+    - Adicionei os imports de poltrona, html_resumo_de_trecho e html_lista_de_poltranas em html_trecho_IMP.py
+    - Alterei linha 8 de html_trecho_IMP.py de html_resumo_de_trecho(trc) para html_resumo_de_trecho.gera(trc)
+
+Alterei o teste do comando_buscar_trecho para considerar a implementação nova, criei 3 testes onde 2 passam pela validação dos campos
+para testar o tratamento de erros e 1 que realiza a busca com sucesso.
