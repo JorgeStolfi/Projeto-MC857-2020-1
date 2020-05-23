@@ -1,0 +1,8 @@
+A tarefa de hoje consistia em corrigir o arquivo de teste do módulo html_form.
+
+Por se tratar de um módulo base, que gera formulários genéricos, os testes estressam a criação 
+de diversos tipos de campo de entrada diferentes (text, password, number, hidden), e um botão de interação com o formulário 
+(ex.: buscar, enviar, limpar).
+
+Utilizou-se uma função do módulo de teste (testa_modulo_html), para gerar um arquivo de saída
+ do módulo html_form.
