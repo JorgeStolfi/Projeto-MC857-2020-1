@@ -1,4 +1,0 @@
--Consertei alguns bugs no programa de teste {assento_IMP_TST.py} (l67, l73, l34)
--adicionei o atributo de preco em {assento_IMP.py}, adequando os casos testes
--nao consegui adequar o teste para verificação de inserção de um assento no programa teste {assento_IMP_TST.py} (l85-l89)
-

@@ -1,3 +1,0 @@
-Adicionei a função {busca_por_origem_e_destino} no módulo { trecho } menos o teste.
-Criei o modulo { html_bloco_lista_de_trechos } menos o teste.
-Criei o módulo { comando_buscar_trecho }.
