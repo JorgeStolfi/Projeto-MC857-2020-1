@@ -1,0 +1,3 @@
+Edição da linha 55 no arquivo html_menu_geral_IMP
+
+Foi adicionado o botão "Buscar usuários", que chama o método 'buscar_usuarios'
