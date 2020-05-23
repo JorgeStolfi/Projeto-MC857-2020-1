@@ -85,6 +85,16 @@ def obtem_atributo(trc, chave):
   Equivale a {obtem_atributos(trc)[chave]}"""
   return trecho_IMP.obtem_atributo(trc, chave)
 
+def busca(args):
+  """O parâmetro {args} é um dicionário que contém um subconjunto dos
+  atributos de um {Objeto_Trecho}, pelo menos um dos atributos deve estar definido e todos os atributos definitos
+  devem ser diferentes de None.
+  Localiza trechos pelos atributos definidos em {args}.
+  Devolve uma lista dos identificadores desses trechos (NÃO os trechos),
+  por exemplo ['T-00000001', 'T-00000025'].
+  Devolve uma lista vazia se não existir nenhum trecho nessas condições."""
+  return trecho_IMP.busca(args)
+
 def busca_por_identificador(id_trecho):
   """Localiza um trecho com identificador {id_trecho} (uma string da forma
   "T-{NNNNNNNN}"), e devolve o mesmo na forma de um objeto da classe {Objeto_Trecho}.
