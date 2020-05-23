@@ -1,0 +1,2 @@
+Consertei o teste para "tabela" e adicionei os subtestes para as tabelas de poltrona e trecho que estavam
+faltando, como indicado no comentário ao lado do antigo "assert False", que foi removido de acordo.

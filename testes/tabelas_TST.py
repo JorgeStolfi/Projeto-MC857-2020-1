@@ -5,6 +5,9 @@ import base_sql
 import tabelas
 import usuario
 import compra
+import sessao
+import poltrona
+import trecho
 import sys
 
 # ----------------------------------------------------------------------
@@ -41,7 +44,7 @@ assert ses1 != None
 ses1_atrs = sessao.obtem_atributos(ses1)
 sessao.verifica(ses1, ses1_id, ses1_atrs)
 
-assert ses1 == tabelas.id_para_opbjeto(ses1_id)
+assert ses1 == tabelas.id_para_objeto(ses1_id)
 
 sys.stderr.write("\n")
 
@@ -54,9 +57,32 @@ assert cpr1 != None
 cpr1_atrs = compra.obtem_atributos(cpr1)
 compra.verifica(cpr1, cpr1_id, cpr1_atrs)
 
-assert cpr1 == tabelas.id_para_opbjeto(cpr1_id)
+assert cpr1 == tabelas.id_para_objeto(cpr1_id)
 
 sys.stderr.write("\n")
 
 # ----------------------------------------------------------------------
-assert False # !!! INCOMPLETO - TESTAR TABELAS "poltronas", "trechos"
+sys.stderr.write("verificando tabela \"poltronas\" ptr = %s\n" % "ptr1")
+
+ptr1_id = "A-00000001"
+ptr1 = poltrona.busca_por_identificador(ptr1_id)
+assert ptr1 != None
+ptr1_atrs = poltrona.obtem_atributos(ptr1)
+poltrona.verifica(ptr1, ptr1_id, ptr1_atrs)
+
+assert ptr1 == tabelas.id_para_objeto(ptr1_id)
+
+sys.stderr.write("\n")
+
+# ----------------------------------------------------------------------
+sys.stderr.write("verificando tabela \"trechos\" trc = %s\n" % "trc1")
+
+trc1_id = "T-00000001"
+trc1 = trecho.busca_por_identificador(trc1_id)
+assert trc1 != None
+trc1_atrs = trecho.obtem_atributos(trc1)
+trecho.verifica(trc1, trc1_id, trc1_atrs)
+
+assert trc1 == tabelas.id_para_objeto(trc1_id)
+
+sys.stderr.write("\nTestes terminaram sem erros.\n\n")
