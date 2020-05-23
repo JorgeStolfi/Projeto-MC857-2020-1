@@ -22,7 +22,7 @@ trecho.inicializa(True)
 ok_global = True # Vira {False} se um teste falha.
 
 def verifica_trecho(rotulo, trc, ident, atrs):
-  """Testes básicos de consistência do objeto {trc} da classe {Objeto_Trecho}, dados 
+  """Testes básicos de consistência do objeto {trc} da classe {Objeto_Trecho}, dados
   {ident} e {atrs} esperados."""
   global ok_global
 
@@ -31,7 +31,7 @@ def verifica_trecho(rotulo, trc, ident, atrs):
   ok = trecho.verifica(trc, ident, atrs)
 
   if trc != None and type(trc) is trecho.Objeto_Trecho:
-    
+
     # ----------------------------------------------------------------------
     sys.stderr.write("testando {busca_por_codigo_e_data()}:\n")
     cod1 = atrs['codigo']
@@ -49,13 +49,13 @@ def verifica_trecho(rotulo, trc, ident, atrs):
 
   sys.stderr.write("%s\n" % ("-" * 70))
   return
- 
+
 def testa_cria_trecho(rotulo, ident, atrs):
   """Testa criação de trecho com atributos com {atrs}. Retorna o trecho."""
   trc = trecho.cria(atrs)
   verifica_trecho(rotulo, trc, ident, atrs)
   return trc
- 
+
 def test_busca_por_origem(cod):
   """ Testa um retorno valido do metodo busca_por_origem"""
   global ok_global
@@ -82,7 +82,7 @@ def testa_busca_por_dias(ident, atrs):
 
   return
 
-  
+
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {trecho.cria}:\n")
 
