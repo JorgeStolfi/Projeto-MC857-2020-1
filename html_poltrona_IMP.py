@@ -2,7 +2,7 @@ import poltrona
 import html_texto
 import html_botao_submit
 
-def gera(pol):
+def gera(ses, pol):
   atrs_poltrona = poltrona.obtem_atributos(pol)
   id_trecho = atrs_poltrona['id_trecho']
   id_compra = atrs_poltrona['id_compra']

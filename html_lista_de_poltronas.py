@@ -5,9 +5,8 @@ def gera(ses, cpr, tre, ids):
   """Retorna um trecho de HTML que descreve as poltronas cujos identificadores
   estão na lista {ids}.  
   
-  Se {cpr} não é {None}, todas as poltronas devem pertencer ao pedido de compra compra {cpr}.
-  Nesse caso {tre} deve ser {None}. Se {detalhe} for {True},
-  mostra botão "Excluir" para excluir a poltrona da compra.
+  Se {cpr} não é {None}, todas as poltronas devem pertencer ao pedido de compra compra {cpr}. 
+  Nesse caso mostra botão "Excluir" para excluir a poltrona da compra e {tre} deve ser {None}. 
   
   Se {tre} não é {None}, todas as poltronas devem pertencer ao trecho {tre}.
   

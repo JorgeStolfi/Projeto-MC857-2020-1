@@ -1,0 +1,6 @@
+Arrumei documentacao {html_lista_poltronas}.
+Adicionei argumento faltante na funcao {gera} de {html_poltrona_IMP}.
+Adicionei conversao para string de argumento tipo int e troquei nome de variavel
+de cpr para trc no modulo {html_resumo_de_trecho}.
+Corrigi imports, erros e fiz arquivo de teste para o modulo {html_trecho}.
+Corrigi retorno da funcao {busca_por_compras} do modulo {poltrona}.

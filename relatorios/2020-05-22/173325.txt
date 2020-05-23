@@ -1,0 +1,30 @@
+# Relatório da Atividade do Dia 22/05/2020
+
+Tarefa: html_resumo_de_roteiro: IMP: conferir/implementar. TST: implementar.
+
+## O que foi feito
+
+Foi implementado o html_resumo_de_roteiro_IMP.py que gera um fragmento HTML com
+base no resumo de um roteiro. O fragmento é um label no formato:
+{ORIGEM}({DIA_PARTIDA} {HORA_PARTIDA}) -- {NUM_ESCALAS} --> {DESTINO}
+({DIA_CHEGADA} {HORA_CHEGADA}) : {VALOR_MINIMO}. Os valores são os valores
+contidos no resumo do roteiro.
+
+Além disso, foi implementado o html_resumo_de_roteiro_TST.py que testa a
+implementação anterior. O teste é bem simples, ele simplesmente passa um objeto
+roteiro para a função de teste {testa} que irá utilizar a função
+{html_resumo_de_roteiro.gera} para gerar um fragmento de HTML. Somado a isso, o
+módulo {testes_utils} é utilizado para gerar uma página HTML com o fragmento
+gerado anteriormente.
+
+
+## Erros encontrados
+
+O módulo {html_resumo_de_roteiro} depende do módulo {roteiro}. Contudo, no
+módulo {roteiro} na função {obtem_resumo} ela estava utilizando erroneamente
+{resumo_IMP.obtem_resumo} que foi consertado para {roteiro_IMP.obtem_resumo}.
+
+Outro erro encontrado foi que a função {roteiro_IMP.obtem_resumo} não estava
+completada, retornando um valor pré-definido de resumo. Diante disso, o o
+arquivo de teste {html_resumo_de_roteiro_TST.py} utiliza um valor {None} para a
+variável {roteiro}, que no futuro poderá ser utilizada com o objeto roteiro.

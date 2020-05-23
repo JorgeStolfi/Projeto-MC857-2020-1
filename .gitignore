@@ -3,3 +3,4 @@
 __pycache__/
 DB/MC857.sqlite3
 *.pyc
+testes/saida/

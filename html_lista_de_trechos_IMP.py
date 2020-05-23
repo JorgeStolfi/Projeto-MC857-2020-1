@@ -1,7 +1,8 @@
-
 import trecho
+import poltrona
 import html_trecho
 import html_tabela
+import html_lista_de_poltronas
 
 def gera(ses, trcs, detalhe):
   linhas = [].copy()
@@ -10,7 +11,7 @@ def gera(ses, trcs, detalhe):
     linhas.append(linha)
     if detalhe:
       pols = poltrona.busca_por_trecho(trc)
-      ht_poltronas = html_lista_de_poltronas.gera(ses, pols)
+      ht_poltronas = html_lista_de_poltronas.gera(ses, None, trc, pols)
       linhas.append(("", "", "", ht_poltronas))
   # tabela
   ht_itens = html_tabela.gera(linhas)

@@ -1,0 +1,4 @@
+Modificado o arquivo html_botao_radio_TST.py para chamada do método de teste
+testa_gera_html apropriadamente ao botao de radio.
+Fornecidos os valores adequados para um teste de botao radio conforme declaração no arquivo
+html_botao_radio_IMP.py.

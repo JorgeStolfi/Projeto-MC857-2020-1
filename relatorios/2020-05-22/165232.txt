@@ -1,0 +1,2 @@
+Foi implentando o teste comando_ver_minhas_compras_TST.py, no entanto há um problema
+no html_lista_de_compras_IMP.py (NameError: name 'id_usr' is not defined).

@@ -85,6 +85,12 @@ def obtem_poltronas(trc):
   id_trc = obtem_identificador(trc)
   return poltrona.busca_por_trecho(id_trc)
 
+def busca(args):
+  global cache, nome_tb, letra_tb, colunas, diags
+  unico = False
+  ids = objeto.busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas)
+  return ids
+
 def busca_por_identificador(id):
   global cache, nome_tb, letra_tb, colunas, diags
   trc = objeto.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
@@ -167,7 +173,7 @@ def cria_testes():
         'origem':       "SDU",
         'destino':      "POA",
         'dia_partida':  "2020-05-08",
-        'hora_partida': "19:33",
+        'hora_partida': "20:00",
         'dia_chegada':  "2020-05-09",
         'hora_chegada': "06:25",
       },
