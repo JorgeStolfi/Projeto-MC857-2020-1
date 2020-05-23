@@ -1,0 +1,9 @@
+Acrescentando campo "Assentos" em {html_form_acrescentar_trecho}:
+
+Nesta aula, eu editei o arquivo html_form_acrescentar_trecho_IMP e adicionei o campo de texto "Assentos" no formulário:
+
+( "Assentos",         "text",       "assentos",       "1-20,20F,33",            False, )
+
+Por fim, rodei o servidor e verifiquei se o campo foi adicionado na página.
+ 
+

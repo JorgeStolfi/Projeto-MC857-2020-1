@@ -35,6 +35,7 @@ def gera(atrs):
       ( "hora de partida",  "text",       "hora_partida",   "HH:MM",                  False, ),
       ( "Dia de chegada",   "text",       "dia_chegada",    "YYYY-MM-DD",             False, ),
       ( "hora de chegada",  "text",       "hora_chegada",   "HH:MM",                  False, ),
+      ( "Assentos",         "text",       "assentos",       "1-20,20F,33",            False, ),
   )
 
   ht_tabela = html_form_tabela_de_campos.gera(dados_linhas, atrs, True)
