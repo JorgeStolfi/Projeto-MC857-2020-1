@@ -5,21 +5,25 @@
 import sessao
 import usuario
 
-import comando_solicitar_pag_cadastrar_usuario
-import comando_cadastrar_usuario
-import comando_solicitar_pag_alterar_usuario
-import comando_alterar_usuario
-import comando_solicitar_pag_acrescentar_trecho
 import comando_acrescentar_trecho
-import comando_solicitar_pag_login
+import comando_alterar_trecho
+import comando_alterar_usuario
+import comando_buscar_trecho
+import comando_cadastrar_usuario
+import comando_criar_roteiro
 import comando_fazer_login
 import comando_fazer_logout
-import comando_solicitar_pag_contato
-import comando_solicitar_pag_ofertas
-import comando_ver_objeto
-import comando_ver_minhas_compras
+import comando_solicitar_pag_acrescentar_trecho
+import comando_solicitar_pag_alterar_usuario
 import comando_solicitar_pag_buscar_trecho
-import comando_buscar_trecho
+import comando_solicitar_pag_cadastrar_usuario
+import comando_solicitar_pag_contato
+import comando_solicitar_pag_criar_roteiro
+import comando_solicitar_pag_escolher_pagamento
+import comando_solicitar_pag_login
+import comando_solicitar_pag_ofertas
+import comando_ver_minhas_compras
+import comando_ver_objeto
 
 import html_texto
 import html_div
@@ -381,7 +385,7 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/buscar_compras':
       # Usuário apertou o botão "Buscar compras" ou equivalente no menu geral:
       pag = comando_ver_minhas_compras.processa(ses, args)
-      
+
     elif cmd == '/solicitar_pag_ofertas':
       # Usuário apertou o botão "Ofertas" do menu geral:
       pag = comando_solicitar_pag_ofertas.processa(ses, args)
@@ -390,14 +394,30 @@ def processa_comando(tipo, ses, dados):
       # Usuário apertou o botão "Contato" do menu geral:
       #pag =  html_pag_contato.gera(ses, [])
       pag = comando_solicitar_pag_contato.processa(ses, args)
-      
+
     elif cmd == '/solicitar_pag_buscar_trecho':
       # Usuário apertou o botão "Buscar Trecho" do menu geral:
       pag = comando_solicitar_pag_buscar_trecho.processa(ses, args)
-      
+
     elif cmd == '/buscar_trecho':
       # Usuário apertou o botão "Buscar" na página de buscar trecho:
       pag = comando_buscar_trecho.processa(ses, args)
+
+    elif cmd == '/alterar_trecho':
+      # Usuário apertou o botão "Alterar Trecho" do menu geral (administrador):
+      pag = comando_alterar_trecho.processa(ses, args)
+
+    elif cmd == '/criar_roteiro':
+      # Usuário apertou o botão "Criar" ou equivalente no formulário de criar roteiro:
+      pag = comando_criar_roteiro.processa(ses, args)
+
+    elif cmd == '/solicitar_pag_criar_roteiro':
+      # Usuário apertou o botão "Criar Roteiro" ou equivalente no menu geral (administrador):
+      pag = comando_solicitar_pag_criar_roteiro.processa(ses, args)
+
+    elif cmd == '/solicitar_pag_escolher_pagamento':
+      # Usuário apertou o botão "Escolher Pagamento" ou equivalente:
+      pag = comando_solicitar_pag_escolher_pagamento.processa(ses, args)
 
     else:
       # Comando não identificado
@@ -414,7 +434,7 @@ def processa_comando(tipo, ses, dados):
     pag =  html_pag_mensagem_de_erro.gera(ses, ("** comando \"%s\" não implementado" % tipo))
 
   sys.stderr.write("!! processa_comando: pag = %s\n" % pag)
-  
+
   if mostra_cmd:
     # Acrescenta os dados para depuração:
     pag = re.sub(r'</body>', ("<br/>%s<br/><br/></body>" % formata_dados_http(cmd,args,dados)), pag)
