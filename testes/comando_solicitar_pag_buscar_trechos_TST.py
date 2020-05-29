@@ -28,7 +28,7 @@ def testa(rotulo, *args):
     """
     Testa se {comando_solicitar_pag_buscar_trecho} retorna  o esperado
     """
-    modulo = comando_solicitar_pag_buscar_trecho
+    modulo = comando_solicitar_pag_buscar_trechos
     funcao = modulo.processa
     frag = False
     pretty = True
