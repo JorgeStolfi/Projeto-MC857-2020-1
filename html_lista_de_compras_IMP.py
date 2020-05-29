@@ -11,7 +11,7 @@ def gera(ses, ids_compras, ver):
     compra_obj = compra.busca_por_identificador(id_cpr)
 
     # Gera uma lista de fragmentos HTML com as informacoes dessa compra
-    campos_resumo = html_resumo_de_cpr.gera(compra_obj, ver)
+    campos_resumo = html_resumo_de_compra.gera(compra_obj, ver)
     # sys.stderr.write("campos_resumo = %s\n" % str(campos_resumo))
     assert type(campos_resumo) is list or type(campos_resumo) is tuple
 
