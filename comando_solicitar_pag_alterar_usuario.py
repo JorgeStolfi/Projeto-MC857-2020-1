@@ -6,7 +6,7 @@ def processa(ses, args):
   
   A função retorna uma página HTML {pag} com o formulário que mostra os
   dados de um certo usuário {usr}, com campos editáveis.
-  O formulário deve conter um botão de sumbissão "Alterar".
+  O formulário deve conter um botão de submissão "Alterar".
   
   O argumento {ses} deve ser uma sessão atualmente aberta.
   
