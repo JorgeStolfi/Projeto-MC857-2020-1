@@ -1,6 +1,7 @@
 import usuario
 import compra
 import poltrona
+import html_botao_simples
 
 def gera(cpr, ver):
   id_cpr = compra.obtem_identificador(cpr)

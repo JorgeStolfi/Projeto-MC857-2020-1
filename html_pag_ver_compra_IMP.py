@@ -1,5 +1,5 @@
 import compra
-import html_pag_mensagem_de_erro
+import html_pag_generica
 import html_resumo_de_compra
 import html_lista_de_poltronas
 
@@ -16,8 +16,8 @@ def gera(ses, cpr, excluir):
   ids_pols = compra.obtem_poltronas(cpr)
   excluir_pol = excluir
   ht_itens = html_lista_de_poltronas.gera(ses, cpr, None, ids_pols, excluir_pol)
-  
-  ht_conteudo = ht_resumo + "<br/>" + ht_poltronas
+
+  ht_conteudo = campos_resumo[0] + " " + campos_resumo[1] + " " + campos_resumo[2] + "<br/>" + ht_itens
   
   pag = html_pag_generica.gera(ses, ht_conteudo, None)
   return pag
