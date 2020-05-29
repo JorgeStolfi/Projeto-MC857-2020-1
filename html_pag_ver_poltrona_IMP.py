@@ -1,5 +1,9 @@
-import html_pag_mensagem_de_erro
+import html_poltrona
+import html_pag_generica
+import html_tabela
 
-def gera(ses, pol):
-  # !!! IMPLEMENTAR !!!
-  return html_pag_mensagem_de_erro.gera(ses, "função {html_pag_ver_poltrona} não implementada")
+def gera(ses, pol, ver, excluir):
+  polt = html_poltrona.gera(ses, pol, ver, excluir)  
+  ht_conteudo = html_tabela.gera({polt})
+  pag = html_pag_generica.gera(ses, ht_conteudo, None)
+  return pag
