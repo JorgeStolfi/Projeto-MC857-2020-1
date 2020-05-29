@@ -162,6 +162,11 @@ def codifica_valor(val):
     return "'" + val + "'"
   elif type(val) is float:
     return ("%.2f" % val)
+  elif type(val) is bool:
+    if val:
+      return "1"
+    else:
+      return "0"
   else:
     erro_prog("valor " + str(val) + " tipo = " + str(type(val)) + " invalido")
     return None
