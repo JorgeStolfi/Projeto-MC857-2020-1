@@ -18,6 +18,7 @@ def gera(ses, cpr, excluir):
   excluir_pol = excluir
   ht_itens = html_lista_de_poltronas.gera(ses, cpr, None, ids_pols, excluir_pol)
   
+  # Itera sobre os elementos vindo de "campos_resumo" transformando-os em string e concatanando para exibição da página
   ht_conteudo = ''.join(map(str, campos_resumo)) + "<br/>" + ht_itens
   
   pag = html_pag_generica.gera(ses, ht_conteudo, None)
