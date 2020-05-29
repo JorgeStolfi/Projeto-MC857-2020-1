@@ -1,0 +1,8 @@
+Relatório
+
+Nessa aula minha tarefa foi implementar o teste do módulo {html_poltrona}, para isso eu me baseei
+no teste do módulo {html_lista_de_poltronas}, as únicas alterações que fiz foi apagar tudo que não
+precisei utilizar para fazer o teste do {html_poltrona} e importar o módulo {poltrona} para criar
+as poltronas que foram utilizadas no teste. Também fiz teste com todas as variações possíveis
+dos argumentos {ver} e {excluir} do módulo {html_poltrona}, com isso percebi que os htmls gerados
+aparentemente não estão levando esses parâmetros em consideração.
