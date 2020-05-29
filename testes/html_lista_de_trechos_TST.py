@@ -25,14 +25,15 @@ def testa(rotulo, *args):
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
 
-trecho1_ident = "T-00000001"
-trecho2_ident = "T-00000002"
-trecho3_ident = "T-00000003"
-trecho4_ident = "T-00000004"
-trecho5_ident = "T-00000005"
-trecho6_ident = "T-00000006"
+trc1_id = "T-00000001"
+trc2_id = "T-00000002"
+trc3_id = "T-00000003"
+trc4_id = "T-00000004"
+trc5_id = "T-00000005"
+trc6_id = "T-00000006"
 
-trechos_ident_list = [trecho1_ident, trecho2_ident, trecho3_ident, trecho4_ident, trecho5_ident, trecho6_ident]
-trechos_list = map(lambda x: trecho.busca_por_identificador(x), trechos_ident_list)
+trechos_ids = [ trc1_id, trc2_id, trc3_id, trc4_id, trc5_id, trc6_id ]
+trechos_list = map(lambda x: trecho.busca_por_identificador(x), trechos_ids)
 
-testa("Trechos", None, trechos_list, True)
+testa("altF", None, trechos_ids, False)
+testa("altT", None, trechos_ids, True)

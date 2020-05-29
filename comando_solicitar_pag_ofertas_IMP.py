@@ -3,6 +3,8 @@
 import html_pag_ofertas
 
 def processa(ses, args):
-  pag = html_pag_ofertas.gera(ses, args)
+  pols = poltrona.busca_ofertas()
+  alterar = sessao.eh_administrador(ses)
+  pag = html_pag_ofertas.gera(ses, pols, alterar)
   return pag
     

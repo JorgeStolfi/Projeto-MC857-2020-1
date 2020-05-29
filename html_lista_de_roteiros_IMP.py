@@ -1,7 +1,12 @@
-import html_roteiro
+import html_resumo_de_roteiro
+import html_tabela
 
-def gera(ses, rots, detalhe):
-  res = ""
+def gera(ses, rots):
+  linhas = [].copy()
   for rot in rots:
-    res = res + html_roteiro.gera(ses, rot, detalhe)
+    ver_rot = True
+    res_campos = html_resumo_de_roteiro.gera(ses, rot, ver)
+    linhas.append(res_campos)
+    
+  res = html_tabela(linhas)
   return res

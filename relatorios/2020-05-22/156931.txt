@@ -1,5 +1,0 @@
-Minha tarefa era implementar {comando_solicitar_pag_contato_TST}
-
-O arquivo já estava criado, faltava a implementação.
-A página "contato" independe de informações de sessão/usuario, entao fiz dois testes: um com sessão e um sem sessão, e em ambos deve ser retornada a página.
-Testes concluídos e tudo ok.

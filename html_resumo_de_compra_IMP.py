@@ -1,21 +1,24 @@
 import usuario
 import compra
 import poltrona
-import html_paragrafo
 
-
-def gera(cpr):
+def gera(cpr, ver):
   id_cpr = compra.obtem_identificador(cpr)
   usr = compra.obtem_cliente(cpr)
   id_usr = usuario.obtem_identificador(usr)
   atrs_compra = compra.obtem_atributos(cpr)
+
   ids_poltronas = poltrona.busca_por_compra(cpr)
-  num_itens = len(ids_poltronas)
+  num_poltronas = len(ids_poltronas)
 
-  estilo_parag = "width: 600px; margin-top: 10px; margin-bottom: 2px; text-indent: 0px;  line-height: 75%;"
-  ht_cpr = html_paragrafo.gera(estilo_parag, id_cpr)
-  ht_usr = html_paragrafo.gera(estilo_parag, id_usr)
-  ht_num_itens = html_paragrafo.gera(estilo_parag, str(num_itens))
+  ht_cpr = id_cpr
+  ht_usr = id_usr
+  ht_num_poltronas = str(num_poltronas)
 
-  ht_bloco = ht_cpr + ht_usr + ht_num_itens
-  return ht_bloco
+  campos = (ht_cpr, ht_usr, ht_num_poltronas)
+  
+  if ver:
+    ht_ver = html_botao_simples.gera("Ver", "ver_compra", {'id_compra': id_cpr}, "#22ff22")
+    campos.append(ht_ver)
+    
+  return campos

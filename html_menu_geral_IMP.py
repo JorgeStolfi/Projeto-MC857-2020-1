@@ -32,8 +32,10 @@ def gera_botoes_linha_1(logado, nome_usuario, admin):
   # Botões da primeira linha que sempre aparecem:
   ht_bt_principal = html_botao_simples.gera("Principal", 'principal', None, '#60a3bc')
   ht_bt_ofertas = html_botao_simples.gera("Ofertas", 'solicitar_pag_ofertas', None, '#ffdd22')
-  ht_bt_buscar = html_botao_simples.gera("Buscar", 'solicitar_pag_buscar_trecho', None, '#eeeeee')
-  botoes = ( ht_bt_principal, ht_bt_ofertas, ht_bt_buscar)
+  ht_bt_trechos = html_botao_simples.gera("Buscar Trechos", 'solicitar_pag_buscar_trechos', None, '#eeeeee')
+  ht_bt_roteiros = html_botao_simples.gera("Buscar Roteiros", 'solicitar_pag_criar_roteiro', None, '#eeeeee')
+  
+  botoes = ( ht_bt_principal, ht_bt_ofertas, ht_bt_trechos, ht_bt_roteiros )
   if logado:
     # Gera outros botões de usuario normal logado
     botoes += gera_botoes_linha_1_logado(nome_usuario, admin)
@@ -57,8 +59,7 @@ def gera_botoes_linha_1_logado(nome_usuario, admin):
   else:
     botoes_compras = (
       html_botao_simples.gera("Meu Carrinho", 'ver_carrinho', None, '#eeeeee'),
-      html_botao_simples.gera("Minhas Compras", 'buscar_compras', None, '#eeeeee'),
-      html_botao_simples.gera("Buscar Trecho", 'solicitar_pag_buscar_trecho', None, '#eeeeee'),
+      html_botao_simples.gera("Minhas Compras", 'ver_minhas_compras', None, '#eeeeee'),
     )
   return botoes_sempre + botoes_compras
 

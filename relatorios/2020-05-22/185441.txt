@@ -1,5 +1,0 @@
-- Tarefa: 185441 processa_comando_http: IMP: acrescentar novos comandos.
-- 15 dos 19 comandos já estavam acrescentados
-- Importei e acrescentei os comandos alterar_trecho, criar_roteiro, solicitar_pag_criar_roteiro e comando_solicitar_pag_escolher_pagamento
- - Os três últimos ainda não tem sua página implementada ou funcionando, então como comentário coloquei o nome do possível botão que existirá
-- Depois da importação do "comando_criar_roteiro" o servidor.py não roda por problemas na implementação do módulo, quando os problemas forem consertados ele voltará a funcionar

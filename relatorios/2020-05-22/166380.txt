@@ -1,8 +1,0 @@
-Relatório 8/5/2020 MC857
-
-André Papoti de Oliveira 166380
-
-	Durante esta aula fiquei responsável pela tarefa de trocar o rotulo "Erro!" geral por "Erro:" em cada linha no arquivo html_erro_IMP
-
-	Para isso removi o cabeçalho anterior "Erro!" e substitui pela mensagem "Nao foi possível completar a operação" para dar mais contexto para o usuário e, no processamento das quebras de linha entre cada mensagem de erro alterei a string para adicionar "Erro:" na fretne de cada mensagem de erro ( linha 15:   msg = re.sub(r'\n', r'<br/>Erro: \n', msg) )
-	Após as modificações, rodei o servidor e forcei alguns erros (como exemplo preencher campos no cadastro de maneira incorreta) e os erros são escritos na tela da maneira desejada, na frente de cada mensagem de erro temos "Erro:" e também o cabeçalho nos contextualiza e diz que a operação não foi processada

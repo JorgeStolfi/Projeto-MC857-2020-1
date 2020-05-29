@@ -28,44 +28,32 @@ usr1_id = usuario.obtem_identificador(usr1)
 usr1_atrs = usuario.obtem_atributos(usr1)
 
 # Trecho teste
-trecho1 = trecho.busca_por_identificador("T-00000001")
-assert trecho1 != None
-
-def str_decorator(func):
-    """Possibilita visualizar o HTML da funcao que retorna uma tupla."""
-    def wrapper(obj_trecho):
-        visualizacao = ""
-        linhas = func(obj_trecho)
-
-        for linha in linhas:
-            visualizacao += linha[0] + " " + linha[1] + "<br>"
-
-        return visualizacao
-    return wrapper
+trc1 = trecho.busca_por_identificador("T-00000001")
+assert trc1 != None
 
 def testa(rotulo, *args):
-  """Testa {funcao(*args)}, grava resultado em
-  "testes/saida/{modulo}.{funcao}.wrapper.{rotulo}.html".
-  """
+  """Testa {funcao(*args)}, grava resultado 
+  em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
+
   modulo = html_resumo_de_trecho
   funcao = modulo.gera
 
   # testes unitários de tipo
-  resumo_de_trecho = funcao(trecho1)
+  resumo_de_trecho = funcao(*args)
   assert isinstance(resumo_de_trecho, tuple)
+  for campo in resumo_de_trecho:
+    assert isinstance(item, str)
 
-  for linha_da_tabela in resumo_de_trecho:
-      assert(isinstance(linha_da_tabela, tuple))
-      
-      for item in linha_da_tabela:
-          assert isinstance(item, str)
-
-  # visualização do HTML
-  funcao = str_decorator(funcao)
+  # Teste da função {gera} HTML
   frag = True  # {True} se for apenas um fragmento HTML, {False} se for página completa.
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
 # Testes com erros em vários formatos:
-for rotulo, erros in (("N", None), ):
-  testa(rotulo, trecho1)
+for rotulo, ver, alterar in ( \
+    ("vNaN", False, False), 
+    ("vTaN", True, False), 
+    ("vNaT", False, True), 
+    ("vTaT", True, True), 
+  ):
+  testa(rotulo, trc1, ver, alterar)

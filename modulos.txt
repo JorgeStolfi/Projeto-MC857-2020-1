@@ -1,0 +1,120 @@
+# Módulos na ordem a testar (N = não testar, A = OK, * = bug):
+
+N processa_comando_http
+N servidor
+
+A utils_testes
+A valida_campo
+A identificador
+
+A conversao_sql
+A base_sql
+A tabela_generica
+
+A html_span
+A html_div
+A html_texto
+A html_paragrafo
+A html_input
+A html_label
+A html_estilo_de_botao
+A html_botao_simples
+A html_botao_submit
+* html_botao_radio
+* html_tabela
+
+A html_cabecalho
+A html_menu_geral
+A html_rodape
+A html_erro
+
+A objeto
+* usuario
+A compra
+* poltrona
+A sessao
+* roteiro
+* trecho
+
+* tabelas
+
+A html_resumo_de_usuario
+* html_sessao
+
+* html_resumo_de_trecho
+* html_resumo_de_compra
+* html_resumo_de_roteiro
+
+* html_poltrona
+
+* html_lista_de_poltronas
+
+A html_lista_de_usuarios
+* html_lista_de_compras
+* html_lista_de_roteiros
+* html_lista_de_trechos
+
+* html_form
+* html_form_tabela_de_campos
+* html_form_acrescentar_trecho
+* html_form_alterar_trecho
+* html_form_buscar_trechos
+* html_form_criar_roteiro
+* html_form_escolher_pagamento
+
+A html_form_login
+A html_form_dados_de_usuario
+A html_form_alterar_usuario
+A html_form_cadastrar_usuario
+
+A html_pag_generica
+A html_pag_principal
+A html_pag_mensagem_de_erro
+A html_pag_login
+A html_pag_alterar_usuario
+A html_pag_cadastrar_usuario
+
+* html_pag_acrescentar_trecho
+* html_pag_alterar_trecho
+* html_pag_buscar_trechos
+* html_pag_buscar_usuarios
+* html_pag_contato
+* html_pag_criar_roteiro
+* html_pag_escolher_pagamento
+* html_pag_ofertas
+
+* html_pag_ver_poltrona
+* html_pag_ver_compra
+* html_pag_ver_minhas_compras
+* html_pag_ver_sessao
+* html_pag_ver_trecho
+* html_pag_ver_roteiro
+* html_pag_ver_usuario
+
+A comando_solicitar_pag_login
+A comando_solicitar_pag_cadastrar_usuario
+* comando_solicitar_pag_alterar_usuario
+* comando_solicitar_pag_acrescentar_trecho
+* comando_solicitar_pag_buscar_compras
+* comando_solicitar_pag_buscar_trechos
+* comando_solicitar_pag_buscar_usuarios
+* comando_solicitar_pag_contato
+* comando_solicitar_pag_criar_roteiro
+* comando_solicitar_pag_escolher_pagamento
+* comando_solicitar_pag_ofertas
+
+* comando_fazer_login
+A comando_fazer_logout
+A comando_cadastrar_usuario
+A comando_alterar_usuario
+
+* comando_buscar_trechos
+* comando_acrescentar_trecho
+* comando_alterar_trecho
+* comando_criar_roteiro
+* comando_ver_objeto
+* comando_ver_trecho
+* comando_ver_minhas_compras
+* comando_ver_compra
+* comando_ver_roteiro
+* comando_ver_carrinho

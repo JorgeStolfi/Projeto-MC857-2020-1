@@ -1,4 +1,0 @@
-1. Criei uma estrutura html que exibe os principais atributos de uma sessao, na mesma linha.
-2. A estrutura pode ser concatenada com outras, do mesmo tipo, sem perder a forma do quadro como um todo. Um traço horizontal separa uma linha da outra.
-3. Poderia ter utilizado a estrutura canonica de uma tabela em html, mas formatando linha a linha facilita a compreensao. A ideia de um cabeçalho extra que finalize a tabela pode ser adicionada, mas precisa ser fora do escopo de html_sessao, antes de iterar gerando as linhas.
-4. O teste foi executado com exito.

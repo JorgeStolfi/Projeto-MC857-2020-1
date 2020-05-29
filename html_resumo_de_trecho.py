@@ -1,11 +1,19 @@
 import html_resumo_de_trecho_IMP
 
-def gera(trc):
-  """Retorna um fragmento HTML que descreve os dados principais de um 
-  trecho: identificadores da compra e do cliente, número de
-  itens (bilhetes, poltronas), e preço total.  Não mostra a lista de 
-  poltronas.
+def gera(trc, ver, alterar):
+  """Retorna HTML que descreve dados principais de um 
+  trecho: identificadores do trecho, da compra e do cliente, número de
+  total de poltronas, número de poltronas livres, e intervalo
+  de preços destas últimas.  Não mostra a lista de poltronas.
+  
+  Se {ver} é {True}, um dos elementos da tupla será um fragmento HTML
+  que descreve um botão "Ver". Quando clicado, esse botão emitirá o comando
+  HTTP "ver_trecho" com o identificador do trecho como argumento.
+  
+  Se {alterar} é {True}, um dos elementos da tupla será um fragmento HTML
+  que descreve um botão "Alterar ". Quando clicado, esse botão emitirá o comando
+  HTTP "alterar_trecho" com o identificador do trecho como argumento.
   
   O resultado é uma tupla com fragmentos separados para cada um desses
   campos, que pode ser usada como uma linha do argumento de {html_tabela.gera}."""
-  return html_resumo_de_trecho_IMP.gera(trc)
+  return html_resumo_de_trecho_IMP.gera(trc, ver, alterar)

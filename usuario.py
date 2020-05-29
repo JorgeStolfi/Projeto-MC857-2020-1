@@ -12,13 +12,14 @@ class Objeto_Usuario(Objeto_Usuario_IMP):
   Por enquanto, o dicionário de atributos de um ojeto desta classe
   contém os seguintes campos:
 
-    'nome'      nome completo do usuário.
-    'senha'     senha do usuário.
-    'email'     endereço de email
-    'CPF'       número CPF ("{XXX}.{YYY}.{ZZZ}-{KK}")
-    'telefone'  telefone completo com DDI e DDD ("+{XX}({YY}){MMMM}-{NNNN}").
-    'documento' número do documento de identidade (RG, passaporte, etc.).
-    
+    'nome'          nome completo do usuário.
+    'senha'         senha do usuário.
+    'email'         endereço de email
+    'CPF'           número CPF ("{XXX}.{YYY}.{ZZZ}-{KK}")
+    'telefone'      telefone completo com DDI e DDD ("+{XX}({YY}){MMMM}-{NNNN}").
+    'documento'     número do documento de identidade (RG, passaporte, etc.).
+    'administrador' {True} se o usuário é administrador, {False} se cliente.
+   
   O 'documento' é opcional.  Os demais atributos são obrigatórios.
     
   Outros atributos (endereço, nascimento, preferências, etc.)

@@ -1,1 +1,0 @@
-Implementei o modulo comando_solicitar_pag_buscar_usuarios, foram criados o modulo, a implementação e o teste. Criei também um modulo html_pag_buscar_usuario, atualmente só retorna uma pagina vazia apontando o erro, ainda precisa chamar o modulo que gera o formulario dessa busca.

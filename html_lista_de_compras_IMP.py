@@ -1,25 +1,24 @@
 import compra
 import html_tabela
 import html_resumo_de_compra
+import sys
 
-def gera(ses, args):
+def gera(ses, ids_compras, ver):
   linhas = [].copy()
-
-  # Pega lista de compras do usuario
-  ids_compras = compra.busca_por_cliente(id_usr)
-
   # Para cada id de compra retornado
-  for id_compra in ids_compras:
+  for id_cpr in ids_compras:
+    # Obtem o objeto correspondente
+    compra_obj = compra.busca_por_identificador(id_cpr)
 
-      # Obtem o objeto correspondente
-      compra_obj = compra.busca_por_identificador(id_compra)
+    # Gera uma lista de fragmentos HTML com as informacoes dessa compra
+    campos_resumo = html_resumo_de_cpr.gera(compra_obj, ver)
+    # sys.stderr.write("campos_resumo = %s\n" % str(campos_resumo))
+    assert type(campos_resumo) is list or type(campos_resumo) is tuple
 
-      # Gera o bloco HTML com as informacoes dessa compra
-      ht_resumo = html_resumo_de_compra.gera(compra_obj)
-
-      # Adiciona o bloco HTML a lista de linhas da tabela que sera exibida
-      linhas.append(( [ht_resumo] ))
-
+    # Adiciona essa lista à lista de linhas para a tabela HTML:
+    linhas.append(campos_resumo)
+    # sys.stderr.write("linhas = %s\n" % str(linhas))
+    
   # Gera a tabela HTML a partir da lista de linhas
   ht_itens = html_tabela.gera(linhas)
 

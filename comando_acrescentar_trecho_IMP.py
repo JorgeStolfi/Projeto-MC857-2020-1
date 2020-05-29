@@ -4,6 +4,7 @@ import html_pag_principal
 import html_pag_acrescentar_trecho
 import trecho
 import sessao
+import poltrona
 from utils_testes import erro_prog, mostra
 from valida_campo import ErroAtrib
 import re
@@ -13,10 +14,17 @@ def msg_campo_obrigatorio(nome_do_campo):
   return "O campo %s é obrigatório." % nome_do_campo
 
 def processa(ses, atrs):
+  # Separa o atributo 'poltronas' em {val_pos}:
+  if 'poltronas' in atrs:
+    esp_pols = atrs['poltronas'] # String que especfica poltronas e preços.
+    del atrs['poltronas']
+  else:
+    esp_pols = "";
   # Tenta criar o trecho:
   try:
     trc = trecho.cria(atrs)
     pag = html_pag_principal.gera(ses, None)
+    pols = poltrona.cria_conjunto(trc, esp_pols)
   except ErroAtrib as ex:
     erros = ex.args[0]
     # Repete a página de acrescentar trecho com os mesmos argumentos e mens de erro:

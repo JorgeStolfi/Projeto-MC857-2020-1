@@ -59,6 +59,8 @@ def testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args):
   func_rot = nome_fn + "." + rotulo
   try:
     res = funcao(*args)
+    if type(res) is tuple or type(res) is list:
+      res = "[lista]<br/>" + " ".join(res)
     testa_modulo_html(modulo, func_rot, res, frag, pretty)
   except Exception as ex:
     fr = inspect.stack()[2]

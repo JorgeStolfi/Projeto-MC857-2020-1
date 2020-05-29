@@ -2,7 +2,7 @@ import trecho
 import poltrona
 import html_texto
 
-def gera(trc):
+def gera(trc, ver, alterar):
   id_trecho = trecho.obtem_identificador(trc)
   atrs_trecho = trecho.obtem_atributos(trc)
   ids_poltronas = poltrona.busca_por_trecho(trc)
@@ -13,6 +13,29 @@ def gera(trc):
   dt_partida = atrs_trecho['dia_partida'] + " " + atrs_trecho['hora_partida']
   dt_chegada = atrs_trecho['dia_chegada'] + " " + atrs_trecho['hora_chegada']
   num_poltronas = str(len(ids_poltronas))
+
+
+###
+###  # estilos
+###  estilo_parag = "\n display:block; word-wrap:break-word;  width: 100%;\n  margin-top: 10px;\n  margin-bottom: 2px;\n  text-indent: 0px;\n  line-height: 75%;"
+###
+###  # gerando tabela
+###  titulos = ("Código", "Origem", "Destino", "Data de Partida", "Data de Chegada")
+###  atributos = obtem_atributos(trc)
+###  linhas = []
+###  for titulo, valor in zip(titulos, atributos.values()):
+###    ht_titulo = html_paragrafo.gera(estilo_parag, html_texto.gera(titulo, None, "Courier", "20px", "bold", "2px", "left", "#263238", None))
+###    ht_valor = html_paragrafo.gera(estilo_parag, html_texto.gera(valor, None, "Courier", "20px", None, "2px", "left", "#263238", None))
+###    linhas.append([ht_titulo, ht_valor])
+###
+###  tabela = html_tabela.gera(linhas)
+###
+###  # ids = obtem_poltronas(trc)
+###  ids = []
+###  poltronas = ""
+###  # poltronas = html_lista_de_poltronas.gera(ses, None, trc, ids, False)
+###
+###  conteudo = tabela + "<br/>" + poltronas
 
   # blocos de texto para tabela
 
@@ -30,5 +53,7 @@ def gera(trc):
   ht_dt_chegada = html_texto.gera(dt_chegada, None, None, None, None, None, None, None, None)
   ht_num_poltronas = html_texto.gera(str(num_poltronas), None, None, None, None, None, None, None, None)
   ht_campos = ( ht_codigo, ht_origem, ht_destino, ht_dt_partida, ht_dt_chegada, ht_num_poltronas )
+  
+  # !!! Botões de "Ver" e "Alterar"
 
   return ht_campos

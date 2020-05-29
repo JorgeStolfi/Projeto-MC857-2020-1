@@ -36,7 +36,7 @@ def testa_modulo_html(modulo, rotulo, res, frag, pretty):
   testar uma ou mais funções do {modulo} especificado.
   
   Supõe que {res} é uma página (se {frag=False}) ou fragmento (se {frag=True}
-  de HTML.  Neste secgundo caso, acrescenta comandos de preâmbulo e
+  de HTML.  Neste segundo caso, acrescenta comandos de preâmbulo e
   postâmbulo, includindo "<html><body>" e "</body></html>",
   que transformam o fragmento em uma página completa que pode ser
   visualizada com browser.
@@ -50,6 +50,10 @@ def testa_modulo_html(modulo, rotulo, res, frag, pretty):
 
 def testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args):
   """Chama a função {funcao} do módulo {modulo} com os argumentos {*args}.
+  A funçao deve devolver um string que é um fragmento HTML, ou 
+  uma lista ou tupla de tais fragmentos.  (No segundo caso, {frag} 
+  deve ser {True}).
+  
   Grava o resultado {res} da chamada em "testes/saida/{modulo}.{funcao}.{rotulo}.html",
   usando {testa_modulo_html}."""
   utils_testes_IMP.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)

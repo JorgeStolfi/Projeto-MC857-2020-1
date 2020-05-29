@@ -1,18 +1,14 @@
 import trecho
 import poltrona
-import html_trecho
+import html_resumo_de_trecho
 import html_tabela
-import html_lista_de_poltronas
 
-def gera(ses, trcs, detalhe):
+def gera(ses, trcs, alterar):
   linhas = [].copy()
   for trc in trcs:
-    linha = html_trecho.gera(ses, trc, False)
+    ver = True
+    linha = html_resumo_de_trecho.gera(ses, trc, ver, alterar)
     linhas.append(linha)
-    if detalhe:
-      pols = poltrona.busca_por_trecho(trc)
-      ht_poltronas = html_lista_de_poltronas.gera(ses, None, trc, pols)
-      linhas.append(("", "", "", ht_poltronas))
-  # tabela
   ht_itens = html_tabela.gera(linhas)
+  # !!! Deveria envolver tudo com um <span style="..."></span> !!!
   return ht_itens

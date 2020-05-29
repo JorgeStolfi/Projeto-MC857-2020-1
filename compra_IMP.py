@@ -84,10 +84,9 @@ def obtem_status(cpr):
   global cache, nome_tb, letra_tb, colunas, diags
   return objeto.obtem_atributo(cpr, 'status')
 
-def obtem_itens(cpr):
+def obtem_poltronas(cpr):
   global cache, nome_tb, letra_tb, colunas, diags
-  id_cpr = obtem_identificador(cpr)
-  ids_poltronas = poltrona.busca_por_compra(id_cpr)
+  ids_poltronas = poltrona.busca_por_compra(cpr)
   return ids_poltronas
 
 def busca_por_identificador(id):
@@ -99,6 +98,11 @@ def busca_por_cliente(id_cliente):
   unico = False
   ids_compras = objeto.busca_por_campo('cliente', id_cliente, unico, cache, nome_tb, letra_tb, colunas)
   return ids_compras
+  
+def calcula_preco(cpr):
+  # !!! IMPLEMENTAR !!!
+  prc = 12345.67
+  return prc
 
 def muda_atributos(cpr, mods_mem):
   global cache, nome_tb, letra_tb, colunas, diags

@@ -8,22 +8,27 @@ import usuario
 import comando_acrescentar_trecho
 import comando_alterar_trecho
 import comando_alterar_usuario
-import comando_buscar_trecho
+import comando_buscar_trechos
 import comando_cadastrar_usuario
 import comando_criar_roteiro
 import comando_fazer_login
 import comando_fazer_logout
 import comando_solicitar_pag_acrescentar_trecho
 import comando_solicitar_pag_alterar_usuario
-import comando_solicitar_pag_buscar_trecho
+import comando_solicitar_pag_buscar_trechos
+import comando_solicitar_pag_buscar_compras
+import comando_solicitar_pag_buscar_usuarios
 import comando_solicitar_pag_cadastrar_usuario
 import comando_solicitar_pag_contato
 import comando_solicitar_pag_criar_roteiro
 import comando_solicitar_pag_escolher_pagamento
 import comando_solicitar_pag_login
 import comando_solicitar_pag_ofertas
+import comando_ver_compra
 import comando_ver_minhas_compras
+import comando_ver_roteiro
 import comando_ver_objeto
+import comando_ver_carrinho
 
 import html_texto
 import html_div
@@ -59,7 +64,6 @@ class Processador_de_pedido_HTTP(BaseHTTPRequestHandler):
     """Este método é chamado pela classe {BaseHTTPRequestHandler}
     ao receber um pedido 'GET'."""
     return self.do_geral('GET')
-
 
   def do_POST(self):
     """Este método é chamado pela classe {BaseHTTPRequestHandler}
@@ -370,6 +374,10 @@ def processa_comando(tipo, ses, dados):
       # Usuário apertou "Confirmar" em formulário de alterar usuário:
       pag = comando_alterar_usuario.processa(ses, args)
 
+    elif cmd == '/solicitar_pag_buscar_usuarios':
+      # Usuário apertou o botão "Buscar usuários" do menu geral:
+      pag = comando_solicitar_pag_buscar_usuarios.processa(ses, args)
+
     elif cmd == '/solicitar_pag_acrescentar_trecho':
       # Usuário apertou o botão "Acrescentar Trecho" do menu de administrador:
       pag = comando_solicitar_pag_acrescentar_trecho.processa(ses, args)
@@ -382,9 +390,25 @@ def processa_comando(tipo, ses, dados):
       # Usuário apertou o botão "Ver Objeto" ou equivalente no menu geral:
       pag = comando_ver_objeto.processa(ses, args)
 
-    elif cmd == '/buscar_compras':
-      # Usuário apertou o botão "Buscar compras" ou equivalente no menu geral:
+    elif cmd == '/ver_minhas_compras':
+      # Usuário apertou o botão "Minhas compras" ou equivalente no menu geral:
       pag = comando_ver_minhas_compras.processa(ses, args)
+
+    elif cmd == '/ver_roteiro':
+      # Usuário apertou o botão "Ver" numa lista de roteiros sugeridos:
+      pag = comando_ver_roteiro.processa(ses, args)
+
+    elif cmd == '/ver_compra':
+      # Usuário apertou o botão "Ver" numa lista de compras:
+      pag = comando_ver_compra.processa(ses, args)
+
+    elif cmd == '/ver_carrinho':
+      # Usuário apertou o botão "Meu carrinho" no menu geral:
+      pag = comando_ver_carrinho.processa(ses, args)
+
+    elif cmd == '/solicitar_pag_buscar_compras':
+      # Usuário apertou o botão "Buscar Compra" do menu geral:
+      pag = comando_solicitar_pag_buscar_compras.processa(ses, args)
 
     elif cmd == '/solicitar_pag_ofertas':
       # Usuário apertou o botão "Ofertas" do menu geral:
@@ -395,13 +419,13 @@ def processa_comando(tipo, ses, dados):
       #pag =  html_pag_contato.gera(ses, [])
       pag = comando_solicitar_pag_contato.processa(ses, args)
 
-    elif cmd == '/solicitar_pag_buscar_trecho':
+    elif cmd == '/solicitar_pag_buscar_trechos':
       # Usuário apertou o botão "Buscar Trecho" do menu geral:
-      pag = comando_solicitar_pag_buscar_trecho.processa(ses, args)
+      pag = comando_solicitar_pag_buscar_trechos.processa(ses, args)
 
-    elif cmd == '/buscar_trecho':
+    elif cmd == '/buscar_trechos':
       # Usuário apertou o botão "Buscar" na página de buscar trecho:
-      pag = comando_buscar_trecho.processa(ses, args)
+      pag = comando_buscar_trechos.processa(ses, args)
 
     elif cmd == '/alterar_trecho':
       # Usuário apertou o botão "Alterar Trecho" do menu geral (administrador):

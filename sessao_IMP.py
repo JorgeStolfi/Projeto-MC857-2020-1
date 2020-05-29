@@ -90,6 +90,12 @@ def obtem_cookie(ses):
   global cache, nome_tb, letra_tb, colunas, diags
   return objeto.obtem_atributo(ses,'cookie')
 
+def eh_administrador(ses):
+  global cache, nome_tb, letra_tb, colunas, diags
+  if  ses == None or not aberta(ses): return False
+  usr = obtem_usuario(ses)
+  return usuario.obtem_atributo(usr, 'administrador')  
+
 def obtem_carrinho(ses):
   global cache, nome_tb, letra_tb, colunas, diags
   return objeto.obtem_atributo(ses,'carrinho')

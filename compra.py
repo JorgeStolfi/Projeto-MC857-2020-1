@@ -100,9 +100,11 @@ def obtem_status(cpr):
   Equivale a {compra.obtem_atributos(cpr,'status')}."""
   return compra_IMP.obtem_status(cpr)
 
-def obtem_itens(cpr):
-  """Devolve a lista de itens do pedido de compra {cpr} """
-  return compra_IMP.obtem_itens(cpr)
+def obtem_poltronas(cpr):
+  """Devolve as poltronas (bilhetes) no pedido de compra {cpr},
+  na forma de uma lista cujos elementos são itentificadores de poltronas
+  ("A-{NNNNNNNN}")."""
+  return compra_IMP.obtem_poltronas(cpr)
 
 def busca_por_identificador(id):
   """Localiza um pedido de compra com identificador {id} (uma string da forma
@@ -116,6 +118,10 @@ def busca_por_cliente(id_cliente):
   em qualquer status, associadas a esse cliente. Se não existirem tais compras,
   devolve uma lista vazia."""
   return compra_IMP.busca_por_cliente(id_cliente)
+  
+def calcula_preco(cpr):
+  """Devolve o preço total da compra, que é a soma dos
+  preços de todos os bilhetes (poltronas) atualmente na mesma."""
 
 def muda_atributos(cpr, mods_mem):
   """Recebe um dicionário Python {mods_mem} cujas chaves são um subconjunto

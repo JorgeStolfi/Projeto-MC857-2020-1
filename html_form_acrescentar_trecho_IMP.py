@@ -28,14 +28,14 @@ def gera(atrs):
   # Dados brutos para as linhas. Para cada linha, o rótulo, tipo do "<input>", nome do campo, e dica.
 
   dados_linhas = (
-      ( "Código",           "text",       "codigo",         "XX NNNN",                False, ),
-      ( "Origem",           "text",       "origem",         "XXX",                    False, ),
-      ( "Destino",          "text",       "destino",        "XXX",                    False, ),
-      ( "Dia de partida",   "text",       "dia_partida",    "YYYY-MM-DD",             False, ),
-      ( "hora de partida",  "text",       "hora_partida",   "HH:MM",                  False, ),
-      ( "Dia de chegada",   "text",       "dia_chegada",    "YYYY-MM-DD",             False, ),
-      ( "hora de chegada",  "text",       "hora_chegada",   "HH:MM",                  False, ),
-      ( "Assentos",         "text",       "assentos",       "1-20,20F,33",            False, ),
+      ( "Código",           "text",       "codigo",         "XX NNNN",                True, ),
+      ( "Origem",           "text",       "origem",         "XXX",                    True, ),
+      ( "Destino",          "text",       "destino",        "XXX",                    True, ),
+      ( "Dia de partida",   "text",       "dia_partida",    "YYYY-MM-DD",             True, ),
+      ( "hora de partida",  "text",       "hora_partida",   "HH:MM",                  True, ),
+      ( "Dia de chegada",   "text",       "dia_chegada",    "YYYY-MM-DD",             True, ),
+      ( "hora de chegada",  "text",       "hora_chegada",   "HH:MM",                  True, ),
+      ( "Poltronas",        "text",       "poltronas",      "1A-20D,33: 90.00; ...",  True, ),
   )
 
   ht_tabela = html_form_tabela_de_campos.gera(dados_linhas, atrs, True)

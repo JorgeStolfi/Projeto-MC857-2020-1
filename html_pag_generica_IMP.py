@@ -32,6 +32,7 @@ def gera(ses, ht_conteudo, erros):
     erros = re.split('[\n]', erros)
   assert type(erros) is list
   # Cleanup the messages:
+  erros = [ er for er in erros if er != None ]
   erros = [ er.strip() for er in erros ]
   erros = [ er for er in erros if len(er) > 0 ]
   if len(erros) != 0:

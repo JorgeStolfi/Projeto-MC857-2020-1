@@ -22,10 +22,10 @@ def processa(ses, args):
       pag = html_pag_ver_usuario.gera(ses, usr)
     elif letra == "C":
       cpr = compra.busca_por_identificador(id)
-      pag = html_pag_ver_compra.gera(ses, cpr)
+      pag = html_pag_ver_compra.gera(ses, cpr, False)
     elif letra == "T":
-      tre = trecho.busca_por_identificador(id)
-      pag = html_pag_ver_trecho.gera(ses, tre)
+      trc = trecho.busca_por_identificador(id)
+      pag = html_pag_ver_trecho.gera(ses, trc)
     elif letra == "S":
       ses1 = sessao.busca_por_identificador(id)
       pag = html_pag_ver_sessao.gera(ses, ses1)

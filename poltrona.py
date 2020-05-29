@@ -100,6 +100,52 @@ def busca_por_compra(cpr):
   """Devolve uma lista de identificadores (NÃO objetos) de todos  as poltronas
   reservados pelo pedido de compra {cpr}."""
   return poltrona_IMP.busca_por_compra(cpr)
+  
+def busca_ofertas():
+  """Devolve uma lista com todas as poltronas livres em oferta."""
+  return poltrona_IMP.busca_ofertas()
+  
+def cria_conjunto(trc, txt):
+  """Cria um conjunto de poltronas do trecho {trc} especificadas pela cadeia {txt}.
+  As poltronas inicialmente são livres (sem nenhuma compra associada). 
+  
+  A cadeia {txt} deve consistir de zero ou mais séries separadas por ponto-e-vírgula (';'). Cada série
+  tem uma lista de números de poltronas, seguida de dois pontos (':'), seguidos pelo preço
+  comum a todas as poltronas dessa série.  
+  
+  Os elementos de uma lista de poltronas são separados por vírgulas (','). Cada elemento
+  é um número de poltrona, ou dois números separados por hífen ('-').
+  Cada número é um inteiro positivo, seguido opcionalmente de uma letra maiúscula.
+  
+  Um intervalo "{x}-{y}" representa todos os inteiros entre os dois inteiros dados,
+  combinados com todas as letras entre as duas letras dadas. 
+  
+  Espaços em branco são ignorados.  Zeros à esquerda nos números são eliminados.
+  
+  Por exemplo, se {txt} for "001, 05, 5B, 7-10, 12A-15D: 90.50; 04K-6M: 130.00"
+  as poltronas são "1", "5", "5B", "7", "8", "9", "10", "12A", "12B", "12C", "12D",
+  "13A", "13B", "13C", "13D", "14A", ..., "15C", "15D", todas com preço 90.50;
+  e "4K", "4L", "4M", "5K", "5L", "5M", "6K", "6L", "6M", todas com preço 130.00.
+  
+  O trecho não deve ser {None}, e não pode já possuira nenhuma dessas poltronas.
+  
+  Em caso de sucesso, devolve uma lista das poltronas criadas, na forma de objetos
+  do tipo {Objeto_Poltrona}.
+  
+  Em caso de erro nos argumentos, levanta a exceção {ErroAtrib} com 
+  mensagem explicativa como argumento."""
+  return poltrona_IMP.cria_conjunto(trc, txt)
+  
+# FUNÇÕES AUXILIARES:
+
+def analisa_esp_conjunto(txt):
+  """Destrincha a cadeia {txt}, no formato descrito na função
+  {cria_conjunto}.
+  
+  Devolve uma lista de pares. Cada par consiste do número de uma
+  poltrona (um string) e seu preço (um float). Em caso de erro de
+  sintaxe, levanta a exceção {ErroAtrib} com uma explicação como
+  argumento."""
 
 # FUNÇÕES PARA DEPURAÇÃO
 

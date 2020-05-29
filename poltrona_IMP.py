@@ -29,8 +29,8 @@ colunas = \
     ( 'id_compra',   type("foo"), 'TEXT',    True  ), # Identificador "C-{NNNNNNNN}" da compra, ou {None}.
     ( 'oferta',      type(False), 'INTEGER', False ), # Diz se a poltrona está em oferta.
     ( 'numero',      type("foo"), 'TEXT',    False ), # Número da poltrona no veículo.
-    ( 'bagagens',    type(25),    'INTEGER', True  ), # Quantidade de bagagens relacionadas a reserva, ou {None}.
-    ( 'preco' ,      type("foo"), 'TEXT',    False ), # Preço da passagm nesta poltrona.
+    ( 'bagagens',    type(25),    'INTEGER', True  ), # Quantidade de bagagens na compra, ou {None}.
+    ( 'preco' ,      type(3.14),  'FLOAT',   False ), # Preço da passagem nesta poltrona.
   )
   # Descrição das colunas da tabela na base de dados.
 
@@ -56,7 +56,7 @@ def inicializa(limpa):
 
 def cria(atrs_mem):
   global cache, nome_tb, letra_tb, colunas, diags
-  if diags: mostra(0,"poltrona_IMP.cria(" + str(atrs_name) + ") ...")
+  if diags: mostra(0,"poltrona_IMP.cria(" + str(atrs_mem) + ") ...")
 
   erros = valida_atributos(None, atrs_mem)
   if len(erros) != 0: raise ErroAtrib(erros)
@@ -121,6 +121,33 @@ def lista_livres(trc):
   ids_poltronas = objeto.busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas)
   return ids_poltronas
 
+def busca_ofertas():
+  global cache, nome_tb, letra_tb, colunas, diags
+  args = { 'id_compra': None, 'oferta': True }
+  unico = False
+  ids_poltronas = objeto.busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas)
+  return ids_poltronas
+
+def cria_conjunto(trc, txt):
+  global cache, nome_tb, letra_tb, colunas, diags
+  
+  id_trc = trecho.obtem_identificador(trc)
+  
+  if trc == None: raise ErroAtrib(["trecho não pode ser nulo"])
+  # Obtém a lista de números de poltronas e respectivos preços:
+  nums_precos = analisa_esp_conjunto(txt);
+  pols = [].copy()
+  for num, prc in nums_precos:
+    if diags: sys.stderr.write("criando poltrona \"%s\" ($ %.2f) no trecho \"%s\"\n" % (num, prc, id_trc))
+    erros = [].copy()
+    erros += valida_campo.numero_de_poltrona("número de poltrona", num, False)
+    erros += valida_campo.preco("preço", prc, False)
+    if len(erros) > 0: raise ErroAtrib(erros)
+    # !!! COMPLETAR !!!
+    # pol = ...
+    # pols.append(pol)
+  return pols
+
 def cria_testes():
   global cache, nome_tb, letra_tb, colunas, diags
   inicializa(True)
@@ -130,56 +157,56 @@ def cria_testes():
         'numero':     "01A",
         'oferta':     True,
         'id_compra':  "C-00000001",
-        'preco':      "10.00",
+        'preco':      10.00,
         'bagagens':   0,
       },
       { 'id_trecho':  "T-00000001",
         'numero':     "02A",
         'oferta':     True,
         'id_compra':  None,
-        'preco':      "60.00",
+        'preco':      60.00,
         'bagagens':   None,
       },
       { 'id_trecho':  "T-00000001",
         'numero':     "02B",
         'oferta':     False,
         'id_compra':  "C-00000002",
-        'preco':      "11.00",
+        'preco':      11.00,
         'bagagens':   1,
       },
       { 'id_trecho':  "T-00000002",
         'numero':     "31",
         'oferta':     True,
         'id_compra':  None,
-        'preco':      "20.00",
+        'preco':      20.00,
         'bagagens':   None,
       },
       { 'id_trecho':  "T-00000002",
         'numero':     "32",
         'oferta':     False,
         'id_compra':  None,
-        'preco':      "30.00",
+        'preco':      30.00,
         'bagagens':   None,
       },
       { 'id_trecho':  "T-00000002",
         'numero':     "33",
         'oferta':     False,
         'id_compra':  "C-00000001",
-        'preco':      "12.00",
+        'preco':      12.00,
         'bagagens':   2,
       },
       { 'id_trecho':  "T-00000003",
         'numero':     "31",
         'oferta':     True,
         'id_compra':  None,
-        'preco':      "50.00",
+        'preco':      50.00,
         'bagagens':   None,
       },
       { 'id_trecho':  "T-00000003",
         'numero':     "33",
         'oferta':     False,
         'id_compra':  "C-00000003",
-        'preco':      "13.00",
+        'preco':      13.00,
         'bagagens':   3,
       },
     ]
@@ -201,7 +228,42 @@ def diagnosticos(val):
   diags = val
   return
 
+# FUNÇÕES AUXILIARES:
+
+def analisa_esp_conjunto(txt):
+  global cache, nome_tb, letra_tb, colunas, diags
+  # !!! IMPLEMENTAR - use {analisa_esp_grupo} !!!
+  nums_precos = [ ("4F", 90.0), ("4G", 90.0), ("29Z", 120.0), ] # Temporário para testes.
+  return nums_precos
+ 
 # FUNÇÕES INTERNAS
+ 
+def analisa_esp_grupo(txt):
+  """Destrincha a cadeia {txt}, no formato descrito na função
+  {cria_conjunto}, exceto que não deve conter nenhum ponto-e-vírgula (';').
+  Deve terminar com dois-pontos (':') e o preço.  Retorna uma lista de
+  pares, cada par com um número de poltrona e esse preço."""
+  global cache, nome_tb, letra_tb, colunas, diags
+  # !!! IMPLEMENTAR -- use {analisa_esp_lista} !!!
+  assert False
+  
+def analisa_esp_lista(txt, prc):
+  """Destrincha a cadeia {txt}, que deve ser uma lista de
+  itens separados por vírgulas (',').  Cada item deve ser
+  um número de poltrona ou dois números separados por hifen ('-').
+  Retorna uma lista de pares, cada par com um número de poltrona
+  e o preço dado {prc}."""
+  global cache, nome_tb, letra_tb, colunas, diags
+  # !!! IMPLEMENTAR -- use {analisa_esp_intervalo} !!!
+  assert False
+  
+def analisa_esp_intervalo(txt, prc):
+  """Destrincha a cadeia {txt}, que deve ser dois números separados por hifen ('-').
+  Retorna uma lista de pares, cada par com um número de poltrona
+  e o preço dado {prc}. """
+  global cache, nome_tb, letra_tb, colunas, diags
+  # !!! IMPLEMENTAR !!!
+  assert False
 
 def valida_atributos(pol, atrs_mem):
   """Faz validações específicas nos atributos {atrs_mem}. Devolve uma lista
@@ -215,54 +277,43 @@ def valida_atributos(pol, atrs_mem):
 
   global cache, nome_tb, letra_tb, colunas, diags
 
+  sys.stderr.write("!! valida_atributos atrs_mem = " + str(atrs_mem) + "\n")
+  
   erros = [].copy();
 
-  # Validade dos campos fornecidos:
-  # !!! Completar !!!
-  # Campos identificador de T trechos e de  C compra trecho ou compra existe 
   # Validade dos campos fornecidos:
   if 'id_trecho' in atrs_mem:
     erros += valida_campo.id_trecho('id_trecho', atrs_mem['id_trecho'], False)
   if 'id_compra' in atrs_mem:
-    erros += valida_campo.id_compra('id_compra', atrs_mem['id_compra'], False)
+    erros += valida_campo.id_compra('id_compra', atrs_mem['id_compra'], True)
   if 'oferta' in atrs_mem:
-    erros += valida_campo.oferta('Oferta', atrs_mem['oferta'], False)
+    erros += valida_campo.booleano('Oferta', atrs_mem['oferta'], False)
   if 'numero' in atrs_mem:
-    erros += valida_campo.numero('Numero', atrs_mem['numero'], False)
+    erros += valida_campo.numero_de_poltrona('Numero', atrs_mem['numero'], False)
   if 'bagagens' in atrs_mem:
-    erros += valida_campo.bagagens('Bagagens', atrs_mem['bagagens'], False)
+    erros += valida_campo.num_de_bagagens('Bagagens', atrs_mem['bagagens'], True)
   if 'preco' in atrs_mem:
-    erros += valida_campo.preco('Preco', atrs_mem['preco'], True)
-
+    erros += valida_campo.preco('Preco', atrs_mem['preco'], False)
 
   # Verifica completude:
   nargs = 0 # Número de campos em {atrs_mem} reconhecidos.
   for chave, tipo_mem, tipo_sql, nulo_ok in colunas:
     if chave in atrs_mem:
       nargs += 1
-    elif pol == None:
+    elif pol == None and not nulo_ok:
+      # Criando objeto, todas as colunas obrigatórias devem ser especificadas:
       erros.append("campo '" + chave + "' é obrigatório")
 
   if nargs < len(atrs_mem):
     # Não deveria ocorrer:
     erro_prog("campos espúrios em {atrs_mem} = " + str(atrs_mem) + "")
 
-  # Verifica unicidade de email e CPF:
-  # !!! Completar !!!
-  # duas poltronas com mesmo trecho && mesmo numero
-  #for chave in ('id_trecho', 'numero'):
-  #  # Exige atributo {chave} único:
-  #  flag_trecho = None
-  #  flag_numero = None
-  #  if chave in atrs_mem:
-  #    val = atrs_mem[chave]
-  #    if chave == 'id_trecho':
-  #      flag_trecho = busca_por_trecho(val)
-  #    elif chave == 'numero':
-  #      flag_numero = busca_por_numero(val)
-  #     #sys.stderr.write("\n\n  valida_atributos: chave = '" + chave + "' val = '" + str(val) + "' flag_trecho = " + str(id_bus) + "\n\n")
-  #  if ((flag_trecho != None) and ((pol == None) or (flag_trecho != pol.id_trecho)) and (flag_numero != None) and ((pol == None) or (flag_numero != pol.numero))  ) :
-  #    erros.append("trecho" + flag_trecho  + "e numero de poltrona " + flag_numero + " ja existe", flag_trecho, flag_numero)
+  # Verifica unicidade da poltrona. Se for nova poltrona ({pol=None}),
+  # não deve haver nenhuma poltrona na base com mesmo número e trecho.  Se for
+  # alteração ({pol != None}), deve haver apenas uma, e deve ter
+  # o mesmo identificador de {pol}.
+  # !!! COMPLETAR -- usar {objeto.busca_por_campos} !!!
+
   return erros
 
 def def_obj_mem(obj, id, atrs_SQL):

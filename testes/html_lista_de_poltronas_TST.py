@@ -22,16 +22,19 @@ def testa(rotulo, *args):
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-poltrona1_ident = "A-00000001"
-poltrona2_ident = "A-00000002"
-poltrona3_ident = "A-00000003"
-poltrona4_ident = "A-00000004"
-poltrona5_ident = "A-00000005"
-poltrona6_ident = "A-00000006"
-poltrona7_ident = "A-00000007"
-poltrona8_ident = "A-00000008"
+pol1_id = "A-00000001"
+pol2_id = "A-00000002"
+pol3_id = "A-00000003"
+pol4_id = "A-00000004"
+pol5_id = "A-00000005"
+pol6_id = "A-00000006"
+pol7_id = "A-00000007"
+pol8_id = "A-00000008"
 
-poltrona_indet_list = [poltrona1_ident, poltrona2_ident, poltrona3_ident, poltrona4_ident,
- poltrona5_ident, poltrona6_ident, poltrona7_ident, poltrona8_ident]
+ses = sessao.busca_por_identificador("S-00000001")
+cpr = compra.busca_por_identificador("C-00000002")
 
-testa("Poltronas", None, None, None, poltrona_indet_list, None)
+pols_ids = [pol1_id, pol2_id, pol3_id, pol4_id, pol5_id, pol6_id, pol7_id, pol8_id]
+
+testa("F", ses, None, None, pols_ids, False)
+testa("T", ses, cpr, None, pols_ids, True) # !!! USAR UMA LISTA DE COMPRAS DA SESSÃO !!!

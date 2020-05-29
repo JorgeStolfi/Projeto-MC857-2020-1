@@ -1,1 +1,0 @@
-Criada a página html_compra mostrando o resumo de compras e os detalhes dos assentos
