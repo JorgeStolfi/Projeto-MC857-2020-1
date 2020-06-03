@@ -1,6 +1,7 @@
 import usuario
 import compra
 import poltrona
+import html_botao_simples
 
 def gera(cpr, ver):
   id_cpr = compra.obtem_identificador(cpr)
@@ -16,9 +17,11 @@ def gera(cpr, ver):
   ht_num_poltronas = str(num_poltronas)
 
   campos = (ht_cpr, ht_usr, ht_num_poltronas)
-  
+
   if ver:
     ht_ver = html_botao_simples.gera("Ver", "ver_compra", {'id_compra': id_cpr}, "#22ff22")
-    campos.append(ht_ver)
-    
+    list_campos = list(campos)
+    list_campos.append(ht_ver)
+    campos = tuple(list_campos)
+
   return campos
