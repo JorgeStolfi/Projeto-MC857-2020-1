@@ -9,7 +9,10 @@ def processa(ses, args):
 
   O argumento {ses} deve ser uma sessão atualmente aberta.
 
-  O dicionário de argumentos {args} deve ser vazio."""
+  O dicionário de argumentos {args} deve ser vazio"""
+  
+  
+  
   return comando_solicitar_pag_acrescentar_trecho_IMP.processa(ses, args)
 
 def verifica_usuario(ses):

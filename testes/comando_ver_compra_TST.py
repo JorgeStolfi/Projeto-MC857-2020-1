@@ -1,3 +1,27 @@
-#! /usr/bin/python3
+import sys
+import comando_ver_compra
+import base_sql
+import tabelas
+import usuario
+import sessao
+import compra
+from utils_testes import erro_prog, mostra
 
-assert False # !!! IMPLEMENTAR !!!
+sys.stderr.write("Conectando com base de dados...\n")
+res = base_sql.conecta("DB",None,None)
+assert res == None
+
+sys.stderr.write("Criando objetos...\n")
+tabelas.cria_todos_os_testes()
+
+ses = sessao.busca_por_identificador("S-00000001")
+usr = usuario.busca_por_identificador("U-00000001")
+compra = compra.busca_por_identificador("C-00000001")
+
+args = { 'id_usuario': id, "id_compra": compra.id}
+compra = comando_ver_compra.processa(ses, args)
+
+if compra:
+  sys.stderr.write("Nao houve erros\n")
+else:
+  erro_prog(" : teste falhou")

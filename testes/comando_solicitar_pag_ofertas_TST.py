@@ -4,6 +4,7 @@ import tabelas
 import usuario
 import sessao
 import utils_testes
+import poltrona
 
 import sys
 
