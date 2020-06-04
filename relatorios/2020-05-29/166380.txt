@@ -1,0 +1,5 @@
+André Papoti de Oliveira RA:166380
+
+Tarefa: escrever e testar html_form_acrescentar_trecho_TST.py
+
+Realizei a tarefa com sucesso e implementei o arquivo de teste do modulo html_form_acrescentar_trecho de forma exaustiva. Todas as possibilidades de preenchimentos dos campos foram testadas: Todos vazios, apenas alguns preenchidos, todos preenchidos e todos preenchidos com formatação inadequada 

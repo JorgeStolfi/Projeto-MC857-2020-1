@@ -1,0 +1,13 @@
+Na aula de hoje, fui encarregado de testar o módulo html_pag_ver_compra. Ou seja, implementei o html_ver_compra_TST.
+
+Para testar o módulo, primeiramente tive que fazer algumas alterações na implementação do html_pag_ver_compra, como coletar cada elemento (str) da tupla campos_resumo. Além disso,
+nessa implementação em específico, precisei dar alguns imports que faltavam.
+
+Na módulo html_resumo_de_compra, também precisei dar um import em um módulo que faltava.
+
+Então, com a implementação funcionando, fiz o módulo de teste de html_pag_gerar_compra. Após de inicializar as tabelas com os mocks necessários, rodei os testes para a página com suas duas possíveis variações: um teste com o campo excluir como True e outro teste com o campo excluir como False.
+
+Ao executar o último teste, percebi que mesmo definindo Excluir como False, ainda haviam botões de excluir na saída html do teste. Vi que isso se tratava de um problema na implementação
+do html da poltrona (html_poltrona_IMP), então corrigi para que o booleano Excluir passasse a ser considerado na construção do html.
+
+Depois dessa correção, os testes funcionaram como esperado após serem inspecionados no browser Google Chrome. 

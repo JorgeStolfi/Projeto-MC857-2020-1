@@ -130,9 +130,9 @@ def busca_ofertas():
 
 def cria_conjunto(trc, txt):
   global cache, nome_tb, letra_tb, colunas, diags
-  
+
   id_trc = trecho.obtem_identificador(trc)
-  
+
   if trc == None: raise ErroAtrib(["trecho não pode ser nulo"])
   # Obtém a lista de números de poltronas e respectivos preços:
   nums_precos = analisa_esp_conjunto(txt);
@@ -152,7 +152,7 @@ def cria_testes():
   global cache, nome_tb, letra_tb, colunas, diags
   inicializa(True)
   lista_atrs = \
-    [ 
+    [
       { 'id_trecho':  "T-00000001",
         'numero':     "01A",
         'oferta':     True,
@@ -235,18 +235,32 @@ def analisa_esp_conjunto(txt):
   # !!! IMPLEMENTAR - use {analisa_esp_grupo} !!!
   nums_precos = [ ("4F", 90.0), ("4G", 90.0), ("29Z", 120.0), ] # Temporário para testes.
   return nums_precos
- 
+
 # FUNÇÕES INTERNAS
- 
+
 def analisa_esp_grupo(txt):
   """Destrincha a cadeia {txt}, no formato descrito na função
   {cria_conjunto}, exceto que não deve conter nenhum ponto-e-vírgula (';').
   Deve terminar com dois-pontos (':') e o preço.  Retorna uma lista de
   pares, cada par com um número de poltrona e esse preço."""
   global cache, nome_tb, letra_tb, colunas, diags
-  # !!! IMPLEMENTAR -- use {analisa_esp_lista} !!!
-  assert False
-  
+  if len(txt) < 1:
+    return False
+  else:
+    lista = []
+    p = txt.split('; ')
+    for i in p:
+    p1 = i.split(': ')
+    p2 = p1[0].split(', ')
+    for j in p2:
+      if j.find('-') == -1:
+        lista.append([j, float(p1[-1])])
+      else:
+        a = j.split('-')
+        lista.append([a[0], float(p1[-1])])
+        lista.append([a[1], float(p1[-1])])
+    return lista
+
 def analisa_esp_lista(txt, prc):
   """Destrincha a cadeia {txt}, que deve ser uma lista de
   itens separados por vírgulas (',').  Cada item deve ser
@@ -254,16 +268,32 @@ def analisa_esp_lista(txt, prc):
   Retorna uma lista de pares, cada par com um número de poltrona
   e o preço dado {prc}."""
   global cache, nome_tb, letra_tb, colunas, diags
-  # !!! IMPLEMENTAR -- use {analisa_esp_intervalo} !!!
-  assert False
-  
+  if len(txt) < 1:
+    return False
+  else:
+    lista = []
+    p = txt.split(', ')
+    for i in p:
+      if i.find('-') == -1:
+        lista.append([i, prc])
+      else:
+        a = i.split('-')
+        lista.append([a[0], prc])
+        lista.append([a[1], prc])
+      return lista
+
 def analisa_esp_intervalo(txt, prc):
   """Destrincha a cadeia {txt}, que deve ser dois números separados por hifen ('-').
   Retorna uma lista de pares, cada par com um número de poltrona
   e o preço dado {prc}. """
   global cache, nome_tb, letra_tb, colunas, diags
-  # !!! IMPLEMENTAR !!!
-  assert False
+  lista = []
+  p = txt.split(', ')
+  for i in p:
+    a = i.split('-')
+    lista.append([a[0], prc])
+    lista.append([a[1], prc])
+  return lista
 
 def valida_atributos(pol, atrs_mem):
   """Faz validações específicas nos atributos {atrs_mem}. Devolve uma lista
@@ -278,7 +308,7 @@ def valida_atributos(pol, atrs_mem):
   global cache, nome_tb, letra_tb, colunas, diags
 
   sys.stderr.write("!! valida_atributos atrs_mem = " + str(atrs_mem) + "\n")
-  
+
   erros = [].copy();
 
   # Validade dos campos fornecidos:

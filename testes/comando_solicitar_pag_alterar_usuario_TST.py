@@ -16,13 +16,9 @@ assert res == None
 sys.stderr.write("Criando alguns objetos...\n")
 tabelas.cria_todos_os_testes()
 
-# Sessão usada no teste
+# sessão usada no teste
 sessao1 = sessao.busca_por_identificador("S-00000001")
 assert sessao1 != None
-
-# Usuário usado no teste
-usuario1 = usuario.busca_por_identificador("U-00000001")
-assert usuario1 != None
 
 def testa(rotulo, *args):
     """Testa {comando_solicitar_pag_alterar_usuario.processa(*args)}, grava resultado
@@ -34,5 +30,10 @@ def testa(rotulo, *args):
     pretty = True  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-testa("Sucesso", sessao1, usuario1)
-testa("Error", None, None)
+args1 = {}
+# Teste mostra os dados do dono da sessão
+testa("Sucesso - sem id_usuario", sessao1, args1)
+
+args1['id_usuario'] = "U-00000002"
+# Teste mostra os dados do dono do identificador passado
+testa("Sucesso - com id_usuario", sessao1, args1)

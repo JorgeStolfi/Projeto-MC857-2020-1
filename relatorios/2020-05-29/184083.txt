@@ -1,0 +1,12 @@
+Minha tarefa foi fix html_pag_ver_roteiro
+
+O que foi preciso fazer:
+html_lista_de_trechos_imp: remover a ses da funcao html_resumo_de_trecho
+html_pag_ver_roteiro_imp: fixar o import, concatenar a chamada do campos_resumo com a funcao str(), e fxaar a chamada da funcao html_pag_generica.html_pag_generica
+html_pag_ver_roteiro: remover dois argumentos invalidos
+html_pag_ver_roteiro_TST: editar campos para funcao funcionar. Existem apenas dois testes que vi que fazem sentido para mim, com login e sem login.
+
+O bot~ao ver trecho que funcao html_pag_ver_roteiro_imp vem do arquivo html_resumo_de_trecho_IMP que n~ao esta imprimindo o botao ver, preferi nao alterar esse arquivo, mas assim que fixado ele deve funcionar pois a flag esta setada como TRUE.
+
+
+
