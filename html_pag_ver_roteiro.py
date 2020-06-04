@@ -11,4 +11,4 @@ def gera(ses, rot):
   Cada linha terá um botão "Ver", que, quando clicado, 
   emitirá o comando HTTP "ver_trecho" com o identificador do 
   trecho como argumento."""
-  return html_pag_ver_roteiro_IMP.gera(ses, rot, comprar, alterar)
+  return html_pag_ver_roteiro_IMP.gera(ses, rot)

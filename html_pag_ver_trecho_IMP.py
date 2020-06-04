@@ -4,13 +4,14 @@ import html_paragrafo
 import html_tabela
 import html_lista_de_poltronas
 import html_resumo_de_trecho
+import poltrona
 
 from trecho import obtem_atributos, obtem_poltronas
 
-def gera(ses, trc):
+def gera(ses, trc, comprar, alterar):
   ver_trc = True
   alterar_trc = True
-  linha_resumo = html_resumo_de_trecho.gera(trc)
+  linha_resumo = html_resumo_de_trecho.gera(trc, False, False)
   ht_resumo = " ".join(linha_resumo) 
   pols = poltrona.busca_por_trecho(trc)
   excluir_pol = False

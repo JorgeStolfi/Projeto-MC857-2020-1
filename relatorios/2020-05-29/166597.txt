@@ -1,0 +1,6 @@
+A tarefa de hoje consistia em escrever os testes para o módulo "html_form_alterar_trecho".
+Antes da execução do teste, foi necessário criar o módulo "html_form_dados_de_trecho", que é utilizado em "html_form_alterar_trecho".
+O módulo "html_form_dados_de_trecho" foi baseado em "html_form_dados_de_usuario", assim como o teste de "html_form_alterar_trecho".
+
+No teste, são gerados as páginas para 3 trechos existentes no banco de dados. Para este teste, não existe distinção entre usuários 
+administradores e usuários comuns.

@@ -1,0 +1,6 @@
+Relatório 173846 - 05/29
+
+Tarefa: html_pag_escolher_pagamento, escrever teste e testar
+
+Implementei o teste baseado nas outras html_pag, testando as entradas possíveis da função gera.
+Foram testados: sessão, conteúdo e alguns tipos de erros. A página está sendo gerada corretamente.

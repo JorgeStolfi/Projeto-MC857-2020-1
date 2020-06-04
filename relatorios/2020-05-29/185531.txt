@@ -1,0 +1,6 @@
+Primeiramente, consertei o bug em html_resumo_de_compra_IMP onde "campos" era definido como uma tupla, mas logo em seguida
+se tentava usar "campos.append()", o que resulta em erro. Campos foi mudado para ser uma lista (assim como requere a documentação) em
+importei módulos faltantes. 
+
+Em seguida, implementei o html_resumo_de_compra_TST, que usa o "html_resumo_de_compra.gera()" de três compras
+diferentes, cada um com sua variação que contém o botão "Ver" ou não.

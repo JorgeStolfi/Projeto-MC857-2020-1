@@ -82,7 +82,7 @@ def aberta(ses):
 def eh_administrador(ses):
   """Retorna {True} se a sessão {ses} não é {None}, está aberta, e 
   o usuário da mesma é um adminstrador."""
-  return sessao_IMP.eh_adminstrador(ses)
+  return sessao_IMP.eh_administrador(ses)
 
 def obtem_cookie(ses):
   """Devolve o cookie da sessão {ses}. 

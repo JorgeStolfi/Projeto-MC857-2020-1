@@ -1,6 +1,7 @@
 import trecho
 import poltrona
 import html_texto
+import html_botao_simples
 
 def gera(trc, ver, alterar):
   id_trecho = trecho.obtem_identificador(trc)
@@ -52,8 +53,11 @@ def gera(trc, ver, alterar):
   ht_dt_partida = html_texto.gera(dt_partida, None, None, None, None, None, None, None, None)
   ht_dt_chegada = html_texto.gera(dt_chegada, None, None, None, None, None, None, None, None)
   ht_num_poltronas = html_texto.gera(str(num_poltronas), None, None, None, None, None, None, None, None)
-  ht_campos = ( ht_codigo, ht_origem, ht_destino, ht_dt_partida, ht_dt_chegada, ht_num_poltronas )
   
   # !!! Botões de "Ver" e "Alterar"
+  botao_ver = html_botao_simples.gera("ver", 'buscar_trechos', id_trecho, '#FF00FF')
+  botao_alterar = html_botao_simples.gera("ver", 'alterar_trecho', id_trecho, '#FF00FF')
+
+  ht_campos = ( ht_codigo, ht_origem, ht_destino, ht_dt_partida, ht_dt_chegada, ht_num_poltronas, botao_ver, botao_alterar)
 
   return ht_campos

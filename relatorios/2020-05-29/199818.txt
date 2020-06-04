@@ -1,0 +1,9 @@
+Implementação da função obtem_resumo(rot)
+Foi criado o arquivo obtem_resumo_IMP com essa função
+Recebe como parâmetro um roteiro e devolve-se um dicionário com o resumo da viagem
+
+
+
+
+
+

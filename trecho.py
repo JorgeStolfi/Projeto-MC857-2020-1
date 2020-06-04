@@ -9,7 +9,7 @@ class Objeto_Trecho(Objeto_Trecho_IMP):
   "T-{NNNNNNNN}" onde {NNNNNNNN} é o índice na tabela (vide abaixo)
   formatado em 8 algarismos.
 
-  Por enquanto, o dicionário de atributos de um ojeto desta classe
+  Por enquanto, o dicionário de atributos de um objeto desta classe
   contém os seguintes campos:
 
     'codigo'       código do trecho na empresa (p. ex. "AZ 4623").
