@@ -1,13 +1,14 @@
 # Implementação do módulo {comando_solicitar_pag_minhas_trechos}.
 
-import html_lista_de_potronas
+#import html_lista_de_potronas
 import html_pag_generica
 import html_resumo_de_trecho
-import html_mensagem-de_erro
+import html_erro
+import html_pag_ver_trecho
 import sessao
-import usuario
+#import usuario
 import trecho
-import potrona
+#import poltrona
 
 def processa(ses, args):
 
@@ -21,5 +22,5 @@ def processa(ses, args):
     erros = ["trecho \"" + id_trecho + "\" não existe"]
     pag = html_pag_mensagem_de_erro(ses, erros)
   else:
-    pag = html_pag_ver_trecho.gera(trc)
+    pag = html_pag_ver_trecho.gera(ses, trc, False, False)
   return pag
