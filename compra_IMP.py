@@ -100,9 +100,10 @@ def busca_por_cliente(id_cliente):
   return ids_compras
   
 def calcula_preco(cpr):
-  # !!! IMPLEMENTAR !!!
-  prc = 12345.67
-  return prc
+  preco = 0
+  for poltrona in obtem_poltronas(cpr):
+    preco = preco + obtem_atributo(poltrona,'preco')
+  return preco
 
 def muda_atributos(cpr, mods_mem):
   global cache, nome_tb, letra_tb, colunas, diags
