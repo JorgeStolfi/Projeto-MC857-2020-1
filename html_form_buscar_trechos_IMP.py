@@ -8,7 +8,7 @@ def gera(atrs, admin):
 
   dados_linhas = (
       ( "Origem",           "text",        "origem",          "Cidade, aeroporto",    False, ),
-      ( "Detino",           "text",        "destino",         "Cidade, aeroporto",    False, ),
+      ( "Destino",          "text",        "destino",         "Cidade, aeroporto",    False, ),
       ( "Data",             "data",        "data",            "xx/xx/xxxx",           False, ),
       ( "Horario",          "horario",     "horario",         "xx:xx",                False, ),
       )

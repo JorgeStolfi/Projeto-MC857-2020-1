@@ -30,7 +30,7 @@ colunas = None
 diags = False
   # Quando {True}, mostra comandos e resultados em {stderr}.
 
-# Definição interna da classe {Objeto_Usuario}:
+# Definição interna da classe {Objeto_Trecho}:
 
 class Objeto_Trecho_IMP(objeto.Objeto):
 
