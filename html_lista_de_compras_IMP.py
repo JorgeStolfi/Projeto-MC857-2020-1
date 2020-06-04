@@ -18,7 +18,7 @@ def gera(ses, ids_compras, ver):
     # Adiciona essa lista à lista de linhas para a tabela HTML:
     linhas.append(campos_resumo)
     # sys.stderr.write("linhas = %s\n" % str(linhas))
-    
+
   # Gera a tabela HTML a partir da lista de linhas
   ht_itens = html_tabela.gera(linhas)
 
