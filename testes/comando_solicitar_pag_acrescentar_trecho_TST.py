@@ -12,7 +12,7 @@ usr_tst = {
             }
 
 ses_tst = {
-            "U-00000001", "ABCDEFGHIJK", "C-00000001"}
+            "U-00000001", "ABCDEFGHIJK", "C-00000002"}
 
 
 comando_solicitar_pag_acrescentar_trecho.processa(ses_tst, "")
