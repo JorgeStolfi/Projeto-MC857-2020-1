@@ -1,0 +1,4 @@
+-Consertei bugs relativos ao {comando_solicitar_pag_ofertas}
+  {sessao.py} tinha erro de digitação na função {eh_administrador()} (L85)
+  Em {base_sql_IMP.py} na função {codifica_valor()}, adicionado caso para o tipo booleano. Deixei o valor de retorno como "NULL"
+  Em {html_pag_ofertas.py} o número de argumentos da função {gera()} estava diferente da implementação.

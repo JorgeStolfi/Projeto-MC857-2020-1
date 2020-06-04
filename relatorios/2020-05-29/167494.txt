@@ -1,0 +1,14 @@
+Relatório Individual - 2020-05-29 - Bernardo do Amaral Teodosio - 167494
+
+Nesta aula, a tarefa designada para mim foi "html_lista_de_compras: TST: escrever e testar".
+
+Abaixo, segue um passo a passo do que tive que fazer para realizá-la, na ordem em que os passos foram realizados:
+
+    * Iniciei usando como base os arquivos html_lista_de_trechos_TST e html_lista_de_poltronas_TST, olhando para os mesmos para implementar o meu arquivo de testes (html_lista_de_compras)
+    * Criei uma sessão usando a função "sessao.busca_por_identificador"
+    * Encontrei um erro no arquivo html_lista_de_compras_IMP que estava fazendo o teste falhar -> estava escrito "html_resumo_de_cpr" onde deveria ser "html_resumo_de_compra"
+    * No arquivo html_resumo_de_compra_IMP, havia um import para "html_botao_simples". Adicionei este import pois também estava fazendo o teste quebrar.
+    * No arquivo html_resumo_de_compra_IMP, havia também um erro onde estava-se tentando usar a função "append" em uma Tupla, o que não é possível. Converti a tupla para lista, realizei o append e então converti novamente a lista para tupla.
+    * Depois disso, o teste rodou perfeitamente. Escrevi 2 testes, um para o botão "Ver" ser exibido e outro para que ele não seja exibido. Testei todas as compras disponíveis (de C-00000001 a C-00000003), usando a sessão S-00000001
+
+Não houveram grandes dificuldades na realização da tarefa. A pior parte foi não conseguir testar "vendo o servidor funcionando", já que o meu módulo depende de outros módulos ainda não implementados.
