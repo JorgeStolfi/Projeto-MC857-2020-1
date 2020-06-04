@@ -2,6 +2,7 @@
 
 import html_lista_de_poltronas
 import html_pag_generica
+import html_pag_ver_compra
 import html_resumo_de_compra
 import html_pag_mensagem_de_erro
 import sessao
@@ -18,13 +19,13 @@ def processa(ses, args):
   assert usr != None # Deveria acontecer.
   assert not usuario.obtem_atributo(usr, 'administrador')  # Deveria acontecer.
   assert 'id_compra' in args # Deveria acontecer
-  
+
   # Monta página:
   id_compra = args['id_compra']
   cpr = compra.busca_por_identificador(id_compra)
   if cpr == None:
     erros = ["compra \"" + id_compra + "\" não existe"]
-    pag = hrml_pag_mensagem_de_erro(ses, erros)
+    pag = html_pag_mensagem_de_erro(ses, erros)
   else:
-    pag = html_pag_ver_compra.gera(cpr)
+    pag = html_pag_ver_compra.gera(ses, cpr, excluir=False)
   return pag

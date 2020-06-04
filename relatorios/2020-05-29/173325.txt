@@ -1,0 +1,24 @@
+# Relatório da Atividade do Dia 29/05/2020
+
+Tarefa: html_pag_criar_roteiro: TST: escrever e testar.
+
+## O que foi feito
+
+Foi implementado o html_pag_cria_roteiro_TST.py que testa a implementação do
+módulo {html_pag_cria_roteiro}. Foram realizados 3 testes. O primeiro teste
+cria a página baseado em uma sessão cujo o usuário é administrador
+({S-00000004}). O segundo teste cria a página baseando-se em uma sessão cujo o
+usuário não é um adiministrador ({S-00000001}). Por fim, o terceiro teste cria
+a página baseando-se em uma sessão {None}. Os teste são bem simples, eles
+simplesmente recebem um objeto {sessao} com base nas descrições anteriores e
+utilizam a função {testa_gera_html} do módulo {utils_testes} passando o
+argumento {frag} como {False} para criar um página HTML.
+
+Além disso, os arquivos {html_pag_cria_roteiro.py} e
+{html_pag_cria_roteiro_IMP.py} tiveram suas indentações modificadas para 2
+espaços.
+
+
+## Erros encontrados
+
+Não foram encontrados erros.
