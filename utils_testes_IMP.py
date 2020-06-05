@@ -9,18 +9,22 @@ from bs4 import BeautifulSoup as bsoup  # Pretty-print of HTML
 def mostra_pilha(n):
   """Para uso por {erro_prog} e {aviso_prog}. Mostra as {n} 
   chamadas na pilha anteriores a essas funções."""
+  sys.stderr.write("  --- Traceback (most recent call last) %s\n" % ("-" * 40))
   stack = inspect.stack()
-  if 5 + n >= len(stack): n = len(stack) - 5;
-  for k in range(n):
-    fr = stack[2+n-k]
+  omite_recentes = 2 # Omite as chamadas mais recentes ({mostra_pilha} e {aviso_prog}).
+  ini = omite_recentes + n # Indice da chamada mais antiga a mostrar.
+  fin = omite_recentes     # Indice da chamada mais antiga a omitir.
+  if ini >= len(stack): ini = len(stack) - 1;
+  for k in range(ini - fin):
+    fr = stack[ini - k]
     sys.stderr.write("  File %s, line %d, in %s\n" % (fr[1],fr[2],fr[3]))
+  sys.stderr.write("  %s\n" % ("-" * 70))
 
 def erro_prog(mens):
   sys.stderr.write("    ** erro: %s\n" % mens)
   assert False
 
 def aviso_prog(mens, grave):
-  sys.stderr.write("Traceback (most recent call last):\n")
   mostra_pilha(20)
   tipo = ("** erro" if grave else "!! aviso")
   sys.stderr.write("    %s %s\n" % (tipo,mens))
@@ -60,7 +64,13 @@ def testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args):
   try:
     res = funcao(*args)
     if type(res) is tuple or type(res) is list:
-      res = "[lista]<br/>" + " ".join(res)
+      res1 = "[lista]:<br/>"
+      for item in res:
+        if type(item) is str:
+          res1 += " " + item
+        else:
+          res1 += " [" + str(type(item)) + "]" + str(item)
+      res = res1
     testa_modulo_html(modulo, func_rot, res, frag, pretty)
   except Exception as ex:
     fr = inspect.stack()[2]

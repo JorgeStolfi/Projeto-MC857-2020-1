@@ -27,4 +27,5 @@ def processa(ses, args):
     erros = ["Roteiro vazio!"]
     return html_pag_mensagem_de_erro.gera(ses, erros)
 
-  return html_pag_ver_roteiro.gera(ses, rot)
+  pag = html_pag_ver_roteiro.gera(ses, rot, None)
+  return pag

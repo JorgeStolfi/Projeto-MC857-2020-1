@@ -144,7 +144,8 @@ def cria_conjunto(trc, txt):
     erros += valida_campo.preco("preço", prc, False)
     if len(erros) > 0: raise ErroAtrib(erros)
     # !!! COMPLETAR !!!
-    # pol = ...
+    # pol_atrs = { ... }
+    # pol = cria(pol_atrs)
     # pols.append(pol)
   return pols
 
@@ -153,6 +154,7 @@ def cria_testes():
   inicializa(True)
   lista_atrs = \
     [
+      # Poltrona "A-00000001":
       { 'id_trecho':  "T-00000001",
         'numero':     "01A",
         'oferta':     True,
@@ -160,6 +162,7 @@ def cria_testes():
         'preco':      10.00,
         'bagagens':   0,
       },
+      # Poltrona "A-00000002":
       { 'id_trecho':  "T-00000001",
         'numero':     "02A",
         'oferta':     True,
@@ -167,6 +170,7 @@ def cria_testes():
         'preco':      60.00,
         'bagagens':   None,
       },
+      # Poltrona "A-00000003":
       { 'id_trecho':  "T-00000001",
         'numero':     "02B",
         'oferta':     False,
@@ -174,6 +178,7 @@ def cria_testes():
         'preco':      11.00,
         'bagagens':   1,
       },
+      # Poltrona "A-00000004":
       { 'id_trecho':  "T-00000002",
         'numero':     "31",
         'oferta':     True,
@@ -181,6 +186,7 @@ def cria_testes():
         'preco':      20.00,
         'bagagens':   None,
       },
+      # Poltrona "A-00000005":
       { 'id_trecho':  "T-00000002",
         'numero':     "32",
         'oferta':     False,
@@ -188,6 +194,7 @@ def cria_testes():
         'preco':      30.00,
         'bagagens':   None,
       },
+      # Poltrona "A-00000006":
       { 'id_trecho':  "T-00000002",
         'numero':     "33",
         'oferta':     False,
@@ -195,6 +202,7 @@ def cria_testes():
         'preco':      12.00,
         'bagagens':   2,
       },
+      # Poltrona "A-00000007":
       { 'id_trecho':  "T-00000003",
         'numero':     "31",
         'oferta':     True,
@@ -202,6 +210,7 @@ def cria_testes():
         'preco':      50.00,
         'bagagens':   None,
       },
+      # Poltrona "A-00000008":
       { 'id_trecho':  "T-00000003",
         'numero':     "33",
         'oferta':     False,
@@ -232,8 +241,11 @@ def diagnosticos(val):
 
 def analisa_esp_conjunto(txt):
   global cache, nome_tb, letra_tb, colunas, diags
-  # !!! IMPLEMENTAR - use {analisa_esp_grupo} !!!
-  nums_precos = [ ("4F", 90.0), ("4G", 90.0), ("29Z", 120.0), ] # Temporário para testes.
+  nums_precos = [].copy() # Lista de pares {(numero, preco)}.
+  grp_esps = txt.split(';') # Lista de especificações de grupos
+  for grp_esp in grp_esps:
+    nps = analisa_esp_grupo(grp_esp)
+    nums_precos += nps
   return nums_precos
 
 # FUNÇÕES INTERNAS
@@ -244,22 +256,14 @@ def analisa_esp_grupo(txt):
   Deve terminar com dois-pontos (':') e o preço.  Retorna uma lista de
   pares, cada par com um número de poltrona e esse preço."""
   global cache, nome_tb, letra_tb, colunas, diags
-  if len(txt) < 1:
-    return False
-  else:
-    lista = []
-    p = txt.split('; ')
-    for i in p:
-    p1 = i.split(': ')
-    p2 = p1[0].split(', ')
-    for j in p2:
-      if j.find('-') == -1:
-        lista.append([j, float(p1[-1])])
-      else:
-        a = j.split('-')
-        lista.append([a[0], float(p1[-1])])
-        lista.append([a[1], float(p1[-1])])
-    return lista
+  nums_esp_prc_esp = txt.split(':')
+  if len(nums_esp_prc_esp) != 2:
+    raise ErroAtrib("sintaxe inválida em grupo de poltronas: \"" + txt + "\"")
+  nums_esp = nums_esp_prc_esp[0]
+  prc_esp = nums_esp_prc_esp[1]
+  prc = analisa_esp_preco(prc_esp)
+  nums_prc = analisa_esp_lista(nums_esp, prc)
+  return nums_prc
 
 def analisa_esp_lista(txt, prc):
   """Destrincha a cadeia {txt}, que deve ser uma lista de
@@ -268,32 +272,87 @@ def analisa_esp_lista(txt, prc):
   Retorna uma lista de pares, cada par com um número de poltrona
   e o preço dado {prc}."""
   global cache, nome_tb, letra_tb, colunas, diags
+  nums_prc = [].copy()
+  nums_esps = txt.split(',')
+  for num_esp in nums_esps:
+    if num_esp.find('-') == -1:
+      num_int, num_let = analisa_esp_numero(num_esp)
+      num = "%d%s" % (num_int, num_let)
+      nums_prc.append((num, prc))
+    else:
+      nums_prc_int = analisa_esp_intervalo(num_esp, prc)
+      nums_prc += nums_prc_int
+  return nums_prc
+  
+def analisa_esp_numero(txt):
+  """Destrincha a cadeia {txt}, que deve ser um número de poltrona: um inteiro não 
+  negativo sequido opcionalmente de uma letra maiúscula.  Devolve o inteiro como {int} e a 
+  letra como {string}. Se não houver letra, o segundo resultado é a cadeia vazia."""
+  global cache, nome_tb, letra_tb, colunas, diags
+  txt = txt.strip(" ")
   if len(txt) < 1:
-    return False
+    raise ErroAtrib("sintaxe inválida em número de poltrona: \"" + txt + "\"")
+  alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  i = txt.find(alfabeto)
+  if i >= 0:
+    # Tem letra:
+    num_int_esp = txt[0:i].strip(" ")
+    num_let_esp = txt[i:]
+    assert len(num_let_esp) > 0
+    if len(num_let_esp) != 1:
+      raise ErroAtrib("sintaxe inválida em número de poltrona (letra): \"" + num_let_esp + "\"")
+    num_let = num_let_esp
   else:
-    lista = []
-    p = txt.split(', ')
-    for i in p:
-      if i.find('-') == -1:
-        lista.append([i, prc])
-      else:
-        a = i.split('-')
-        lista.append([a[0], prc])
-        lista.append([a[1], prc])
-      return lista
+    # Não tem letra:
+    num_int_esp = txt
+    num_let = ""
+  if len(num_int_esp) == 0:
+    num_int = 0
+  else:
+    try:
+      num_int = int(num_int_esp)
+    except:
+      raise ErroAtrib("sintaxe inválida em número poltronas (inteiro): \"" + num_int_esp + "\"")
+  return num_int, num_let
 
 def analisa_esp_intervalo(txt, prc):
-  """Destrincha a cadeia {txt}, que deve ser dois números separados por hifen ('-').
+  """Destrincha a cadeia {txt}, que deve ser dois números de poltrona separados por hifen ('-').
   Retorna uma lista de pares, cada par com um número de poltrona
   e o preço dado {prc}. """
   global cache, nome_tb, letra_tb, colunas, diags
-  lista = []
-  p = txt.split(', ')
-  for i in p:
-    a = i.split('-')
-    lista.append([a[0], prc])
-    lista.append([a[1], prc])
-  return lista
+  ini_esp_fin_esp = txt.split('-')
+  if len(ini_esp_prc_esp) != 2:
+    raise ErroAtrib("sintaxe inválida em intervalo de poltronas: \"" + txt + "\"")
+  alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  ini_esp = ini_esp_fin_esp[0]
+  ini_int, ini_let = analisa_esp_numero(ini_esp)
+  ini_let_ix = alfabeto.find(ini_let)
+  
+  fin_esp = ini_esp_fin_esp[1]
+  fin_int, fin_let = analisa_esp_numero(fin_esp)
+  fin_let_ix = alfabeto.find(fin_let)
+  
+  if ini_int > fin_int or ini_let_ix > fin_let_ix:
+    raise ErroAtrib("sintaxe inválida em intervalo de poltronas (ordem): \"" + txt + "\"")
+  
+  nums_prc = [].copy()
+  for num_int in range(ini_int, fin_int + 1):
+    for num_let_ix in range(ini_let_ix, fin_let_ix + 1):
+      num_let = alfabeto[num_let_ix]
+      num = "%d%s" % ( num_int, num_let)
+      nums_prc.append((num, prc))
+  return nums_prc
+
+def analisa_esp_preco(txt):
+  """Destrincha a cadeia {txt}, que deve ser um preço de poltrona
+  no formato "{R}.{CC}" onde {R} é um ou mais dígitos decimais,
+  e {CC} é dois dígitos decimais"."""
+  global cache, nome_tb, letra_tb, colunas, diags
+  try:
+    prc = float(prc_esp)
+  except:
+    raise ErroAtrib("sintaxe inválida em preço de poltronas: \"" + prc_esp + "\"")
+  return prc
 
 def valida_atributos(pol, atrs_mem):
   """Faz validações específicas nos atributos {atrs_mem}. Devolve uma lista

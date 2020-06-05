@@ -1,5 +1,0 @@
-185441 html_pag_ver_usuario: TST: escrever e testar
-
-- Escrevi o código do html_pag_ver_usuario_TST com base no html_pag_ver_trecho_TST, alterando argumentos na chamada da função testa e criando novos testes de erros.
-- Realizei o teste pelo testa.sh
-- O teste realizado gerou as páginas de ver usuário como esperado com os dados do usuário no formulário. Porém não mostrou as mensagens de erro na página com rótulo "E".

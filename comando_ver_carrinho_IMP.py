@@ -20,5 +20,5 @@ def processa(ses, args):
   
   # Monta página:
   excluir_pol = True # Mostrar botão "Excluir"
-  pag = html_pag_ver_compra.gera(ses, cpr, excluir_pol)
+  pag = html_pag_ver_compra.gera(ses, cpr, excluir_pol, None)
   return pag

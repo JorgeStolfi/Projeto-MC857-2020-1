@@ -1,7 +1,7 @@
 
 import html_lista_de_trechos_IMP
 
-def gera(ses, trcs, alterar):
+def gera(trcs, alterar):
   """Retorna um trecho de HTML que descreve os trechos em uma lista
   de trechos {trcs}.
   
@@ -11,4 +11,4 @@ def gera(ses, trcs, alterar):
   Se {alterar} for {True}, cada trecho também terá um botão "Alterar" que 
   emite o comando HTTP "solicitar_pag_alterar_trecho" com o 
   identificador do trecho como argumento."""
-  return html_lista_de_trechos_IMP.gera(ses, trcs, alterar)
+  return html_lista_de_trechos_IMP.gera(trcs, alterar)

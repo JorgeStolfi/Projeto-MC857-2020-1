@@ -1,8 +1,7 @@
 import html_pag_generica
-import html_div
+import html_form_buscar_compras
 
-
-def gera(ses):
-  conteudo = html_div.gera("display:inline-block", "TODO: Implementar página de busca")
-  pagina = html_pag_generica.gera(ses, conteudo, None)
-  return pagina
+def gera(ses, atrs, admin, erros):
+  ht_form = html_form_buscar_compras.gera(atrs, admin)
+  pag = html_pag_generica.gera(ses, ht_form, erros)
+  return pag

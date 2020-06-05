@@ -1,1 +1,0 @@
-Foi criada as funções analisa_esp_grupo, analisa_esp_lista e analisa_esp_intervalo em pontrona_IMP.py.

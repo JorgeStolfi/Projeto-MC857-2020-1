@@ -2,7 +2,6 @@
 
 import comando_fazer_logout_IMP
 
-
 def processa(ses, args):
   """Esta função é chamada quando o usuário aperta o botão "Sair" (logout)
   no menu geral de uma página da loja.

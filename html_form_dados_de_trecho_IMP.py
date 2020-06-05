@@ -1,35 +1,56 @@
+import objeto
+import trecho
+import poltrona
+
 import html_label
 import html_input
-import html_tabela
+import html_table
 import html_botao_submit
-import html_form_tabela_de_campos
+import html_botao_simples
+import html_form_table
 import html_form
+from utils_testes import erro_prog, mostra
+import sys
 
+def gera(id_trecho, atrs, texto_bt, comando_bt):
+  # For simplicity:
+  if atrs == None:
+    atrs = {}.copy() 
+  else: 
+    atrs = atrs.copy()
 
-def gera(id_trecho, atrs, texto_bt, post_url):
   if id_trecho != None:
-    novo = False
+    # Supõe que é mostrar trecho existente:
     # Inclui campo 'id_trecho' no formulário:
     ht_id_trecho = html_input.gera(None, "hidden", "id_trecho", id_trecho, True, None, None)
   else:
-    novo = True
+    # Supõe que é criação de novo trecho, ou buscar:
+    alterar = False
     ht_id_trecho = ""
- 
 
-  dados_linhas = (
-    ( "Origem",           "text",     "origem",        None,      False, ),
-    ( "Destino",          "text",     "destino",       None,      False, ),
-  )
+  dados_linhas = [
+    ( "Código",           "text",       "codigo",         "XX NNNN",                True, ),
+    ( "Origem",           "text",       "origem",         "XXX",                    True, ),
+    ( "Dia de partida",   "text",       "dia_partida",    "YYYY-MM-DD",             True, ),
+    ( "Hora de partida",  "text",       "hora_partida",   "HH:MM",                  True, ),
+    ( "Destino",          "text",       "destino",        "XXX",                    True, ),
+    ( "Dia de chegada",   "text",       "dia_chegada",    "YYYY-MM-DD",             True, ),
+    ( "Hora de chegada",  "text",       "hora_chegada",   "HH:MM",                  True, ),
+    ( "Poltronas",        "text",       "poltronas",      "1A-20D,33: 90.00; ...",  True, ),
+  ]
 
   # Monta a tabela com os fragmentos HTML:
-  ht_tabela = html_form_tabela_de_campos.gera(dados_linhas, atrs, False)
+  ht_table = html_form_table.gera(dados_linhas, atrs, False)
 
-  ht_bt_buscar = html_botao_submit.gera(texto_bt, post_url, None, '#55ee55')
+  ht_bt_acao = html_botao_submit.gera(texto_bt, comando_bt, None, '#55ee55')
 
-  ht_campos = \
+  ht_bt_cancelar = html_botao_simples.gera("Cancelar", 'principal', None, '#ff2200')
+
+  ht_conteudo = \
     ( "    " + ht_id_trecho + "\n" if ht_id_trecho != "" else "") + \
-    ht_tabela + \
-    ht_bt_buscar
+    ht_table + \
+    ht_bt_acao + \
+    ht_bt_cancelar
 
-  ht = html_form.gera(ht_campos)
+  ht = html_form.gera(ht_conteudo)
   return ht

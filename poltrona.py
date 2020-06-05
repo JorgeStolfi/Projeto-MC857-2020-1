@@ -17,10 +17,12 @@ class Objeto_Poltrona(Objeto_Poltrona_IMP):
 
     'id_trecho'    identificador "T-{NNNNNNNN}" do trecho de que este poltrona é parte.
     'id_compra'    identificador "C-{NNNNNNNN}" da compra, ou {None} se livre.
+    'oferta'       booleano que diz se a poltrona está em oferta.
     'numero'       número da poltrona no veículo
     'bagagens'     quantidade de bagagens relacionadas a compra, ou {None} se livre.
+    'preco'        preço da passagem nesta poltrona.
     
-  Outros atributos (como preço, limite de bagagem, classe, etc.) poderão 
+  Outros atributos (classe, etc.) poderão 
   ser acrescentados no futuro.
 
   REPRESENTAÇÃO NA BASE DE DADOS

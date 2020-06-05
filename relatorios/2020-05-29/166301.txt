@@ -1,1 +1,0 @@
-Implementada a função calcula preços de Compra, utilizando as funções de obter preço de Poltrona

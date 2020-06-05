@@ -24,6 +24,7 @@ import comando_solicitar_pag_criar_roteiro
 import comando_solicitar_pag_escolher_pagamento
 import comando_solicitar_pag_login
 import comando_solicitar_pag_ofertas
+import comando_criar_roteiro
 import comando_ver_compra
 import comando_ver_minhas_compras
 import comando_ver_roteiro
@@ -385,6 +386,10 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/acrescentar_trecho':
       # Usuário apertou o botão "Acrescentar" no formulário de acrescentar trecho:
       pag = comando_acrescentar_trecho.processa(ses, args)
+
+    elif cmd == '/criar_roteiro':
+      # Usuário apertou o botão "Pesquisar" no formulário de pesquisar roteiro:
+      pag = comando_criar_roteiro.processa(ses, args)
 
     elif cmd == '/ver_objeto':
       # Usuário apertou o botão "Ver Objeto" ou equivalente no menu geral:

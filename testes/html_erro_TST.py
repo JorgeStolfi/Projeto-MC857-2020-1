@@ -1,11 +1,6 @@
 #! /usr/bin/python3
 
 import html_erro
-import base_sql
-import tabelas
-import usuario
-import sessao
-import compra
 import utils_testes
 
 import sys

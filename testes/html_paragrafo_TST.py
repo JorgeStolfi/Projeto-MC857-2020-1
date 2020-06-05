@@ -1,13 +1,6 @@
 #! /usr/bin/python3
 
-# Interfaces usadas por este script:
-
 import html_paragrafo; from html_paragrafo import *
-import base_sql
-import tabelas
-import usuario
-import sessao
-import compra
 import utils_testes
 
 import sys

@@ -1,0 +1,29 @@
++ **136686** comando_ver_minhas_compras: TST: Consertar 
++ **138745** botão de "Meu Carrinho": a página resultante deve ter um botão "Finalizar Compra"
++ **138771** comando_acrescentar_trecho: IMP: consertar (botão "Acrescentar trecho") TST: Consertar 
++ **139511** acrescentar botão no menu de administrador "Ver objeto", com um campo editável para o identificador de objeto. (Crie um mini-<form> com um input mais um botão submit)
++ **146383** comando_ver_trecho: fazer funcionar.
++ **155335** html_solicitar_pag_criar_roteiro: IMP: não deve exigir logado nem administrador. 
++ **156931** comando_ver_carrinho: TST: Testar com sessão que tem carrinho 
++ **158044** comando_buscar_compras: implementar o módulo
++ **165232** poltrona: IMP: Completar {cria_conjunto} TST: Testar {cria_conjunto,analisa_esp_grupo} e demais funções.
++ **166213** html_lista_de_trechos: IMP: Fazer funcionar os botões "Excluir" e "Ver".
++ **166301** fazer functionar o botão "Ver" na página "Minhas compras"
++ **166380** html_form_buscar_usuarios: IMP: Acrescentar mais campos 
++ **166597** comando_ver_trecho: TST: Consertar 
++ **166779** comando_ver_compra: TST: Consertar 
++ **167494** comando_solicitar_pag_acrescentar_trecho: TST: Consertar 
++ **169601** acrescentar campos obrigatórios 'dia_min' e 'dia_max' no formulário de buscar roteiros. Fazer funcionar.
++ **170012** comando_ver_ofertas: fazer funcionar.
++ **170013** roteiro: IMP: fazer algo menos fajuto, como buscar trechos com o início e com o fim dados, filtrar pelas datas.
++ **173325** comando_ver_minhas_compras: mostrar preço total de cada compra.  Colocar um cabeçalho decente.
++ **173846** comando_ver_compra, comando_ver_meu_carrinho: mostrar preço, aeroportos e datas de cada bilhete.
++ **174847** poltrona: IMP: Em {valida_atributos}, verificar a unicidade da poltrona usando {objeto.busca_por_campos} 
++ **176131** html_lista_de_trechos: IMP: Melhorar a aparência
++ **178472** comando_alterar_trecho: TST: Consertar 
++ **184083** processa_comando_http: IMP: Completar o {import} e o despacho com todos os módulos {comando_*.py} que existem. 
++ **185441** html_pag_ver_usuario: IMP: Deveria confirmar que o dono da sessão {ses} é administrador. 
++ **185487** html_resumo_de_trecho: IMP: Botões de "Ver" e "Alterar"
++ **185531** html_pag_ver_poltrona: TST: Consertar 
++ **187700** comando_buscar_usuarios: implementar o módulo
++ **199818** acrescentar botões no menu de administrador "Buscar usuários", "Buscar compras" 

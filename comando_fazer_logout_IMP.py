@@ -3,7 +3,6 @@
 import html_pag_principal
 import html_pag_mensagem_de_erro
 import sessao
-import processa_comando_http
 
 def processa(ses, args):
   if ses == None or not sessao.aberta(ses):

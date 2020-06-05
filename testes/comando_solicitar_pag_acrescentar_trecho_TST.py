@@ -1,6 +1,8 @@
 from utils_testes import erro_prog, aviso_prog
 import comando_solicitar_pag_acrescentar_trecho
 
+# !!! CONSERTAR !!!
+
 usr_tst = {
             'nome': "Jorge Primus",
             'senha': "123456789",
@@ -11,12 +13,6 @@ usr_tst = {
             'administrador': True,
             }
 
-ses_tst = {
-            "U-00000001", "ABCDEFGHIJK", "C-00000002"}
-
+ses_tst = { "U-00000001", "ABCDEFGHIJK", "C-00000002"}
 
 comando_solicitar_pag_acrescentar_trecho.processa(ses_tst, "")
-
-
-
-#erro_prog("!!! IMPLEMENTAR !!!")

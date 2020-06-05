@@ -30,4 +30,5 @@ def testa(rotulo, *args):
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-testa("ver_sessao", ses, ses1)
+testa("S-E0", ses, ses1, None)
+testa("S-E2", ses, ses1, ["Veja a mensagem abaixo", "Veja a mensagem acima"])

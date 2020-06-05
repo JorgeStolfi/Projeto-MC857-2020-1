@@ -14,6 +14,8 @@ assert res == None
 sys.stderr.write("Criando objetos...\n")
 tabelas.cria_todos_os_testes()
 
+# !!! CONSERTAR !!!
+
 ses = sessao.busca_por_identificador("S-00000001")
 id = usuario.busca_por_identificador("U-00000001")
 

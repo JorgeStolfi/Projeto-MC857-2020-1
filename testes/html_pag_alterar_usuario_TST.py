@@ -46,24 +46,14 @@ def testa(rotulo, *args):
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-# Testes com erros em vários formatos para usuario 1:
-for tag, erros in (
-    ("N", None),
-    ("V", []),
-    ("B", "Mensagem UM\nMensagem DOIS\nMensagem TRÊS"),
-    ("L", ["Mensagem UM", "Mensagem DOIS", "Mensagem TRÊS",]),
-    ("LB", ["Mensagem UM-A\nMensagem UM-B", "Mensagem DOIS", "Mensagem TRÊS",]),
-  ):
-  rotulo = tag
-  testa(rotulo, ses, usr1_id, usr1_atrs, erros)
-
-# Testes com erros em vários formatos para usuario 2:
-for tag, erros in (
-    ("N-adm", None),
-    ("V-adm", []),
-    ("B-adm", "Mensagem UM\nMensagem DOIS\nMensagem TRÊS"),
-    ("L-adm", ["Mensagem UM", "Mensagem DOIS", "Mensagem TRÊS",]),
-    ("LB-adm", ["Mensagem UM-A\nMensagem UM-B", "Mensagem DOIS", "Mensagem TRÊS",]),
-  ):
-  rotulo = tag
-  testa(rotulo, ses, usr2_id, usr2_atrs, erros)
+for admin in (False, True):
+  ad = "-adm"+str(admin)
+  for tag, erros in (
+      ("N"+ad, None),
+      ("V"+ad, []),
+      ("B"+ad, "Mensagem UM\nMensagem DOIS\nMensagem TRÊS"),
+      ("L"+ad, ["Mensagem UM", "Mensagem DOIS", "Mensagem TRÊS",]),
+      ("LB"+ad, ["Mensagem UM-A\nMensagem UM-B", "Mensagem DOIS", "Mensagem TRÊS",]),
+    ):
+    rotulo = tag
+    testa(rotulo, ses, usr1_id, usr1_atrs, admin, erros)

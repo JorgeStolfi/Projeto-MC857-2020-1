@@ -12,20 +12,20 @@ sys.stderr.write("Conectando com base de dados...\n")
 res = base_sql.conecta("DB",None,None)
 assert res == None
 
+# !!! CONSERTAR !!!
+
 sys.stderr.write("Criando objetos...\n")
 tabelas.cria_todos_os_testes()
 
 ses = sessao.busca_por_identificador("S-00000001")
 
-trecho1 = trecho.busca_por_identificador("T-00000002")
+trc1_id = "T-00000002"
+trc1 = trecho.busca_por_identificador(trc1_id)
 
-#trecho1 = "T-00000001"
-args = { 'id_trecho': trecho1 }
-#trechoTest = comando_ver_trecho.processa("S-00000001", args)
-trechoTest = comando_ver_trecho.processa(ses, args)
+args = { 'id_trecho': trc1_id }
+pag = comando_ver_trecho.processa(ses, args)
 
-
-if trechoTest == trc :
+if pag == trc1:
   sys.stderr.write("Nao houve erros\n")
 else:
   erro_prog(" : teste falhou")

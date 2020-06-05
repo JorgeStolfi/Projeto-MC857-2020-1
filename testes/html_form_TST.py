@@ -5,7 +5,7 @@
 import html_form
 import html_label
 import html_input
-import html_tabela
+import html_table
 import html_botao_submit
 from utils_testes import testa_modulo_html
 
@@ -35,14 +35,14 @@ def cria_form_completo():
   linhas.append((ht_rotulo, ht_campo,))
 
   # Monta a tabela com os fragmentos HTML:
-  ht_tabela = html_tabela.gera(linhas)
+  ht_table = html_table.gera(linhas)
 
   # cria botao de interacao com o formulario
   ht_botao = html_botao_submit.gera("Botao", 'url test', None, '#55ee55')
 
   # counteudo do formulario
   ht_campos = \
-    ht_tabela + \
+    ht_table + \
     ht_botao
 
   # cria formulario de teste

@@ -12,6 +12,13 @@ import comando_criar_roteiro
 
 import sys
 
+sys.stderr.write("Conectando com base de dados...\n")
+res = base_sql.conecta("DB",None,None)
+assert res == None
+
+sys.stderr.write("Criando alguns objetos...\n")
+tabelas.cria_todos_os_testes()
+
 ok_global = True # Vira {False} se um teste falha.
 # ----------------------------------------------------------------------
 # Função de teste:
@@ -39,8 +46,6 @@ dados = {
     "dia_max": "2020-05-09"
 }
 testa_comando_criar_roteiro(dados, True)
-dados = {}
-testa_comando_criar_roteiro(dados, False)
 
 # ----------------------------------------------------------------------
 # Veredito final:

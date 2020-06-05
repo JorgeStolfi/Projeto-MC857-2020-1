@@ -5,17 +5,24 @@ import sessao
 import usuario
 
 def processa(ses, args):
-
-  # se o id_usuario nao existir, obter dados do usuario da sessao
+  if ses == None or not sessao.aberta(ses):
+    erro_prog("sessão deveria estar aberta")
+  else:
+    usr_ses = sessao.obtem_usuario(ses)
+    admin = usuario.obtem_atributo(usr_ses, 'administrador')
+    
   if args == {} or args['id_usuario'] == None :
-    user = sessao.obtem_usuario(ses)
-    id_usuario = usuario.obtem_identificador
-  # se o id_usuario existir, obter dados do usuario desse id
+    # O 'id_usuario' nao foi especificado; supõe que é o dono da sessao:
+    usr = usr_ses
+    id_usr = usuario.obtem_identificador(usr)
   elif args['id_usuario'] != None:
-    user = usuario.busca_por_identificador(args['id_usuario'])
-    id_usuario = args['id_usuario']
+    # O 'id_usuario' foi especificado; obtém dados do do dito cujo.
+    id_usr = args['id_usuario']
+    usr = usuario.busca_por_identificador(id_usr)
+  else:
+    erro_prog("usuário não identificado")
 
-  atrs = usuario.obtem_atributos(user)
-  pag = html_pag_alterar_usuario.gera(ses, id_usuario, atrs, None)
+  atrs = usuario.obtem_atributos(usr)
+  pag = html_pag_alterar_usuario.gera(ses, id_usr, atrs, admin, None)
   return pag
     

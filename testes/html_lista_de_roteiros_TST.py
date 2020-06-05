@@ -29,10 +29,4 @@ def testa(rotulo, *args):
 
 rots = roteiro.descobre_todos("VCP", "MAO", "2020-05-07", "2020-05-10")
 
-testa("NF", None, rots, False) # Sem login, sem detalhes.
-testa("NT", None, rots, True) # Sem login, com detalhes.
-
-ses1 = session.busca_por_identificador("S-00000001")
-
-testa("LF", ses1, rots, False) # Com login, sem detalhes.
-testa("LT", ses1, rots, True) # Com login, com detalhes.
+testa("N", rots)

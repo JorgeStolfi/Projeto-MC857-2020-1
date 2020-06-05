@@ -1,6 +1,6 @@
 import html_pag_ver_roteiro_IMP
 
-def gera(ses, rot):
+def gera(ses, rot, erros):
   """Retorna uma página HTML que mostra os dados do roteiro {rot}
   (que deve ser uma lista de objetos do tipo {Objeto_Trecho}).
   
@@ -11,4 +11,4 @@ def gera(ses, rot):
   Cada linha terá um botão "Ver", que, quando clicado, 
   emitirá o comando HTTP "ver_trecho" com o identificador do 
   trecho como argumento."""
-  return html_pag_ver_roteiro_IMP.gera(ses, rot)
+  return html_pag_ver_roteiro_IMP.gera(ses, rot, erros)

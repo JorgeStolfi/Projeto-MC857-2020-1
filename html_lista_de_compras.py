@@ -1,7 +1,7 @@
 
 import html_lista_de_compras_IMP
 
-def gera(ses, ids_compras, ver):
+def gera(ids_compras, ver):
   """Retorna um trecho de HTML que descreve as compras cujos
   identificadores são os elementos da lista {ids}.
 
@@ -12,4 +12,4 @@ def gera(ses, ids_compras, ver):
   Se {ver} for {True}, cada linha terá um botão "Ver" que, quando
   clicado, emitrá o comando "ver_compra" com o identificador de 
   compra como argumento."""
-  return html_lista_de_compras_IMP.gera(ses, ids_compras, ver)
+  return html_lista_de_compras_IMP.gera(ids_compras, ver)

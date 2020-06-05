@@ -1,3 +1,0 @@
-- Escrito o teste correspondente ao módulo html_pag_buscar_trechos
-- Executado o teste, sem mensagens de erros
-- O módulo está funcionando, apresentando com (rótulo D) ou sem atributos padrão (rótulo N)

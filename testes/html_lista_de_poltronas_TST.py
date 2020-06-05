@@ -25,15 +25,13 @@ def testa(rotulo, *args):
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-ses = sessao.busca_por_identificador("S-00000001")
-
 cpr = compra.busca_por_identificador("C-00000001")
 cpr_pols_ids = poltrona.busca_por_compra(cpr)
 
-testa("CPR", ses, cpr, None, cpr_pols_ids, True)
+testa("CPR", cpr_pols_ids, cpr, None, True)
 
 
 trc = trecho.busca_por_identificador("T-00000001")
 cpr_pols_ids = poltrona.busca_por_trecho(trc)
 
-testa("TRC", ses, None, trc, cpr_pols_ids, True)
+testa("TRC", cpr_pols_ids, None, trc, True)

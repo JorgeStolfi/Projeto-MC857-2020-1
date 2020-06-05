@@ -1,7 +1,0 @@
-A minha tarefa hoje foi fazer tanto a implementação quanto o teste de comando_solicitar_pag_buscar_compras.
-
-A implementação deste comando é simples, ele apenas deve chamar o html_pag correspondente, como o html_pag_buscar_compras
-ainda não existia, criei um mock com os arquivos correspondentes que retornam uma página HTML genérica contendo um DIV informando que
-eventualmente será necessário implementar o formulário de buscas.
-
-O teste apenas realiza a chamada {processa} do comando_solicitar_pag_buscar_compras e está gerando o HTML corretamente.

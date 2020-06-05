@@ -14,9 +14,6 @@ assert res == None
 sys.stderr.write("Criando alguns objetos...\n")
 tabelas.cria_todos_os_testes()
 
-ses1 = sessao.busca_por_identificador("S-00000001")
-assert ses1 != None
-
 def testa(rotulo, *args):
     """Testa {funcao(*args)}, grava resultado
     em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
@@ -27,5 +24,10 @@ def testa(rotulo, *args):
     pretty = True  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
+# !!! TESTAR COM SESSÃO QUE TEM CARRINHO !!!
+
+ses1 = sessao.busca_por_identificador("S-00000001")
+assert ses1 != None
+
 testa("sucesso-com-sessao", ses1, None)
-testa("sucesso-sem-sessao", None, None)
+

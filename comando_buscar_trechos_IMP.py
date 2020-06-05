@@ -41,7 +41,7 @@ def processa(ses, args):
 
     trechos = map(lambda id_trecho: trecho.busca_por_identificador(id_trecho), trecho.busca(args))
     alterar = sessao.eh_administrador(ses)
-    bloco = html_lista_de_trechos.gera(ses, trechos, alterar)
+    bloco = html_lista_de_trechos.gera(trechos, alterar)
     pag = html_pag_generica.gera(ses, bloco, None)
     return pag
 

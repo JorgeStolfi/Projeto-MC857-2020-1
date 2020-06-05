@@ -1,1 +1,0 @@
-adicionados os botoes 'ver' e 'alterar' em html resumo de trecho.

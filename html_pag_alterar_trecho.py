@@ -1,10 +1,13 @@
 import html_pag_alterar_trecho_IMP
 
-def gera(ses, id_usuario, id_trecho, atrs, erros):
+def gera(ses, id_trecho, atrs, erros):
   """Retorna uma página com formulário para alterar os dados
-  do trecho {trc} cujo identificador é {id_trecho}
-  e cujos atributos correntes são {atrs}.
+  do trecho {trc} cujo identificador é {id_trecho}.
+  Normalmente esta página é criada para um administrador do site.
+  
+  A página contém campos editáveis para entrar os novos atributos do
+  trecho.  Os valores desses campos são inicializados com os valores
+  especificados no dicionário {atrs} (e NÃO com os atributos atuais do trecho).
 
-  O formulário é tem entradas adicionais se o usuário da sessão {ses}
-  Vide detalhes em {html_form_alterar_trecho.gera}."""
-  return html_pag_alterar_trecho_IMP.gera(ses, id_usuario, id_trecho, atrs, erros)
+  Vide detalhes em {html_form_dados_de_trecho.gera}."""
+  return html_pag_alterar_trecho_IMP.gera(ses, id_trecho, atrs, erros)

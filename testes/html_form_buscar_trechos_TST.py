@@ -28,39 +28,20 @@ def testa(rotulo, *args):
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-# Teste01: {atrs} = valores e {admin} = {True}
-atr = { 
-        'origem':       "OIA",
-        'destino':      "MOA",
-      }
+atrs = { 'origem':  "VCP", 'destino':  "SDU", }
+
 admin = True
+testa("Valores_Admin", atrs, admin)
 
-testa("Valores_Admin", atr, admin)
-
-# Teste02: {atrs} = valores e {admin} = {False}
-atr = { # T-00000001
-        'origem':       "VCP",
-        'destino':      "SDU",
-      }
 admin = False
+testa("Valores_Comum", atrs, admin)
 
-testa("Valores_Comum", atr, admin)
 
-# Teste03: {atrs} = valores e {admin} = {True}
-atr = { 
-        'origem':       "",
-        'destino':      "",
-      }
+atrs = { }
+
 admin = True
+testa("Sem_Valores_Admin", atrs, admin)
 
-testa("Sem_Valores_Admin", atr, admin)
-
-# Teste04: {atrs} = valores e {admin} = {False}
-atr = { # T-00000001
-        'origem':       "",
-        'destino':      "",
-      }
 admin = False
-
-testa("Sem_Valores_Comum", atr, admin)
+testa("Sem_Valores_Comum", atrs, admin)
 

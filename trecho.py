@@ -114,8 +114,13 @@ def busca_por_codigo_e_data(cod, dia, hora):
   """Localiza um trecho cujo 'codigo' é {cod}, 'dia_partida'
   é {dia}, e 'hora_partida' é {hora}, e devolve o identificador 
   do mesmo (não o objeto); ou {None} se não existir tal trecho.
-  Nãodeve existir mais de um trecho nessas condições."""
-  return trecho_IMP.busca_por_codigo_e_data(cod, dt)
+  Não deve existir mais de um trecho nessas condições.
+  
+  O dia deve estar no formato ISO, "{YYYY}-{MM}-{DD}", e 
+  a hora deve estar no formato "{hh}:{mm}", onde
+  o mes {MM}, o dia {DD}, as horas {hh} e os minutos {mm}
+  devem ter sempre 2 dígitos."""
+  return trecho_IMP.busca_por_codigo_e_data(cod, dia, hora)
 
 def busca_por_origem_e_destino(origem, destino):
   """Localiza trechos cujo atributo 'origem' é {origem} e cujo 'destino'
@@ -124,12 +129,15 @@ def busca_por_origem_e_destino(origem, destino):
   Devolve uma lista vazia se não existir nenhum trecho nessas condições."""
   return trecho_IMP.busca_por_origem_e_destino(origem, destino)
 
-def busca_por_dias(dia):
-  """Localiza trechos com 'dia_partida' igual a {dia},
+def busca_por_dias(dia_min, dia_max):
+  """Localiza trechos com 'dia_partida' entre {dia_min} e {dia_max},
   e devolve uma lista com os identificadores dos mesmos (não os objetos), 
-  por exemplo ['T-00000001', 'T-00000025'].
-  Devolve uma  lista vazia se não existir nenhum trecho nessas condições."""
-  return trecho_IMP.busca_por_dias(dia)
+  por exemplo ['T-00000001', 'T-00000025'].  Devolve uma  lista vazia
+  se não existir nenhum trecho nessas condições.
+  
+  Os dois dias devem estar no formato ISO, "{YYYY}-{MM}-{DD}".
+  O mes {MM} e o dia {DD} devem ter sempre 2 dígitos."""
+  return trecho_IMP.busca_por_dias(dia_min, dia_max)
 
 # FUNÇÕES PARA DEPURAÇÃO
 

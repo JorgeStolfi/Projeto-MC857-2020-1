@@ -68,61 +68,40 @@ sys.stderr.write("testando {poltrona.cria}:\n")
 
 lista_atrs = \
   [
-    { 'id_trecho': "T-00000001", 'numero': "01A", 'oferta': True,  'id_compra': "C-00000001", 'preco': "10", 'bagagens': 0,    },
-    { 'id_trecho': "T-00000001", 'numero': "02A", 'oferta': True,  'id_compra': None,         'preco': "0",  'bagagens': None, },
-    { 'id_trecho': "T-00000001", 'numero': "02B", 'oferta': False, 'id_compra': "C-00000002", 'preco': "11", 'bagagens': 1,    },
-    { 'id_trecho': "T-00000002", 'numero': "31",  'oferta': True,  'id_compra': None,         'preco': "0",  'bagagens': None, },
-    { 'id_trecho': "T-00000002", 'numero': "32",  'oferta': False, 'id_compra': None,         'preco': "0",  'bagagens': None, },
-    { 'id_trecho': "T-00000002", 'numero': "33",  'oferta': False, 'id_compra': "C-00000001", 'preco': "12", 'bagagens': 2,    },
-    { 'id_trecho': "T-00000003", 'numero': "31",  'oferta': True,  'id_compra': None,         'preco': "0",  'bagagens': None, },
-    { 'id_trecho': "T-00000003", 'numero': "33",  'oferta': False, 'id_compra': "C-00000003", 'preco': "13", 'bagagens': 3,    },
+    { 'id_trecho': "T-00000001", 'numero': "01A", 'oferta': True,  'id_compra': "C-00000001", 'preco': 10.00, 'bagagens': 0,    },
+    { 'id_trecho': "T-00000001", 'numero': "02A", 'oferta': True,  'id_compra': None,         'preco':  0.00, 'bagagens': None, },
+    { 'id_trecho': "T-00000001", 'numero': "02B", 'oferta': False, 'id_compra': "C-00000002", 'preco': 11.00, 'bagagens': 1,    },
+    { 'id_trecho': "T-00000002", 'numero': "31",  'oferta': True,  'id_compra': None,         'preco': 50.00, 'bagagens': None, },
+    { 'id_trecho': "T-00000002", 'numero': "32",  'oferta': False, 'id_compra': None,         'preco': 20.00, 'bagagens': None, },
+    { 'id_trecho': "T-00000002", 'numero': "33",  'oferta': False, 'id_compra': "C-00000001", 'preco': 12.00, 'bagagens': 2,    },
+    { 'id_trecho': "T-00000003", 'numero': "31",  'oferta': True,  'id_compra': None,         'preco': 15.00, 'bagagens': None, },
+    { 'id_trecho': "T-00000003", 'numero': "33",  'oferta': False, 'id_compra': "C-00000003", 'preco': 13.00, 'bagagens': 3,    },
   ]
 
 pol = [None] * len(lista_atrs)
+id_pol = [None] * len(lista_atrs)
+pols_next = 1 # Índice da próxima poltrona que não existe na base.
 for ind in range(len(lista_atrs)):
   atrs = lista_atrs[ind]
-  rot = "%d" % (ind + 1)
-  id = "A-%08d" % (ind + 1)
+  rot = "%d" % (ind + pols_next)
+  id = "A-%08d" % (ind + pols_next)
   pol[ind] = testa_cria_poltrona(rot, id, atrs)
+  id_pol[ind] = id
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {poltrona.muda_atributos}:\n")
 
+pol1 = pol[0]
+pol1_id = id_pol[0]
 pol1_mods = {
   'numero': "45",
   'id_compra': "C-00000005",
 }
-pol1 = pol[0]
-pol1_id = "A-00000001"
 poltrona.muda_atributos(pol[0], pol1_mods)
-pol1 = pol[0]
-pol1_id = "A-00000001"
-pol1_d_atrs = lista_atrs[0]
-pol1_id = "A-00000001"
-pol1 = pol[0]
+pol1_atrs_m = poltrona.obtem_atributos(pol1)
 for k, v in pol1_mods.items():
-  pol1_d_atrs[k] = v
-
-pol1 = pol[1]
-pol1_id = "C-00000005"
-verifica_poltrona("pol1_d", pol1, pol1_id, pol1_d_atrs)  #
-
-pol2_atrs = lista_atrs[1]
-pol2 = pol[1]
-if type(pol2) is poltrona.Objeto_Poltrona:
-  poltrona.muda_atributos(pol2, pol2_atrs) # Não deveria mudar os atributos
-  pol2_id = "A-00000002"
-  verifica_poltrona("pol2", pol2, pol2_id, pol2_atrs)
-
-# ----------------------------------------------------------------------
-sys.stderr.write("testando {poltrona.lista_livres}:\n")
-
-# Listando ids de trechos existentes na lista_atrs
-trechos = list(set([sub['id_trecho'] for sub in lista_atrs]))
-trechos.sort()
-for trc_id in trechos:
-  trc = trecho.busca_por_identificador(trc_id)
-  testa_lista_livres(trc, trc_id, lista_atrs)
+  pol1_atrs_m[k] = v
+verifica_poltrona("pol1_m", pol1, pol1_id, pol1_atrs_m)
 
 # ----------------------------------------------------------------------
 # Veredito final:

@@ -49,4 +49,4 @@ for tag, erros in (
     ("E", ["Mensagem UM", "Mensagem DOIS", "Mensagem TRÊS",])
   ):
   rotulo = tag
-  testa(rotulo, ses, usr1)
+  testa(rotulo, ses, usr1, erros)

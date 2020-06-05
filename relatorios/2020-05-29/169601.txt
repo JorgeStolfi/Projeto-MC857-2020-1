@@ -1,9 +1,0 @@
-RA 169601 - Tarefa "html_lista_de_poltronas: TST: usar uma lista de compras que estão no carrinho da sessão"
-
-Primeiramente tive que importar os módulos {sessao} e {compra}. O teste fazia uso desses dois módulos sem antes importá-los.
-
-Adicionei dois testes para o módulo. Um passando um objeto compra como o parâmetro {cpr} para gerar a lista de poltronas de uma compra e outro passando um objeto trecho como o parâmetro {trc} para gerar a lista de poltronas de um trecho.
-
-Para o teste com {cpr}, usei o método {poltrona.busca_por_compra()} para obter a lista de identificadores das poltronas da compra "C-00000001". Passando essa lista como o parâmetro {ids} do módulo html_lista_de_poltronas, os arquivos HTML gerados contém a lista de pontronas corretamente cadastradas na compra da sessão. O resultado desse teste teste é o arquivo HTML com sufixo "CPR".
-
-Para o teste com {trc}, primeiro precisei obter um objeto trecho usando o método {trecho.busca_por_identificador()}. Depois usei o método {poltrona.busca_por_trecho()} para obter uma lista de identificadores de poltronas do trecho em questão. Passando essa lista como o parâmetro {ids} do módulo, o resultado é o arquivo HTML de sufixo "TRC" com a lista de poltronas do trecho.

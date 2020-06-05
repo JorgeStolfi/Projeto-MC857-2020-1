@@ -20,7 +20,7 @@ tabelas.cria_todos_os_testes()
 ses = sessao.busca_por_identificador("S-00000004")
 assert ses != None
 
-form = {
+trc1_atrs = {
   'origem': 'GRU',
   'destino': 'RAO',
   'dia_partida': '2020-05-02',
@@ -37,4 +37,5 @@ def testa(rotulo, *args):
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-testa("pag_acrescentar_trecho", ses, form, None)
+testa("E0", ses, trc1_atrs, None)
+testa("E1", ses, trc1_atrs, "Tente de novo")

@@ -1,6 +1,6 @@
 import html_pag_ver_trecho_IMP
 
-def gera(ses, trc, comprar, alterar):
+def gera(ses, trc, comprar, alterar, erros):
   """Retorna uma página HTML que mostra os dados do trecho {trc}
   (que deve ser um objeto de tipo {Objeto_Trecho}).
   
@@ -16,4 +16,4 @@ def gera(ses, trc, comprar, alterar):
   quando clicado, emitirá o comando "solicitar_pag_alterar_potrona". 
   Haverá também um botão "Alterar" no cabeçalho, que emitirá o comando 
   "solicitar_pag_alterar_trecho"."""
-  return html_pag_ver_trecho_IMP.gera(ses, trc, comprar, alterar)
+  return html_pag_ver_trecho_IMP.gera(ses, trc, comprar, alterar, erros)

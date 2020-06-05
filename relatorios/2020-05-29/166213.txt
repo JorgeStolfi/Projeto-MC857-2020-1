@@ -1,5 +1,0 @@
-Foi criado o arquivo comando_ver_trecho_TST.py de teste, conforme tarefa atribuída.
-Este arquivo executa uma chamada à implementação comando_ver_trecho.processa() passando como argumentos uma sessão e um trecho.
-Infelizmente não foi possível realizar um teste bem sucedido por problemas em outros módulos que são invocados indiretamente.
-Algumas alterações foram realizadas nestes módulos que não faziam parte da tarefa atribuída na tentativa de obter sucesso no teste,
-alterações estas que também foram "commitadas" com o intuito de esmiuçar o problema e facilitar resolução futura.

@@ -30,11 +30,13 @@ def testa(rotulo, *args):
 
 # Teste: Usuário é Administrador
 ses = sessao.busca_por_identificador("S-00000004")
-testa("Admin", ses)
+testa("Adm-E0", ses, None)
+testa("Adm-E1", ses, "Tente novamente")
 
 # Teste: Usuário não é Administrador
 ses = sessao.busca_por_identificador("S-00000001")
-testa("User", ses)
+testa("Com-E0", ses, None)
+testa("Com-E1", ses, "Tente novamente")
 
 # Teste: Sessão None
-testa("None", None)
+testa("N-E0", None, None)

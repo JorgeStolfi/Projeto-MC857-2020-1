@@ -7,5 +7,5 @@ def gera(cpr, ver):
   poltronas.
   
   O resultado é uma lista de strings, uma para cada atributo, que pode
-  ser incluída como uma linha para {html_tabela.gera}."""
+  ser incluída como uma linha para {html_table.gera}."""
   return html_resumo_de_compra_IMP.gera(cpr, ver)

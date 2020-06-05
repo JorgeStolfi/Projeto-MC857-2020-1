@@ -5,6 +5,7 @@ import html_pag_ofertas
 import tabelas
 import usuario
 import sessao
+import trecho
 import base_sql
 import utils_testes
 import objeto
@@ -37,13 +38,13 @@ trc1_id = "T-00000001"
 trc2_id = "T-00000002"
 trc3_id = "T-00000003"
 
-trecho1 = tabelas.id_para_objeto(trc1_id)
-trecho2 = tabelas.id_para_objeto(trc2_id)
-trecho3 = tabelas.id_para_objeto(trc3_id)
+trecho1 = trecho.busca_por_identificador(trc1_id)
+trecho2 = trecho.busca_por_identificador(trc2_id)
+trecho3 = trecho.busca_por_identificador(trc3_id)
 
 trechos = [trecho1, trecho2, trecho3]
 
-testa("altF", ses, trechos, False)
-testa("altT", ses, trechos, True)
+testa("E0", ses, trechos, None)
+testa("E1", ses, trechos, "Tsk, tsk!")
 
 

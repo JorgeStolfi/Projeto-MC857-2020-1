@@ -22,5 +22,5 @@ def processa(ses, args):
     erros = ["trecho \"" + id_trecho + "\" não existe"]
     pag = html_pag_mensagem_de_erro(ses, erros)
   else:
-    pag = html_pag_ver_trecho.gera(ses, trc, False, False)
+    pag = html_pag_ver_trecho.gera(ses, trc, False, False, None)
   return pag

@@ -37,11 +37,10 @@ def verifica_trecho(rotulo, trc, ident, atrs):
     cod1 = atrs['codigo']
     dia1 = atrs['dia_partida']
     hora1 = atrs['hora_partida']
-    ident1 = trecho.busca_por_codigo_e_data(cod1, dia1, hora1)
-    if ident1 != [ ident ]:
-      aviso_prog("retornou " + str(ident1) + ", deveria ter retornado " + str(ident),True)
+    trc1 = trecho.busca_por_codigo_e_data(cod1, dia1, hora1)
+    if trc1 != trc:
+      aviso_prog("retornou " + str(trc1) + ", deveria ter retornado " + str(trc),True)
       ok = False
-
 
   if not ok:
     aviso_prog("teste falhou",True)
@@ -51,33 +50,34 @@ def verifica_trecho(rotulo, trc, ident, atrs):
   return
 
 def testa_cria_trecho(rotulo, ident, atrs):
-  """Testa criação de trecho com atributos com {atrs}. Retorna o trecho."""
+  """Testa criação de trecho com atributos {atrs}.  Retorna o trecho."""
   trc = trecho.cria(atrs)
   verifica_trecho(rotulo, trc, ident, atrs)
   return trc
 
-def test_busca_por_origem(cod):
-  """ Testa um retorno valido do metodo busca_por_origem"""
+def test_busca_por_origem(cod, ids):
+  """ Testa a função {trecho.busca_por_origem} com parâmetro {cod},
+  que deve retornar a lista de indentificadores de trechos {ids}."""
   global ok_global
    # ----------------------------------------------------------------------
   sys.stderr.write("testando {busca_por_origem()}:\n")
-  cod1 = atrs['origem']
-  ident1 = trecho.busca_por_origem(cod1)
-  if ident1 != [ ident ] and ident1 != ident:
-    aviso_prog("retornou " + str(ident1) + ", deveria ter retornado " + str(ident),True)
+  ids1 = trecho.busca_por_origem(cod)
+  if ids1 != ids:
+    aviso_prog("retornou " + str(ids1) + ", deveria ter retornado " + str(ids),True)
     ok_global = False
 
   return
 
-def testa_busca_por_dias(ident, atrs):
-  """ Testa um retorno valido do metodo busca_por_dias"""
+def testa_busca_por_dias(dia_min, dia_max, ids):
+  """ Testa a função {trecho.busca_por_dias} com parâmetros
+  {dia_min,dia_max}, que deve retornar a lista de indentificadores
+  de trechos {ids}."""
   global ok_global
    # ----------------------------------------------------------------------
   sys.stderr.write("testando {busca_por_dias()}:\n")
-  dia1 = atrs['dia_partida']
-  ident1 = trecho.busca_por_dias(dia1)
-  if ident1 != [ ident ] and ident1 != ident:
-    aviso_prog("retornou " + str(ident1) + ", deveria ter retornado " + str(ident),True)
+  ids1 = trecho.busca_por_dias(dia_min, dia_max)
+  if ids1 != ids:
+    aviso_prog("retornou " + str(ids1) + ", deveria ter retornado " + str(ids),True)
     ok_global = False
 
   return
@@ -126,32 +126,44 @@ trc3_id = "T-00000003"
 trc3 = testa_cria_trecho("trc3", trc3_id, trc3_atrs)
 
 # ----------------------------------------------------------------------
-testa_busca_por_dias([trc1_id, trc2_id], trc1_atrs)
-testa_busca_por_dias(trc3_id, trc3_atrs)
+sys.stderr.write("testando {trecho.busca_por_dias}:\n")
+dia_min_bd1 = "2020-05-08"
+dia_max_bd1 = "2020-05-09"
+ids_bd1 = [trc1_id, trc2_id, trc3_id]
+testa_busca_por_dias(dia_min_bd1, dia_max_bd1, ids_bd1)
+
+dia_min_bd2 = "2020-05-08"
+dia_max_bd2 = "2020-05-08"
+ids_bd2 = [trc1_id, trc2_id]
+testa_busca_por_dias(dia_min_bd2, dia_min_bd2, ids_bd2)
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {trecho.muda_atributos}:\n")
 
+# Testando troca de alguns atributos:
 trc1_mods = {
   'codigo': "GO 2331",
   'dia_partida': "2020-05-08",
   'hora_partida': "12:33",
 }
 trecho.muda_atributos(trc1, trc1_mods)
-trc1_d_atrs = trc1_atrs
+trc1_atrs_m = trc1_atrs
 for k, v in trc1_mods.items():
-  trc1_d_atrs[k] = v
-verifica_trecho("trc1_d", trc1, trc1_id, trc1_d_atrs)
+  trc1_atrs_m[k] = v
+verifica_trecho("trc1_m", trc1, trc1_id, trc1_atrs_m)
 
-if type(trc2) is trecho.Objeto_Trecho:
-  trecho.muda_atributos(trc2, trc2_atrs) # Não deveria mudar os atributos
-  verifica_trecho("trc2", trc2, trc2_id, trc2_atrs)
+# Testando troca de todos os atributos pelos mesmos valores.
+trc2_mods = trc2_atrs.copy()
+trc2_atrs_m = trc2_atrs.copy()
+trecho.muda_atributos(trc2, trc2_mods) # Não deveria mudar os atributos
+verifica_trecho("trc2", trc2, trc2_id, trc2_atrs_m)
 
-if type(trc2) is trecho.Objeto_Trecho:
-  trc2_m_atrs = trc3_atrs.copy()
-  trecho.muda_atributos(trc2, trc2_m_atrs) # Deveria assumir os valores do trc3
-  verifica_trecho("trc2_m", trc2, trc2_id, trc2_m_atrs)
-
+# Testando troca de todos os atributos por outros valores.
+trc3_mods = trc2_atrs.copy() 
+trc3_mods['dia_partida'] = "2020-05-10" # Para evitar duplicação de {(cod,dia,hora)}
+trc3_atrs_m = trc3_mods.copy()
+trecho.muda_atributos(trc3, trc3_mods) # Deveria assumir os valores do trc3
+verifica_trecho("trc3_m", trc3, trc3_id, trc3_atrs_m)
 
 # ----------------------------------------------------------------------
 # Veredito final:

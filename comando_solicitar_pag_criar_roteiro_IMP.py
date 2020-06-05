@@ -2,7 +2,6 @@
 
 import html_pag_criar_roteiro
 
-
 def processa(ses, args):
-    pag = html_pag_criar_roteiro.gera(ses)
+    pag = html_pag_criar_roteiro.gera(ses, None)
     return pag

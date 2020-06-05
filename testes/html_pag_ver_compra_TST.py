@@ -33,5 +33,6 @@ def testa(rotulo, *args):
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
 # Testa com e sem a opção de excluir habilitada
-testa("teste_da_pag_ver_compra_com_excluir", ses, cpr, True)
-testa("teste_da_pag_ver_compra_sem_excluir", ses, cpr, False)
+testa("xT-E0", ses, cpr, True,  None)
+testa("xT-E1", ses, cpr, True,  "Tem algo de podre no Reino de Dinamarca")
+testa("xF-E0", ses, cpr, False, None)

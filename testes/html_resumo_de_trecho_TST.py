@@ -42,7 +42,7 @@ def testa(rotulo, *args):
   resumo_de_trecho = funcao(*args)
   assert isinstance(resumo_de_trecho, tuple)
   for campo in resumo_de_trecho:
-    assert isinstance(item, str)
+    assert isinstance(campo, str)
 
   # Teste da função {gera} HTML
   frag = True  # {True} se for apenas um fragmento HTML, {False} se for página completa.

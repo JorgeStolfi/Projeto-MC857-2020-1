@@ -1,2 +1,0 @@
-Implementei o teste do módulo "html_pag_acrescentar_trecho". A implementação do módulo em si estava correta, faltava apenas o teste.
-Criei uma sessão cujo usuário é administrador e passei um dicionário com as informações do formulário para acrescentar o trecho e o teste gerou uma página HTML como esperado.

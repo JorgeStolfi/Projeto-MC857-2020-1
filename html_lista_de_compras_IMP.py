@@ -1,9 +1,9 @@
 import compra
-import html_tabela
+import html_table
 import html_resumo_de_compra
 import sys
 
-def gera(ses, ids_compras, ver):
+def gera(ids_compras, ver):
   linhas = [].copy()
   # Para cada id de compra retornado
   for id_cpr in ids_compras:
@@ -20,7 +20,7 @@ def gera(ses, ids_compras, ver):
     # sys.stderr.write("linhas = %s\n" % str(linhas))
 
   # Gera a tabela HTML a partir da lista de linhas
-  ht_itens = html_tabela.gera(linhas)
+  ht_itens = html_table.gera(linhas)
 
   # Devolve a tabela HTML
   return ht_itens

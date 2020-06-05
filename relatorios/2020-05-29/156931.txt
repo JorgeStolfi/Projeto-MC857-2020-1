@@ -1,5 +1,0 @@
-Minha tarefa era {comando_ver_minha_conta}
-
-O módulo não existe e a função que o professor pediu para ela implementar era a mesma feita no {comando_solicitar_pag_alterar_usuario} então fiz a alteração nela.
-Arrumei a função para aparecer os dados do usuario quando clicar em "Minha conta" pois os campos estavam aparecendo vazios.
-Arrumei os testes referentes a esse comando. Tudo ok.

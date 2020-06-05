@@ -30,7 +30,7 @@ def gera(ses, ht_conteudo, erros):
   elif type(erros) == str:
     # Split lines, create a list:
     erros = re.split('[\n]', erros)
-  assert type(erros) is list
+  assert type(erros) is list or type(erros) is tuple
   # Cleanup the messages:
   erros = [ er for er in erros if er != None ]
   erros = [ er.strip() for er in erros ]

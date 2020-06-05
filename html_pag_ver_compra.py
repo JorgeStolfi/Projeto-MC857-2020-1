@@ -1,6 +1,6 @@
 import html_pag_ver_compra_IMP
 
-def gera(ses, cpr, excluir):
+def gera(ses, cpr, excluir, erros):
   """Retorna uma página HTML que mostra os dados do pedido de compra {cpr}
   (que deve ser um objeto de tipo {Objeto_Compra}).
   
@@ -10,4 +10,4 @@ def gera(ses, cpr, excluir):
   Se {excluir} for {True}, cada linha terá um botão "Excluir"
   que, quando clicado, emitirá o comando "excluir poltrona"
   como identificador da poltrona como argumento."""
-  return html_pag_ver_compra_IMP.gera(ses, cpr, excluir)
+  return html_pag_ver_compra_IMP.gera(ses, cpr, excluir, erros)

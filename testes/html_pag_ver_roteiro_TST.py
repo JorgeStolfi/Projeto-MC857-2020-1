@@ -27,12 +27,15 @@ def testa(rotulo, *args):
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
+ses1 = sessao.busca_por_identificador("S-00000001")
+
 rots = roteiro.descobre_todos("VCP", "MAO", "2020-05-07", "2020-05-10")
 rot = rots[0]
 
-testa("N", None, rot) # Sem login
+testa("N-E0", None, rot, None) # Sem login
+testa("N-E1", None, rot, "Ó mundo cruel") # Sem login
 
 ses1 = sessao.busca_por_identificador("S-00000001")
 
-testa("L", ses1, rot) # Com login
+testa("L-E0", ses1, rot, None) # Com login
 

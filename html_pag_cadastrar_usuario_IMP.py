@@ -1,6 +1,6 @@
 import sessao
 import usuario
-import html_form_cadastrar_usuario
+import html_form_dados_de_usuario
 import html_pag_generica
 
 def gera(ses, atrs, erros):
@@ -12,7 +12,7 @@ def gera(ses, atrs, erros):
   else:
     admin = False
   # Constrói formulário com dados:
-  ht_dados = html_form_cadastrar_usuario.gera(atrs, admin)
+  ht_dados = html_form_dados_de_usuario.gera(None, atrs, admin, "Cadastrar", "cadastrar_usuario")
   conteudo = ht_dados
   # Monta a página:
   pagina = html_pag_generica.gera(ses, conteudo, erros)

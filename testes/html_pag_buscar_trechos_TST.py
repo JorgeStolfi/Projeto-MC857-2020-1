@@ -37,5 +37,8 @@ def testa(rotulo, *args):
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-testa("N", ses, {}, None) # Sem padrões
-testa("D", ses, {"origem":"São Paulo, GRU"}, None) # Com padrão
+for admin in (False, True):
+  ad = "-a" + str(admin)
+  testa("N-e0" + ad, ses, {},                                    admin, None) # Sem defaults
+  testa("D-e0" + ad, ses, { 'origem': "GRU", 'destino', "SDU" }, admin, None) # Com defaults
+  testa("D-e1" + ad, ses, { 'origem': "GRU", 'destino', "SDU" }, admin, "Tente novamente") # Com defaults e erro

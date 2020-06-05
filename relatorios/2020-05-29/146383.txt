@@ -1,2 +1,0 @@
-- Corrigido implementação do arquivo "html_pag_ver_compra_IMP.py"
-- Implementado a função teste e sua respectiva chamada no arquivo "comando_ver_carrinho_TST.py"

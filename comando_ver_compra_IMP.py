@@ -3,8 +3,8 @@
 import html_lista_de_poltronas
 import html_pag_generica
 import html_pag_ver_compra
-import html_resumo_de_compra
 import html_pag_mensagem_de_erro
+import html_pag_ver_compra
 import sessao
 import usuario
 import compra
@@ -17,7 +17,6 @@ def processa(ses, args):
   assert sessao.aberta(ses)  # Deveria acontecer.
   usr = sessao.obtem_usuario(ses)
   assert usr != None # Deveria acontecer.
-  assert not usuario.obtem_atributo(usr, 'administrador')  # Deveria acontecer.
   assert 'id_compra' in args # Deveria acontecer
 
   # Monta página:
@@ -27,5 +26,6 @@ def processa(ses, args):
     erros = ["compra \"" + id_compra + "\" não existe"]
     pag = html_pag_mensagem_de_erro(ses, erros)
   else:
-    pag = html_pag_ver_compra.gera(ses, cpr, excluir=False)
+    excluir = (compra.obtem_cliente(cpr) == usr) or usuario.eh_administrador(usr)
+    pag = html_pag_ver_compra.gera(ses, cpr, excluir)
   return pag

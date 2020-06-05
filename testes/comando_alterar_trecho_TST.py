@@ -34,11 +34,12 @@ def testa(rotulo, *args):
     pretty = False  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
+# !!! CONSERTAR !!!
 
 def testa_atualiza_atributo_com_sucesso():
     novo_trecho = "RIO-SP"
     args = {
-        'id_trc': "U-00000001",
+        'id_trecho': "U-00000001",
         'trecho': novo_trecho,
     }
     testa("Suc", ses, args)
@@ -51,7 +52,7 @@ def testa_atualiza_atributo_com_sucesso():
 def testa_atualiza_atributo_invalido():
     trecho_invalido = "RIO-LUA"
     args = {
-        'id_trc': "U-00000001",
+        'id_trecho': "U-00000001",
         'trecho': trecho_invalido,
     }
     testa("Inv", ses, args)

@@ -106,11 +106,18 @@ def busca_por_codigo_e_data(cod, dia, hora):
   global cache, nome_tb, letra_tb, colunas, diags
   args = { 'codigo': cod, 'dia_partida': dia, 'hora_partida': hora }
   unico = True
-  id = objeto.busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas, unico)
-  if id == None:
+  ids = objeto.busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas)
+  if ids == None:
     return None
+  elif type(ids) is tuple or type(ids) is list:
+    if len(ids) == 0:
+      return None
+    else:
+      assert len(ids) == 1  # Pela unicidade de {(codigo,dia,hora)}.
+      return busca_por_identificador(ids[0])
   else:
-    return busca_por_identificador(id)
+    # Tipo de retorno inválido -- não deveria acontecer:
+    assert False 
 
 def busca_por_origem_e_destino(origem, destino):
   global cache, nome_tb, letra_tb, colunas, diags
@@ -119,12 +126,13 @@ def busca_por_origem_e_destino(origem, destino):
   ids = objeto.busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas)
   return ids
 
-def busca_por_dias(dia):
+def busca_por_dias(dia_min, dia_max):
   global cache, nome_tb, letra_tb, colunas, diags
-  chave = "dia_partida"
-  valor = dia
+  # !!! MUDAR PARA INTERVALO !!!
   unico = False
-  ids = objeto.busca_por_campo(chave, valor, unico, nome_tb, letra_tb, colunas)
+  ids = objeto.busca_por_campo("dia_partida", dia_min, unico, cache, nome_tb, letra_tb, colunas)
+  if dia_min != dia_max:
+    ids += objeto.busca_por_campo("dia_chegada", dia_max, unico, cache, nome_tb, letra_tb, colunas)
   return ids
 
 def muda_atributos(trc, mods_mem):

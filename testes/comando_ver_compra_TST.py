@@ -18,8 +18,10 @@ ses = sessao.busca_por_identificador("S-00000001")
 usr = usuario.busca_por_identificador("U-00000001")
 compra = compra.busca_por_identificador("C-00000001")
 
+# !!! CONSERTAR !!!
+
 args = { 'id_usuario': id, "id_compra": compra.id}
-compra = comando_ver_compra.processa(ses, args)
+compra = comando_ver_compra.processa(ses, args, "Bla bla bla")
 
 if compra:
   sys.stderr.write("Nao houve erros\n")

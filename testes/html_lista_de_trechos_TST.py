@@ -35,5 +35,5 @@ trc6_id = "T-00000006"
 trechos_ids = [ trc1_id, trc2_id, trc3_id, trc4_id, trc5_id, trc6_id ]
 trechos_list = map(lambda x: trecho.busca_por_identificador(x), trechos_ids)
 
-testa("altF", None, trechos_ids, False)
-testa("altT", None, trechos_ids, True)
+testa("altF", trechos_list, False)
+testa("altT", trechos_list, True)

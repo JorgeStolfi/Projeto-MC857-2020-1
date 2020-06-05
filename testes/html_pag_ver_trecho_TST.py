@@ -42,6 +42,11 @@ def testa(rotulo, *args):
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
 # Testes com erros em vérios formatos:
-for tag, erros in (("N", None), ):
-  rotulo = tag
-  testa(rotulo, ses, trecho1)
+for comprar in (False, True):
+  for alterar in (False, True):
+    ca = "-c" + str(comprar) + "-a" + str(alterar)
+    for tag, erros in (
+        ("N-E0", None), 
+        ("N-E1", "Não entendi"), 
+      ):
+      testa(tag + ca, ses, trecho1, comprar, alterar, erros)

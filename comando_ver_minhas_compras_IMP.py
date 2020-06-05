@@ -14,6 +14,6 @@ def processa(ses, args):
   assert not usuario.obtem_atributo(usr, 'administrador')  # Deveria acontecer.
   id_usr = usuario.obtem_identificador(usr)
   ids_compras = compra.busca_por_cliente(id_usr)
-  ht_conteudo = html_lista_de_compras.gera(ses, ids_compras, True)
+  ht_conteudo = html_lista_de_compras.gera(ids_compras, True)
   pag = html_pag_generica.gera(ses, ht_conteudo, None)
   return pag

@@ -21,7 +21,6 @@ tabelas.cria_todos_os_testes()
 # Sessão de teste
 ses = sessao.busca_por_identificador("S-00000001")
 
-
 def testa(rotulo, *args):
   """Testa {funcao(*args)}, grava resultado
   em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""

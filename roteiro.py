@@ -1,13 +1,14 @@
 import roteiro_IMP
 
-# Um roteiro é uma lista de um ou mais trechos que podem ser usados em seqüência
-# para formar uma viagem.  No mínimo, o destino de cada trecho deve ser a origem do trecho
+# Um roteiro é uma lista de um ou mais trechos (objetos da classe {objeto_Trecho})
+# que podem ser usados em seqüência para formar uma viagem.  Normalmente, o destino 
+# de cada trecho deve ser a origem do trecho
 # seguinte, e a data + hora de chegada de cada trecho deve ser menor ou igual
 # à data + hora de partida do trecho sequinte.  Além disso, cada trecho deve ter
 # pelo menos uma poltrona livre.
 
 # Mais condições podem ser acrescentadas mais tarde; por exemplo, um
-# tempo mínimo em certas escalaspara mudança de veículo, alfândega, controle de
+# tempo mínimo em certas escalas para mudança de veículo, alfândega, controle de
 # passaportes, etc..
 
 def descobre_todos(origem, destino, dia_min, dia_max):
@@ -21,6 +22,12 @@ def descobre_todos(origem, destino, dia_min, dia_max):
   A resposta é uma lista, possivelmente vazia, de roteiros que
   satisfazem as condições dadas."""
   return roteiro_IMP.descobre_todos(origem, destino, dia_min, dia_max)
+
+def obtem_identificadores_de_trechos(rot):
+  """Dado um roteiro {rot} (lista objetos da classe {Objeto_Trecho}),
+  devolve a lista de todos os identificadores desses trechos, na
+  mesma seqüência."""
+  return roteiro_IMP.obtem_identificadores_de_trechos(rot)
 
 def obtem_resumo(rot):
   """Dado um roteiro {rot}, devolve um dicionário Python {atrs}

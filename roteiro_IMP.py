@@ -1,5 +1,6 @@
 import trecho
 from utils_testes import erro_prog
+import sys
 
 def descobre_todos(origem, destino, dia_min, dia_max):
   if origem == destino:
@@ -11,6 +12,14 @@ def descobre_todos(origem, destino, dia_min, dia_max):
   roteiros = [ rot1 ]
   return roteiros
  
+def obtem_identificadores_de_trechos(rot):
+  ids = [].copy()
+  for trc in rot:
+    sys.stderr.write("trc = %s\n" % str(trc))
+    assert type(trc) is trecho.Objeto_Trecho
+    ids.append(trecho.obtem_identificador(trc))
+  return ids
+
 def obtem_resumo(rot):
   # !!! Fajuto para testes !!!
   resumo = { 

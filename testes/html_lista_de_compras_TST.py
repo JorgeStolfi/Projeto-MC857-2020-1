@@ -18,7 +18,6 @@ cpr1_id = "C-00000001"
 cpr2_id = "C-00000002"
 cpr3_id = "C-00000003"
 
-ses = sessao.busca_por_identificador("S-00000001")
 compras_ids = [cpr1_id, cpr2_id, cpr3_id]
 
 
@@ -33,5 +32,5 @@ def testa(rotulo, *args):
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
 
-testa("testa_sem_ver", ses, compras_ids, False)
-testa("testa_com_ver", ses, compras_ids, True)
+testa("testa_sem_ver", compras_ids, False)
+testa("testa_com_ver", compras_ids, True)

@@ -4,6 +4,8 @@ import html_pag_alterar_trecho
 import tabelas
 import usuario
 import sessao
+
+import trecho
 import base_sql
 import utils_testes
 
@@ -30,15 +32,22 @@ def testa(rotulo, *args):
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
 for ses_id, tag, erros in ( 
-    ("S-00000001", "U1-S01", "Erro 1: Não era pra você estar aqui!"), 
-    ("S-00000004", "U3-S04", "Erro 2: A função ainda não foi implementada!")  # Usuário com privilégio
+    ("S-00000001", "U1-S01-E0", None), # Usuário comum.
+    ("S-00000001", "U1-S01-E1", "Não era pra você estar aqui!"), # Usuário comum.
+    ("S-00000004", "U3-S04-E2", [ "Não estou bonzinho hoje", "Não vou com a sua cara"])  # Usuário administrador.
   ):
-  ses = sessao.busca_por_identificador(ses_id)
+  rotulo = tag # Rotulo do teste.
+  
+  trc_id = trc1_id # Trecho a alterar.
+
+  trc = trecho.busca_por_identificador(trc_id)
+  trc_args = trecho.obtem_atributos(trc) # Valores iniciais dos campos a mostrar na página.
+  
+  ses = sessao.busca_por_identificador(ses_id) # Sessão de quem está alterando.
   assert ses != None
 
-  usr = sessao.obtem_usuario(ses)
+  usr = sessao.obtem_usuario(ses) # Usuário que está pedindo a alteração.
   assert usr != None
   usr_id = usuario.obtem_identificador(usr)
 
-  rotulo = tag + "_" + erros
-  testa(rotulo, ses, usr_id, trc1_id, {}, erros)
+  testa(rotulo, ses, usr_id, trc_id, trc_args, erros)

@@ -15,5 +15,5 @@ def gera(trc, ver, alterar):
   HTTP "alterar_trecho" com o identificador do trecho como argumento.
   
   O resultado é uma tupla com fragmentos separados para cada um desses
-  campos, que pode ser usada como uma linha do argumento de {html_tabela.gera}."""
+  campos, que pode ser usada como uma linha do argumento de {html_table.gera}."""
   return html_resumo_de_trecho_IMP.gera(trc, ver, alterar)

@@ -1,6 +1,5 @@
 import comando_solicitar_pag_buscar_usuarios_IMP
 
-
 def processa(ses, args):
     """Esta função é chamada quando o usuário aperta o botão "Buscar Usuário"
     no menu geral da pagina do administrador.
