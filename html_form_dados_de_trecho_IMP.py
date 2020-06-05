@@ -36,6 +36,7 @@ def gera(id_trecho, atrs, texto_bt, comando_bt):
     ( "Destino",          "text",       "destino",        "XXX",                    True, ),
     ( "Dia de chegada",   "text",       "dia_chegada",    "YYYY-MM-DD",             True, ),
     ( "Hora de chegada",  "text",       "hora_chegada",   "HH:MM",                  True, ),
+    ( "Veículo",          "text",       "veiculo",        "XXX-NNNN",               True, ),
     ( "Poltronas",        "text",       "poltronas",      "1A-20D,33: 90.00; ...",  True, ),
   ]
 
