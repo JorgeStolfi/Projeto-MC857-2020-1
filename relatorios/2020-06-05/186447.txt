@@ -1,0 +1,2 @@
+Criação de um rascunho do modulo "comando_finalizar_compra". No modulo, implementei uma verificação de sessão
+e em seguida uma busca da compra ativa, a mesma é finalizada e em seguida segue para a página de pagamento.
