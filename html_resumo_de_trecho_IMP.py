@@ -53,11 +53,22 @@ def gera(trc, ver, alterar):
   ht_dt_partida = html_texto.gera(dt_partida, None, None, None, None, None, None, None, None)
   ht_dt_chegada = html_texto.gera(dt_chegada, None, None, None, None, None, None, None, None)
   ht_num_poltronas = html_texto.gera(str(num_poltronas), None, None, None, None, None, None, None, None)
-  
-  # !!! Botões de "Ver" e "Alterar"
-  botao_ver = html_botao_simples.gera("Ver", 'buscar_trechos', {'id_trecho': id_trecho}, '#FF00FF')
-  botao_alterar = html_botao_simples.gera("Alterar", 'alterar_trecho',{'id_trecho': id_trecho}, '#FF00FF')
 
-  ht_campos = ( ht_codigo, ht_origem, ht_destino, ht_dt_partida, ht_dt_chegada, ht_num_poltronas, botao_ver, botao_alterar)
+  # !!! Botões de "Ver" e "Alterar"
+  if ver:
+    botao_ver = html_botao_simples.gera("Ver", 'ver_trecho', {'id_trecho': id_trecho}, '#FF00FF')
+
+  if alterar:
+    botao_alterar = html_botao_simples.gera("Alterar", 'alterar_trecho',{'id_trecho': id_trecho}, '#FF00FF')
+
+  if ver and alterar:
+    ht_campos = ( ht_codigo, ht_origem, ht_destino, ht_dt_partida, ht_dt_chegada, ht_num_poltronas, botao_ver, botao_alterar)
+  elif ver:
+    ht_campos = ( ht_codigo, ht_origem, ht_destino, ht_dt_partida, ht_dt_chegada, ht_num_poltronas, botao_ver)
+  elif alterar:
+    ht_campos = ( ht_codigo, ht_origem, ht_destino, ht_dt_partida, ht_dt_chegada, ht_num_poltronas, botao_alterar)
+  else:
+    ht_campos = ( ht_codigo, ht_origem, ht_destino, ht_dt_partida, ht_dt_chegada, ht_num_poltronas)
+
 
   return ht_campos

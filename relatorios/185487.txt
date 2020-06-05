@@ -1,0 +1,8 @@
+Relatório
+
+Nessa aula minha tarefa era implementar os botões VER e ALTERAR do módulo {html_resumo_de_trecho}.
+Inicialmente vi que os argumentos booleanos {ver} e {alterar} não estavam sendo utilizados, então
+os botões sempre apareciam, mesmo quando não deveriam, então consertei isso de forma que só aparecem
+quando devem aparecer. Outro problema detectado era que o botão VER não chamava o comando correto,
+então troquei para ser chamado {ver_trecho}, como esperado, por fim também tive que incluir no
+módulo {processa_comando_http} um if para o mesmo chamar corretamente o módulo {comando_ver_trecho}.

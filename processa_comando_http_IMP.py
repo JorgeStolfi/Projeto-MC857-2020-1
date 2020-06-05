@@ -30,6 +30,7 @@ import comando_ver_minhas_compras
 import comando_ver_roteiro
 import comando_ver_objeto
 import comando_ver_carrinho
+import comando_ver_trecho
 
 import html_texto
 import html_div
@@ -410,6 +411,10 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/ver_carrinho':
       # Usuário apertou o botão "Meu carrinho" no menu geral:
       pag = comando_ver_carrinho.processa(ses, args)
+
+    elif cmd == '/ver_trecho':
+      # Usuário apertou o botão "Ver" numa lista de trechos:
+      pag = comando_ver_trecho.processa(ses, args)
 
     elif cmd == '/solicitar_pag_buscar_compras':
       # Usuário apertou o botão "Buscar Compra" do menu geral:
