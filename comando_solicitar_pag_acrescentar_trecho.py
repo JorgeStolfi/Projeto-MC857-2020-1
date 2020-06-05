@@ -14,6 +14,3 @@ def processa(ses, args):
   
   
   return comando_solicitar_pag_acrescentar_trecho_IMP.processa(ses, args)
-
-def verifica_usuario(ses):
-  return comando_solicitar_pag_acrescentar_trecho_IMP.verifica_usuario(ses)

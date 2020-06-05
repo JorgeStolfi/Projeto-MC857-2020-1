@@ -1,14 +1,19 @@
 # Implementação do módulo {comando_solicitar_pag_acrescentar_trecho}.
 
 import html_pag_acrescentar_trecho
+import html_pag_generica
 import sys
+from valida_campo import ErroAtrib
+import sessao
 
 def processa(ses, args):
   # !!! Deveria verificar se a sessão {ses} está aberta e o dono é administrador !!!
-  pag = html_pag_acrescentar_trecho.gera(ses, args, None)
-  return pag
-
-def verifica_usuario(usr):
-  sys.stderr.write("\n%s\n" % usr)
-  assert ses["administrador"]
-  return
+  try:
+    if (sessao.eh_administrador):
+      return html_pag_acrescentar_trecho.gera(ses, args, None)
+    else:
+      raise ErroAtrib("Voce precisa ser administrador para fazer isso.\"")
+  except ErroAtrib as ex:
+    erros = ex.args[0]
+    # Repete a página de acrescentar trecho com os mesmos argumentos e mens de erro:
+    return html_pag_generica.gera(ses, "", erros)
