@@ -122,6 +122,7 @@ def busca_por_cliente(id_cliente):
 def calcula_preco(cpr):
   """Devolve o preço total da compra, que é a soma dos
   preços de todos os bilhetes (poltronas) atualmente na mesma."""
+  return compra_IMP.calcula_preco(cpr)
 
 def muda_atributos(cpr, mods_mem):
   """Recebe um dicionário Python {mods_mem} cujas chaves são um subconjunto
