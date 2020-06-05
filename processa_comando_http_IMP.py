@@ -30,6 +30,7 @@ import comando_ver_minhas_compras
 import comando_ver_roteiro
 import comando_ver_objeto
 import comando_ver_carrinho
+import comando_ver_trecho
 
 import html_texto
 import html_div
@@ -431,6 +432,10 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/buscar_trechos':
       # Usuário apertou o botão "Buscar" na página de buscar trecho:
       pag = comando_buscar_trechos.processa(ses, args)
+
+    elif cmd == '/ver_trecho':
+      # Usuário apertou o botão "Ver" na página de lista de trechos:
+      pag = comando_ver_trecho.processa(ses, args)
 
     elif cmd == '/alterar_trecho':
       # Usuário apertou o botão "Alterar Trecho" do menu geral (administrador):
