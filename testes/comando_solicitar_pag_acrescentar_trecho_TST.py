@@ -13,11 +13,6 @@ assert res == None
 sys.stderr.write("Criando alguns objetos...\n")
 tabelas.cria_todos_os_testes()
 
-# sessão usada no teste
-sessao1 = sessao.busca_por_identificador("S-00000001")
-assert sessao1 != None
-
-
 def testa(rotulo, *args):
     """Testa {comando_solicitar_pag_alterar_usuario.processa(*args)}, grava resultado
     em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
@@ -29,5 +24,11 @@ def testa(rotulo, *args):
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
 
-# Teste mostra os dados do dono da sessão
-testa("Teste Acrescentar Trecho", sessao1, {})
+# sessão usada no teste
+sessao1 = sessao.busca_por_identificador("S-00000001")
+assert sessao1 != None
+
+# Testa duas vezes: com uma sessão válida e também com uma sessão inválida (nula), para testar
+# o comportamento do módulo em diferentes cenários, garantindo sua funcionalidade.
+testa("teste_acrescentar_trecho_sessao_valida", sessao1, {})
+testa("teste_acrescentar_trecho_sessao_nula", None, {})
