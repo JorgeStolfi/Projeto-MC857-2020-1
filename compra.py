@@ -63,7 +63,7 @@ def inicializa(limpa):
   SQL, resetando o contador em 0."""
   compra_IMP.inicializa(limpa)
 
-def cria(cliente):
+def cria(cliente, nome_pass=""):
   """Cria um novo objeto da classe {Objeto_Compra}, associada ao {cliente} (um
   objeto da classe {Objeto_Usuario}), acrescentando-o à tabela de compras da
   base de dados. inicialmente aberta, com o cookie inicial {cookie} e
@@ -74,7 +74,7 @@ def cria(cliente):
   Em caso de sucesso, retorna o objeto.  Se os parâmetros
   forem inválidos ou incompletos, retorna uma ou mais mensagens
   de erro, na forma de uma lista de strings. """
-  return compra_IMP.cria(cliente)
+  return compra_IMP.cria(cliente, nome_pass)
 
 def obtem_identificador(cpr):
   """Devolve o identificador 'C-{NNNNNNNN}' do pedido de compra {cpr}."""
