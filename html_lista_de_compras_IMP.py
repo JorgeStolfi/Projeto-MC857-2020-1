@@ -3,7 +3,7 @@ import html_table
 import html_resumo_de_compra
 import sys
 
-def gera(ids_compras, ver):
+def gera(ids_compras, ver, trocar):
   linhas = [].copy()
   # Para cada id de compra retornado
   for id_cpr in ids_compras:
@@ -11,7 +11,7 @@ def gera(ids_compras, ver):
     compra_obj = compra.busca_por_identificador(id_cpr)
 
     # Gera uma lista de fragmentos HTML com as informacoes dessa compra
-    campos_resumo = html_resumo_de_compra.gera(compra_obj, ver)
+    campos_resumo = html_resumo_de_compra.gera(compra_obj, ver, trocar)
     # sys.stderr.write("campos_resumo = %s\n" % str(campos_resumo))
     assert type(campos_resumo) is list or type(campos_resumo) is tuple
 

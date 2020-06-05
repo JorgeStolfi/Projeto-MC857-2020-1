@@ -1,7 +1,7 @@
 
 import html_lista_de_poltronas_IMP
 
-def gera(ids, cpr, trc, excluir):
+def gera(ids, cpr, trc, excluir, trocar):
   """Retorna um trecho de HTML que descreve as poltronas cujos identificadores
   estão na lista {ids}.  
   
@@ -19,4 +19,4 @@ def gera(ids, cpr, trc, excluir):
   emite of comando HTTP "ver_poltrona", com o identificador de poltrona como argumento.
 
   """
-  return html_lista_de_poltronas_IMP.gera(ids, cpr, trc, excluir)
+  return html_lista_de_poltronas_IMP.gera(ids, cpr, trc, excluir, trocar)
