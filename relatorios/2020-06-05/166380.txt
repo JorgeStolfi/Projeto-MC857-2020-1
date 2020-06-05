@@ -1,0 +1,6 @@
+André Papoti de Oliveira RA:166380
+
+
+Tarefa: html_form_buscar_usuarios: IMP: Acrescentar mais campos
+
+Realizei a tarefa com sucesso e adicionei os campos telefone e cpf para realizar buscas no arquivo html_form_buscar_usuarios. 
