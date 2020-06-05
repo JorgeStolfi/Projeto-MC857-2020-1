@@ -24,10 +24,8 @@ def testa(rotulo, *args):
     pretty = True  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-# !!! TESTAR COM SESSÃO QUE TEM CARRINHO !!!
 
 ses1 = sessao.busca_por_identificador("S-00000001")
 assert ses1 != None
 
-testa("sucesso-com-sessao", ses1, None)
-
+testa("sucesso-sessao-com-carrinho", ses1, None)
