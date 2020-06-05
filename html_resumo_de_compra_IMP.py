@@ -16,9 +16,10 @@ def gera(cpr, ver):
   ht_cpr = id_cpr
   ht_usr = id_usr
   ht_num_poltronas = str(num_poltronas)
-  campos = [ ht_cpr, ht_usr, ht_num_poltronas ]
+  ht_nome_pass = atrs_compra['nome_pass']
+  campos = [ ht_cpr, ht_usr, ht_num_poltronas, ht_nome_pass]
   if ver:
     ht_ver = html_botao_simples.gera("Ver", "ver_compra", {'id_compra': id_cpr}, "#22ff22")
     campos.append(ht_ver)
-    
+
   return campos

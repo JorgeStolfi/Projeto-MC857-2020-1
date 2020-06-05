@@ -1,0 +1,1 @@
+Criei o atributo {nome_pass} no objeto {compra}, mas como minha tarefa não estava disponível no inicio da aula e demorou cerca de 2h para eu ter uma tarefa não deu tempo de realizar todos os testes pra ver se todo os lugares que criam compras agora passam o nome do passageiro para a compra. 
