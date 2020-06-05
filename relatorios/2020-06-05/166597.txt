@@ -1,0 +1,10 @@
+A tarefa de hoje consistia em escrever os testes da página "comando_ver_trecho".
+
+Foram criados três testes diferentes:
+- usuário sem sessão
+- usuário não administrador
+- usuário administrador
+
+Todos os testes buscam exibir as informações do trecho 01.
+Não foi possível realizar o teste da página com erro, pois existe 
+uma tarefa para outro aluno que consiste em corrigir a página "comando_ver_trecho".
