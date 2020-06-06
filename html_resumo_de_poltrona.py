@@ -1,6 +1,6 @@
 import html_resumo_de_poltrona_IMP
 
-def gera(pol, ver, excluir):
+def gera(pol, ver, excluir, trocar):
   """Devolve um fragmento HTML que decreve a poltrona {pol}, 
   um objeto da classe {Objeto_Poltrona}.
   
@@ -20,5 +20,7 @@ def gera(pol, ver, excluir):
   
   Se {ver} for {True} coloca um botão "Ver" com comando "ver_poltrona".
  
-  Se {excluir} for {True} coloca um botão "Excluir" com comando "excluir_poltrona"."""
-  return html_resumo_de_poltrona_IMP.gera(pol, ver, excluir)
+  Se {excluir} for {True} coloca um botão "Excluir" com comando "excluir_poltrona".
+  
+  Se {trocar} for {True} coloca um botão "Trocr" com comando "trocar_poltrona"."""
+  return html_resumo_de_poltrona_IMP.gera(pol, ver, excluir, trocar)

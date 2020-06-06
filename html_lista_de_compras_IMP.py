@@ -4,7 +4,7 @@ import html_resumo_de_compra
 import html_div
 import sys
 
-def gera(ids_compras, ver):
+def gera(ids_compras, ver, trocar):
   linhas = [].copy()
 
   # Header Contendo as informações
@@ -20,7 +20,7 @@ def gera(ids_compras, ver):
     compra_obj = compra.busca_por_identificador(id_cpr)
 
     # Gera uma lista de fragmentos HTML com as informacoes dessa compra
-    campos_resumo = html_resumo_de_compra.gera(compra_obj, ver)
+    campos_resumo = html_resumo_de_compra.gera(compra_obj, ver, trocar)
     # sys.stderr.write("campos_resumo = %s\n" % str(campos_resumo))
     assert type(campos_resumo) is list or type(campos_resumo) is tuple
 

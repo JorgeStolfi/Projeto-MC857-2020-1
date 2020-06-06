@@ -3,9 +3,8 @@ import poltrona
 import html_texto
 import html_botao_submit
 
-def gera(pol, ver, excluir):
-
-  # lendo poltrona
+def gera(pol, ver, excluir, trocar):
+  
   atrs_poltrona = poltrona.obtem_atributos(pol)
   id_trecho = atrs_poltrona['id_trecho']
   id_compra = atrs_poltrona['id_compra']
@@ -37,4 +36,8 @@ def gera(pol, ver, excluir):
     ht_ver = html_botao_submit.gera("Ver", 'ver_poltrona', None, '#60a3bc')
     linha.append(ht_ver)
 
+  if trocar:
+    ht_trocar = html_botao_submit.gera("Trocar", 'trocar_poltrona', None, '#ff0000')
+    linha.append(ht_trocar)
+    
   return linha
