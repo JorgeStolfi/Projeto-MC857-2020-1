@@ -1,0 +1,3 @@
+Para consertar o arquivo de teste do módulo {comando_ver_compra}, bastou retirar um argumento a mais da chamada do {comando_ver_compra.processa}.
+Além disso, para conferir se está gerando uma página de compra, resta só comparar a página gerada com a página de erro genérica gerada pelo módulo supracitado. Se forem diferentes, o comando foi realizado com sucesso, ou seja, encontrou a compra e gerou a página corretamente.
+Uma correção no arquivo {comando_ver_compra_IMP.py} foi necessária, visto que o módulo {html_pag_ver_compra.gera} requer um argumento {erros} a mais. Tal argumento foi adicionado.
