@@ -80,6 +80,7 @@ def gera_botoes_linha_2():
 
   botoes = (
     html_botao_simples.gera("Acrescentar trecho", "solicitar_pag_acrescentar_trecho", None, '#ffdd22'),
+    html_botao_simples.gera("Checar Objeto", 'ver_objeto', None, '#ffdd22'),
     # html_botao_simples.gera("Alterar trecho", "solicitar_pag_alterar_trecho", None, '#ffdd22'),
     # html_form_passageiros.gera(),
     # html_form_buscar_objeto.gera(),
