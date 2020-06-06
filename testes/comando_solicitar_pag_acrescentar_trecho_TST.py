@@ -1,18 +1,34 @@
-from utils_testes import erro_prog, aviso_prog
+import sys
+
+import base_sql
 import comando_solicitar_pag_acrescentar_trecho
+import sessao
+import tabelas
+import utils_testes
 
-# !!! CONSERTAR !!!
+sys.stderr.write("Conectando com base de dados...\n")
+res = base_sql.conecta("DB", None, None)
+assert res == None
 
-usr_tst = {
-            'nome': "Jorge Primus",
-            'senha': "123456789",
-            'email': "primus@gmail.com",
-            'CPF': "111.222.333-44",
-            'telefone': "+55(19)9 9289-3344",
-            'documento': "11.222.333-5",
-            'administrador': True,
-            }
+sys.stderr.write("Criando alguns objetos...\n")
+tabelas.cria_todos_os_testes()
 
-ses_tst = { "U-00000001", "ABCDEFGHIJK", "C-00000002"}
+def testa(rotulo, *args):
+    """Testa {comando_solicitar_pag_alterar_usuario.processa(*args)}, grava resultado
+    em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
 
-comando_solicitar_pag_acrescentar_trecho.processa(ses_tst, "")
+    modulo = comando_solicitar_pag_acrescentar_trecho
+    funcao = modulo.processa
+    frag = False  # {True} se for apenas um fragmento HTML, {False} se for página completa.
+    pretty = True  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
+    utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
+
+
+# sessão usada no teste
+sessao1 = sessao.busca_por_identificador("S-00000001")
+assert sessao1 != None
+
+# Testa duas vezes: com uma sessão válida e também com uma sessão inválida (nula), para testar
+# o comportamento do módulo em diferentes cenários, garantindo sua funcionalidade.
+testa("teste_acrescentar_trecho_sessao_valida", sessao1, {})
+testa("teste_acrescentar_trecho_sessao_nula", None, {})

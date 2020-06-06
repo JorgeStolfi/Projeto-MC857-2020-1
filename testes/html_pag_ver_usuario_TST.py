@@ -19,11 +19,12 @@ sys.stderr.write("Criando alguns objetos...\n")
 tabelas.cria_todos_os_testes()
 
 # Sessao de teste:
-ses = sessao.busca_por_identificador("S-00000001")
+ses = sessao.busca_por_identificador("S-00000004")
 assert ses != None
 
 # Usuario teste:
-usr1 = sessao.obtem_usuario(ses)
+#usr1 = sessao.obtem_usuario(ses)
+usr1 = usuario.busca_por_identificador("U-00000001")
 assert usr1 != None
 usr1_id = usuario.obtem_identificador(usr1)
 usr1_atrs = usuario.obtem_atributos(usr1)
