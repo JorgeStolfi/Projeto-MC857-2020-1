@@ -56,10 +56,25 @@ def gera(trc, ver, alterar):
   ht_veiculo = html_texto.gera(veiculo, None, None, None, None, None, None, None, None)
   ht_num_poltronas = html_texto.gera(str(num_poltronas), None, None, None, None, None, None, None, None)
   
-  # !!! Botões de "Ver" e "Alterar"
-  botao_ver = html_botao_simples.gera("Ver", 'ver_trecho', {'id_trecho': id_trecho}, '#FF00FF')
-  botao_alterar = html_botao_simples.gera("Alterar", 'alterar_trecho',{'id_trecho': id_trecho}, '#FF00FF')
+  #  Botões de "Ver" e "Alterar"
+  botao_ver = html_botao_simples.gera("Ver", 'buscar_trechos', {'id_trecho': id_trecho}, '#00FF00')
+  botao_alterar = html_botao_simples.gera("Alterar", 'alterar_trecho',{'id_trecho': id_trecho}, '#FFA700')
 
-  ht_campos = ( ht_codigo, ht_origem, ht_destino, ht_dt_partida, ht_dt_chegada, ht_veiculo, ht_num_poltronas, botao_ver, botao_alterar)
+  ## def add_span_tag(str):
+  ##   return "<span style=\"color:blue;font-weight:bold\">" + str + "</span>"
+  ## 
+  ## ht_campos = (add_span_tag("Código do trecho: ") + ht_codigo,
+  ##              add_span_tag("Origem: ") + ht_origem,
+  ##              add_span_tag("Data de partida: ") + ht_dt_partida,
+  ##              add_span_tag("Destino: ") + ht_destino,
+  ##              add_span_tag("Data de chegada: ") + ht_dt_chegada,
+  ##              add_span_tag("Assentos livres: ") + ht_num_poltronas,
+  ##              botao_ver,
+  ##              botao_alterar)
+
+  ht_campos = ( \
+    ht_codigo, ht_origem, ht_destino, ht_dt_partida, ht_dt_chegada, 
+    ht_veiculo, ht_num_poltronas, botao_ver, botao_alterar
+  )
 
   return ht_campos
