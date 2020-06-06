@@ -107,8 +107,9 @@ def busca_por_cliente(id_cliente):
   
 def calcula_preco(cpr):
   preco = 0
-  for poltrona in obtem_poltronas(cpr):
-    preco = preco + obtem_atributo(poltrona,'preco')
+  for polt in obtem_poltronas(cpr):
+    polt = poltrona.busca_por_identificador(polt)
+    preco = preco + poltrona.obtem_atributo(polt,'preco')
   return preco
 
 def muda_atributos(cpr, mods_mem):
