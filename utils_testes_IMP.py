@@ -22,7 +22,7 @@ def mostra_pilha(n):
 
 def erro_prog(mens):
   sys.stderr.write("    ** erro: %s\n" % mens)
-  return
+  assert False # Tem que ser, para que apareça o traceback
 
 def aviso_prog(mens, grave):
   mostra_pilha(20)
