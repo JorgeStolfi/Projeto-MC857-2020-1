@@ -7,10 +7,15 @@ import usuario
 import compra
 
 def processa(ses, args):
-  assert ses != None   # Deveria acontecer.
-  assert sessao.aberta(ses)  # Deveria acontecer.
+  assert ses != None
+  pag = html_pag_mensagem_de_erro.gera(ses, "sessão corrente")
+  assert sessao.aberta(ses)
   usr = sessao.obtem_usuario(ses)
-  assert usr != None # Deveria acontecer.
+  assert usr != None
+  cookie = secrets.token_urlsafe(32)
+  carrinho = define_carrinho(usr, id_usuario)
+  ses_nova = sessao.cria(usr, cookie, carrinho)
+  pag = html_pag_principal.gera(ses_nova, None)
   assert not usuario.obtem_atributo(usr, 'administrador')  # Deveria acontecer.
   id_usr = usuario.obtem_identificador(usr)
   ids_compras = compra.busca_por_cliente(id_usr)

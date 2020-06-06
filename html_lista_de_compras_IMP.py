@@ -1,10 +1,19 @@
 import compra
 import html_table
 import html_resumo_de_compra
+import html_div
 import sys
 
 def gera(ids_compras, ver, trocar):
   linhas = [].copy()
+
+  # Header Contendo as informações
+  header = ['Código da Compra', 'Código do Usuário', 'Número de Poltronas', 'Valor Total', '']
+  headers = [].copy()
+  for i in header:
+    headers.append(html_div.gera("font-size:20px;font-weight:bold; padding:0px 10px 0px 0px", i))
+  linhas.append(headers)
+
   # Para cada id de compra retornado
   for id_cpr in ids_compras:
     # Obtem o objeto correspondente

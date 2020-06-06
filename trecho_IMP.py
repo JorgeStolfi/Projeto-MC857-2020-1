@@ -52,6 +52,7 @@ def inicializa(limpa):
       ( "hora_partida", type("foo"), 'TEXT',    False ),  # Hora UTC de partida, "{hh}:{mm}".
       ( "dia_chegada",  type("foo"), 'TEXT',    False ),  # Data UTC de chegada, "{YYYY}-{MM}-{DD}".
       ( "hora_chegada", type("foo"), 'TEXT',    False ),  # Hora UTC de chegada, "{hh}:{mm}".
+      ( "veiculo",      type("foo"), 'TEXT',    False ),  # Código do veículo (onibus/aeronave)".
     )
   if limpa:
     tabela_generica.limpa_tabela(nome_tb, colunas)
@@ -94,6 +95,7 @@ def busca(args):
 def busca_por_identificador(id):
   global cache, nome_tb, letra_tb, colunas, diags
   trc = objeto.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
+  assert type(trc) is trecho.Objeto_Trecho 
   return trc
 
 def busca_por_origem(cod):
@@ -157,6 +159,7 @@ def cria_testes():
         'hora_partida': "12:45",
         'dia_chegada':  "2020-05-08",
         'hora_chegada': "13:40",
+        'veiculo':      "AAA-0001"
       },
       { # T-00000002
         'codigo':       "AZ 4036",
@@ -166,6 +169,7 @@ def cria_testes():
         'hora_partida': "19:45",
         'dia_chegada':  "2020-05-08",
         'hora_chegada': "20:40",
+        'veiculo':      "AAA-0002"
       },
       { # T-00000003
         'codigo':       "GO 2133",
@@ -175,6 +179,7 @@ def cria_testes():
         'hora_partida': "19:33",
         'dia_chegada':  "2020-05-08",
         'hora_chegada': "20:27",
+        'veiculo':      "AAA-0003"
       },
       { # T-00000004
         'codigo':       "AZ 4044",
@@ -184,6 +189,7 @@ def cria_testes():
         'hora_partida': "20:00",
         'dia_chegada':  "2020-05-09",
         'hora_chegada': "06:25",
+        'veiculo':      "AAA-0004"
       },
       { # T-00000005
         'codigo':       "AZ 4092",
@@ -193,6 +199,7 @@ def cria_testes():
         'hora_partida': "07:40",
         'dia_chegada':  "2020-05-09",
         'hora_chegada': "13:20",
+        'veiculo':      "AAA-0005"
       },
       { # T-00000006
         'codigo':       "GO 2121",
@@ -202,6 +209,7 @@ def cria_testes():
         'hora_partida': "15:00",
         'dia_chegada':  "2020-05-08",
         'hora_chegada': "19:33",
+        'veiculo':      "AAA-0006"
       },
     ]
   for atrs in lista_trechos:
@@ -230,7 +238,7 @@ def valida_atributos(trc, atrs_mem):
   pedido de trecho. """
   global cache, nome_tb, letra_tb, colunas, diags
   
-  erros = [].copy();
+  erros = [].copy()
   
   return erros
 

@@ -1,7 +1,7 @@
 #! /usr/bin/python3
 
 import os,sys,inspect
-import base_sql 
+import base_sql
 import tabela_generica
 import tabelas
 import compra
@@ -39,18 +39,18 @@ cmp2 = compra.busca_por_identificador("C-00000003")
 
 ok_global = True # Vira {False} se um teste falha.
 
-def verifica_compra(rotulo, cpr, ident, cliente, status):
+def verifica_compra(rotulo, cpr, ident, cliente, status, nome_pass):
   """Testes básicos de consistência do objeto {cpr} da classe {Objeto_Compra}, dados
   {ident} e {atrs} esperados."""
   global ok_global
 
   sys.stderr.write("%s\n" % ("-" * 70))
   sys.stderr.write("verificando compra %s\n" % rotulo)
-  atrs = { 'cliente': cliente, 'status': status }
+  atrs = { 'cliente': cliente, 'status': status, 'nome_pass': nome_pass }
   ok = compra.verifica(cpr, ident, atrs)
-  
+
   if cpr != None and type(cpr) is compra.Objeto_Compra:
-    
+
     sys.stderr.write("testando {obtem_cliente()}:\n")
     usr1 = compra.obtem_cliente(cpr)
     if usr1 != cliente:
@@ -62,14 +62,14 @@ def verifica_compra(rotulo, cpr, ident, cliente, status):
     if status1 != status:
       aviso_prog("retornou " + str(status1) + ", deveria ter retornado " + str(status),True)
       ok = False
-    
+
     # erro na implementação de poltrona
     # sys.stderr.write("testando {obtem_poltronas()}:\n")
     # itens1 = compra.obtem_poltronas(cpr)
     # if itens1 != usr:
     #   aviso_prog("retornou " + str(itens1) + ", deveria ter retornado " + str(usr),True)
     #   ok = False
-      
+
   if not ok:
     aviso_prog("teste falhou",True)
     ok_global = False
@@ -79,24 +79,27 @@ def verifica_compra(rotulo, cpr, ident, cliente, status):
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {compra.cria}:\n")
-compra1 = compra.cria(usr1)
+nome_pass1 = usuario.obtem_atributos(usr1)['nome']
+compra1 = compra.cria(usr1, nome_pass1)
+print(compra.obtem_atributos(compra1))
 compraIndice1 = 1
 compraId1 = "C-00000001"
-verifica_compra("c1", compra1, compraId1, usr1, 'aberto')
+verifica_compra("c1", compra1, compraId1, usr1, 'aberto', nome_pass1)
 
-compra2 = compra.cria(usr2)
+nome_pass2 = usuario.obtem_atributos(usr2)['nome']
+compra2 = compra.cria(usr2, nome_pass2)
 compraIndice2 = 2
 compraId2 = "C-00000002"
-verifica_compra("c2", compra2, compraId2, usr2, 'aberto')
+verifica_compra("c2", compra2, compraId2, usr2, 'aberto', nome_pass2)
 
-compra3 = compra.cria(usr1)
+compra3 = compra.cria(usr1, nome_pass1)
 compraIndice3 = 3
 compraId3 = "C-00000003"
-verifica_compra("c3", compra3, compraId3, usr1, 'aberto')
+verifica_compra("c3", compra3, compraId3, usr1, 'aberto', nome_pass1)
 
 sys.stderr.write("testando {compra.fecha}:\n")
 compra.fecha(compra1)
-verifica_compra("fecha_c1", compra1, compraId1, usr1, 'pagando')
+verifica_compra("fecha_c1", compra1, compraId1, usr1, 'pagando', nome_pass1)
 
 # ----------------------------------------------------------------------
 # Veredito final:

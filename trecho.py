@@ -19,6 +19,7 @@ class Objeto_Trecho(Objeto_Trecho_IMP):
     'hora_partida' horário de partida (string "{hh}:{mm}").
     'dia_chegada'  data de chegada (string "{YYYY}-{MM}-{DD}").
     'hora_chegada' horário de chegada (string "{hh}:{mm}").
+    'veiculo'      código identificador do onibus/aeronave (formato livre).
     
   As datas e horários são sempre referentes ao fuso horário UTC.  Outros atributos 
   poderão ser acrescentados no futuro.
