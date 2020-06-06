@@ -1,0 +1,3 @@
+Implementei o módulo "comando_solicitar_pag_ofertas".
+Busquei todas as poltronas e obtive o atributo "id_trecho" de cada uma delas. Em seguida criei um conjunto único de dos ids de trechos obtidos, e por fim busquei os trechos que foram passados como argumento para a função gera do módulo "html_pag_ofertas".
+Vale ressaltar que tive um problema com a função "poltrona.busca_ofertas()", pois ela estava retornando uma lista vazia de poltronas. Ao retirar "'id_compra': None" do dicionario args ela passou a retornar 4 poltronas, entretanto incluindo poltronas que já foram compradas. No futuro será necessário verificar porque a função não está funcionando corretamente.

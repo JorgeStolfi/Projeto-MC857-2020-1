@@ -1,0 +1,4 @@
+1. Recebi a tarefa com 2 horas de atraso, uma devido ao atraso da aula e outra devido as duvidas dos colegas
+2. Inseri o botao Comprar logo ao final da pagina html_pag_ver_roteiro
+3. O codigo utilizado foi o mesmo utilizado em html_resumo_e_roteiro
+

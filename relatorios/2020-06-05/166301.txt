@@ -1,0 +1,1 @@
+Foi arrumado o botão Ver na página Minhas compras para mostrar corretamente a compra desejada

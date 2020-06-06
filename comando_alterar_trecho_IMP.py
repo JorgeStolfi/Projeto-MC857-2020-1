@@ -5,6 +5,7 @@ import html_pag_alterar_trecho
 import usuario
 import trecho
 import sessao
+import utils_testes
 from valida_campo import ErroAtrib
 
 
@@ -18,7 +19,7 @@ def processa(ses, args):
   # Determina se o usuário corrente {usr_ses} é administrador:
   if ses == None:
     # Não deveria acontecer:
-    erro_prog("usuário deveria estar logado")
+    utils_testes.erro_prog("usuário deveria estar logado")
   else:
     usr_ses = sessao.obtem_usuario(ses)
     assert usr_ses is not None
