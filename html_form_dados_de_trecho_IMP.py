@@ -13,12 +13,6 @@ from utils_testes import erro_prog, mostra
 import sys
 
 def gera(id_trecho, atrs, texto_bt, comando_bt):
-  # For simplicity:
-  if atrs == None:
-    atrs = {}.copy() 
-  else: 
-    atrs = atrs.copy()
-
   if id_trecho != None:
     # Supõe que é mostrar trecho existente:
     # Inclui campo 'id_trecho' no formulário:
@@ -28,6 +22,7 @@ def gera(id_trecho, atrs, texto_bt, comando_bt):
     alterar = False
     ht_id_trecho = ""
 
+  if atrs == None: atrs = {}.copy() # Por via das dúvidas.
   dados_linhas = [
     ( "Código",           "text",       "codigo",         "XX NNNN",                True, ),
     ( "Origem",           "text",       "origem",         "XXX",                    True, ),
@@ -41,7 +36,7 @@ def gera(id_trecho, atrs, texto_bt, comando_bt):
   ]
 
   # Monta a tabela com os fragmentos HTML:
-  ht_table = html_form_table.gera(dados_linhas, atrs, False)
+  ht_table = html_form_table.gera(dados_linhas, atrs, True)
 
   ht_bt_acao = html_botao_submit.gera(texto_bt, comando_bt, None, '#55ee55')
 
@@ -49,9 +44,9 @@ def gera(id_trecho, atrs, texto_bt, comando_bt):
 
   ht_conteudo = \
     ( "    " + ht_id_trecho + "\n" if ht_id_trecho != "" else "") + \
-    ht_table + \
-    ht_bt_acao + \
-    ht_bt_cancelar
+    ( ht_table + "\n" ) + \
+    ( "    " + ht_bt_acao + "\n" ) + \
+    ( "    " + ht_bt_cancelar + "\n" )
 
   ht = html_form.gera(ht_conteudo)
   return ht

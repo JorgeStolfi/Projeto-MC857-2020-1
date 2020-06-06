@@ -57,7 +57,7 @@ def gera(trc, ver, alterar):
   ht_num_poltronas = html_texto.gera(str(num_poltronas), None, None, None, None, None, None, None, None)
   
   # !!! Botões de "Ver" e "Alterar"
-  botao_ver = html_botao_simples.gera("Ver", 'buscar_trechos', {'id_trecho': id_trecho}, '#FF00FF')
+  botao_ver = html_botao_simples.gera("Ver", 'ver_trecho', {'id_trecho': id_trecho}, '#FF00FF')
   botao_alterar = html_botao_simples.gera("Alterar", 'alterar_trecho',{'id_trecho': id_trecho}, '#FF00FF')
 
   ht_campos = ( ht_codigo, ht_origem, ht_destino, ht_dt_partida, ht_dt_chegada, ht_veiculo, ht_num_poltronas, botao_ver, botao_alterar)

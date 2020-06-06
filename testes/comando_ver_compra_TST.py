@@ -1,5 +1,6 @@
 import sys
 import comando_ver_compra
+import html_pag_mensagem_de_erro
 import base_sql
 import tabelas
 import usuario
@@ -14,16 +15,25 @@ assert res == None
 sys.stderr.write("Criando objetos...\n")
 tabelas.cria_todos_os_testes()
 
+id_compra = "C-00000001"
+
 ses = sessao.busca_por_identificador("S-00000001")
 usr = usuario.busca_por_identificador("U-00000001")
-compra = compra.busca_por_identificador("C-00000001")
-
-# !!! CONSERTAR !!!
-
-args = { 'id_usuario': id, "id_compra": compra.id}
-compra = comando_ver_compra.processa(ses, args, "Bla bla bla")
+compra = compra.busca_por_identificador(id_compra)
 
 if compra:
+  sys.stderr.write("Compra encontrada\n")
+  args = { 'id_usuario': id, "id_compra": compra.id}
+else:
+  erro_prog("comando_ver_compra_TST : teste falhou : compra nao encontrada")
+
+# Pagina de erro gerada pelo modulo {comando_ver_compra} caso algo de errado
+erros = ["compra \"" + id_compra + "\" não existe"]
+pag_erro = html_pag_mensagem_de_erro.gera(ses, erros)
+
+pag_compra = comando_ver_compra.processa(ses, args)
+
+if pag_compra != pag_erro:
   sys.stderr.write("Nao houve erros\n")
 else:
-  erro_prog(" : teste falhou")
+  erro_prog("comando_ver_compra_TST : teste falhou : pagina de erro gerada")

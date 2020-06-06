@@ -1,0 +1,6 @@
+- criado {html_ver_objeto}
+- criado {html_form_ver_objeto}
+- acrescentado botao "Checar objeto" em {html_menu_geral_IMP}
+- adicionada condição de privilégio de administrador para checagem dos objetos em {comando_ver_objeto}
+
+- Não consegui fazer a página de checagem do objeto carregar no servi

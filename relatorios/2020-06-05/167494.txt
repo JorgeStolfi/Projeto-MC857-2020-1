@@ -1,0 +1,17 @@
+Relatório Individual - 2020-06-05 - Bernardo do Amaral Teodosio - 167494
+
+Nesta aula, a tarefa designada para mim foi "comando_solicitar_pag_acrescentar_trecho: TST: Consertar".
+
+Abaixo, segue um passo a passo do que tive que fazer para realizá-la, na ordem em que os passos foram realizados:
+
+    * Decidi usar como base o arquivo, comando_solicitar_pag_alterar_usuario_TST, que é o teste de um outro módulo. Assim, pude facilitar meu trabalho e também entender melhor o que deveria ser feito.
+    * Após confirmar com o professor, apaguei a função verifica_usuario do módulo (tanto a implementação como a interface), já que a mesma não estava sendo utilizada e não deveria ser testada.
+    * Implementei a função de teste do meu módulo conforme solicitado, e realizei dois testes (chamando a função 2 vezes)
+        * Teste 1: usando uma sessão válida - S-00000001
+        * Teste 2: usando uma sessão inválida - None
+
+A implementação do teste e o teste em si estão funcionando corretamente, que é o que foi solicitado. Porém, creio haver um problema na implementação do módulo em si, uma vez que os campos para inserção dos detalhes do trecho a ser acrescentados não estão sendo exibidos (nem no teste e nem no servidor, quando acesso o mesmo a partir de um browser). Como isso não fazia parte da tarefa solicitada, não me atrevi a alterar o módulo, mas gostaria de deixar isto reportado aqui pois pode, possivelmente, se tornar uma tarefa para alguém na próxima aula - já que na aula de hoje tivemos alunos que estavam sem tarefas.
+
+Em caso de dúvidas, estou a disposição.
+Abraços,
+Bernardo
