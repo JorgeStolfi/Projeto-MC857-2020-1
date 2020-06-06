@@ -123,7 +123,8 @@ def lista_livres(trc):
 
 def busca_ofertas():
   global cache, nome_tb, letra_tb, colunas, diags
-  args = { 'id_compra': None, 'oferta': True }
+  # TODO: 'id_compra': None
+  args = { 'oferta': True }
   unico = False
   ids_poltronas = objeto.busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas)
   return ids_poltronas
