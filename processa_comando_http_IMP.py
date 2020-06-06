@@ -432,6 +432,10 @@ def processa_comando(tipo, ses, dados):
       # Usuário apertou o botão "Buscar" na página de buscar trecho:
       pag = comando_buscar_trechos.processa(ses, args)
 
+    elif cmd == '/ver_trecho':
+      # Usuário apertou o botão "Ver" na página de lista de trechos:
+      pag = comando_ver_trecho.processa(ses, args)
+
     elif cmd == '/alterar_trecho':
       # Usuário apertou o botão "Alterar Trecho" do menu geral (administrador):
       pag = comando_alterar_trecho.processa(ses, args)
