@@ -407,10 +407,6 @@ def processa_comando(tipo, ses, dados):
       # Usuário apertou o botão "Meu carrinho" no menu geral:
       pag = comando_ver_carrinho.processa(ses, args)
 
-    elif cmd == '/ver_trecho':
-      # Usuário apertou o botão "Ver trecho" no menu geral:
-      pag = comando_ver_trecho.processa(ses, args)
-
     elif cmd == '/solicitar_pag_buscar_compras':
       # Usuário apertou o botão "Buscar Compra" do menu geral:
       pag = comando_solicitar_pag_buscar_compras.processa(ses, args)
