@@ -1,0 +1,6 @@
+Consertei os erros que estavam dando no TST do módulo { comando_alterar_trecho }
+Arrumei a descrição do módulo { comando_alterar_trecho }
+Alterei o módulo { html_form_dados_de_trecho } para que a página html gerado mostrasse os inputs
+Alterei o módulo { utils_testes } para que uma função mostrasse a mensagem de erro e não apenas acusasse um AssertionError
+Adicionei uma verificacao de retorno de tipo na funcao obtem_por_identificador no módulo { trecho }
+Adicionei um import que estava faltando no IMP do módulo { comando_alterar_trecho }

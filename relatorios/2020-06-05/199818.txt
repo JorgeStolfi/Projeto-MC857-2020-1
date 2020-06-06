@@ -1,0 +1,4 @@
+RA: 199818
+
+Linhas 57 e 58 do arquivo html_menu_geral_IMP para inserção dos botões "Buscar usuários" e "Buscar compras".
+Os botões aparecem se o usuário está logado como Administrador.

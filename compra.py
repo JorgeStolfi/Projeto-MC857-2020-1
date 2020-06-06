@@ -106,6 +106,16 @@ def obtem_poltronas(cpr):
   ("A-{NNNNNNNN}")."""
   return compra_IMP.obtem_poltronas(cpr)
 
+def busca(args):
+  """O parâmetro {args} é um dicionário que contém um subconjunto dos
+  atributos de um {Objeto_Trecho}, pelo menos um dos atributos deve estar definido e todos os atributos definitos
+  devem ser diferentes de None.
+  Localiza trechos pelos atributos definidos em {args}.
+  Devolve uma lista dos identificadores desses trechos (NÃO os trechos),
+  por exemplo ['T-00000001', 'T-00000025'].
+  Devolve uma lista vazia se não existir nenhum trecho nessas condições."""
+  return trecho_IMP.busca(args)
+
 def busca_por_identificador(id):
   """Localiza um pedido de compra com identificador {id} (uma string da forma
   "C-{NNNNNNNN}"), e devolve a mesma na forma de um objeto da classe {Objeto_Compra}.
@@ -122,6 +132,7 @@ def busca_por_cliente(id_cliente):
 def calcula_preco(cpr):
   """Devolve o preço total da compra, que é a soma dos
   preços de todos os bilhetes (poltronas) atualmente na mesma."""
+  return compra_IMP.calcula_preco(cpr)
 
 def muda_atributos(cpr, mods_mem):
   """Recebe um dicionário Python {mods_mem} cujas chaves são um subconjunto
