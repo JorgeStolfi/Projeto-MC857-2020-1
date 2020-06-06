@@ -8,7 +8,7 @@ import utils_testes
 import sys
 
 sys.stderr.write("Conectando com base de dados...\n")
-res = base_sql.conecta("DB",None,None)
+res = base_sql.conecta("DB", None, None)
 assert res == None
 
 sys.stderr.write("Criando alguns objetos...\n")
@@ -24,8 +24,8 @@ def testa(rotulo, *args):
     pretty = True  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-
 ses1 = sessao.busca_por_identificador("S-00000001")
 assert ses1 != None
 
 testa("sucesso-sessao-com-carrinho", ses1, None)
+testa("erro-sem-sessao", None, None)
