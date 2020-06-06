@@ -7,16 +7,9 @@ def processa(ses, args):
     os campos do mesmo.
 
     Os dados do trecho devem estar definidos no dicionário {args}.
-    Deve haver um campo 'senha' com valor não nulo, um campo 'conf_senha'
-    com o mesmo valor e um campo 'id_trc' não nulo.
+    Deve haver um campo 'id_trc' com valor não nulo;
 
     Se os dados forem aceitáveis, a função altera o trecho {trc},
-    na base de dado; e retorna um formulário
-    para o usuário fazer login (com campos para email e senha,
-    e um botão "Entrar").
-
-    Se os dados não forem aceitáveis, a função devolve o
-    mesmo formulário de alterar usuário, com os mesmos
-    dados nos campos preenchidos, com uma ou mais mensagens de erro
-    adequadas."""
+    na base de dado; e retorna um formulário"""
+    
     return comando_alterar_trecho_IMP.processa(ses, args)
