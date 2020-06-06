@@ -2,11 +2,14 @@
 
 import html_pag_ofertas
 import poltrona
+import trecho
 import sessao
 
 def processa(ses, args):
-  pols = poltrona.busca_ofertas()
-  # alterar = sessao.eh_administrador(ses)
-  pag = html_pag_ofertas.gera(ses, pols, None)
+  id_poltronas = poltrona.busca_ofertas()
+  poltronas = [poltrona.busca_por_identificador(id) for id in id_poltronas]
+  id_trechos = list(set([poltrona.obtem_atributo(pol, 'id_trecho') for pol in  poltronas]))
+  trechos = [trecho.busca_por_identificador(id) for id in id_trechos]
+  pag = html_pag_ofertas.gera(ses, trechos, None)
   return pag
     
