@@ -13,6 +13,7 @@ def gera(trc, ver, alterar):
   destino = atrs_trecho['destino']
   dt_partida = atrs_trecho['dia_partida'] + " " + atrs_trecho['hora_partida']
   dt_chegada = atrs_trecho['dia_chegada'] + " " + atrs_trecho['hora_chegada']
+  veiculo = atrs_trecho['veiculo']
   num_poltronas = str(len(ids_poltronas))
 
 
@@ -52,12 +53,13 @@ def gera(trc, ver, alterar):
   ht_destino = html_texto.gera(destino, None, None, None, None, None, None, None, None)
   ht_dt_partida = html_texto.gera(dt_partida, None, None, None, None, None, None, None, None)
   ht_dt_chegada = html_texto.gera(dt_chegada, None, None, None, None, None, None, None, None)
+  ht_veiculo = html_texto.gera(veiculo, None, None, None, None, None, None, None, None)
   ht_num_poltronas = html_texto.gera(str(num_poltronas), None, None, None, None, None, None, None, None)
   
   # !!! Botões de "Ver" e "Alterar"
   botao_ver = html_botao_simples.gera("Ver", 'ver_trecho', {'id_trecho': id_trecho}, '#FF00FF')
   botao_alterar = html_botao_simples.gera("Alterar", 'alterar_trecho',{'id_trecho': id_trecho}, '#FF00FF')
 
-  ht_campos = ( ht_codigo, ht_origem, ht_destino, ht_dt_partida, ht_dt_chegada, ht_num_poltronas, botao_ver, botao_alterar)
+  ht_campos = ( ht_codigo, ht_origem, ht_destino, ht_dt_partida, ht_dt_chegada, ht_veiculo, ht_num_poltronas, botao_ver, botao_alterar)
 
   return ht_campos

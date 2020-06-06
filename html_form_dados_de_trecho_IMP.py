@@ -21,21 +21,19 @@ def gera(id_trecho, atrs, texto_bt, comando_bt):
     # Supõe que é criação de novo trecho, ou buscar:
     alterar = False
     ht_id_trecho = ""
-  
-  # For simplicity:
-  if atrs == None: atrs = {}.copy()
 
-  dados_linhas = \
-    (
-      ( "Código",           "text",       "codigo",         "XX NNNN",                True, ),
-      ( "Origem",           "text",       "origem",         "XXX",                    True, ),
-      ( "Dia de partida",   "text",       "dia_partida",    "YYYY-MM-DD",             True, ),
-      ( "Hora de partida",  "text",       "hora_partida",   "HH:MM",                  True, ),
-      ( "Destino",          "text",       "destino",        "XXX",                    True, ),
-      ( "Dia de chegada",   "text",       "dia_chegada",    "YYYY-MM-DD",             True, ),
-      ( "Hora de chegada",  "text",       "hora_chegada",   "HH:MM",                  True, ),
-      ( "Poltronas",        "text",       "poltronas",      "1A-20D,33: 90.00; ...",  True, ),
-    )
+  if atrs == None: atrs = {}.copy() # Por via das dúvidas.
+  dados_linhas = [
+    ( "Código",           "text",       "codigo",         "XX NNNN",                True, ),
+    ( "Origem",           "text",       "origem",         "XXX",                    True, ),
+    ( "Dia de partida",   "text",       "dia_partida",    "YYYY-MM-DD",             True, ),
+    ( "Hora de partida",  "text",       "hora_partida",   "HH:MM",                  True, ),
+    ( "Destino",          "text",       "destino",        "XXX",                    True, ),
+    ( "Dia de chegada",   "text",       "dia_chegada",    "YYYY-MM-DD",             True, ),
+    ( "Hora de chegada",  "text",       "hora_chegada",   "HH:MM",                  True, ),
+    ( "Veículo",          "text",       "veiculo",        "XXX-NNNN",               True, ),
+    ( "Poltronas",        "text",       "poltronas",      "1A-20D,33: 90.00; ...",  True, ),
+  ]
 
   # Monta a tabela com os fragmentos HTML:
   ht_table = html_form_table.gera(dados_linhas, atrs, True)
