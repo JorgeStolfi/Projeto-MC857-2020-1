@@ -11,7 +11,7 @@ from utils_testes import erro_prog, mostra
 import sys
 
 # VARIÁVEIS GLOBAIS DO MÓDULO
- 
+
 cache = {}.copy()
   # Dicionário que mapeia identificadores para os objetos {Objeto_Compra} na memória.
   # Todo objeto dessa classe que é criado é acrescentado a esse dicionário,
@@ -19,13 +19,13 @@ cache = {}.copy()
 
 nome_tb = "compras"
   # Nome da tabela na base de dados.
- 
+
 letra_tb = "C"
   # Prefixo comum dos identificadores de compra.
 
 colunas = None
   # Descrição das colunas da tabela na base de dados.
-  
+
 diags = False
   # Quando {True}, mostra comandos e resultados em {stderr}.
 
@@ -42,20 +42,21 @@ class Objeto_Compra_IMP(objeto.Objeto):
 
 def inicializa(limpa):
   global cache, nome_tb, letra_tb, colunas, diags
-  # Descrição da tabela "compras". 
+  # Descrição da tabela "compras".
   colunas = \
     ( ( "cliente",      usuario.Objeto_Usuario, 'TEXT',    False ),  # Objeto/id do usuário logado no pedido de compra.
       ( "status",       type("foo"),        'TEXT',    False ),  # Estado do pedido de compra ('aberto', etc.).
+      ("nome_pass",     type("foo"),        'TEXT',    False), # Nome do passageiro da passagem comprada
     )
   if limpa:
     tabela_generica.limpa_tabela(nome_tb, colunas)
   else:
     tabela_generica.cria_tabela(nome_tb, colunas)
- 
-def cria(cliente):
+
+def cria(cliente, nome_pass):
   global cache, nome_tb, letra_tb, colunas, diags
-  
-  atrs_mem = { 'cliente': cliente, 'status': 'aberto' }
+
+  atrs_mem = { 'cliente': cliente, 'status': 'aberto', 'nome_pass': nome_pass }
 
   erros = valida_atributos(None, atrs_mem)
   if len(erros) != 0: raise ErroAtrib(erros)
@@ -104,7 +105,7 @@ def busca_por_cliente(id_cliente):
   unico = False
   ids_compras = objeto.busca_por_campo('cliente', id_cliente, unico, cache, nome_tb, letra_tb, colunas)
   return ids_compras
-  
+
 def calcula_preco(cpr):
   preco = 0
   for polt in obtem_poltronas(cpr):
@@ -117,7 +118,7 @@ def muda_atributos(cpr, mods_mem):
 
   erros = valida_atributos(cpr, mods_mem)
   if len(erros) != 0: raise ErroAtrib(erros)
-  
+
   objeto.muda_atributos(cpr, mods_mem, cache, nome_tb, letra_tb, colunas, def_obj_mem)
   return
 
@@ -133,13 +134,14 @@ def cria_testes():
   # Identificador de usuários e lista de poltronas de cada pedido de compra:
   lista_ups = \
     [
-      ("U-00000001", ("A-00000001", "A-00000003", )),
-      ("U-00000001", ("A-00000004", "A-00000006", "A-00000002", )),
-      ("U-00000002", ("A-00000005", ))
+      ("U-00000001", ("A-00000001", "A-00000003", ), "Amanda Castro"),
+      ("U-00000001", ("A-00000004", "A-00000006", "A-00000002", ),"Gustavo Galvão"),
+      ("U-00000002", ("A-00000005", ), "José Roberto")
     ]
-  for id_cliente, ids_poltronas in lista_ups:
+  for id_cliente, ids_poltronas, nome_pass in lista_ups:
     cliente = usuario.busca_por_identificador(id_cliente)
-    cpr = cria(cliente)
+
+    cpr = cria(cliente, nome_pass)
     assert cpr != None and type(cpr) is compra.Objeto_Compra
     id_cpr = compra.obtem_identificador(cpr)
     usr = compra.obtem_cliente(cpr)
@@ -158,29 +160,29 @@ def diagnosticos(val):
 # FUNÇÕES INTERNAS
 
 def valida_atributos(cpr, atrs_mem):
-  """Faz validação nos atributos {atrs_mem}. Devolve uma lista 
+  """Faz validação nos atributos {atrs_mem}. Devolve uma lista
   de strings com descrições dos erros encontrados.
-  
+
   Se {cpr} é {None}, supõe que um novo pedido de compras está sendo criado.
   Se {cpr} não é {None}, supõe que {atrs_mem} sao alterações a aplicar nesse
   pedido de compra. """
   global cache, nome_tb, letra_tb, colunas, diags
-  
+
   erros = [].copy();
-  
+
   return erros
 
 def def_obj_mem(obj, id, atrs_SQL):
   """Se {obj} for {None}, cria um novo objeto da classe {Objeto_Compra} com
   identificador {id} e atributos {atrs_SQL}, tais como extraidos
   da tabela de compras.  Extrai a lista de itens da tabela
-  correspondente, se houver. O objeto *NÃO* é inserido na base de dados. 
-  
+  correspondente, se houver. O objeto *NÃO* é inserido na base de dados.
+
   Se {obj} não é {None}, deve ser um objeto da classe {Objeto_Compra}; nesse
   caso a função altera os atributos de {obj}, exceto a lista de itens,
-  conforme especificado em {atrs_SQL}. A entrada correspondente na 
+  conforme especificado em {atrs_SQL}. A entrada correspondente na
   base de dados *NÃO* é alterada.
-  
+
   Em qualquer caso, os valores em {atr_SQL} são convertidos para valores
   equivalentes na memória. Se os parâmetros forem inválidos ou incompletos,
   retorna uma ou mais mensagens de erro, na forma de uma lista de strings."""
@@ -208,4 +210,3 @@ def def_obj_mem(obj, id, atrs_SQL):
       obj.atrs[chave] = val
   if diags: mostra(2, "obj = " + str(obj))
   return obj
- 
