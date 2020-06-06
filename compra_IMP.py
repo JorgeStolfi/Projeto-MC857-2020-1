@@ -90,6 +90,12 @@ def obtem_poltronas(cpr):
   ids_poltronas = poltrona.busca_por_compra(cpr)
   return ids_poltronas
 
+def busca(args):
+  global cache, nome_tb, letra_tb, colunas, diags
+  unico = False
+  ids = objeto.busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas)
+  return ids
+
 def busca_por_identificador(id):
   global cache, nome_tb, letra_tb, colunas, diags
   cpr = objeto.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
@@ -102,8 +108,9 @@ def busca_por_cliente(id_cliente):
 
 def calcula_preco(cpr):
   preco = 0
-  for poltrona in obtem_poltronas(cpr):
-    preco = preco + obtem_atributo(poltrona,'preco')
+  for polt in obtem_poltronas(cpr):
+    polt = poltrona.busca_por_identificador(polt)
+    preco = preco + poltrona.obtem_atributo(polt,'preco')
   return preco
 
 def muda_atributos(cpr, mods_mem):

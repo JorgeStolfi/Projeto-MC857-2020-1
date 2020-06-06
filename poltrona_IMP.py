@@ -123,7 +123,8 @@ def lista_livres(trc):
 
 def busca_ofertas():
   global cache, nome_tb, letra_tb, colunas, diags
-  args = { 'id_compra': None, 'oferta': True }
+  # TODO: 'id_compra': None
+  args = { 'oferta': True }
   unico = False
   ids_poltronas = objeto.busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas)
   return ids_poltronas
@@ -401,7 +402,29 @@ def valida_atributos(pol, atrs_mem):
   # não deve haver nenhuma poltrona na base com mesmo número e trecho.  Se for
   # alteração ({pol != None}), deve haver apenas uma, e deve ter
   # o mesmo identificador de {pol}.
-  # !!! COMPLETAR -- usar {objeto.busca_por_campos} !!!
+
+  
+  args = {"numero": "","id_trecho": ""}
+  
+  # verificacao para o caso de atrs_mem nao ter os campos numero ou id_trecho
+  if 'numero' in atrs_mem:
+    args["numero"] = atrs_mem['numero']
+  else:
+    args["numero"] = obtem_atributo(pol, "numero")
+
+  if 'id_trecho' in atrs_mem:
+    args["id_trecho"] = atrs_mem['id_trecho']
+  else:
+    args["id_trecho"] = obtem_atributo(pol, "id_trecho")
+
+
+  objs = objeto.busca_por_campos(args, False, cache, nome_tb, letra_tb, colunas)
+
+  if (pol == None) & (len(objs) > 0):
+    erros.append(" Ja existe uma poltrona com esse numero e trecho! ")
+  if (pol != None) & (len(objs) > 0):
+    if (len(objs) > 1) | (objs[0] != obtem_identificador(pol)):
+      erros.append(" Ja existe uma poltrona com esse numero e trecho! ")
 
   return erros
 

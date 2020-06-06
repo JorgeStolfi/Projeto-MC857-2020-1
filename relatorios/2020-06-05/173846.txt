@@ -1,0 +1,11 @@
+Relatório 173846 do dia 2020-06-05
+
+Tarefa: 173846 comando_ver_compra, comando_ver_meu_carrinho: mostrar preço, aeroportos e datas de cada bilhete.
+
+Para realizar esta tarefa, tive que alterar o módulo html_resumo_de_poltrona para exibir os dados requisitados
+na página html_ver_compra. Mas isso viola a interface desta função então acredito ser necessário ter dois tipos
+de resumo_poltrona.
+
+No módulo comando_ver_compra tive que corrigir a chamada para html_ver_compra.
+
+Rodei os testes e visualizei as páginas, obtendo o resultado esperado.

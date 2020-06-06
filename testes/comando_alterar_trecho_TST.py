@@ -12,7 +12,6 @@ import sys
 
 # Conecta no banco e carrega alimenta com as informações para o teste
 
-
 sys.stderr.write("Conectando com base de dados...\n")
 res = base_sql.conecta("DB", None, None)
 assert res is None
@@ -22,7 +21,6 @@ tabelas.cria_todos_os_testes()
 
 # Sessao de teste
 ses = sessao.busca_por_identificador("S-00000001")
-
 
 def testa(rotulo, *args):
     """Testa {funcao(*args)}, grava resultado
@@ -34,34 +32,19 @@ def testa(rotulo, *args):
     pretty = False  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-# !!! CONSERTAR !!!
-
 def testa_atualiza_atributo_com_sucesso():
-    novo_trecho = "RIO-SP"
+   
     args = {
-        'id_trecho': "U-00000001",
-        'trecho': novo_trecho,
+        'id_trecho': "T-00000001",
+        'destino': 'POA'
     }
+
     testa("Suc", ses, args)
 
-    updated_trecho = trecho.busca_por_identificador("U-00000001")
+    updated_trecho = trecho.busca_por_identificador("T-00000001")
 
-    assert trecho.obtem_atributo(updated_trecho, "trecho") == novo_trecho, "Trecho não atualizado"
-
-
-def testa_atualiza_atributo_invalido():
-    trecho_invalido = "RIO-LUA"
-    args = {
-        'id_trecho': "U-00000001",
-        'trecho': trecho_invalido,
-    }
-    testa("Inv", ses, args)
-
-    updated_trecho = trecho.busca_por_identificador("U-00000001")
-
-    assert trecho.obtem_atributo(updated_trecho, "trecho") != trecho_invalido, "Trecho atualizado, mas nao deveria"
+    assert trecho.obtem_atributo(updated_trecho, "destino") == 'POA', "Trecho não atualizado"
 
 # Executa os testes
 
 testa_atualiza_atributo_com_sucesso()
-testa_atualiza_atributo_invalido()
