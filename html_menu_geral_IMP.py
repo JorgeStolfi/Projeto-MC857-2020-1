@@ -55,6 +55,7 @@ def gera_botoes_linha_1_logado(nome_usuario, admin):
     )
   if admin:
     html_botao_simples.gera("Buscar usuários", 'buscar_usuarios', None, '#eeeeee'),
+    html_botao_simples.gera("Buscar compras", 'buscar_compras', None, '#eeeeee'),
     botoes_compras = ( )
   else:
     botoes_compras = (
