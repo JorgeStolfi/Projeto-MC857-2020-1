@@ -1,0 +1,7 @@
+Tarefa: 185441 html_pag_ver_usuario: IMP: Deveria confirmar que o dono da sessão {ses} é administrador.
+
+- Adicionei duas linhas em html_pag_ver_usuario:
+    - A primeira busca pelo usuário dono da sessão e a outra checa se ele é administrador, alterando o valor de {admin}
+- Realizei o teste da forma que ele estava definido em html_pag_ver_usuario_TST e o checkbox de administrador desapareceu, como esperado.
+- Alterei o html_pag_ver_usuario_TST para que o dono da sessão de teste seja o administrador e a página de usuário seja a dele, o checkbox apareceu e estava marcado, como esperado.
+- Alterei novamente o TST para que a página de usuário seja do usuário U-00000001, o teste funcionou como esperado, com o checkbox desmarcado e mantive essa versão de teste.

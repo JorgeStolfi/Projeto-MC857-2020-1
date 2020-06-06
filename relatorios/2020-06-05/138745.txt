@@ -1,0 +1,12 @@
+Minha tarefa nesse dia foi: "botão de "Meu Carrinho": a página resultante deve ter um botão "Finalizar Compra""
+
+Lendo o código existente em comando_ver_carrinho, vi que ele usava diretamente o html_pag_ver_compra para exibir o carrinho
+do usuário. Com isso, adicionar um botão de Finalizar Compra dentro desse html não faria sentido, já que ele é usado em outros
+lugares (como comando_ver_compra). Optei por criar html_pag_ver_carrinho (e sua implementação), esses novos arquivos são responsáveis
+por criar a página do carrinho, usando o html_pag_ver_compra e com um botão verde que abre a página /finalizar_compra, para ser
+desenvolvida posteriormente.
+
+Na implementação de comando_ver_carrinho, eu notei que os asserts que validam as informações da sessão estavam sem o try,
+então caso desse erro, o servidor apenas não conseguia abrir nenhuma página. Adicionei um try/except para, quando identificado
+erro, exibir uma página de erro genérica. Com essa alteração, adicionei esse cenário ao teste. Fiz isso pois não havia
+ninguém responsável por alterações nesse comando e 156931, que iria alterar o teste, foi liberada durante a aula.

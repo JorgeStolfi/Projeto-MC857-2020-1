@@ -1,0 +1,18 @@
+Na aula de hoje, fui encarregado de melhorar a aparência de html_lista_de_trechos, através da alteração de sua implementação.
+
+html_lista_de_trechos.IMP não é nada mais que uma tabela em que suas linhas são produzidas por html_resumo_de_trecho. Então, para mudar sua aparência, na verdade, o
+que realmente devemos alterar é html_resumo_de_trecho.IMP.
+
+Em html_resumo_de_trecho.IMP, criei descrições para cada texto html referente à um atributo de um trecho - por exemplo, para o atributo 'dia_chegada' coloquei antes a 
+descrição "Data de chegada: ", de modo que o output do texto html ficasse como "Data de chegada: 2020-05-08 12:45". Essas descrições ficam entre tags <span style = 
+(...) ></span>, em que o estilo adotado foram um peso de fonte bold e a cor azul.
+
+Também ordenei a ordem que esses textos html aparecem de modo que façam mais sentido: por exemplo, coloquei sequencialmente o aeroporto de origem com a data de partida 
+e analogamente, coloquei sequencialmente o aeroporto de destino com a data de chegada.
+
+Outra modificação foi mudar as cores dos botões de Ver e Alterar. Utilizei #00FF00 (verde) para o botão Ver e #FFA700 (laranja) para o botão Alterar.
+
+Por fim, em html_lista_de_trechos.IMP adicionei um cabeçalho com o título "Lista de trechos disponíveis".
+
+
+ 
