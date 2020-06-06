@@ -21,12 +21,11 @@ def processa(ses, args):
 
   # Monta página:
   id_compra = args['id_compra']
-  erros = []
   cpr = compra.busca_por_identificador(id_compra)
   if cpr == None:
     erros = ["compra \"" + id_compra + "\" não existe"]
     pag = html_pag_mensagem_de_erro(ses, erros)
   else:
     excluir = (compra.obtem_cliente(cpr) == usr) or usuario.eh_administrador(usr)
-    pag = html_pag_ver_compra.gera(ses, cpr, excluir, erros)
+    pag = html_pag_ver_compra.gera(ses, cpr, excluir, None)
   return pag
