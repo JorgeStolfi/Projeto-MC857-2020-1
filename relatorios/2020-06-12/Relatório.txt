@@ -1,0 +1,14 @@
+Relatório
+
+João Flores 199818
+
+Foi inserida a linha 92:
+ids_poltronas_ordenadas = sorted(ids_poltronas, key = ids_poltronas['id_trecho']['hora_partida'])
+
+Foi ordenada as poltronas pelo horário de partida do trecho
+- Fez-se o get da propriedade 'id_trecho' e em sequencia a 'hora_partida', com essas, foi ordenada
+as poltronas de acordo com esse horario de partida utilizando o comando sort.
+
+
+
+
