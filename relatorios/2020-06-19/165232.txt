@@ -1,1 +1,2 @@
 Foi implementado o cabeçalho às colunas da tebela em html_lista_de_poltronas_de_compra_IMP.py.
+
