@@ -4,28 +4,30 @@ import html_resumo_de_compra
 import html_div
 import sys
 
-def gera(ids_compras, ver, trocar):
+def gera(ids_compras, ver):
   linhas = [].copy()
 
-  # Header Contendo as informações
-  header = ['Código da Compra', 'Código do Usuário', 'Número de Poltronas', 'Valor Total', '']
-  headers = [].copy()
-  for i in header:
-    headers.append(html_div.gera("font-size:20px;font-weight:bold; padding:0px 10px 0px 0px", i))
-  linhas.append(headers)
+  # Linha de cabeçalho:
+  estilo_cab = "font-size:20px;font-weight:bold; padding:0px 10px 0px 0px"
+  cabs_raw = [ 'Compra', 'Usuário', 'NP', 'Preço', '']
+  cabs_div = [].copy()
+  for cb in cabs_raw:
+    cabs_div.append(html_div.gera(estilo_cab, cb))
+  
+  linhas.append(cabs_div)
 
-  # Para cada id de compra retornado
+  # Linhas das compras:
   for id_cpr in ids_compras:
     # Obtem o objeto correspondente
     compra_obj = compra.busca_por_identificador(id_cpr)
 
     # Gera uma lista de fragmentos HTML com as informacoes dessa compra
-    campos_resumo = html_resumo_de_compra.gera(compra_obj, ver, trocar)
-    # sys.stderr.write("campos_resumo = %s\n" % str(campos_resumo))
-    assert type(campos_resumo) is list or type(campos_resumo) is tuple
+    res_campos = html_resumo_de_compra.gera(compra_obj, ver)
+    sys.stderr.write("res_campos = %s\n" % str(res_campos))
+    assert type(res_campos) is list or type(res_campos) is tuple
 
     # Adiciona essa lista à lista de linhas para a tabela HTML:
-    linhas.append(campos_resumo)
+    linhas.append(res_campos)
     # sys.stderr.write("linhas = %s\n" % str(linhas))
 
   # Gera a tabela HTML a partir da lista de linhas

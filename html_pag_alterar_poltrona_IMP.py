@@ -10,5 +10,5 @@ def gera(ses, id_poltrona, atrs, erros):
     ( id_poltrona, atrs, 
       alterar = True, comprar = False, excluir = False, id_cpr = None
     )
-  pag = html_pag_generica(ses, ht_form, erros)
+  pag = html_pag_generica.gera(ses, ht_form, erros)
   return pag

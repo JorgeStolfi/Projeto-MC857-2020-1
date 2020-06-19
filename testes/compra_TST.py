@@ -81,7 +81,7 @@ def verifica_compra(rotulo, cpr, ident, cliente, status, nome_pass):
 sys.stderr.write("testando {compra.cria}:\n")
 nome_pass1 = usuario.obtem_atributos(usr1)['nome']
 compra1 = compra.cria(usr1, nome_pass1)
-print(compra.obtem_atributos(compra1))
+# print(compra.obtem_atributos(compra1))
 compraIndice1 = 1
 compraId1 = "C-00000001"
 verifica_compra("c1", compra1, compraId1, usr1, 'aberto', nome_pass1)

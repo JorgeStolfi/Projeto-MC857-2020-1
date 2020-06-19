@@ -7,13 +7,12 @@ import html_form
 
 def gera(atrs, admin):
 
-  # !!! Acrescentar mais campos !!!
   dados_linhas = (
-      ( "Nome",             "text",        "nome",            "Fulano de tal",         False, ),
-      ( "documento",        "text",        "documento",       "RG 4.444.444-4 SSP SP", False, ),
-      ( "email",            "email",       "email",           "fulano@gmail.com",      False, ),
-      ( "telefone",            "text",       "telefone",           "(XX) XXXX-XXXX",      False, )
-      ( "CPF",            "text",       "cpf",           "XXX.XXX.XXX-XX",      False, )
+      ( "Nome",       "text",   "nome",          "Fulano de tal",         False, ),
+      ( "documento",  "text",   "documento",     "RG 4.444.444-4 SSP SP", False, ),
+      ( "email",      "email",  "email",         "fulano@gmail.com",      False, ),
+      ( "telefone",   "text",   "telefone",      "(XX) XXXX-XXXX",        False, ),
+      ( "CPF",        "text",   "cpf",           "XXX.XXX.XXX-XX",        False, ),
       )
 
   ht_table = html_form_table.gera(dados_linhas, atrs, admin)

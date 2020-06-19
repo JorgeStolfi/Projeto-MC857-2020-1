@@ -1,4 +1,4 @@
-import html_lista_de_poltronas
+import html_lista_de_poltronas_de_trecho
 import base_sql
 import tabelas
 import poltrona
@@ -19,19 +19,19 @@ def testa(rotulo, *args):
   """Testa {funcao(*args)}, grava resultado
   em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
 
-  modulo = html_lista_de_poltronas
+  modulo = html_lista_de_poltronas_de_trecho
   funcao = modulo.gera
   frag = True  # {True} se for apenas um fragmento HTML, {False} se for página completa.
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-cpr = compra.busca_por_identificador("C-00000001")
-cpr_pols_ids = poltrona.busca_por_compra(cpr)
+trc1_id = "T-00000001"
+trc1 = trecho.busca_por_identificador(trc1_id)
+trc1_pols_ids = poltrona.busca_por_trecho(trc1)
 
-testa("CPR", cpr_pols_ids, cpr, None, True)
+cpr1_id = "C-00000002"
 
-
-trc = trecho.busca_por_identificador("T-00000001")
-cpr_pols_ids = poltrona.busca_por_trecho(trc)
-
-testa("TRC", cpr_pols_ids, None, trc, True)
+testa("aF-cF", trc1_pols_ids, trc1_id, False, False, cpr1_id)
+testa("aF-cT", trc1_pols_ids, trc1_id, False, True,  cpr1_id)
+testa("aT-cF", trc1_pols_ids, trc1_id, True,  False, cpr1_id)
+testa("aT-cT", trc1_pols_ids, trc1_id, True,  True,  cpr1_id)

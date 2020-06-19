@@ -1,9 +1,0 @@
-!!ATENCAO!!
-
-A tarefa designada a mim teve um atraso de 2 horas em relação ao restante da sala.
-
-----------
-Consegui implementar o botão "Trocar" nas páginas "meu carrinho" ou "ver compra" ao lado de cada linha. 
-
-O botão "Trocar" chama o comando "trocar_poltrona", o qual ainda não foi implementado. Por isso, ele ainda não funciona.
-

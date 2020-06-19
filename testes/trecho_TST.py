@@ -87,39 +87,42 @@ def testa_busca_por_dias(dia_min, dia_max, ids):
 sys.stderr.write("testando {trecho.cria}:\n")
 
 trc1_atrs = {
-  'codigo':      "AZ 4024",
-  'origem':      "VCP",
-  'destino':     "SDU",
-  'dia_partida': "2020-05-08",
+  'codigo':       "AZ 4024",
+  'origem':       "VCP",
+  'destino':      "SDU",
+  'dia_partida':  "2020-05-08",
   'hora_partida': "12:45",
-  'dia_chegada': "2020-05-08",
+  'dia_chegada':  "2020-05-08",
   'hora_chegada': "13:40",
+  'veiculo':      "PP-CAI",
 }
 trc1_ind = 1
 trc1_id = "T-00000001"
 trc1 = testa_cria_trecho("trc1", trc1_id, trc1_atrs)
 
 trc2_atrs = {
-  'codigo':      "AZ 4036",
-  'origem':      "SDU",
-  'destino':     "VCP",
-  'dia_partida': "2020-05-08",
+  'codigo':       "AZ 4036",
+  'origem':       "SDU",
+  'destino':      "VCP",
+  'dia_partida':  "2020-05-08",
   'hora_partida': "19:45",
-  'dia_chegada': "2020-05-08",
+  'dia_chegada':  "2020-05-08",
   'hora_chegada': "20:40",
+  'veiculo':      "PP-BUM",
 }
 trc2_ind = 2
 trc2_id = "T-00000002"
 trc2 = testa_cria_trecho("trc2", trc2_id, trc2_atrs)
 
 trc3_atrs = {
-  'codigo':      "AZ 4036",
-  'origem':      "SDU",
-  'destino':     "VCP",
-  'dia_partida': "2020-05-09",
+  'codigo':       "AZ 4036",
+  'origem':       "SDU",
+  'destino':      "VCP",
+  'dia_partida':  "2020-05-09",
   'hora_partida': "19:45",
-  'dia_chegada': "2020-05-09",
+  'dia_chegada':  "2020-05-09",
   'hora_chegada': "20:40",
+  'veiculo':      "PP-PAU",
 }
 trc3_ind = 2
 trc3_id = "T-00000003"
@@ -142,9 +145,10 @@ sys.stderr.write("testando {trecho.muda_atributos}:\n")
 
 # Testando troca de alguns atributos:
 trc1_mods = {
-  'codigo': "GO 2331",
-  'dia_partida': "2020-05-08",
+  'codigo':       "GO 2331",
+  'dia_partida':  "2020-05-08",
   'hora_partida': "12:33",
+  'veiculo':      "PU-MBA"
 }
 trecho.muda_atributos(trc1, trc1_mods)
 trc1_atrs_m = trc1_atrs

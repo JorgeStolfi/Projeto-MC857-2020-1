@@ -1,2 +1,0 @@
-minha tarefa foi implementar o modulo "comando_buscar_usuarios".. Deixei para ser permitido buscar um usuario apenas pelo seu nome e email,
-por motivos de segurança do usuario.

@@ -31,9 +31,12 @@ def testa(rotulo, *args):
   pretty = False  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-# !!! CONSERTAR !!! 
+def testa_acrescenta_trecho_com_sucesso(id_trecho_ult, id_trecho_prox):
+  """Testa a criação de um novo trecho com sucesso, dados
+  o maior identificador válido {id_trecho_ult} e o menor inválido {id_trecho_prox}."""
+  assert trecho.busca_por_identificador(id_trecho_ult) != None
+  assert trecho.busca_por_identificador(id_trecho_prox) == None
 
-def testa_acrescenta_trecho_com_sucesso():
   args = {
      'codigo': "AZ 2345",
      'origem': "SDU",
@@ -42,14 +45,22 @@ def testa_acrescenta_trecho_com_sucesso():
      'hora_partida': "13:40",
      'dia_chegada': "2020-05-26",
      'hora_chegada': "06:23",
+     'veiculo': "jegue003",
+     'poltronas': "1A-12D",
   }
   testa("Suc", ses, args)
 
-  trc_novo = trecho.busca_por_identificador("T-00000004")
+  trc_novo = trecho.busca_por_identificador(id_trecho_prox)
+  assert trc_novo != None
   atrs_novo = trecho.obtem_atributos(trc_novo)
-  # assert atrs_novo == args 
+  assert atrs_novo == args 
 
-def testa_acrescenta_trecho_invalido():
+def testa_acrescenta_trecho_invalido(id_trecho_ult, id_trecho_prox):
+  """Testa a criação de um novo trecho com falha, dados
+  o maior identificador válido {id_trecho_ult} e o menor inválido {id_trecho_prox}."""
+  assert trecho.busca_por_identificador(id_trecho_ult) != None
+  assert trecho.busca_por_identificador(id_trecho_prox) == None
+
   args = {
      'codigo': "AZ 2345",
      'origem': "SDU",
@@ -59,8 +70,8 @@ def testa_acrescenta_trecho_invalido():
      'hora_chegada': "06:23",
   }
   testa("Inv", ses, args)
-  trc_novo = trecho.busca_por_identificador("T-00000005")
+  trc_novo = trecho.busca_por_identificador(id_trecho_prox)
   assert trc_novo == None
 
-testa_acrescenta_trecho_com_sucesso()
-testa_acrescenta_trecho_invalido()
+testa_acrescenta_trecho_com_sucesso("T-00000006", "T-00000007")
+testa_acrescenta_trecho_invalido("T-00000007", "T-00000008")

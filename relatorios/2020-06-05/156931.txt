@@ -1,2 +1,0 @@
-A minha tarefa era alterar o {comando_ver_carrinho_TST}
-Confirmei e vi que o teste pedido já estava implementado. Professor me liberou pois não tinha outra tarefa para passar.

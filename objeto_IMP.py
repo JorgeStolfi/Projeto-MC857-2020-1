@@ -57,7 +57,10 @@ def obtem_atributo(obj, chave):
 
 def busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem):
   global diags
-  obj = tabela_generica.busca_por_identificador(nome_tb, cache, letra_tb, colunas, def_obj_mem, id)
+  if id == None:
+    obj = None
+  else:
+    obj = tabela_generica.busca_por_identificador(nome_tb, cache, letra_tb, colunas, def_obj_mem, id)
   return obj
 
 def busca_por_campo(chave, val, unico, cache, nome_tb, letra_tb, colunas):

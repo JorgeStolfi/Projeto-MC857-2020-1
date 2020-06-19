@@ -1,2 +1,0 @@
-Foi adicionado a rota /ver_trecho no arquivo processa_comando_http_IMP.py.
-Foi editado a rota destino no botão "Ver" associado a um trecho.

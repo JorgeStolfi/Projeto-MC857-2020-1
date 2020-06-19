@@ -90,7 +90,7 @@ def obtem_atributo(pol, chave):
 def busca_por_identificador(id_poltrona):
   """Localiza uma poltrona com identificador {id_poltrona} (uma string da forma
   "A-{NNNNNNNN}"), e devolve o mesmo na forma de um objeto da classe {Objeto_Poltrona}.
-  Se tal poltrona não existe, devolve {None}."""
+  Se {id_poltrona} é {None} ou tal poltrona não existe, devolve {None}."""
   return poltrona_IMP.busca_por_identificador(id_poltrona)
 
 def busca_por_trecho(trc):

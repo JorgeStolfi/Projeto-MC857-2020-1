@@ -39,10 +39,10 @@ def testa(rotulo, *args):
   funcao = modulo.gera
 
   # testes unitários de tipo
-  resumo_de_trecho = funcao(*args)
-  assert isinstance(resumo_de_trecho, tuple)
-  for campo in resumo_de_trecho:
-    assert isinstance(campo, str)
+  res = funcao(*args)
+  assert type(res) is tuple or type(res) is list
+  for campo in res:
+    assert type(campo) is str
 
   # Teste da função {gera} HTML
   frag = True  # {True} se for apenas um fragmento HTML, {False} se for página completa.

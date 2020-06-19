@@ -1,7 +1,10 @@
+import html_imagem_link
+
 def gera(title, grande):
 
   if grande:
-    header_title = "<h1>" + title + "</h1>"
+    ht_img = html_imagem_link.gera("13802.jpg", "logotipo", 60, "imagens/13802.jpg")
+    header_title = "<h1>" + ht_img + " " + title + "</h1>"
   else:
     header_title = "<h2>" + title + "</h2>"
 

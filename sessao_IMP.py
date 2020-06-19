@@ -129,11 +129,16 @@ def cria_testes():
       ( "U-00000001", "ABCDEFGHIJK", "C-00000001" ),
       ( "U-00000001", "BCDEFGHIJKL", "C-00000002" ),
       ( "U-00000002", "CDEFGHIJKLM", "C-00000003" ),
-      ( "U-00000003", "DEFGHIJKLMN", "C-00000004" )
+      ( "U-00000003", "DEFGHIJKLMN", None         )
     ]
   for id_usuario, cookie, id_carrinho in lista_ucs:
     usr = usuario.busca_por_identificador(id_usuario)
-    carrinho = compra.busca_por_identificador(id_carrinho)
+    assert usr != None and type(usr) is usuario.Objeto_Usuario
+    if id_carrinho == None:
+      carrinho = None
+    else:
+      carrinho = compra.busca_por_identificador(id_carrinho)
+      assert carrinho != None and type(carrinho) is compra.Objeto_Compra
     ses = cria(usr, cookie, carrinho)
     assert ses != None and type(ses) is sessao.Objeto_Sessao
     id_ses = sessao.obtem_identificador(ses)

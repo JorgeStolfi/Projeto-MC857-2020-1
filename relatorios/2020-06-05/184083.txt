@@ -1,9 +1,0 @@
-Tarefa:
-184083 processa_comando_http: IMP: Completar o {import} e o despacho com todos os módulos {comando_*.py} que existem.
-
-Mudancas necessarias: adicao de mostra no import "from utils_testes import erro_prog, mostra" 
-Conferencia se todos os comandos estao sendo despachados: encontrado um duplicado: comando_criar_roteiro (deletado a duplicidade)
-segundo o comando ls -dq *comando_* | wc -l existem 52 arquivos, come ssa conta conclui que faltava um import 
-que era o comando_ver_trecho que foi corretamente adicionado a lista de elif.
-
-Remocao de ; desnecessarios

@@ -20,9 +20,6 @@ ses = sessao.busca_por_identificador("S-00000001")
 id = usuario.busca_por_identificador("U-00000001")
 
 args = { 'id_usuario': id }
-userTest = comando_ver_minhas_compras.processa(ses, args)
+pag = comando_ver_minhas_compras.processa(ses, args)
 
-if userTest == id :
-  sys.stderr.write("Nao houve erros\n")
-else:
-  erro_prog(" : teste falhou")
+assert False # !!! Consertar teste !!!

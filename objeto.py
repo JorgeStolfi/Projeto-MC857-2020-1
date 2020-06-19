@@ -61,7 +61,7 @@ def obtem_atributo(obj, chave):
 def busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem):
   """Localiza um objeto com identificador {id} (uma string da forma
   "{X}-{NNNNNNNN}"), e devolve o mesmo na forma de um objeto da classe {Objeto}.
-  Se tal objeto não existe, devolve {None}."""
+  Se {id} é {None} ou tal objeto não existe, devolve {None}."""
   return objeto_IMP.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
 
 def busca_por_campo(chave, val, unico, cache, nome_tb, letra_tb, colunas):

@@ -37,8 +37,13 @@ def testa(rotulo, *args):
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
+atrs_vazio = {}.copy()
+atrs_portos = { 'origem': "GRU", 'destino': "SDU" }
+atrs_dias = { 'origem': "GRU", 'dia_min': "2020-05-06", 'dia_max': "2020-05-09" }
+
 for admin in (False, True):
   ad = "-a" + str(admin)
-  testa("N-e0" + ad, ses, {},                                    admin, None) # Sem defaults
-  testa("D-e0" + ad, ses, { 'origem': "GRU", 'destino', "SDU" }, admin, None) # Com defaults
-  testa("D-e1" + ad, ses, { 'origem': "GRU", 'destino', "SDU" }, admin, "Tente novamente") # Com defaults e erro
+  testa("N-e0" + ad, ses, atrs_vazio,  admin, None)              # Sem defaults
+  testa("P-e0" + ad, ses, atrs_portos, admin, None)              # Com defaults
+  testa("P-e1" + ad, ses, atrs_portos, admin, "Tente novamente") # Com defaults (portos) e erro
+  testa("D-e0" + ad, ses, atrs_dias,   admin, None)              # Com defaults (origem e dias)

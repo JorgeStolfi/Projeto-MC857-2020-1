@@ -1,6 +1,5 @@
 # Implementação do módulo {comando_solicitar_pag_minhas_roteiros}.
 
-import html_lista_de_trechos
 import html_pag_ver_roteiro
 import html_pag_mensagem_de_erro
 import sessao

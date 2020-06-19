@@ -97,7 +97,7 @@ def obtem_carrinho(ses):
 def busca_por_identificador(id):
   """Localiza uma sessao com identificador {id} (uma string da forma
   "S-{NNNNNNNN}"), e devolve a mesma na forma de um objeto da classe {Objeto_Sessao}.
-  Se tal sessão não existe, devolve {None}."""
+  Se {id} é {None} ou tal sessão não existe, devolve {None}."""
   return sessao_IMP.busca_por_identificador(id)
 
 def muda_atributos(ses, mods_mem):

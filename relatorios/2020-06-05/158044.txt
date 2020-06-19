@@ -1,7 +1,0 @@
-Hoje fiquei responsável pelo comando_buscar_compras.
-
-Usei como base o comando_buscar_trechos. Alterei os imports de acordo com o objeto compras, então os campos de analise. Também inclui o método "busca" no objeto compra para permitir a busca por mais de um parametro (antes só era permitido por cliente. Pensei em carregar de acordo com o cliente, tornando-o um campo obrigatório e depois filtrar de acordo com o status passado, se passado, mas caso o objeto receba mais atributos, daria mais trabalho incluir tais atributos na busca).
-
-Ainda inclui no comando_buscar_compras_IMP.processa uma validação de usuário, que apenas sessões abertas podem ter acesso e coloquei o usuario da sessão aberta como parametro 'cliente', caso ele não seja usuário. Caso seja, torna-se um campo como os outros, considerando que o administrador pode consultar qualquer compra.
-
-Considerei ainda que, caso essa última regra mude, apenas donos da compra e administradores podem ver mais detalhesa das compras listadas.

@@ -99,7 +99,7 @@ def busca(args):
 def busca_por_identificador(id_trecho):
   """Localiza um trecho com identificador {id_trecho} (uma string da forma
   "T-{NNNNNNNN}"), e devolve o mesmo na forma de um objeto da classe {Objeto_Trecho}.
-  Se tal trecho não existe, devolve {None}."""
+  Se {id_trecho} é {None} ou tal trecho não existe, devolve {None}."""
   return trecho_IMP.busca_por_identificador(id_trecho)
 
 def obtem_poltronas(trc):

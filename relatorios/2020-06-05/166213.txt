@@ -1,3 +1,0 @@
-Modificado o arquivo html_lista_de_trechos_IMP.py para receber o parâmetro excluir e viabilizar a chamada da função {gera} no arquivo html_resumo_de_trecho_IMP.py também.
-Não foi possível executar um teste porque o arquivo html_resumo_de_trecho_IMP.py
-ainda não contém o código do botão "excluir", que deverá ser implementado.

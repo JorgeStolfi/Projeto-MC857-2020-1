@@ -9,17 +9,20 @@ def gera(cpr, ver):
   usr = compra.obtem_cliente(cpr)
   id_usr = usuario.obtem_identificador(usr)
   atrs_compra = compra.obtem_atributos(cpr)
-  valor = compra.calcula_preco(cpr)
+  preco_tot = compra.calcula_preco(cpr)
+  nome_pass = atrs_compra['nome_pass']
 
   ids_poltronas = poltrona.busca_por_compra(cpr)
   num_poltronas = len(ids_poltronas)
 
+  # !!! Definir um estilo decente para os campos? Ou definir fora do {html_table}? !!!
   ht_cpr = id_cpr
   ht_usr = id_usr
   ht_num_poltronas = str(num_poltronas)
-  ht_preco = str(valor)
-  ht_nome_pass = atrs_compra['nome_pass']
-  campos = [ ht_cpr, ht_usr, ht_num_poltronas, ht_nome_pass, preco ]
+  ht_preco_tot = str(preco_tot)
+  ht_nome_pass = nome_pass
+  
+  campos = [ ht_cpr, ht_usr, ht_num_poltronas, ht_nome_pass, ht_preco_tot ]
   
   if ver:
     ht_ver = html_botao_simples.gera("Ver", "ver_compra", {'id_compra': id_cpr}, "#22ff22")

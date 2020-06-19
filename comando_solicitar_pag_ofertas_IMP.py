@@ -7,9 +7,9 @@ import sessao
 
 def processa(ses, args):
   id_poltronas = poltrona.busca_ofertas()
-  poltronas = [poltrona.busca_por_identificador(id) for id in id_poltronas]
+  poltronas = [ poltrona.busca_por_identificador(id) for id in id_poltronas ]
   id_trechos = list(set([poltrona.obtem_atributo(pol, 'id_trecho') for pol in  poltronas]))
-  trechos = [trecho.busca_por_identificador(id) for id in id_trechos]
+  trechos = [ trecho.busca_por_identificador(id) for id in id_trechos ]
   pag = html_pag_ofertas.gera(ses, trechos, None)
   return pag
     

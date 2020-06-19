@@ -13,13 +13,11 @@ assert res == None
 sys.stderr.write("Criando alguns objetos...\n")
 tabelas.cria_todos_os_testes()
 
-
 cpr1_id = "C-00000001"
 cpr2_id = "C-00000002"
 cpr3_id = "C-00000003"
 
 compras_ids = [cpr1_id, cpr2_id, cpr3_id]
-
 
 def testa(rotulo, *args):
     """Testa {funcao(*args)}, grava resultado

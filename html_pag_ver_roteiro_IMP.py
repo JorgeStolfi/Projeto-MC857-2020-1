@@ -9,15 +9,17 @@ def gera(ses, rot, erros):
   campos_resumo = html_resumo_de_roteiro.gera(rot, ver_roteiro)
   ht_resumo = " ".join(str(campos_resumo))
   
-  alterar_trechos = False # Não deve ter botões de "Alterar".
-  ht_trechos = html_lista_de_trechos.gera(rot, alterar_trechos)
+  # ??? EXPANDIR COMO {html_pag_ver_compra}
+  
+  alterar_trcs = False # Não deve ter botões de "Alterar".
+  ht_trechos = html_lista_de_trechos.gera(rot, alterar_trcs)
   
   ht_conteudo = ht_resumo + "<br/>" + ht_trechos
 
   ids_trechos = roteiro.obtem_identificadores_de_trechos(rot)
   ids_trechos_txt = ",".join(ids_trechos)
-  ht_comprar = html_botao_simples("Comprar", "comprar_roteiro", {'ids_trechos': ids_trechos_txt}, "#22ff22")
-  ht_conteudo.append(ht_comprar)
+  ht_comprar = html_botao_simples.gera("Comprar", "comprar_roteiro", {'ids_trechos': ids_trechos_txt}, "#22ff22")
+  ht_conteudo += "<br/>" + ht_comprar
 
   pag = html_pag_generica.gera(ses, ht_conteudo, erros)
   return pag

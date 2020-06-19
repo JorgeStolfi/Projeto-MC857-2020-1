@@ -11,12 +11,12 @@ import compra_IMP; from compra_IMP import Objeto_Compra_IMP
 
 class Objeto_Compra(Objeto_Compra_IMP):
   """Um objeto desta classe representa um pedido de compra
-  feito por um cliente, consistindo de uma lista de bilhetes.
+  feito por um cliente, consistindo de uma viagem por um único passageiro
   Os atributos deste objeto, por enquanto, são:
 
     'cliente'   {Objeto_Usuario} o cliente que fez ou está fazendo o pedido de compra.
     'status'    {str}            o estado do pedido.
-    'nome_pass' {str}            o nome do passageiro da passagem.
+    'nome_pass' {str}            o nome do passageiro que fará a viagem.
     'itens'     {list}           os itens (bilhetes individuais) do pedido de compra.
 
   O atributo 'status' por enquanto, pode ser:
@@ -28,17 +28,33 @@ class Objeto_Compra(Objeto_Compra_IMP):
 
   Mais campos e/ou estados poderão ser acrescentados no futuro.
 
-  Note que os itens do pedido de compra não são armazenados na
-  tabela "compras", mas numa tabela separada "itens_de_compras".
-
   Além desses atributos, cada pedido de compra também tem um identificador de
   compra, uma string da forma "C-{NNNNNNNN}" onde {NNNNNNNN} é o índice
   na tabela (vide abaixo) formatado em 8 algarismos.
 
-  Cada pedido de compra pertence a um unico usuário, mas cada usuário
+  Os itens são uma lsta de bilhetes individuais.  Cada
+  bihete é representado por um objeto de tipo {Objeto_Poltrona}
+  (vide {poltrona.py}).  
+  
+  Cada bilhete (poltrona) deve pertencer a um trecho 
+  ({Objeto_Trecho}) distinto. 
+  
+  Os bilhetes devem estar em ordem cronológica;
+  ou seja, a data+hora da chegada do trecho de cada bilhete
+  deve ser menor que a data+hora de partida do trecho
+  do bilhete seguinte. 
+  
+  Note que os itens do pedido de compra não são armazenados na
+  tabela "compras", mas numa tabela separada "itens_de_compras".
+
+  Cada pedido de compra pertence a um unico usuário da loja, mas cada 
   pode ter vários pedidos ainda não finalizados ao mesmo tempo. Por
   exemplo, o cliente da loja virtual pode ser uma agência de turismo,
   que teria um pedido de compra separada para cada um de seus clientes.
+  
+  Note que o pasageiro (atributo 'nome_pass') não é necessariamete
+  o usuário da loja virtual que está montando o pedido (atributo 'cliente'),
+  e não precisa estar cadastrado na loja virtual. 
 
   REPRESENTAÇÃO NA BASE DE DADOS
 
@@ -104,7 +120,8 @@ def obtem_status(cpr):
 def obtem_poltronas(cpr):
   """Devolve as poltronas (bilhetes) no pedido de compra {cpr},
   na forma de uma lista cujos elementos são itentificadores de poltronas
-  ("A-{NNNNNNNN}")."""
+  ("A-{NNNNNNNN}").  A lista eatará em ordem cronológica da data e hora
+  de partida dos trechos correspondentes. """
   return compra_IMP.obtem_poltronas(cpr)
 
 def busca(args):
@@ -120,7 +137,7 @@ def busca(args):
 def busca_por_identificador(id):
   """Localiza um pedido de compra com identificador {id} (uma string da forma
   "C-{NNNNNNNN}"), e devolve a mesma na forma de um objeto da classe {Objeto_Compra}.
-  Se tal compra não existe, devolve {None}."""
+  Se {id} é {None} ou tal compra não existe, devolve {None}."""
   return compra_IMP.busca_por_identificador(id)
 
 def busca_por_cliente(id_cliente):

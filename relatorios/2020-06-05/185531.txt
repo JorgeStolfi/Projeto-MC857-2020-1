@@ -1,2 +1,0 @@
-Consertei variáveis erradas sendo mandadas ao "html_form_dados_de_poltrona.gera()" e adicionei o "id_compra" como novo argumento
-ao html_pag_ver_poltrona.gera() no caso do teste do "html_pag_ver_poltrona_TST" em que "excluir" é mandado como True.

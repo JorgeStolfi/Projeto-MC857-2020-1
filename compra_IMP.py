@@ -44,9 +44,9 @@ def inicializa(limpa):
   global cache, nome_tb, letra_tb, colunas, diags
   # Descrição da tabela "compras".
   colunas = \
-    ( ( "cliente",      usuario.Objeto_Usuario, 'TEXT',    False ),  # Objeto/id do usuário logado no pedido de compra.
-      ( "status",       type("foo"),        'TEXT',    False ),  # Estado do pedido de compra ('aberto', etc.).
-      ("nome_pass",     type("foo"),        'TEXT',    False), # Nome do passageiro da passagem comprada
+    ( ( "cliente",   usuario.Objeto_Usuario, 'TEXT',    False ), # Cliente que está montando o pedido de compra.
+      ( "status",    type("foo"),            'TEXT',    False ), # Estado do pedido de compra ('aberto', etc.).
+      ( "nome_pass", type("foo"),            'TEXT',    False ), # Nome do passageiro que vai fazer a viagem.
     )
   if limpa:
     tabela_generica.limpa_tabela(nome_tb, colunas)
@@ -88,6 +88,7 @@ def obtem_status(cpr):
 def obtem_poltronas(cpr):
   global cache, nome_tb, letra_tb, colunas, diags
   ids_poltronas = poltrona.busca_por_compra(cpr)
+  # !!! Precisa colocar em ordem cronológica da data e hora de partida de cada trecho. !!!
   return ids_poltronas
 
 def busca(args):
@@ -110,7 +111,7 @@ def calcula_preco(cpr):
   preco = 0
   for polt in obtem_poltronas(cpr):
     polt = poltrona.busca_por_identificador(polt)
-    preco = preco + poltrona.obtem_atributo(polt,'preco')
+    preco = preco + poltrona.obtem_atributo(polt, 'preco')
   return preco
 
 def muda_atributos(cpr, mods_mem):
@@ -134,19 +135,21 @@ def cria_testes():
   # Identificador de usuários e lista de poltronas de cada pedido de compra:
   lista_ups = \
     [
-      ("U-00000001", ("A-00000001", "A-00000003", ), "Amanda Castro"),
-      ("U-00000001", ("A-00000004", "A-00000006", "A-00000002", ),"Gustavo Galvão"),
-      ("U-00000002", ("A-00000005", ), "José Roberto")
+      ( "U-00000001", "Amanda Castro" ),
+      ( "U-00000001", "Gustavo Galvão" ),
+      ( "U-00000002", "José Roberto" )
     ]
-  for id_cliente, ids_poltronas, nome_pass in lista_ups:
+  for id_cliente, nome_pass in lista_ups:
     cliente = usuario.busca_por_identificador(id_cliente)
 
     cpr = cria(cliente, nome_pass)
     assert cpr != None and type(cpr) is compra.Objeto_Compra
     id_cpr = compra.obtem_identificador(cpr)
-    usr = compra.obtem_cliente(cpr)
-    id_usr = usuario.obtem_identificador(usr) if usr != None else "ninguém"
-    sys.stderr.write("compra %s de %s criada\n" % (id_cpr, id_usr))
+    # Paranóia:
+    cliente_1 = compra.obtem_cliente(cpr)
+    id_cliente_1 = usuario.obtem_identificador(cliente_1)
+    assert id_cliente_1 == id_cliente
+    sys.stderr.write("compra %s de %s criada\n" % (id_cpr, id_cliente))
   return
 
 def verifica(cpr, id, atrs):

@@ -95,7 +95,7 @@ def busca(args):
 def busca_por_identificador(id):
   global cache, nome_tb, letra_tb, colunas, diags
   trc = objeto.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
-  assert type(trc) is trecho.Objeto_Trecho 
+  assert trc == None or type(trc) is trecho.Objeto_Trecho 
   return trc
 
 def busca_por_origem(cod):

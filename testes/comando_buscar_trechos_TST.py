@@ -22,17 +22,18 @@ tabelas.cria_todos_os_testes()
 ses = sessao.busca_por_identificador("S-00000001")
 
 
-def testa(rotulo, ses, args):
+def testa(rotulo, ses, *args):
   """Testa {funcao(*args)}, grava resultado
   em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
 
   modulo = comando_buscar_trechos
-  pag = modulo.processa(ses, args)
+  pag = modulo.processa(ses, args[0])
   frag = False  # {True} se for apenas um fragmento HTML, {False} se for página completa.
   pretty = True  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_modulo_html(modulo, rotulo, pag, frag, pretty)
 
 
-testa('Teste nenhum campo informado', ses, {})
-testa('Teste campo informado apenas com None', ses, {'origem': None})
-testa('Teste buscar trecho', ses, {'origem': 'SDU'})
+# testa('vazio',      ses, {},                                           )
+testa('1-None',     ses, { 'origem': None },                           )
+testa('1-org',      ses, { 'origem': 'SDU' },                          )
+testa('2-dst-dmin', ses, { 'origem': 'SDU', 'dia_min': "2020-05-08" }, )

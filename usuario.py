@@ -94,7 +94,7 @@ def obtem_atributo(usr, chave):
 def busca_por_identificador(id_usuario):
   """Localiza um usuario com identificador {id_usuario} (uma string da forma
   "U-{NNNNNNNN}"), e devolve o mesmo na forma de um objeto da classe {Obj_Usuario}.
-  Se tal usuário não existe, devolve {None}."""
+  Se {id_usuario} é {None} ou tal usuário não existe, devolve {None}."""
   return usuario_IMP.busca_por_identificador(id_usuario)
 
 def busca_por_email(em):

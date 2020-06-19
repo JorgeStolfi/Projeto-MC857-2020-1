@@ -1,17 +1,23 @@
 
 .PHONY: todos_os_testes teste_unico
 
-# Módulos na ordem a testar:
+# Módulos que não devem ter programas de teste:
 MODULOS_NAO_TESTAR := ${shell gawk '/^[N]/{ print $$2; }' modulos.txt}
 
+# Módulos cujos testes estavam OK na última verificação:
 MODULOS_OK := ${shell gawk '/^[A]/{ print $$2; }' modulos.txt}
 
-MODULOS_BUG := ${shell gawk '/^[*]/{ print $$2; }' modulos.txt} \
+# Módulos cujos testes estavam com problemas na última verificação:
+MODULOS_BUG := ${shell gawk '/^[*]/{ print $$2; }' modulos.txt}
 
-# O que "make" deve fazer:
-# MODULOS := ${MODULOS_OK} ${MODULOS_BUG}
+# Todos os módulos testáveis:
+MODULOS_TODOS := ${shell gawk '/^[*A]/{ print $$2; }' modulos.txt}
+
+# Módulos a testar em {todos_os_testes}:
+# MODULOS := ${MODULOS_TODOS}
 MODULOS := ${MODULOS_BUG}
 
+# O que "make" deve fazer:
 # all: todos_os_testes 00-LINKS.html
 # all: teste_unico 00-LINKS.html
 all: roda_servidor 00-LINKS.html
