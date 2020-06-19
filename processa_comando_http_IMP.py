@@ -13,6 +13,7 @@ import comando_cadastrar_usuario
 import comando_criar_roteiro
 import comando_fazer_login
 import comando_fazer_logout
+import comando_fechar_sessao
 import comando_solicitar_pag_acrescentar_trecho
 import comando_solicitar_pag_alterar_usuario
 import comando_solicitar_pag_buscar_compras
@@ -358,6 +359,10 @@ def processa_comando(tipo, ses, dados):
       # Usuário apertou o botão "Sair" (logout) do menu geral:
       # ATENÇÃO: devolve também a nova sessão (que geralmente vai ser {None}).
       pag, ses_nova = comando_fazer_logout.processa(ses, args)
+    
+    elif cmd == '/fechar_sessao':
+      # Usuário apertou o botão "Fechar sessão" da visualização de um objeto sessão:
+      pag = comando_fechar_sessao.processa(ses, args)
 
     elif cmd == '/solicitar_pag_cadastrar_usuario':
       # Usuário apertou o botão "Cadastrar" do menu geral:
