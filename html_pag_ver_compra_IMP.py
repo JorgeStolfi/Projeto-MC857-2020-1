@@ -14,12 +14,12 @@ def gera(ses, cpr, excluir, trocar, erros):
   assert cpr != None
 
   id_compra = compra.obtem_identificador(cpr)
-  
-  # Determina o dono da sessão {ses}, e se é administrador. 
+
+  # Determina o dono da sessão {ses}, e se é administrador.
   usr_ses = sessao.obtem_usuario(ses)
   assert usr_ses != None # Não deveria ver compra sem estar logado.
   admin = sessao.eh_administrador(ses)
-  
+
   # Determina o dono da compra. Não pode ser {None} nem administrador:
   usr_cpr = compra.obtem_cliente(cpr)
   assert usr_cpr != None
@@ -27,14 +27,14 @@ def gera(ses, cpr, excluir, trocar, erros):
 
   # Determina se a compra é o carrinho da sessão {ses}:
   eh_carrinho = sessao.obtem_carrinho(ses) == cpr
-  
+
   ### !!! if eh_carrinho:
   ### !!!   # Mostrar indicação "Seu carrinho"
   ### !!!   ???
   ### !!! elif not admin and usr_ses == usr_cpr and atrs_cpr['status'] != "finalizada":
   ### !!!   # Mostrar botão "Definir carrinho"
   ### !!!   ???
-  ### !!! elif 
+  ### !!! elif
 
   # Cabeçalho da compra:
   ht_cpr_resumo = html_form_dados_de_compra.gera(cpr, admin, "Ver", "ver_compra")
@@ -49,11 +49,14 @@ def gera(ses, cpr, excluir, trocar, erros):
   if finalizar:
     args_fin = { 'id_compra': id_compra }
     ht_bt_finalizar_compra = html_botao_simples.gera("Finalizar Compra", 'finalizar_compra', args_fin, '#ff3300')
-  
+
+  ht_bt_continuar_compra = html_botao_simples.gera("Continuar Comprando", 'principal', None, '#ffdd22')
+
   ht_conteudo = \
     ht_cpr_resumo + "<br/>\n" + \
     ht_poltronas + "<br/>\n" + \
-    ht_bt_finalizar_compra
+    ht_bt_finalizar_compra + \
+    ht_bt_continuar_compra
 
   pag = html_pag_generica.gera(ses, ht_conteudo, erros)
   return pag
