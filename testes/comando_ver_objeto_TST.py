@@ -44,6 +44,7 @@ for tag, id in ( \
     ("A", "A-00000001"),
     ("invalid_class", "sthiuhtaiuhfa"),
     ("item_not_found", "U-aighdiuhfsdiuhdvsiu"),
+    ("blank", ""),
   ):
   testa(tag, ses1, {'id': id})
 

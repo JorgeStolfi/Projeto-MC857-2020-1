@@ -22,10 +22,12 @@ def processa(ses, args):
   assert sessao.eh_administrador(ses)
   
   # O dicionário {args} deve conter campo 'id':
-  assert 'id' in args
-
-  id = args['id']
-  letra = id[0]
+  try:
+    assert 'id' in args
+    id = args['id']
+    letra = id[0]
+  except:
+    return html_pag_mensagem_de_erro.gera(ses, "O identificador fornecido é inválido. Por favor, verifique se digitou corretamente e tente de novo.")
 
   try:
     if letra == "U":
