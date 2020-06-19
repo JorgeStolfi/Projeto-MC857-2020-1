@@ -1,7 +1,7 @@
 # Implementação do módulo {processa_comando_http}.
 
 # Interfaces do projeto usadas por este módulo:
-
+import comando_excluir_poltrona
 import sessao
 import usuario
 
@@ -447,6 +447,10 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/solicitar_pag_escolher_pagamento':
       # Usuário apertou o botão "Escolher Pagamento" ou equivalente:
       pag = comando_solicitar_pag_escolher_pagamento.processa(ses, args)
+
+    elif cmd == '/excluir_poltrona':
+     # Usuário apertou o botão "Excluir" no página "Meu carrinho":
+     pag = comando_excluir_poltrona.processa(ses, args)
     
 
     else:
