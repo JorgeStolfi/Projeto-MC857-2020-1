@@ -447,7 +447,16 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/solicitar_pag_escolher_pagamento':
       # Usuário apertou o botão "Escolher Pagamento" ou equivalente:
       pag = comando_solicitar_pag_escolher_pagamento.processa(ses, args)
-    
+
+    elif cmd == '/ver_poltronas':
+      # Usuário apertou o botão "ver poltronas" ou equivalente:
+      pag =  html_pag_mensagem_de_erro.gera(ses, ("** comando ver poltronas ainda não implementado"))
+
+    elif cmd == '/ver_sessoes':
+      # Usuário apertou o botão "ver sessões" ou equivalente:
+      pag =  html_pag_mensagem_de_erro.gera(ses, ("** comando ver sessões ainda não implementado"))
+
+
 
     else:
       # Comando não identificado
