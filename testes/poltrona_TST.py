@@ -104,6 +104,15 @@ for k, v in pol1_mods.items():
 verifica_poltrona("pol1_m", pol1, pol1_id, pol1_atrs_m)
 
 # ----------------------------------------------------------------------
+sys.stderr.write("testando {poltrona.cria_conjunto}:\n")
+
+# trc = trecho.busca_por_identificador('T-00000001')
+
+# poltronas = poltrona.cria_conjunto(trc, "001, 05, 5B, 7-10, 12A-15D: 90.50; 04K-6M: 130.00")
+# print(poltronas)
+
+# ----------------------------------------------------------------------
+
 # Veredito final:
 
 if ok_global:
