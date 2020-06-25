@@ -1,5 +1,9 @@
 import html_botao_simples
 import html_texto
+import html_botao_submit
+import html_input
+import html_form
+
 from utils_testes import erro_prog
 
 # Outros módulos importados por esta implementação:
@@ -34,7 +38,7 @@ def gera_botoes_linha_1(logado, nome_usuario, admin):
   ht_bt_ofertas = html_botao_simples.gera("Ofertas", 'solicitar_pag_ofertas', None, '#ffdd22')
   ht_bt_trechos = html_botao_simples.gera("Buscar Trechos", 'solicitar_pag_buscar_trechos', None, '#eeeeee')
   ht_bt_roteiros = html_botao_simples.gera("Buscar Roteiros", 'solicitar_pag_criar_roteiro', None, '#eeeeee')
-  
+
   botoes = ( ht_bt_principal, ht_bt_ofertas, ht_bt_trechos, ht_bt_roteiros )
   if logado:
     # Gera outros botões de usuario normal logado
@@ -78,9 +82,17 @@ def gera_botoes_linha_2():
   geral.  Estes botões são mostrados apenas se o usuário está logado
   e é um administrador."""
 
+  input = html_input.gera(None, "text", "id", None, True, "Identificador do objeto", None)
+  submit_button = html_botao_submit.gera("Checar Objeto", "ver_objeto", None, '#ffdd22')
+  form_content = \
+    input + \
+    submit_button
+
   botoes = (
     html_botao_simples.gera("Acrescentar trecho", "solicitar_pag_acrescentar_trecho", None, '#ffdd22'),
-    html_botao_simples.gera("Checar Objeto", 'ver_objeto', None, '#ffdd22'),
+    html_form.gera(form_content)
+
+
     # html_botao_simples.gera("Alterar trecho", "solicitar_pag_alterar_trecho", None, '#ffdd22'),
     # html_form_passageiros.gera(),
     # html_form_buscar_objeto.gera(),

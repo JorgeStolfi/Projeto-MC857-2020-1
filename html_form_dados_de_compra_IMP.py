@@ -27,10 +27,12 @@ def gera(cpr, admin, texto_bt, comando_bt):
   # Montando o formulário
   ht_id_cpr = html_input.gera("Id da Compra", "readonly", "id_compra",  id_cpr, True, None, None)
   ht_id_usr = html_input.gera("Id do Usuário", "readonly", "id_usuario", id_usr, True, None, None)
-  ht_nome_usr = html_input.gera("Usuário", "readonly", "nome_usuario", atrs_usr['nome'], True, None, None)
-  ht_num_trechos = html_input.gera("Número de Trechos", "readonly", "num_trechos", num_trechos, True, None, None)
+  ht_nome_usr = html_input.gera("Cliente", "readonly", "nome_usuario", atrs_usr['nome'], True, None, None)
+  ht_nome_pass = html_input.gera("Passageiro", "readonly", "nome_pass", atrs_cpr['nome_pass'], True, None, None)
+  ht_num_trechos = html_input.gera("Trechos", "readonly", "num_trechos", num_trechos, True, None, None)
   ht_preco = html_input.gera("Total da Compra", "readonly", "preco_total", preco_tot_cpr, True, None, None)
-
+  ht_status = "Status: " + str(status_cpr)
+  # ht_table = html_form_table.gera(dados_linhas, atrs_cpr, admin)
   ht_submit = html_botao_submit.gera(texto_bt, comando_bt, None, '#55ee55')
   ht_cancel = html_botao_simples.gera("Cancelar", 'principal', None, '#ee5555')
 
@@ -39,11 +41,12 @@ def gera(cpr, admin, texto_bt, comando_bt):
   ht_campos += ht_id_cpr + '<br>'
   ht_campos += ht_id_usr + '<br>'
   ht_campos += ht_nome_usr + '<br>'
+  ht_campos += ht_nome_pass + '<br>'
   ht_campos += ht_num_trechos + '<br>'
   ht_campos += ht_preco + '<br>'
+  ht_campos += ht_status + '<br>'
 
   # Não deve aparecer na página do carrinho
   # ht_campos += ht_submit + '<br>'
   # ht_campos += ht_cancel + '<br>'
-
   return html_form.gera(ht_campos)

@@ -1,0 +1,2 @@
+-adicionadas pequenas alterações no estilo das tabelas do menu "Minhas Compras" em {html_lista_de_compras}
+-adicionado cabeçalho, que estava vazio, para nome de passageiro na tabela de compras como "Passageiros"

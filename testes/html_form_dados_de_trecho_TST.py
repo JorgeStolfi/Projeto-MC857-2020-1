@@ -36,7 +36,7 @@ testa("vazio", trc0_id, trc0_atrs, "Cozinhar", "cozinhar_trecho")
 
 trc1_id = "T-00000001"
 trc1 = trecho.busca_por_identificador(trc1_id)
-trc1_atrs = {"codigo": "LH 3331"}
+trc1_atrs = {"codigo": "AZ 3331"}
 testa("um_campo", trc1_id, trc1_atrs, "Pensar", "pensar_sobre_trecho")
   
 trc2_id = "T-00000002"
@@ -47,7 +47,7 @@ testa("atuais", trc2_id, trc2_atrs, "Desintegrar", "desintegrar_trecho")
 trc3_id = "T-00000003"
 trc3 = trecho.busca_por_identificador(trc3_id)
 trc3_atrs = {
-  "codigo":"12 333",
+  "codigo":"GO 333",
   "origem":"111",
   "destino":"222",
   "dia_partida":"2020-05-29",
@@ -70,4 +70,4 @@ trc4_atrs = {
   "hora_chegada":"abcdef",
   "poltronas":"abcdef",
 }
-testa("invalidos", trc3_id, trc3_atrs, "SURFAR", "surfar_trecho")
+testa("invalidos", trc4_id, trc4_atrs, "SURFAR", "surfar_trecho")
