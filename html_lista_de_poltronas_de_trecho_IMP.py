@@ -12,17 +12,25 @@ def gera(ids_poltronas, id_trecho, alterar, comprar, id_compra):
 
   linhas = [].copy()
 
-  # !!! Acrescentar uma linha de cabeçalho !!!
+  cabeçalho = """<tr>
+    <th>Poltrona</th>
+    <th>Trecho</th>
+    <th>Alterar</th>
+    <th>Comprar</th>
+    <th>ID</th>
+  </tr>"""
+
+  linhas.append(cabeçalho)
 
   for id_poltrona in ids_poltronas:
     pol = poltrona.busca_por_identificador(id_poltrona)
-    
+
     comprar_pol = comprar
     alterar_pol = alterar
     linha = html_resumo_de_poltrona_de_trecho.gera(pol, id_trecho, alterar_pol, comprar_pol, id_compra)
     assert type(linha) is list or type(linha) is tuple
 
     linhas.append(linha)
-    
+
   ht_res = html_table.gera(linhas)
   return ht_res

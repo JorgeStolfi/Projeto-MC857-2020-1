@@ -1,0 +1,13 @@
+A tarefa de hoje consistia em adicionar o logotipo da empresa na página "html_resumo_de_trecho".
+
+O nome das imagens cadastradas no projeto são formados a partir
+do primeiro "token" do nome da empresa.
+
+Exemplo: 
+Nome da empresa -> "AZ 4336"
+Nome do arquivo -> "AZ.png"
+
+Assim, na página "html_resumo_de_trecho", quebra-se o nome da empresa a partir dos espaços em branco
+e utiliza-se o primeiro "token" do nome para se chegar até a imagem.
+
+Usando o módulo "html_imagem", cria-se o elemento com o logo da empresa e adiciona-se isso a página.

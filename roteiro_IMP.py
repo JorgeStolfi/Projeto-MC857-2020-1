@@ -45,11 +45,18 @@ def obtem_identificadores_de_trechos(rot):
   return ids
 
 def obtem_resumo(rot):
-  # !!! Fajuto para testes !!!
-  resumo = {
-    'origem': "VCP", 'dia_partida': "2020-05-08", 'hora_partida': "12:45",
-    'destino': "MAO", 'dia_chegada': "2020-05-09", 'hora_chegada': "12:40",
-    'num_escalas': 57,
-    'preco_min': 2130.35
-  }
+  resumo = {}
+
+  trecho_inicial = rot[0]
+  trecho_final = rot[-1]
+
+  resumo['origem'] = trecho.obtem_atributo(trecho_inicial, 'origem')
+  resumo['dia_partida'] = trecho.obtem_atributo(trecho_inicial, 'dia_partida')
+  resumo['hora_partida'] = trecho.obtem_atributo(trecho_inicial, 'hora_partida')
+  resumo['destino'] = trecho.obtem_atributo(trecho_final, 'destino')
+  resumo['dia_chegada'] = trecho.obtem_atributo(trecho_final, 'dia_chegada')
+  resumo['hora_chegada'] = trecho.obtem_atributo(trecho_final, 'hora_chegada')
+  resumo['num_escalas'] = len(rot) - 1
+  resumo['preco_min'] = 0.00
+
   return resumo

@@ -1,0 +1,25 @@
+Relatório Individual - 2020-06-19 - Bernardo do Amaral Teodosio - 167494
+
+Nesta aula, a tarefa designada para mim foi "fazer funcionar o botão "Checar objeto" do menu administrador.".
+
+Abaixo, segue um passo a passo do que tive que fazer para realizá-la, na ordem em que os passos foram realizados:
+
+    * Comecei procurando o que acontecia quando um clique era feito nesse botão.
+    * Encontrei o arquivo processa_comando_http_IMP, que redireciona as páginas
+    * Vi que o parâmetro args estava sem um "id" dentro dele, o que estava fazendo com que a página não funcionasse.
+    * Decidi usar como base comoando_solicitar_pag_acrescentar_trecho
+    * Ao conversar com o professor, ele me orientou a colocar um "input" no menu, junto ao botão "Checar objeto", para montar um formulário e permitir assim que o botão pudesse funcionar.
+    * Descobri que tenho que colocar o botão de submit alterando o arquivo html_menu_geral_IMP
+    * Olhei o arquivo html_form_buscar_trechos_IMP para ver como gerar um form seguindo a arquitetura do projeto
+    * Acrescentei um campo de busca ao menu, usando o html_input
+    * Com o input, troquei o tipo do botão para ser um "Submit", montei um formulário e fiz com que o submit fizesse um redirecionamento para "ver_objeto". Ao fazer isso, o botão "Checar objeto" passou a funcionar como esperado.
+    * Notei que o servidor responde com uma página vazia caso o id passado seja inválido. Em conversa com o professor, ele solicitou que eu fizesse o servidor retornar uma página de erro.
+    * Por isso, fiz o servidor retornar a página de erro (usando um try-except), caso o identificador passado fosse inválido;
+    * Mesmo não sendo parte da minha tarefa, optei por adicionar 3 novos testes no arquivo de testes do meu módulo, para testar as páginas de erro que fiz.
+    * Por fim, criei também uma página de erro para ser retornada quando nenhum id é fornecido.
+
+Tive facilidade em fazer essa tarefa por já ter algum conhecimento em HTML, mas creio que pessoas que nunca tiveram contato com HTML / forms antes, teriam bastante dificuldade. Uma sugestão que deixo é dar uma aula explicando para os alunos os principais conceitos ao redor disso, já que nossa aplicação usa HTML em larga escala, professor.
+
+Em caso de dúvidas, estou a disposição.
+Abraços,
+Bernardo

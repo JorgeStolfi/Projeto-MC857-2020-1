@@ -1,0 +1,17 @@
+Na aula de hoje, fui encarregado de fazer o botão excluir da página "Meu Carrinho" funcionar. 
+
+Para tal, foi necessário incluir no dispatcher do servidor o a rota '/excluir_poltrona'.
+
+Quando o botão excluir é pressionado, ele manda uma requisição HTTP com a URL
+'/excluir' com os argumentos em um dicionário do tipo {id_poltrona: "identificador 
+da poltrona"}.
+
+O dispatcher é responsável por então chamar comando_excluir_poltrona. Elaborei a interface
+com sua documentação.
+
+Por sua vez, o comando_excluir_poltrona_IMP, a partir do identificador da poltrona, define
+seu atributo {id_compra} como {None} e retorna {html_ver_pag_compra} com a poltrona em 
+questão já "excluída".
+
+Fora testado o resultado no browser Google Chrome e de fato a poltrona é excluída - não
+foi possível implementar um módulo de Teste pois a aula começou com atraso.
