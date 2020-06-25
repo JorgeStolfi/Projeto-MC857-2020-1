@@ -25,6 +25,7 @@ def gera(cpr, admin, texto_bt, comando_bt):
   ht_id_cpr = html_input.gera(None, "readonly", "id_compra",  id_cpr, True, None, None)
   ht_id_usr = html_input.gera(None, "readonly", "id_usuario", id_usr, True, None, None)
   
+  ht_status = "Status: " + str(status_cpr)
   ht_num_trechos = "Trechos: " + str(num_trechos)
   ht_preco = "Preco total: " + str(preco_tot_cpr)
   dados_linhas = \
@@ -38,6 +39,7 @@ def gera(cpr, admin, texto_bt, comando_bt):
   ht_cancel = html_botao_simples.gera("Cancelar", 'principal', None, '#ee5555')
 
   ht_campos = \
+    ( "    <p>" + ht_status + "\n</p>" ) + \
     ( "    " + ht_id_usr + "\n" if ht_id_usr != "" else "") + \
     ( "    " + ht_id_cpr + "\n" if ht_id_cpr != "" else "") + \
     ( ht_table + "\n" ) + \

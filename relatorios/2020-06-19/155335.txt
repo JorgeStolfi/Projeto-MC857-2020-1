@@ -1,0 +1,1 @@
+Implementei o cabeçalho na listagem de poltronas por trecho

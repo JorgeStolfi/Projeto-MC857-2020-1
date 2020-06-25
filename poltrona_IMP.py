@@ -144,10 +144,9 @@ def cria_conjunto(trc, txt):
     erros += valida_campo.numero_de_poltrona("número de poltrona", num, False)
     erros += valida_campo.preco("preço", prc, False)
     if len(erros) > 0: raise ErroAtrib(erros)
-    # !!! COMPLETAR !!!
-    # pol_atrs = { ... }
-    # pol = cria(pol_atrs)
-    # pols.append(pol)
+    pol_atrs = { 'id_trecho': id_trc, 'numero': num, 'preco': prc, 'oferta': False, 'bagagens': None, 'id_compra': None }
+    pol = cria(pol_atrs)
+    pols.append(pol)
   return pols
 
 def cria_testes():

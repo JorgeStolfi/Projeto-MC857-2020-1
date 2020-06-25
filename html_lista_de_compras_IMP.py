@@ -8,8 +8,8 @@ def gera(ids_compras, ver):
   linhas = [].copy()
 
   # Linha de cabeçalho:
-  estilo_cab = "font-size:20px;font-weight:bold; padding:0px 10px 0px 0px"
-  cabs_raw = [ 'Compra', 'Usuário', 'NP', 'Preço', '']
+  estilo_cab = "font-size:20px;font-weight:bold; background-color: #60a3bc; color: white; padding:0px 10px 0px 0px"
+  cabs_raw = [ 'Compra', 'Usuário', 'NP', 'Passageiro', 'Preço' ]
   cabs_div = [].copy()
   for cb in cabs_raw:
     cabs_div.append(html_div.gera(estilo_cab, cb))

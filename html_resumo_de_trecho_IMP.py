@@ -75,7 +75,7 @@ def gera(trc, ver, alterar):
     ht_campos.append(botao_ver)
 
   if alterar:
-    botao_alterar = html_botao_simples.gera("Alterar", 'alterar_trecho',{'id_trecho': id_trecho}, '#FFA700')
+    botao_alterar = html_botao_simples.gera("Alterar", 'solicitar_pag_alterar_trecho', {'id_trecho': id_trecho}, '#FFA700')
     ht_campos.append(botao_alterar)
 
   return ht_campos
