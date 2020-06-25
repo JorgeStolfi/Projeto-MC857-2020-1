@@ -11,6 +11,7 @@ import comando_alterar_usuario
 import comando_buscar_trechos
 import comando_cadastrar_usuario
 import comando_criar_roteiro
+import comando_definir_carrinho
 import comando_fazer_login
 import comando_fazer_logout
 import comando_solicitar_pag_acrescentar_trecho
@@ -452,6 +453,9 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/solicitar_pag_escolher_pagamento':
       # Usuário apertou o botão "Escolher Pagamento" ou equivalente:
       pag = comando_solicitar_pag_escolher_pagamento.processa(ses, args)
+    elif cmd == '/definir_carrinho':
+      # Usuário apertou o botão "Definir Carrinho" ou equivalente:
+      pag = comando_definir_carrinho.processa(ses, args)
     
 
     else:
