@@ -29,12 +29,6 @@ def gera(pol, id_trecho, alterar, comprar, id_compra):
 
   linha = [ht_numero, ht_preco, ht_oferta, ht_compra ]
 
-  ver = True # Por enquanto.
-  if ver:
-    args_ver = { 'id_poltrona': id_pol }
-    ht_ver = html_botao_submit.gera("Ver", 'ver_poltrona', args_ver, '#60a3bc')
-    linha.append(ht_ver)
-
   if alterar:
     args_alterar = { 'id_poltrona': id_pol }
     ht_alterar = html_botao_submit.gera("Alterar", "solicitar_pag_alterar_poltrona", args_alterar, '#bca360')
