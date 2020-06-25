@@ -172,7 +172,7 @@ def cria_testes():
 
 def lista_livres(trc):
   """Retorna uma lista das poltronas do trecho {trc} que estão livres."""
-  poltrona_IMP.lista_livres(trc)
+  return poltrona_IMP.lista_livres(trc)
 
 def diagnosticos(val):
   """Habilita (se {val=True}) ou desabilita (se {val=False}) a

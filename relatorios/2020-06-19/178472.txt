@@ -1,0 +1,5 @@
+Criei o módulo { comando_trocar_poltrona }.
+Tive que encontrar e consertar um bug no módulo { poltrona }, na função lista_livres,
+não estava retornando nada.
+Ainda existe um bug, que após alterar o id_compra da poltrona para None, ela não aparece
+na lista de poltronas livres.
