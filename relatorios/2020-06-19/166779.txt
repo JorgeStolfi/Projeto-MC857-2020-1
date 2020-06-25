@@ -1,0 +1,1 @@
+    Para acrescentar uma imagem no retorno do módulo {html_form_dados_de_trecho}, foi usado o módulo {html_imagem} para acrescentar a tag HTML no retorno da função {gera}, verificando se o código da empresa do trecho em questão está preenchido e se o arquivo referente a ele existe na pasta {imagens/}.
