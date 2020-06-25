@@ -2,6 +2,8 @@ import trecho
 import poltrona
 import html_texto
 import html_botao_simples
+import html_imagem
+
 
 def gera(trc, ver, alterar):
   id_trecho = trecho.obtem_identificador(trc)
@@ -47,7 +49,13 @@ def gera(trc, ver, alterar):
   # ht_dt_partida = ('Data de Partida', html_texto.gera(dt_partida, None, None, None, None, None, None, None, None))
   # ht_dt_chegada = ('Data de Chegada', html_texto.gera(dt_chegada, None, None, None, None, None, None, None, None))
   # ht_num_poltronas = ('Número de Poltronas', html_texto.gera(num_poltronas, None, None, None, None, None, None, None, None))
+  
+  # recupera o nome da empresa
+  empresa = codigo.split(" ")[0] 
 
+  # adicionar html com imagem de logo da empresa
+  ht_logo = html_imagem.gera("/" + empresa + ".png", "logo", 60)
+  
   ht_codigo = html_texto.gera(codigo, None, None, None, None, None, None, None, None)
   ht_origem = html_texto.gera(origem, None, None, None, None, None, None, None, None)
   ht_destino = html_texto.gera(destino, None, None, None, None, None, None, None, None)
@@ -67,7 +75,7 @@ def gera(trc, ver, alterar):
   ##              add_span_tag("Assentos livres: ") + ht_num_poltronas,
   ##              botao_ver,
   ##              botao_alterar)
-  ht_campos = [ ht_codigo, ht_origem, ht_destino, ht_dt_partida, ht_dt_chegada, ht_num_poltronas ]
+  ht_campos = [ ht_logo, ht_codigo, ht_origem, ht_destino, ht_dt_partida, ht_dt_chegada, ht_num_poltronas ]
   
   # Botões de "Ver" e "Alterar"
   if ver:
