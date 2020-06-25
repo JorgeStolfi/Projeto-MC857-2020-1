@@ -1,0 +1,7 @@
+Tarefa: O botão "Buscar Roteiros" deve funcionar mesmo para quem não é administrador ou não está logado.
+
+No arquivo html_pag_criar_roteiro_IMP.py foi removido as verificações de sessao e administrador
+A partir dai era possivel enviar o formulario, porem a pagina ver roteiro nao funcionada.
+Da mesma maneira no arquivo comando_ver_roteiro_IMP foi removido a verificação de sessão.
+
+Os aruqivos de testes foram mantidos pois continuam funcionando e fazendo sentido (testes de admin, usuario e sem sessão)
