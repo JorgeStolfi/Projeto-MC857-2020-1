@@ -50,4 +50,4 @@ for ses_id, tag, erros in (
   assert usr != None
   usr_id = usuario.obtem_identificador(usr)
 
-  testa(rotulo, ses, usr_id, trc_id, trc_args, erros)
+  testa(rotulo, ses, trc_id, trc_args, erros)
