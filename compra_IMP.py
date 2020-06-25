@@ -89,6 +89,7 @@ def obtem_poltronas(cpr):
   global cache, nome_tb, letra_tb, colunas, diags
   ids_poltronas = poltrona.busca_por_compra(cpr)
   # !!! Precisa colocar em ordem cronológica da data e hora de partida de cada trecho. !!!
+  ids_poltronas_ordenadas = sorted(ids_poltronas, key = ids_poltronas['id_trecho']['hora_partida'])
   return ids_poltronas
 
 def busca(args):
