@@ -1,0 +1,12 @@
+Relátorio 173846 - 20-06-19
+
+Tarefa: 173846 Consertar a página devolvida por "Meu carrinho"
+
+Para realizar a tarefa tive que modificar o módulo html_form_dados_de_compra
+para formatar melhor o formulário e também pegar no banco o nome do usuário
+logado. Também foi necessário remover os botões extras que estavam aparecendo.
+
+Adicionei um botão de "Continuar comprando" no final da página html_pag_ver_compra,
+que é utilizada pelo comando_ver_carrinho.
+
+Rodei os testes e a página funcionou como especificado.
