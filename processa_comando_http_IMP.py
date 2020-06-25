@@ -14,6 +14,7 @@ import comando_criar_roteiro
 import comando_fazer_login
 import comando_fazer_logout
 import comando_solicitar_pag_acrescentar_trecho
+import comando_solicitar_pag_alterar_trecho
 import comando_solicitar_pag_alterar_usuario
 import comando_solicitar_pag_buscar_compras
 import comando_solicitar_pag_buscar_trechos
@@ -366,6 +367,10 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/cadastrar_usuario':
       # Usuário apertou "Cadastrar" em formulário de cadastrar usuário:
       pag = comando_cadastrar_usuario.processa(ses, args)
+
+    elif cmd == '/solicitar_pag_alterar_trecho':
+      # Usuário apertou o botão "alterar" da página que exibe os trechos:
+      pag = comando_solicitar_pag_alterar_trecho.processa(ses, args) 
 
     elif cmd == '/solicitar_pag_alterar_usuario':
       # Usuário apertou o botão "Minha Conta" do menu geral:

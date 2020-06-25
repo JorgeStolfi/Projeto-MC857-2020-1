@@ -1,0 +1,7 @@
+Gabriel Marinho da Costa
+
+Criei os modulos de solicitar_pag_alterar_trecho, pois ainda não existiam, bem como um modulo de testes para estes. Também alterei no modulo
+html_resumo_de_trecho a URL passada de alterar_trecho para solicitar_pag_alterar_trecho, de forma que o botão Alterar na página que exibe
+os trecho retorna o formulario para alteração do trecho. No modulo comando_solicitar_pag_alterar trecho deixei retornando apenas uma 
+string com uma mensagem de erro quando o trecho não existe, e não uma página completa ou algo do tipo, seria bom que retornasse uma página 
+onde não se perdesse a continuidade da navegação posteriormente.
