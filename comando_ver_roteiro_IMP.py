@@ -8,10 +8,6 @@ import roteiro
 import trecho
 
 def processa(ses, args):
-  if ses == None or not sessao.aberta(ses):
-    erros = ["Sessão não iniciada!"]
-    return html_pag_mensagem_de_erro.gera(ses, erros)
-
   if args == None or 'ids_trechos' not in args or type(args['ids_trechos']) is not str:
     erros = ["Roteiro inválido!"]
     return html_pag_mensagem_de_erro.gera(ses, erros)

@@ -1,7 +1,7 @@
 # Implementação do módulo {processa_comando_http}.
 
 # Interfaces do projeto usadas por este módulo:
-
+import comando_excluir_poltrona
 import sessao
 import usuario
 
@@ -11,9 +11,11 @@ import comando_alterar_usuario
 import comando_buscar_trechos
 import comando_cadastrar_usuario
 import comando_criar_roteiro
+import comando_definir_carrinho
 import comando_fazer_login
 import comando_fazer_logout
 import comando_solicitar_pag_acrescentar_trecho
+import comando_solicitar_pag_alterar_trecho
 import comando_solicitar_pag_alterar_usuario
 import comando_solicitar_pag_buscar_compras
 import comando_solicitar_pag_buscar_trechos
@@ -367,6 +369,10 @@ def processa_comando(tipo, ses, dados):
       # Usuário apertou "Cadastrar" em formulário de cadastrar usuário:
       pag = comando_cadastrar_usuario.processa(ses, args)
 
+    elif cmd == '/solicitar_pag_alterar_trecho':
+      # Usuário apertou o botão "alterar" da página que exibe os trechos:
+      pag = comando_solicitar_pag_alterar_trecho.processa(ses, args) 
+
     elif cmd == '/solicitar_pag_alterar_usuario':
       # Usuário apertou o botão "Minha Conta" do menu geral:
       pag = comando_solicitar_pag_alterar_usuario.processa(ses, args)
@@ -447,7 +453,7 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/solicitar_pag_escolher_pagamento':
       # Usuário apertou o botão "Escolher Pagamento" ou equivalente:
       pag = comando_solicitar_pag_escolher_pagamento.processa(ses, args)
-
+      
     elif cmd == '/ver_poltronas':
       # Usuário apertou o botão "ver poltronas" ou equivalente:
       pag =  html_pag_mensagem_de_erro.gera(ses, ("** comando ver poltronas ainda não implementado"))
@@ -455,9 +461,15 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/ver_sessoes':
       # Usuário apertou o botão "ver sessões" ou equivalente:
       pag =  html_pag_mensagem_de_erro.gera(ses, ("** comando ver sessões ainda não implementado"))
+      
+    elif cmd == '/excluir_poltrona':
+     # Usuário apertou o botão "Excluir" num item de uma compra:
+     pag = comando_excluir_poltrona.processa(ses, args)
 
-
-
+    elif cmd == '/definir_carrinho':
+      # Usuário apertou o botão "Definir Carrinho" ou equivalente:
+      pag = comando_definir_carrinho.processa(ses, args)
+      
     else:
       # Comando não identificado
       pag =  html_pag_mensagem_de_erro.gera(ses, ("** comando POST \"%s\" inválido" % cmd))

@@ -1,0 +1,14 @@
+Ola, Luiz Antonio Andia 138771
+
+Nesse lab fiz:
+1 -> criei o arquivo de teste {{comando_definir_carrinho.py}}
+2 -> criei o arquivo de teste {{comando_definir_carrinho_IMP.py}}
+    essa função deve colocar a compra selecionada no carrinho, porem ela nao foi implementada,
+    pq nao eh escopo dessa aula.
+2 -> modifiquei o arquivo {processa_comando_http_IMP.py}} para contem o comando "comando_definir_carrinho"
+2 -> modifiquei o arquivo { html_form_dados_de_compra_IMP.py}} para mostrar o status do carrinho
+2 -> modifiquei o arquivo {html_pag_ver_compra_IMP.py}} colocando as seguintes modificações:
+    quando a compra eh o carrinho aparece a msg "Esta compra é o seu carrinho atual."
+    quando a compra nao e o carrinho mas o status esta em aberto mostra apenas os dados da compra
+    quando a compra nao e o carrinho mas o status nao esta em aberto mostra um botao "Definir Carrinho"
+    Tambem removi codigo inutil e morto do arquivo

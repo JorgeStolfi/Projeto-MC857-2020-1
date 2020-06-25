@@ -17,17 +17,20 @@ def gera(ses, trc, comprar, alterar, erros):
   pols_ids = poltrona.busca_por_trecho(trc)
   if ses == None:
     # Usuário não está logado:
-    if alterar: aviso_prog("!! usuário não está logado; {alterar} ignorado")
-    alterar = False
-    if comprar: aviso_prog("!! usuário não está logado; {comprar} ignorado")
-    comprar = False
+    if alterar:
+      aviso_prog("!! usuário não está logado; {alterar} ignorado")
+      alterar = False
+    if comprar:
+      aviso_prog("!! usuário não está logado; {comprar} ignorado")
+      comprar = False
     id_carrinho = None
   else:
     carrinho = sessao.obtem_carrinho(ses)
     if carrinho == None:
       # Usuário deve ser administrador; não pode comprar:
-      if comprar: aviso_prog("!! sessão não tem carrinho; {comprar} ignorado")
-      comprar = False
+      if comprar:
+        aviso_prog("!! sessão não tem carrinho; {comprar} ignorado")
+        comprar = False
       id_carrinho = None
     else:
       assert type(carrinho) is compra.Objeto_Compra

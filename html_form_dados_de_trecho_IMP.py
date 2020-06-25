@@ -9,8 +9,10 @@ import html_botao_submit
 import html_botao_simples
 import html_form_table
 import html_form
+import html_imagem
 from utils_testes import erro_prog, mostra
 import sys
+import os.path
 
 def gera(id_trecho, atrs, texto_bt, comando_bt):
   if id_trecho != None:
@@ -49,4 +51,11 @@ def gera(id_trecho, atrs, texto_bt, comando_bt):
     ( "    " + ht_bt_cancelar + "\n" )
 
   ht = html_form.gera(ht_conteudo)
+
+  if 'codigo' in atrs:
+    cod_empresa = atrs['codigo'].split()[0]
+    if os.path.isfile('imagens/' + cod_empresa + '.png'):
+      img_empresa = html_imagem.gera('/' + cod_empresa + '.png', 'Logotipo empresa ' + cod_empresa, 200)
+      return img_empresa + '<br clear="all" />' + ht
+
   return ht
