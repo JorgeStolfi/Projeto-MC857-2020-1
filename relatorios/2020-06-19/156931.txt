@@ -1,0 +1,3 @@
+Minha tarefa do dia era implementar a função {obtem_resumo}.
+Função foi implementada, e teste está executando corretamente.
+Faltou calcular o 'preco_min' (soma dos precos das poltronas livres mais baratos, um em cada trecho), pois é necessario fazer uma funçao auxiliar e como a aula começou atrasada e as tarefas tambem foram atribuidas mais tarde, nao deu tempo.
