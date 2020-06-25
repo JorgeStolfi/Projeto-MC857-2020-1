@@ -454,6 +454,14 @@ def processa_comando(tipo, ses, dados):
       # Usuário apertou o botão "Escolher Pagamento" ou equivalente:
       pag = comando_solicitar_pag_escolher_pagamento.processa(ses, args)
       
+    elif cmd == '/ver_poltronas':
+      # Usuário apertou o botão "ver poltronas" ou equivalente:
+      pag =  html_pag_mensagem_de_erro.gera(ses, ("** comando ver poltronas ainda não implementado"))
+
+    elif cmd == '/ver_sessoes':
+      # Usuário apertou o botão "ver sessões" ou equivalente:
+      pag =  html_pag_mensagem_de_erro.gera(ses, ("** comando ver sessões ainda não implementado"))
+      
     elif cmd == '/excluir_poltrona':
      # Usuário apertou o botão "Excluir" num item de uma compra:
      pag = comando_excluir_poltrona.processa(ses, args)

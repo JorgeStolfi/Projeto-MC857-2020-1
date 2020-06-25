@@ -1,0 +1,11 @@
+Relatório
+
+Minha tarefa era colocar os botões "ver sessões", "ver compras" e "ver poltronas" na página
+de dados do usuário caso a sessão fosse de um administrador.
+Para fazer  isso eu editei a implementação do módulo {html_form_dados_de_usuario}, coloquei
+os três botões apenas quando a sessão é de um administrador, porém apenas o botão
+"ver compras" funciona de fato, pois era o único comando que já existia dos três
+{comando_ver_minhas_compras}, já os outros dois botões ainda não possuíam comandos que
+permitissem o funcionamento deles, portanto apenas fiz a chamada para os comandos que ainda
+precisam ser criados, e adicionei eles no módulo {processa_comando_http} retornando uma 
+página de erro que informa que os comandos ainda não existem.

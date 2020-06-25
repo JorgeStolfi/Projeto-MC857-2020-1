@@ -1,7 +1,7 @@
 import html_input
 import html_botao_submit
 import html_botao_simples
-import html_form_table 
+import html_form_table
 import html_form
 
 def gera(id_usuario, atrs, admin, texto_bt, comando_bt):
@@ -39,9 +39,15 @@ def gera(id_usuario, atrs, admin, texto_bt, comando_bt):
 
   ht_cancel = html_botao_simples.gera("Cancelar", 'principal', None, '#ee5555')
 
+  if admin:
+      ht_botao_sessoes = html_botao_simples.gera("Ver sessões", "ver_sessoes", {'id': id_usuario}, '#eeee55')
+      ht_botao_compras = html_botao_simples.gera("Ver compras", "ver_minhas_compras", {'id': id_usuario}, '#eeee55')
+      ht_botao_poltronas = html_botao_simples.gera("Ver poltronas", "ver_poltronas", {'id': id_usuario}, '#eeee55')
+
   ht_campos = \
     ( "    " + ht_id_usuario + "\n" if ht_id_usuario != "" else "") + \
     ( ht_table + "\n" ) + \
     ( "    " + ht_submit + "\n" ) + \
-    ( "    " + ht_cancel + "\n" )
+    ( "    " + ht_cancel + "\n" ) + \
+    ( ("   " + ht_botao_sessoes + "    " +  ht_botao_compras + "    " + ht_botao_poltronas ) if admin else "" )
   return html_form.gera(ht_campos)
