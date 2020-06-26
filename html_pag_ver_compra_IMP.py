@@ -14,8 +14,9 @@ def gera(ses, cpr, excluir, trocar, erros):
 
   # Validação dos parâmetros:
   assert cpr != None
-
   id_compra = compra.obtem_identificador(cpr)
+  args_cpr = compra.obtem_atributos(cpr)
+  aberto = args_cpr['status'] == 'aberto'
 
   # Determina o dono da sessão {ses}, e se é administrador.
   usr_ses = sessao.obtem_usuario(ses)
@@ -33,8 +34,11 @@ def gera(ses, cpr, excluir, trocar, erros):
   ht_conteudo = ""
   args_bt = { 'id_compra': id_compra }
   
+  # Esta compra pode ser alterada?
+  editavel = admin or aberto
+  
   # Cabeçalho da compra:
-  ht_cpr_resumo = html_form_dados_de_compra.gera(cpr, admin, "Ver", "ver_compra")
+  ht_cpr_resumo = html_form_dados_de_compra.gera(cpr, editavel, "Alterar", "alterar_compra")
   ht_conteudo += ht_cpr_resumo
 
   # Lista de itens da compra
@@ -45,14 +49,19 @@ def gera(ses, cpr, excluir, trocar, erros):
 
   if (eh_carrinho):
     ht_conteudo += "<label> Esta compra é o seu carrinho atual. </label><br/>\n"
+  elif aberto:
     ht_bt_definir_carrinho = html_botao_simples.gera("Definir Carrinho", 'definir_carrinho', args_bt, '#ff3300')
     ht_conteudo += "<br/>\n" + ht_bt_definir_carrinho
   
   status = compra.obtem_status(cpr)
-  if (status == "aberto"):
-    ht_bt_finalizar = html_botao_simples.gera("Finalizar Compra", 'finalizar_compra', args_bt, '#ff3300')
+  if aberto:
+    ht_bt_finalizar = html_botao_simples.gera("Finalizar compra", 'finalizar_compra', args_bt, '#ff3300')
     ht_conteudo += "<br/>\n" + ht_bt_finalizar
-    ht_bt_continuar_compra = html_botao_simples.gera("Continuar Comprando", 'principal', None, '#ffdd22')
-
+    ht_bt_continuar_compra = html_botao_simples.gera("Continuar comprando", 'principal', None, '#ffdd22')
+    ht_conteudo += ht_bt_continuar_compra
+  else:
+    ht_bt_ok = html_botao_simples.gera("OK", 'principal', None, '#ffdd22')
+    ht_conteudo += "<br/>\n" + ht_bt_ok
+    
   pag = html_pag_generica.gera(ses, ht_conteudo, erros)
   return pag

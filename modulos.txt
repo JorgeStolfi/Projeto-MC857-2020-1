@@ -22,7 +22,7 @@ A html_botao_simples
 A html_botao_submit
 A html_botao_radio
 A html_table
-* html_imagem
+A html_imagem
 * html_imagem_link
 
 A html_cabecalho
@@ -104,29 +104,48 @@ A html_pag_ver_roteiro
 A html_pag_ver_usuario
 
 A comando_solicitar_pag_login
+
 A comando_solicitar_pag_cadastrar_usuario
 A comando_solicitar_pag_alterar_usuario
+
 A comando_solicitar_pag_acrescentar_trecho
+A comando_solicitar_pag_alterar_trecho
+
 A comando_solicitar_pag_buscar_compras
 A comando_solicitar_pag_buscar_trechos
 A comando_solicitar_pag_buscar_usuarios
+
 A comando_solicitar_pag_contato
 A comando_solicitar_pag_criar_roteiro
 A comando_solicitar_pag_escolher_pagamento
 A comando_solicitar_pag_ofertas
 
-A comando_fazer_login
-A comando_fazer_logout
-A comando_cadastrar_usuario
-A comando_alterar_usuario
-
-A comando_buscar_trechos
-A comando_acrescentar_trecho
-A comando_alterar_trecho
-A comando_criar_roteiro
 A comando_ver_objeto
 A comando_ver_trecho
 * comando_ver_minhas_compras
 A comando_ver_compra
 A comando_ver_roteiro
 A comando_ver_carrinho
+
+A comando_buscar_trechos
+* comando_buscar_compras
+* comando_buscar_usuario
+
+* comando_comprar_poltrona
+* comando_excluir_poltrona
+* comando_trocar_poltrona
+* comando_definir_carrinho
+* comando_finalizar_compra
+
+A comando_fazer_login
+A comando_fazer_logout
+
+A comando_cadastrar_usuario
+A comando_alterar_usuario
+
+A comando_acrescentar_trecho
+A comando_alterar_trecho
+
+A comando_criar_roteiro
+
+* comando_fechar_sessao

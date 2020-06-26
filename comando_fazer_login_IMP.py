@@ -49,7 +49,6 @@ def processa(ses, dados):
     if usr != None:
       cookie = secrets.token_urlsafe(32)
       carrinho = define_carrinho(usr, id_usuario)
-      # !!! Deveria retornar a lista de compras em aberto, se houver mais de uma. !!!
       ses_nova = sessao.cria(usr, cookie, carrinho)
       pag = html_pag_principal.gera(ses_nova, None)
     else:

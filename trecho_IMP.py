@@ -86,6 +86,18 @@ def obtem_poltronas(trc):
   id_trc = obtem_identificador(trc)
   return poltrona.busca_por_trecho(id_trc)
 
+def obtem_dia_e_hora_de_partida(trc):
+  global cache, nome_tb, letra_tb, colunas, diags
+  dia = trecho.obtem_atributo(trc, 'dia_partida')
+  hora = trecho.obtem_atributo(trc, 'hora_partida')
+  return dia + " " + hora + " UTC"
+
+def obtem_dia_e_hora_de_chegada(trc):
+  global cache, nome_tb, letra_tb, colunas, diags
+  dia = trecho.obtem_atributo(trc, 'dia_chegada')
+  hora = trecho.obtem_atributo(trc, 'hora_chegada')
+  return dia + " " + hora + " UTC"
+
 def busca(args):
   global cache, nome_tb, letra_tb, colunas, diags
   unico = False

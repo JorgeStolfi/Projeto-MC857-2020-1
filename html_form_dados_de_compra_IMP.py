@@ -2,71 +2,119 @@ import compra
 import usuario
 import poltrona
 import trecho
-import html_input
-import html_form_table
-import html_botao_submit
-import html_botao_simples
 import html_form
-import html_texto
+import html_table
+import html_label
+import html_input
+import html_botao_submit
+import html_div
+import html_input
 
-def gera(cpr, admin, texto_bt, comando_bt):
+def gera(cpr, editavel, texto_bt, comando_bt):
 
+  # Obtem atributos a mostrar:
+  
+  valores = {}.copy()
   id_cpr = compra.obtem_identificador(cpr)
   atrs_cpr = compra.obtem_atributos(cpr)
-  ids_poltronas = compra.obtem_poltronas(cpr)
-  num_trechos = len(ids_poltronas)
-
-  # Parâmetros gerais da compra:
-  status_cpr = atrs_cpr['status']
   
-  # pega ids dos trechos das poltronas
-  ids_trechos = []
-  for id in ids_poltronas:
-    p_aux = poltrona.busca_por_identificador(id)
-    ids_trechos.append(poltrona.obtem_atributo(p_aux, 'id_trecho'))
+  # Atributos da compra em si
+  valores['id_cpr'] = id_cpr
+  valores['status'] = atrs_cpr['status']
+  valores['nome_pass'] = atrs_cpr['nome_pass']
+  valores['preco_tot'] = ("%.2f" % compra.calcula_preco(cpr))
+  # valores['pagamento'] = atrs_cpr['pagamento']
 
-  # obtem trechos
-  trechos = []
-  for id in ids_trechos:
-    trechos.append(trecho.busca_por_identificador(id))
-
-  # obtem atributos do primeiro e ultimo trechos
-  first_trecho_attrs = trecho.obtem_atributos(trechos[0])
-  last_trecho_attrs = trecho.obtem_atributos(trechos[len(trechos) - 1])
-
-  preco_tot_cpr = compra.calcula_preco(cpr)
-
+  # Cliente que está montando ou montou a compra:
   usr = compra.obtem_cliente(cpr)
-  id_usr = usuario.obtem_identificador(usr)
+  valores['id_usr'] = usuario.obtem_identificador(usr)
   atrs_usr = usuario.obtem_atributos(usr)
-  
-  # Montando o formulário
-  ht_id_cpr = html_input.gera("Id da Compra", "readonly", "id_compra",  id_cpr, True, None, None)
-  ht_id_usr = html_input.gera("Id do Usuário", "readonly", "id_usuario", id_usr, True, None, None)
-  ht_nome_usr = html_input.gera("Cliente", "readonly", "nome_usuario", atrs_usr['nome'], True, None, None)
-  ht_nome_pass = html_input.gera("Passageiro", "readonly", "nome_pass", atrs_cpr['nome_pass'], True, None, None)
-  ht_num_trechos = html_input.gera("Trechos", "readonly", "num_trechos", num_trechos, True, None, None)
-  ht_firts_trecho = "Origem: " + str(first_trecho_attrs['origem']) + " Partida: " + str(first_trecho_attrs['dia_partida']) + " " + str(first_trecho_attrs['hora_partida'])
-  ht_last_trecho = "Destino: " + str(last_trecho_attrs['destino']) + " Chegada: " + str(last_trecho_attrs['dia_chegada']) + " " + str(last_trecho_attrs['hora_chegada'])
-  ht_preco = html_input.gera("Total da Compra", "readonly", "preco_total", preco_tot_cpr, True, None, None)
-  ht_status = "Status: " + str(status_cpr)
-  # ht_table = html_form_table.gera(dados_linhas, atrs_cpr, admin)
-  ht_submit = html_botao_submit.gera(texto_bt, comando_bt, None, '#55ee55')
-  ht_cancel = html_botao_simples.gera("Cancelar", 'principal', None, '#ee5555')
+  valores['nome_usr'] = atrs_usr['nome']
 
-  # Formatando HTML
-  ht_campos = ''
-  ht_campos += ht_id_cpr + '<br>'
-  ht_campos += ht_id_usr + '<br>'
-  ht_campos += ht_nome_usr + '<br>'
-  ht_campos += ht_nome_pass + '<br>'
-  ht_campos += ht_num_trechos + '<br>'
-  ht_campos += ht_firts_trecho + "</br>" 
-  ht_campos += ht_last_trecho + "</br>"
-  ht_campos += ht_preco + '<br>'
-  ht_campos += ht_status + '<br>'
-
-  ht_campos += ht_submit + '<br>'
-  ht_campos += ht_cancel + '<br>'
+  # Bilhetes da compra:
+  ids_pols = compra.obtem_poltronas(cpr)
+  num_trechos = len(ids_pols)
+  valores['n_trechos'] = str(num_trechos)
   
+  if (num_trechos >= 1):
+    # Obtém origem, data, e hora de partida do primeiro trecho:
+    pol_ini = poltrona.busca_por_identificador(ids_pols[0])
+    id_trc_ini = poltrona.obtem_atributo(pol_ini, 'id_trecho')
+    trc_ini = trecho.busca_por_identificador(id_trc_ini)
+    origem = trecho.obtem_atributo(trc_ini, 'origem')
+    dh_partida = trecho.obtem_dia_e_hora_de_partida(trc_ini)
+    valores['partida'] = origem + " " + dh_partida
+
+    # Obtém destino, data, e hora de chegada do último trecho:
+    pol_fin = poltrona.busca_por_identificador(ids_pols[-1])
+    id_trc_fin = poltrona.obtem_atributo(pol_fin, 'id_trecho')
+    trc_fin = trecho.busca_por_identificador(id_trc_fin)
+    destino = trecho.obtem_atributo(trc_fin, 'destino')
+    dh_chegada = trecho.obtem_dia_e_hora_de_chegada(trc_fin)
+    valores['chegada'] = destino + " " + dh_chegada
+    
+  # Linhas para {html_table.gera}:
+  linhas = (
+    html_cpr_campo("Compra",             'id_cpr',    valores, 'text', None,              False),
+    html_cpr_campo("Cliente",            'id_usr',    valores, 'text', None,              False),
+    html_cpr_campo("Nome do cliente",    'nome_usr',  valores, 'text', None,              False),
+    html_cpr_campo("Nome do passageiro", 'nome_pass', valores, 'text', "Fulano da Silva", editavel),
+    html_cpr_campo("Número de trechos",  'n_trechos', valores, 'text', None,              False),
+    html_cpr_campo("Preço total",        'preco_tot', valores, 'text', None,              False),
+    html_cpr_campo("Estado",             'status',    valores, 'text', None,              False),
+    html_cpr_campo("Partida",            'partida',   valores, 'text', None,              False),
+    html_cpr_campo("Chegada",            'chegada',   valores, 'text', None,              False),
+  )
+  ht_campos = html_table.gera(linhas);
+
+  # Botões: 
+  if editavel:
+    args_submit = { 'id_compra': id_cpr } # Argumentos adicionais para submissão.
+    ht_submit = html_botao_submit.gera(texto_bt, comando_bt, args_submit, "#44ff44")
+    ht_campos += "<br/>" + ht_submit
+
   return html_form.gera(ht_campos)
+
+def html_cpr_campo(rotulo, nome, valores, tipo, dica, editavel):
+  """Função auxiliar para formatar a tabela de campos.
+
+  Devolve um par {(ht_lab, ht_val)} onde {ht_lab} é um elemento <label>...</label>,
+  e {ht_val} é um elemento <input ... /> ou um <div>...</div> com o formato apropriado.  
+  
+  O string {rotulo} é o nome do campo visível para o usuário, como
+  "Nome do passageiro". Será o conteúdo do {ht_lab}.
+  
+  O string {nome} é o nome interno do atributo da compra, como 'id_usuario',
+  'preco_tot', 'saida', 'chegada', etc.
+  
+  O parâmetro {valores} é um dicionário Python que pode definir ou não um
+  valor {val} para a chave {nome}.  Se não definir, o valor {val} será tomado como {None}.
+  Se o {tipo} for "number", o dicionário pode também definir um valor {vmin}
+  para a chave "{nome}_min"; caso contrário {vmin} será tomado como {None}.
+  
+  Se o parâmetro {tipo} for {None}, o resultado {ht_val} será o valor
+  {val} formatado como um <div>...</div> de estilo adequado.
+  
+  Se o parâmetro {tipo} não for {None}, deve ser um string que especifica
+  um tipo de elemento <input.../> que será devolvido em {ht_val},
+  Por exemplo "text", "number", "readonly". Nesse caso {ht_val} será 
+  
+    "<input type='{tipo}' name='{nome}' value='{val}'
+    min='{vmin}' placeholder='{dica}'/>"
+  
+  O parâmetro {dica} só é usado se {tipo} não for {None} mas {val} for {None};
+  será a dica de preenchimento do camo. Por exemplo, para
+  um campo de data, a dica pode ser "AAAA-MM-DD"."""
+  ht_lab = html_label.gera(rotulo, ": ")
+  val = (valores[nome] if nome in valores else None)
+  if tipo == None:
+    estilo = "font-family:Courier;font-size:18"
+    ht_val = html_div.gera(estilo, val)
+  else:
+    nmin = nome + "_min"
+    vmin = (valores[nmin] if nmin in valores else None)
+    if val != None: dica = None
+    ht_val = html_input.gera(None, tipo, nome, val, vmin, editavel, dica, None)
+    
+  return (ht_lab, ht_val)
+  

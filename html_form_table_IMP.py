@@ -15,10 +15,12 @@ def gera(dados_linhas, atrs, admin):
     if admin or not adm_only:
       # Valor corrente do atributo:
       val = (atrs[chave] if chave in atrs else None)
+      chmin = chave + '_min'
+      vmin = (atrs[chmin]  if chmin in atrs else None)
       # Converte {rot} para rótulo HTML:
       ht_rotulo = html_label.gera(rot, ": ")
       # Cria o elemento "<input .../>":
-      ht_campo = campo_editavel(tipo, chave, val, dica)
+      ht_campo = campo_editavel(tipo, chave, val, vmin, dica)
       if ht_campo != None:
         linhas.append((ht_rotulo, ht_campo,))
 
@@ -27,18 +29,24 @@ def gera(dados_linhas, atrs, admin):
 
   return ht_table
 
-def campo_editavel(tipo, chave, val, dica):
+def campo_editavel(tipo, chave, val, vmin, dica):
   """Retorna o HTML de um item "input" do formulário
   de dados de usuário. Pode devolver {None} para não mostrar esse item.
 
   O elemento terá o dado {tipo} ("text", "password", etc.), nome {chave},
-  valor inicial {val}, e a {dica} especificada (se {val} for {None}).
-  O valor inicial {val} é convertido para string de maneira adequada
-  ao seu tipo.
+  valor inicial {val}, valor mínimo {vmin}, e a {dica} especificada 
+  (se {val} for {None}).  O valor inicial {val} é convertido para string 
+  de maneira adequada ao seu tipo.
 
-  Se a chave for 'senha', não mostra o {val}"""
+  Se a chave for 'senha', não mostra o {val}.  Se {tipo}
+  não for "number", ignora {vmin}."""
 
   if chave == 'senha': val = None
+  
+  if tipo == 'number': 
+    ht_vmin = str(vmin)
+  else:
+    ht_vmin = None
 
   # Converte val para HTML:
   if val == None:
@@ -60,5 +68,5 @@ def campo_editavel(tipo, chave, val, dica):
   else:
     ht_dica = None
 
-  ht_campo = html_input.gera(None, tipo, chave, ht_valor, True, ht_dica, None)
+  ht_campo = html_input.gera(None, tipo, chave, ht_valor, ht_vmin, True, ht_dica, None)
   return ht_campo

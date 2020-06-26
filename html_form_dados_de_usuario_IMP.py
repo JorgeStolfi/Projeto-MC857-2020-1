@@ -10,9 +10,9 @@ def gera(id_usuario, atrs, admin, texto_bt, comando_bt):
     # Inclui campo 'id_usuario' no formulário:
     if admin:
       # Mostra o id do usuario somente se quem está alterando é administrador:
-      ht_id_usuario = html_input.gera(None, "readonly", "id_usuario", id_usuario, True, None, None)
+      ht_id_usuario = html_input.gera(None, "readonly", "id_usuario", id_usuario, None, True, None, None)
     else:
-      ht_id_usuario = html_input.gera(None, "hidden", "id_usuario", id_usuario, True, None, None)
+      ht_id_usuario = html_input.gera(None, "hidden", "id_usuario", id_usuario, None, True, None, None)
   else:
     novo = True
     ht_id_usuario = ""

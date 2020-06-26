@@ -87,10 +87,9 @@ def obtem_status(cpr):
 
 def obtem_poltronas(cpr):
   global cache, nome_tb, letra_tb, colunas, diags
-  ids_poltronas = poltrona.busca_por_compra(cpr)
-  # !!! Precisa colocar em ordem cronológica da data e hora de partida de cada trecho. !!!
-  ids_poltronas_ordenadas = sorted(ids_poltronas, key = ids_poltronas['id_trecho']['hora_partida'])
-  return ids_poltronas
+  ids_pols = poltrona.busca_por_compra(cpr)
+  ids_pols.sort(key = lambda id : poltrona.obtem_dia_e_hora_de_partida(poltrona.busca_por_identificador(id)))
+  return ids_pols
 
 def busca(args):
   global cache, nome_tb, letra_tb, colunas, diags
@@ -134,22 +133,27 @@ def cria_testes():
   global cache, nome_tb, letra_tb, colunas, diags
   inicializa(True)
   # Identificador de usuários e lista de poltronas de cada pedido de compra:
-  lista_ups = \
+  lista_cupsf = \
     [
-      ( "U-00000001", "Amanda Castro" ),
-      ( "U-00000001", "Gustavo Galvão" ),
-      ( "U-00000002", "José Roberto" )
+      ( "C-00000001", "U-00000001", "Amanda Almeida", True,  ),
+      ( "C-00000002", "U-00000001", "Basílio Barros", True,  ),
+      ( "C-00000003", "U-00000002", "Carlos Costa",   True,  ),   
+      ( "C-00000004", "U-00000002", "Diego Dias",     False, ),   
     ]
-  for id_cliente, nome_pass in lista_ups:
+  for id_cpr_esp, id_cliente, nome_pass, aberto in lista_cupsf:
     cliente = usuario.busca_por_identificador(id_cliente)
 
     cpr = cria(cliente, nome_pass)
     assert cpr != None and type(cpr) is compra.Objeto_Compra
     id_cpr = compra.obtem_identificador(cpr)
+    if not aberto: compra.fecha(cpr)
+    
     # Paranóia:
+    assert id_cpr == id_cpr_esp
     cliente_1 = compra.obtem_cliente(cpr)
     id_cliente_1 = usuario.obtem_identificador(cliente_1)
     assert id_cliente_1 == id_cliente
+    
     sys.stderr.write("compra %s de %s criada\n" % (id_cpr, id_cliente))
   return
 

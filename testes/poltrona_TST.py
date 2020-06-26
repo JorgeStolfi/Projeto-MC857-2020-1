@@ -2,6 +2,8 @@
 
 import poltrona
 import trecho
+import compra
+import usuario
 import tabela_generica
 import base_sql
 import identificador
@@ -14,8 +16,37 @@ sys.stderr.write("Conectando com base de dados...\n")
 base_sql.conecta("DB",None,None)
 
 # ----------------------------------------------------------------------
-sys.stderr.write("Inicializando módulo {poltrona}, limpando tabela:\n")
+sys.stderr.write("Inicializando módulos, limpando tabela:\n")
+compra.inicializa(True)
+usuario.inicializa(True)
+trecho.inicializa(True)
 poltrona.inicializa(True)
+
+# Criando um trecho para teste:
+trc1_atrs = \
+  { # T-00000001
+    'codigo':       "AZ 4036",
+    'origem':       "SDU",
+    'destino':      "VCP",
+    'dia_partida':  "2020-05-09",
+    'hora_partida': "19:45",
+    'dia_chegada':  "2020-05-09",
+    'hora_chegada': "20:40",
+    'veiculo':      "AAA-0002"
+  }
+trc1 = trecho.cria(trc1_atrs)
+trc2_atrs = \
+  { # T-00000002
+    'codigo':       "AZ 4036",
+    'origem':       "SDU",
+    'destino':      "VCP",
+    'dia_partida':  "2020-05-08",
+    'hora_partida': "19:45",
+    'dia_chegada':  "2020-05-08",
+    'hora_chegada': "20:40",
+    'veiculo':      "AAA-0002"
+  }
+trc2 = trecho.cria(trc2_atrs)
 
 # ----------------------------------------------------------------------
 # Funções de teste:
@@ -28,7 +59,7 @@ def verifica_poltrona(rotulo, pol, ident, atrs):
   global ok_global
 
   sys.stderr.write("%s\n" % ("-" * 70))
-  sys.stderr.write("verificanda poltrona %s\n" % rotulo)
+  sys.stderr.write("verificando poltrona %s\n" % rotulo)
   ok = poltrona.verifica(pol, ident, atrs)
 
   if pol != None and type(pol) is poltrona.Objeto_Poltrona:
@@ -106,13 +137,32 @@ verifica_poltrona("pol1_m", pol1, pol1_id, pol1_atrs_m)
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {poltrona.cria_conjunto}:\n")
 
-# trc = trecho.busca_por_identificador('T-00000001')
+trc = trecho.busca_por_identificador('T-00000001')
 
-# poltronas = poltrona.cria_conjunto(trc, "001, 05, 5B, 7-10, 12A-15D: 90.50; 04K-6M: 130.00")
-# print(poltronas)
+poltronas = poltrona.cria_conjunto(trc, "001, 05, 5B, 7-10, 12A-15D: 90.50; 04K-6M: 130.00")
+print(str(poltronas))
 
 # ----------------------------------------------------------------------
+sys.stderr.write("testando {poltrona.obtem_dia_e_hora_de_partida}:\n")
+pol3 = pol[3]
+assert poltrona.obtem_atributo(pol3, 'id_trecho') == "T-00000001", "epa, trecho errado"
+pol3_dhp_res = poltrona.obtem_dia_e_hora_de_partida(pol3);
+pol3_dhp_esp = "2020-05-08 19:45"
+if pol3_dhp_res != pol3_dhp_esp:
+  sys.stderr.write("{poltrona.obtem_dia_e_hora_de_partida(pol3)}:")
+  sys.stderr.write(" devolveu %s, esperado %s\n" % (pol3_dhp_res, pol3_dhp_esp))
+  ok = False
 
+# ----------------------------------------------------------------------
+sys.stderr.write("testando {poltrona.obtem_dia_e_hora_de_chegada}:\n")
+pol3_dhc_res = poltrona.obtem_dia_e_hora_de_chegada(pol3);
+pol3_dhc_esp = "2020-05-08 20:40"
+if pol3_dhc_res != pol3_dhc_esp:
+  sys.stderr.write("{poltrona.obtem_dia_e_hora_de_chegada(pol3)}:")
+  sys.stderr.write(" devolveu %s, esperado %s\n" % (pol3_dhc_res, pol3_dhc_esp))
+  ok = False
+
+# ----------------------------------------------------------------------
 # Veredito final:
 
 if ok_global:

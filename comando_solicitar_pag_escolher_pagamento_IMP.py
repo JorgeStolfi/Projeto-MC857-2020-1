@@ -1,14 +1,11 @@
-# Implementação do módulo {comando_solicitar_pag_escolher_pagamento}. 
 
+import compra
 import html_pag_escolher_pagamento
 
-# Deixar comentado até existir o módulo que contenha o html do formulário
-# import html_form_escolher_pagamento
-
 def processa(ses, args):
-  # Deixar comentado até existir o módulo que retorna o html do formulário
-  # conteudo = html_form_escolher_pagamento.gera(..)
-  conteudo = "Formas de pagamento"
-  pag = html_pag_escolher_pagamento.gera(ses, conteudo, None)
+  # !!! Verificar validade dos argumentos, devolver pag de erro se falhar !!!
+  id_compra = args['id_compra']
+  cpr= compra.busca_por_identificador(id_compra)
+  pag = html_pag_escolher_pagamento.gera(ses, cpr, None)
   return pag
     

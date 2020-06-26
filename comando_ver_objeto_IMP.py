@@ -15,9 +15,6 @@ import sys #added by shimeji
 
 
 def processa(ses, args):
-  # !!! deveria exigir que o dono da sessao seja administrador !!!
-  #begin changes
-  
   # O dono da sessão deve ser administrador:
   assert sessao.eh_administrador(ses)
   

@@ -22,12 +22,6 @@ ses_nao_admin = sessao.busca_por_identificador("S-00000001")
 admin = usuario.busca_por_identificador("U-00000003")
 ses_admin = sessao.cria(admin, "NOPQRSTUVWX", None)
 
-args = {
-  'form': {
-    'titulo': 'Form de pagamentos',
-    'post_url': 'http://example.com/form'
-  }
-}
 def testa(rotulo, *args):
     """Testa {funcao(*args)}, grava resultado
     em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
@@ -38,6 +32,7 @@ def testa(rotulo, *args):
     pretty = True  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
+args = { 'id_compra': "C-00000002" }
 
 testa("Logado", None, args)
 testa("Administrador", ses_nao_admin, args)

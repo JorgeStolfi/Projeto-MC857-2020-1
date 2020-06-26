@@ -21,4 +21,4 @@ testa("img3", "/GO.png", "GO", 75, "urlteste")
 
 testa("imgFalsa", "/falsa.png", "falsa", 150, "urlteste")
 
-testa("noImg", NULL, "no image", 150, "urlteste")
+# testa("noImg", None, "no image", 150, "urlteste")

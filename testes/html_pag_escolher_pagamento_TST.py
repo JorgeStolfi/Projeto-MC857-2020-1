@@ -3,6 +3,7 @@
 import html_pag_escolher_pagamento
 import tabelas
 import sessao
+import compra
 import base_sql
 import utils_testes
 
@@ -28,10 +29,11 @@ def testa(rotulo, *args):
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-for tag, sess, conteudo, erros in (
-    ("N", ses, r'Teste', None),
-    ("N-S", None, r'Teste', None),
-    ("V", ses, r'Teste', []),
-    ("E", ses, r'Teste', ["Mensagem UM", "Mensagem DOIS", "Mensagem TRÊS",])):
-
-  testa(tag, sess, conteudo, erros)
+for tag, sess, id_compra, erros in (
+    ("N", ses,    'C-00000001', None),
+    ("N-S", None, 'C-00000002', None),
+    ("V", ses,    'C-00000003', []),
+    ("E", ses,    'C-00000004', ["Mensagem UM", "Mensagem DOIS", "Mensagem TRÊS",])
+  ):
+  cpr = compra.busca_por_identificador(id_compra)
+  testa(tag, ses, cpr, erros)

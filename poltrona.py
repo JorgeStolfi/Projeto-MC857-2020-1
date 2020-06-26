@@ -107,6 +107,16 @@ def busca_ofertas():
   """Devolve uma lista com todas as poltronas livres em oferta."""
   return poltrona_IMP.busca_ofertas()
   
+def obtem_dia_e_hora_de_partida(pol):
+  """Retorna a data e hora de partida do trecho ao qual a poltrona pertence,
+  no formato "{YYYY}-{MM}-{DD} {hh}:{mm} UTC"."""
+  return poltrona_IMP.obtem_dia_e_hora_de_partida(pol)
+
+def obtem_dia_e_hora_de_chegada(pol):
+  """Retorna a data e hora de chegada do trecho ao qual a poltrona pertence,
+  no formato "{YYYY}-{MM}-{DD} {hh}:{mm} UTC"."""
+  return poltrona_IMP.obtem_dia_e_hora_de_chegada(pol)
+
 def cria_conjunto(trc, txt):
   """Cria um conjunto de poltronas do trecho {trc} especificadas pela cadeia {txt}.
   As poltronas inicialmente são livres (sem nenhuma compra associada). 

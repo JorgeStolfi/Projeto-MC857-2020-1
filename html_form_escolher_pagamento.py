@@ -1,8 +1,8 @@
 import html_form_escolher_pagamento_IMP
 
-def gera(titulo, post_url):
-  """Retorna o HTML do formulário para escolher o pagamento
-  O formulário contém campos radio button para escolher o tipo de pagamento a ser feitos
-
-  Quando o usuário clicar no botão 'Enviar', será emitido um comando POST  post_url?metodo_pagamento={TIPO} """
-  return html_form_escolher_pagamento_IMP.gera(titulo, post_url)
+def gera(cpr):
+  """Retorna o HTML do formulário para escolher a forma de pagamento
+  da compra {cpr}. O formulário terá um item de multipla escolha para 
+  a forma de pagamento, e um botão "Confirmar" que, quando clicado, emite
+  o comando HTTP {alterar_pagamento}."""
+  return html_form_escolher_pagamento_IMP.gera(cpr)

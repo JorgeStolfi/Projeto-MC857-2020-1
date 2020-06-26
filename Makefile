@@ -1,5 +1,5 @@
 
-.PHONY: todos_os_testes teste_unico
+.PHONY: testes_de_modulos teste_unico
 
 # Módulos que não devem ter programas de teste:
 MODULOS_NAO_TESTAR := ${shell gawk '/^[N]/{ print $$2; }' modulos.txt}
@@ -13,17 +13,17 @@ MODULOS_BUG := ${shell gawk '/^[*]/{ print $$2; }' modulos.txt}
 # Todos os módulos testáveis:
 MODULOS_TODOS := ${shell gawk '/^[*A]/{ print $$2; }' modulos.txt}
 
-# Módulos a testar em {todos_os_testes}:
-# MODULOS := ${MODULOS_TODOS}
-MODULOS := ${MODULOS_BUG}
+# Módulos a testar em {testes_de_modulos}:
+MODULOS := ${MODULOS_TODOS}
+# MODULOS := ${MODULOS_BUG}
 
 # O que "make" deve fazer:
-# all: todos_os_testes 00-LINKS.html
+# all: testes_de_modulos 00-LINKS.html
 # all: teste_unico 00-LINKS.html
 all: roda_servidor 00-LINKS.html
 
-# Roda todos os módulos de teste:
-todos_os_testes:
+# Roda testes dos módulos em ${MODULOS}:
+testes_de_modulos:
 	-rm -fv testes/saida/*.html
 	for modulo in ${MODULOS} ; do \
 	  { ./testa.sh $${modulo} ; echo "" ; } ; \

@@ -18,7 +18,7 @@ def gera(id_trecho, atrs, texto_bt, comando_bt):
   if id_trecho != None:
     # Supõe que é mostrar trecho existente:
     # Inclui campo 'id_trecho' no formulário:
-    ht_id_trecho = html_input.gera(None, "hidden", "id_trecho", id_trecho, True, None, None)
+    ht_id_trecho = html_input.gera(None, "hidden", "id_trecho", id_trecho, None, True, None, None)
   else:
     # Supõe que é criação de novo trecho, ou buscar:
     alterar = False

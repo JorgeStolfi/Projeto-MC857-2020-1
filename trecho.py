@@ -85,6 +85,16 @@ def obtem_atributo(trc, chave):
   """Retorna o atributo do trecho {trc} com a {chave} dada. 
   Equivale a {obtem_atributos(trc)[chave]}"""
   return trecho_IMP.obtem_atributo(trc, chave)
+  
+def obtem_dia_e_hora_de_partida(trc):
+  """Retorna a data e hora de partida do trecho {trc},
+  no formato "{YYYY}-{MM}-{DD} {hh}:{mm} UTC"."""
+  return trecho_IMP.obtem_dia_e_hora_de_partida(trc)
+
+def obtem_dia_e_hora_de_chegada(trc):
+  """Retorna a data e hora de chegada do trecho {trc},
+  no formato "{YYYY}-{MM}-{DD} {hh}:{mm} UTC"."""
+  return trecho_IMP.obtem_dia_e_hora_de_chegada(trc)
 
 def busca(args):
   """O parâmetro {args} é um dicionário que contém um subconjunto dos

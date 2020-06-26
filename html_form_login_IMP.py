@@ -8,11 +8,11 @@ def gera():
   linhas = [].copy()
   
   ht_rotulo = html_label.gera("E-mail", ": ")
-  ht_campo = html_input.gera(None, "text", "email", None, True, None, None)
+  ht_campo = html_input.gera(None, "text", "email", None, None, True, "nome@provedor", None)
   linhas.append((ht_rotulo, ht_campo,))
   
   ht_rotulo = html_label.gera("Senha", ": ")
-  ht_campo = html_input.gera(None, "password", "senha", None, True, None, None)
+  ht_campo = html_input.gera(None, "password", "senha", None, None, True, None, None)
   linhas.append((ht_rotulo, ht_campo,))
 
   # Monta a tabela com os fragmentos HTML:

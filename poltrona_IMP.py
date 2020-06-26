@@ -1,6 +1,7 @@
 import objeto
 import poltrona
 import trecho
+import re
 
 import tabela_generica
 import tabelas
@@ -128,6 +129,16 @@ def busca_ofertas():
   unico = False
   ids_poltronas = objeto.busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas)
   return ids_poltronas
+
+def obtem_dia_e_hora_de_partida(pol):
+  id_trc = obtem_atributo(pol, 'id_trecho');
+  trc = trecho.busca_por_identificador(id_trc);
+  return trecho.obtem_dia_e_hora_de_partida(trc)
+
+def obtem_dia_e_hora_de_chegada(pol):
+  id_trc = obtem_atributo(pol, 'id_trecho');
+  trc = trecho.busca_por_identificador(id_trc);
+  return trecho.obtem_dia_e_hora_de_chegada(trc)
 
 def cria_conjunto(trc, txt):
   global cache, nome_tb, letra_tb, colunas, diags
@@ -292,12 +303,14 @@ def analisa_esp_numero(txt):
   txt = txt.strip(" ")
   if len(txt) < 1:
     raise ErroAtrib("sintaxe inválida em número de poltrona: \"" + txt + "\"")
-  alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-  i = txt.find(alfabeto)
-  if i >= 0:
+  mt = re.search(r'[^0-9]', txt) # Retorna um objeto do tipo {Match}, ou {None}.
+  # sys.stderr.write("txt = '%s'  mt = '%s'\n" % (txt, str(mt)))
+  if mt:
     # Tem letra:
+    i = mt.start() # Indice inicial.
     num_int_esp = txt[0:i].strip(" ")
     num_let_esp = txt[i:]
+    # sys.stderr.write("txt = '%s'  num_int_esp = '%s'  num_let_esp = '%s'\n" % (txt, num_int_esp, num_let_esp))
     assert len(num_let_esp) > 0
     if len(num_let_esp) != 1:
       raise ErroAtrib("sintaxe inválida em número de poltrona (letra): \"" + num_let_esp + "\"")
@@ -306,6 +319,7 @@ def analisa_esp_numero(txt):
     # Não tem letra:
     num_int_esp = txt
     num_let = ""
+    # sys.stderr.write("txt = '%s'  num_int_esp = '%s'  num_let = '%s'\n" % (txt, num_int_esp, num_let))
   if len(num_int_esp) == 0:
     num_int = 0
   else:
@@ -321,7 +335,7 @@ def analisa_esp_intervalo(txt, prc):
   e o preço dado {prc}. """
   global cache, nome_tb, letra_tb, colunas, diags
   ini_esp_fin_esp = txt.split('-')
-  if len(ini_esp_prc_esp) != 2:
+  if len(ini_esp_fin_esp) != 2:
     raise ErroAtrib("sintaxe inválida em intervalo de poltronas: \"" + txt + "\"")
   alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
   ini_esp = ini_esp_fin_esp[0]
@@ -349,7 +363,7 @@ def analisa_esp_preco(txt):
   e {CC} é dois dígitos decimais"."""
   global cache, nome_tb, letra_tb, colunas, diags
   try:
-    prc = float(prc_esp)
+    prc = float(txt)
   except:
     raise ErroAtrib("sintaxe inválida em preço de poltronas: \"" + prc_esp + "\"")
   return prc

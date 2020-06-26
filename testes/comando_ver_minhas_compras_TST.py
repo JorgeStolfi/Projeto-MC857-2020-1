@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 import sys
 import comando_ver_minhas_compras
 import base_sql
@@ -31,10 +33,7 @@ def testa(rotulo, *args):
     pretty = True  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-try:
-  testa("Anonimo", None, args)
-except AssertionError:
-  pass
-
 testa("Logado", ses_nao_admin, args)
 testa("Administrador", ses_admin, args)
+# testa("Anonimo", None, args)
+

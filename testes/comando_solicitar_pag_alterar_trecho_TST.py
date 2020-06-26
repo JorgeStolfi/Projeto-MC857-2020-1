@@ -32,8 +32,8 @@ def testa(rotulo, *args):
 
 args1 = {}
 # Teste mostra os dados do dono da sessão
-testa("Sucesso - sem id_trecho", sessao1, args1)
+testa("S-semID", sessao1, args1)
 
 args1['id_trecho'] = "T-00000001"
 # Teste mostra os dados do dono do identificador passado
-testa("Sucesso - com id_trecho", sessao1, args1)
+testa("S-comID", sessao1, args1)

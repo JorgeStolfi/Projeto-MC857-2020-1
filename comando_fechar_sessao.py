@@ -12,7 +12,5 @@ def processa(ses, args):
   A função fecha a sessão cujo ID é args['id_sessao'] e retorna o HTML da página 
   principal (homepage) da loja. 
 
-  TODO: alterar comportamento caso a sessão a ser fechada seja a sessão atual do usuário
-  
-  """
+  TODO: alterar comportamento caso a sessão a ser fechada seja a sessão atual do usuário."""
   return comando_fechar_sessao_IMP.processa(ses, args)

@@ -170,6 +170,24 @@ trecho.muda_atributos(trc3, trc3_mods) # Deveria assumir os valores do trc3
 verifica_trecho("trc3_m", trc3, trc3_id, trc3_atrs_m)
 
 # ----------------------------------------------------------------------
+sys.stderr.write("testando {trecho.obtem_dia_e_hora_de_partida}:\n")
+trc2_dhp_res = trecho.obtem_dia_e_hora_de_partida(trc2);
+trc2_dhp_esp = "2020-05-09 19:45"
+if trc2_dhp_res != trc2_dhp_esp:
+  sys.stderr.write("{trecho.obtem_dia_e_hora_de_partida(trc2)}:")
+  sys.stderr.write(" devolveu %s, esperado %s\n" % (trc2_dhp_res, trc2_dhp_esp))
+  ok = False
+
+# ----------------------------------------------------------------------
+sys.stderr.write("testando {trecho.obtem_dia_e_hora_de_chegada}:\n")
+trc2_dhc_res = trecho.obtem_dia_e_hora_de_chegada(trc2);
+trc2_dhc_esp = "2020-05-09 20:40"
+if trc2_dhc_res != trc2_dhc_esp:
+  sys.stderr.write("{trecho.obtem_dia_e_hora_de_chegada(trc2)}:")
+  sys.stderr.write(" devolveu %s, esperado %s\n" % (trc2_dhc_res, trc2_dhc_esp))
+  ok = False
+
+# ----------------------------------------------------------------------
 # Veredito final:
 
 if ok_global:

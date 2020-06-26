@@ -37,4 +37,8 @@ admin = usuario.busca_por_identificador('U-00000003')
 compra1 = compra.busca_por_identificador('C-00000001')
 
 # testa modulo
-testa("valido", compra1, admin, '', '' )
+editavel = True
+testa("edT", compra1, editavel, "Alterar", 'alterar_compra' )
+
+editavel = False
+testa("edF", compra1, editavel, "Alterar", 'alterar_compra' )

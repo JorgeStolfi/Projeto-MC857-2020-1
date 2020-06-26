@@ -340,9 +340,11 @@ def processa_comando(tipo, ses, dados):
 
     # Despacha o comando:
     # !!! Completar a lista abaixo com todos os módulos {comando_*.py} que existem. !!!
+
     sys.stderr.write("!! processa_comando: cmd = %s\n" % cmd)
     sys.stderr.write("!! processa_comando: ses = %s\n" % \
       (sessao.obtem_identificador(ses) if ses != None else "None"))
+      
     if cmd == '' or cmd == '/' or cmd == '/principal':
       # Acesso sem comando, ou usuário apertou "Principal" no menu geral.
       pag =  html_pag_principal.gera(ses, [])
