@@ -45,7 +45,7 @@ def gera(ses, cpr, excluir, trocar, erros):
   ids_poltronas = compra.obtem_poltronas(cpr)
   excluir_pol = excluir
   trocar_pol = trocar
-  ht_poltronas = html_lista_de_poltronas_de_compra.gera(ids_poltronas, id_compra, excluir_pol, trocar_pol)
+  ht_conteudo += html_lista_de_poltronas_de_compra.gera(ids_poltronas, id_compra, excluir_pol, trocar_pol)
 
   if (eh_carrinho):
     ht_conteudo += "<label> Esta compra é o seu carrinho atual. </label><br/>\n"
