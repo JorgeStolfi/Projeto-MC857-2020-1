@@ -9,8 +9,19 @@ def descobre_todos(origem, destino, dia_min, dia_max):
   trc_VCP_SDU = trecho.busca_por_identificador("T-00000001")
   trc_SDU_POA = trecho.busca_por_identificador("T-00000004")
   rot1 = [ trc_VCP_SDU, trc_SDU_POA ]
-  roteiros = [ rot1 ]
-
+  roteiros = [rot1]
+  
+  # esboço da funcao:
+  for trecho_origem in trecho.busca_por_origem(origem):
+    new_roteiro = []
+    if trecho_origem['dia_partida']>dia_min and trecho_origem['dia_chegada']<dia_max:
+      rot_tail = descobre_todos(trecho_origem['destino'], destino, dia_min, dia_max)
+      if rot_tail[-1]['destino'] == destino:
+        new_roteiro = [trecho_origem, *rot_tail]
+      elif trecho_origem['destino'] == destino:
+        new_roteiro = [trecho_origem]
+    roteiros.append[new_roteiro]
+    
   #  # Buscar todos os trechos com origem = {origem} com dia_partida >= {dia_min}
   #  trc_ids = trecho.busca_por_dias(dia_min, dia_max) # Selecionando os ids de trechos entre {dia_min} e {dia_max}
   #  trc_objs = [trecho.busca_por_identificador(trc) for trc in trc_ids] # Transforma os trechos em objetos
