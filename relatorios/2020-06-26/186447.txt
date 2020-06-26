@@ -1,0 +1,3 @@
+Criei a imagem cinza.png nas mesmas resoluções padrões.
+No arquivo html_imagem_IMP.py, atribui uma verificação de entrada {None} para a
+imagem solicitada, caso encontre, carrego imagem cinza.png criada.
