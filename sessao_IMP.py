@@ -11,6 +11,8 @@ import valida_campo; from valida_campo import ErroAtrib
 from utils_testes import erro_prog, mostra
 import sys
 
+from datetime import datetime, timezone
+
 # VARIÁVEIS GLOBAIS DO MÓDULO
  
 cache = {}.copy()
@@ -44,9 +46,11 @@ class Objeto_Sessao_IMP(objeto.Objeto):
 def inicializa(limpa):
   global cache, nome_tb, letra_tb, colunas, diags
   colunas = \
-    ( ( "usr",          usuario.Objeto_Usuario, 'TEXT',    False ),  # Objeto/id do usuário logado na sessão.
-      ( "abrt",         type(False),        'INTEGER', False ),  # Estado da sessao (1 = aberta).
-      ( "cookie",       type("foo"),        'TEXT',    False ),  # Cookie da sessao.
+    (
+      ( "usr",          usuario.Objeto_Usuario, 'TEXT',    False ),  # Objeto/id do usuário logado na sessão.
+      ( "criacao",      type("foo"),            'TEXT',    False ),  # Momento de criação da sessão.
+      ( "abrt",         type(False),            'INTEGER', False ),  # Estado da sessao (1 = aberta).
+      ( "cookie",       type("foo"),            'TEXT',    False ),  # Cookie da sessao.
       ( "carrinho",     compra.Objeto_Compra,   'TEXT',    True  ),  # Objeto compra que é o carrinho da sessão.
     )
   if limpa:
@@ -57,7 +61,13 @@ def inicializa(limpa):
 def cria(usr, cookie, carrinho):
   global cache, nome_tb, letra_tb, colunas, diags
   
-  atrs_mem = { 'usr': usr, 'abrt': True, 'cookie': cookie, 'carrinho' : carrinho }
+  atrs_mem = {
+    'usr': usr,
+    'criacao': datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S %z"),
+    'abrt': True,
+    'cookie': cookie,
+    'carrinho' : carrinho
+  }
 
   erros = valida_atributos(None, atrs_mem)
   if len(erros) != 0: raise ErroAtrib(erros)
@@ -81,6 +91,10 @@ def obtem_atributo(ses, chave):
 def obtem_usuario(ses):
   global cache, nome_tb, letra_tb, colunas, diags
   return objeto.obtem_atributo(ses,'usr')
+
+def obtem_criacao(ses):
+  global cache, nome_tb, letra_tb, colunas, diags
+  return objeto.obtem_atributo(ses,'criacao')
 
 def aberta(ses):
   global cache, nome_tb, letra_tb, colunas, diags
