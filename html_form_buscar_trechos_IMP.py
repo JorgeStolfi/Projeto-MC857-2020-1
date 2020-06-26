@@ -10,8 +10,8 @@ def gera(atrs, admin):
   dados_linhas = (
       ( "Origem",           "text",        "origem",          "Cidade, aeroporto",    False, ),
       ( "Destino",          "text",        "destino",         "Cidade, aeroporto",    False, ),
-      ( "Data de Partida",  "data",        "dia_partida",     "aaaa-mm-dd",           False, ),
-      ( "Data de Chegada",  "data",        "dia_chegada",     "aaaa-mm-dd",           False, ),
+      ( "Data de Partida",  "date",        "dia_partida",     "yyyy-mm-dd",           False, ),
+      ( "Data de Chegada",  "date",        "dia_chegada",     "yyyy-mm-dd",           False, ),
       ( "Horario Partida",  "horario",     "hora_partida",    "hh:mm",                False, ),
       ( "Horario Chegada",  "horario",     "hora_chegada",    "hh:mm",                False, ),
       )
