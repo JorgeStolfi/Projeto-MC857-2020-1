@@ -1,0 +1,16 @@
+Na aula de hoje, fui responsável por implementar os testes de comando_buscar_usuario.
+
+Bem, primeiramente constatei que o comando_buscar_usuario estava implementado de modo
+incorreto. Provavelmente alguém fez um copy and paste de comando_buscar_trechos e tentou
+adaptar de modo falho ao contexto de um usuário. Falo isso porque tanto a interface
+quanto a implementação de comando_buscar_usuario se referia a 'trechos' no lugar de 'usuario' 
+em várias ocasiões.
+
+Logo, foi necessário corrigir a interface do comando_buscar_usuário e também corrigir sua
+implementação. Na implementação, também adicionei o caso em que o usuário pelo qual se pesquisa
+não existe na base de dados.
+
+Feito isso, implementei comando_buscar_usuario_TST. Fiz uma suite de testes extensa, incluindo
+vários possíveis casos (buscar por: usuário sem CPF ou email, usuário inexistente, usuário válido...)
+que o comando_buscar_usuario venha a encontrar. Os resultados de cada teste são páginas html, que
+foram devidamente analisadas no browser Google Chrome.

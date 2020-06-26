@@ -1,6 +1,6 @@
 # Implementação do módulo {comando_buscar_usuario}.
 
-import trecho
+import usuario
 import sessao
 import html_lista_de_usuarios
 import html_pag_generica
@@ -35,18 +35,25 @@ def verifica_pelo_menos_um_campo(campos, dict):
 
 def processa(ses, args):
   try:
-    campos = ['nome', 'email']
+    campos = ['email', 'CPF']
     if not verifica_pelo_menos_um_campo(campos, args):
-        raise ErroAtrib("Pelo menos um dos campos da busca precisa estar preenchido")
+        raise ErroAtrib("Pelo menos ou o CPF ou o email precisa estar preenchido")
 
-    usuarios = map(lambda id_trecho: trecho.busca_por_identificador(id_trecho), trecho.busca(args))
-    alterar = sessao.eh_administrador(ses)
-    bloco = html_lista_de_usuarios.gera(usuarios, alterar)
+    # Em virtude da função {verifica_pelo_menos_um_campo}, temos a garantia de haver pelos menos o CPF ou o email
+    if 'email' in args:
+      id_usuario = usuario.busca_por_email(args['email'])
+    else:
+      id_usuario = usuario.busca_por_CPF(args['CPF'])
+
+    if id_usuario is None:
+      raise ErroAtrib("Não foi encontrado um usuário com os dados fornecidos")
+
+    bloco = html_lista_de_usuarios.gera([id_usuario])
     pag = html_pag_generica.gera(ses, bloco, None)
     return pag
 
   except ErroAtrib as ex:
     erros = ex.args[0]
     # Repete a página com mensagem de erro:
-    pag = html_pag_buscar_usuarios.gera(ses, args, erros)
+    pag = html_pag_buscar_usuarios.gera(ses, args, True, erros)
     return pag
