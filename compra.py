@@ -17,6 +17,7 @@ class Objeto_Compra(Objeto_Compra_IMP):
     'cliente'   {Objeto_Usuario} o cliente que fez ou está fazendo o pedido de compra.
     'status'    {str}            o estado do pedido.
     'nome_pass' {str}            o nome do passageiro que fará a viagem.
+    'doc_pass'  {str}            documento do passageiro que fará a viagem.
     'itens'     {list}           os itens (bilhetes individuais) do pedido de compra.
 
   O atributo 'status' por enquanto, pode ser:
@@ -79,7 +80,7 @@ def inicializa(limpa):
   SQL, resetando o contador em 0."""
   compra_IMP.inicializa(limpa)
 
-def cria(cliente, nome_pass=""):
+def cria(cliente, nome_pass="", doc_pass=""):
   """Cria um novo objeto da classe {Objeto_Compra}, associada ao {cliente} (um
   objeto da classe {Objeto_Usuario}), acrescentando-o à tabela de compras da
   base de dados. inicialmente aberta, com o cookie inicial {cookie} e
@@ -90,7 +91,7 @@ def cria(cliente, nome_pass=""):
   Em caso de sucesso, retorna o objeto.  Se os parâmetros
   forem inválidos ou incompletos, retorna uma ou mais mensagens
   de erro, na forma de uma lista de strings. """
-  return compra_IMP.cria(cliente, nome_pass)
+  return compra_IMP.cria(cliente, nome_pass, doc_pass)
 
 def obtem_identificador(cpr):
   """Devolve o identificador 'C-{NNNNNNNN}' do pedido de compra {cpr}."""

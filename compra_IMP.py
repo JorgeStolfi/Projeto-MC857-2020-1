@@ -47,16 +47,17 @@ def inicializa(limpa):
     ( ( "cliente",   usuario.Objeto_Usuario, 'TEXT',    False ), # Cliente que está montando o pedido de compra.
       ( "status",    type("foo"),            'TEXT',    False ), # Estado do pedido de compra ('aberto', etc.).
       ( "nome_pass", type("foo"),            'TEXT',    False ), # Nome do passageiro que vai fazer a viagem.
+      ( "doc_pass",  type("foo"),             'TEXT',    True  ), # Número do documento de identidade (RG, pasaporte, etc.)
     )
   if limpa:
     tabela_generica.limpa_tabela(nome_tb, colunas)
   else:
     tabela_generica.cria_tabela(nome_tb, colunas)
 
-def cria(cliente, nome_pass):
+def cria(cliente, nome_pass, doc_pass):
   global cache, nome_tb, letra_tb, colunas, diags
 
-  atrs_mem = { 'cliente': cliente, 'status': 'aberto', 'nome_pass': nome_pass }
+  atrs_mem = { 'cliente': cliente, 'status': 'aberto', 'nome_pass': nome_pass, 'doc_pass': doc_pass}
 
   erros = valida_atributos(None, atrs_mem)
   if len(erros) != 0: raise ErroAtrib(erros)
@@ -135,15 +136,15 @@ def cria_testes():
   # Identificador de usuários e lista de poltronas de cada pedido de compra:
   lista_cupsf = \
     [
-      ( "C-00000001", "U-00000001", "Amanda Almeida", True,  ),
-      ( "C-00000002", "U-00000001", "Basílio Barros", True,  ),
-      ( "C-00000003", "U-00000002", "Carlos Costa",   True,  ),   
-      ( "C-00000004", "U-00000002", "Diego Dias",     False, ),   
+      ( "C-00000001", "U-00000001", "Amanda Almeida", "45.246.235-2",   True,  ),
+      ( "C-00000002", "U-00000001", "Basílio Barros", "234.764.987-23", True,  ),
+      ( "C-00000003", "U-00000002", "Carlos Costa",   "76.863.987-5",   True,  ),   
+      ( "C-00000004", "U-00000002", "Diego Dias",     "654.987.098-09", False, ),   
     ]
-  for id_cpr_esp, id_cliente, nome_pass, aberto in lista_cupsf:
+  for id_cpr_esp, id_cliente, nome_pass, doc_pass, aberto in lista_cupsf:
     cliente = usuario.busca_por_identificador(id_cliente)
 
-    cpr = cria(cliente, nome_pass)
+    cpr = cria(cliente, nome_pass, doc_pass)
     assert cpr != None and type(cpr) is compra.Objeto_Compra
     id_cpr = compra.obtem_identificador(cpr)
     if not aberto: compra.fecha(cpr)
