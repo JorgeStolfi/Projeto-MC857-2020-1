@@ -35,6 +35,10 @@ def verifica_pelo_menos_um_campo(campos, dict):
 
 def processa(ses, args):
   try:
+
+    if not sessao.eh_administrador(ses):
+      raise ErroAtrib("Precisa ser administrador para executar esse comando.")
+
     campos = ['email', 'CPF']
     if not verifica_pelo_menos_um_campo(campos, args):
         raise ErroAtrib("Pelo menos ou o CPF ou o email precisa estar preenchido")
@@ -55,5 +59,5 @@ def processa(ses, args):
   except ErroAtrib as ex:
     erros = ex.args[0]
     # Repete a página com mensagem de erro:
-    pag = html_pag_buscar_usuarios.gera(ses, args, True, erros)
+    pag = html_pag_buscar_usuarios.gera(ses, args, sessao.eh_administrador(ses), erros)
     return pag

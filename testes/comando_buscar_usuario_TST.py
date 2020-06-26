@@ -18,13 +18,13 @@ assert res is None
 sys.stderr.write("Criando alguns objetos...\n")
 tabelas.cria_todos_os_testes()
 
-# Sessao de teste
-ses = sessao.busca_por_identificador("S-00000001")
+# Sessão em que o usuário dela é o administrador. Apenas o administrador pode executar este comando de busca.
+ses_adm = sessao.busca_por_identificador("S-00000004")
 
 # Usuário válido - temos a garantia que este usuário está na nossa base de dados e que {usr_atrs} possui os atributos
 # {'email'} e {'CPF'} definidos. Logo, esperamos que o comando de busca de usuário funcione e retorne uma página com
 # as informações do usuário pesquisado.
-usr = sessao.obtem_usuario(ses)
+usr = sessao.obtem_usuario(ses_adm)
 usr_atrs = usuario.obtem_atributos(usr)
 
 # Vamos testar agora com uma lista de atributos de usuário que não contém nem o email nem o CPF.
@@ -39,6 +39,10 @@ atrs_cpf_inexistente = {'CPF': "000.000.000-00"}
 # erro igual o teste anterior.
 atrs_email_inexistente = {'email': "naoexiste@email.com"}
 
+# Por fim, vamos fazer o teste do caso de uma sessão em que o usuário dela NÃO é o administrador. Neste caso,
+# uma mensagem de erro deve ser levantada e o comando não deve ser executado.
+ses_nao_eh_adm = sessao.busca_por_identificador("S-00000001")
+
 def testa(rotulo, *args):
     """Testa {funcao(*args)}, grava resultado
     em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
@@ -49,9 +53,10 @@ def testa(rotulo, *args):
     pretty = False  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-testa("Teste com usuário válido", ses, usr_atrs)
-testa("Teste com usuário sem email nem CPF", ses, atrs_incompletos)
-testa("Teste com usuário com CPF inexistente", ses, atrs_cpf_inexistente)
-testa("Teste com usuário com email inexistente", ses, atrs_email_inexistente)
+testa("Teste com usuário válido", ses_adm, usr_atrs)
+testa("Teste com usuário sem email nem CPF", ses_adm, atrs_incompletos)
+testa("Teste com usuário com CPF inexistente", ses_adm, atrs_cpf_inexistente)
+testa("Teste com usuário com email inexistente", ses_adm, atrs_email_inexistente)
+testa("Teste com sessão de usuário que não é o administrador", ses_nao_eh_adm, usr_atrs)
 
 
