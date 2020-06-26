@@ -9,7 +9,8 @@ import sys
 
 from valida_campo import ErroAtrib
 
+
 def processa(ses, args):
-  ht_conteudo = "<label> Função não implementada ainda. </label><br/>\n"
+  ht_conteudo = "<label> Função </label><br/>\n"
   pag = html_pag_generica.gera(ses, ht_conteudo, None)
   return pag
