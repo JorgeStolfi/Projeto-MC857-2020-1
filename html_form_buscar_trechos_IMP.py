@@ -10,8 +10,10 @@ def gera(atrs, admin):
   dados_linhas = (
       ( "Origem",           "text",        "origem",          "Cidade, aeroporto",    False, ),
       ( "Destino",          "text",        "destino",         "Cidade, aeroporto",    False, ),
-      ( "Data",             "data",        "data",            "xx/xx/xxxx",           False, ),
-      ( "Horario",          "horario",     "horario",         "xx:xx",                False, ),
+      ( "Data de Partida",  "data",        "dia_partida",     "aaaa-mm-dd",           False, ),
+      ( "Data de Chegada",  "data",        "dia_chegada",     "aaaa-mm-dd",           False, ),
+      ( "Horario Partida",  "horario",     "hora_partida",    "hh:mm",                False, ),
+      ( "Horario Chegada",  "horario",     "hora_chegada",    "hh:mm",                False, ),
       )
 
   ht_table = html_form_table.gera(dados_linhas, atrs, admin)
