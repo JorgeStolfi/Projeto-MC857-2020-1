@@ -59,14 +59,36 @@ def processa(ses, dados):
 
 def define_carrinho(usr, id_usuario):
   """Esta função busca por compras em aberto do usuário {usr}. Se houver alguma nessa 
-  condição, então uma delas sera usada como carrinho, caso contrário será criado
-  um novo carrinho vazio."""
+  condição, então a com o MENOR indice contida no identificador sera usada como carrinho, 
+  caso contrário será criado um novo carrinho vazio.
+  Identificador é dado por'C-{NNNNNNNN}'"""
   lista_ids_compras = compra.busca_por_cliente(id_usuario)
+
+  # inicializo todos os identificadores com compras em aberto
+  lista_ids_compras_abertos = []
+
   if not lista_ids_compras:
     return compra.cria(usr)
   else:
+    # define a posicao do elemento na lista_ids_compras_abertos comecando da posicao 0
+    posicao = 0
+
     for id_compra in lista_ids_compras:
       obj_compra = compra.busca_por_identificador(id_compra)
+
+      # pega a substring NNNNNNNN do identificador C-{NNNNNNNN}'
+      substring_indice_compra = id_compra[2:10]
+
       if compra.obtem_status(obj_compra) == 'aberto':
-        return obj_compra
+        lista_ids_compras_abertos.insert(posicao, substring_indice_compra)
+        posicao = posicao + 1
+
+    # seleciono o menor indice   
+    indice_minimo = min(lista_ids_compras_abertos)
+    # monto o parametro
+    identificador = "C-" + str(indice_minimo)
+    # busco a compra em aberto com o menor indice no identificador
+    obj_compra_identificador_min = compra.busca_por_identificador(identificador)
+
+    return obj_compra_identificador_min
   return compra.cria(usr)
