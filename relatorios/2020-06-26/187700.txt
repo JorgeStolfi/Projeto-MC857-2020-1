@@ -1,1 +1,0 @@
-adicionado o esboco da funcao 'descobre todas' nos roteiros.

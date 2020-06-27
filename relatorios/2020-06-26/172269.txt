@@ -1,6 +1,0 @@
-Gabriel Marinho da Costa - RA172269
-
-Implementei o módulo comando_fechar_sessao_TST, testei o comando primeiro com uma sessão existente que não fosse a sessão atual do usuário,
-depois teste fechar a sessão atual do usuário, o que fez com que o próximo teste retornasse uma mensagem de erro relacionada a permissão,
-pois a sessão que estavamos usando pra fechar as outras foi fechada. Não foi possível colocar um teste de sessão inexistente, pois esta
-situação não é tratada ainda aparentemente, então este teste foi comentado, pois interrompia a execução dos outros testes.

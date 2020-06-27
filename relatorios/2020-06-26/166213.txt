@@ -1,1 +1,0 @@
-Criado o arquivo comando_excluir_poltrona_TST.py. Para o teste de exclusão foram utilizados a sessão 3, compra 1 e assento 1.

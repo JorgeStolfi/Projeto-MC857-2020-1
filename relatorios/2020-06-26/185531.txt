@@ -1,2 +1,0 @@
-Consertei um typo no comentário do cabeçalho da função html_lista_de_poltronas_de_compra.gera e adicionei o html de lista de html_lista_de_poltronas_de_compra
-à página de "Meu carrinho". Isso foi feito em html_pag_ver_compra_IMP.py.

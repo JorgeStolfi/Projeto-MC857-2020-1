@@ -1,6 +1,0 @@
- atividade nesse dia implementar definir carrinho
-
-verificando os modulos de ver carrinho 
-
-Observando páginas similares, encontrei a funcionalidade documentação dela, vi que poderia utilizá-la.
-

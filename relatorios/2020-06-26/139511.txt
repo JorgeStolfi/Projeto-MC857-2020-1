@@ -1,2 +1,0 @@
-- {comando_solicitar_pag_ofertas} o redirecionamento para {ver_trecho} já mostrava os preços de cada poltrona do trecho selecionado, o atributo estava sendo exibido como trecho.
-- A formatação da página não estava funcionando para os elementos índice da tabela de ofertas {html_lista_de_poltronas_de_trecho}, fiz um conserto temporário tendo em vista que ainda há botões para serem implementados que ainda não encaixam na formatação da tabela.

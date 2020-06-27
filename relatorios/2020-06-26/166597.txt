@@ -1,7 +1,0 @@
-A tarefa de hoje consistia em realizar alterações visuais na página de "Ofertas".
-
-Na primeira alteração, foi necessário alterar o tamanho da logomarca das empresas, 
-no arquivo "html_resumo_de_trecho", módulo utilizado pela página de listagem de ofertas.
-
-A segunda alteração consistia em adicionar um cabeçalho nas colunas da tabela de ofertas.
-A alteração foi feita no arquivo "html_lista_de_trechos".
