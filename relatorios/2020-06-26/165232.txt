@@ -1,0 +1,5 @@
+Foi implementado o comando_comprar_poltrona.py e o teste comando_comprar_poltrona_TST.py.
+No entando o módulo comando_comprar_poltrona_IMP.py não está funcionando corretamente.
+
+
+

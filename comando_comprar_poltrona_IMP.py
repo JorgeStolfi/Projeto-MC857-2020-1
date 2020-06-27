@@ -16,7 +16,7 @@ def processa(ses, args):
   poltrona.muda_atributos(pol, { 'OFERTA': False })
 
   compra.cria(usr_ses, "")
-  
+
   # TODO: implementar
   pag = html_pag_comprar_poltrona.gera(ses)
   return pag
