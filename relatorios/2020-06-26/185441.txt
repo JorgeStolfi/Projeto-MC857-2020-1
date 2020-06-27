@@ -1,0 +1,6 @@
+Paulo Afonso Martins Januário - 26/06/2020
+185441 comando_ver_trecho: IMP: consertar o cabeçalho das colunas.
+
+- O cabeçalho na página ver trecho estava com o cabeçalho desformatado, com as tags html aparecendo no texto e os títulos das colunas fora do lugar
+- Identifiquei que o problema estava no módulo html_lista_de_poltronas_de_trecho, que tinha uma variável "cabeçalho" que era uma string com o html, substituí por uma lista de strings, da forma que o módulo html_table processa normalmente.
+- Realizei os testes e percebi que não precisaria fazer alterações nos TST pois estão funcionando normalmente. 
