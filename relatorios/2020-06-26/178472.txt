@@ -1,0 +1,3 @@
+Implementação dos módulos { comando_ver_poltrona }, { html_lista_de_poltronas_de_usuario }
+e { html_resumo_de_poltrona_de_usuario }.
+Os dois últimos ficaram sem os arquivos TST, mas estão funcionando corretamente.
