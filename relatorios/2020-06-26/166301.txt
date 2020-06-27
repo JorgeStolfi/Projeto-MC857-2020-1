@@ -1,0 +1,2 @@
+Arrumado o comportamento da função fecha sessão caso a sessão a ser fechada seja a própria sessão do usuário (logout)
+Criado o arquivo de teste de fechar sessão

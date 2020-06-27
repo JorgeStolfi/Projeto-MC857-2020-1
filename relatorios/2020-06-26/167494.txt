@@ -1,0 +1,25 @@
+Relatório Individual - 2020-06-26 - Bernardo do Amaral Teodosio - 167494
+
+Nesta aula, a tarefa designada para mim foi "html_pag_ver_poltrona: Se usuário é administrador, os campos devem ser alteráveis, exceto id_trecho e id_compra, e deve haver um botão "Alterar".".
+
+Abaixo, segue um passo a passo do que tive que fazer para realizá-la, na ordem em que os passos foram realizados:
+
+    * Inicialmente, falei com o professor para entender melhor o que deveria ser feito na minha tarefa, e entender onde o módulo "html_pag_ver_poltrona" era usado, além do comando_ver_objeto;
+    * O professor me explicou que esta página também seria usada dentro da opção de "ver trechos", mas que isso não está funcionando hoje e que seria tarefa de outra pessoa implementar isso;
+    * Professor me instruiu a deixar editáveis apenas os campos indicados na tarefa e deixar os outros não editáveis (todos os campos eram editáveis antes de eu executar a tarefa). Além disso, ele me instruiu a colocar um botão alterar que chamasse um "comando_alterar", que ainda não existe, mas que será tarefa de outra pessoa implementá-lo no futuro.
+    * Em html_pag_ver_poltrona_IMP, mudei o valor da variável alterar_pol de False para sessao.eh_administrador(), permitindo assim que os campos fossem alteráveis sempre que o usuário fosse um administrador;
+    * Em html_form_dados_de_poltrona_IMP , mudei os tipos de "readonly" para "text", já que "readonly" não é um tipo de input válido, mas sim uma propriedade;
+    * Tive que mudar a assinatura da função gera() do html_form_table, adicionando um novo parâmetro ignora_admin, para que a função pudesse atender à minha necessidade, de gerar campos editáveis apenas de acordo com o valor do campo adm_only de cada linha da tabela;
+    * No html_form_table_IMP, renomeei a função campo_editaval para gera_campo, permitindo que ela gerasse tanto campos editáveis como não editáveis, de acordo com um parâmetro.
+    * Refatorei o a implementação da função gera, no módulo html_form_table_IMP, para evitar duplicação de código.
+    * Alterei html_form_dados_de_poltrona_IMP, para criar os dados de forma diferente se o usuário é administrador ou não.
+    * Alterei html_input_IMP para tratar checkbox "readonly" como "disabled", já que checkbox readonly não existem no HTML.
+    * Acrescentei um parâmetro ver_poltrona na função gera() do módulo "html_form_dados_de_poltrona", para manter a compatibilidade deste módulo com outros módulos que o utilizam, e ainda esperam que a tabela com os dados da poltrona sejam gerados com o formato antigo (usando os atributos readonly da forma incorreta). Optei por seguir assim para não quebrar a compatibilidade, permitindo que o problema da minha tarefa fosse resolvido sem prejudicar aos demais alunos. Sugiro ao professor que, na hora de fazer o merge, analise se os outros módulos que utilizam o html_form_dados_de_poltrona ainda deveriam continuar fazendo-o (ou mesmo se este módulo deveria existir), uma vez que sua relevância está unicamente no módulo html_pag_ver_poltrona, na minha opinião.
+    * Coloquei o botão "alterar" (e os outros inputs) dentro de um form, fazendo a função gera() do html_form_dados_de_poltrona_IMP retornar um formulário, invocando a função html_form.gera(ht_form). Da forma como estava antes, o botão Alterar, apesar de ser um "submit", não fazia nada, já que não estava dentro de um form. Agora, ao clicar no mesmo, aparece um erro (esperado, conforme dito no início do relatório), pois é necessário que alguém implemente o comando de alteração.
+
+Na tarefa de hoje, meu trabalho foi maior do que eu esperava inicialmente, pois tive que mexer em diferentes módulos para que meu problema pudesse ser resolvido - o que é comum em projetos de grande porte.
+Me preocupei bastante em manter a compatibilidade do código para não atrapalhar os outros alunos e também para facilitar o merge, usando em algumas das alterações que fiz a funcionalidade de parâmetros "default" do Python.
+
+Em caso de dúvidas, estou a disposição.
+Abraços,
+Bernardo

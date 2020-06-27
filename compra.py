@@ -7,7 +7,7 @@
 import usuario
 
 # Implementaçao deste módulo:
-import compra_IMP; from compra_IMP import Objeto_Compra_IMP
+import compra_IMP; from compra_IMP import Objeto_Compra_IMP 
 
 class Objeto_Compra(Objeto_Compra_IMP):
   """Um objeto desta classe representa um pedido de compra
@@ -126,13 +126,13 @@ def obtem_poltronas(cpr):
 
 def busca(args):
   """O parâmetro {args} é um dicionário que contém um subconjunto dos
-  atributos de um {Objeto_Trecho}, pelo menos um dos atributos deve estar definido e todos os atributos definitos
+  atributos de um {Objeto_Compra}, pelo menos um dos atributos deve estar definido e todos os atributos definitos
   devem ser diferentes de None.
   Localiza trechos pelos atributos definidos em {args}.
   Devolve uma lista dos identificadores desses trechos (NÃO os trechos),
-  por exemplo ['T-00000001', 'T-00000025'].
+  por exemplo ['C-00000001', 'C-00000025'].
   Devolve uma lista vazia se não existir nenhum trecho nessas condições."""
-  return trecho_IMP.busca(args)
+  return compra_IMP.busca(args)
 
 def busca_por_identificador(id):
   """Localiza um pedido de compra com identificador {id} (uma string da forma

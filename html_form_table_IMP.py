@@ -4,7 +4,7 @@ import html_table
 from utils_testes import erro_prog
 import sys
 
-def gera(dados_linhas, atrs, admin):
+def gera(dados_linhas, atrs, admin, ignora_admin=False):
   sys.stderr.write("TABELA: atrs = %s\n" %str(atrs))
 
   # Converte os dados brutos das linhas para fragmentos HTML:
@@ -12,24 +12,30 @@ def gera(dados_linhas, atrs, admin):
   for rot, tipo, chave, dica, adm_only in dados_linhas:
     # sys.stderr.write("admin: "+str(admin)+"\n")
     # sys.stderr.write("adm_only: "+str(adm_only)+"\n")
-    if admin or not adm_only:
+    if ignora_admin:
+      prepara_para_gerar_campo(atrs, chave, dica, linhas, rot, tipo, not adm_only)
+    elif admin or not adm_only:
       # Valor corrente do atributo:
-      val = (atrs[chave] if chave in atrs else None)
-      chmin = chave + '_min'
-      vmin = (atrs[chmin]  if chmin in atrs else None)
-      # Converte {rot} para rótulo HTML:
-      ht_rotulo = html_label.gera(rot, ": ")
-      # Cria o elemento "<input .../>":
-      ht_campo = campo_editavel(tipo, chave, val, vmin, dica)
-      if ht_campo != None:
-        linhas.append((ht_rotulo, ht_campo,))
+      prepara_para_gerar_campo(atrs, chave, dica, linhas, rot, tipo, True)
 
   # Monta a tabela com os fragmentos HTML:
   ht_table = html_table.gera(linhas)
-
   return ht_table
 
-def campo_editavel(tipo, chave, val, vmin, dica):
+
+def prepara_para_gerar_campo(atrs, chave, dica, linhas, rot, tipo, campo_editavel):
+  val = (atrs[chave] if chave in atrs else None)
+  chmin = chave + '_min'
+  vmin = (atrs[chmin] if chmin in atrs else None)
+  # Converte {rot} para rótulo HTML:
+  ht_rotulo = html_label.gera(rot, ": ")
+  # Cria o elemento "<input .../>":
+  ht_campo = gera_campo(tipo, chave, val, vmin, dica, campo_editavel)
+  if ht_campo != None:
+    linhas.append((ht_rotulo, ht_campo,))
+
+
+def gera_campo(tipo, chave, val, vmin, dica, editavel):
   """Retorna o HTML de um item "input" do formulário
   de dados de usuário. Pode devolver {None} para não mostrar esse item.
 
@@ -68,5 +74,5 @@ def campo_editavel(tipo, chave, val, vmin, dica):
   else:
     ht_dica = None
 
-  ht_campo = html_input.gera(None, tipo, chave, ht_valor, ht_vmin, True, ht_dica, None)
+  ht_campo = html_input.gera(None, tipo, chave, ht_valor, ht_vmin, editavel, ht_dica, None)
   return ht_campo

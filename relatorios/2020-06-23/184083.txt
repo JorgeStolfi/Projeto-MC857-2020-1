@@ -1,0 +1,16 @@
+ comando_buscar_compras: TST: implementar
+
+ Implementei o TST 
+ Arrumei as descricoes da funcao de compra
+ Arrumei qual comando a funcao de compra chama (antes chamva a funcao de trecho_busca)
+ 
+ Mas a funçao orignal nao funciona e por isso o teste quebra (nao gera o html)
+ Fiquei um bom tempo debugando o codigo e aparenmente o problema é no codifica_valor
+ Ele esta entrando num if que nao deveria.
+ Forcei ele entrar no if correto, mas ai ele gera paginas sem conteudo.
+ Aparentemente nao esta conseguindo fazer a query
+ Preferi nao alterar o codigo para nao quebrar outros testes.
+ A tarefa pedida foi feita, acho que a correcao dessa parte do codigo pode ser outra task.
+
+
+
