@@ -1,9 +1,0 @@
-Para verificar a task, entre no endpoint '/ver_objeto?id=id_sessao', onde id_sessao é o id da sessão que você quer ver.
-O botão será gerado caso você seja administrador e a sessão em questão esteja aberta. Pontos a serem notados:
-
-1- Essa URL só é acessível por meio de texto, uma vez que o botão de checar objeto não funciona no momento e não há uma página listando as sessões
-2- Só é possível entrar na URL se seu user for administrador, uma vez que há um assert no comando_ver_objeto verificando isso. Não sei se é bug
-ou especificação
-3- Nenhum comportamento foi adicionado no caso da sessão a ser fechada for a do administrador, devido ao tempo e a complexidade de mais de uma sessão
-estar relacionada a um usuário
-4- POSSIVEL BUG: ao tentar ver a sessão do adm ocorre um erro que devido ao tempo curto do início da aula, não consegui resolver.
