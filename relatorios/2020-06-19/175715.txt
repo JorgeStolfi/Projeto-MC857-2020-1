@@ -1,4 +1,0 @@
-1. Ao analizar a tarefa proposta e abrindo os seguintes arquivos: comando_finalizar_compra.py e comando_finalizar_compra_IMP.py percebi que o comando já fora implementando
-2. Entretanto não existia nenhum arquivo de teste, para que eu pudesse testar, logo me concentrei em criar um arquivo de teste para o comando
-3. Nomeei o arquivo de teste como comando_finalizar_compra_TST.py
-4. Aquilo que fora implementado previamente apresentava erros dos mais diversos, tentei remover o máximo que pude obtive erros em módulos externos, como no módulo Identificador, no qual não realizei modificações
