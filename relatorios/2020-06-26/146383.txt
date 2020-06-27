@@ -1,0 +1,2 @@
+Foi criado os arquivos html_form_dados_de_sessao.py e html_form_dados_de_sessao_IMP.py.
+O módulo html_form_dados_de_sessao é usado no comando html_pag_ver_sessao.

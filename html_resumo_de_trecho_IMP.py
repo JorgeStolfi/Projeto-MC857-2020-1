@@ -54,7 +54,7 @@ def gera(trc, ver, alterar):
   empresa = codigo.split(" ")[0] 
 
   # adicionar html com imagem de logo da empresa
-  ht_logo = html_imagem.gera("/" + empresa + ".png", "logo", 60)
+  ht_logo = html_imagem.gera("/" + empresa + ".png", "logo", 20)
   
   ht_codigo = html_texto.gera(codigo, None, None, None, None, None, None, None, None)
   ht_origem = html_texto.gera(origem, None, None, None, None, None, None, None, None)

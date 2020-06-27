@@ -14,13 +14,16 @@ def gera(ids_poltronas, id_trecho, alterar, comprar, id_compra):
 
   cabeçalho = """<tr>
     <th>Poltrona</th>
-    <th>Trecho</th>
+    <th>Preço</th>
     <th>Alterar</th>
     <th>Comprar</th>
     <th>ID</th>
   </tr>"""
 
-  linhas.append(cabeçalho)
+  #linhas.append(cabeçalho)
+  #ht_cabeçalho = ['<tr>', 'Poltrona', 'Preço', 'Alterar', 'Comprar', 'ID', '</tr>']
+  ht_cabeçalho = ['<tr>    <th>Poltrona</th>    <th>Preço</th>    <th>Alterar</th>    <th>Comprar</th>    <th>ID</th>  </tr>']
+  linhas.append(ht_cabeçalho)
 
   for id_poltrona in ids_poltronas:
     pol = poltrona.busca_por_identificador(id_poltrona)
