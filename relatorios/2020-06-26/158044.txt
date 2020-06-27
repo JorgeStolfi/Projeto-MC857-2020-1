@@ -1,0 +1,18 @@
+Tarefa: 
+- sessao:IMP: acrescentar mais dois campos "criacao" (dia e hora de criacao) e "ult_login" (dia e hora de último login) cujos valores são datas tipo "2020-06-21 17:45:32 UTC".
+- Alterar módulo {html_sessao} e todos os usos de {sessao.cria} para arescentar esses campos.
+- Alterar {comando_fazer_login} para atualizar "ult_login".
+- A data corrente pode ser obtida por {data = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S %z")
+===
+
+Comecei a implementar a atividade considerando a tarefa descrita acima. Importei as bibliotecas necessárias à sessao, adicionei as variáveis na tabela do obejto sessao e no método sessao.cria atribui à 'criacao' o valor 'datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S %z")' e para ult_login, recebia como parâmetro do método.
+
+Porém, analisando o 'comando_fazer_login' e todo o processo de criação de sessão percebi que não tinha de onde retirar o valor para ult_login, uma vez que para cada login, uma nova sessão é criada, e uma sessão fechada nunca é reaberta. 
+
+Perguntei se deveria buscar pela última sessão do usuário ou se deveria alterar o objeto usuário para incluir o atributo de ult_loginlogin a ele também. Analisando a arquitetura do projeto como está hoje, o professor optou por, por ora, não incluir mais a variavel de ult_login. Confirmei também se o cálculo de data e hora de criação da sessao poderia ser feito direto em sessao.cria ao inves de passar como parametro e o professor concordou.
+
+Após, além de incluir a nova variável ao objeto 'sessao', também inclui dois novos métodos. Eles fazem a mesma coisa, mas fiz 2 para uma melhor usabilidade. São eles: obtem_criacao e obtem_data_login, que retornam o valor desse novo atributo (criacao) da sessão passada como parâmetro.
+
+Então, alterei também o módulo html_sessao para que a página pudesse exibir, também, esse novo atributo.
+
+Por fim, para testar a nova funcionalidade, rodei o teste do módulo html html_sessao_TST para garantir que o novo atributo era gerado e exibido corretamente. A atribuição, a recuperação e a exibição do valor estavam funcionando corretamente, porém ele está sendo gerado com a timezone como '+0000' e não 'UTC', como na descrição da tarefa. Pesquisei a respeito e só encontrei que deveria fazer um str.replace de '+0000' para 'UTC', mas procurei por outras chamadas semelhantes dentro do projeto e vi que nenhuma fazia esse replace, então mative com a chamada padrão, sem alterar a exibição da timezone.

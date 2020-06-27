@@ -94,6 +94,16 @@ def obtem_carrinho(ses):
   Equivale a {sessao.obtem_atributos(ses,'carrinho')}."""
   return sessao_IMP.obtem_carrinho(ses)
 
+def obtem_criacao(ses):
+  """Devolve a data de criação da sessão {ses}.
+  Equivale a {sessao.obtem_atributos(ses,'criacao')}."""
+  return sessao_IMP.obtem_criacao(ses)
+
+def obtem_data_login(ses):
+  """Devolve a data de criação da sessão {ses}.
+  Equivale ao método acima."""
+  return sessao_IMP.obtem_criacao(ses)
+
 def busca_por_identificador(id):
   """Localiza uma sessao com identificador {id} (uma string da forma
   "S-{NNNNNNNN}"), e devolve a mesma na forma de um objeto da classe {Objeto_Sessao}.
