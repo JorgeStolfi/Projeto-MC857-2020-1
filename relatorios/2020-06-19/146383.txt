@@ -1,6 +1,0 @@
-Tarefa: 146383 poltrona_IMP.py: Completar a função {cria_conjunto}.
-
-- Foi completado a função "cria_conjunto" sendo criado um novo objeto poltrona e o adicionando a um array de poltronas para ser associado com um trecho.
-- Tentei criar o teste de poltorna.cria_conjunto no arquivo poltrona_TST.py, 
-mas para conseguir executar o teste eu precisaria buscar um trecho já existente ou então criar um novo para passar como parâmetro para a função cria_conjunto,
-contudo, a implementação do trecho.busca_por_identificador e trecho.cria não está funcionando, o que impossibilidade de eu dar sequência na construção do meu teste.

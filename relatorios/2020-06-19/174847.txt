@@ -1,8 +1,0 @@
-Relatorio aula 19/06/2020
-
-Miguel Augusto  RA 174847
-
-Tarefa: html_form_dados_de_compra_IMP.py: Mostrar origem e partida do primeiro trecho, destino e chegada do último trecho
-
-- html_form_dados_de_compra_IMP.py: Adicionei busca por trechos da compra e inclui partida do primeiro trecho, destino e chegada do último trecho no html de retorno.
-- html_form_dados_de_compra_TST.py: Criei o arquivo de teste para o módulo.
