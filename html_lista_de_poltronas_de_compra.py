@@ -4,7 +4,7 @@ import html_lista_de_poltronas_de_compra_IMP
 def gera(ids_poltronas, id_compra, excluir, trocar):
   """Retorna um trecho de HTML que descreve as poltronas cujos identificadores
   estão na lista {ids_poltronas}. Todas elas devem ser parte de um pedido de 
-  compra com indetificador {id_compra}, que supostamente foi identificado
+  compra com identificador {id_compra}, que supostamente foi identificado
   em separado.
   
   O resultado é um elemento "<table>...</table>". Cada linha é 
