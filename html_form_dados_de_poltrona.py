@@ -1,6 +1,6 @@
 import html_form_dados_de_poltrona_IMP
 
-def gera(id_pol, atrs_pol, alterar, comprar, excluir, id_cpr):
+def gera(id_pol, atrs_pol, alterar, comprar, excluir, id_cpr, ver_poltrona=False):
   """Devolve um fragmento HTML "<form>...</form>" que decreve a poltrona
   cujo identificador é {id_pol} e cujos atributos são {atrs_pol}. 
   
@@ -35,5 +35,12 @@ def gera(id_pol, atrs_pol, alterar, comprar, excluir, id_cpr):
   Normalmente, se {alterar} for {True}, a sessão corrente deveria pertencer a um administrador do site. 
   Se {comprar} e/ou {excluir} forem {True} a sessão corrente deveria pertencer a um
   usuário comum, e o parâmetro {id_cpr} deveria ser uma das compras abertas do usuário, 
-  geralmente o carrinho dessa sessão."""
-  return html_form_dados_de_poltrona_IMP.gera(id_pol, atrs_pol, alterar, comprar, excluir, id_cpr)
+  geralmente o carrinho dessa sessão.
+
+  Se {ver_poltrona} for {True}, não utilizará os tipos "readonly" de campos, mas os tipos corretos
+  (como "text"), e usará "readonly" apenas como um atributo. Este parâmetro foi criado apenas para
+  manter compatibilidade com outros módulos que já utilizavam essa função (por padrão, seu valor é False,
+  justamente para manter a compatibilidade com estes módulos).
+
+  """
+  return html_form_dados_de_poltrona_IMP.gera(id_pol, atrs_pol, alterar, comprar, excluir, id_cpr, ver_poltrona)
