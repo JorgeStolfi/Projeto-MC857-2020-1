@@ -1,8 +1,0 @@
-A minha atividade nesse dia era acrescentar um título à página de Ofertas.
-
-Comecei verificando o arquivo html_pag_ofertas_IMP e notei que não existia ainda um cabeçalho na página.
-Observando páginas similares, encontrei a funcionalidade html_cabecalho.gera e verificando a documentação dela, vi que poderia utilizá-la.
-
-Juntei esse novo cabeçalho com o que existia antes e passei esse novo conteúdo para a geração de uma página genérica.
-
-Verifiquei o teste de html_pag_ofertas, ele já existia. A execução do teste funcionou corretamente e o HTML foi gerando com o <h2> esperado.
