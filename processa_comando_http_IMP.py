@@ -30,9 +30,11 @@ import comando_solicitar_pag_ofertas
 import comando_ver_carrinho
 import comando_ver_compra
 import comando_ver_minhas_compras
+import comando_ver_sessoes
 import comando_ver_roteiro
 import comando_ver_objeto
 import comando_ver_trecho
+import comando_alterar_compra
 
 import html_texto
 import html_div
@@ -467,7 +469,7 @@ def processa_comando(tipo, ses, dados):
 
     elif cmd == '/ver_sessoes':
       # Usuário apertou o botão "ver sessões" ou equivalente:
-      pag =  html_pag_mensagem_de_erro.gera(ses, ("** comando ver sessões ainda não implementado"))
+      pag = comando_ver_sessoes.processa(ses, args)
       
     elif cmd == '/excluir_poltrona':
      # Usuário apertou o botão "Excluir" num item de uma compra:
@@ -476,6 +478,10 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/definir_carrinho':
       # Usuário apertou o botão "Definir Carrinho" ou equivalente:
       pag = comando_definir_carrinho.processa(ses, args)
+
+    elif cmd == '/alterar_compra':
+      # Administrador apertou o botão "Alterar" na página "Checar Objeto"
+      pag = comando_alterar_compra.processa(ses, args)
       
     else:
       # Comando não identificado

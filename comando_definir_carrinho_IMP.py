@@ -11,7 +11,6 @@ import sys
 from valida_campo import ErroAtrib
 
 def processa(ses, args):
-
   # Validações, por via das dúvidas:
   assert ses != None   # Deveria acontecer.
   assert sessao.aberta(ses)  # Deveria acontecer.

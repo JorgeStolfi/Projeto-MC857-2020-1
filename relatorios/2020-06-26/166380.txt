@@ -1,0 +1,10 @@
+André Papoti de Oliveira RA:166380
+
+
+Tarefa: 166380 fazer funcionar o botão "Ver Sessoes" ná página de dados de usuário devolvida pelo botão "Checar objeto" com argumento "U-00000001". Logar como administrador.
+
+Primeiramente tive que entender como que as requests do tipo GET são processadas pelo servidor e acabei descobrindo o processamento destas é feito em "processa_comando_http_IMP.py" e adicionei a condicao para processar o camando "ver_sessao". Este chama o arquivo "comando_ver_sessoes" que criei nesta atividade
+
+O arquivo "comando_ver_sessoes" por sua vez retorna a pagina com todas as sessoes do usuario procurado. Para realizar esta tarefa tive que criar um outro arquivo "html_lista_de_sessoes" que construisse essa lista.
+
+Implementei todas essas funcionalidades porem não consegui testa-las, estou tendo um problema com o modulo identificador.py que está me causando erro

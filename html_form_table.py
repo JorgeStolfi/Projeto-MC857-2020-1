@@ -1,10 +1,14 @@
 import html_form_table_IMP
 
-def gera(dados_linhas, atrs, admin):
+def gera(dados_linhas, atrs, admin, ignora_admin=False):
   """Retorna HTML de uma tabela com duas colunas: rótulos "<label>...<label/> e campos
   editáveis <input.../>".  Os valores iniciais dos campos são obtidos do
   dicionário {atrs}.  O parâmetro booleano {admin} diz se o usuário
   que pediu o formulário é administrador ({True}) ou cliente ({False}).
+
+  O parâmetro {ignora_admin} tem valor default False. Se o seu valor for passado
+  como True, o valor do parâmetro admin será ignorado. Os campos gerados
+  na tabela serão readonly se adm_only=True, e serão editáveis caso contrário.
 
   O parâmetro {dados_linhas} é uma seqüência de quíntuplas
   {(rot,tipo,chave,dica,adm_only)}, uma para cada linha da tabela.
@@ -17,4 +21,4 @@ def gera(dados_linhas, atrs, admin):
   "<input type='{tipo}' name='{chave}' id='{chave}' value='{val}' placeholder='{dica}'/>"
   onde {val} é o valor {atrs[chave]} apropriadamente convertido para HTML.
   Se o {tipo} for "numeric" também tem "min='1'."""
-  return html_form_table_IMP.gera(dados_linhas, atrs, admin)
+  return html_form_table_IMP.gera(dados_linhas, atrs, admin, ignora_admin)

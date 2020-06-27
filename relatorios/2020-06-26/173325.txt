@@ -1,0 +1,25 @@
+# Relatório da Atividade do Dia 26/06/2020
+
+Tarefa: Fazer funcionar o botão "Alterar" ná página de dados de compra devolvida
+pelo botão "Checar objeto" com argumento "C-00000001". Deve alterar o nome do
+passageiro (único campo editável). Logar como administrador.
+
+# O que foi feito ?
+
+Criado o modulo {comando_alterar_compra} com a função {processa} que recebe uma
+sessão {ses} e um dicionário de argumentos {args}. Caso a atualização seja bem
+sucedidada a função retorna a pagina 'Checar Objeto' com os dados já
+atualizados. Em caso de erros, é gerado uma página de erro com o tipo do erro
+"Campo em branco" ou "Falha ao atualizar".
+
+Foi adicionado o módulo {comando_alterar_compra} ao {processa_comando_http_IMP}.
+Tornando o botão 'Alterar' do menu 'Checar Objeto' funcional.
+
+Criado dois testes em {comando_alterar_compra_TST}. O teste
+{testa_novo_passageiro} altera o passageiro para o nome {Novo Passageiro} e
+verifica se o mesmo foi alterado, neste caso é gerado a pagina 'Checar Objeto'
+com o novo nome. Enquanto que, o teste
+{testa_nome_passageiro_null} testa o caso em que o campo novo passageiro é
+deixado em branco, dessa forma, não existem alterações no banco de dados e se
+mantem o nome do passageiro antes da operação, neste caso é gerado a pagina de
+erro.
