@@ -11,6 +11,7 @@ def gera(cpr, ver):
   atrs_compra = compra.obtem_atributos(cpr)
   preco_tot = compra.calcula_preco(cpr)
   nome_pass = atrs_compra['nome_pass']
+  doc_pass = atrs_compra['doc_pass']
 
   ids_poltronas = poltrona.busca_por_compra(cpr)
   num_poltronas = len(ids_poltronas)
@@ -21,8 +22,9 @@ def gera(cpr, ver):
   ht_num_poltronas = str(num_poltronas)
   ht_preco_tot = str(preco_tot)
   ht_nome_pass = nome_pass
+  ht_doc_pass = doc_pass
   
-  campos = [ ht_cpr, ht_usr, ht_num_poltronas, ht_nome_pass, ht_preco_tot ]
+  campos = [ ht_cpr, ht_usr, ht_num_poltronas, ht_nome_pass, ht_doc_pass, ht_preco_tot ]
   
   if ver:
     ht_ver = html_botao_simples.gera("Ver", "ver_compra", {'id_compra': id_cpr}, "#22ff22")

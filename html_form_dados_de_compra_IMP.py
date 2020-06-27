@@ -22,6 +22,7 @@ def gera(cpr, editavel, texto_bt, comando_bt):
   valores['id_cpr'] = id_cpr
   valores['status'] = atrs_cpr['status']
   valores['nome_pass'] = atrs_cpr['nome_pass']
+  valores['doc_pass'] = atrs_cpr['doc_pass']
   valores['preco_tot'] = ("%.2f" % compra.calcula_preco(cpr))
   # valores['pagamento'] = atrs_cpr['pagamento']
 
@@ -55,15 +56,16 @@ def gera(cpr, editavel, texto_bt, comando_bt):
     
   # Linhas para {html_table.gera}:
   linhas = (
-    html_cpr_campo("Compra",             'id_cpr',    valores, 'text', None,              False),
-    html_cpr_campo("Cliente",            'id_usr',    valores, 'text', None,              False),
-    html_cpr_campo("Nome do cliente",    'nome_usr',  valores, 'text', None,              False),
-    html_cpr_campo("Nome do passageiro", 'nome_pass', valores, 'text', "Fulano da Silva", editavel),
-    html_cpr_campo("Número de trechos",  'n_trechos', valores, 'text', None,              False),
-    html_cpr_campo("Preço total",        'preco_tot', valores, 'text', None,              False),
-    html_cpr_campo("Estado",             'status',    valores, 'text', None,              False),
-    html_cpr_campo("Partida",            'partida',   valores, 'text', None,              False),
-    html_cpr_campo("Chegada",            'chegada',   valores, 'text', None,              False),
+    html_cpr_campo("Compra",                  'id_cpr',    valores, 'text', None,              False),
+    html_cpr_campo("Cliente",                 'id_usr',    valores, 'text', None,              False),
+    html_cpr_campo("Nome do cliente",         'nome_usr',  valores, 'text', None,              False),
+    html_cpr_campo("Nome do passageiro",      'nome_pass', valores, 'text', "Fulano da Silva", editavel),
+    html_cpr_campo("Documento do passageiro", 'doc_pass',  valores, 'text', "123.456.789-10", editavel),
+    html_cpr_campo("Número de trechos",       'n_trechos', valores, 'text', None,              False),
+    html_cpr_campo("Preço total",             'preco_tot', valores, 'text', None,              False),
+    html_cpr_campo("Estado",                  'status',    valores, 'text', None,              False),
+    html_cpr_campo("Partida",                 'partida',   valores, 'text', None,              False),
+    html_cpr_campo("Chegada",                 'chegada',   valores, 'text', None,              False),
   )
   ht_campos = html_table.gera(linhas);
 
