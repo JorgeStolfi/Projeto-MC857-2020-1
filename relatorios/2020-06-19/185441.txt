@@ -1,9 +1,0 @@
-RA185441 Esboçar a lógica de {roteiro.descobre_todos}
-
-Criei uma função que roda recursivamente para encontrar todos os roteiros com parâmetros desejados a partir de listas de trechos. É a função descobre_todos_rec, que é chamada em descobre_todos.
-A lógica está descrita em roteiro_IMP, porém o código não foi finalizado (aula começou atrasada). Faltou criar as listas de roteiros e retorná-las de forma adequada.
-Logo, os testes também não puderam ser realizados, mas imagino que com aquela lógica a função funcione, assim que a implementação for completada.
-
-A função, assim que implementada, separa todos os trechos entre dia_min e dia_max e passa como parâmetro para a função recursiva a lista de objetos, a origem desejada e o destino.
-Com isso, uma nova lista é criada a partir da lista de objetos com apenas os que possuem a origem igual à origem desejada, então essa lista, caso não seja vazia é percorrida buscando se algum trecho é o destino, caso não seja, uma nova lista é criada a partir da lista de objetos inicial apenas com os trechos que partem após a chegada do trecho avaliado. Então essa lista é passada como parâmetro para a função recursiva junto com a origem do trecho avaliado no momento e o destino final desejado.
-A cada retorno novas listas podem ou não ser criadas.
