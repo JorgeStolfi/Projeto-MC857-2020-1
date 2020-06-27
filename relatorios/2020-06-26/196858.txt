@@ -1,0 +1,18 @@
+ISSUE 196858:
+comando_fazer_login: IMP: se o usuário tem mais de uma compra em aberto, escolher a que foi criada mais antigamente (com identificador menor) como carrinho
+
+------------------------------------------
+1) Modulo alterado:
+
+	* comando_fazer_login_IMP.py:
+
+	Nesse módulo, eu alterei a função define_carrinho(usr, id_usuario). Antigamente, ele retornava a primeira compra que estava em aberto. Mas agora, ele define o carrinho com o menor identificador.
+	Para fazer isso, percorri todos as compras que estavam em 'aberto'. Guardei todos os valores dos indices num array. Após percorrer todas compras em aberto, pegava o menor índice e fiz a busca do objeto compra com o índice 'C-{índice_minimo}'. Em seguida, retorna o objeto da compra desejado para se tornar o carrinho.
+
+
+2) Teste do módulos: 
+
+	* testes/comando_fazer_login_TST.py: 
+
+	Rodei o teste comando_fazer_login_TST.py. Como utilizei a função pre existente define_carrinho(), nao criei novo teste dentro do arquivo de testes. O teste terminou sem erro!
+
