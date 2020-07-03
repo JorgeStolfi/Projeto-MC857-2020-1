@@ -1,0 +1,6 @@
+Atividade de acrescentar cabeçalhos às colunas da tabela
+
+Tentativa de inserir os cabeçalhos em html_lista_de_trechos_IMP.py
+
+
+
