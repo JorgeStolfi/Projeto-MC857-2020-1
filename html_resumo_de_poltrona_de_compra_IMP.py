@@ -40,8 +40,8 @@ def gera(pol, id_compra, ver, excluir, trocar):
 
   ver = True # Por enquanto.
   if ver:
-    args_ver = { 'id_poltrona': id_pol }
-    ht_ver = html_botao_submit.gera("Ver", 'ver_poltrona', args_ver, '#60a3bc')
+    args_ver = {'id_poltrona': id_pol}
+    ht_ver = html_botao_simples.gera("Ver", 'ver_poltrona', args_ver, '#60a3bc')
     linha.append(ht_ver)
 
   if excluir:
