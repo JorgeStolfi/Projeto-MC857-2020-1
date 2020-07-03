@@ -1,7 +1,7 @@
 # Implementação do módulo {comando_acrescentar_trecho}.
 
-import html_pag_principal
 import html_pag_acrescentar_trecho
+import html_pag_ver_trecho
 import trecho
 import sessao
 import poltrona
@@ -25,11 +25,10 @@ def processa(ses, atrs):
     # Tenta criar o trecho:
 
     trc = trecho.cria(atrs)
-    pag = html_pag_principal.gera(ses, None)
-    # pols = poltrona.cria_conjunto(trc, esp_pols)
+    pols = poltrona.cria_conjunto(trc, esp_pols)
+    pag = html_pag_ver_trecho.gera(ses, trc, True, True, None)
   except ErroAtrib as ex:
     erros = ex.args[0]
     # Repete a página de acrescentar trecho com os mesmos argumentos e mens de erro:
     pag = html_pag_acrescentar_trecho.gera(ses, atrs, erros)
   return pag
-  
