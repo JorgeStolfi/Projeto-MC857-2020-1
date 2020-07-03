@@ -117,7 +117,7 @@ def busca_por_compra(cpr):
 def lista_livres(trc):
   global cache, nome_tb, letra_tb, colunas, diags
   id_trc = trecho.obtem_identificador(trc)
-  args = { 'id_trecho': id_trc, 'id_compra': None }
+  args = { 'id_trecho': id_trc, 'oferta': True }
   unico = False
   ids_poltronas = objeto.busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas)
   return ids_poltronas
@@ -168,7 +168,7 @@ def cria_testes():
       # Poltrona "A-00000001":
       { 'id_trecho':  "T-00000001",
         'numero':     "01A",
-        'oferta':     True,
+        'oferta':     False,
         'id_compra':  "C-00000001",
         'preco':      10.00,
         'bagagens':   0,
@@ -200,7 +200,7 @@ def cria_testes():
       # Poltrona "A-00000005":
       { 'id_trecho':  "T-00000002",
         'numero':     "32",
-        'oferta':     False,
+        'oferta':     True,
         'id_compra':  None,
         'preco':      30.00,
         'bagagens':   None,
