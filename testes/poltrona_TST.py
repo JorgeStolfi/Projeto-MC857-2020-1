@@ -78,14 +78,20 @@ def verifica_poltrona(rotulo, pol, ident, atrs):
 def testa_cria_poltrona(rotulo, ident, atrs):
   """Testa criação de poltrona com atributos com {atrs}. Retorna a poltrona."""
   pol = poltrona.cria(atrs)
+  assert poltrona.obtem_identificador(pol) == ident
+  assert poltrona.obtem_atributo(pol, 'id_trecho') == atrs['id_trecho'], "epa, trecho errado"
+  assert poltrona.obtem_atributo(pol, 'id_compra') == atrs['id_compra'], "epa, pedido de compra errado"
   verifica_poltrona(rotulo, pol, ident, atrs)
   return pol
 
 def testa_lista_livres(trc, trc_id, atrs):
   """Testa retorno da função lista_livres."""
   pol = poltrona.lista_livres(trc)
+
   livres = [sub['numero'] for sub in atrs if sub['id_trecho'] == trechos[1] and sub['id_compra'] == None]
+
   ok = (pol == livres)
+
   if not ok:
     aviso_prog("teste falhou",True)
     ok_global = False
@@ -99,14 +105,14 @@ sys.stderr.write("testando {poltrona.cria}:\n")
 
 lista_atrs = \
   [
-    { 'id_trecho': "T-00000001", 'numero': "01A", 'oferta': True,  'id_compra': "C-00000001", 'preco': 10.00, 'bagagens': 0,    },
-    { 'id_trecho': "T-00000001", 'numero': "02A", 'oferta': True,  'id_compra': None,         'preco':  0.00, 'bagagens': None, },
-    { 'id_trecho': "T-00000001", 'numero': "02B", 'oferta': False, 'id_compra': "C-00000002", 'preco': 11.00, 'bagagens': 1,    },
-    { 'id_trecho': "T-00000002", 'numero': "31",  'oferta': True,  'id_compra': None,         'preco': 50.00, 'bagagens': None, },
-    { 'id_trecho': "T-00000002", 'numero': "32",  'oferta': False, 'id_compra': None,         'preco': 20.00, 'bagagens': None, },
-    { 'id_trecho': "T-00000002", 'numero': "33",  'oferta': False, 'id_compra': "C-00000001", 'preco': 12.00, 'bagagens': 2,    },
-    { 'id_trecho': "T-00000003", 'numero': "31",  'oferta': True,  'id_compra': None,         'preco': 15.00, 'bagagens': None, },
-    { 'id_trecho': "T-00000003", 'numero': "33",  'oferta': False, 'id_compra': "C-00000003", 'preco': 13.00, 'bagagens': 3,    },
+    { 'id_trecho': "T-00000001", 'numero': "01A", 'oferta': True,  'id_compra': "C-00000001", 'preco': 10.00, 'bagagens': 0,    }, # "A-00000001"
+    { 'id_trecho': "T-00000001", 'numero': "02A", 'oferta': True,  'id_compra': None,         'preco':  0.00, 'bagagens': None, }, # "A-00000002"
+    { 'id_trecho': "T-00000001", 'numero': "02B", 'oferta': False, 'id_compra': "C-00000002", 'preco': 11.00, 'bagagens': 1,    }, # "A-00000003"
+    { 'id_trecho': "T-00000002", 'numero': "31",  'oferta': True,  'id_compra': None,         'preco': 50.00, 'bagagens': None, }, # "A-00000004"
+    { 'id_trecho': "T-00000002", 'numero': "32",  'oferta': False, 'id_compra': None,         'preco': 20.00, 'bagagens': None, }, # "A-00000005"
+    { 'id_trecho': "T-00000002", 'numero': "33",  'oferta': False, 'id_compra': "C-00000001", 'preco': 12.00, 'bagagens': 2,    }, # "A-00000006"
+    { 'id_trecho': "T-00000003", 'numero': "31",  'oferta': True,  'id_compra': None,         'preco': 15.00, 'bagagens': None, }, # "A-00000007"
+    { 'id_trecho': "T-00000003", 'numero': "33",  'oferta': False, 'id_compra': "C-00000003", 'preco': 13.00, 'bagagens': 3,    }, # "A-00000008"
   ]
 
 pol = [None] * len(lista_atrs)
@@ -145,7 +151,8 @@ print(str(poltronas))
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {poltrona.obtem_dia_e_hora_de_partida}:\n")
 pol3 = pol[3]
-assert poltrona.obtem_atributo(pol3, 'id_trecho') == "T-00000001", "epa, trecho errado"
+assert poltrona.obtem_identificador(pol3) == "A-00000004"
+assert poltrona.obtem_atributo(pol3, 'id_trecho') == "T-00000002", "epa, trecho errado"
 pol3_dhp_res = poltrona.obtem_dia_e_hora_de_partida(pol3);
 pol3_dhp_esp = "2020-05-08 19:45"
 if pol3_dhp_res != pol3_dhp_esp:

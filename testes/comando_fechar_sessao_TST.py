@@ -31,9 +31,9 @@ assert ses1 != None
 assert sessao.aberta(ses1)
 
 for rotulo, ses, args in [ \
-    # ('Sessão inexistente',          ses1,    {'id_sessao' : ''}) Não está implementado um tratamento para sessão inexistente
-    ('Sessão existente',            ses1,    {'id_sessao' : 'S-00000002'}),
-    ('Sessão do próprio usuário',   ses1,    {'id_sessao' : 'S-00000001'}),
-    ('Sessão atual fechada',        ses1,    {'id_sessao' : 'S-00000003'})
+    # ('inexistente',          ses1,    {'id_sessao' : ''}) Não está implementado um tratamento para sessão inexistente
+    ('existente',  ses1,    {'id_sessao' : 'S-00000002'}),
+    ('proprio',    ses1,    {'id_sessao' : 'S-00000001'}),
+    ('fechada',    ses1,    {'id_sessao' : 'S-00000003'})
   ]:
   testa(rotulo, ses, args)

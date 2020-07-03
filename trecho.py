@@ -133,12 +133,28 @@ def busca_por_codigo_e_data(cod, dia, hora):
   devem ter sempre 2 dígitos."""
   return trecho_IMP.busca_por_codigo_e_data(cod, dia, hora)
 
-def busca_por_origem_e_destino(origem, destino):
-  """Localiza trechos cujo atributo 'origem' é {origem} e cujo 'destino'
-  é {destino}.  Devolve uma lista dos identificadores desses trechos (NÃO os trechos), 
-  por exemplo ['T-00000001', 'T-00000025'].
+def busca_por_origem_e_destino(org, dst, data_min, data_max):
+  """Localiza trechos com origem e/ou destino especificados, num intervalo de 
+  datas especificado.
+  
+  Se {org} não for {None}, deve ser um código de porto ("VCP", "SDU", etc.);
+  o atributo 'origem' do trecho deve ser {org}.
+  
+  Se {dst} não for {None}, deve ser um código de porto;
+  o atributo 'destino' do trecho deve ser {dst}.
+  
+  Se {data_min} não for {None}, deve ser uma especificação de data e hora
+  no formato "{yyyy}-{mm}-{dd} {HH}-{MM}" (com fuso opcional " UTC");
+  o dia e hora de partida do trecho devem ser esses, OU POSTERIORES. 
+  
+  Se {data_max} não for {None}, deve ser uma especificação de data e hora
+  no mesmo formato;
+  o dia e hora de chegada do trecho devem ser esses, OU ANTERIORES.
+  
+  Devolve uma lista dos identificadores dos trechos que satisfazem essas
+  condições (NÃO os trechos).  Por exemplo, ['T-00000001', 'T-00000025'].
   Devolve uma lista vazia se não existir nenhum trecho nessas condições."""
-  return trecho_IMP.busca_por_origem_e_destino(origem, destino)
+  return trecho_IMP.busca_por_origem_e_destino(org, dst, data_min, data_max)
 
 def busca_por_dias(dia_min, dia_max):
   """Localiza trechos com 'dia_partida' entre {dia_min} e {dia_max},

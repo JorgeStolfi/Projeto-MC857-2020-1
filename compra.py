@@ -125,7 +125,7 @@ def obtem_poltronas(cpr):
   de partida dos trechos correspondentes. """
   return compra_IMP.obtem_poltronas(cpr)
 
-def busca(args):
+def busca_por_campos(args):
   """O parâmetro {args} é um dicionário que contém um subconjunto dos
   atributos de um {Objeto_Compra}, pelo menos um dos atributos deve estar definido e todos os atributos definitos
   devem ser diferentes de None.
@@ -133,7 +133,7 @@ def busca(args):
   Devolve uma lista dos identificadores desses trechos (NÃO os trechos),
   por exemplo ['C-00000001', 'C-00000025'].
   Devolve uma lista vazia se não existir nenhum trecho nessas condições."""
-  return compra_IMP.busca(args)
+  return compra_IMP.busca_por_campos(args)
 
 def busca_por_identificador(id):
   """Localiza um pedido de compra com identificador {id} (uma string da forma

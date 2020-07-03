@@ -40,7 +40,7 @@ def cria_form_completo():
   linhas.append((ht_rotulo, ht_campo,))
 
   # Monta a tabela com os fragmentos HTML:
-  ht_table = html_table.gera(linhas)
+  ht_table = html_table.gera(linhas, ["TIPO", "ELEMENTO"])
 
   # cria botao de interacao com o formulario
   ht_botao = html_botao_submit.gera("Botao", 'url test', None, '#55ee55')

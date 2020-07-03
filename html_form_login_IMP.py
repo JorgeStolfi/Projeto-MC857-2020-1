@@ -16,7 +16,7 @@ def gera():
   linhas.append((ht_rotulo, ht_campo,))
 
   # Monta a tabela com os fragmentos HTML:
-  ht_table = html_table.gera(linhas)
+  ht_table = html_table.gera(linhas, None)
 
   ht_bt_login = html_botao_submit.gera("Entrar", 'fazer_login', None, '#55ee55')
 

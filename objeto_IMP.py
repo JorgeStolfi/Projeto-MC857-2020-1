@@ -107,8 +107,11 @@ def verifica(obj, tipo, id, atrs, cache, nome_tb, letra_tb, colunas, def_obj_mem
 
     sys.stderr.write("  testando {obtem_atributos()}:\n")
     atrs_cmp = obtem_atributos(obj)
-    if atrs_cmp != atrs:
-      aviso_prog("retornou " + str(atrs_cmp) + ", deveria ter retornado " + str(atrs), True)
+    atrs_esp = atrs.copy()
+    if 'criacao' in atrs_cmp: del atrs_cmp['criacao'] # Introduzido por {cria}.
+    if 'criacao' in atrs_esp: del atrs_esp['criacao'] # Introduzido por {cria}.
+    if atrs_cmp != atrs_esp:
+      aviso_prog("retornou " + str(atrs_cmp) + ", deveria ter retornado " + str(atrs_esp), True)
       ok = False
     
     sys.stderr.write("testando {busca_por_identificador()}:\n")

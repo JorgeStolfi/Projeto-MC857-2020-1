@@ -22,5 +22,8 @@ def processa(ses, args):
     erros = ["trecho \"" + id_trecho + "\" não existe"]
     pag = html_pag_mensagem_de_erro(ses, erros)
   else:
-    pag = html_pag_ver_trecho.gera(ses, trc, True, False, None)
+    admin = sessao.eh_administrador(ses)
+    comprar = (ses != None) and not admin
+    alterar = (ses != None) and admin
+    pag = html_pag_ver_trecho.gera(ses, trc, comprar, alterar, None)
   return pag

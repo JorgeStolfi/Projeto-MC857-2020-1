@@ -15,8 +15,6 @@ def gera(ids_poltronas):
   for cb in cabs_raw:
     cabs_div.append(html_div.gera(estilo_cab, cb))
 
-  linhas.append(cabs_div)
-
   for id_poltrona in ids_poltronas:
     pol = poltrona.busca_por_identificador(id_poltrona)
 
@@ -25,5 +23,5 @@ def gera(ids_poltronas):
 
     linhas.append(linha)
 
-  ht_res = html_table.gera(linhas)
+  ht_res = html_table.gera(linhas, cabs_div)
   return ht_res

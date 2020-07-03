@@ -12,8 +12,8 @@ import sys
 # Conecta no banco e carrega alimenta com as informações para o teste
 
 sys.stderr.write("Conectando com base de dados...\n")
-res = base_sql.conecta("../DB", None, None)
-assert res is None
+res = base_sql.conecta("DB", None, None)
+assert res == None
 
 sys.stderr.write("Criando alguns objetos...\n")
 tabelas.cria_todos_os_testes()
@@ -53,10 +53,10 @@ def testa(rotulo, *args):
     pretty = False  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-testa("Teste com usuário válido", ses_adm, usr_atrs)
-testa("Teste com usuário sem email nem CPF", ses_adm, atrs_incompletos)
-testa("Teste com usuário com CPF inexistente", ses_adm, atrs_cpf_inexistente)
-testa("Teste com usuário com email inexistente", ses_adm, atrs_email_inexistente)
-testa("Teste com sessão de usuário que não é o administrador", ses_nao_eh_adm, usr_atrs)
+testa("valido",        ses_adm, usr_atrs)
+testa("email-F-CPF-F", ses_adm, atrs_incompletos)
+testa("CPF-ruim",      ses_adm, atrs_cpf_inexistente)
+testa("email-ruim",    ses_adm, atrs_email_inexistente)
+testa("admin-F",       ses_nao_eh_adm, usr_atrs)
 
 

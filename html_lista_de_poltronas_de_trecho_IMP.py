@@ -14,8 +14,6 @@ def gera(ids_poltronas, id_trecho, alterar, comprar, id_compra):
 
   cabecalho = ["Poltrona", "Trecho", "Alterar", "Comprar"]
 
-  linhas.append(cabecalho)
-
   for id_poltrona in ids_poltronas:
     pol = poltrona.busca_por_identificador(id_poltrona)
 
@@ -26,5 +24,5 @@ def gera(ids_poltronas, id_trecho, alterar, comprar, id_compra):
 
     linhas.append(linha)
 
-  ht_res = html_table.gera(linhas)
+  ht_res = html_table.gera(linhas, cabecalho)
   return ht_res

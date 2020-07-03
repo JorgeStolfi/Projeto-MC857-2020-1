@@ -14,8 +14,6 @@ def gera(ids_compras, ver):
   for cb in cabs_raw:
     cabs_div.append(html_div.gera(estilo_cab, cb))
   
-  linhas.append(cabs_div)
-
   # Linhas das compras:
   for id_cpr in ids_compras:
     # Obtem o objeto correspondente
@@ -31,7 +29,7 @@ def gera(ids_compras, ver):
     # sys.stderr.write("linhas = %s\n" % str(linhas))
 
   # Gera a tabela HTML a partir da lista de linhas
-  ht_itens = html_table.gera(linhas)
+  ht_itens = html_table.gera(linhas, cabs_div)
 
   # Devolve a tabela HTML
   return ht_itens

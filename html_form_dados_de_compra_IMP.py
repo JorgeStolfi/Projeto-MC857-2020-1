@@ -67,7 +67,7 @@ def gera(cpr, editavel, texto_bt, comando_bt):
     html_cpr_campo("Partida",                 'partida',   valores, 'text', None,              False),
     html_cpr_campo("Chegada",                 'chegada',   valores, 'text', None,              False),
   )
-  ht_campos = html_table.gera(linhas);
+  ht_campos = html_table.gera(linhas, ["", ""]);
 
   # Botões: 
   if editavel:

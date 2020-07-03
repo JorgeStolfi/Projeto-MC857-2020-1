@@ -29,8 +29,9 @@ botao_de_teste = html_botao_simples.gera("OK", 'principal', None, '#55ee55')
 
 erro_de_teste_html = html_erro.gera("Houston, we've got a problem. Nevermind, this is just a Test!")
 
+cabecalho=("Coluna 1", "Coluna 2")
 linhas.append((label_de_teste_input, input_de_teste))
 linhas.append((label_de_teste_botao, botao_de_teste))
 linhas.append((erro_de_teste_html, botao_de_teste))
 
-testa("Teste", linhas)
+testa("Teste", linhas, cabecalho)

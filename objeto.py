@@ -77,6 +77,7 @@ def busca_por_campo(chave, val, unico, cache, nome_tb, letra_tb, colunas):
 
 def busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas):
   """Procura objetos com atributos {args}, na memória ou na base de dados.
+  
   Especificamente, para todo par {ch: val} em {args}, exige que o valor
   do atributo {ch} do objeto seja {val}. 
   

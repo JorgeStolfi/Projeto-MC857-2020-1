@@ -23,7 +23,7 @@ A html_botao_submit
 A html_botao_radio
 A html_table
 A html_imagem
-* html_imagem_link
+A html_imagem_link
 
 A html_cabecalho
 A html_menu_geral
@@ -47,13 +47,16 @@ A html_resumo_de_compra
 A html_resumo_de_roteiro
 A html_resumo_de_poltrona_de_compra
 A html_resumo_de_poltrona_de_trecho
+A html_resumo_de_poltrona_de_usuario
 
 A html_lista_de_usuarios
 A html_lista_de_compras
 A html_lista_de_trechos
 A html_lista_de_poltronas_de_compra
 A html_lista_de_poltronas_de_trecho
+A html_lista_de_poltronas_de_usuario
 A html_lista_de_roteiros
+A html_lista_de_sessoes
 
 A html_sessao
 
@@ -68,12 +71,17 @@ A html_form_buscar_usuarios
 A html_form_dados_de_trecho
 A html_form_buscar_trechos
 
+A html_form_dados_de_compra
 A html_form_buscar_compras
 
 A html_form_dados_de_poltrona
 
 A html_form_criar_roteiro
 A html_form_escolher_pagamento
+
+A html_form_dados_de_sessao
+
+A html_form_ver_objeto
 
 A html_pag_generica
 A html_pag_principal
@@ -85,6 +93,7 @@ A html_pag_cadastrar_usuario
 A html_pag_buscar_usuarios
 
 A html_pag_acrescentar_trecho
+A html_pag_alterar_trecho
 A html_pag_buscar_trechos
 
 A html_pag_buscar_compras
@@ -122,20 +131,22 @@ A comando_solicitar_pag_ofertas
 
 A comando_ver_objeto
 A comando_ver_trecho
-* comando_ver_minhas_compras
+A comando_ver_minhas_compras
 A comando_ver_compra
 A comando_ver_roteiro
 A comando_ver_carrinho
+A comando_ver_poltrona
+A comando_ver_sessoes
 
 A comando_buscar_trechos
-* comando_buscar_compras
-* comando_buscar_usuario
+A comando_buscar_compras
+A comando_buscar_usuario
 
-* comando_comprar_poltrona
-* comando_excluir_poltrona
-* comando_trocar_poltrona
-* comando_definir_carrinho
-* comando_finalizar_compra
+A comando_comprar_poltrona
+A comando_excluir_poltrona
+A comando_trocar_poltrona
+A comando_definir_carrinho
+A comando_finalizar_compra
 
 A comando_fazer_login
 A comando_fazer_logout
@@ -146,6 +157,8 @@ A comando_alterar_usuario
 A comando_acrescentar_trecho
 A comando_alterar_trecho
 
+A comando_alterar_compra
+
 A comando_criar_roteiro
 
-* comando_fechar_sessao
+A comando_fechar_sessao

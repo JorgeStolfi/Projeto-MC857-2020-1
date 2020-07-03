@@ -1,0 +1,6 @@
+https://github.com/JorgeStolfi/Projeto-MC857-2020-1 @@ GitHub repository NC857-2020-1
+http://0.0.0.0:8081/ @@ Local server
+http://svnbook.red-bean.com/en/1.7/ @@ SVN manual verson 1.7
+https://www.w3schools.com/ @@ W3Schools
+https://docs.python.org/3/ @@ Python 3.8.3 documentation
+file:///home/jstolfi/programs/python/mc857-2020-1-a/2020-07-03/ini/testes/saida/ @@ Folder 2020-07-03/ini/testes/saida

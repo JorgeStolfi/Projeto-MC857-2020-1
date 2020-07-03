@@ -25,7 +25,7 @@ def gera():
   linhas.append((ht_rotulo, ht_campo,))
 
   # Monta a tabela com os fragmentos HTML:
-  ht_table = html_table.gera(linhas)
+  ht_table = html_table.gera(linhas, ["", ""])
 
   ht_bt_buscar = html_botao_submit.gera("Buscar", 'criar_roteiro', None, '#55ee55')
 

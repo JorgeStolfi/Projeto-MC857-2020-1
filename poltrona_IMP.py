@@ -380,7 +380,7 @@ def valida_atributos(pol, atrs_mem):
 
   global cache, nome_tb, letra_tb, colunas, diags
 
-  sys.stderr.write("!! valida_atributos atrs_mem = " + str(atrs_mem) + "\n")
+  # sys.stderr.write("!! valida_atributos atrs_mem = " + str(atrs_mem) + "\n")
 
   erros = [].copy();
 

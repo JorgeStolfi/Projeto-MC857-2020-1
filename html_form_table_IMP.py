@@ -19,9 +19,8 @@ def gera(dados_linhas, atrs, admin, ignora_admin=False):
       prepara_para_gerar_campo(atrs, chave, dica, linhas, rot, tipo, True)
 
   # Monta a tabela com os fragmentos HTML:
-  ht_table = html_table.gera(linhas)
+  ht_table = html_table.gera(linhas, None)
   return ht_table
-
 
 def prepara_para_gerar_campo(atrs, chave, dica, linhas, rot, tipo, campo_editavel):
   val = (atrs[chave] if chave in atrs else None)

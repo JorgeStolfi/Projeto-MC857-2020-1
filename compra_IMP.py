@@ -92,7 +92,7 @@ def obtem_poltronas(cpr):
   ids_pols.sort(key = lambda id : poltrona.obtem_dia_e_hora_de_partida(poltrona.busca_por_identificador(id)))
   return ids_pols
 
-def busca(args):
+def busca_por_campos(args):
   global cache, nome_tb, letra_tb, colunas, diags
   unico = False
   ids = objeto.busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas)
