@@ -31,4 +31,4 @@ def testa(rotulo, *args):
     pretty = True  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-testa('teste', ses, {'id_user': 'U-00000001'})
+testa('teste', ses, {'id': 'U-00000001'})

@@ -13,7 +13,7 @@ def processa(ses, args):
   assert ses != None
   pag = html_pag_mensagem_de_erro.gera(ses, "sessão corrente")
   assert sessao.aberta(ses)
-  ids_compras = compra.busca_por_cliente(args['id_user'])
+  ids_compras = compra.busca_por_cliente(args['id'])
   
   ids_poltronas = []
   for i in range(len(ids_compras)):
