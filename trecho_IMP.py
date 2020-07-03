@@ -134,12 +134,23 @@ def busca_por_codigo_e_data(cod, dia, hora):
     assert False 
 
 def busca_por_origem_e_destino(org, dst, data_min, data_max):
-  global cache, nome_tb, letra_tb, colunas, diags
-  assert org != None, "!!! caso {org == None} não implementado"
-  assert dst != None, "!!! caso {dst == None} não implementado"
-  assert data_min == None, "!!! caso {data_min != None} não implementado"
-  assert data_max == None, "!!! caso {data_max != None} não implementado"
-  args = { 'origem': org, 'destino': dst }
+  global cache, nome_tb, letra_tb, colunas, diags 
+
+  origem = destino = dmin = dmax = args = {}
+
+  if org != None:
+    origem = {'origem': org }
+  if dst != None:
+    destino = {'destino': dst }    
+  if data_min != None:
+    dmin = {'dia_partida':data_min}
+  if data_max != None:
+    dmax = {'dia_chegada': data_max}
+
+  args = args.update(
+            origem.update(
+            destino.update(
+            dmin.update(dmax))))
   unico = False
   ids = objeto.busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas)
   return ids
