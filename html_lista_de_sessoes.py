@@ -6,4 +6,4 @@ def gera(ids_sessoes):
   estão na lista {ids_sessoes}. Todas elas devem ser parte de um pedido de
   compra com indetificador {id_compra}, que supostamente foi identificado
   em separado."""
-  return html_lista_de_sessoes.gera(ids_sessoes)
+  return html_lista_de_sessoes_IMP.gera(ids_sessoes)

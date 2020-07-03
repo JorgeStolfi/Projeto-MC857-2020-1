@@ -110,6 +110,12 @@ def busca_por_identificador(id):
   Se {id} é {None} ou tal sessão não existe, devolve {None}."""
   return sessao_IMP.busca_por_identificador(id)
 
+def busca_por_usuario(id):
+  """Localiza uma sessao com id_usuario {id} (uma string da forma
+  "U-{NNNNNNNN}"), e devolve a mesma na forma de um objeto ou lista de objetos da classe {Objeto_Sessao}.
+  Se {id} é {None} ou tal sessão não existe, devolve {None}."""
+  return sessao_IMP.busca_por_usuario(id)
+
 def muda_atributos(ses, mods_mem):
   """Recebe um dicionário Python {mods_mem} cujas chaves são um subconjunto
   dos nomes de atributos da sessão (exceto o identificador). Troca os 
