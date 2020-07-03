@@ -1,0 +1,5 @@
+Luiz Antonio Andia 138771
+
+Nesse laboratorio, eu apenas alterei o arquivo {{html_pag_ver_compra_IMP}}, para que quando 
+    o usuario for administradoraparece no label do botão a frase "Principal" e quando o usuario 
+    nao for administrador a frase seja "continuar comprando". Isso pq não faz sentido um administrador continuar comprando.
