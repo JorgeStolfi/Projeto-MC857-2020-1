@@ -13,7 +13,7 @@ from utils_testes import erro_prog, aviso_prog
 from trecho import obtem_atributos, obtem_poltronas
 
 def gera(ses, trc, comprar, alterar, erros):
-  linha_resumo = html_resumo_de_trecho.gera(trc, False, False)
+  linha_resumo = html_resumo_de_trecho.gera(trc, False, alterar)
   ht_resumo = " ".join(linha_resumo) 
   pols_ids = poltrona.busca_por_trecho(trc)
   if ses == None:
