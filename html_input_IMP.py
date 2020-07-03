@@ -2,7 +2,7 @@
 import html_label
 from utils_testes import erro_prog
 
-def gera(rotulo, tipo, nome, val_ini, val_min, editavel, dica, cmd):
+def gera(rotulo, tipo, nome, val_ini, val_min, editavel, dica, cmd, obrigatorio):
   ht_rotulo = html_label.gera(rotulo, ": ")
   ht_tipo = " type =\"" + tipo + "\""
   ht_nome = " name=\"" + nome + "\""
@@ -23,6 +23,7 @@ def gera(rotulo, tipo, nome, val_ini, val_min, editavel, dica, cmd):
     ht_val_min = ""
 
   ht_checkbox_disabled = (" disabled" if tipo == "checkbox" and not editavel else "")
+  ht_obrigatorio = (" required" if obrigatorio else "")
   ht_readonly = ( " readonly" if not editavel else "" )
   ht_dica = ( " placeholder=\"" + dica + "\"" if dica != None else "" )
   ht_cmd = ( " onchange=\"window.location.href=" + cmd + "\"" if cmd != None else "" )
@@ -35,5 +36,6 @@ def gera(rotulo, tipo, nome, val_ini, val_min, editavel, dica, cmd):
       ht_checkbox_disabled + \
       ht_dica + \
       ht_cmd + \
+      ht_obrigatorio + \
     "/>"
   return ht_input
