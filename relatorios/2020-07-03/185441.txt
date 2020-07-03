@@ -1,0 +1,7 @@
+Paulo Afonso Martins Januário - 185441 
+Tarefa: [A] "Ofertas" > "Ver"(linha "AZ 40366") > "Alterar"(linha "31"): não funciona.
+
+- Criei o módulo {comando_solicitar_pag_alterar_poltrona} e seu respectivo _TST, e adicionei no módulo {processa_comando_http} um pedaço de código para criar o redirecionamento.
+- Alterei o módulo {html_resumo_de_poltrona_de_trecho}, que tinha um botão criado pelo módulo {html_botao_submit} para um botão do módulo {html_botao_simples}
+- A partir daí o botão Alterar de todas as linhas criadas por html_resumo_de_poltrona_de_trecho passaram a funcionar.
+- Verifiquei que o botão presente em html_resumo_de_poltrona_de_trecho_TST está se comportando da maneira esperada, então nenhuma alteração foi necessária.

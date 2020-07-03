@@ -2,6 +2,7 @@ import trecho
 import poltrona
 import html_texto
 import html_botao_submit
+import html_botao_simples
 import sys
 
 def gera(pol, id_trecho, alterar, comprar, id_compra):
@@ -31,12 +32,12 @@ def gera(pol, id_trecho, alterar, comprar, id_compra):
 
   if alterar:
     args_alterar = { 'id_poltrona': id_pol }
-    ht_alterar = html_botao_submit.gera("Alterar", "solicitar_pag_alterar_poltrona", args_alterar, '#bca360')
+    ht_alterar = html_botao_simples.gera("Alterar", "solicitar_pag_alterar_poltrona", args_alterar, '#bca360')
     linha.append(ht_alterar)
 
   if comprar and id_compra_pol == None:
     args_comprar = { 'id_poltrona': id_pol, 'id_compra': id_compra }
-    ht_comprar = html_botao_submit.gera("Comprar", 'comprar_poltrona', args_comprar, '#ff0000')
+    ht_comprar = html_botao_simples.gera("Comprar", 'comprar_poltrona', args_comprar, '#ff0000')
     linha.append(ht_comprar)
     
   return linha
