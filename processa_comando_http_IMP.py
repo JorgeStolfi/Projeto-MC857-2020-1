@@ -35,6 +35,7 @@ import comando_ver_roteiro
 import comando_ver_objeto
 import comando_ver_trecho
 import comando_alterar_compra
+import comando_alterar_poltrona
 
 import html_texto
 import html_div
@@ -483,6 +484,8 @@ def processa_comando(tipo, ses, dados):
       # Administrador apertou o botão "Alterar" na página "Checar Objeto"
       pag = comando_alterar_compra.processa(ses, args)
       
+    elif cmd == '/alterar_dados_de_poltrona':
+      pag = comando_alterar_poltrona.processa(ses, args)
     else:
       # Comando não identificado
       pag =  html_pag_mensagem_de_erro.gera(ses, ("** comando POST \"%s\" inválido" % cmd))

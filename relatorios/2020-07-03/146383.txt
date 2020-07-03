@@ -1,0 +1,6 @@
+Foram criados os arquivos:
+  - comando_alterar_poltrona.py
+  - comando_alterar_poltrona_IMP.py
+Esses arquivo são responsáveis por receber os parâmetros da edição de poltrona e editar ela em si, após a edição bem sucedida é exibido o formulário com os dados atualizados.
+
+Foi adicionado o comando "alterar_dados_de_poltrona" no arquivo processa_comando_http_IMP.py.
