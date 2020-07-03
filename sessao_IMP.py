@@ -14,7 +14,7 @@ import sys
 from datetime import datetime, timezone
 
 # VARIÁVEIS GLOBAIS DO MÓDULO
- 
+
 cache = {}.copy()
   # Dicionário que mapeia identificadores para os objetos {Objeto_Sessao} na memória.
   # Todo objeto dessa classe que é criado é acrescentado a esse dicionário,
@@ -22,13 +22,13 @@ cache = {}.copy()
 
 nome_tb = "sessoes"
   # Nome da tabela na base de dados.
- 
+
 letra_tb = "S"
   # Prefixo comum dos identificadores de sessao.
 
 colunas = None
   # Descrição das colunas da tabela na base de dados.
-  
+
 diags = False
   # Quando {True}, mostra comandos e resultados em {stderr}.
 
@@ -57,10 +57,10 @@ def inicializa(limpa):
     tabela_generica.limpa_tabela(nome_tb, colunas)
   else:
     tabela_generica.cria_tabela(nome_tb, colunas)
- 
+
 def cria(usr, cookie, carrinho):
   global cache, nome_tb, letra_tb, colunas, diags
-  
+
   atrs_mem = {
     'usr': usr,
     'criacao': datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S %z"),
@@ -108,7 +108,7 @@ def eh_administrador(ses):
   global cache, nome_tb, letra_tb, colunas, diags
   if  ses == None or not aberta(ses): return False
   usr = obtem_usuario(ses)
-  return usuario.obtem_atributo(usr, 'administrador')  
+  return usuario.obtem_atributo(usr, 'administrador')
 
 def obtem_carrinho(ses):
   global cache, nome_tb, letra_tb, colunas, diags
@@ -119,12 +119,17 @@ def busca_por_identificador(id):
   ses = objeto.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
   return ses
 
+def busca_por_campo(chave, val):
+    global cache, nome_tb, letra_tb, colunas, diags
+    ids = objeto.busca_por_campo(chave, val, False, cache, nome_tb, letra_tb, colunas)
+    return ids
+
 def muda_atributos(ses, mods_mem):
   global cache, nome_tb, letra_tb, colunas, diags
 
   erros = valida_atributos(ses, mods_mem)
   if len(erros) != 0: raise ErroAtrib(erros)
-  
+
   objeto.muda_atributos(ses, mods_mem, cache, nome_tb, letra_tb, colunas, def_obj_mem)
   return
 
@@ -139,7 +144,7 @@ def cria_testes():
   inicializa(True)
   # Identificador de usuários e cookie de cada sessão:
   lista_ucs = \
-    [ 
+    [
       ( "U-00000001", "ABCDEFGHIJK", "C-00000001" ),
       ( "U-00000001", "BCDEFGHIJKL", "C-00000002" ),
       ( "U-00000002", "CDEFGHIJKLM", "C-00000003" ),
@@ -172,9 +177,9 @@ def diagnosticos(val):
 # FUNÇÕES INTERNAS
 
 def valida_atributos(ses, atrs_mem):
-  """Faz validações específicas nos atributos {atrs_mem}. Devolve uma lista 
+  """Faz validações específicas nos atributos {atrs_mem}. Devolve uma lista
   de strings com descrições dos erros encontrados.
-  
+
   Se {ses} é {None}, supõe que um novo objeto de sessão está sendo criado.
   Se {ses} não é {None}, supõe que {atrs} sao alterações a aplicar nessa
   sessão. """
@@ -185,12 +190,12 @@ def valida_atributos(ses, atrs_mem):
 def def_obj_mem(obj, id, atrs_SQL):
   """Se {obj} for {None}, cria um novo objeto da classe {Objeto_Sessao} com
   identificador {id} e atributos {atrs_SQL}, tais como extraidos
-  da tabela de sessoes. O objeto *NÃO* é inserido na base de dados. 
-  
+  da tabela de sessoes. O objeto *NÃO* é inserido na base de dados.
+
   Se {obj} não é {None}, deve ser um objeto da classe {Objeto_Sessao}; nesse
   caso a função altera os atributos de {obj} conforme especificado em
   {atrs_SQL}. A entrada correspondente na base de dados *NÃO* é alterada.
-  
+
   Em qualquer caso, os valores em {atr_SQL} são convertidos para valores
   equivalentes na memória."""
   global cache, nome_tb, letra_tb, colunas, diags
