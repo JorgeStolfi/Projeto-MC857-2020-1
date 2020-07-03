@@ -35,6 +35,7 @@ import comando_ver_roteiro
 import comando_ver_objeto
 import comando_ver_trecho
 import comando_alterar_compra
+import comando_finalizar_compra
 
 import html_texto
 import html_div
@@ -482,6 +483,10 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/alterar_compra':
       # Administrador apertou o botão "Alterar" na página "Checar Objeto"
       pag = comando_alterar_compra.processa(ses, args)
+    
+    elif cmd == '/finalizar_compra':
+      # Usuário apertou o botão "Finalizar comopra" na pagina "Meu Carrinho":
+      pag = comando_finalizar_compra.processa(ses, args)
       
     else:
       # Comando não identificado
