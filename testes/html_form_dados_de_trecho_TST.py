@@ -55,6 +55,7 @@ trc3_atrs = {
   "dia_chegada":"2020-05-29",
   "hora_chegada":"16:00",
   "poltronas":"1A-20D",
+  "aberto":True,
 }
 testa("muda_todos", trc3_id, trc3_atrs, "Cavocar", "cavocar_trecho")
 
@@ -69,5 +70,6 @@ trc4_atrs = {
   "dia_chegada":"abcdef",
   "hora_chegada":"abcdef",
   "poltronas":"abcdef",
+  "aberto":True,
 }
 testa("invalidos", trc4_id, trc4_atrs, "SURFAR", "surfar_trecho")
