@@ -1,0 +1,5 @@
+A tarefa de hoje consistia em fazer o botão "Buscar", na seção "Buscar Roteiros", funcionar.
+
+As alterações necessárias para realizar a tarefa consistiram em colocar verificações no argumentos 
+passados para o comando que realiza a busca do roteiro, além de retornar corretamente
+ uma página de erro caso o comando fallhasse por falta de argumentos.
