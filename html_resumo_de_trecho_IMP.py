@@ -75,7 +75,7 @@ def gera(trc, ver, alterar, clonar):
   ##              add_span_tag("Assentos livres: ") + ht_num_poltronas,
   ##              botao_ver,
   ##              botao_alterar)
-  ht_campos = [ ht_logo, ht_codigo, ht_origem, ht_destino, ht_dt_partida, ht_dt_chegada, ht_num_poltronas ]
+  ht_campos = [ ht_logo, ht_codigo, ht_origem, ht_dt_partida, ht_destino, ht_dt_chegada, ht_num_poltronas ]
   
   # Botões de "Ver" e "Alterar"
   if ver:

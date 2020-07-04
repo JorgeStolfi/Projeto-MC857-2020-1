@@ -17,7 +17,7 @@ def processa(ses, args):
     if usuario.obtem_atributo(usr_ses, 'administrador'):
       raise ErroAtrib("Administrador não pode comprar")
 
-    id_pol = args["id_pol"]
+    id_pol = args['id_poltrona']
     assert id_pol is not None, "faltou argumento 'id_pol'"
 
     cpr = sessao.obtem_carrinho(ses)
