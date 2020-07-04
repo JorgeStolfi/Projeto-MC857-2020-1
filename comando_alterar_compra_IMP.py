@@ -9,7 +9,7 @@ import html_pag_mensagem_de_erro
 def processa(ses, args):
 
   # Determina se usuario é administrador
-  assert sessao.eh_administrador(ses)
+  #assert sessao.eh_administrador(ses)
 
   # Extrair dados de {args}
   try:

@@ -6,7 +6,7 @@ import tabelas
 import usuario
 import sessao
 import compra
-from utils_testes import erro_prog, mostra
+import utils_testes; from utils_testes import erro_prog, mostra
 
 sys.stderr.write("Conectando com base de dados...\n")
 res = base_sql.conecta("DB",None,None)
@@ -18,7 +18,7 @@ tabelas.cria_todos_os_testes()
 id_compra = "C-00000001"
 
 ses = sessao.busca_por_identificador("S-00000001")
-usr = usuario.busca_por_identificador("U-00000001")
+usr = usuario.busca_por_identificador("U-00000003")
 compra = compra.busca_por_identificador(id_compra)
 
 if compra:
@@ -27,13 +27,14 @@ if compra:
 else:
   erro_prog("comando_ver_compra_TST : teste falhou : compra nao encontrada")
 
-# Pagina de erro gerada pelo modulo {comando_ver_compra} caso algo de errado
-erros = ["compra \"" + id_compra + "\" não existe"]
-pag_erro = html_pag_mensagem_de_erro.gera(ses, erros)
 
-pag_compra = comando_ver_compra.processa(ses, args)
+def testa(rotulo, *args):
+  """Testa {funcao(*args)}, grava resultado 
+  em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
+  modulo = comando_ver_compra
+  funcao = modulo.processa
+  frag = False
+  pretty = False
+  utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-if pag_compra != pag_erro:
-  sys.stderr.write("Nao houve erros\n")
-else:
-  erro_prog("comando_ver_compra_TST : teste falhou : pagina de erro gerada")
+testa('compra_existente', ses, args)

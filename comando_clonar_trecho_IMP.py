@@ -1,7 +1,7 @@
-# Implementação do módulo {comando_acrescentar_trecho}.
+# Implementação do módulo {comando_clonar_trecho}.
 
-import html_pag_acrescentar_trecho
-import html_pag_ver_trecho
+import html_pag_principal
+import html_pag_alterar_trecho
 import trecho
 import sessao
 import poltrona
@@ -25,10 +25,11 @@ def processa(ses, atrs):
     # Tenta criar o trecho:
 
     trc = trecho.cria(atrs)
-    pols = poltrona.cria_conjunto(trc, esp_pols)
-    pag = html_pag_ver_trecho.gera(ses, trc, True, True, None)
+    pag = html_pag_principal.gera(ses, None)
+    # pols = poltrona.cria_conjunto(trc, esp_pols)
   except ErroAtrib as ex:
     erros = ex.args[0]
-    # Repete a página de acrescentar trecho com os mesmos argumentos e mens de erro:
-    pag = html_pag_acrescentar_trecho.gera(ses, atrs, erros)
+    # Repete a página de alterar trecho com os mesmos argumentos e mens de erro:
+    pag = html_pag_alterar_trecho.gera(ses,None, atrs, erros, True)
   return pag
+  
