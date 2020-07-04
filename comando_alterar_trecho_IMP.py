@@ -36,9 +36,9 @@ def processa(ses, args):
     
     # Repete a página de alterar trecho com valores correntes (alterados):
     args_novo = trecho.obtem_atributos(trc)
-    pag = html_pag_alterar_trecho.gera(ses, id_trc, args_novo, None)
+    pag = html_pag_alterar_trecho.gera(ses, id_trc, args_novo, None, False)
   except ErroAtrib as ex:
     erros = ex.args[0]
     # Repete a página de alterar trecho com os mesmos argumentos e mens de erro:
-    pag = html_pag_alterar_trecho.gera(ses, id_trc, args, erros)
+    pag = html_pag_alterar_trecho.gera(ses, id_trc, args, erros, False)
   return pag
