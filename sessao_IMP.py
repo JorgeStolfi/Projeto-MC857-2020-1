@@ -119,6 +119,11 @@ def busca_por_identificador(id):
   ses = objeto.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
   return ses
 
+def busca_por_usuario(id):
+  global cache, nome_tb, letra_tb, colunas, diags
+  ses = objeto.busca_por_campo("usr", id, False, cache, nome_tb, letra_tb, colunas)
+  return ses
+
 def busca_por_campo(chave, val):
     global cache, nome_tb, letra_tb, colunas, diags
     ids = objeto.busca_por_campo(chave, val, False, cache, nome_tb, letra_tb, colunas)

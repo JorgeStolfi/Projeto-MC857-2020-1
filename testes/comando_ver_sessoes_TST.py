@@ -1,25 +1,24 @@
+
 #! /usr/bin/python3
+import sys
 import comando_ver_sessoes
-import tabelas
-import sessao
-import usuario
 import base_sql
+import tabelas
+import usuario
+import sessao
+import compra
 import utils_testes
 
-import sys
-
-# Conecta no banco e alimenta com as informações para o teste
 sys.stderr.write("Conectando com base de dados...\n")
-res = base_sql.conecta("DB", None, None)
-assert res is None
+res = base_sql.conecta("DB",None,None)
+assert res == None
 
-sys.stderr.write("Criando alguns objetos...\n")
+sys.stderr.write("Criando objetos...\n")
 tabelas.cria_todos_os_testes()
 
 # Dados de teste
-sessao = sessao.busca_por_identificador("S-00000001")
-id_usr = 'U-00000001'
-
+ses3 = sessao.busca_por_identificador("S-00000003")
+usr1_id = 'U-00000001'
 
 def testa(rotulo, *args):
     """Testa {funcao(*args)}, grava resultado
@@ -31,5 +30,5 @@ def testa(rotulo, *args):
     pretty = True  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-testa("sem id do usuario", sessao, {})
-testa("com id do usuario", sessao, {'id': id_usr})
+testa("s3", ses3, {'id': usr1_id} )
+

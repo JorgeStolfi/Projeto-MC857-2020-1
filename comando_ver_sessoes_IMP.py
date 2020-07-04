@@ -10,7 +10,6 @@ def processa(ses, args):
 
     assert ses != None
     assert sessao.aberta(ses)
-
     # request para ver sessões de outro user
     if 'id' in args:
         id_usr = args['id']
