@@ -16,7 +16,7 @@ def gera(cpr):
     html_botao_radio.gera("metodo", "bois",     "Bois gordos") + "<br/>" + \
     html_botao_radio.gera("metodo", "balas",    "Balinhas")    
 
-  ht_submit = html_botao_submit.gera("Confirmar (NÃO IMPLEMENTADO)", "alterar_pagamento", {'id_compra': id_compra}, '#55ee55')
+  ht_submit = html_botao_submit.gera("Confirmar", "alterar_pagamento", {'id_compra': id_compra}, '#55ee55')
 
   ht_campos = \
     ht_titulo + "<br/>" + \
