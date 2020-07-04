@@ -36,6 +36,7 @@ import comando_ver_roteiro
 import comando_ver_objeto
 import comando_ver_trecho
 import comando_alterar_compra
+import comando_trocar_poltrona
 import comando_alterar_poltrona
 
 import html_texto
@@ -348,7 +349,7 @@ def processa_comando(tipo, ses, dados):
     sys.stderr.write("!! processa_comando: cmd = %s\n" % cmd)
     sys.stderr.write("!! processa_comando: ses = %s\n" % \
       (sessao.obtem_identificador(ses) if ses != None else "None"))
-      
+
     if cmd == '' or cmd == '/' or cmd == '/principal':
       # Acesso sem comando, ou usuário apertou "Principal" no menu geral.
       pag =  html_pag_principal.gera(ses, [])
@@ -367,7 +368,7 @@ def processa_comando(tipo, ses, dados):
       # Usuário apertou o botão "Sair" (logout) do menu geral:
       # ATENÇÃO: devolve também a nova sessão (que geralmente vai ser {None}).
       pag, ses_nova = comando_fazer_logout.processa(ses, args)
-    
+
     elif cmd == '/fechar_sessao':
       # Usuário apertou o botão "Fechar sessão" da visualização de um objeto sessão:
       pag = comando_fechar_sessao.processa(ses, args)
@@ -382,7 +383,7 @@ def processa_comando(tipo, ses, dados):
 
     elif cmd == '/solicitar_pag_alterar_trecho':
       # Usuário apertou o botão "alterar" da página que exibe os trechos:
-      pag = comando_solicitar_pag_alterar_trecho.processa(ses, args) 
+      pag = comando_solicitar_pag_alterar_trecho.processa(ses, args)
 
     elif cmd == '/solicitar_pag_alterar_usuario':
       # Usuário apertou o botão "Minha Conta" do menu geral:
@@ -464,7 +465,7 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/solicitar_pag_escolher_pagamento':
       # Usuário apertou o botão "Escolher Pagamento" ou equivalente:
       pag = comando_solicitar_pag_escolher_pagamento.processa(ses, args)
-      
+
     elif cmd == '/ver_poltronas':
       # Usuário apertou o botão "ver poltronas" ou equivalente:
       pag =  html_pag_mensagem_de_erro.gera(ses, ("** comando ver poltronas ainda não implementado"))
@@ -472,7 +473,7 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/ver_sessoes':
       # Usuário apertou o botão "ver sessões" ou equivalente:
       pag = comando_ver_sessoes.processa(ses, args)
-      
+
     elif cmd == '/excluir_poltrona':
      # Usuário apertou o botão "Excluir" num item de uma compra:
      pag = comando_excluir_poltrona.processa(ses, args)
@@ -486,7 +487,12 @@ def processa_comando(tipo, ses, dados):
       pag = comando_alterar_compra.processa(ses, args)
       
     elif cmd == '/alterar_dados_de_poltrona':
+      # !!! DOCUMENTAR
       pag = comando_alterar_poltrona.processa(ses, args)
+
+    elif cmd == '/trocar_poltrona':
+      # Usuário apertou o botão "Trocar" em carrinho de compras
+      pag = comando_trocar_poltrona.processa(ses, args)
             
     elif cmd == '/comprar_poltrona':
       # Usuário apertou o botão "Comprar" num item do botão "Ver" da página de "Ofertas":
