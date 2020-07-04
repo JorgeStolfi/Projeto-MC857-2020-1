@@ -9,19 +9,19 @@ def gera():
   linhas = [].copy()
 
   ht_rotulo = html_label.gera("Origem", ": ")
-  ht_campo = html_input.gera(None, "text", "origem", None, None, True, None, None)
+  ht_campo = html_input.gera(None, "text", "origem", None, None, True, None, None, True)
   linhas.append((ht_rotulo, ht_campo,))
 
   ht_rotulo = html_label.gera("Destino", ": ")
-  ht_campo = html_input.gera(None, "text", "destino", None, None, True, None, None)
+  ht_campo = html_input.gera(None, "text", "destino", None, None, True, None, None, True)
   linhas.append((ht_rotulo, ht_campo,))
 
   ht_rotulo = html_label.gera("Dia mínimo para viagem", ": ")
-  ht_campo = html_input.gera(None, "date", "dia_min", None, None, True, None, None)
+  ht_campo = html_input.gera(None, "text", "dia_min", None, None, True, "aaaa-mm-dd HH:MM UTC", None, True)
   linhas.append((ht_rotulo, ht_campo,))
 
   ht_rotulo = html_label.gera("Dia máximo para viagem", ": ")
-  ht_campo = html_input.gera(None, "date", "dia_max", None, None, True, None, None)
+  ht_campo = html_input.gera(None, "text", "dia_max", None, None, True, "aaaa-mm-dd HH:MM UTC", None, True)
   linhas.append((ht_rotulo, ht_campo,))
 
   # Monta a tabela com os fragmentos HTML:
