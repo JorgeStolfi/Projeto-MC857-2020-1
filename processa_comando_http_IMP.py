@@ -10,6 +10,7 @@ import comando_alterar_trecho
 import comando_alterar_usuario
 import comando_buscar_trechos
 import comando_cadastrar_usuario
+import comando_comprar_poltrona
 import comando_criar_roteiro
 import comando_definir_carrinho
 import comando_fazer_login
@@ -486,6 +487,11 @@ def processa_comando(tipo, ses, dados):
       
     elif cmd == '/alterar_dados_de_poltrona':
       pag = comando_alterar_poltrona.processa(ses, args)
+            
+    elif cmd == '/comprar_poltrona':
+      # Usuário apertou o botão "Comprar" num item do botão "Ver" da página de "Ofertas":
+      pag = comando_comprar_poltrona.processa(ses, args)
+
     else:
       # Comando não identificado
       pag =  html_pag_mensagem_de_erro.gera(ses, ("** comando POST \"%s\" inválido" % cmd))

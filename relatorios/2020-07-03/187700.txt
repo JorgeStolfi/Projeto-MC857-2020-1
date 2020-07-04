@@ -1,0 +1,2 @@
+Tive dificuldade para entender como selecionar os dias especificos para
+o retorno, não consegui testar se a implementaćao funciona.
