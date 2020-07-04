@@ -38,6 +38,7 @@ import comando_ver_roteiro
 import comando_ver_objeto
 import comando_ver_trecho
 import comando_alterar_compra
+import comando_ver_poltrona
 import comando_trocar_poltrona
 import comando_alterar_poltrona
 
@@ -479,6 +480,10 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/ver_poltronas':
       # Usuário apertou o botão "ver poltronas" ou equivalente:
       pag =  html_pag_mensagem_de_erro.gera(ses, ("** comando ver poltronas ainda não implementado"))
+
+    elif cmd == '/ver_poltrona':
+      # Usuário apertou o botão "ver poltrona" ou equivalente:
+      pag = comando_ver_poltrona.processa(ses, args)
 
     elif cmd == '/ver_sessoes':
       # Usuário apertou o botão "ver sessões" ou equivalente:
