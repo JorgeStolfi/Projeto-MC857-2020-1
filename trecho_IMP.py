@@ -53,6 +53,7 @@ def inicializa(limpa):
       ( "dia_chegada",  type("foo"), 'TEXT',    False ),  # Data UTC de chegada, "{YYYY}-{MM}-{DD}".
       ( "hora_chegada", type("foo"), 'TEXT',    False ),  # Hora UTC de chegada, "{hh}:{mm}".
       ( "veiculo",      type("foo"), 'TEXT',    False ),  # Código do veículo (onibus/aeronave)".
+      ( "aberto",       type(True),  'INTEGER', False ),  # Disponibilidade do Trecho.
     )
   if limpa:
     tabela_generica.limpa_tabela(nome_tb, colunas)
@@ -184,7 +185,8 @@ def cria_testes():
         'hora_partida': "12:45",
         'dia_chegada':  "2020-05-08",
         'hora_chegada': "13:40",
-        'veiculo':      "AAA-0001"
+        'veiculo':      "AAA-0001",
+        'aberto':       True
       },
       { # T-00000002
         'codigo':       "AZ 4036",
@@ -194,7 +196,8 @@ def cria_testes():
         'hora_partida': "19:45",
         'dia_chegada':  "2020-05-08",
         'hora_chegada': "20:40",
-        'veiculo':      "AAA-0002"
+        'veiculo':      "AAA-0002",
+        'aberto':       True
       },
       { # T-00000003
         'codigo':       "GO 2133",
@@ -204,7 +207,8 @@ def cria_testes():
         'hora_partida': "19:33",
         'dia_chegada':  "2020-05-08",
         'hora_chegada': "20:27",
-        'veiculo':      "AAA-0003"
+        'veiculo':      "AAA-0003",
+        'aberto':       True
       },
       { # T-00000004
         'codigo':       "AZ 4044",
@@ -214,7 +218,8 @@ def cria_testes():
         'hora_partida': "20:00",
         'dia_chegada':  "2020-05-09",
         'hora_chegada': "06:25",
-        'veiculo':      "AAA-0004"
+        'veiculo':      "AAA-0004",
+        'aberto':       True
       },
       { # T-00000005
         'codigo':       "AZ 4092",
@@ -224,7 +229,8 @@ def cria_testes():
         'hora_partida': "07:40",
         'dia_chegada':  "2020-05-09",
         'hora_chegada': "13:20",
-        'veiculo':      "AAA-0005"
+        'veiculo':      "AAA-0005",
+        'aberto':       True
       },
       { # T-00000006
         'codigo':       "GO 2121",
@@ -234,7 +240,8 @@ def cria_testes():
         'hora_partida': "15:00",
         'dia_chegada':  "2020-05-08",
         'hora_chegada': "19:33",
-        'veiculo':      "AAA-0006"
+        'veiculo':      "AAA-0006", 
+        'aberto':       True
       },
     ]
   for atrs in lista_trechos:

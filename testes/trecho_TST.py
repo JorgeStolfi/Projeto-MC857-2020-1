@@ -95,6 +95,7 @@ trc1_atrs = {
   'dia_chegada':  "2020-05-08",
   'hora_chegada': "13:40",
   'veiculo':      "PP-CAI",
+  'aberto':       True,
 }
 trc1_ind = 1
 trc1_id = "T-00000001"
@@ -109,6 +110,7 @@ trc2_atrs = {
   'dia_chegada':  "2020-05-08",
   'hora_chegada': "20:40",
   'veiculo':      "PP-BUM",
+  'aberto':       True,
 }
 trc2_ind = 2
 trc2_id = "T-00000002"
@@ -123,6 +125,7 @@ trc3_atrs = {
   'dia_chegada':  "2020-05-09",
   'hora_chegada': "20:40",
   'veiculo':      "PP-PAU",
+  'aberto':       True,
 }
 trc3_ind = 2
 trc3_id = "T-00000003"
@@ -148,7 +151,8 @@ trc1_mods = {
   'codigo':       "GO 2331",
   'dia_partida':  "2020-05-08",
   'hora_partida': "12:33",
-  'veiculo':      "PU-MBA"
+  'veiculo':      "PU-MBA",
+  'aberto':       False
 }
 trecho.muda_atributos(trc1, trc1_mods)
 trc1_atrs_m = trc1_atrs
@@ -165,6 +169,7 @@ verifica_trecho("trc2", trc2, trc2_id, trc2_atrs_m)
 # Testando troca de todos os atributos por outros valores.
 trc3_mods = trc2_atrs.copy() 
 trc3_mods['dia_partida'] = "2020-05-10" # Para evitar duplicação de {(cod,dia,hora)}
+trc3_mods['aberto'] = False
 trc3_atrs_m = trc3_mods.copy()
 trecho.muda_atributos(trc3, trc3_mods) # Deveria assumir os valores do trc3
 verifica_trecho("trc3_m", trc3, trc3_id, trc3_atrs_m)
