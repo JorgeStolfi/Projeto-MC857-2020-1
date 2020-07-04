@@ -7,6 +7,7 @@ import usuario
 
 import comando_acrescentar_trecho
 import comando_alterar_trecho
+import comando_encerrar_trecho
 import comando_alterar_usuario
 import comando_buscar_trechos
 import comando_cadastrar_usuario
@@ -458,6 +459,10 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/clonar_trecho':
       # Usuário apertou o botão "clonar Trecho" do menu geral (administrador):
       pag = comando_clonar_trecho.processa(ses, args)
+
+    elif cmd == '/encerrar_trecho':
+      # Usuário apertou o botão "Encerrar" na página de ver_objeto de um trecho:
+      pag = comando_encerrar_trecho.processa(ses, args)
 
     elif cmd == '/criar_roteiro':
       # Usuário apertou o botão "Criar" ou equivalente no formulário de criar roteiro:
