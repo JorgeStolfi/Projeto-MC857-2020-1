@@ -46,14 +46,14 @@ def testa_acrescenta_trecho_com_sucesso(id_trecho_ult, id_trecho_prox):
      'dia_chegada': "2020-05-26",
      'hora_chegada': "06:23",
      'veiculo': "jegue003",
-     'poltronas': "1A-12D",
+     'poltronas': "1A-12D: 90.00",
   }
   testa("Suc", ses, args)
 
   trc_novo = trecho.busca_por_identificador(id_trecho_prox)
   assert trc_novo != None
   atrs_novo = trecho.obtem_atributos(trc_novo)
-  assert atrs_novo == args 
+  assert atrs_novo == args
 
 def testa_acrescenta_trecho_invalido(id_trecho_ult, id_trecho_prox):
   """Testa a criação de um novo trecho com falha, dados

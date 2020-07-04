@@ -10,8 +10,8 @@ def processa(ses, args):
   
   O argumento {ses} deve ser uma sessão atualmente aberta.
   
-  O dicionário de argumentos {args} pode ser vazio ou conter um único 
-  campo com chave "id_trecho". 
+  O dicionário de argumentos {args} pode ser vazio ou conter um 
+  campo com chave "id_trecho" e um parâmetro opcional "clonar". 
   
   Se o campo {args["id_trecho"]} não existir ou for {None},
   o formulário retorna um erro de trecho não identificado.

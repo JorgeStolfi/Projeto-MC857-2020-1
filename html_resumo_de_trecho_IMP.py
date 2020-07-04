@@ -5,7 +5,7 @@ import html_botao_simples
 import html_imagem
 
 
-def gera(trc, ver, alterar):
+def gera(trc, ver, alterar, clonar):
   id_trecho = trecho.obtem_identificador(trc)
   atrs_trecho = trecho.obtem_atributos(trc)
   ids_poltronas = poltrona.busca_por_trecho(trc)
@@ -75,7 +75,7 @@ def gera(trc, ver, alterar):
   ##              add_span_tag("Assentos livres: ") + ht_num_poltronas,
   ##              botao_ver,
   ##              botao_alterar)
-  ht_campos = [ ht_logo, ht_codigo, ht_origem, ht_destino, ht_dt_partida, ht_dt_chegada, ht_num_poltronas ]
+  ht_campos = [ ht_logo, ht_codigo, ht_origem, ht_dt_partida, ht_destino, ht_dt_chegada, ht_num_poltronas ]
   
   # Botões de "Ver" e "Alterar"
   if ver:
@@ -85,5 +85,9 @@ def gera(trc, ver, alterar):
   if alterar:
     botao_alterar = html_botao_simples.gera("Alterar", 'solicitar_pag_alterar_trecho', {'id_trecho': id_trecho}, '#FFA700')
     ht_campos.append(botao_alterar)
+  
+  if clonar:
+    botao_clonar = html_botao_simples.gera("Clonar", 'solicitar_pag_alterar_trecho', {'id_trecho': id_trecho, 'clonar':"True"}, '#FFA700')
+    ht_campos.append(botao_clonar)
 
   return ht_campos

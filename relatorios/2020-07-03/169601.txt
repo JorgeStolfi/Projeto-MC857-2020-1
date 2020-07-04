@@ -1,0 +1,11 @@
+Tarefa: "Checar objeto"(id="T-00000001"): se o dono da sessão é administrador, deveria ter um botão "Encerrar", para usar quando o embarque está encerrado, que (por enquanto) apaga todos os campos 'oferta' das poltronas do trecho. Criar e ativar o módulo {comando_encerrar_trecho} para esse fim.
+
+Comecei fazendo com que o botão em questão aparecesse na tela exibida pelo comando {comando_ver_objeto}. Para isso, usei o módulo {html_botao_simples} para gerar o fragmento de HTML do botão e o adicionei ao final do html da página. O resultado foi o botão "Encerrar" aparecer no final e, ao ser clicado, emitir o comando {encerrar_trecho} passando como o argumento de URL {id_trecho} o id do trecho que originou a ação. Documentei o comportamento do botão na especificação do módulo {html_pag_ver_trecho}.
+
+Feito isso, alterei o módulo {processa_comando_http} para aceitar o comando {encerrar_trecho} e usar o módulo {comando_encerrar_trecho} (ainda não criado) para tratá-lo.
+
+Criei os dois arquivos para o módulo {comando_encerrar_trecho} copiando o módulo {comando_encerrar_trecho}. Documentei o comportamento do módulo na interface alterando a descrição do método único {processa}.
+
+Para fazer funcionar como o especificado na tarefa, o módulo {comando_encerrar_trecho} pega as poltronas associadas ao trecho cujo id foi recebido como o parâmetro de URL {id_trecho} e, para cada poltrona, muda o atributo {oferta} para {False}. Feito isso, ele repete a página HTML anterior com os valores atualizados. O resultado dessa operação é que os campos "OFERTA" da listagem de poltronas desaparecem e, consequentemente, as poltronas não ficam mais em oferta.
+
+Para testar o módulo {comando_encerrar_trecho}, fiz o teste {comando_encerrar_trecho_TST} a partir do {comando_alterar_trecho_TST}. Ele inicializa a base de dados e executa o comando {encerrar_trecho} usando a sessão "S-00000004" (do usuário administrador) para o trecho "T-00000001". Após executar o comando, ele verifica se todas as poltronas do trecho estão com o atributo {oferta} setado como {False}. Se estiverem, o teste finaliza com sucesso. Se ao menos uma poltrona tiver {oferta} como {True} o teste levanta um erro com a mensagem "Nem todas as poltronas tiveram suas ofertas apagadas".

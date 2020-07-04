@@ -1,0 +1,22 @@
+Relatori dia 03/07/2020
+
+Aluno: Miguel Augusto Silva Guida   RA 174847
+
+Tarefa:  [A] "Minha conta" > "Ver sessões": Não funciona.
+
+
+- Fiz funcionar o botão "Ver Sessões", agora o botão redireciona para a página que contem a lista de sessões do usuário.
+  Porém, falta implementar o módulo "resumo_de_sessao" e adicioná-lo no "html_lista_de_sessoes" para aparecer a 
+  tabela com as sessões bonitinhas. (O Professor permitiuu deixar esta parte para outra tarefa.)
+
+
+Alterações:
+
+- comando_ver_sessoes_IMP.py: corrige chamadas para obter sessoas de usuarios desejados.
+                          OBS: Corrigir descricao do comando_ver_sessoes.py
+
+- sessao.py / sessao_IMP.py: adiciona metodo "busca_por_usuario", que recebe um id de usuario e busca sessoas atreladas a esse usuario.
+
+- html_lista_de_sessoes: corrige chamadas e sintaxe.
+
+- comando_ver_sessoes_TST.py: Cria módulo de testes.
