@@ -21,6 +21,7 @@ import comando_fechar_sessao
 import comando_solicitar_pag_acrescentar_trecho
 import comando_solicitar_pag_alterar_trecho
 import comando_solicitar_pag_alterar_usuario
+import comando_solicitar_pag_alterar_poltrona
 import comando_solicitar_pag_buscar_compras
 import comando_solicitar_pag_buscar_trechos
 import comando_solicitar_pag_buscar_usuarios
@@ -391,6 +392,10 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/solicitar_pag_alterar_usuario':
       # Usuário apertou o botão "Minha Conta" do menu geral:
       pag = comando_solicitar_pag_alterar_usuario.processa(ses, args)
+    
+    elif cmd == '/solicitar_pag_alterar_poltrona':
+      # Usuário apertou o botão "Alterar" da lista de poltronas:
+      pag = comando_solicitar_pag_alterar_poltrona.processa(ses, args)
 
     elif cmd == '/alterar_usuario':
       # Usuário apertou "Confirmar" em formulário de alterar usuário:

@@ -32,7 +32,7 @@ def gera(pol, id_trecho, alterar, comprar, id_compra):
 
   if alterar:
     args_alterar = { 'id_poltrona': id_pol }
-    ht_alterar = html_botao_submit.gera("Alterar", "solicitar_pag_alterar_poltrona", args_alterar, '#bca360')
+    ht_alterar = html_botao_simples.gera("Alterar", "solicitar_pag_alterar_poltrona", args_alterar, '#bca360')
     linha.append(ht_alterar)
 
   if comprar and id_compra_pol == None:
