@@ -485,7 +485,7 @@ def processa_comando(tipo, ses, dados):
 
     elif cmd == '/ver_poltronas':
       # Usuário apertou o botão "ver poltronas" ou equivalente:
-      pag =  html_pag_mensagem_de_erro.gera(ses, ("** comando ver poltronas ainda não implementado"))
+      pag = comando_ver_poltrona.processa(ses, args)
 
     elif cmd == '/ver_poltrona':
       # Usuário apertou o botão "ver poltrona" ou equivalente:
