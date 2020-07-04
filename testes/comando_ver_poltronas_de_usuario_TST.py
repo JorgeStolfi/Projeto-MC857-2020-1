@@ -1,7 +1,7 @@
 #! /usr/bin/python3
 
 import sys
-import comando_ver_poltrona
+import comando_ver_poltronas_de_usuario
 import base_sql
 import tabelas
 import usuario
@@ -25,11 +25,10 @@ def testa(rotulo, *args):
     """Testa {funcao(*args)}, grava resultado
     em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
 
-    modulo = comando_ver_poltrona
+    modulo = comando_ver_poltronas_de_usuario
     funcao = modulo.processa
     frag = False  # {True} se for apenas um fragmento HTML, {False} se for página completa.
     pretty = True  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
     
 testa('teste', ses, {'id': 'U-00000001'})
-

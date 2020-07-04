@@ -39,6 +39,7 @@ import comando_ver_roteiro
 import comando_ver_objeto
 import comando_ver_trecho
 import comando_alterar_compra
+import comando_ver_poltronas_de_usuario
 import comando_finalizar_compra
 import comando_ver_poltrona
 import comando_trocar_poltrona
@@ -483,9 +484,9 @@ def processa_comando(tipo, ses, dados):
       # Usuário apertou o botão "Escolher Pagamento" ou equivalente:
       pag = comando_solicitar_pag_escolher_pagamento.processa(ses, args)
 
-    elif cmd == '/ver_poltronas':
+    elif cmd == '/ver_poltronas_de_usuario':
       # Usuário apertou o botão "ver poltronas" ou equivalente:
-      pag = comando_ver_poltrona.processa(ses, args)
+      pag = comando_ver_poltronas_de_usuario.processa(ses, args)
 
     elif cmd == '/ver_poltrona':
       # Usuário apertou o botão "ver poltrona" ou equivalente:
