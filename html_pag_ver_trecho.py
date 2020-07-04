@@ -15,5 +15,7 @@ def gera(ses, trc, comprar, alterar, erros):
   Se {alterar} for {True}, cada poltrona terá um boão "Alterar" que,
   quando clicado, emitirá o comando "solicitar_pag_alterar_potrona". 
   Haverá também um botão "Alterar" no cabeçalho, que emitirá o comando 
-  "solicitar_pag_alterar_trecho"."""
+  "solicitar_pag_alterar_trecho".
+  
+  Se o usuário for administrador, mostrar um botão 'Clonar' para clonar o trecho."""
   return html_pag_ver_trecho_IMP.gera(ses, trc, comprar, alterar, erros)

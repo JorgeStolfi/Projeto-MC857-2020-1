@@ -10,6 +10,7 @@ import comando_alterar_trecho
 import comando_alterar_usuario
 import comando_buscar_trechos
 import comando_cadastrar_usuario
+import comando_clonar_trecho
 import comando_comprar_poltrona
 import comando_criar_roteiro
 import comando_definir_carrinho
@@ -453,6 +454,10 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/alterar_trecho':
       # Usuário apertou o botão "Alterar Trecho" do menu geral (administrador):
       pag = comando_alterar_trecho.processa(ses, args)
+    
+    elif cmd == '/clonar_trecho':
+      # Usuário apertou o botão "clonar Trecho" do menu geral (administrador):
+      pag = comando_clonar_trecho.processa(ses, args)
 
     elif cmd == '/criar_roteiro':
       # Usuário apertou o botão "Criar" ou equivalente no formulário de criar roteiro:
