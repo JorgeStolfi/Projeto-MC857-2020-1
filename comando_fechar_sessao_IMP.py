@@ -12,6 +12,7 @@ def processa(ses, args):
   else:
     # Busca sessão mandada nos argumentos da url e a fecha
     sessao_a_fechar = sessao.busca_por_identificador(args['id_sessao'])
+    sessao.fecha(sessao_a_fechar)
     
     if ses == sessao_a_fechar:
       # se a sessao que está sendo fechada for a sessao corrente, fazer como em comando_fazer_logout (retorna pra homepage).
@@ -20,5 +21,4 @@ def processa(ses, args):
       # Redireciona para a mesma página, agora com dados atualizados
       pag = html_pag_ver_sessao.gera(ses, sessao_a_fechar, None)
     
-    sessao.fecha(sessao_a_fechar)
   return pag

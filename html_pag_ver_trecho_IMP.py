@@ -5,6 +5,7 @@ import html_table
 import html_lista_de_poltronas_de_trecho
 import html_resumo_de_trecho
 import html_botao_simples
+import html_botao_submit
 import poltrona
 import sessao
 import compra
@@ -14,8 +15,8 @@ from utils_testes import erro_prog, aviso_prog
 from trecho import obtem_atributos, obtem_poltronas
 
 def gera(ses, trc, comprar, alterar, erros):
-  linha_resumo = html_resumo_de_trecho.gera(trc, False, False)
-  ht_resumo = " ".join(linha_resumo)
+  linha_resumo = html_resumo_de_trecho.gera(trc, False, alterar, alterar)
+  ht_resumo = " ".join(linha_resumo) 
   pols_ids = poltrona.busca_por_trecho(trc)
   if ses == None:
     id_carrinho = None

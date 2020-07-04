@@ -11,6 +11,8 @@ import comando_encerrar_trecho
 import comando_alterar_usuario
 import comando_buscar_trechos
 import comando_cadastrar_usuario
+import comando_clonar_trecho
+import comando_comprar_poltrona
 import comando_criar_roteiro
 import comando_definir_carrinho
 import comando_fazer_login
@@ -36,6 +38,8 @@ import comando_ver_roteiro
 import comando_ver_objeto
 import comando_ver_trecho
 import comando_alterar_compra
+import comando_trocar_poltrona
+import comando_alterar_poltrona
 
 import html_texto
 import html_div
@@ -451,6 +455,10 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/alterar_trecho':
       # Usuário apertou o botão "Alterar Trecho" do menu geral (administrador):
       pag = comando_alterar_trecho.processa(ses, args)
+    
+    elif cmd == '/clonar_trecho':
+      # Usuário apertou o botão "clonar Trecho" do menu geral (administrador):
+      pag = comando_clonar_trecho.processa(ses, args)
 
     elif cmd == '/encerrar_trecho':
       # Usuário apertou o botão "Encerrar" na página de ver_objeto de um trecho:
@@ -487,6 +495,18 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/alterar_compra':
       # Administrador apertou o botão "Alterar" na página "Checar Objeto"
       pag = comando_alterar_compra.processa(ses, args)
+      
+    elif cmd == '/alterar_dados_de_poltrona':
+      # !!! DOCUMENTAR
+      pag = comando_alterar_poltrona.processa(ses, args)
+
+    elif cmd == '/trocar_poltrona':
+      # Usuário apertou o botão "Trocar" em carrinho de compras
+      pag = comando_trocar_poltrona.processa(ses, args)
+            
+    elif cmd == '/comprar_poltrona':
+      # Usuário apertou o botão "Comprar" num item do botão "Ver" da página de "Ofertas":
+      pag = comando_comprar_poltrona.processa(ses, args)
 
     else:
       # Comando não identificado

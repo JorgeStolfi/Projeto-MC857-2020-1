@@ -1,0 +1,14 @@
+Para a tarefa do botão Clonar em ver trecho, 
+que deveria abrir a página de Acrescentar trecho com os valores do trecho selecionado já preenchidos,
+resolvi usar a página Alterar trecho pois já funciona com essa lógica e alterar todos os locais em que ela é chamada
+para que escute um novo parâmetro "clonar" que diz se o trecho será alterado ou criado um novo (clonado)
+
+
+Também alterei a página Ver trecho para que o botão alterar se faça presente (antes era sempre False) e o botão Clonar
+esteja presente na tela caso o usuário seja administrador.
+
+
+Arrumei a página Ver objeto, que chama a página Ver trecho porém nunca respeitava os parâmetros Comprar ou Alterar
+
+Portanto foram editados todos os processos que envolvem alterar trecho e sua página HTML, criada a função Clonar e arrumado
+todo o código para que o fluxo funcione.
