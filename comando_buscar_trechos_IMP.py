@@ -33,12 +33,15 @@ def verifica_pelo_menos_um_campo(campos, dic):
 
 def processa(ses, args):
   try:
-    campos = ['codigo', 'destino', 'origem', 'dia_partida', 'hora_partida', 'dia_chegada', 'hora_chegada']
+    campos = ['origem', 'destino', 'data_min', 'data_max']
     if not verifica_pelo_menos_um_campo(campos, args):
       raise ErroAtrib("Pelo menos um dos campos da busca precisa estar preenchido")
     
     # !!! Considerar dia e hora de partida e chegada !!!
-    trcs_ids = trecho.busca_por_origem_e_destino(args['origem'], args['destino'], None, None)
+    for campo in campos:
+      if campo not in args: args[campo] = None
+
+    trcs_ids = trecho.busca_por_origem_e_destino(args['origem'], args['destino'], args['data_min'], args['data_max'])
     trcs = map(lambda id_trecho: trecho.busca_por_identificador(id_trecho), trcs_ids)
     alterar_trcs = sessao.eh_administrador(ses)
     bloco = html_lista_de_trechos.gera(trcs, alterar_trcs)

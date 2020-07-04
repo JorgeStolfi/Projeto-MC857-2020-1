@@ -1,0 +1,28 @@
+Minha tarefa nesse dia foi para não exibir os botões "Ver Compras" e "Ver Poltronas" na página Minha Conta
+para usuários Administradores.
+
+Acessando a página, verifiquei que os botões de visualização de compras, poltronas e sessões estavam sendo exibidos
+apenas para Administradores dentro do formulário de usuário. Para mim, semanticamente isso não faz sentido,
+já que a função que gera o formulário do usuário deveria retornar apenas o formulário.
+
+Com isso em mente, retirei os botões do formulário e coloquei eles nas páginas que precisam deles, no caso são as páginas
+html_pag_alterar_usuario e html_pag_ver_usuario.
+
+html_pag_alterar_usuario:
+Esse é a tela que aparece ao clicar no botão Minha Conta, aqui deixei o comportamente informado na Issue. Se o usuário for Administrador,
+exibe apenas o botão "Ver Sessões", se não, exibe apenas os botões "Ver Compras" e "Ver Poltronas" do usuário logado.
+Antigamente, os 3 botoões apareciam somente quando o usuário era Administrador.
+
+html_pag_ver_usuario:
+Esse funcionalidade é usada apenas por Adminitradores do sistema, durante a busca de objetos, no caso da busca de um objeto usuário.
+Como a página apenas aparece para Adminitradores, todos os botões são exibidos, porém eles são montados de acordo com o usuário buscado.
+Isso significa, por exemplo, que o botão "Ver Compras" irá exibir as compras do usuário buscado e não do usuário logado.
+Antigamente nesta página, os botões não faziam sentido, pois os botões eram referentes ao usuário logado e não ao buscado.
+
+Observei também que o formulário html_form_dados_de_usuario era usado em html_pag_cadastrar_usuario.
+Corretamente não era exibido nenhum botão nessa página, porém isso acontecia assumindo que o usuário corrente não é um
+admin pois a página é acessada apenas por usuário não logados.
+Como passei os botões para fora do formulário, não houve necessidade de alteração nessa página.
+
+Executei os testes das 3 páginas potencialmente afetadas (html_pag_cadastrar_usuario, html_pag_ver_usuario e html_pag_alterar_usuario)
+e do formulário alterado. Todos os testes passaram com sucesso e continuam funcionando corretamente.
