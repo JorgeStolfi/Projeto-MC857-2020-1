@@ -37,12 +37,13 @@ def gera(pol, id_compra, ver, excluir, trocar):
     ht_trecho, ht_origem, ht_dt_partida, ht_destino, ht_dt_chegada, 
     ht_numero, ht_preco
   ]
-
   ver = True # Por enquanto.
   if ver:
     args_ver = { 'id_poltrona': id_pol }
+    linha.append("<form>")
     ht_ver = html_botao_submit.gera("Ver", 'ver_poltrona', args_ver, '#60a3bc')
     linha.append(ht_ver)
+    linha.append("</form>")
 
   if excluir:
     args_excluir = { 'id_poltrona': id_pol, 'id_compra': id_compra }

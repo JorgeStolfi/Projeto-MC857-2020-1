@@ -1,0 +1,9 @@
+Relatório
+
+Minha tarefa nessa aula foi fazer as poltronas serem criadas ao acrescentar um trecho
+e devolver a página com o trecho criado. Para fazer essas correções eu editei o módulo
+{comando_acrescentar_trecho}, eu apenas precisei tirar o comentário da linha que criava
+as poltronas e retornar a página {html_pag_ver_trecho} com o trecho criado ao invés da
+página principal, além disso mudei a descrição do módulo para deixar claro que a página
+retornada é a com o trecho criado. Por fim alterei o teste do módulo para o caso de sucesso
+pois o mesmo estava errado e não tinha o preço das poltronas.

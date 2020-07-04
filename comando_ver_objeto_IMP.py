@@ -39,7 +39,7 @@ def processa(ses, args):
       trc = trecho.busca_por_identificador(id)
       alterar_pols = True
       comprar_pols = False
-      pag = html_pag_ver_trecho.gera(ses, trc, False, False, None)
+      pag = html_pag_ver_trecho.gera(ses, trc, comprar_pols, alterar_pols, None)
     elif letra == "S":
       ses1 = sessao.busca_por_identificador(id)
       pag = html_pag_ver_sessao.gera(ses, ses1, None)

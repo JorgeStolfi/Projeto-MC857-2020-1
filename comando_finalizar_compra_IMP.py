@@ -1,6 +1,7 @@
 import sessao
 import compra
 import html_pag_escolher_pagamento
+import html_pag_login
 
 def processa(ses, args):
   # Verificar se o usuário esta logado
