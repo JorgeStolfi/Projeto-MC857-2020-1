@@ -1,0 +1,9 @@
+-Agora o botao comprar da "Ver" > "Comprar" adiciona o item clicado para o carrinho.
+
+-{processa_comando_http} l486-l489, adicionado elif para "comprar_poltrona"
+
+-{html_form_dados_de_poltrona} l83, adicionado argumento para chamada de html_botao_submit {args_pol_submit}
+
+-em {comando_comprar_poltrona} de {args["id_pol"]} para {args["id_poltrona"]}
+
+- em {html_resumo_de_poltrona_de_trecho}, me pareceu fazer mais sentido usar botao do tipo simples do que submit; l45: de {html_botao_submit} para {html_botao_simples.gera("Comprar", 'comprar_poltrona', args_comprar, '#ff0000')}
