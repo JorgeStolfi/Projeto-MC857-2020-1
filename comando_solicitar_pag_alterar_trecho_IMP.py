@@ -21,10 +21,15 @@ def processa(ses, args):
     # O 'id_trecho' foi especificado; obtém dados do dito cujo.
     id_trc = args['id_trecho']
     trc = trecho.busca_por_identificador(id_trc)
+    if args['clonar'] != None:
+      clonar = args['clonar']
+    else:
+      clonar = False
   else:
     erro_prog("Trecho não identificado")
 
+
   atrs = trecho.obtem_atributos(trc)
-  pag = html_pag_alterar_trecho.gera(ses, id_trc, atrs, erro)
+  pag = html_pag_alterar_trecho.gera(ses, id_trc, atrs, erro, clonar)
   return pag
     

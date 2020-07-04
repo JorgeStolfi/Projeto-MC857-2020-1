@@ -1,34 +1,39 @@
 #! /usr/bin/python3
 
-import sys
-import comando_ver_poltronas_de_usuario
+import comando_solicitar_pag_alterar_poltrona
 import base_sql
 import tabelas
-import usuario
+import poltrona
 import sessao
-import compra
 import utils_testes
+
+import sys
 
 sys.stderr.write("Conectando com base de dados...\n")
 res = base_sql.conecta("DB",None,None)
 assert res == None
 
-sys.stderr.write("Criando objetos...\n")
+sys.stderr.write("Criando alguns objetos...\n")
 tabelas.cria_todos_os_testes()
 
-# Sessões de teste
-ses = sessao.busca_por_identificador("S-00000003")
-
-args = None
+# sessão usada no teste
+sessao1 = sessao.busca_por_identificador("S-00000001")
+assert sessao1 != None
 
 def testa(rotulo, *args):
-    """Testa {funcao(*args)}, grava resultado
+    """Testa {comando_solicitar_pag_alterar_poltrona.processa(*args)}, grava resultado
     em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
 
-    modulo = comando_ver_poltronas_de_usuario
+    modulo = comando_solicitar_pag_alterar_poltrona
     funcao = modulo.processa
     frag = False  # {True} se for apenas um fragmento HTML, {False} se for página completa.
     pretty = True  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
-    
-testa('teste', ses, {'id': 'U-00000001'})
+
+args1 = {}
+# Teste mostra os dados do dono da sessão
+testa("S-semID", sessao1, args1)
+
+args1['id_poltrona'] = "A-00000001"
+# Teste mostra os dados do dono do identificador passado
+testa("S-comID", sessao1, args1)

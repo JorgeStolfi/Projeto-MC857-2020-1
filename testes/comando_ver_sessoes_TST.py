@@ -1,7 +1,7 @@
-#! /usr/bin/python3
 
+#! /usr/bin/python3
 import sys
-import comando_ver_poltronas_de_usuario
+import comando_ver_sessoes
 import base_sql
 import tabelas
 import usuario
@@ -16,19 +16,19 @@ assert res == None
 sys.stderr.write("Criando objetos...\n")
 tabelas.cria_todos_os_testes()
 
-# Sessões de teste
-ses = sessao.busca_por_identificador("S-00000003")
-
-args = None
+# Dados de teste
+ses3 = sessao.busca_por_identificador("S-00000003")
+usr1_id = 'U-00000001'
 
 def testa(rotulo, *args):
     """Testa {funcao(*args)}, grava resultado
     em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
 
-    modulo = comando_ver_poltronas_de_usuario
+    modulo = comando_ver_sessoes
     funcao = modulo.processa
     frag = False  # {True} se for apenas um fragmento HTML, {False} se for página completa.
     pretty = True  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
-    
-testa('teste', ses, {'id': 'U-00000001'})
+
+testa("s3", ses3, {'id': usr1_id} )
+

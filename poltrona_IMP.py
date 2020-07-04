@@ -90,7 +90,7 @@ def obtem_atributo(pol, chave):
 def busca_por_identificador(id):
   global cache, nome_tb, letra_tb, colunas, diags
   pol = objeto.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
-  assert type(pol) is poltrona.Objeto_Poltrona
+  assert pol == None or type(pol) is poltrona.Objeto_Poltrona
   return pol
 
 def busca_por_trecho(trc):

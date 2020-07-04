@@ -91,7 +91,7 @@ def obtem_atributo(usr, chave):
 def busca_por_identificador(id):
   global cache, nome_tb, letra_tb, colunas, diags
   usr = objeto.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
-  assert type(usr) is usuario.Objeto_Usuario
+  assert usr == None or type(usr) is usuario.Objeto_Usuario
   return usr
 
 def busca_por_email(em):

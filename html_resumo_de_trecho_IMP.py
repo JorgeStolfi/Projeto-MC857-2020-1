@@ -1,14 +1,12 @@
 import trecho
-import poltrona
 import html_texto
 import html_botao_simples
 import html_imagem
 
 
-def gera(trc, ver, alterar):
+def gera(trc, ver, alterar, clonar):
   id_trecho = trecho.obtem_identificador(trc)
   atrs_trecho = trecho.obtem_atributos(trc)
-  ids_poltronas = poltrona.busca_por_trecho(trc)
   # atributos trecho
   codigo = atrs_trecho['codigo']
   origem = atrs_trecho['origem']
@@ -16,8 +14,9 @@ def gera(trc, ver, alterar):
   dt_partida = atrs_trecho['dia_partida'] + " " + atrs_trecho['hora_partida']
   dt_chegada = atrs_trecho['dia_chegada'] + " " + atrs_trecho['hora_chegada']
   veiculo = atrs_trecho['veiculo']
-  num_poltronas = str(len(ids_poltronas))
-  aberto = 'Sim' if atrs_trecho['aberto'] else 'Não'
+  num_poltronas_total = str(trecho.numero_de_poltronas(trc))
+  num_poltronas_livres = str(trecho.numero_de_poltronas_livres(trc))
+  num_poltronas = num_poltronas_livres + " / " + num_poltronas_total
 
 
 ###
@@ -50,9 +49,7 @@ def gera(trc, ver, alterar):
   # ht_dt_partida = ('Data de Partida', html_texto.gera(dt_partida, None, None, None, None, None, None, None, None))
   # ht_dt_chegada = ('Data de Chegada', html_texto.gera(dt_chegada, None, None, None, None, None, None, None, None))
   # ht_num_poltronas = ('Número de Poltronas', html_texto.gera(num_poltronas, None, None, None, None, None, None, None, None))
-  # ht_aberto = ('Aberto:', html_texto.gera(aberto, None, None, None, None, None, None, None, None))
-
-
+  
   # recupera o nome da empresa
   empresa = codigo.split(" ")[0] 
 
@@ -65,8 +62,7 @@ def gera(trc, ver, alterar):
   ht_dt_partida = html_texto.gera(dt_partida, None, None, None, None, None, None, None, None)
   ht_dt_chegada = html_texto.gera(dt_chegada, None, None, None, None, None, None, None, None)
   ht_veiculo = html_texto.gera(veiculo, None, None, None, None, None, None, None, None)
-  ht_num_poltronas = html_texto.gera(str(num_poltronas), None, None, None, None, None, None, None, None)
-  ht_aberto = html_texto.gera(aberto, None, None, None, None, None, None, None, None)
+  ht_num_poltronas = html_texto.gera(num_poltronas, None, None, None, None, None, None, None, None)
 
   ## def add_span_tag(str):
   ##   return "<span style=\"color:blue;font-weight:bold\">" + str + "</span>"
@@ -77,10 +73,9 @@ def gera(trc, ver, alterar):
   ##              add_span_tag("Destino: ") + ht_destino,
   ##              add_span_tag("Data de chegada: ") + ht_dt_chegada,
   ##              add_span_tag("Assentos livres: ") + ht_num_poltronas,
-  ##              add(span_tag)("Aberto: ") + ht_aberto
   ##              botao_ver,
   ##              botao_alterar)
-  ht_campos = [ ht_logo, ht_codigo, ht_origem, ht_destino, ht_dt_partida, ht_dt_chegada, ht_num_poltronas, ht_aberto ]
+  ht_campos = [ ht_logo, ht_codigo, ht_origem, ht_dt_partida, ht_destino, ht_dt_chegada, ht_num_poltronas ]
   
   # Botões de "Ver" e "Alterar"
   if ver:
@@ -90,5 +85,9 @@ def gera(trc, ver, alterar):
   if alterar:
     botao_alterar = html_botao_simples.gera("Alterar", 'solicitar_pag_alterar_trecho', {'id_trecho': id_trecho}, '#FFA700')
     ht_campos.append(botao_alterar)
+  
+  if clonar:
+    botao_clonar = html_botao_simples.gera("Clonar", 'solicitar_pag_alterar_trecho', {'id_trecho': id_trecho, 'clonar':"True"}, '#FFA700')
+    ht_campos.append(botao_clonar)
 
   return ht_campos
