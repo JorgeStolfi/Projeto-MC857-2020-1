@@ -74,13 +74,15 @@ def gera(id_pol, atrs_pol, alterar, comprar, excluir, id_cpr, ver_poltrona):
   ht_campos = html_form_table.gera(dados_linhas, atrs_pol, admin, ver_poltrona)
   
   # Botão:
-  
+  args_pol_submit = {'id_poltrona': id_pol}
+  print("SECOND BIG TETS")
+  print(str(args_pol_submit))
   if excluir:
     ht_botao = html_botao_submit.gera("Excluir", "excluir_poltrona_de_compra", None, '#bca360')
   elif alterar:
     ht_botao = html_botao_submit.gera("Alterar", "alterar_dados_de_poltrona", None, '#bca360')
   elif comprar:
-    ht_botao = html_botao_submit.gera("Comprar", "comprar_poltrona", None, '#bca360')
+    ht_botao = html_botao_submit.gera("Comprar", "comprar_poltrona", args_pol_submit, '#bca360')
   else:
     ht_botao = None
 

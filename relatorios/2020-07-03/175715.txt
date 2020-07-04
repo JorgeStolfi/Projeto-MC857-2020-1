@@ -1,0 +1,5 @@
+1. Alterei o assert de administrador no arquivo comando_alterar_compra_IMP.py, isso porque antes apenas usuários admnistradores podiam alterar compras.
+2. O botão funciona e o comando realiza a requisição http mas ocorreu erro no arquivo processa_comando_http_IMP.py na linha 402.
+3. A tarefa estabelecia que o botão deveria funcionar e isso ocorre mas não consegui identificar/consertar o erro citado no item (2).
+
+Nota: as tarefas estruturadas dessa forma ficam muito grandes, e múltiplos erros em múltiplos módulos surgem.

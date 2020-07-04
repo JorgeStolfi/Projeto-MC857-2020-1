@@ -1,0 +1,1 @@
+Ao observar o módulo {comando_fechar_sessao} para entender o comportamento dele, o testei no servidor. Ao fechar uma sessão, notei que era necessário clicar duas vezes no "fechar sessão" para que o status da sessão atualizasse. Assim, realocando o comando {sessao.fecha(sessao_a_fechar)} para antes de gerar a página da sessão, o problema foi solucionado.

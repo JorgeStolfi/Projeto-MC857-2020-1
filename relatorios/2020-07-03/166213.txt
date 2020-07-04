@@ -1,0 +1,5 @@
+Criados os arquivos html_form_contato.py e html_form_contato_IMP.py. O arquivo html_form_contato_IMP.py define a função gera e o layout apresentado
+ao usuário quando o mesmo clica no botão "Contato", bem como as ações associadas aos botões "Enviar" e "Cancelar". 
+Observação: a implementação da ação associada ao botão "Enviar" não foi escopo desta tarefa.
+
+Modificado o arquivo html_pag_contato_IMP.py para chamar corretamente a função html_form_contato.gera.

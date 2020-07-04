@@ -1,0 +1,16 @@
+# Relatório da Atividade do Dia 03/07/2020
+
+Tarefa: [U] "Meu Carrinho": cabeçalhos das colunas estão errados. Veja cabeçalho de [U] "Minhas Compras".
+
+# O que foi feito ?
+Visto que as colunas da opção "Meu Carrinho" estavam erradas, foi modificado o
+modulo {html_lista_de_poltronas_de_compra_IMP}. Inicialmente, o nome dos
+cabeçalhos foi ajustado para refletir o nome correto do valor que é referenciado
+pelo mesmo. Além disso, o fragmento HTML do cabeçalho
+recebeu o mesmo estilo do cabeçalho de "Minhas Compras". Por fim, o elemento
+{<table>} recebeu um estilo para espaçar os dados das colunas.
+
+# Testes
+O seguinte teste foi realizado: `$ testa.sh html_lista_de_poltronas_de_compra`.
+Não houveram erros de syntaxe. Além disso, a inspeção visual mostrou que as
+modificações comprem com o que foi pedido na tarefa.
