@@ -116,6 +116,14 @@ def obtem_poltronas(trc):
   """Devolve uma lista com os identificadores das poltronas do trecho."""
   return trecho_IMP.obtem_poltronas(trc)
 
+def numero_de_poltronas(trc):
+  """Devolve o numero {num} de poltronas em um trecho."""
+  return trecho_IMP.numero_de_poltronas(trc)
+
+def numero_de_poltronas_livres(trc):
+  """Devolve o numero {num} de poltronas livres em um trecho."""
+  return trecho_IMP.numero_de_poltronas_livres(trc)
+
 def busca_por_origem(cod):
   """Devolve uma lista de identificadores (NÃO objetos) de todos os trechos
   através de uma string codigo de origem do aeroporto."""

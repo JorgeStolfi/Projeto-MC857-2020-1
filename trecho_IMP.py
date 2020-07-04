@@ -83,8 +83,17 @@ def obtem_atributo(trc, chave):
 
 def obtem_poltronas(trc):
   global cache, nome_tb, letra_tb, colunas, diags
-  id_trc = obtem_identificador(trc)
-  return poltrona.busca_por_trecho(id_trc)
+  return poltrona.busca_por_trecho(trc)
+
+def numero_de_poltronas(trc):
+  global cache, nome_tb, letra_tb, colunas, diags
+  id_pols = obtem_poltronas(trc)
+  return len(id_pols)
+
+def numero_de_poltronas_livres(trc):
+  global cache, nome_tb, letra_tb, colunas, diags
+  id_pols = poltrona.lista_livres(trc)
+  return len(id_pols)
 
 def obtem_dia_e_hora_de_partida(trc):
   global cache, nome_tb, letra_tb, colunas, diags
