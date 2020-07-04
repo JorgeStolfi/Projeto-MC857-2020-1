@@ -28,3 +28,7 @@ testa("senha_dica",  "Senha", "password", "senha", None, None,  True, "Máximo 2
 testa("senha_vini",  "Senha", "password", "senha", "99", None,  True, None,              "do_it")
 
 testa("hidden_vini",  None, "hidden", "user", "U-12345678", None, False, None,   "do_it")
+
+testa("text_obrigatorio",  None, "text", "user", "U-12345678", None, True, None,   "do_it", True)
+testa("text_not_obrigatorio",  None, "text", "user", "U-12345678", None, True, None,   "do_it", False)
+testa("text_not_obrigatorio_default",  None, "text", "user", "U-12345678", None, True, None,   "do_it")

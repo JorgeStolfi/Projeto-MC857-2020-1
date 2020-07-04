@@ -1,0 +1,12 @@
+André Papoti de Oliveira RA:166380
+
+
+Tarefa: [A] "Buscar trecho" > "Buscar" > "Alterar" > "Alterar": não funciona.
+
+Ao verificar melhor junto do professor, este módulo está funcionando de forma correta.
+
+Porém vou aproveitar o relatório para enumerar alguns pontos que podem ser melhorados neste módulo em específico
+
+> [A] "Buscar trecho" > "Buscar", caso seja dado algum input que não é válido o site quebra ao invés de responder com uma mensagem de que nenhum resultado foi encontrado
+
+> [A] "Buscar trecho" > "Buscar" > "Alterar", a alteração de poltronas é muito não intuitiva, pois a página não mostra o estado atual destas. Talvez seja bom se, ao inves de apenas apresentar o campo "Poltronas", uma lista das poltronas seja gerada e cada uma possa ser atualizada individualmente 

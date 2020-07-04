@@ -57,7 +57,10 @@ def gera(ses, cpr, excluir, trocar, erros):
   if aberto:
     ht_bt_finalizar = html_botao_simples.gera("Finalizar compra", 'finalizar_compra', args_bt, '#ff3300')
     ht_conteudo += "<br/>\n" + ht_bt_finalizar
-    ht_bt_continuar_compra = html_botao_simples.gera("Continuar comprando", 'principal', None, '#ffdd22')
+    if (admin):
+      ht_bt_continuar_compra = html_botao_simples.gera("Principal", 'principal', None, '#ffdd22')
+    else:
+      ht_bt_continuar_compra = html_botao_simples.gera("Continuar comprando", 'principal', None, '#ffdd22')
     ht_conteudo += ht_bt_continuar_compra
   else:
     ht_bt_ok = html_botao_simples.gera("OK", 'principal', None, '#ffdd22')

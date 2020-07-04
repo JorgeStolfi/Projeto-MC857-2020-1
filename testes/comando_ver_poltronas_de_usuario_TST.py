@@ -30,5 +30,6 @@ def testa(rotulo, *args):
     frag = False  # {True} se for apenas um fragmento HTML, {False} se for página completa.
     pretty = True  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
-
+    
 testa('teste', ses, {'id': 'U-00000001'})
+
