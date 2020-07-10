@@ -127,7 +127,7 @@ def numero_de_poltronas_livres(trc):
 
 def busca_por_origem(cod):
   """Devolve uma lista de identificadores (NÃO objetos) de todos os trechos
-  através de uma string codigo de origem do aeroporto."""
+  através de uma string ORG do aeroporto."""
   return trecho_IMP.busca_por_origem(cod)
 
 def busca_por_codigo_e_data(cod, dia, hora):

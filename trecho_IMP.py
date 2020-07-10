@@ -123,7 +123,7 @@ def busca_por_identificador(id):
 def busca_por_origem(cod):
   global cache, nome_tb, letra_tb, colunas, diags
   unico = False
-  ids = objeto.busca_por_campo('codigo', cod, unico, cache, nome_tb, letra_tb, colunas)
+  ids = objeto.busca_por_campo('origem', cod, unico, cache, nome_tb, letra_tb, colunas)
   return ids
 
 def busca_por_codigo_e_data(cod, dia, hora):
