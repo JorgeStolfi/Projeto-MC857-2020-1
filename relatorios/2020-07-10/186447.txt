@@ -1,0 +1,6 @@
+Tarefa: 186447 `[A] Fazer {html_lista_de_sessoes} chamar {html_resumo_de_sessao}
+
+Implementado o codigo (linhas 20 a 31) que chama o modulo {html_resumo_de_sessao}
+e busca as informacoes a serem adicionadas na lista de sessoes. O teste para
+{html_lista_de_sessoes} nao rodou porque o 'import html_resumo_de_sessao' falha.
+(html_resumo_de_sessao esta sendo implementado por outro aluno).
