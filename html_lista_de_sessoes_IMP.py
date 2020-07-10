@@ -29,7 +29,7 @@ def gera(ids_sessoes):
     abrt = atributos['abrt']
     cookie = atributos['cookie']
     carrinho = atributos['carrinho']
-
+    
     # monta linha da tabela
     linha = [].copy()
     linha.append(html_texto.gera(id, None, None, None, None, None, None, None, None))
@@ -37,7 +37,8 @@ def gera(ids_sessoes):
     linha.append(html_texto.gera(abrt, None, None, None, None, None, None, None, None))
     linha.append(html_texto.gera(cookie, None, None, None, None, None, None, None, None))
     linha.append(html_texto.gera(carrinho, None, None, None, None, None, None, None, None))
-
+    linha.append(html_texto.gera(ses, None, None, None, None, None, None, None, None))
+    
   # Gera a tabela HTML a partir da lista de linhas
   ht_itens = html_table.gera(linhas, cabs_div)
 
