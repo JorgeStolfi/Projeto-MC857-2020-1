@@ -28,11 +28,11 @@ def gera(ses, bt_ver, bt_fechar):
   # O comando para tratar a url "ver_detalhes_sessao" ainda não existe, e deverá ser implementado
   # no futuro.
   if bt_ver:
-    ht_bt_fechar = html_botao_simples.gera("Ver Sessão", 'ver_detalhes_sessao', args_bt, cor_bt_admin)
+    ht_bt_fechar = html_botao_simples.gera("Ver", 'ver_detalhes_sessao', args_bt, cor_bt_admin)
     ht_campos.append(ht_bt_fechar)
 
   if bt_fechar and sessao_aberta:
-    ht_bt_fechar = html_botao_simples.gera("Fechar Sessão", 'fechar_sessao', args_bt, cor_bt_admin)
+    ht_bt_fechar = html_botao_simples.gera("Fechar", 'fechar_sessao', args_bt, cor_bt_admin)
     ht_campos.append(ht_bt_fechar)
 
   return ht_campos

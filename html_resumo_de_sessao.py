@@ -13,11 +13,11 @@ def gera(ses, bt_ver, bt_fechar):
   campos, que pode ser usada como uma linha do argumento de {html_table.gera}.
 
   Se {bt_ver} é {True}, um dos elementos da tupla será um fragmento HTML
-  que descreve um botão "Ver Sessão". Quando clicado, esse botão emitirá o comando
+  que descreve um botão "Ver". Quando clicado, esse botão emitirá o comando
   HTTP "ver_detalhes_sessao" com o identificador da sessão como argumento.
 
   Se {bt_fechar} é {True}, um dos elementos da tupla será um fragmento HTML
-  que descreve um botão "Fechar Sessão". Quando clicado, esse botão emitirá o comando
+  que descreve um botão "Fechar". Quando clicado, esse botão emitirá o comando
   HTTP "fechar_sessao" com o identificador da sessão como argumento.
 
   (Os parãmetros {bt_ver,bt_fechar} só deveriam ser
