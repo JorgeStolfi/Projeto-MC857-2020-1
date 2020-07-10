@@ -16,39 +16,15 @@ def gera():
   ht_campo = html_input.gera(None, "text", "destino", None, None, True, None, None, True)
   linhas.append((ht_rotulo, ht_campo,))
 
-
-
-  '''dia partida'''
   ht_rotulo = html_label.gera("Dia mínimo de partida", ": ")
   ht_campo = html_input.gera(None, "text", "dia_min", None, None, True, "aaaa-mm-dd", None, True)
   ht_campo2 = html_input.gera(None, "text", "hora_min", None, None, True, "HH:MM UTC", None, True)
   linhas.append((ht_rotulo, ht_campo, ht_campo2,))
 
-
-  ''' HORA partida
-  ht_rotulo = html_label.gera("Horário", ": ")
-  ht_campo = html_input.gera(None, "text", "hora_min", None, None, True, "HH:MM UTC", None, True)
-  linhas.append((ht_rotulo, ht_campo,))'''
-
-
-
-  ''' dia chegada'''
   ht_rotulo = html_label.gera("Dia máximo de chegada", ": ")
   ht_campo = html_input.gera(None, "text", "dia_max", None, None, True, "aaaa-mm-dd", None, True)
   ht_campo2 = html_input.gera(None, "text", "hora_max", None, None, True, "HH:MM UTC", None, True)
   linhas.append((ht_rotulo, ht_campo, ht_campo2,))
-
-  ''' HORA
-  ht_rotulo = html_label.gera("Horário", ": ")
-  ht_campo = html_input.gera(None, "text", "hora-max", None, None, True, "HH:MM UTC", None, True)
-  linhas.append((ht_campo,))'''
-
-
-
-
-
-
-
 
   # Monta a tabela com os fragmentos HTML:
   ht_table = html_table.gera(linhas, None)
