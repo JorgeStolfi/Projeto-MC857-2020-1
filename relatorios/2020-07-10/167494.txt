@@ -1,0 +1,17 @@
+Relatório Individual - 2020-07-10 - Bernardo do Amaral Teodosio - 167494
+
+Nesta aula, a tarefa designada para mim foi "167494 [X] Definir o módulo {html_resumo_de_sessao} análogo a {html_resumo_de_trecho} etc."
+
+Abaixo, segue um passo a passo do que tive que fazer para realizá-la, na ordem em que os passos foram realizados:
+
+    * Iniciei a aula tirando dúvidas com o professor, já que o módulo html_lista_de_sessoes já existia. O professor disse então para que eu apenas criasse o módulo html_resumo_de_sessao (junto com seu teste);
+    * Usei como o base o html_resumo_de_trecho, conforme indicado;
+    * Alinhei com o professor que vão ter dois botões para cada sessão: "Fechar Sessão" e "Ver Sessão"
+        * O botão Fechar sessão faz um redirecionamento para "fechar_sessao"
+        * O botão Ver Sessão invocará um comando que ainda não existe - isso foi alinhado com o professor e deixei um comentário no código indicando isso.
+    * Depois de implementar o módulo html_resumo_de_sessao, implementei os testes no arquivo html_resumo_de_sessao_TST, de forma a testar as 4 distintas possibilidades de estado para os botões "Ver Sessão" e "Fechar Sessão". Cada uma das possibilidades produz um arquivo de saída diferente, onde cada arquivo pode exibir ou não os botões de acordo com o resultado do teste.
+    * Após finalizar a implementação, escrevi um comentário na função "gera" do módulo recém criado por mim, para documentar o funcionamento da função para os outros usuários.
+
+Em caso de dúvidas, estou a disposição.
+Abraços,
+Bernardo
