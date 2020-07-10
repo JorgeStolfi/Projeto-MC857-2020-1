@@ -1,5 +1,5 @@
 import html_pag_principal
-import html_pag_alterar_trecho
+import html_pag_acrescentar_trecho
 import trecho
 import sessao
 import poltrona
@@ -22,17 +22,17 @@ def processa(ses, args):
   
   # Salva especificação de poltronas, se houver, e elimina dos {atrs_cmd}:
   if 'poltronas' in atrs_cmd:
-    esp_pols = atrs_cmd['poltronas']
+    esp_poltronas = atrs_cmd['poltronas']
     del atrs_cmd['poltronas']
   else:
-    esp_pols = None
+    esp_poltronas = None
   
   # Obtem o trecho e seus atributos correntes:
   trc = trecho.busca_por_identificador(id_trc)
   atrs_trc = trecho.obtem_atributos(trc)
   
   # Substitui atributos correntes pelos atributos em {atrs_cmd}
-  for ch, val in atrs_cmd.itens():
+  for ch, val in atrs_cmd.items():
     assert ch in atrs_trc
     atrs_trc[ch] = val
     
@@ -42,4 +42,3 @@ def processa(ses, args):
   # Mostra os dados como página de acrescentar trecho:
   pag = html_pag_acrescentar_trecho.gera(ses, atrs_trc, None)
   return pag
-  
