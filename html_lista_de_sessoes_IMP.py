@@ -4,16 +4,15 @@ import html_texto
 import html_div
 import html_span
 import sys
+import html_estilo_cabecalho_de_tabela
 
 def gera(ids_sessoes):
 
   # Linha de cabeçalho:
-  estilo_cab = "font-size:20px;font-weight:bold; background-color: #60a3bc; color: white; padding:0px 10px 0px 0px"
-  estilo_item = "font-size:15px; background-color: #60a3bc; color: white; padding:0px 10px 0px 0px"
   cabs_raw = ['Sessão', 'Usuário', 'Aberta?', 'Cookie', 'Carrinho']
   cabs_div = [].copy()
   for cb in cabs_raw:
-    cabs_div.append(html_div.gera(estilo_cab, cb))
+    cabs_div.append(html_div.gera(html_estilo_cabecalho_de_tabela.gera(), cb))
   
   ## !!! Falta implementar o modulo resumo_de_sessao para criar a lista de sessoes !!!
 
