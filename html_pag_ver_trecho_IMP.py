@@ -32,8 +32,8 @@ def gera(ses, trc, comprar_pols, alterar_trc, erros):
 
   # Dados gerais do trecho:
   alterar_trc = alterar_trc
-  clonar_trc = alterar_trc
-  fechar_trc = alterar_trc
+  clonar_trc = False
+  fechar_trc = False
   linha_resumo = html_resumo_de_trecho.gera \
     (trc, False, alterar_trc, clonar_trc, fechar_trc)
   ht_resumo = " ".join(linha_resumo) 

@@ -15,7 +15,7 @@ def gera(trcs, alterar):
     linha = html_resumo_de_trecho.gera(trc, bt_ver_trc, bt_alterar_trc, bt_clonar_trc, bt_fechar_trc)
     linhas.append(linha)
     
-  cabecalho = ["", "Código", "Origem", "Data de Partida", "Destino", "Data de Chegada", "Número de Poltronas"]
+  cabecalho = ["", "Código", "Origem", "Data de Partida", "Destino", "Data de Chegada", "Número de Poltronas", "Status"]
   ht_itens = html_table.gera(linhas, cabecalho)
   # !!! Deveria envolver tudo com um <span style="..."></span> !!!
   return ht_itens

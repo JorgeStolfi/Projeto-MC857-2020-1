@@ -19,8 +19,7 @@ def gera(trc, bt_ver, bt_alterar, bt_clonar, bt_fechar):
   num_poltronas_total = str(trecho.numero_de_poltronas(trc))
   num_poltronas_livres = str(trecho.numero_de_poltronas_livres(trc))
   num_poltronas = num_poltronas_livres + " / " + num_poltronas_total
-  
-  # !!! Deveria mostrar também atributo 'aberto' !!!
+  status_aberto = atrs_trc['aberto']
 
   # Formata informações em HTML:
   ht_logo = html_imagem.gera("/" + empresa + ".png", "logo", 20)
@@ -31,8 +30,9 @@ def gera(trc, bt_ver, bt_alterar, bt_clonar, bt_fechar):
   ht_dt_chegada = formata_texto(dt_chegada)
   ht_veiculo = formata_texto(veiculo)
   ht_num_poltronas = formata_texto(num_poltronas)
+  ht_aberto = formata_texto('Sim' if status_aberto else 'Não')
 
-  ht_campos = [ ht_logo, ht_codigo, ht_origem, ht_dt_partida, ht_destino, ht_dt_chegada, ht_num_poltronas ]
+  ht_campos = [ ht_logo, ht_codigo, ht_origem, ht_dt_partida, ht_destino, ht_dt_chegada, ht_num_poltronas, ht_aberto ]
   
   args_bt = {'id_trecho': id_trc} # Argumentos para os botões.
   cor_bt_normal = '#00FF00' # Cor para botões de uso geral.
