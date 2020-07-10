@@ -4,7 +4,7 @@ def processa(ses, args):
     """Esta função é chamada quando o administrador aperta o botão "Alterar" no
     formulário gerado pelo botão "Checar Objeto" do menu principal.
 
-    O propósito da função é alterar os dados de uma compra, com exceção de seu id.
+    O propósito da função é alterar os dados de uma poltrona, com exceção de seu id.
     A sessão {ses} deve pertencer à um administrador. Além disso, {args} deve ser
     um dicionário contendo:
     'id_poltrona': o ID (string) da poltrona existente;
