@@ -7,6 +7,7 @@ import usuario
 
 import comando_acrescentar_trecho
 import comando_alterar_compra
+import comando_alterar_pagamento
 import comando_alterar_poltrona
 import comando_alterar_trecho
 import comando_alterar_usuario
@@ -477,6 +478,12 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/alterar_compra':
       # Quer formulário para alterar atributos de um pedido de compra
       pag = comando_alterar_compra.processa(ses, args)
+    
+    elif cmd == '/alterar_pagamento':
+        # Quer formulário para alterar atributos de um pedido de compra
+        ## Descomentar linha apos implementar
+        #pag = comando_alterar_pagamento.processa(ses, args)
+        pag = html_pag_mensagem_de_erro.gera(ses, ("** Adicionar atributo forma_pag a compra.py e descomentar implementacao do comando alterar_pagamento"))
 
     elif cmd == '/solicitar_pag_escolher_pagamento':
       # Quer formulário para escolher a forma de pagamento de uma compra:

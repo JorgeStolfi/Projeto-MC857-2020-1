@@ -1,0 +1,8 @@
+André Papoti de Oliveira RA:166380
+
+
+Tarefa: [U] "Meu carrinho" > "Finalizar compra" > "Boleto" > "Confirmar" : fazer funcionar
+
+Comando alterar_pagamento e testes implementados, porém não consegui testa-los por conta que o modulo compra.py ainda nao tem o atributo forma_pag. 
+
+Assim que este for implementado basta descomentar a chamada do comando em processa_comando 
