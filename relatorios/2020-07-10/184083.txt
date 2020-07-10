@@ -1,0 +1,7 @@
+184083 [X] "Ofertas" : Deveria haver uma coluna de preço (o preço da poltrona livre mais barata).
+
+Para impl essa tarefa foi necessario a alteracao em 4 arquivos
+html_lista_de_trechos_imp: adicionar novo campo na tabela para o preco
+html_resumo_de_trecho_imp: pegar todas as poltronas livres do trecho e achar o valor mais barato, se nao houver nenhum imprime "ESGOTADO"
+trecho_IMP criacao obtem_poltrona_livres
+trecho  criacao obtem_poltrona_livres

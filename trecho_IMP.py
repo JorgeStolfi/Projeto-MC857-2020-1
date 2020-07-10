@@ -86,6 +86,11 @@ def obtem_poltronas(trc):
   global cache, nome_tb, letra_tb, colunas, diags
   return poltrona.busca_por_trecho(trc)
 
+def obtem_poltronas_livres(trc):
+  global cache, nome_tb, letra_tb, colunas, diags
+  id_pols = poltrona.busca_por_trecho(trc)
+  return id_pols
+
 def numero_de_poltronas(trc):
   global cache, nome_tb, letra_tb, colunas, diags
   id_pols = obtem_poltronas(trc)

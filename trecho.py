@@ -117,6 +117,10 @@ def obtem_poltronas(trc):
   """Devolve uma lista com os identificadores das poltronas do trecho."""
   return trecho_IMP.obtem_poltronas(trc)
 
+def obtem_poltronas_livres(trc):
+  """Devolve uma lista com os identificadores das poltronas livres do trecho."""
+  return trecho_IMP.obtem_poltronas_livres(trc)
+
 def numero_de_poltronas(trc):
   """Devolve o numero {num} de poltronas em um trecho."""
   return trecho_IMP.numero_de_poltronas(trc)
