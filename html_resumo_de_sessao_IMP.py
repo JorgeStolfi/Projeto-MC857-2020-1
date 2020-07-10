@@ -2,8 +2,9 @@ import sessao
 import compra
 import usuario
 import html_span
+import html_botao_simples
 
-def gera(ses):
+def gera(ses, bt_ver, bt_fechar):
   sessao_id = sessao.obtem_identificador(ses)
 
   # Pega/monta atributos a mostrar:
@@ -22,25 +23,16 @@ def gera(ses):
 
   ht_campos = [ ht_sessao_id, ht_codigo_usuario, ht_estado, ht_cookie, ht_carrinho ]
   
-  # args_bt = {'id_trecho': id_trc} # Argumentos para os botões.
-  # cor_bt_normal = '#00FF00' # Cor para botões de uso geral.
-  # cor_bt_admin = '#FFA700' # Cor para botões de adminstrador.
-  
-  # if bt_ver:
-  #   ht_bt_ver = html_botao_simples.gera("Ver", 'ver_trecho', args_bt, cor_bt_normal)
-  #   ht_campos.append(ht_bt_ver)
-  #
-  # if bt_alterar:
-  #   ht_bt_alterar = html_botao_simples.gera("Alterar", 'solicitar_pag_alterar_trecho', args_bt, cor_bt_admin)
-  #   ht_campos.append(ht_bt_alterar)
-  #
-  # if bt_clonar:
-  #   ht_bt_clonar = html_botao_simples.gera("Clonar", 'solicitar_pag_clonar_trecho', args_bt, cor_bt_admin)
-  #   ht_campos.append(ht_bt_clonar)
-  #
-  # if bt_fechar:
-  #   ht_bt_fechar = html_botao_simples.gera("Encerrar", "encerrar_trecho", args_bt, cor_bt_admin)
-  #   ht_campos.append(ht_bt_fechar)
+  args_bt = {'id_sessao': sessao_id} # Argumentos para os botões.
+  cor_bt_admin = '#FFA700' # Cor para botões de adminstrador.
+
+  if bt_ver:
+    ht_bt_fechar = html_botao_simples.gera("Ver Sessão", 'ver_detalhes_sessao', args_bt, cor_bt_admin)
+    ht_campos.append(ht_bt_fechar)
+
+  if bt_fechar:
+    ht_bt_fechar = html_botao_simples.gera("Fechar Sessão", 'fechar_sessao', args_bt, cor_bt_admin)
+    ht_campos.append(ht_bt_fechar)
 
   return ht_campos
 

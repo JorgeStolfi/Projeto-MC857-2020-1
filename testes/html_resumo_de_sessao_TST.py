@@ -38,4 +38,7 @@ def testa(rotulo, *args):
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
 # Testes
-testa("teste_1", ses)
+testa("teste_false_false", ses, False, False)
+testa("teste_false_true", ses, False, True)
+testa("teste_true_false", ses, True, False)
+testa("teste_true_true", ses, True, True)
