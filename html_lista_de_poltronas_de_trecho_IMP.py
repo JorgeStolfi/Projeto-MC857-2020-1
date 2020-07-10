@@ -16,7 +16,7 @@ def gera(ids_poltronas, id_trecho, alterar_pols, comprar_pols, id_compra):
   #estilo do cabeçalho e aplicação do estilo
   # !!! Definir função  {hrml_estilo_cabecalho_de_tabela.gera} !!!
   estilo_cab = "font-size:20px;font-weight:bold; background-color: #60a3bc; color: white; padding:0px 10px 0px 0px"
-  cabs_raw = [ 'Poltrona', 'Preço', '', '']
+  cabs_raw = [ 'Poltrona', 'Preço', '', 'Compra']
   cabs_div = [].copy()
 
   #aplicar estilos nas colunas
