@@ -12,6 +12,8 @@ Abaixo, segue um passo a passo do que tive que fazer para realizá-la, na ordem 
     * Depois de implementar o módulo html_resumo_de_sessao, implementei os testes no arquivo html_resumo_de_sessao_TST, de forma a testar as 4 distintas possibilidades de estado para os botões "Ver Sessão" e "Fechar Sessão". Cada uma das possibilidades produz um arquivo de saída diferente, onde cada arquivo pode exibir ou não os botões de acordo com o resultado do teste.
     * Após finalizar a implementação, escrevi um comentário na função "gera" do módulo recém criado por mim, para documentar o funcionamento da função para os outros usuários.
 
+OBS: Professor, durante a aula o senhor comentou que utiliza SVN ao invés do Git. Apesar de não perguntado no momento, fiquei curioso em saber o motivo. Se não for por razões históricas / motivos pessoais, gostaria ainda de sugerir que o senhor desse uma chance ao Git - é bem fácil aprender a utilizá-lo e, sendo mais moderno, acredito que ele faz algumas funções melhor do que o SVN. Estou a disposição para ajudá-lo caso tenha interesse.
+
 Em caso de dúvidas, estou a disposição.
 Abraços,
 Bernardo
