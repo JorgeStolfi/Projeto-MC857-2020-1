@@ -1,5 +1,3 @@
-# Implementação do módulo {comando_solicitar_pag_acrescentar_trecho}.
-
 import html_pag_acrescentar_trecho
 import html_pag_generica
 import sys

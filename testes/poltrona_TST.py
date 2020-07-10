@@ -32,7 +32,8 @@ trc1_atrs = \
     'hora_partida': "19:45",
     'dia_chegada':  "2020-05-09",
     'hora_chegada': "20:40",
-    'veiculo':      "AAA-0002"
+    'veiculo':      "AAA-0002",
+    'aberto':       True
   }
 trc1 = trecho.cria(trc1_atrs)
 trc2_atrs = \
@@ -44,7 +45,8 @@ trc2_atrs = \
     'hora_partida': "19:45",
     'dia_chegada':  "2020-05-08",
     'hora_chegada': "20:40",
-    'veiculo':      "AAA-0002"
+    'veiculo':      "AAA-0002",
+    'aberto':       True
   }
 trc2 = trecho.cria(trc2_atrs)
 

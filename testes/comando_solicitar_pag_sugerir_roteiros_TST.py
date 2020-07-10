@@ -1,6 +1,6 @@
 #! /usr/bin/python3
 
-import comando_solicitar_pag_criar_roteiro
+import comando_solicitar_pag_sugerir_roteiros
 import tabelas
 import sessao
 import usuario
@@ -30,7 +30,7 @@ def testa(rotulo, *args):
     """Testa {funcao(*args)}, grava resultado
     em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
 
-    modulo = comando_solicitar_pag_criar_roteiro
+    modulo = comando_solicitar_pag_sugerir_roteiros
     funcao = modulo.processa
     frag = False  # {True} se for apenas um fragmento HTML, {False} se for página completa.
     pretty = True  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).

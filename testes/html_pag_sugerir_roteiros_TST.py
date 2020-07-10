@@ -1,6 +1,6 @@
 #! /usr/bin/python3
 
-import html_pag_criar_roteiro
+import html_pag_sugerir_roteiros
 import utils_testes
 
 import tabelas
@@ -22,7 +22,7 @@ def testa(rotulo, *args):
   """Testa {funcao(*args)}, grava resultado 
   em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
   
-  modulo = html_pag_criar_roteiro
+  modulo = html_pag_sugerir_roteiros
   funcao = modulo.gera
   frag = False  # {True} se for apenas um fragmento HTML, {False} se for página completa.
   pretty = False # Se {True}, formata HTML para legibilidade (mas introduz brancos nos textos).

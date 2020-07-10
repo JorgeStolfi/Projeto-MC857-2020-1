@@ -11,9 +11,9 @@ import comando_encerrar_trecho
 import comando_alterar_usuario
 import comando_buscar_trechos
 import comando_cadastrar_usuario
-import comando_clonar_trecho
+import comando_solicitar_pag_clonar_trecho
 import comando_comprar_poltrona
-import comando_criar_roteiro
+import comando_sugerir_roteiros
 import comando_definir_carrinho
 import comando_fazer_login
 import comando_fazer_logout
@@ -27,7 +27,7 @@ import comando_solicitar_pag_buscar_trechos
 import comando_solicitar_pag_buscar_usuarios
 import comando_solicitar_pag_cadastrar_usuario
 import comando_solicitar_pag_contato
-import comando_solicitar_pag_criar_roteiro
+import comando_solicitar_pag_sugerir_roteiros
 import comando_solicitar_pag_escolher_pagamento
 import comando_solicitar_pag_login
 import comando_solicitar_pag_ofertas
@@ -355,174 +355,198 @@ def processa_comando(tipo, ses, dados):
     sys.stderr.write("!! processa_comando: cmd = %s\n" % cmd)
     sys.stderr.write("!! processa_comando: ses = %s\n" % \
       (sessao.obtem_identificador(ses) if ses != None else "None"))
+      
+    # --- comandos gerais ------------------------------------------------
 
     if cmd == '' or cmd == '/' or cmd == '/principal':
       # Acesso sem comando, ou usuário apertou "Principal" no menu geral.
       pag =  html_pag_principal.gera(ses, [])
+      
+    elif cmd == '/ver_objeto':
+      # Quer ver os atributos de um objeto:
+      pag = comando_ver_objeto.processa(ses, args)
+
+    elif cmd == '/solicitar_pag_contato':
+      # Quer formulário para mandar mensagens aos administradores:
+      pag = comando_solicitar_pag_contato.processa(ses, args)
+
+    # --- comandos referentes a {Objeto_Usuario} ------------------------
+
+    elif cmd == '/solicitar_pag_cadastrar_usuario':
+      # Quer formumlário para cadastrar novo usuário:
+      pag = comando_solicitar_pag_cadastrar_usuario.processa(ses, args)
+
+    elif cmd == '/cadastrar_usuario':
+      # Preencheu atributos de novo usuário e quer executar a criação:
+      pag = comando_cadastrar_usuario.processa(ses, args)
+
+    elif cmd == '/solicitar_pag_alterar_usuario':
+      # Quer formulário formulário para alterar atributos de algum usuário:
+      pag = comando_solicitar_pag_alterar_usuario.processa(ses, args)
+    
+    elif cmd == '/alterar_usuario':
+      # Alterou atributos de um usuário e quer executar as alterações:
+      pag = comando_alterar_usuario.processa(ses, args)
+
+    elif cmd == '/solicitar_pag_buscar_usuarios':
+      # Quer formulário para especificar uma busca na tabela de usuários:
+      pag = comando_solicitar_pag_buscar_usuarios.processa(ses, args)
+      
+    elif cmd == '/buscar_usuarios':
+      # Preencheu formulário de busca de usuários, quer executar a busca:
+      pag = comando_buscar_usuarios.processa(ses, args)
+      
+    # --- comandos referentes a {Objeto_Trecho} -----------------------
+
+    elif cmd == '/ver_trecho':
+      # Quer ver atributos de um trecho:
+      pag = comando_ver_trecho.processa(ses, args)
+
+    elif cmd == '/solicitar_pag_acrescentar_trecho':
+      # Quer formulário para acrescentar novo trecho:
+      pag = comando_solicitar_pag_acrescentar_trecho.processa(ses, args)
+
+    elif cmd == '/solicitar_pag_clonar_trecho':
+      # Quer formulário para acreacentar novo trecho, copiando atributos de outro:
+      pag = comando_solicitar_pag_clonar_trecho.processa(ses, args)
+ 
+    elif cmd == '/acrescentar_trecho':
+      # Preencheu atributos de um novo trecho e quer criar o mesmo:
+      pag = comando_acrescentar_trecho.processa(ses, args)
+
+    elif cmd == '/solicitar_pag_alterar_trecho':
+      # Quer formulário para alterar atributos de trecho existente:
+      pag = comando_solicitar_pag_alterar_trecho.processa(ses, args)
+
+    elif cmd == '/alterar_trecho':
+      # Alterou atributos de um trecho e quer executar as alterações:
+      pag = comando_alterar_trecho.processa(ses, args)
+
+    elif cmd == '/encerrar_trecho':
+      # Quer marcar um trecho como "encerrado":
+      pag = comando_encerrar_trecho.processa(ses, args)
+    
+    elif cmd == '/solicitar_pag_buscar_trechos':
+      # Quer formulário para especificar uma busca na tabela de trechos:
+      pag = comando_solicitar_pag_buscar_trechos.processa(ses, args)
+
+    elif cmd == '/buscar_trechos':
+      # Preencheu parâmetros de busca de trechos e quer resultado:
+      pag = comando_buscar_trechos.processa(ses, args)
+
+    elif cmd == '/solicitar_pag_ofertas':
+      # Quer lista dos trechos que tem poltronas em oferta:
+      pag = comando_solicitar_pag_ofertas.processa(ses, args)
+
+    # --- comandos referentes a {Objeto_Poltrona} -----------------------
+
+    elif cmd == '/ver_poltrona':
+      # Quer ver atributos de uma poltrona:
+      pag = comando_ver_poltrona.processa(ses, args)
+
+    elif cmd == '/solicitar_pag_alterar_poltrona':
+      # Quer formulário para alterar atributos de uma poltrona:
+      pag = comando_solicitar_pag_alterar_poltrona.processa(ses, args)
+
+    elif cmd == '/alterar_poltrona':
+      # Alterou atributos de uma poltrona, quer executar as alterações:
+      pag = comando_alterar_poltrona.processa(ses, args)
+
+    elif cmd == '/comprar_poltrona':
+      # Quer comprar uma poltrona (um bilhete):
+      pag = comando_comprar_poltrona.processa(ses, args)
+
+    elif cmd == '/excluir_poltrona':
+     # Quer excluir uma potrona de um pedido de compra:
+     pag = comando_excluir_poltrona.processa(ses, args)
+
+    elif cmd == '/trocar_poltrona':
+      # Quer trocar uma poltrona que comprou em um trecho:
+      pag = comando_trocar_poltrona.processa(ses, args)
+
+    elif cmd == '/ver_poltronas_de_usuario':
+      # Quer ver todas as poltronas compradas por um usuário:
+      pag = comando_ver_poltronas_de_usuario.processa(ses, args)
+
+    # --- comandos referentes a {Objeto_Compra} -----------------------
+
+    elif cmd == '/ver_compra':
+      # Quer ver os atributos de um pedido de compra:
+      pag = comando_ver_compra.processa(ses, args)
+
+    elif cmd == '/alterar_compra':
+      # Quer formulário para alterar atributos de um pedido de compra
+      pag = comando_alterar_compra.processa(ses, args)
+
+    elif cmd == '/solicitar_pag_escolher_pagamento':
+      # Quer formulário para escolher a forma de pagamento de uma compra:
+      pag = comando_solicitar_pag_escolher_pagamento.processa(ses, args)
+
+    elif cmd == '/ver_carrinho':
+      # Quer ver seu carrinho de compras:
+      pag = comando_ver_carrinho.processa(ses, args)
+
+    elif cmd == '/definir_carrinho':
+      # Quer definir uma outra compra em aberto como carrinho da sessao:
+      pag = comando_definir_carrinho.processa(ses, args)
+    
+    elif cmd == '/finalizar_compra':
+      # Quer finalizar uma compra:
+      pag = comando_finalizar_compra.processa(ses, args)
+
+    elif cmd == '/ver_minhas_compras':
+      # Quer ver a lista de todas as suas compras:
+      pag = comando_ver_minhas_compras.processa(ses, args)
+
+    elif cmd == '/solicitar_pag_buscar_compras':
+      # Quer formulário para especificar uma busca na tabela de compras:
+      pag = comando_solicitar_pag_buscar_compras.processa(ses, args)
+
+    elif cmd == '/buscar_compras':
+      # Preencheu dados de uma busca de compras, quer exxecutar a busca:
+      pag = comando_buscar_compras.processa(ses, args)
+
+    # --- comandos referentes a {Objeto_Sessao} -----------------------
 
     elif cmd == '/solicitar_pag_login':
-      # Usuário apertou o botão "Entrar" (login) do menu geral:
+      # Qer formulário para fazer "login":
       # ATENÇÃO: Este comando só mostra o formulário de login, não muda a sessão ainda.
       pag = comando_solicitar_pag_login.processa(ses, args)
 
     elif cmd == '/fazer_login':
-      # Usuário preencheu o formulário de login apertou "Entrar":
+      # Preencheu o formulário de login e quer entrar (criar nova sessão):
       # ATENÇÃO: devolve também a nova sessão (que pode ser {None} se o login não deu certo).
       pag, ses_nova = comando_fazer_login.processa(ses, args)
 
     elif cmd == '/fazer_logout':
-      # Usuário apertou o botão "Sair" (logout) do menu geral:
+      # Quer fazer "logout" (fechar a sessão corrente):
       # ATENÇÃO: devolve também a nova sessão (que geralmente vai ser {None}).
       pag, ses_nova = comando_fazer_logout.processa(ses, args)
 
-    elif cmd == '/fechar_sessao':
-      # Usuário apertou o botão "Fechar sessão" da visualização de um objeto sessão:
-      pag = comando_fechar_sessao.processa(ses, args)
-
-    elif cmd == '/solicitar_pag_cadastrar_usuario':
-      # Usuário apertou o botão "Cadastrar" do menu geral:
-      pag = comando_solicitar_pag_cadastrar_usuario.processa(ses, args)
-
-    elif cmd == '/cadastrar_usuario':
-      # Usuário apertou "Cadastrar" em formulário de cadastrar usuário:
-      pag = comando_cadastrar_usuario.processa(ses, args)
-
-    elif cmd == '/solicitar_pag_alterar_trecho':
-      # Usuário apertou o botão "alterar" da página que exibe os trechos:
-      pag = comando_solicitar_pag_alterar_trecho.processa(ses, args)
-
-    elif cmd == '/solicitar_pag_alterar_usuario':
-      # Usuário apertou o botão "Minha Conta" do menu geral:
-      pag = comando_solicitar_pag_alterar_usuario.processa(ses, args)
-    
-    elif cmd == '/solicitar_pag_alterar_poltrona':
-      # Usuário apertou o botão "Alterar" da lista de poltronas:
-      pag = comando_solicitar_pag_alterar_poltrona.processa(ses, args)
-
-    elif cmd == '/alterar_usuario':
-      # Usuário apertou "Confirmar" em formulário de alterar usuário:
-      pag = comando_alterar_usuario.processa(ses, args)
-
-    elif cmd == '/solicitar_pag_buscar_usuarios':
-      # Usuário apertou o botão "Buscar usuários" do menu geral:
-      pag = comando_solicitar_pag_buscar_usuarios.processa(ses, args)
-
-    elif cmd == '/solicitar_pag_acrescentar_trecho':
-      # Usuário apertou o botão "Acrescentar Trecho" do menu de administrador:
-      pag = comando_solicitar_pag_acrescentar_trecho.processa(ses, args)
-
-    elif cmd == '/acrescentar_trecho':
-      # Usuário apertou o botão "Acrescentar" no formulário de acrescentar trecho:
-      pag = comando_acrescentar_trecho.processa(ses, args)
-
-    elif cmd == '/ver_objeto':
-      # Usuário apertou o botão "Ver Objeto" ou equivalente no menu geral:
-      pag = comando_ver_objeto.processa(ses, args)
-
-    elif cmd == '/ver_minhas_compras':
-      # Usuário apertou o botão "Minhas compras" ou equivalente no menu geral:
-      pag = comando_ver_minhas_compras.processa(ses, args)
-
-    elif cmd == '/ver_roteiro':
-      # Usuário apertou o botão "Ver" numa lista de roteiros sugeridos:
-      pag = comando_ver_roteiro.processa(ses, args)
-
-    elif cmd == '/ver_compra':
-      # Usuário apertou o botão "Ver" numa lista de compras:
-      pag = comando_ver_compra.processa(ses, args)
-
-    elif cmd == '/ver_carrinho':
-      # Usuário apertou o botão "Meu carrinho" no menu geral:
-      pag = comando_ver_carrinho.processa(ses, args)
-
-    elif cmd == '/solicitar_pag_buscar_compras':
-      # Usuário apertou o botão "Buscar Compra" do menu geral:
-      pag = comando_solicitar_pag_buscar_compras.processa(ses, args)
-
-    elif cmd == '/solicitar_pag_ofertas':
-      # Usuário apertou o botão "Ofertas" do menu geral:
-      pag = comando_solicitar_pag_ofertas.processa(ses, args)
-
-    elif cmd == '/solicitar_pag_contato':
-      # Usuário apertou o botão "Contato" do menu geral:
-      #pag =  html_pag_contato.gera(ses, [])
-      pag = comando_solicitar_pag_contato.processa(ses, args)
-
-    elif cmd == '/solicitar_pag_buscar_trechos':
-      # Usuário apertou o botão "Buscar Trecho" do menu geral:
-      pag = comando_solicitar_pag_buscar_trechos.processa(ses, args)
-
-    elif cmd == '/buscar_trechos':
-      # Usuário apertou o botão "Buscar" na página de buscar trecho:
-      pag = comando_buscar_trechos.processa(ses, args)
-
-    elif cmd == '/ver_trecho':
-      # Usuário apertou o botão "Ver" na página de lista de trechos:
-      pag = comando_ver_trecho.processa(ses, args)
-
-    elif cmd == '/alterar_trecho':
-      # Usuário apertou o botão "Alterar Trecho" do menu geral (administrador):
-      pag = comando_alterar_trecho.processa(ses, args)
-    
-    elif cmd == '/clonar_trecho':
-      # Usuário apertou o botão "clonar Trecho" do menu geral (administrador):
-      pag = comando_clonar_trecho.processa(ses, args)
-
-    elif cmd == '/encerrar_trecho':
-      # Usuário apertou o botão "Encerrar" na página de ver_objeto de um trecho:
-      pag = comando_encerrar_trecho.processa(ses, args)
-
-    elif cmd == '/criar_roteiro':
-      # Usuário apertou o botão "Criar" ou equivalente no formulário de criar roteiro:
-      pag = comando_criar_roteiro.processa(ses, args)
-
-    elif cmd == '/solicitar_pag_criar_roteiro':
-      # Usuário apertou o botão "Criar Roteiro" ou equivalente no menu geral (administrador):
-      pag = comando_solicitar_pag_criar_roteiro.processa(ses, args)
-
-    elif cmd == '/solicitar_pag_escolher_pagamento':
-      # Usuário apertou o botão "Escolher Pagamento" ou equivalente:
-      pag = comando_solicitar_pag_escolher_pagamento.processa(ses, args)
-
-    elif cmd == '/ver_poltronas_de_usuario':
-      # Usuário apertou o botão "ver poltronas" ou equivalente:
-      pag = comando_ver_poltronas_de_usuario.processa(ses, args)
-
-    elif cmd == '/ver_poltrona':
-      # Usuário apertou o botão "ver poltrona" ou equivalente:
-      pag = comando_ver_poltrona.processa(ses, args)
-
     elif cmd == '/ver_sessoes':
-      # Usuário apertou o botão "ver sessões" ou equivalente:
+      # !!! ESCLARECER !!!
+      # Quer ver sessões:
       pag = comando_ver_sessoes.processa(ses, args)
 
-    elif cmd == '/excluir_poltrona':
-     # Usuário apertou o botão "Excluir" num item de uma compra:
-     pag = comando_excluir_poltrona.processa(ses, args)
+    elif cmd == '/fechar_sessao':
+      # Quer encerrar uma sessão em aberto:
+      pag = comando_fechar_sessao.processa(ses, args)
 
-    elif cmd == '/definir_carrinho':
-      # Usuário apertou o botão "Definir Carrinho" ou equivalente:
-      pag = comando_definir_carrinho.processa(ses, args)
+    # --- comandos referentes a roteiros -----------------------
 
-    elif cmd == '/alterar_compra':
-      # Administrador apertou o botão "Alterar" na página "Checar Objeto"
-      pag = comando_alterar_compra.processa(ses, args)
-    
-    elif cmd == '/finalizar_compra':
-      # Usuário apertou o botão "Finalizar comopra" na pagina "Meu Carrinho":
-      pag = comando_finalizar_compra.processa(ses, args)
-      
-    elif cmd == '/alterar_dados_de_poltrona':
-      # !!! DOCUMENTAR
-      pag = comando_alterar_poltrona.processa(ses, args)
+    elif cmd == '/solicitar_pag_sugerir_roteiros':
+      # Quer formulário para especificar uma busca de roteiros:
+      pag = comando_solicitar_pag_sugerir_roteiros.processa(ses, args)
 
-    elif cmd == '/trocar_poltrona':
-      # Usuário apertou o botão "Trocar" em carrinho de compras
-      pag = comando_trocar_poltrona.processa(ses, args)
-            
-    elif cmd == '/comprar_poltrona':
-      # Usuário apertou o botão "Comprar" num item do botão "Ver" da página de "Ofertas":
-      pag = comando_comprar_poltrona.processa(ses, args)
+    elif cmd == '/sugerir_roteiros':
+      # Preencheu formulário de busca e quer fazer a busca:
+      pag = comando_sugerir_roteiros.processa(ses, args)
+
+    elif cmd == '/ver_roteiro':
+      # Quer ver um roteiro específico:
+      pag = comando_ver_roteiro.processa(ses, args)
+
+    # --------------------------------------------------------------
 
     else:
       # Comando não identificado

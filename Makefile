@@ -14,14 +14,14 @@ MODULOS_BUG := ${shell gawk '/^[*]/{ print $$2; }' 00-MODULOS.txt}
 MODULOS_TODOS := ${shell gawk '/^[*A]/{ print $$2; }' 00-MODULOS.txt}
 
 # Módulos a testar em {testes_de_modulos}:
-# MODULOS := ${MODULOS_TODOS}
-MODULOS := ${MODULOS_BUG}
+MODULOS := ${MODULOS_TODOS}
+# MODULOS := ${MODULOS_BUG}
 
 # O que "make" deve fazer:
 
-# all: testes_de_modulos 00-LINKS.html
+all: testes_de_modulos 00-LINKS.html
 # all: teste_unico 00-LINKS.html
-all: roda_servidor 00-LINKS.html
+# all: roda_servidor 00-LINKS.html
 
 # Roda testes dos módulos em ${MODULOS}:
 testes_de_modulos:

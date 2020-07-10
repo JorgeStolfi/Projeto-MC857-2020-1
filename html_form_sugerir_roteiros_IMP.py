@@ -27,7 +27,7 @@ def gera():
   # Monta a tabela com os fragmentos HTML:
   ht_table = html_table.gera(linhas, None)
 
-  ht_bt_buscar = html_botao_submit.gera("Buscar", 'criar_roteiro', None, '#55ee55')
+  ht_bt_buscar = html_botao_submit.gera("Buscar", 'sugerir_roteiros', None, '#55ee55')
 
   ht_campos = \
     ht_table + \

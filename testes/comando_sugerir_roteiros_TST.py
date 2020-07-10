@@ -1,14 +1,12 @@
 #! /usr/bin/python3
 
-# Interfaces usadas por este script:
-
 import base_sql
 import tabelas
 import usuario
 import sessao
 import compra
 import utils_testes; from utils_testes import erro_prog, aviso_prog, mostra
-import comando_criar_roteiro
+import comando_pesquisar_roteiro
 
 import sys
 
@@ -23,10 +21,10 @@ ok_global = True # Vira {False} se um teste falha.
 # ----------------------------------------------------------------------
 # Função de teste:
 
-def testa_comando_criar_roteiro(dados, resultado):
+def testa_comando_sugerir_roteiros(dados, resultado):
   global ok_global
 
-  modulo = comando_criar_roteiro
+  modulo = comando_sugerir_roteiros
   pag = modulo.processa(None, dados)
 
   if (resultado and pag == None):
@@ -45,7 +43,7 @@ dados = {
     "dia_min": "2020-05-08",
     "dia_max": "2020-05-09"
 }
-testa_comando_criar_roteiro(dados, True)
+testa_comando_sugerir_roteiros(dados, True)
 
 # ----------------------------------------------------------------------
 # Veredito final:

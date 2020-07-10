@@ -2,22 +2,19 @@ import comando_solicitar_pag_alterar_trecho_IMP
 
 def processa(ses, args):
   """Esta função é chamada quando o usuário aperta o botão "Alterar"
-  na página que lista os trechos.  
+  em alguma linha ou página referente a um determinado trecho {trc}.  
   
-  A função retorna uma página HTML {pag} com o formulário que mostra os
-  dados de um certo trecho {trc}, com campos editáveis.
-  O formulário deve conter um botão de submissão "Alterar".
+  O argumento {ses} deve ser uma sessão atualmente aberta,
+  e o dono deve ser um administrador.
   
-  O argumento {ses} deve ser uma sessão atualmente aberta.
+  O dicionário de argumentos {args} deve conter um 
+  campo com chave 'id_trecho' cujo valor é o identificador do
+  trecho {trc} a alterar.
   
-  O dicionário de argumentos {args} pode ser vazio ou conter um 
-  campo com chave "id_trecho" e um parâmetro opcional "clonar". 
+  Em caso de sucesso, a função retorna uma página HTML {pag} com o formulário que mostra os
+  dados do trecho {trc}, com campos editáveis. O formulário vai conter
+  um botão de submissão "Alterar" e um botão "Clonar".
   
-  Se o campo {args["id_trecho"]} não existir ou for {None},
-  o formulário retorna um erro de trecho não identificado.
-  
-  Se o campo {args["id_trecho"]} existir e não
-  for {None}, o formulário vai mostrar os dados do trecho {trc}
-  cujo identificador é {args["id_trecho"]}."""
+  Em caso de erro, o resultado é uma pagina com a mensagem de erro."""
   return comando_solicitar_pag_alterar_trecho_IMP.processa(ses, args)
 

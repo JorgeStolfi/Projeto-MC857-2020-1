@@ -2,7 +2,7 @@
 import roteiro
 import html_lista_de_roteiros
 import html_pag_generica
-import html_pag_criar_roteiro
+import html_pag_sugerir_roteiros
 
 from valida_campo import ErroAtrib
 
@@ -46,5 +46,5 @@ def processa(ses, args):
   except ErroAtrib as ex:
     erros = ex.args[0]
     # Repete a página com mensagem de erro:
-    pag = html_pag_criar_roteiro.gera(ses, erros)
+    pag = html_pag_sugerir_roteiros.gera(ses, erros)
     return pag

@@ -1,4 +1,4 @@
-import html_pag_criar_roteiro_IMP
+import html_pag_sugerir_roteiros_IMP
 
 def gera(ses, erros):
   """Retorna uma página contendo o formulário de criar roteiro.
@@ -7,5 +7,5 @@ def gera(ses, erros):
   dia máximo de chegada, etc.
   
   O formulário contém um botão com texto "Pesquisar" que, quando 
-  acionado, emite uma ação POST com comando 'criar_roteiro'."""
-  return html_pag_criar_roteiro_IMP.gera(ses, erros)
+  acionado, emite uma ação POST com comando 'sugerir_roteiros'."""
+  return html_pag_sugerir_roteiros_IMP.gera(ses, erros)

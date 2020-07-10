@@ -1,6 +1,4 @@
-# Implementação do módulo {comando_criar_roteiro}.
-
-import comando_criar_roteiro_IMP
+import comando_sugerir_roteiros_IMP
 
 def processa(ses, args):
     """Esta funcao é chamada quando não existe um trecho direto entre a origem e o destino do 
@@ -12,4 +10,4 @@ def processa(ses, args):
     ['dia_max']
     Ela devolve um pagina html para mostrar os roteiros encontrados.
     """
-    return comando_criar_roteiro_IMP.processa(ses,args)
+    return comando_sugerir_roteiros_IMP.processa(ses,args)

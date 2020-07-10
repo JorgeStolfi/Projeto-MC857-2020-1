@@ -1,5 +1,4 @@
-import comando_solicitar_pag_criar_roteiro_IMP
-
+import comando_solicitar_pag_sugerir_roteiros_IMP
 
 def processa(ses, args):
     """
@@ -12,4 +11,4 @@ def processa(ses, args):
 
         O parâmetro {ses} deve estar definido e o usuário dono da sessão precisa ser Administrador.
     """
-    return comando_solicitar_pag_criar_roteiro_IMP.processa(ses, args)
+    return comando_solicitar_pag_sugerir_roteiros_IMP.processa(ses, args)
