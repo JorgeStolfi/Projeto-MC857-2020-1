@@ -75,8 +75,6 @@ def gera(id_pol, atrs_pol, alterar, comprar, excluir, id_cpr, ver_poltrona):
   
   # Botão:
   args_pol_submit = {'id_poltrona': id_pol}
-  print("SECOND BIG TETS")
-  print(str(args_pol_submit))
   if excluir:
     ht_botao = html_botao_submit.gera("Excluir", "excluir_poltrona_de_compra", None, '#bca360')
   elif alterar:
