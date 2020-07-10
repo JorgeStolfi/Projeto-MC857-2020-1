@@ -1,5 +1,6 @@
 import html_imagem_link
 
+
 def gera(title, grande):
 
   if grande:
@@ -12,6 +13,10 @@ def gera(title, grande):
     "<!DOCTYPE HTML>\n" + \
     "<html>\n" + \
     "<head>\n" + \
+    "<link rel=\"icon\" href=\"imagens/favicon.ico\" type=\"image/x-icon\"> " +  \
+    "<link rel=\"shortcut icon\" href=\"imagens/favicon.ico\" type=\"image/x-icon\"> " +  \
+    "<link rel=\"icon\" href=\"imagens/favicon-32x32.png\" sizes=\"32x32\"> " +  \
+    "<link rel=\"shortcut icon\" href=\"imagens/favicon-32x32.png\" sizes=\"32x32\" type=\"image/png\"> " + \
     "<meta charset=\"UTF-8\"/>\n" + \
     "<title>" + title + "</title>\n" + \
     "</head>\n" + \
