@@ -41,7 +41,7 @@ def processa(ses, args):
     mods = { 
       'id_trecho': id_trecho,
       'numero': numero,
-      'oferta': True if oferta == 'on' else False ,
+      'oferta': oferta == 'on',
       'preco': float(preco)
     }
     poltrona.muda_atributos(pol, mods)
