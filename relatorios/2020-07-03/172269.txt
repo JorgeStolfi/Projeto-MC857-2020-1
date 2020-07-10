@@ -1,8 +1,0 @@
-Gabriel Marinho da Costa - RA172269
-
-Realizei o caminho especificado na tarefa e acabei descobrindo que qualquer que fosse o usuário pesquisado em Checar Objeto, ao clicar em
-Ver Compras, sempre era exibida a Compra C-00000005 do usuário U-00000003, mesmo o objeto pesquisado anteriormente sendo qualquer outro
-usuário, e então ao clicar no botão Ver relacionado à essa compra, não conseguia retornar a página, provavelmente porque a compra C-00000005
-não existe, já que nos testes apenas cria-se até C-00000003. Olhei em diversos modulos, utilizei algumas classes de teste, principalmente a
-comando_ver_compra, que tive que alterar pra conseguir retornar um form html, mas não consegui encontrar a causa do problema, que acredito
-estar na chamada da lista de compras e não na chamada do botão Ver relacionado à compra errada em si.

@@ -1,7 +1,7 @@
 #! /usr/bin/python3
 
 import tabelas
-import comando_buscar_usuario
+import comando_buscar_usuarios
 import sessao
 import base_sql
 import utils_testes
@@ -24,8 +24,8 @@ ses_adm = sessao.busca_por_identificador("S-00000004")
 # Usuário válido - temos a garantia que este usuário está na nossa base de dados e que {usr_atrs} possui os atributos
 # {'email'} e {'CPF'} definidos. Logo, esperamos que o comando de busca de usuário funcione e retorne uma página com
 # as informações do usuário pesquisado.
-usr = sessao.obtem_usuario(ses_adm)
-usr_atrs = usuario.obtem_atributos(usr)
+usr_adm = sessao.obtem_usuario(ses_adm)
+usr_adm_atrs = usuario.obtem_atributos(usr_adm)
 
 # Vamos testar agora com uma lista de atributos de usuário que não contém nem o email nem o CPF.
 # Neste caso, precisamos voltar à pagina de buscar usuários com uma mensagem de erro.
@@ -47,16 +47,16 @@ def testa(rotulo, *args):
     """Testa {funcao(*args)}, grava resultado
     em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
 
-    modulo = comando_buscar_usuario
+    modulo = comando_buscar_usuarios
     funcao = modulo.processa
     frag = False  # {True} se for apenas um fragmento HTML, {False} se for página completa.
     pretty = False  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-testa("valido",        ses_adm, usr_atrs)
+testa("valido",        ses_adm, usr_adm_atrs)
 testa("email-F-CPF-F", ses_adm, atrs_incompletos)
 testa("CPF-ruim",      ses_adm, atrs_cpf_inexistente)
 testa("email-ruim",    ses_adm, atrs_email_inexistente)
-testa("admin-F",       ses_nao_eh_adm, usr_atrs)
+testa("admin-F",       ses_nao_eh_adm, usr_adm_atrs)
 
 

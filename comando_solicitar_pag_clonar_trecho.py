@@ -1,4 +1,4 @@
-import comando_solicita_pag_clonar_trecho_IMP
+import comando_solicitar_pag_clonar_trecho_IMP
 
 def processa(ses, args):
   """Esta função é chamada quando o administrador aperta o botão "Clonar" 
@@ -9,4 +9,4 @@ def processa(ses, args):
   A função retorna uma página para a criação de um novo trecho, com cada
   atributo inicializado a partir do dicionário {args}, ou, se não
   estiver lá, a partir dos atributos correntes do trecho {trc}."""
-  return comando_solicita_pag_clonar_trecho_IMP.processa(ses, args)
+  return comando_solicitar_pag_clonar_trecho_IMP.processa(ses, args)

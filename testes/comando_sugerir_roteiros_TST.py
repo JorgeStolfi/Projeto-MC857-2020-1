@@ -6,7 +6,7 @@ import usuario
 import sessao
 import compra
 import utils_testes; from utils_testes import erro_prog, aviso_prog, mostra
-import comando_pesquisar_roteiro
+import comando_sugerir_roteiros
 
 import sys
 

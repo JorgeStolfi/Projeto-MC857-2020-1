@@ -26,7 +26,12 @@ def processa(ses, atrs):
 
     trc = trecho.cria(atrs)
     pols = poltrona.cria_conjunto(trc, esp_pols)
-    pag = html_pag_ver_trecho.gera(ses, trc, True, True, None)
+
+    # Mostra o trecho criado:
+    comprar_pols = False  # Pois o dono da sessão deve ser admin, que não pode comprar.
+    alterar_trc = True    # Pois o dono da sessão deve ser admin.
+    id_cpr = None         # Pois o dono da sessão deve ser admin, que não tem carrinho.
+    pag = html_pag_ver_trecho.gera(ses, trc, compar_pols, alterar_trc, id_cpr, None)
   except ErroAtrib as ex:
     erros = ex.args[0]
     # Repete a página de acrescentar trecho com os mesmos argumentos e mens de erro:

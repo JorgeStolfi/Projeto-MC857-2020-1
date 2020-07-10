@@ -7,21 +7,30 @@ MODULOS_NAO_TESTAR := ${shell gawk '/^[N]/{ print $$2; }' 00-MODULOS.txt}
 # Módulos cujos testes estavam OK na última verificação:
 MODULOS_OK := ${shell gawk '/^[A]/{ print $$2; }' 00-MODULOS.txt}
 
-# Módulos cujos testes estavam com problemas na última verificação:
+# Módulos com testes faltando:
+MODULOS_FALTA_TST := ${shell gawk '/^[@]/{ print $$2; }' 00-MODULOS.txt}
+
+# Módulos com testes:
+MODULOS_COM_TST := ${shell gawk '/^[A*]/{ print $$2; }' 00-MODULOS.txt}
+
+# Módulos cujos testes falharam na última verificação:
 MODULOS_BUG := ${shell gawk '/^[*]/{ print $$2; }' 00-MODULOS.txt}
 
+MODULOS_RUINS := ${MODULOS_BUG} ${MODULOS_FALTA_TST}
+
 # Todos os módulos testáveis:
-MODULOS_TODOS := ${shell gawk '/^[*A]/{ print $$2; }' 00-MODULOS.txt}
+MODULOS_TODOS := ${shell gawk '/^[*A@]/{ print $$2; }' 00-MODULOS.txt}
 
 # Módulos a testar em {testes_de_modulos}:
-MODULOS := ${MODULOS_TODOS}
-# MODULOS := ${MODULOS_BUG}
+# MODULOS := ${MODULOS_COM_TST}
+# MODULOS := ${MODULOS_TODOS}
+MODULOS := ${MODULOS_BUG}
 
 # O que "make" deve fazer:
 
-all: testes_de_modulos 00-LINKS.html
+# all: testes_de_modulos 00-LINKS.html
 # all: teste_unico 00-LINKS.html
-# all: roda_servidor 00-LINKS.html
+all: roda_servidor 00-LINKS.html
 
 # Roda testes dos módulos em ${MODULOS}:
 testes_de_modulos:

@@ -47,6 +47,7 @@ def testa_acrescenta_trecho_com_sucesso(id_trecho_ult, id_trecho_prox):
      'hora_chegada': "06:23",
      'veiculo': "jegue003",
      'poltronas': "1A-12D: 90.00",
+     'aberto': True,
   }
   testa("Suc", ses, args)
 

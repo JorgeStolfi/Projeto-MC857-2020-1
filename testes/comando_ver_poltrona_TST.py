@@ -7,7 +7,7 @@ import comando_ver_poltrona
 
 # Conecta no banco e carrega alimenta com as informações para o teste
 sys.stderr.write("Conectando com base de dados...\n")
-res = base_sql.conecta("../DB", None, None)
+res = base_sql.conecta("DB", None, None)
 assert res is None
 
 sys.stderr.write("Criando alguns objetos...\n")
@@ -33,12 +33,12 @@ args_pol_valida = {'id_poltrona': 'A-00000001'}
 args_pol_inexistente = {'id_poltrona': 'A-00000000'}
 
 # Teste com uma poltrona válida. Deve retornar uma página html com as informações da poltrona.
-testa("Teste com poltrona válida", ses, args_pol_valida)
+testa("val", ses, args_pol_valida)
 
 # Teste com uma poltrona inexistente. Deve retornar uma página html com erro.
-testa("Teste com poltrona inexistente", ses, args_pol_inexistente)
+testa("nopol", ses, args_pol_inexistente)
 
 # Testa com uma sessão inexistente. Deve retornar uma página html com erro.
-testa("Teste com sessão inexistente", None, args_pol_valida)
+testa("noses", None, args_pol_valida)
 
 

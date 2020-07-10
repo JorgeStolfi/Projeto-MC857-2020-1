@@ -1,4 +1,4 @@
-import comando_buscar_usuario_IMP
+import comando_buscar_usuarios_IMP
 
 
 def processa(ses, args):
@@ -14,4 +14,4 @@ def processa(ses, args):
 
   O resultado deve ser uma página com o usuário encontrado, gerada
   por {html_pag_lista_de_usuarios.gera}."""
-  return comando_buscar_usuario_IMP.processa(ses, args)
+  return comando_buscar_usuarios_IMP.processa(ses, args)

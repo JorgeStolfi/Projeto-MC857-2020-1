@@ -20,26 +20,26 @@ def gera(ids_sessoes):
   # Linhas das sessoes:
   linhas = []
   for id in ids_sessoes:
-      # busca sessao no banco
-      ses = sessao.busca_por_identificador(id)
-      assert ses != None
-      # le seus atributos
-      atributos = sessao.obtem_atributos(ses)
-      usr = atributos['usr']
-      abrt = atributos['abrt']
-      cookie = atributos['cookie']
-      carrinho = atributos['carrinho']
+    # busca sessao no banco
+    ses = sessao.busca_por_identificador(id)
+    assert ses != None
+    # le seus atributos
+    atributos = sessao.obtem_atributos(ses)
+    usr = atributos['usr']
+    abrt = atributos['abrt']
+    cookie = atributos['cookie']
+    carrinho = atributos['carrinho']
 
-      # monta linha da tabela
-      linha = [].copy()
-      linha.append(html_texto.gera(id, None, None, None, None, None, None, None, None))
-      linha.append(html_texto.gera(usr, None, None, None, None, None, None, None, None))
-      linha.append(html_texto.gera(abrt, None, None, None, None, None, None, None, None))
-      linha.append(html_texto.gera(cookie, None, None, None, None, None, None, None, None))
-      linha.append(html_texto.gera(carrinho, None, None, None, None, None, None, None, None))
+    # monta linha da tabela
+    linha = [].copy()
+    linha.append(html_texto.gera(id, None, None, None, None, None, None, None, None))
+    linha.append(html_texto.gera(usr, None, None, None, None, None, None, None, None))
+    linha.append(html_texto.gera(abrt, None, None, None, None, None, None, None, None))
+    linha.append(html_texto.gera(cookie, None, None, None, None, None, None, None, None))
+    linha.append(html_texto.gera(carrinho, None, None, None, None, None, None, None, None))
 
   # Gera a tabela HTML a partir da lista de linhas
-  ht_itens = html_table.gera(linhas, cabecalho)
+  ht_itens = html_table.gera(linhas, cabs_div)
 
   # Devolve a tabela HTML
   return ht_itens

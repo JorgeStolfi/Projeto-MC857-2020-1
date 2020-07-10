@@ -1,3 +1,0 @@
-* Consertei o botão 'finalizar compra'. Faltava adicionar '/finalizar_compra' a lista de comandos processáveis em 'processa_comando_http'
-* Consertei um import faltando em comando_finalizar_compra.
-* Analisei o comportamento do botão 'Confirmar' na página de alterar pagamento. Como o seu funcionamento implicaria na criação de um comando relacionado (o que não foi especificado ainda), optei por colocar uma string diferenciada para alertar futuros devs de onde no código isso precisa ser visto.

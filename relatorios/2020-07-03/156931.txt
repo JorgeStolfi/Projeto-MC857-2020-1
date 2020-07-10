@@ -1,3 +1,0 @@
-Minha tarefa de 03-07-2020 era incluir um cabeçalho no formulário de Buscar Trechos. Cabeçalho incluido.
-Alem disso, a dica das datas foi alterada de mm/dd/yyyy para aaaa-mm-dd.
-Por instruçao do professor, os campos foram alterados de date para text.

@@ -1,4 +1,4 @@
-# Módulos na ordem a testar (N = não testar, A = OK, * = bug):
+# Módulos na ordem a testar (N = não testar, A = OK, * = bug no módulo, @ = bug no teste):
 
 # --- Programas principais (Não testar)
 
@@ -20,7 +20,7 @@ A tabela_generica
 A objeto
 A usuario
 A compra
-* poltrona
+A poltrona
 A sessao
 A trecho
 
@@ -81,34 +81,34 @@ A comando_buscar_usuarios
 
 A html_resumo_de_poltrona_de_compra
 A html_resumo_de_poltrona_de_trecho
-A html_resumo_de_poltrona_de_usuario
+@ html_resumo_de_poltrona_de_usuario
 
 A html_form_dados_de_poltrona
 A html_pag_ver_poltrona
-* comando_ver_poltrona
+A comando_ver_poltrona
 
 A html_pag_alterar_poltrona
-* comando_solicitar_pag_alterar_poltrona
-* comando_alterar_poltrona
+A comando_solicitar_pag_alterar_poltrona
+@ comando_alterar_poltrona
 
 A html_lista_de_poltronas_de_compra
 A html_lista_de_poltronas_de_trecho
-A html_lista_de_poltronas_de_usuario
+@ html_lista_de_poltronas_de_usuario
 
-* comando_ver_poltronas_de_usuario
+A comando_ver_poltronas_de_usuario
 
-* comando_comprar_poltrona
+A comando_comprar_poltrona
 A comando_excluir_poltrona
 A comando_trocar_poltrona
 
 # --- Módulos que lidam principalmente com {Objeto_Sessao}
 
 A html_sessao
-A html_form_dados_de_sessao
+@ html_form_dados_de_sessao
 A html_pag_ver_sessao
 
-* html_lista_de_sessoes
-* comando_ver_sessoes
+A html_lista_de_sessoes
+A comando_ver_sessoes
 
 A html_form_login
 A html_pag_login
@@ -120,7 +120,7 @@ A comando_fechar_sessao
 
 # --- Módulos que lidam principalmente com {Objeto_Trecho}
 
-* html_resumo_de_trecho
+A html_resumo_de_trecho
 A html_form_dados_de_trecho
 
 A html_pag_ver_trecho
@@ -128,23 +128,23 @@ A comando_ver_trecho
 
 A html_pag_acrescentar_trecho
 A comando_solicitar_pag_acrescentar_trecho
-* comando_solicitar_pag_clonar_trecho
-* comando_acrescentar_trecho
+@ comando_solicitar_pag_clonar_trecho
+@ comando_acrescentar_trecho
 
-* html_pag_alterar_trecho
-* comando_solicitar_pag_alterar_trecho
+A html_pag_alterar_trecho
+A comando_solicitar_pag_alterar_trecho
 A comando_alterar_trecho
 
 A html_form_buscar_trechos
 A html_pag_buscar_trechos
 A comando_solicitar_pag_buscar_trechos
-* html_lista_de_trechos
-* comando_buscar_trechos
+A html_lista_de_trechos
+A comando_buscar_trechos
 
-* comando_encerrar_trecho
+A comando_encerrar_trecho
 
-* html_pag_ofertas
-* comando_solicitar_pag_ofertas
+A html_pag_ofertas
+A comando_solicitar_pag_ofertas
 
 # --- Módulos que lidam principalmente com {Objeto_Compra}
 
@@ -173,7 +173,7 @@ A comando_finalizar_compra
 
 # --- Módulos para contato
 
-* html_form_contato
+@ html_form_contato
 A html_pag_contato
 A comando_solicitar_pag_contato
 
@@ -181,8 +181,8 @@ A comando_solicitar_pag_contato
 
 A roteiro
 
-* html_pag_ver_roteiro
-* comando_ver_roteiro
+A html_pag_ver_roteiro
+A comando_ver_roteiro
 
 A html_form_sugerir_roteiros
 A html_pag_sugerir_roteiros

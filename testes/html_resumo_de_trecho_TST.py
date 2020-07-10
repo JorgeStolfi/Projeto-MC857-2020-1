@@ -50,10 +50,25 @@ def testa(rotulo, *args):
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
 # Testes com erros em vários formatos:
-for rotulo, ver, alterar in ( \
-    ("vNaN", False, False), 
-    ("vTaN", True, False), 
-    ("vNaT", False, True), 
-    ("vTaT", True, True), 
-  ):
-  testa(rotulo, trc1, ver, alterar)
+for rotulo, bt_ver, bt_alterar, bt_clonar, bt_fechar in ( \
+    ("vN-aN-cN-fN", False, False, False, False), 
+    ("vT-aN-cN-fN", True,  False, False, False), 
+    ("vN-aT-cN-fN", False, True , False, False), 
+    ("vT-aT-cN-fN", True,  True , False, False), 
+
+    ("vN-aN-cT-fN", False, False, True , False), 
+    ("vT-aN-cT-fN", True,  False, True , False), 
+    ("vN-aT-cT-fN", False, True , True , False), 
+    ("vT-aT-cT-fN", True,  True , True , False), 
+
+    ("vN-aN-cN-fT", False, False, False, True ), 
+    ("vT-aN-cN-fT", True,  False, False, True ), 
+    ("vN-aT-cN-fT", False, True , False, True ), 
+    ("vT-aT-cN-fT", True,  True , False, True ), 
+
+    ("vN-aN-cT-fT", False, False, True , True ), 
+    ("vT-aN-cT-fT", True,  False, True , True ), 
+    ("vN-aT-cT-fT", False, True , True , True ), 
+    ("vT-aT-cT-fT", True,  True , True , True ), 
+ ):
+  testa(rotulo, trc1, bt_ver, bt_alterar, bt_clonar, bt_fechar)

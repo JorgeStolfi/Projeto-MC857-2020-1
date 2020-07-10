@@ -112,7 +112,7 @@ def cria_testes():
   inicializa(True)
   lista_atrs = \
     [ 
-      {
+      { # U-00000001
         'nome': "José Primeiro", 
         'senha': "123456789", 
         'email': "primeiro@gmail.com", 
@@ -121,7 +121,7 @@ def cria_testes():
         'documento': "1.234.567-9 SSP-SP",
         'administrador': False,
       },
-      {
+      { # U-00000002
         'nome': "João Segundo", 
         'senha': "987654321", 
         'email': "segundo@ic.unicamp.br", 
@@ -130,7 +130,7 @@ def cria_testes():
         'documento': 'CD98765-43 PF',
         'administrador' : False,
       },
-      {
+      { # U-00000003
         'nome': "Juca Terceiro", 
         'senha': "333333333", 
         'email': "terceiro@gmail.com", 

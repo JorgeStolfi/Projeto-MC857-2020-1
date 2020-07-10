@@ -8,9 +8,11 @@ import html_span
 def gera(trcs, alterar):
   linhas = [].copy()
   for trc in trcs:
-    ver = True
-    alterar_trc = alterar
-    linha = html_resumo_de_trecho.gera(trc, ver, alterar)
+    bt_ver_trc = True
+    bt_alterar_trc = alterar
+    bt_clonar_trc = False
+    bt_fechar_trc = False
+    linha = html_resumo_de_trecho.gera(trc, bt_ver_trc, bt_alterar_trc, bt_clonar_trc, bt_fechar_trc)
     linhas.append(linha)
     
   cabecalho = ["", "Código", "Origem", "Data de Partida", "Destino", "Data de Chegada", "Número de Poltronas"]

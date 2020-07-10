@@ -11,17 +11,17 @@ import roteiro_IMP
 # tempo mínimo em certas escalas para mudança de veículo, alfândega, controle de
 # passaportes, etc..
 
-def descobre_todos(origem, destino, dia_min, dia_max):
+def descobre_todos(origem, destino, data_min, data_max):
   """Encontra possíveis roteiros começando no aeroporto de código {origem}
-  a partir da data {dia_min}, e terminando no aeroporto de código {destino}
-  até a data {dia_max}.
+  a partir da data {data_min}, e terminando no aeroporto de código {destino}
+  até a data {data_max}.
 
-  Os aeroportos devem ser distintos. As datas devem estar no formato ISO
-  ("YYYY-MM-DD") e referentes ao fuso hurário UTC.
+  Os aeroportos devem ser distintos. As datas devem ter o dia no formato ISO
+  e horas e minutos ("aaaa-mm-dd HH:MM"), ambos referentes ao fuso horário UTC.
 
   A resposta é uma lista, possivelmente vazia, de roteiros que
   satisfazem as condições dadas."""
-  return roteiro_IMP.descobre_todos(origem, destino, dia_min, dia_max)
+  return roteiro_IMP.descobre_todos(origem, destino, data_min, data_max)
 
 def obtem_identificadores_de_trechos(rot):
   """Dado um roteiro {rot} (lista objetos da classe {Objeto_Trecho}),

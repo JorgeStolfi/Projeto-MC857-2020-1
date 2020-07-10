@@ -23,16 +23,20 @@ def testa(rotulo, *args):
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-id_compra = "C-00000003"
-
 testes = ( \
-  ( "alT-coT-lvF-ofT", "A-00000001", "T-00000001", True,  True,   "C-00000003"), # Ocupada, oferta.
-  ( "alT-coT-lvT-ofT", "A-00000002", "T-00000001", True,  True,   "C-00000003"), # Livre, oferta.
-  ( "alT-coF-lvT-ofT", "A-00000002", "T-00000001", True,  False,  None        ), # Livre, oferta,
-  ( "alF-coT-lvF-ofF", "A-00000003", "T-00000001", False, True,   "C-00000003"), # Ocupada, regular.
-  ( "alF-coF-lvT-ofF", "A-00000004", "T-00000002", False, False,  None        ), # Livre, regular.
+  ( "alT-coT-trF-lvF-ofT", "A-00000001", "T-00000001", True,  True,   False, "C-00000003"), # Ocupada, oferta.
+  ( "alT-coT-trF-lvT-ofT", "A-00000002", "T-00000001", True,  True,   False, "C-00000003"), # Livre, oferta.
+  ( "alT-coF-trF-lvT-ofT", "A-00000002", "T-00000001", True,  False,  False, None        ), # Livre, oferta,
+  ( "alF-coT-trF-lvF-ofF", "A-00000003", "T-00000001", False, True,   False, "C-00000003"), # Ocupada, regular.
+  ( "alF-coF-trF-lvT-ofF", "A-00000004", "T-00000002", False, False,  False, None        ), # Livre, regular.
+
+  ( "alT-coT-trT-lvF-ofT", "A-00000001", "T-00000001", True,  True,   True,  "C-00000003"), # Ocupada, oferta.
+  ( "alT-coT-trT-lvT-ofT", "A-00000002", "T-00000001", True,  True,   True,  "C-00000003"), # Livre, oferta.
+  ( "alT-coF-trT-lvT-ofT", "A-00000002", "T-00000001", True,  False,  True,  None        ), # Livre, oferta,
+  ( "alF-coT-trT-lvF-ofF", "A-00000003", "T-00000001", False, True,   True,  "C-00000003"), # Ocupada, regular.
+  ( "alF-coF-trT-lvT-ofF", "A-00000004", "T-00000002", False, False,  True,  None        ), # Livre, regular.
 )
 
-for rot, id_pol, id_trecho, alterar, comprar, id_comra in testes:
+for rot, id_pol, id_trc, alterar, comprar, trocar, id_cpr in testes:
   pol = poltrona.busca_por_identificador(id_pol)
-  testa(rot, pol, id_trecho, alterar, comprar, id_compra)
+  testa(rot, pol, id_trc, alterar, comprar, trocar, id_cpr)

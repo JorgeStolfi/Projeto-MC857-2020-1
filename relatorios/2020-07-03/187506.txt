@@ -1,1 +1,0 @@
-Novo atributo criado no módulo {trecho}, o atributo é 'aberto' que é True se o trecho está disponível e False caso o trecho não esteja disponível, também adicionei esses atributos nos modulos {html_lista_de_trechos} e {html_dados_de_trecho}. Quando visualiza a pagina de ofertas aparece se o trecho está ou não disponível. 

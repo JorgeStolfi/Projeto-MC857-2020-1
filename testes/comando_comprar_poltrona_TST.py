@@ -35,7 +35,7 @@ cpr1_id = compra.obtem_identificador(cpr1)
 pol1_id = "A-00000002" # Deve estar livre.
 pol1 = poltrona.busca_por_identificador(pol1_id)
 assert poltrona.obtem_atributo(pol1, 'id_compra') == None 
-args1 = { 'id_pol': pol1_id, }
+args1 = { 'id_poltrona': pol1_id, }
 testa("comprar", ses1, args1)
 assert poltrona.obtem_atributo(pol1, 'id_compra') == cpr1_id
 

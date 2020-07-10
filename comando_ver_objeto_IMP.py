@@ -3,6 +3,7 @@ import compra
 import sessao
 import trecho
 import poltrona
+from valida_campo import ErroAtrib
 
 import html_pag_ver_usuario
 import html_pag_ver_compra
@@ -15,42 +16,43 @@ import sys #added by shimeji
 
 
 def processa(ses, args):
-  # O dono da sessão deve ser administrador:
-  assert sessao.eh_administrador(ses)
-  
-  # O dicionário {args} deve conter campo 'id':
+  assert sessao.eh_administrador(ses) # O dono da sessão deve ser administrador.
+  assert 'id' in args # O dicionário {args} deve conter campo 'id'.
   try:
-    assert 'id' in args
     id = args['id']
+    if len(id) != 10: raise ErroAtrib("O identificador \"" + id + "\" é inválido")
     letra = id[0]
-  except:
-    return html_pag_mensagem_de_erro.gera(ses, "O identificador fornecido é inválido. Por favor, verifique se digitou corretamente e tente de novo.")
-
-  try:
     if letra == "U":
       usr = usuario.busca_por_identificador(id)
+      if usr == None: raise ErroAtrib("Não existe usuário com identificador " + id)
       pag = html_pag_ver_usuario.gera(ses, usr, None)
     elif letra == "C":
       cpr = compra.busca_por_identificador(id)
-      excluir_pols = False
-      trocar_pols = False
+      if cpr == None: raise ErroAtrib("Não existe pedido de compra com identificador" + id)
+      excluir_pols = False # Pois o dono da sessão deve ser admin, que não pode comprar.
+      trocar_pols = False  # Pois o dono da sessão deve ser admin, que não pode comprar.
       pag = html_pag_ver_compra.gera(ses, cpr, excluir_pols, trocar_pols, None)
     elif letra == "T":
       trc = trecho.busca_por_identificador(id)
-      alterar_pols = True
-      comprar_pols = False
-      pag = html_pag_ver_trecho.gera(ses, trc, comprar_pols, alterar_pols, None)
+      if trc == None: raise ErroAtrib("Não existe trecho de viagem com identificador" + id)
+      comprar_pols = False  # Pois o dono da sessão deve ser admin, que não pode comprar.
+      alterar_trc = True    # Pois o dono da sessão deve ser admin.                      
+      id_cpr = None         # Pois o dono da sessão deve ser admin, que não tem carrinho.
+      pag = html_pag_ver_trecho.gera(ses, trc, comprar_pols, alterar_trc, None)
     elif letra == "S":
       ses1 = sessao.busca_por_identificador(id)
+      if ses1 == None: raise ErroAtrib("Não existe sessão com identificador" + id)
       pag = html_pag_ver_sessao.gera(ses, ses1, None)
     elif letra == "A":
-      excluir_pol = False
-      id_cpr = None
       pol = poltrona.busca_por_identificador(id)
+      if pol == None: raise ErroAtrib("Não existe poltrona com identificador" + id)
+      excluir_pol = False  # Pois o dono da sessão deve ser admin, que não tem carrinho.
+      id_cpr = None        # Pois o dono da sessão deve ser admin, que não tem carrinho.
       pag = html_pag_ver_poltrona.gera(ses, pol, id_cpr, excluir_pol, None)
     else:
-      pag = html_pag_mensagem_de_erro.gera(ses, "Classe de objeto \"" + letra + "\" inválida")
-  except:
-    return html_pag_mensagem_de_erro.gera(ses, "O identificador \"" + id + "\" não foi encontrado. Por favor, verifique se digitou corretamente e tente de novo.")
+      raise ErroAtrib("Classe de objeto \"" + letra + "\" inválida")
+  except ErroAtrib as ex:
+    erros = ex.args[0]
+    return html_pag_mensagem_de_erro.gera(ses, erros)
   return pag
 

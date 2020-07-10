@@ -1,1 +1,0 @@
-Arrumei o botão 'Trocar' em 'Meu Carrinho'. Adicionei '/trocar_poltrona' na lista de comandos em 'processa_comando_http_IMP.py'.

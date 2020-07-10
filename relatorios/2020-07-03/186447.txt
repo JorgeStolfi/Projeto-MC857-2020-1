@@ -1,2 +1,0 @@
-Cabeçalho da página de ver trecho, na aba de "Ofertas", formatado conforme estilo
-de cabeçalho na página "Minhas Compras".

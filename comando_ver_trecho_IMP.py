@@ -23,7 +23,7 @@ def processa(ses, args):
     pag = html_pag_mensagem_de_erro(ses, erros)
   else:
     admin = sessao.eh_administrador(ses)
-    comprar = (ses != None) and not admin
-    alterar = (ses != None) and admin
-    pag = html_pag_ver_trecho.gera(ses, trc, comprar, alterar, None)
+    comprar_pols = (ses != None) and not admin
+    alterar_trc = admin
+    pag = html_pag_ver_trecho.gera(ses, trc, comprar_pols, alterar_trc, None)
   return pag

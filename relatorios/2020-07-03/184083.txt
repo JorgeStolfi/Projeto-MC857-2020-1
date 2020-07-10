@@ -1,7 +1,0 @@
-184083 [A] "Checar objeto"(id="C-00000001") > "Ver"(no "T-00000001"): não funciona.
-
-Para fazer o botao ver funcionar era necessario colocar ele dentro de um form para o submit funcionar.
-Mas percebi que o comando ver_poltona nao exisita,
-entao comecei a cria-lo, adicionei ele na lista de processa_comando
-e comecei a criar o ver_poltrona, mas ainda nao esta funcionando. 
-Como essa tarefa nao estava no meu escopo (estava fazendo a mais) parei por ai.

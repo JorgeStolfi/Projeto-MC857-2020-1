@@ -150,10 +150,10 @@ def cria_testes():
   # Identificador de usuários e cookie de cada sessão:
   lista_ucs = \
     [
-      ( "U-00000001", "ABCDEFGHIJK", "C-00000001" ),
-      ( "U-00000001", "BCDEFGHIJKL", "C-00000002" ),
-      ( "U-00000002", "CDEFGHIJKLM", "C-00000003" ),
-      ( "U-00000003", "DEFGHIJKLMN", None         )
+      ( "U-00000001", "ABCDEFGHIJK", "C-00000001" ), # S-00000001
+      ( "U-00000001", "BCDEFGHIJKL", "C-00000002" ), # S-00000002
+      ( "U-00000002", "CDEFGHIJKLM", "C-00000003" ), # S-00000003
+      ( "U-00000003", "DEFGHIJKLMN", None         ), # S-00000004
     ]
   for id_usuario, cookie, id_carrinho in lista_ucs:
     usr = usuario.busca_por_identificador(id_usuario)

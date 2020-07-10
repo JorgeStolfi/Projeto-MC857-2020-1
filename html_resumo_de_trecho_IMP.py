@@ -2,14 +2,15 @@ import trecho
 import html_texto
 import html_botao_simples
 import html_imagem
+import html_span
 
 def gera(trc, bt_ver, bt_alterar, bt_clonar, bt_fechar):
   id_trc = trecho.obtem_identificador(trc)
   atrs_trc = trecho.obtem_atributos(trc)
   
   # Pega/monta atributos a mostrar:
-  empresa = codigo.split(" ")[0] # Sigla da empresa. 
   codigo = atrs_trc['codigo']
+  empresa = codigo.split(" ")[0] # Sigla da empresa. 
   origem = atrs_trc['origem']
   destino = atrs_trc['destino']
   dt_partida = atrs_trc['dia_partida'] + " " + atrs_trc['hora_partida']
