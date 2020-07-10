@@ -33,15 +33,34 @@ def verifica_pelo_menos_um_campo(campos, dic):
 
 def processa(ses, args):
   try:
-    campos = ['origem', 'destino', 'data_min', 'data_max']
+    campos = ['origem', 'destino', 'dia_partida', 'dia_chegada', 'hora_partida', 'hora_chegada']
     if not verifica_pelo_menos_um_campo(campos, args):
       raise ErroAtrib("Pelo menos um dos campos da busca precisa estar preenchido")
-    
-    # !!! Considerar dia e hora de partida e chegada !!!
-    for campo in campos:
-      if campo not in args: args[campo] = None
 
-    trcs_ids = trecho.busca_por_origem_e_destino(args['origem'], args['destino'], args['data_min'], args['data_max'])
+    for campo in campos:
+      if campo not in args:
+        args[campo] = None
+
+    data_min = args['dia_partida']
+
+    if data_min is not None:
+      if args['hora_partida'] is None:
+        data_min = data_min + " 00:00"
+      else:
+        data_min = data_min + " " + args['hora_partida']
+
+    data_max = args['dia_chegada']
+
+    if data_max is not None:
+      if args['hora_chegada'] is None:
+        data_max = data_max + " 23:59"
+      else:
+        data_max = data_max + " " + args['hora_chegada']
+
+    if args['origem'] == args['destino'] == None:
+      raise ErroAtrib("Pelo menos a origem ou destino precisam estar definidos")
+
+    trcs_ids = trecho.busca_por_origem_e_destino(args['origem'], args['destino'], data_min, data_max)
     trcs = map(lambda id_trecho: trecho.busca_por_identificador(id_trecho), trcs_ids)
     alterar_trcs = sessao.eh_administrador(ses)
     bloco = html_lista_de_trechos.gera(trcs, alterar_trcs)

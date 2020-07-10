@@ -151,8 +151,7 @@ def busca_por_origem_e_destino(org, dst, data_min, data_max):
   if dst != None: args['destino'] = dst
   unico = False
   ids = objeto.busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas)
-  # !!! Deveria filtrar resultado por {data_min,data_max} !!!
-  return ids
+  return filtra_por_datas(ids, data_min, data_max)
 
 def busca_por_dias(dia_min, dia_max):
   global cache, nome_tb, letra_tb, colunas, diags
@@ -312,4 +311,33 @@ def def_obj_mem(obj, id, atrs_SQL):
       obj.atrs[chave] = val
   if diags: mostra(2, "obj = " + str(obj))
   return obj
- 
+
+def filtra_por_datas(trcs_ids, data_min, data_max):
+  """A partir e um conjunto de ids de trechos, devolve os ids
+   daqueles que possuem o atributo {data_partida} + {hora_partida} superior à
+   {data_min} e o atributo {data_chegada} + {hora_chegada} inferior à {data_max}."""
+  if data_min == data_max == None: # Não há o que filtrar
+    return trcs_ids
+
+  trcs = map(lambda id_trecho: trecho.busca_por_identificador(id_trecho), trcs_ids)
+
+  lista_retorno = []
+
+  for trc in trcs:
+    atrs_trc = trecho.obtem_atributos(trc)
+    data_min_trc = atrs_trc['dia_partida'] + " " + atrs_trc['hora_partida']
+    data_max_trc = atrs_trc['dia_chegada'] + " " + atrs_trc['hora_chegada']
+
+    if data_min is not None and data_max is not None:
+      if data_min <= data_min_trc and data_max_trc <= data_max:
+        lista_retorno.append(trecho.obtem_identificador(trc))
+    else:
+     if data_min is not None:
+       if data_min <= data_min_trc:
+         lista_retorno.append(trecho.obtem_identificador(trc))
+
+     if data_max is not None:
+       if data_max_trc <= data_max:
+         lista_retorno.append(trecho.obtem_identificador(trc))
+
+  return lista_retorno
