@@ -17,6 +17,12 @@ def processa(ses, args):
   usr = sessao.obtem_usuario(ses)
   assert usr != None
 
+  eh_administrador = sessao.eh_administrador(ses)
+
+  if not eh_administrador:
+    pag = html_pag_mensagem_de_erro.gera(ses, ["Apenas administradores podem ver sessões por este comando"])
+    return pag
+
   id_usr = args['id']
   ids_compras = compra.busca_por_cliente(id_usr)
   ver_compra = True  # Queremos botão "Ver" em cada compra.
