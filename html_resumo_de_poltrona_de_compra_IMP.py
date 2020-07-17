@@ -1,11 +1,11 @@
 import trecho
 import poltrona
-import html_texto
+import html_span
 import html_botao_submit
 import html_botao_simples
 
 def gera(pol, id_compra, ver, excluir, trocar):
-  
+
   # Atributos da poltrona:
   id_pol = poltrona.obtem_identificador(pol)
   atrs_pol = poltrona.obtem_atributos(pol)
@@ -24,17 +24,17 @@ def gera(pol, id_compra, ver, excluir, trocar):
   dt_chegada_trc = atrs_trc['dia_chegada'] + ' ' + atrs_trc['hora_chegada']
 
   # Campos da linha para {html_table.gera}:
-  ht_trecho = html_texto.gera(id_trecho, None, None, None, None, None, None, None, None)
-  ht_origem = html_texto.gera(origem_trc, None, None, None, None, None, None, None, None)
-  ht_dt_partida = html_texto.gera(dt_partida_trc, None, None, None, None, None, None, None, None)
-  ht_destino = html_texto.gera(destino_trc, None, None, None, None, None, None, None, None)
-  ht_dt_chegada = html_texto.gera(dt_chegada_trc, None, None, None, None, None, None, None, None)
+  ht_trecho = html_span.gera(None, id_trecho)
+  ht_origem = html_span.gera(None, origem_trc)
+  ht_dt_partida = html_span.gera(None, dt_partida_trc)
+  ht_destino = html_span.gera(None, destino_trc)
+  ht_dt_chegada = html_span.gera(None, dt_chegada_trc)
 
-  ht_numero = html_texto.gera(numero_pol, None, None, None, None, None, None, None, None)
-  ht_preco = html_texto.gera(preco_pol, None, None, None, None, None, None, None, None)
+  ht_numero = html_span.gera(None, numero_pol)
+  ht_preco = html_span.gera(None, preco_pol)
 
   linha = [ \
-    ht_trecho, ht_origem, ht_dt_partida, ht_destino, ht_dt_chegada, 
+    ht_trecho, ht_origem, ht_dt_partida, ht_destino, ht_dt_chegada,
     ht_numero, ht_preco
   ]
   ver = True # Por enquanto.

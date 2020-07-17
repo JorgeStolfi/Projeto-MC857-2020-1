@@ -1,6 +1,5 @@
 import poltrona
 import html_resumo_de_poltrona_de_usuario
-import html_texto
 import html_table
 import html_div
 import html_estilo_cabecalho_de_tabela

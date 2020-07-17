@@ -1,7 +1,6 @@
 import poltrona
 import compra
 import html_resumo_de_poltrona_de_trecho
-import html_texto
 import html_botao_submit
 import html_table
 import html_div
@@ -25,7 +24,7 @@ def gera(ids_poltronas, id_trecho, alterar_pols, comprar_pols, id_compra):
 
   # Determina se alguma poltrona neste trecho já está reservada para esta compra:
   ja_comprou_trc = False # !!! Consertar !!!
-  
+
   # Gera as linhas da tabela.
   for id_poltrona in ids_poltronas:
     pol = poltrona.busca_por_identificador(id_poltrona)

@@ -1,32 +1,32 @@
 import trecho
 import poltrona
-import html_texto
+import html_span
 import html_botao_submit
 import html_botao_simples
 import sys
 
 def gera(pol, id_trc, alterar_pol, comprar_pol, trocar_pol, id_cpr):
-  
+
   id_pol = poltrona.obtem_identificador(pol)
   atrs_pol = poltrona.obtem_atributos(pol)
   if atrs_pol['id_trecho'] != id_trc:
     sys.stderr.write("atrs_pol = %s\n" % str(atrs_pol))
   assert atrs_pol['id_trecho'] == id_trc
-  
+
   preco_pol = atrs_pol['preco']
   numero_pol = atrs_pol['numero']
-  
+
   # Pedido de compra à qual a poltrona pertence, ou "LIVRE":
   id_cpr_pol = atrs_pol['id_compra']
   tx_compra_pol = (id_cpr_pol if id_cpr_pol != None else "LIVRE")
-  
+
   oferta_pol = atrs_pol['oferta']
   tx_oferta_pol = ("OFERTA" if oferta_pol else "")
 
-  ht_numero = html_texto.gera(numero_pol, None, None, None, None, None, None, None, None)
-  ht_preco = html_texto.gera(preco_pol, None, None, None, None, None, None, None, None)
-  ht_oferta = html_texto.gera(tx_oferta_pol, None, None, None, None, None, None, None, None)
-  ht_compra = html_texto.gera(tx_compra_pol, None, None, None, None, None, None, None, None)
+  ht_numero = html_span.gera(None, numero_pol)
+  ht_preco = html_span.gera(None, preco_pol)
+  ht_oferta = html_span.gera(None, tx_oferta_pol)
+  ht_compra = html_span.gera(None, tx_compra_pol)
 
   linha = [ht_numero, ht_preco, ht_oferta, ht_compra ]
 

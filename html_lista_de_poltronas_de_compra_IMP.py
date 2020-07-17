@@ -1,7 +1,6 @@
 import poltrona
 import compra
 import html_resumo_de_poltrona_de_compra
-import html_texto
 import html_botao_submit
 import html_table
 import html_div

@@ -1,5 +1,5 @@
 import html_botao_simples
-import html_texto
+import html_span
 import html_botao_submit
 import html_input
 import html_form
@@ -101,4 +101,4 @@ def gera_botoes_linha_2():
 
 def gera_nome_usuario(nome_usuario):
   """Gera o texto "Oi {nome}" para o menu geral."""
-  res = html_texto.gera("Oi " + nome_usuario, "inline_block", "Courier", "18px", "bold", None, None, None, None),
+  res = html_span.gera(None, "Oi " + nome_usuario)

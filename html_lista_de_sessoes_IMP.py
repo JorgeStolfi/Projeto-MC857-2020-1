@@ -1,6 +1,5 @@
 import sessao
 import html_table
-import html_texto
 import html_div
 import html_span
 import sys
@@ -11,11 +10,10 @@ def gera(ids_sessoes):
   # Linha de cabeçalho:
   cabs_raw = ['Sessão', 'Usuário', 'Aberta?', 'Cookie', 'Carrinho']
   cabs_div = [].copy()
+  estilo_cab = html_estilo_cabecalho_de_tabela.gera()
   for cb in cabs_raw:
-    cabs_div.append(html_div.gera(html_estilo_cabecalho_de_tabela.gera(), cb))
-  
-  ## !!! Falta implementar o modulo resumo_de_sessao para criar a lista de sessoes !!!
-
+    cabs_div.append(html_div.gera(estilo_cab, cb))
+    
   # Linhas das sessoes:
   linhas = []
   for id in ids_sessoes:
@@ -30,12 +28,12 @@ def gera(ids_sessoes):
     carrinho = atributos['carrinho']
 
     # monta linha da tabela
-    linha = [].copy()
-    linha.append(html_texto.gera(id, None, None, None, None, None, None, None, None))
-    linha.append(html_texto.gera(usr, None, None, None, None, None, None, None, None))
-    linha.append(html_texto.gera(abrt, None, None, None, None, None, None, None, None))
-    linha.append(html_texto.gera(cookie, None, None, None, None, None, None, None, None))
-    linha.append(html_texto.gera(carrinho, None, None, None, None, None, None, None, None))
+    linha = []
+    linha.append(html_span.gera(None, id))
+    linha.append(html_span.gera(None, usr))
+    linha.append(html_span.gera(None, abrt))
+    linha.append(html_span.gera(None, cookie))
+    linha.append(html_span.gera(None, carrinho))
 
   # Gera a tabela HTML a partir da lista de linhas
   ht_itens = html_table.gera(linhas, cabs_div)
