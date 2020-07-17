@@ -2,12 +2,25 @@ import trecho
 import html_botao_simples
 import html_imagem
 import html_span
+import poltrona
 
 def gera(trc, bt_ver, bt_alterar, bt_clonar, bt_fechar):
   id_trc = trecho.obtem_identificador(trc)
   atrs_trc = trecho.obtem_atributos(trc)
-
   # Pega/monta atributos a mostrar:
+  
+  map_poltronas_disponiveis = trecho.obtem_poltronas_livres(trc)
+  if not map_poltronas_disponiveis:
+    a_partir_de = "Esgotado"
+  else:
+    precos = [].copy()
+    for id_poltrona in map_poltronas_disponiveis:
+      pol = poltrona.busca_por_identificador(id_poltrona)
+      atrs_pol = poltrona.obtem_atributos(pol)
+      if(atrs_pol['id_compra'] is None):
+        precos.append(atrs_pol['preco'])
+    precos = list(map(float, precos))
+    a_partir_de = str(min(precos))
   codigo = atrs_trc['codigo']
   empresa = codigo.split(" ")[0] # Sigla da empresa.
   origem = atrs_trc['origem']
@@ -18,7 +31,6 @@ def gera(trc, bt_ver, bt_alterar, bt_clonar, bt_fechar):
   num_poltronas_total = str(trecho.numero_de_poltronas(trc))
   num_poltronas_livres = str(trecho.numero_de_poltronas_livres(trc))
   num_poltronas = num_poltronas_livres + " / " + num_poltronas_total
-
   # !!! Deveria mostrar também atributo 'aberto' !!!
 
   # Formata informações em HTML:
@@ -30,9 +42,15 @@ def gera(trc, bt_ver, bt_alterar, bt_clonar, bt_fechar):
   ht_dt_chegada = formata_texto(dt_chegada)
   ht_veiculo = formata_texto(veiculo)
   ht_num_poltronas = formata_texto(num_poltronas)
+  ht_a_partir_de = formata_texto(a_partir_de)
 
-  ht_campos = [ ht_logo, ht_codigo, ht_origem, ht_dt_partida, ht_destino, ht_dt_chegada, ht_num_poltronas ]
-
+  ht_campos = [ 
+    ht_logo, ht_codigo, 
+    ht_origem, ht_dt_partida, 
+    ht_destino, ht_dt_chegada, 
+    ht_num_poltronas,ht_a_partir_de 
+  ]
+  
   args_bt = {'id_trecho': id_trc} # Argumentos para os botões.
   cor_bt_normal = '#00FF00' # Cor para botões de uso geral.
   cor_bt_admin = '#FFA700' # Cor para botões de adminstrador.
