@@ -1,4 +1,5 @@
 import compra
+import html_cabecalho
 import html_table
 import html_resumo_de_compra
 import html_div
@@ -7,6 +8,9 @@ import html_estilo_cabecalho_de_tabela
 
 def gera(ids_compras, ver):
   linhas = [].copy()
+
+  # Linha de cabeçalho:
+  estilo_cab = "font-size:20px;font-weight:bold; background-color: #60a3bc; color: white; padding:0px 10px 0px 0px"
 
   # Linha de cabeçalho:
   cabs_raw = [ 'Compra', 'Usuário', 'NP', 'Passageiro', 'Documento', 'Preço' ]
@@ -28,8 +32,13 @@ def gera(ids_compras, ver):
     linhas.append(res_campos)
     # sys.stderr.write("linhas = %s\n" % str(linhas))
 
+  ht_cabe = html_cabecalho.gera("Minhas compras", False)
   # Gera a tabela HTML a partir da lista de linhas
   ht_itens = html_table.gera(linhas, cabs_div)
 
+  ht_conteudo = \
+        ht_cabe + "<br/>\n" + \
+        ht_itens
+
   # Devolve a tabela HTML
-  return ht_itens
+  return ht_conteudo

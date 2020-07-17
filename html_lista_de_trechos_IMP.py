@@ -10,7 +10,7 @@ def gera(trcs, alterar):
   linhas = [].copy()
   cabecalho = [
     "", "Código", "Origem", "Data de Partida", "Destino", 
-    "Data de Chegada", "Número de Poltronas", "A partir de R$",
+    "Data de Chegada", "Poltronas livres", "Total de poltronas", "A partir de R$",
   ]
   cabs_div = [].copy()
   for cb in cabecalho:
