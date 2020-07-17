@@ -1,0 +1,4 @@
+Tarefa: 146383 [A] (deixar ID em branco) "Checar objeto" : deve devolver página de erro "precisa ID".
+
+Foi adicionado uma verificação no arquivo "html_pag_mensagem_de_erro.py" para checar se o atributo ID não está definido no dicionário "args".
+Se não existir, então retorna um html com a mensagem "É necessário adicionar um ID para pesquisar."
