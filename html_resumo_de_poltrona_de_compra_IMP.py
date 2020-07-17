@@ -50,8 +50,8 @@ def gera(pol, id_compra, ver, excluir, trocar):
     linha.append(ht_excluir)
 
   if trocar:
-    args_trocar = { 'id_poltrona': id_pol, 'id_compra': id_compra }
-    ht_trocar = html_botao_submit.gera("Trocar", 'trocar_poltrona', args_trocar, '#ff8800')
+    args_trocar = { 'id_poltrona': id_pol, 'id_compra': id_compra, 'id_trecho':id_trecho }
+    ht_trocar = html_botao_simples.gera("Trocar", 'trocar_poltrona', args_trocar, '#ff8800')
     linha.append(ht_trocar)
 
   return linha
