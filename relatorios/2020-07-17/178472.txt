@@ -1,0 +1,2 @@
+alterei linha 52 do módulo {html_pag_ver_compra_IMP} e adicionei uma segunda condicao
+(admin == False) para aparecer o botao 'Definir Carrinho'.
