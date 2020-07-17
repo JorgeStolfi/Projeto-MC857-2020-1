@@ -1,0 +1,2 @@
+Minha tarefa do dia 17-07 era criar testes para {html_resumo_de_poltrona_de_usuario}.
+Os testes foram criados e rodam corretamente.
