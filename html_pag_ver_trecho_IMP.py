@@ -9,6 +9,8 @@ import poltrona
 import sessao
 import compra
 import trecho
+import html_form_table
+import html_form
 from utils_testes import erro_prog, aviso_prog
 import sys
 
@@ -28,14 +30,27 @@ def gera(ses, trc, comprar_pols, alterar_trc, erros):
 
   # Idenfiticadores do trecho e do carrinho:
   id_trc = trecho.obtem_identificador(trc)
+  atrs = trecho.obtem_atributos(trc)
 
   # Dados gerais do trecho:
-  alterar_trc = alterar_trc
-  clonar_trc = alterar_trc
-  fechar_trc = alterar_trc
-  linha_resumo = html_resumo_de_trecho.gera \
-    (trc, False, alterar_trc, clonar_trc, fechar_trc)
-  ht_resumo = " ".join(linha_resumo)
+  dados_linhas = [
+    ( "Código",           "text",       "codigo",         "XX NNNN",                True, ),
+    ( "Origem",           "text",       "origem",         "XXX",                    True, ),
+    ( "Dia de partida",   "text",       "dia_partida",    "YYYY-MM-DD",             True, ),
+    ( "Hora de partida",  "text",       "hora_partida",   "HH:MM",                  True, ),
+    ( "Destino",          "text",       "destino",        "XXX",                    True, ),
+    ( "Dia de chegada",   "text",       "dia_chegada",    "YYYY-MM-DD",             True, ),
+    ( "Hora de chegada",  "text",       "hora_chegada",   "HH:MM",                  True, ),
+    ( "Veículo",          "text",       "veiculo",        "XXX-NNNN",               True, ),
+    ( "Poltronas",        "text",       "poltronas",      "1A-20D,33: 90.00; ...",  True, ),
+    ( "Disponível",       "checkbox",   "aberto",         None,                     True, ),
+  ]
+
+  # Monta a tabela com os fragmentos HTML:
+  ht_table = html_form_table.gera(dados_linhas, atrs, True)
+  ht_form = html_form.gera(ht_table)
+
+  
 
   # Lista de poltronas:
   pols_ids = poltrona.busca_por_trecho(trc)
@@ -46,5 +61,5 @@ def gera(ses, trc, comprar_pols, alterar_trc, erros):
   sys.stderr.write(" comprar_pols = %s\n" % str(comprar_pols))
   sys.stderr.write(" id_cpr = %s\n" % str(id_cpr))
   ht_pols = html_lista_de_poltronas_de_trecho.gera(pols_ids, id_trc, alterar_pols, comprar_pols, id_cpr)
-  ht_conteudo = ht_resumo + "<br/>" + ht_pols
+  ht_conteudo = ht_form + "<br/>" + ht_pols
   return html_pag_generica.gera(ses, ht_conteudo, erros)
