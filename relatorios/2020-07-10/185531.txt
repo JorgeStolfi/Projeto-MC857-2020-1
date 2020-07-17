@@ -1,0 +1,11 @@
+* Consertei a documentação para o comando_alterar_poltrona.gera que estava errada. Coloquei um TODO lá alertando pro comportamento
+do id_compra, que é verificado se é None em comando_alterar_poltrona_IMP, mas não é utilizado mais para frente. Ou seja, 
+qualquer alteração em id_compra na pagina de alterar poltrona não é computada. Não investiguei mais afundo por causa de tempo/estava
+fora do meu escopo
+
+* Dei uma limpeza de código em comando_alterar_poltrona_IMP e html_form_dados_de_poltrona (esse em especial possuia prints que causavam a criação de duas 
+páginas html na pasta de resultados de teste)
+
+* Criei o teste para comando_alterar_poltrona. As páginas geradas nos testes de erro são as mesmas devido à implementação do comando_alterar_poltrona_IMP não
+criar uma página customizada dependendo do erro. Mesmo assim creio que criei testes de acordo, com exceção de testar o comportamento quando cada um
+dos argumentos para comando_alterar_poltrona em {args} for None, o que achei redundante.

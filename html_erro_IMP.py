@@ -1,13 +1,13 @@
-import html_texto
+import html_span
 import html_paragrafo
 import html_botao_simples
 import re
 
 def gera(erros):
-  fam_fonte = "Courier"
   # Cabeçalho espalhafatoso:
-  ht_tit = html_texto.gera("Não foi possível completar a operação", None, fam_fonte, "24px", "bold", "5px", "left", "#880000", None)
-  
+  estilo_cabecalho = f"font-family: Courier; font-size: 24px; font-weight: bold; padding: 5px; text-align: left; color: #880000;"
+  ht_tit = html_span.gera(estilo_cabecalho, "Não foi possível completar a operação")
+
   if type(erros) is list or type(erros) is tuple:
     erros = "\n".join(erros)
 
@@ -15,7 +15,8 @@ def gera(erros):
   erros = re.sub(r'\n', r'<br/>Erro: \n', erros)
 
   # Formata a mensagem:
-  ht_erros = html_texto.gera(erros, None, fam_fonte, "20px", "bold", "5px", "left", "#000000", None)
+  estilo_erro = f"font-family: Courier; font-size: 20px; font-weight: bold; padding: 5px; text-align: left; color: #000000;"
+  ht_erros = html_span.gera(estilo_erro, erros)
 
   # Junta as partes:
   ht_tudo = ht_tit + "<br/>" + ht_erros

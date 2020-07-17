@@ -30,7 +30,6 @@ def gera(trc, bt_ver, bt_alterar, bt_clonar, bt_fechar):
   veiculo = atrs_trc['veiculo']
   num_poltronas_total = str(trecho.numero_de_poltronas(trc))
   num_poltronas_livres = str(trecho.numero_de_poltronas_livres(trc))
-  # !!! Deveria mostrar também atributo 'aberto' !!!
 
   # Formata informações em HTML:
   ht_logo = html_imagem.gera("/" + empresa + ".png", "logo", 20)

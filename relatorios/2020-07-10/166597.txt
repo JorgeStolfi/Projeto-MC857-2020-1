@@ -1,0 +1,6 @@
+A tarefa de hoje consistia em escrever testes para o módulo
+"html_form_contato".
+
+No arquivo foram criados quatro testes diferentes, variando
+a existencia (ou não) de valores iniciais nos campos e se o 
+usuário é administrador ou não. 

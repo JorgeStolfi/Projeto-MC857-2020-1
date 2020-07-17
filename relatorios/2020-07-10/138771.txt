@@ -1,0 +1,12 @@
+Olá, meu nome é Luiz Antonio Andia, ra = 138771
+
+Minha tarefa: 138771 [U] Em {html_pag_generica}, colocar uma mensagem de aviso no alto da página 
+                se o usuário tiver alguma compra aberta além do carrinho da sessao.
+
+
+Nesta tarefa alterei o arquivo {{html_pag_generica_IMP.py}} para que ele mostre a menssagem como pedido na descrição
+    tarefa. Mostramos a msg apenas quando temos usuario logado e ele não é administrador.
+
+
+
+Abraços.
