@@ -16,6 +16,7 @@ import comando_cadastrar_usuario
 import comando_comprar_poltrona
 import comando_definir_carrinho
 import comando_encerrar_trecho
+import comando_enviar_msg_contato
 import comando_fazer_login
 import comando_fazer_logout
 import comando_fechar_sessao
@@ -543,6 +544,10 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/ver_minhas_sessoes':
       # Quer ver sessões:
       pag = comando_ver_minhas_sessoes.processa(ses, args)
+
+    elif cmd == '/enviar_msg_contato':
+      # Envia mensagem de contato
+      pag = comando_enviar_msg_contato.processa(ses, args)
 
     # --- comandos referentes a roteiros -----------------------
 
