@@ -69,3 +69,4 @@ def gera(ses, cpr, excluir, trocar, erros):
     
   pag = html_pag_generica.gera(ses, ht_conteudo, erros)
   return pag
+ 
