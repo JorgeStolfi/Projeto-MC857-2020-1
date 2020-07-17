@@ -4,6 +4,7 @@ import html_resumo_de_poltrona_de_trecho
 import html_botao_submit
 import html_table
 import html_div
+import html_estilo_cabecalho_de_tabela
 
 def gera(ids_poltronas, id_trecho, alterar_pols, comprar_pols, id_compra):
   # Validação de argumentos:
@@ -14,13 +15,12 @@ def gera(ids_poltronas, id_trecho, alterar_pols, comprar_pols, id_compra):
 
   #estilo do cabeçalho e aplicação do estilo
   # !!! Definir função  {hrml_estilo_cabecalho_de_tabela.gera} !!!
-  estilo_cab = "font-size:20px;font-weight:bold; background-color: #60a3bc; color: white; padding:0px 10px 0px 0px"
   cabs_raw = [ 'Poltrona', 'Preço', '', '']
   cabs_div = [].copy()
 
   #aplicar estilos nas colunas
   for cb in cabs_raw:
-    cabs_div.append(html_div.gera(estilo_cab, cb))
+    cabs_div.append(html_div.gera(html_estilo_cabecalho_de_tabela.gera(), cb))
 
   # Determina se alguma poltrona neste trecho já está reservada para esta compra:
   ja_comprou_trc = False # !!! Consertar !!!

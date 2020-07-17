@@ -35,14 +35,15 @@ def gera(pol, id_trc, alterar_pol, comprar_pol, trocar_pol, id_cpr):
     ht_alterar = html_botao_simples.gera("Alterar", "solicitar_pag_alterar_poltrona", args_alterar, '#bca360')
     linha.append(ht_alterar)
 
-  if comprar_pol and id_cpr_pol == None:
-    args_comprar = { 'id_poltrona': id_pol, 'id_compra': id_cpr }
-    ht_comprar = html_botao_simples.gera("Comprar", 'comprar_poltrona', args_comprar, '#ff0000')
-    linha.append(ht_comprar)
+  if (trecho.busca_por_identificador(id_trc))["Aberto"]==True:
+    if comprar_pol and id_cpr_pol == None:
+      args_comprar = { 'id_poltrona': id_pol, 'id_compra': id_cpr }
+      ht_comprar = html_botao_simples.gera("Comprar", 'comprar_poltrona', args_comprar, '#ff0000')
+      linha.append(ht_comprar)
 
-  if trocar_pol and id_cpr_pol == id_cpr:
-    args_trocar = { 'id_poltrona': id_pol }
-    ht_comprar = html_botao_simples.gera("Trocar", 'trocar_poltrona', args_trocar, '#ff0000')
-    linha.append(ht_comprar)
+    if trocar_pol and id_cpr_pol == id_cpr:
+      args_trocar = { 'id_poltrona': id_pol }
+      ht_comprar = html_botao_simples.gera("Trocar", 'trocar_poltrona', args_trocar, '#ff0000')
+      linha.append(ht_comprar)
 
   return linha

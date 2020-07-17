@@ -37,7 +37,7 @@ def gera_botoes_linha_1(logado, nome_usuario, admin):
   ht_bt_principal = html_botao_simples.gera("Principal", 'principal', None, '#60a3bc')
   ht_bt_ofertas = html_botao_simples.gera("Ofertas", 'solicitar_pag_ofertas', None, '#ffdd22')
   ht_bt_trechos = html_botao_simples.gera("Buscar Trechos", 'solicitar_pag_buscar_trechos', None, '#eeeeee')
-  ht_bt_roteiros = html_botao_simples.gera("Buscar Roteiros", 'solicitar_pag_sugerir_roteiros', None, '#eeeeee')
+  ht_bt_roteiros = html_botao_simples.gera("Sugerir Roteiros", 'solicitar_pag_sugerir_roteiros', None, '#eeeeee')
 
   botoes = ( ht_bt_principal, ht_bt_ofertas, ht_bt_trechos, ht_bt_roteiros )
   if logado:
