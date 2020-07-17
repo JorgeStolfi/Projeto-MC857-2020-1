@@ -1,0 +1,1 @@
+implementei a string de 'o usuário tem outras n sessões'

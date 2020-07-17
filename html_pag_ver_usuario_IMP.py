@@ -20,4 +20,9 @@ def gera(ses, usr1, erros):
   conteudo = formulario + "<br />" + \
              ("   " + ht_botao_sessoes + "    " +  ht_botao_compras + "    " + ht_botao_poltronas )
 
+  conteudo = "<span>O usuário tem " + \
+             str(len(usuario.sessoes_abertas(usr1))) + \
+             " sessões abertas</span><br />" + \
+             conteudo
+
   return html_pag_generica.gera(ses, conteudo, erros)
