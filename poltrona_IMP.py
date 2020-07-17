@@ -88,6 +88,21 @@ def obtem_atributo(pol, chave):
   global cache, nome_tb, letra_tb, colunas, diags
   return objeto.obtem_atributo(pol,chave)
 
+def obtem_numeros_e_precos(ids_poltronas):
+  global cache, nome_tb, letra_tb, colunas, diags
+  assert isinstance(ids_poltronas, list)
+
+  nums_e_precos = []
+  for id_poltrona in ids_poltronas:
+    assert isinstance(id_poltrona, str)
+    pol = poltrona.busca_por_identificador(id_poltrona)
+    nums_e_precos.append((
+      poltrona.obtem_atributo(pol, 'numero'),
+      poltrona.obtem_atributo(pol, 'preco')
+    ))
+
+  return nums_e_precos
+
 def busca_por_identificador(id):
   global cache, nome_tb, letra_tb, colunas, diags
   pol = objeto.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)

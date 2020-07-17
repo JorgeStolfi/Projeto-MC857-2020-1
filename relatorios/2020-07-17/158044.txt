@@ -1,0 +1,9 @@
+Atividade do dia: {poltrona}: definir uma função "poltrona.obtem_numeros_e_precos} que recebe uma lista de IDs de poltronas e devolve uma lista de pares { [ ( num, preco), (num, preco), ... ] }.
+
+Em 'poltrona.py' adicionei uma função 'obtem_numeros_e_precos' que recebe apenas um parâmetro, adicionei documentação e uma implementação de apenas chamar 'poltrona_IMP.obtem_numeros_e_precos'.
+
+Em seguida, adicionei uma função de mesmo nome em 'poltrona_IMP.py'. Nesta, a implementação é completa. Recebe a mesma variável, valida que a mesma é uma lista por assert. Se passar, cria uma lista vazia 'nums_e_precos' e itera nos elementos do parâmetro. Cada elemento da lista parâmetro devem ser strings que representam ids de poltronas. Então, cada elemento é validado como string e carrega-se a poltrona representada por esse id. Daí, carrega-se numero e preço da mesma, atribuindo-os em uma tupla que é inserida na lista 'nums_e_precos'. Por fim, retorna-se 'nums_e_precos'.
+
+Depois, então, faltou apenas implementar o teste dessa nova função, em 'poltrona_TST'. Apenas definiu-se subconjuntos da massa de teste e quais deveriam ser os resultados para tais casos. Então, chama-se a função e compara-se o resultado com o esperado.
+
+Para todos os casos avaliados, as respostas foram coincidentes.

@@ -82,6 +82,11 @@ def obtem_atributos(pol):
   exceto identificador."""
   return poltrona_IMP.obtem_atributos(pol)
 
+def obtem_numeros_e_precos(ids_poltronas):
+  """Retorna uma lista de tuplas (num, preço), cada uma referente a cada identificador de
+  poltrona da lista {ids_poltronas}, que deve ser uma lista de strings no formato "A-{NNNNNNNN}"."""
+  return poltrona_IMP.obtem_numeros_e_precos(ids_poltronas)
+
 def obtem_atributo(pol, chave):
   """Retorna o atributo da poltrona {pol} com a {chave} dada.
   Equivale a {obtem_atributos(pol)[chave]}"""
