@@ -26,9 +26,9 @@ def gera(ids_sessoes):
     abrt = atributos['abrt']
     cookie = atributos['cookie']
     carrinho = atributos['carrinho']
-
+    
     # monta linha da tabela
-    linha = []
+    linha = [].copy()
     linha.append(html_span.gera(None, id))
     linha.append(html_span.gera(None, usr))
     linha.append(html_span.gera(None, abrt))
