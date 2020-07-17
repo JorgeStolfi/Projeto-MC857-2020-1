@@ -42,3 +42,4 @@ def gera(ids_compras, ver):
 
   # Devolve a tabela HTML
   return ht_conteudo
+ 
