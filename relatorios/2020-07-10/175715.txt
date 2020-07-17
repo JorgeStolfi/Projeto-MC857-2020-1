@@ -1,9 +1,0 @@
-1. Adicionei o argumento 'aberto' ao resumo de trecho, pois não tinha sido implementado e havia comentário alertando a falta desse argumento.
-2. Usando 'grep' encontrei todas as referências ao arquivo html_resumo_de_trecho, realizei as alterações necessárias em:
-    I. html_lista_de_trechos_IMP
-    II. html_pag_ver_trecho_IMP
-3. Alterei o cabeçalho do resumo de trechos no arquivo html_lista_de_trechos_IMP para que o atributo 'aberto' ficasse em uma coluna com seu identificador.
-4. Testei como usuário comum e como administrador, com sucesso.
-
-Observação: a forma como o cabeçalho do arquivo html_lista_de_trechos_IMP foi estruturado impede uso das ferramentas em html para centralização, seria bom revermos isso para utilizar 'features' do CSS e melhorar a aparência do site.
-
