@@ -1,0 +1,7 @@
+Relatório 173846 do dia 2020-07-10
+
+Tarefa: 173846 `[X] Procurar todos os usos de {html_texto.gera} e trocar por {html_span.gera} com um estilo adequado.
+
+Para realizar esta tarefa usei 'grep' e substitui todas as ocorrências de html_texto.gera, mantendo os estilos. Rodei os testes de cada módulo que modifiquei para verificar que a substituição foi correta.
+
+Como está agora, o módulo html_texto pode ser removido do projeto com segurança.
