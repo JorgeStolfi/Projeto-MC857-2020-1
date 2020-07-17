@@ -7,6 +7,7 @@ import usuario
 
 import comando_acrescentar_trecho
 import comando_alterar_compra
+import comando_alterar_pagamento
 import comando_alterar_poltrona
 import comando_alterar_trecho
 import comando_alterar_usuario
@@ -45,7 +46,7 @@ import comando_ver_roteiro
 import comando_ver_sessoes
 import comando_ver_trecho
 
-import html_texto
+import html_span
 import html_div
 import html_pag_principal
 import html_pag_mensagem_de_erro
@@ -355,13 +356,13 @@ def processa_comando(tipo, ses, dados):
     sys.stderr.write("!! processa_comando: cmd = %s\n" % cmd)
     sys.stderr.write("!! processa_comando: ses = %s\n" % \
       (sessao.obtem_identificador(ses) if ses != None else "None"))
-      
+
     # --- comandos gerais ------------------------------------------------
 
     if cmd == '' or cmd == '/' or cmd == '/principal':
       # Acesso sem comando, ou usuário apertou "Principal" no menu geral.
       pag =  html_pag_principal.gera(ses, [])
-      
+
     elif cmd == '/ver_objeto':
       # Quer ver os atributos de um objeto:
       pag = comando_ver_objeto.processa(ses, args)
@@ -383,7 +384,7 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/solicitar_pag_alterar_usuario':
       # Quer formulário formulário para alterar atributos de algum usuário:
       pag = comando_solicitar_pag_alterar_usuario.processa(ses, args)
-    
+
     elif cmd == '/alterar_usuario':
       # Alterou atributos de um usuário e quer executar as alterações:
       pag = comando_alterar_usuario.processa(ses, args)
@@ -391,11 +392,11 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/solicitar_pag_buscar_usuarios':
       # Quer formulário para especificar uma busca na tabela de usuários:
       pag = comando_solicitar_pag_buscar_usuarios.processa(ses, args)
-      
+
     elif cmd == '/buscar_usuarios':
       # Preencheu formulário de busca de usuários, quer executar a busca:
       pag = comando_buscar_usuarios.processa(ses, args)
-      
+
     # --- comandos referentes a {Objeto_Trecho} -----------------------
 
     elif cmd == '/ver_trecho':
@@ -409,7 +410,7 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/solicitar_pag_clonar_trecho':
       # Quer formulário para acreacentar novo trecho, copiando atributos de outro:
       pag = comando_solicitar_pag_clonar_trecho.processa(ses, args)
- 
+
     elif cmd == '/acrescentar_trecho':
       # Preencheu atributos de um novo trecho e quer criar o mesmo:
       pag = comando_acrescentar_trecho.processa(ses, args)
@@ -425,7 +426,7 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/encerrar_trecho':
       # Quer marcar um trecho como "encerrado":
       pag = comando_encerrar_trecho.processa(ses, args)
-    
+
     elif cmd == '/solicitar_pag_buscar_trechos':
       # Quer formulário para especificar uma busca na tabela de trechos:
       pag = comando_solicitar_pag_buscar_trechos.processa(ses, args)
@@ -477,6 +478,12 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/alterar_compra':
       # Quer formulário para alterar atributos de um pedido de compra
       pag = comando_alterar_compra.processa(ses, args)
+    
+    elif cmd == '/alterar_pagamento':
+        # Quer formulário para alterar atributos de um pedido de compra
+        ## Descomentar linha apos implementar
+        #pag = comando_alterar_pagamento.processa(ses, args)
+        pag = html_pag_mensagem_de_erro.gera(ses, ("** Adicionar atributo forma_pag a compra.py e descomentar implementacao do comando alterar_pagamento"))
 
     elif cmd == '/solicitar_pag_escolher_pagamento':
       # Quer formulário para escolher a forma de pagamento de uma compra:
@@ -489,7 +496,7 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/definir_carrinho':
       # Quer definir uma outra compra em aberto como carrinho da sessao:
       pag = comando_definir_carrinho.processa(ses, args)
-    
+
     elif cmd == '/finalizar_compra':
       # Quer finalizar uma compra:
       pag = comando_finalizar_compra.processa(ses, args)
@@ -585,7 +592,8 @@ def formata_dados_http(cmd,args,resto):
   texto = ("Resposta a comando HTTP \"%s\" recebido com dados principais:" % tipo)
   texto = texto + ("<br/>cmd = \"%s\"<br/>args =<br/>%s" % (cmd, args_lin))
   texto = texto + ("<br/><hr/>Outros dados:<br/>%s" % resto_lin)
-  conteudo = html_texto.gera(texto, None,"Courier","18px","normal","5px","left", None, None)
+  estilo = f"font-family: Courier; font-size: 18px; font-weight: normal; padding: 5px; text-align: left;"
+  conteudo = html_span.gera(estilo, texto)
   conteudo = "<hr/>\n" + html_div.gera("background-color:#bbbbbb;", conteudo) + "<hr/>\n"
   return conteudo
 

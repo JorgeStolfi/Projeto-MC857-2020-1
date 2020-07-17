@@ -70,6 +70,6 @@ trc4_atrs = {
   "dia_chegada":"abcdef",
   "hora_chegada":"abcdef",
   "poltronas":"abcdef",
-  "aberto":True,
+  "aberto":False,
 }
 testa("invalidos", trc4_id, trc4_atrs, "SURFAR", "surfar_trecho")
