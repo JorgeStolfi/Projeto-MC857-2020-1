@@ -53,6 +53,7 @@ def gera_botoes_linha_1_logado(nome_usuario, admin):
   geral, para um usuário que está logado."""
   botoes_sempre = (
       html_botao_simples.gera("Minha Conta", 'solicitar_pag_alterar_usuario', None, '#eeeeee'),
+      html_botao_simples.gera("Minhas Sessões", 'ver_minhas_sessoes', None, '#eeeeee'),
       html_botao_simples.gera("Contato", 'solicitar_pag_contato', None, '#eeeeee'),
       html_botao_simples.gera("Sair", 'fazer_logout', None, '#eeeeee'),
       gera_nome_usuario(nome_usuario)

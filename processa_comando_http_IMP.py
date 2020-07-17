@@ -45,6 +45,7 @@ import comando_ver_poltronas_de_usuario
 import comando_ver_roteiro
 import comando_ver_sessoes
 import comando_ver_trecho
+import comando_ver_minhas_sessoes
 
 import html_span
 import html_div
@@ -538,6 +539,10 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/fechar_sessao':
       # Quer encerrar uma sessão em aberto:
       pag = comando_fechar_sessao.processa(ses, args)
+
+    elif cmd == '/ver_minhas_sessoes':
+      # Quer ver sessões:
+      pag = comando_ver_minhas_sessoes.processa(ses, args)
 
     # --- comandos referentes a roteiros -----------------------
 
