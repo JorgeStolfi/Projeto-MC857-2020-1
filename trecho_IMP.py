@@ -86,6 +86,11 @@ def obtem_poltronas(trc):
   global cache, nome_tb, letra_tb, colunas, diags
   return poltrona.busca_por_trecho(trc)
 
+def obtem_poltronas_livres(trc):
+  global cache, nome_tb, letra_tb, colunas, diags
+  id_pols = poltrona.busca_por_trecho(trc)
+  return id_pols
+
 def numero_de_poltronas(trc):
   global cache, nome_tb, letra_tb, colunas, diags
   id_pols = obtem_poltronas(trc)
@@ -123,7 +128,7 @@ def busca_por_identificador(id):
 def busca_por_origem(cod):
   global cache, nome_tb, letra_tb, colunas, diags
   unico = False
-  ids = objeto.busca_por_campo('codigo', cod, unico, cache, nome_tb, letra_tb, colunas)
+  ids = objeto.busca_por_campo('origem', cod, unico, cache, nome_tb, letra_tb, colunas)
   return ids
 
 def busca_por_codigo_e_data(cod, dia, hora):

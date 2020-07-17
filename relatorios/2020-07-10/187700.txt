@@ -1,0 +1,4 @@
+Tarefa: 187700 [X] Todo módulo que pode gerar um botão "Comprar" ou "Trocar" : só gerar o botão se o trecho está aberto.
+
+    Foi adicionado condicionais na compra/troca de poltronas e de roteiros para o botão
+só aparecer se o trecho estiver aberto. Pelos testes que fiz, está funcionando corretamente

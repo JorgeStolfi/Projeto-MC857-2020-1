@@ -1,5 +1,4 @@
 import html_pag_generica
-import html_texto
 import html_paragrafo
 import html_table
 import html_lista_de_poltronas_de_trecho
@@ -36,7 +35,7 @@ def gera(ses, trc, comprar_pols, alterar_trc, erros):
   fechar_trc = alterar_trc
   linha_resumo = html_resumo_de_trecho.gera \
     (trc, False, alterar_trc, clonar_trc, fechar_trc)
-  ht_resumo = " ".join(linha_resumo) 
+  ht_resumo = " ".join(linha_resumo)
 
   # Lista de poltronas:
   pols_ids = poltrona.busca_por_trecho(trc)
@@ -49,4 +48,3 @@ def gera(ses, trc, comprar_pols, alterar_trc, erros):
   ht_pols = html_lista_de_poltronas_de_trecho.gera(pols_ids, id_trc, alterar_pols, comprar_pols, id_cpr)
   ht_conteudo = ht_resumo + "<br/>" + ht_pols
   return html_pag_generica.gera(ses, ht_conteudo, erros)
-

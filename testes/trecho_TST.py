@@ -55,7 +55,7 @@ def testa_cria_trecho(rotulo, ident, atrs):
   verifica_trecho(rotulo, trc, ident, atrs)
   return trc
 
-def test_busca_por_origem(cod, ids):
+def testa_busca_por_origem(cod, ids):
   """ Testa a função {trecho.busca_por_origem} com parâmetro {cod},
   que deve retornar a lista de indentificadores de trechos {ids}."""
   global ok_global
@@ -82,6 +82,17 @@ def testa_busca_por_dias(dia_min, dia_max, ids):
 
   return
 
+def testa_busca_por_origem_e_destino(org, dst, data_min, data_max, ids):
+  """ Testa a função {trecho.busca_por_origem_e_destino} com parâmetros
+  {org, dst, dia_min,dia_max}, que deve retornar a lista de indentificadores
+  de trechos {ids}."""
+  global ok_global
+  # ----------------------------------------------------------------------
+  sys.stderr.write("testando {busca_por_origem_e_destino()}:\n")
+  ids1 = trecho.busca_por_origem_e_destino(org, dst, data_min, data_max)
+  if ids1 != ids:
+    aviso_prog("retornou " + str(ids1) + ", deveria ter retornado " + str(ids),True)
+    ok_global = False
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {trecho.cria}:\n")
@@ -142,6 +153,35 @@ dia_min_bd2 = "2020-05-08"
 dia_max_bd2 = "2020-05-08"
 ids_bd2 = [trc1_id, trc2_id]
 testa_busca_por_dias(dia_min_bd2, dia_min_bd2, ids_bd2)
+
+sys.stderr.write("%s\n" % ("-" * 70))
+
+# ----------------------------------------------------------------------
+sys.stderr.write("testando {trecho.busca_por_origem_e_destino}:\n")
+dia_min_bod1 = "2020-05-08"
+dia_max_bod1 = "2020-05-08"
+ids_bod1 = [trc2_id]
+testa_busca_por_origem_e_destino('SDU', 'VCP', dia_min_bod1, dia_max_bod1, ids_bod1)
+
+dia_min_bod2 = "2020-05-09"
+dia_max_bod2 = "2020-05-09"
+ids_bod2 = [trc3_id]
+testa_busca_por_origem_e_destino(None, 'VCP', dia_min_bod2, dia_min_bod2, ids_bod2)
+
+dia_min_bod3 = None
+dia_max_bod3 = "2020-05-08"
+ids_bod3 = [trc1_id]
+testa_busca_por_origem_e_destino('VCP', None, dia_min_bod3, dia_min_bod3, ids_bod3)
+
+# ----------------------------------------------------------------------
+sys.stderr.write("testando {trecho.busca_por_origem}:\n")
+origem = 'VCP'
+ids_ori_bd1 = [trc1_id]
+testa_busca_por_origem(origem, ids_ori_bd1)
+
+origem = 'SDU'
+ids_ori_bd1 = [trc2_id, trc3_id]
+testa_busca_por_origem(origem, ids_ori_bd1)
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {trecho.muda_atributos}:\n")

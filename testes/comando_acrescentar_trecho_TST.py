@@ -19,7 +19,7 @@ sys.stderr.write("Criando alguns objetos...\n")
 tabelas.cria_todos_os_testes()
 
 # Sessao para teste
-ses = sessao.busca_por_identificador("S-00000001")
+ses = sessao.busca_por_identificador("S-00000004")
 
 def testa(rotulo, *args):
   """Testa {funcao(*args)}, grava resultado
@@ -47,7 +47,7 @@ def testa_acrescenta_trecho_com_sucesso(id_trecho_ult, id_trecho_prox):
      'hora_chegada': "06:23",
      'veiculo': "jegue003",
      'poltronas': "1A-12D: 90.00",
-     'aberto': True,
+     'aberto': True
   }
   testa("Suc", ses, args)
 
