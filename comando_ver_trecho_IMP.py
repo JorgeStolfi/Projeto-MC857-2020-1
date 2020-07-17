@@ -2,7 +2,7 @@
 
 #import html_lista_de_potronas
 import html_pag_generica
-import html_resumo_de_trecho
+#import html_resumo_de_trecho
 import html_erro
 import html_pag_ver_trecho
 import sessao
