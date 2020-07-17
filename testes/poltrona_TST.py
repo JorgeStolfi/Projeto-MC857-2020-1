@@ -161,9 +161,9 @@ representacao_str1 = poltrona.resume_numeros_e_precos(lista_de_pares1)
 representacao_str2 = poltrona.resume_numeros_e_precos(lista_de_pares2)
 representacao_str3 = poltrona.resume_numeros_e_precos(lista_de_pares3)
 
-print(representacao_str1)
-print(representacao_str2)
-print(representacao_str3)
+sys.stderr.write(representacao_str1 + "\n")
+sys.stderr.write(representacao_str2 + "\n")
+sys.stderr.write(representacao_str3 + "\n")
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {poltrona.obtem_dia_e_hora_de_partida}:\n")
