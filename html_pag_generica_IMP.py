@@ -26,7 +26,7 @@ def gera(ses, ht_conteudo, erros):
     num_ses = len(usuario.sessoes_abertas(usr));
     num_cpr = len(usuario.compras_abertas(usr));
     # sys.stderr.write("usuario %s num_ses = %d  num_cpr = %d\n" % (id_usr, num_ses, num_cpr))
-    assert not (admin and (num_cpr > 0)) # Administradores não devem ter compras.
+    # assert not (admin and (num_cpr > 0)) # Administradores não devem ter compras.
   else:
     nome_usuario = None
     admin = False
@@ -45,7 +45,7 @@ def gera(ses, ht_conteudo, erros):
       ht_multi_ses = html_span.gera(estilo_multi_ses, "Você tem outras %d sessoes abertas." % (num_ses-1))
   else:
     ht_multi_ses = None
- 
+
   # Mensagem de multiplas compras:
   if num_cpr > 1:
     estilo_multi_cpr = None; # cor_texto = "#FF0000" cor_fundo = "#eeeeee"
@@ -85,4 +85,3 @@ def gera(ses, ht_conteudo, erros):
     ht_conteudo + "<br/>\n" + \
     ht_roda
   return pagina
-
