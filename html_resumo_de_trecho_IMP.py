@@ -62,3 +62,4 @@ def formata_texto(txt):
   estilo = "font-weight:bold"
   return html_span.gera(estilo, txt)
 
+ 
