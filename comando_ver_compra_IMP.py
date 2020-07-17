@@ -25,7 +25,7 @@ def processa(ses, args):
     pag = html_pag_mensagem_de_erro(ses, erros)
   else:
     # O dono da sessão pode mexer na compra?
-    autorizado = (compra.obtem_cliente(cpr) == usr) or sessao.eh_administrador(usr)
+    autorizado = (compra.obtem_cliente(cpr) == usr) or sessao.eh_administrador(ses)
 
     # A compra ainda pode ser alterada?
     aberto = compra.obtem_atributo(cpr, 'status') == "aberto"
