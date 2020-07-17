@@ -19,4 +19,3 @@ def gera(trcs, alterar):
   ht_itens = html_table.gera(linhas, cabecalho)
   # !!! Deveria envolver tudo com um <span style="..."></span> !!!
   return ht_itens
- 
