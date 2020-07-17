@@ -32,8 +32,20 @@ def testa(rotulo, ses, *args):
   pretty = True  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_modulo_html(modulo, rotulo, pag, frag, pretty)
 
-
 # testa('vazio',      ses, {},                                           )
-testa('1-None',     ses, { 'origem': None },                           )
-testa('1-org',      ses, { 'origem': 'SDU' },                          )
-testa('2-dst-dmin', ses, { 'origem': 'SDU', 'dia_min': "2020-05-08" }, )
+testa('1-None',            ses, { 'origem': None },                           )
+testa('1-org',             ses, { 'origem': 'SDU' },                          )
+testa('2-dst-dmin',        ses, { 'origem': 'SDU', 'dia_min': "2020-05-08" }, )
+
+testa('3-org-dmax',        ses, {'origem': 'SDU', 'dia_chegada': "2020-05-08"})
+testa('4-org-dhmax',       ses, {'origem': 'SDU', 'dia_chegada': "2020-05-08", 'hora_chegada': "20:30"})
+testa('5-org-dmin',        ses, {'origem': 'SDU', 'dia_partida': "2020-05-08"})
+testa('6-org-dhmin',       ses, {'origem': 'SDU', 'dia_partida': "2020-05-08", 'hora_partida': "16:00"})
+testa('7-org-dmin-dmax',   ses, {'origem': 'SDU', 'dia_partida': "2020-05-08", 'dia_chegada': "2020-05-08"})
+testa('8-org-dhmin-dhmax', ses, {
+    'origem': 'SDU', 
+    'dia_partida': "2020-05-08", 'hora_partida': "19:30",
+    'dia_chegada': "2020-05-08", 'hora_chegada': "20:30"
+  }
+)
+testa('9-dmin-dmax',       ses, {'dia_partida': "2020-05-08", 'dia_chegada': "2020-05-08"})

@@ -59,6 +59,7 @@ def descobre_todos(origem, destino, dia_min, dia_max):
 def obtem_identificadores_de_trechos(rot):
   ids = [].copy()
   for trc in rot:
+    assert trc != None
     sys.stderr.write("trc = %s\n" % str(trc))
     assert type(trc) is trecho.Objeto_Trecho
     ids.append(trecho.obtem_identificador(trc))

@@ -61,5 +61,8 @@ for comprar_pols in (False, True):
         ("N-E0", None), 
         ("N-E1", "Não entendi"), 
       ):
-      ses = (ses_adm if alterar_trc else ses_com)
-      testa(tag + ca, ses, trecho1, comprar_pols, alterar_trc, erros)
+      sys.stderr.write("--- %s ------------------------\n" % (tag + ca))
+      admin = alterar_trc
+      ses = (ses_adm if admin else ses_com)
+      if (admin and not comprar_pols) or ((not admin) and (not alterar_trc)):
+        testa(tag + ca, ses, trecho1, comprar_pols, alterar_trc, erros)

@@ -72,6 +72,7 @@ def cria(atrs_mem):
 
 def obtem_identificador(trc):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert trc != None
   return objeto.obtem_identificador(trc)
 
 def obtem_atributos(trc):

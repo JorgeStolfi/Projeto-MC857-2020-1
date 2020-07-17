@@ -78,6 +78,7 @@ def cria(usr, cookie, carrinho):
 
 def obtem_identificador(ses):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert ses != None
   return objeto.obtem_identificador(ses)
 
 def obtem_atributos(ses):

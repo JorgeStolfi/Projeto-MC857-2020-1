@@ -23,8 +23,8 @@ MODULOS_TODOS := ${shell gawk '/^[*A@]/{ print $$2; }' 00-MODULOS.txt}
 
 # Módulos a testar em {testes_de_modulos}:
 # MODULOS := ${MODULOS_COM_TST}
-# MODULOS := ${MODULOS_TODOS}
-MODULOS := ${MODULOS_BUG}
+MODULOS := ${MODULOS_TODOS}
+# MODULOS := ${MODULOS_BUG}
 
 # O que "make" deve fazer:
 

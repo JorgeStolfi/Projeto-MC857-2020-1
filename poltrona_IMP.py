@@ -77,6 +77,7 @@ def muda_atributos(pol, mods_mem):
 
 def obtem_identificador(pol):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert pol != None
   return objeto.obtem_identificador(pol)
 
 def obtem_atributos(pol):

@@ -45,6 +45,7 @@ def muda_atributos(obj, mods_mem, cache, nome_tb, letra_tb, colunas, def_obj_mem
 
 def obtem_identificador(obj):
   global diags
+  assert obj != None
   return obj.id
 
 def obtem_atributos(obj):

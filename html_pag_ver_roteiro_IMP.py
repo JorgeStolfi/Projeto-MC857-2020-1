@@ -22,11 +22,13 @@ def gera(ses, rot, erros):
 
   # verifica se todos os trechos estao abertos
   roteiro_aberto = True
-  for id in ids_trechos:
-    roteiro_aberto = roteiro_aberto and (trecho.busca_por_identificador(id))["Aberto"]
+  for id_trc in ids_trechos:
+    trc = trecho.busca_por_identificador(id_trc)
+    roteiro_aberto = roteiro_aberto and trecho.obtem_atributo(trc, 'aberto')
 
   if roteiro_aberto:
-    ht_comprar = html_botao_simples.gera("Comprar", "comprar_roteiro", {'ids_trechos': ids_trechos_txt}, "#22ff22")
+    atrs_comprar =  {'ids_trechos': ids_trechos_txt}
+    ht_comprar = html_botao_simples.gera("Comprar", "comprar_roteiro", atrs_comprar, "#22ff22")
     ht_conteudo += "<br/>" + ht_comprar
 
   pag = html_pag_generica.gera(ses, ht_conteudo, erros)

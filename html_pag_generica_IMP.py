@@ -1,15 +1,15 @@
 import sessao
 import usuario
 import compra
-import html_texto
 
 import html_cabecalho
 import html_menu_geral
 import html_rodape
 import html_erro
-import html_texto
+import html_span
 
 import re
+import sys
 
 
 def gera(ses, ht_conteudo, erros):
@@ -23,56 +23,46 @@ def gera(ses, ht_conteudo, erros):
     nome_usuario = usuario.obtem_atributos(usr)['nome']
     admin = usuario.obtem_atributos(usr)['administrador']
     id_usr = usuario.obtem_identificador(usr)
-
-    # Obtem os ids das sessoes do usuario e mapeia o id para objetos Sessao
-    usr_sessions = map(lambda id_ses: sessao.busca_por_identificador(id_ses), sessao.busca_por_usuario(id_usr))
-
-    # Filtra apenas as Sessoes que estao abertas
-    usr_sessoes_abertas = list(filter(lambda usr_ses: sessao.aberta(usr_ses), usr_sessions))
-    multi_ses = True if len(usr_sessoes_abertas) > 1 else False
+    num_ses = len(usuario.sessoes_abertas(usr));
+    num_cpr = len(usuario.compras_abertas(usr));
+    # sys.stderr.write("usuario %s num_ses = %d  num_cpr = %d\n" % (id_usr, num_ses, num_cpr))
+    assert not (admin and (num_cpr > 0)) # Administradores não devem ter compras.
   else:
     nome_usuario = None
     admin = False
-    multi_ses = False
+    num_ses = 0
+    num_cpr = 0
 
   # Menu geral no alto da página:
   ht_menu = html_menu_geral.gera(logado, nome_usuario, admin)
 
-  # Mensagem de multiplas sessoes para usuario nao administradores
-  ht_multi_ses = ""
-  if multi_ses and not admin:
-    ht_multi_ses =\
-      html_texto.gera("Você tem mais de uma sessão aberta.", None, None, "16px", "bold", "5px", "left", None, None)
+  # Mensagem de multiplas sessoes:
+  if num_ses > 1:
+    estilo_multi_ses = None; # cor_texto = "#FF0000" cor_fundo = "#eeeeee"
+    if num_ses == 2:
+      ht_multi_ses = html_span.gera(estilo_multi_ses, "Você tem outra sessao aberta.")
+    else:
+      ht_multi_ses = html_span.gera(estilo_multi_ses, "Você tem outras %d sessoes abertas." % (num_ses-1))
+  else:
+    ht_multi_ses = None
+ 
+  # Mensagem de multiplas compras:
+  if num_cpr > 1:
+    estilo_multi_cpr = None; # cor_texto = "#FF0000" cor_fundo = "#eeeeee"
+    if num_cpr == 2:
+      ht_multi_cpr = html_span.gera(estilo_multi_cpr, "Você tem outra compra aberta.")
+    else:
+      ht_multi_cpr = html_span.gera(estilo_multi_cpr, "Você tem outras %d compras abertas." % (num_cpr-1))
+  else:
+    ht_multi_cpr = None
 
-  # Mensagens de erro:
+  # Mensagens de erro - quebra e limpa:
   if erros == None:
     erros = []
   elif type(erros) == str:
     # Split lines, create a list:
     erros = re.split('[\n]', erros)
   assert type(erros) is list or type(erros) is tuple
-
-  # Menssagens
-  ht_msg = ""
-  if logado and not admin:
-    lista_ids_compras = compra.busca_por_cliente(usuario.obtem_identificador(usr))
-    compras_abertas = 0
-    for id_compra in lista_ids_compras:
-      obj_compra = compra.busca_por_identificador(id_compra)
-      if compra.obtem_status(obj_compra) == 'aberto':
-        compras_abertas = compras_abertas + 1
-
-    if compras_abertas > 1:
-      cor_texto = "#FF0000"
-      cor_fundo = "#eeeeee"
-      if (compras_abertas == 2):
-        texto = "Você tem mais " + str(compras_abertas-1) + " compra aberta, além da que está no carrinho. Vá no botão Minhas Compras para ver."
-      else:
-        texto = "Você tem mais " + str(compras_abertas-1) + " compras abertas, além da que está no carrinho. Vá no botão Minhas Compras para ver."
-
-      ht_multi_cpr = html_texto.gera(texto, None, "Courier", "16px", "normal", "5px", "center", cor_texto, cor_fundo)
-
-  # Cleanup the messages:
   erros = [ er for er in erros if er != None ]
   erros = [ er.strip() for er in erros ]
   erros = [ er for er in erros if len(er) > 0 ]
@@ -89,8 +79,8 @@ def gera(ses, ht_conteudo, erros):
   pagina = \
     ht_cabe + "<br/>\n" + \
     ht_menu + "<br/>\n" + \
-    ht_multi_ses + "<br/>\n" + \
-    ht_multi_cpr + "<br/>\n" + \
+    ( ht_multi_ses + "<br/>\n" if ht_multi_ses != None else "" ) + \
+    ( ht_multi_cpr + "<br/>\n" if ht_multi_cpr != None else "" ) + \
     ht_erros + "<br/>\n" + \
     ht_conteudo + "<br/>\n" + \
     ht_roda

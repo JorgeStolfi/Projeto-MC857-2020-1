@@ -29,4 +29,5 @@ id_poltronas1 = ["A-00000001", "A-00000006"]
 id_poltronas2 = ["A-00000001", "A-00000000"]
 
 testa("Valido", id_poltronas1)
-testa("Poltrona_nao_existe", id_poltronas2)
+
+# testa("Poltrona_nao_existe", id_poltronas2)

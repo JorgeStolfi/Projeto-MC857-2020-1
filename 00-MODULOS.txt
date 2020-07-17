@@ -22,7 +22,7 @@ A usuario
 A compra
 A poltrona
 A sessao
-A trecho
+@ trecho
 
 A tabelas
 
@@ -34,16 +34,19 @@ A html_texto
 A html_paragrafo
 A html_input
 A html_label
-A html_estilo_de_botao
-A html_botao_simples
-A html_botao_submit
-A html_botao_radio
 A html_table
 A html_imagem
 A html_imagem_link
 
 A html_form
 A html_form_table
+
+A html_estilo_de_botao
+A html_estilo_cabecalho_de_tabela
+
+A html_botao_simples
+A html_botao_submit
+A html_botao_radio
 
 # --- Módulos de páginas e genéricas
 
@@ -89,11 +92,11 @@ A comando_ver_poltrona
 
 A html_pag_alterar_poltrona
 A comando_solicitar_pag_alterar_poltrona
-@ comando_alterar_poltrona
+A comando_alterar_poltrona
 
 A html_lista_de_poltronas_de_compra
 A html_lista_de_poltronas_de_trecho
-@ html_lista_de_poltronas_de_usuario
+A html_lista_de_poltronas_de_usuario
 
 A comando_ver_poltronas_de_usuario
 
@@ -104,7 +107,8 @@ A comando_trocar_poltrona
 # --- Módulos que lidam principalmente com {Objeto_Sessao}
 
 A html_sessao
-@ html_form_dados_de_sessao
+A html_resumo_de_sessao
+A html_form_dados_de_sessao
 A html_pag_ver_sessao
 
 A html_lista_de_sessoes
@@ -116,6 +120,7 @@ A comando_solicitar_pag_login
 A comando_fazer_login
 A comando_fazer_logout
 
+A comando_ver_minhas_sessoes
 A comando_fechar_sessao
 
 # --- Módulos que lidam principalmente com {Objeto_Trecho}
@@ -128,8 +133,8 @@ A comando_ver_trecho
 
 A html_pag_acrescentar_trecho
 A comando_solicitar_pag_acrescentar_trecho
-@ comando_solicitar_pag_clonar_trecho
-@ comando_acrescentar_trecho
+A comando_solicitar_pag_clonar_trecho
+A comando_acrescentar_trecho
 
 A html_pag_alterar_trecho
 A comando_solicitar_pag_alterar_trecho
@@ -167,13 +172,14 @@ A comando_alterar_compra
 A html_form_escolher_pagamento
 A html_pag_escolher_pagamento
 A comando_solicitar_pag_escolher_pagamento
+A comando_alterar_pagamento
 
 A comando_definir_carrinho
 A comando_finalizar_compra
 
 # --- Módulos para contato
 
-@ html_form_contato
+A html_form_contato
 A html_pag_contato
 A comando_solicitar_pag_contato
 
@@ -190,6 +196,7 @@ A comando_solicitar_pag_sugerir_roteiros
 A html_resumo_de_roteiro
 A html_lista_de_roteiros
 A comando_sugerir_roteiros
+A comando_comprar_roteiro
 
 # --- Objetos genéricos
 

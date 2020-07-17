@@ -1,6 +1,7 @@
 import html_resumo_de_poltrona_de_trecho
 import base_sql
 import poltrona
+import tabelas
 import utils_testes
 import sys
 
@@ -8,10 +9,8 @@ sys.stderr.write("Conectando com base de dados...\n")
 res = base_sql.conecta("DB",None,None)
 assert res == None
 
-sys.stderr.write("Inicializando módulo {poltrona}, limpando tabela:\n")
-poltrona.inicializa(True)
-sys.stderr.write("Criando testes do módulo {poltrona}\n")
-poltrona.cria_testes()
+sys.stderr.write("Criando alguns objetos...\n")
+tabelas.cria_todos_os_testes()
 
 def testa(rotulo, *args):
   """Testa {funcao(*args)}, grava resultado

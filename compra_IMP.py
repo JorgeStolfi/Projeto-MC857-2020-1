@@ -68,6 +68,7 @@ def cria(cliente, nome_pass, doc_pass):
 
 def obtem_identificador(cpr):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert cpr != None
   return objeto.obtem_identificador(cpr)
 
 def obtem_atributos(cpr):

@@ -109,6 +109,16 @@ def busca_por_CPF(CPF):
   ou {None} se não existir tal usuário."""
   return usuario_IMP.busca_por_CPF(CPF)
 
+def sessoes_abertas(usr):
+  """Devolve a lista com todo {Objeto_Sessao} do usuário {usr} que
+  ainda está aberta."""
+  return usuario_IMP.sessoes_abertas(usr)
+
+def compras_abertas(usr):
+  """Retorna uma lista com cada {Objeto_Compra} do usuário {usr}
+  que ainda não está finaliizada."""
+  return usuario_IMP.compras_abertas(usr)
+  
 # UTILIDADES
 
 def confere_e_elimina_conf_senha(args):

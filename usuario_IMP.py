@@ -2,6 +2,8 @@
 
 import objeto
 import usuario
+import sessao
+import compra
 
 import tabela_generica
 import tabelas
@@ -78,6 +80,7 @@ def muda_atributos(usr, mods_mem):
 
 def obtem_identificador(usr):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert usr != None
   return objeto.obtem_identificador(usr)
 
 def obtem_atributos(usr):
@@ -107,6 +110,22 @@ def busca_por_CPF(CPF):
 
   return id
 
+def sessoes_abertas(usr):  
+  id_usr = usuario.obtem_identificador(usr)
+  ids_sessoes_usr = sessao.busca_por_usuario(id_usr) # IDs das sessões deste usuário.
+  sessoes_usr = map(lambda id: sessao.busca_por_identificador(id), ids_sessoes_usr) # Pega objetos.
+  # Filtra apenas as Sessoes que estao abertas
+  abertas_usr = list(filter(lambda ses: sessao.aberta(ses), sessoes_usr))
+  return abertas_usr
+  
+def compras_abertas(usr):
+  id_usr = usuario.obtem_identificador(usr)
+  ids_compras_usr = compra.busca_por_cliente(id_usr) # IDs das compras deste usuário.
+  compras_usr = map(lambda id: compra.busca_por_identificador(id), ids_compras_usr) # Pega objetos.
+  # Filtra apenas as compras que não estao finalizadas:
+  abertas_usr = list(filter(lambda cpr: compra.obtem_status(cpr) != 'fechado', compras_usr))
+  return abertas_usr
+  
 def cria_testes():
   global cache, nome_tb, letra_tb, colunas, diags
   inicializa(True)
@@ -138,7 +157,7 @@ def cria_testes():
         'telefone': "+55(19)9 9999-9999",
         'documento': None,
         'administrador' : True,
-      }
+      },
     ]
   for atrs in lista_atrs:
     usr = cria(atrs)

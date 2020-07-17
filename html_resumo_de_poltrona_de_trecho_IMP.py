@@ -7,6 +7,9 @@ import sys
 
 def gera(pol, id_trc, alterar_pol, comprar_pol, trocar_pol, id_cpr):
 
+  assert id_trc != None
+  trc = trecho.busca_por_identificador(id_trc)
+
   id_pol = poltrona.obtem_identificador(pol)
   atrs_pol = poltrona.obtem_atributos(pol)
   if atrs_pol['id_trecho'] != id_trc:
@@ -35,7 +38,7 @@ def gera(pol, id_trc, alterar_pol, comprar_pol, trocar_pol, id_cpr):
     ht_alterar = html_botao_simples.gera("Alterar", "solicitar_pag_alterar_poltrona", args_alterar, '#bca360')
     linha.append(ht_alterar)
 
-  if (trecho.busca_por_identificador(id_trc))["Aberto"]==True:
+  if trecho.obtem_atributo(trc, 'aberto'):
     if comprar_pol and id_cpr_pol == None:
       args_comprar = { 'id_poltrona': id_pol, 'id_compra': id_cpr }
       ht_comprar = html_botao_simples.gera("Comprar", 'comprar_poltrona', args_comprar, '#ff0000')

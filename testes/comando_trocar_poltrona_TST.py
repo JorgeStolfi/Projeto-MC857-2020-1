@@ -27,6 +27,6 @@ def testa(rotulo, *args):
     testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
 ses = sessao.busca_por_identificador("S-00000003")
-trc = trecho.busca_por_identificador("T-00000003")
+id_trc = "T-00000003"
 
-testa("A1-T3-C3", ses, "A-00000008", trc, "C-00000003")
+testa("A1-T3-C3", ses, { 'id_poltrona': "A-00000008", 'id_trecho': id_trc, 'id_compra': "C-00000003" } )
