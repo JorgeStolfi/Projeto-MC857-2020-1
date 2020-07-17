@@ -61,5 +61,3 @@ def formata_texto(txt):
   """Formata o texto {txt} com um estilo apropriado."""
   estilo = "font-weight:bold"
   return html_span.gera(estilo, txt)
-
- 
