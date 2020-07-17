@@ -25,6 +25,7 @@ def gera(rotulo, tipo, nome, val_ini, val_min, editavel, dica, cmd, obrigatorio)
   ht_checkbox_disabled = (" disabled" if tipo == "checkbox" and not editavel else "")
   ht_obrigatorio = (" required" if obrigatorio else "")
   ht_readonly = ( " readonly" if not editavel else "" )
+  ht_readonlybackground = ( " style=\"background-color:#BCBCBC\"" if not editavel else "" )
   ht_dica = ( " placeholder=\"" + dica + "\"" if dica != None else "" )
   ht_cmd = ( " onchange=\"window.location.href=" + cmd + "\"" if cmd != None else "" )
   ht_input = ht_rotulo + \
@@ -33,6 +34,7 @@ def gera(rotulo, tipo, nome, val_ini, val_min, editavel, dica, cmd, obrigatorio)
       ht_nome + \
       ht_val_ini + \
       ht_readonly + \
+      ht_readonlybackground + \
       ht_checkbox_disabled + \
       ht_dica + \
       ht_cmd + \
