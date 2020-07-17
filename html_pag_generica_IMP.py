@@ -7,24 +7,42 @@ import html_cabecalho
 import html_menu_geral
 import html_rodape
 import html_erro
+import html_texto
 
 import re
 
-def gera(ses, ht_conteudo, erros):
 
+def gera(ses, ht_conteudo, erros):
   # Cabeçalho das páginas:
   ht_cabe = html_cabecalho.gera("VIAGENS OITO-CINCO-SETE", True)
 
-  # Menu geral no alto da página:
   logado = (ses != None)
   if logado:
     usr = sessao.obtem_usuario(ses)
+
     nome_usuario = usuario.obtem_atributos(usr)['nome']
     admin = usuario.obtem_atributos(usr)['administrador']
+    id_usr = usuario.obtem_identificador(usr)
+
+    # Obtem os ids das sessoes do usuario e mapeia o id para objetos Sessao
+    usr_sessions = map(lambda id_ses: sessao.busca_por_identificador(id_ses), sessao.busca_por_usuario(id_usr))
+
+    # Filtra apenas as Sessoes que estao abertas
+    usr_sessoes_abertas = list(filter(lambda usr_ses: sessao.aberta(usr_ses), usr_sessions))
+    multi_ses = True if len(usr_sessoes_abertas) > 1 else False
   else:
     nome_usuario = None
     admin = False
+    multi_ses = False
+
+  # Menu geral no alto da página:
   ht_menu = html_menu_geral.gera(logado, nome_usuario, admin)
+
+  # Mensagem de multiplas sessoes para usuario nao administradores
+  ht_multi_ses = ""
+  if multi_ses and not admin:
+    ht_multi_ses =\
+      html_texto.gera("Você tem mais de uma sessão aberta.", None, None, "16px", "bold", "5px", "left", None, None)
 
   # Mensagens de erro:
   if erros == None:
@@ -52,7 +70,7 @@ def gera(ses, ht_conteudo, erros):
       else:
         texto = "Você tem mais " + str(compras_abertas-1) + " compras abertas, além da que está no carrinho. Vá no botão Minhas Compras para ver."
 
-      ht_msg = html_texto.gera(texto, None, "Courier", "16px", "normal", "5px", "center", cor_texto, cor_fundo)
+      ht_multi_cpr = html_texto.gera(texto, None, "Courier", "16px", "normal", "5px", "center", cor_texto, cor_fundo)
 
   # Cleanup the messages:
   erros = [ er for er in erros if er != None ]
@@ -71,7 +89,8 @@ def gera(ses, ht_conteudo, erros):
   pagina = \
     ht_cabe + "<br/>\n" + \
     ht_menu + "<br/>\n" + \
-    ht_msg + "<br/>\n" + \
+    ht_multi_ses + "<br/>\n" + \
+    ht_multi_cpr + "<br/>\n" + \
     ht_erros + "<br/>\n" + \
     ht_conteudo + "<br/>\n" + \
     ht_roda
