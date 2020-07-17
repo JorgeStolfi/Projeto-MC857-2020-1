@@ -1,0 +1,8 @@
+Relatório
+
+Minha tarefa essa semana era fazer o comando de acrescentar trecho funcionar, para resolver
+o problema primeiramente eu alterei o campo {aberto} para o tipo checkbox no módulo
+{html_form_dados_de_trecho}, depois alterei o módulo {comando_acrescentar_trecho} colocando
+uma lógica para esse novo campo ser convertido corretamente. Por fim alterei a sessão para
+uma de administrador no módulo de teste {comando_acrescentar_trecho_TST} para o teste
+funcionar corretamente.

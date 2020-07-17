@@ -1,5 +1,4 @@
 import poltrona
-import html_texto
 import html_botao_submit
 import html_form_table
 import html_form
@@ -9,27 +8,27 @@ def gera(id_pol, atrs_pol, alterar, comprar, excluir, id_cpr, ver_poltrona):
   atrs_pol = atrs_pol.copy() # Para que as alterações sejam locais.
 
   atrs_pol['id_poltrona'] = id_pol
-  
+
   # Coinsistência dos parâmetros:
-  
+
   if alterar:
     # Verifica outros parâmetros:
     assert not (comprar or excluir)
     assert id_cpr == None
-  
+
   if comprar:
     # Preenche o atributo 'id_compra' com a compra especificada
     assert not (alterar or excluir)
     assert id_cpr != None
     assert atrs_pol['id_compra'] == None
     atrs_pol['id_compra'] = id_cpr
-  
+
   if excluir:
     # Certifica que o atributo 'id_compra' é a compra especificada
     assert not (alterar or comprar)
     assert id_cpr != None
     assert atrs_pol['id_compra'] == id_cpr
-    
+
   # Campos a apresentar no formulário:
 
   dados_linhas = \
@@ -41,7 +40,7 @@ def gera(id_pol, atrs_pol, alterar, comprar, excluir, id_cpr, ver_poltrona):
       ("Oferta", "checkbox", 'oferta', None, False),  # Readonly exceto para administradores.
       ("Preço", "numeric", 'preco', None, False),  # Readonly exceto para administradores.
     )
-    
+
   dados_linhas_adm = \
     (
       ( "ID",     "text", 'id_poltrona', None, False ),
@@ -62,7 +61,7 @@ def gera(id_pol, atrs_pol, alterar, comprar, excluir, id_cpr, ver_poltrona):
       ( "Oferta", "checkbox", 'oferta',      None, True ),
       ( "Preço",  "numeric",  'preco',       None, True ),
     )
-    
+
   admin = alterar # Supõe que é administrador se for para alterar.
 
   if ver_poltrona:
@@ -72,11 +71,9 @@ def gera(id_pol, atrs_pol, alterar, comprar, excluir, id_cpr, ver_poltrona):
       dados_linhas = dados_linhas_not_adm
 
   ht_campos = html_form_table.gera(dados_linhas, atrs_pol, admin, ver_poltrona)
-  
+
   # Botão:
   args_pol_submit = {'id_poltrona': id_pol}
-  print("SECOND BIG TETS")
-  print(str(args_pol_submit))
   if excluir:
     ht_botao = html_botao_submit.gera("Excluir", "excluir_poltrona_de_compra", None, '#bca360')
   elif alterar:
@@ -89,5 +86,5 @@ def gera(id_pol, atrs_pol, alterar, comprar, excluir, id_cpr, ver_poltrona):
   ht_form = \
     ht_campos + \
     ( "<br/>" + ht_botao if ht_botao != None else "" )
-    
+
   return html_form.gera(ht_form)

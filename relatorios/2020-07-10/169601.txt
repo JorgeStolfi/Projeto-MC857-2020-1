@@ -1,0 +1,11 @@
+Tarefa: html_lista_de_poltronas_de_usuario_TST.py : Escrever e testar.
+
+Analisando a descrição do módulo, vi que seu comportamento é muito semelhante ao {html_resumo_de_poltrona_de_compra}, por isso usei o teste deste módulo como base para o teste a ser desenvolvido na tarefa.
+
+Com isso a estrutura básica do arquivo de teste foi totalmente reaproveitada, sendo necessário apenas alterar as últimas linhas.
+
+Criei dois testes, um com uma lista de identificadores de poltrona válidos (com rótulo "Valido") e outra com um id não válido (rótulo "Poltrona_nao_existe").
+
+O primeiro teste gerou o arquivo {html_lista_de_poltronas_de_usuario.gera.Valido.html} com um fragmento de HMTL contendo uma tabela com as colunas "Trecho", "Origem", "Partida", "Destino", "Chegada", "Poltrona", "Preço" e "Ver Poltrona". E cada linha da tabela continha os valores desses atributos da poltrona em questão.
+
+O segundo teste gerou o arquivo {html_lista_de_poltronas_de_usuario.gera.Poltrona_nao_existe.html} com uma mensagem de erro gerado pelo módulo ao tentar processar o id que não existe.

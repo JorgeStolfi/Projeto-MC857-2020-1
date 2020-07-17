@@ -1,0 +1,5 @@
+185441 - Paulo Afonso Martins Januário
+Tarefa: [A] "Acrescentar trecho" : Campo "Dispoível" deve ser "Aberto" de tipo ticbox.
+
+- Alterei o módulo html_form_dados_de_trecho alterando o título do campo indicado por "Aberto" e o tipo por "checkbox"
+- Alterei um dos testes no TST do módulo de forma que tenha um teste com esse campo marcado e outro teste desmarcado, verifiquei que funcionou

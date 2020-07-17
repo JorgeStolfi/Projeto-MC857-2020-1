@@ -1,34 +1,38 @@
 import sessao
 import html_resumo_de_sessao
 import html_table
-import html_texto
 import html_div
 import html_span
 import sys
+import html_estilo_cabecalho_de_tabela
 
 def gera(ids_sessoes):
   # Linha de cabeçalho:
-  estilo_cab = "font-size:20px;font-weight:bold; background-color: #60a3bc; color: white; padding:0px 10px 0px 0px"
-  estilo_item = "font-size:15px; background-color: #60a3bc; color: white; padding:0px 10px 0px 0px"
   cabs_raw = ['Sessão', 'Usuário', 'Aberta?', 'Cookie', 'Carrinho']
   cabs_div = [].copy()
+  estilo_cab = html_estilo_cabecalho_de_tabela.gera()
   for cb in cabs_raw:
     cabs_div.append(html_div.gera(estilo_cab, cb))
-
-  ## !!! (2020-07-10) Estou presumindo que o modulo html_resumo_de_sessao esta criado !!!!
-
   # Linhas das sessoes:
   linhas = [].copy()
   for id in ids_sessoes:
     # busca por id da sessao no banco
     ses = sessao.busca_por_identificador(id)
     assert ses != None
-
-    # busca informacoes da sessao e passa bts
-    bt_ver_ses = True
-    bt_fechar_ses = False
-    resumo_sessao = html_resumo_de_sessao.gera(ses, bt_ver_ses, bt_fechar_ses)
-    linhas.append(resumo_sessao)
+    # le seus atributos
+    atributos = sessao.obtem_atributos(ses)
+    usr = atributos['usr']
+    abrt = atributos['abrt']
+    cookie = atributos['cookie']
+    carrinho = atributos['carrinho']
+    
+    # monta linha da tabela
+    linha = [].copy()
+    linha.append(html_span.gera(None, id))
+    linha.append(html_span.gera(None, usr))
+    linha.append(html_span.gera(None, abrt))
+    linha.append(html_span.gera(None, cookie))
+    linha.append(html_span.gera(None, carrinho))
 
   # Gera a tabela HTML a partir da lista de linhas
   ht_itens = html_table.gera(linhas, cabs_div)

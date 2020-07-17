@@ -1,0 +1,1 @@
+Arrumado o comando trocar poltrona, de maneira que o id do trecho também é enviado pela url ao clicar no botão Trocar, e alteradas as funções para lidar com esse id
