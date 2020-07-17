@@ -295,10 +295,10 @@ def analisa_esp_lista(txt, prc):
       nums_prc_int = analisa_esp_intervalo(num_esp, prc)
       nums_prc += nums_prc_int
   return nums_prc
-  
+
 def analisa_esp_numero(txt):
-  """Destrincha a cadeia {txt}, que deve ser um número de poltrona: um inteiro não 
-  negativo sequido opcionalmente de uma letra maiúscula.  Devolve o inteiro como {int} e a 
+  """Destrincha a cadeia {txt}, que deve ser um número de poltrona: um inteiro não
+  negativo sequido opcionalmente de uma letra maiúscula.  Devolve o inteiro como {int} e a
   letra como {string}. Se não houver letra, o segundo resultado é a cadeia vazia."""
   global cache, nome_tb, letra_tb, colunas, diags
   txt = txt.strip(" ")
@@ -342,14 +342,14 @@ def analisa_esp_intervalo(txt, prc):
   ini_esp = ini_esp_fin_esp[0]
   ini_int, ini_let = analisa_esp_numero(ini_esp)
   ini_let_ix = alfabeto.find(ini_let)
-  
+
   fin_esp = ini_esp_fin_esp[1]
   fin_int, fin_let = analisa_esp_numero(fin_esp)
   fin_let_ix = alfabeto.find(fin_let)
-  
+
   if ini_int > fin_int or ini_let_ix > fin_let_ix:
     raise ErroAtrib("sintaxe inválida em intervalo de poltronas (ordem): \"" + txt + "\"")
-  
+
   nums_prc = [].copy()
   for num_int in range(ini_int, fin_int + 1):
     for num_let_ix in range(ini_let_ix, fin_let_ix + 1):
@@ -372,11 +372,9 @@ def analisa_esp_preco(txt):
 def valida_atributos(pol, atrs_mem):
   """Faz validações específicas nos atributos {atrs_mem}. Devolve uma lista
   de strings com descrições dos erros encontrados.
-
   Se {pol} é {None}, supõe que uma novo poltrona está sendo criado. Se {pol}
   não é {None}, supõe que {atrs_mem} sao alterações a aplicar essa
   poltrona.
-
   Em qualquer caso, não pode haver, ao mesmo tempo, duas poltronas com o mesmo número e trecho. """
 
   global cache, nome_tb, letra_tb, colunas, diags
@@ -417,9 +415,9 @@ def valida_atributos(pol, atrs_mem):
   # alteração ({pol != None}), deve haver apenas uma, e deve ter
   # o mesmo identificador de {pol}.
 
-  
+
   args = {"numero": "","id_trecho": ""}
-  
+
   # verificacao para o caso de atrs_mem nao ter os campos numero ou id_trecho
   if 'numero' in atrs_mem:
     args["numero"] = atrs_mem['numero']
@@ -446,11 +444,9 @@ def def_obj_mem(obj, id, atrs_SQL):
   """Se {obj} for {None}, cria um novo objeto da classe {Objeto_Poltrona} com
   identificador {id} e atributos {atrs_SQL}, tais como extraidos
   da tabela de sessoes. O objeto *NÃO* é inserido na base de dados.
-
   Se {obj} não é {None}, deve ser um objeto da classe {Objeto_Poltrona}; nesse
   caso a função altera os atributos de {obj} conforme especificado em
   {atrs_SQL}. A entrada correspondente na base de dados *NÃO* é alterada.
-
   Em qualquer caso, os valores em {atr_SQL} são convertidos para valores
   equivalentes na memória."""
   global cache, nome_tb, letra_tb, colunas, diags
@@ -467,7 +463,6 @@ def cria_obj_mem(id, atrs_SQL):
   """Cria um novo objeto da classe {Objeto_Poltrona} com
   identificador {id} e atributos {atrs_SQL}, tais como extraidos
   da tabela de sessoes. O objeto *NÃO* é inserido na base de dados.
-
   Os valores em {atr_SQL} são convertidos para valores
   equivalentes na memória."""
 
@@ -487,7 +482,6 @@ def modifica_obj_mem(obj, atrs_SQL):
   """O parâmetro {obj} deve ser um objeto da classe {Objeto_Poltrona}; nesse
   caso a função altera os atributos de {obj} conforme especificado em
   {atrs_SQL}.  A entrada correspondente da base de dados *NÃO* é alterada.
-
   Os valores em {atr_SQL} são convertidos para valores
   equivalentes na memória."""
   global cache, nome_tb, letra_tb, colunas, diags

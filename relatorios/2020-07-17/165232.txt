@@ -1,0 +1,3 @@
+- Adicionei 6 trechos em 'trecho_IMP.py' (VCP-GIG, GIG-VCP, GIG-CHG, VCP-CNF, CNF-VCP, CNF-BSB)
+- Em 'pontro_IMP.py' tentei adicionar poltronas para casa um dos trechos, no entanto ao fazer isso a
+página com o trecho em questão quebrava.
