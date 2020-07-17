@@ -1,3 +1,4 @@
+import compra
 import usuario
 import sessao
 import html_form_dados_de_usuario
@@ -11,13 +12,20 @@ def gera(ses, usr1, erros):
   id = usuario.obtem_identificador(usr1)
   atrs = usuario.obtem_atributos(usr1)
 
+  total = 0
+  compras_user = compra.busca_por_cliente(id)
+  for c in compras_user:
+    if compra.obtem_status(compra.busca_por_identificador(c)) == 'aberto':
+      total += 1
+  compras_abertas = "O usuário tem "+str(total)+" compras abertas"
+  
   formulario = html_form_dados_de_usuario.gera(id, atrs, usr_sessao_admin, "Confirmar", "alterar_usuario")
 
   ht_botao_sessoes = html_botao_simples.gera("Ver sessões", "ver_sessoes", {'id': id}, '#eeee55')
   ht_botao_compras = html_botao_simples.gera("Ver compras", "ver_minhas_compras", {'id': id}, '#eeee55')
   ht_botao_poltronas = html_botao_simples.gera("Ver poltronas", "ver_poltronas", {'id': id}, '#eeee55')
 
-  conteudo = formulario + "<br />" + \
+  conteudo =  compras_abertas + "<br />" + formulario + "<br />" + \
              ("   " + ht_botao_sessoes + "    " +  ht_botao_compras + "    " + ht_botao_poltronas )
 
   return html_pag_generica.gera(ses, conteudo, erros)
