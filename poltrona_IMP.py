@@ -32,6 +32,7 @@ colunas = \
     ( 'numero',      type("foo"), 'TEXT',    False ), # Número da poltrona no veículo.
     ( 'bagagens',    type(25),    'INTEGER', True  ), # Quantidade de bagagens na compra, ou {None}.
     ( 'preco' ,      type(3.14),  'FLOAT',   False ), # Preço da passagem nesta poltrona.
+    ( 'fez_checkin', type(False), 'INTEGER', False ), # Diz se o passageiro já fez checkin nessa poltrona.
   )
   # Descrição das colunas da tabela na base de dados.
 
@@ -156,7 +157,7 @@ def cria_conjunto(trc, txt):
     erros += valida_campo.numero_de_poltrona("número de poltrona", num, False)
     erros += valida_campo.preco("preço", prc, False)
     if len(erros) > 0: raise ErroAtrib(erros)
-    pol_atrs = { 'id_trecho': id_trc, 'numero': num, 'preco': prc, 'oferta': False, 'bagagens': None, 'id_compra': None }
+    pol_atrs = { 'id_trecho': id_trc, 'numero': num, 'preco': prc, 'oferta': False, 'bagagens': None, 'id_compra': None, 'fez_checkin': False }
     pol = cria(pol_atrs)
     pols.append(pol)
   return pols
@@ -167,68 +168,76 @@ def cria_testes():
   lista_atrs = \
     [
       # Poltrona "A-00000001":
-      { 'id_trecho':  "T-00000001",
-        'numero':     "01A",
-        'oferta':     True,
-        'id_compra':  "C-00000001",
-        'preco':      10.00,
-        'bagagens':   0,
+      { 'id_trecho':   "T-00000001",
+        'numero':      "01A",
+        'oferta':      True,
+        'id_compra':   "C-00000001",
+        'preco':       10.00,
+        'bagagens':    0,
+        'fez_checkin': True, 
       },
       # Poltrona "A-00000002":
-      { 'id_trecho':  "T-00000001",
-        'numero':     "02A",
-        'oferta':     True,
-        'id_compra':  None,
-        'preco':      60.00,
-        'bagagens':   None,
+      { 'id_trecho':   "T-00000001",
+        'numero':      "02A",
+        'oferta':      True,
+        'id_compra':   None,
+        'preco':       60.00,
+        'bagagens':    None,
+        'fez_checkin': True, 
       },
       # Poltrona "A-00000003":
-      { 'id_trecho':  "T-00000001",
-        'numero':     "02B",
-        'oferta':     False,
-        'id_compra':  "C-00000002",
-        'preco':      11.00,
-        'bagagens':   1,
+      { 'id_trecho':   "T-00000001",
+        'numero':      "02B",
+        'oferta':      False,
+        'id_compra':   "C-00000002",
+        'preco':       11.00,
+        'bagagens':    1,
+        'fez_checkin': True, 
       },
       # Poltrona "A-00000004":
-      { 'id_trecho':  "T-00000002",
-        'numero':     "31",
-        'oferta':     True,
-        'id_compra':  None,
-        'preco':      20.00,
-        'bagagens':   None,
+      { 'id_trecho':   "T-00000002",
+        'numero':      "31",
+        'oferta':      True,
+        'id_compra':   None,
+        'preco':       20.00,
+        'bagagens':    None,
+        'fez_checkin': True, 
       },
       # Poltrona "A-00000005":
-      { 'id_trecho':  "T-00000002",
-        'numero':     "32",
-        'oferta':     False,
-        'id_compra':  None,
-        'preco':      30.00,
-        'bagagens':   None,
+      { 'id_trecho':   "T-00000002",
+        'numero':      "32",
+        'oferta':      False,
+        'id_compra':   None,
+        'preco':       30.00,
+        'bagagens':    None,
+        'fez_checkin': False, 
       },
       # Poltrona "A-00000006":
-      { 'id_trecho':  "T-00000002",
-        'numero':     "33",
-        'oferta':     False,
-        'id_compra':  "C-00000001",
-        'preco':      12.00,
-        'bagagens':   2,
+      { 'id_trecho':   "T-00000002",
+        'numero':      "33",
+        'oferta':      False,
+        'id_compra':   "C-00000001",
+        'preco':       12.00,
+        'bagagens':    2,
+        'fez_checkin': False, 
       },
       # Poltrona "A-00000007":
-      { 'id_trecho':  "T-00000003",
-        'numero':     "31",
-        'oferta':     True,
-        'id_compra':  None,
-        'preco':      50.00,
-        'bagagens':   None,
+      { 'id_trecho':   "T-00000003",
+        'numero':      "31",
+        'oferta':      True,
+        'id_compra':   None,
+        'preco':       50.00,
+        'bagagens':    None,
+        'fez_checkin': False, 
       },
       # Poltrona "A-00000008":
-      { 'id_trecho':  "T-00000003",
-        'numero':     "33",
-        'oferta':     False,
-        'id_compra':  "C-00000003",
-        'preco':      13.00,
-        'bagagens':   3,
+      { 'id_trecho':   "T-00000003",
+        'numero':      "33",
+        'oferta':      False,
+        'id_compra':   "C-00000003",
+        'preco':       13.00,
+        'bagagens':    3,
+        'fez_checkin': False, 
       },
     ]
   for atrs in lista_atrs:
