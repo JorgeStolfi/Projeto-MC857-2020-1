@@ -1,0 +1,3 @@
+Tarefa: 146383 [U] "Minhas compras" : A página deveria ter um cabeçalho "Minhas compras" ou "Compras do usuário U-0000002"
+
+Foi adicionado um cabeçalho na página /ver_minhas_compras escrito "Minhas compras" 
