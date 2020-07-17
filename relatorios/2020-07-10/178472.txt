@@ -1,0 +1,4 @@
+Fiz o módulo {html_estilo_cabecalho_de_tabela}.
+Alterei todos os módulos que chamavam {html_table.gera} que tinham cabeçalho 
+para adicionar o estilo.
+Realizei testes de todos os módulos que foram feita as trocas e está tudo certo.

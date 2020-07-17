@@ -1,0 +1,1 @@
+Minha tarefa era incluir o titulo "Compra" no cabeçalho da tabela que aparece em "Ofertas" > "Ver". O titulo é referente à quarta coluna.

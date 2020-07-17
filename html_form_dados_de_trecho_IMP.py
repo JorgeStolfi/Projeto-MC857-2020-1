@@ -35,7 +35,7 @@ def gera(id_trecho, atrs, texto_bt, comando_bt):
     ( "Hora de chegada",  "text",       "hora_chegada",   "HH:MM",                  True, ),
     ( "Veículo",          "text",       "veiculo",        "XXX-NNNN",               True, ),
     ( "Poltronas",        "text",       "poltronas",      "1A-20D,33: 90.00; ...",  True, ),
-    ( "Dispoível",        "boolean",    "aberto",         None,                     True, ),
+    ( "Dispoível",        "checkbox",   "aberto",         None,                     True, ),
   ]
 
   # Monta a tabela com os fragmentos HTML:

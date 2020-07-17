@@ -141,8 +141,9 @@ def busca_por_campos(nome_tb, let, cols, args, res_cols):
   cond = ""
   sep = ""
   for ch,val in args.items():
+    compador = " = " if val is not None else " IS "
     val_sql = base_sql.codifica_valor(val)
-    cond = cond + sep + ch + " = " + val_sql
+    cond = cond + sep + ch + compador + val_sql
     sep = " AND "
   if res_cols == None:
     cols = ['indice']
