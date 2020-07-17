@@ -1,12 +1,10 @@
 # Implementação do módulo {comando_ver_compras_de_usuario}.
 
+import compra
 import html_lista_de_compras
 import html_pag_generica
 import html_pag_mensagem_de_erro
 import sessao
-import usuario
-import compra
-import secrets
 
 def processa(ses, args):
   assert ses != None
