@@ -1,0 +1,24 @@
+Relatório Individual - 2020-07-17 - Bernardo do Amaral Teodosio - 167494
+
+Nesta aula, a tarefa designada para mim foi "167494 [A] (id = "U-00000001") "Checar Objeto" > "Ver compras" > "Ver" : fazer funcionar."
+
+Abaixo, segue um passo a passo do que tive que fazer para realizá-la, na ordem em que os passos foram realizados:
+
+    * Notei que o comando_ver_compra já estava sendo chamado corretamente, então decidi investigá-lo para ver porque o botão não estava funcionando corretamente.
+    * Identifiquei que o problema que acontecia é que o botão "Ver Compras" estava mostrando as compras do usuário logado, e não as compras do usuário indicado (U-00000001).
+    * Percebi que eu precisaria criar um módulo novo, para listar as compras de um usuário específico. Assim, criei os arquivos:
+        * comando_ver_compras_de_usuario.py
+        * comando_ver_compras_de_usuario_IMP.py
+        * comando_ver_compras_de_usuario_TST.py
+    * Para criar estes arquivos, usei como base o módulo comando_ver_minhas_compras
+    * Alterei html_pag_ver_usuario_IMP para fazer o redirecionamento correto para ver_compras_de_usuario
+    * Alterei processa_comando_http_IMP para tratar corretamente o caminho "ver_compras_de_usuario"
+    * Após fazer isso, consegui listar corretamente as compras do usuário. Porém, percebi que o botão "ver" na página interna de listagem ainda não estava funcionando.
+    * Arrumei o comando_ver_compra_IMP, pois a checagem de usuário administrador (sessao.eh_administrador) estava sendo feita de maneira incorreta
+    * Após fazer isso, a visualização da compra passou a acontecer normalmente.
+    * Implementei o teste da função no arquivo comando_ver_compras_de_usuario_TST, tendo dois testes diferentes: um para usuários que são administradores e outro para os que não são. Apenas usuários adminstradores podem usar este novo comando.
+
+
+Em caso de dúvidas, estou a disposição.
+Abraços,
+Bernardo
