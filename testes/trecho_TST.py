@@ -55,7 +55,7 @@ def testa_cria_trecho(rotulo, ident, atrs):
   verifica_trecho(rotulo, trc, ident, atrs)
   return trc
 
-def test_busca_por_origem(cod, ids):
+def testa_busca_por_origem(cod, ids):
   """ Testa a função {trecho.busca_por_origem} com parâmetro {cod},
   que deve retornar a lista de indentificadores de trechos {ids}."""
   global ok_global
@@ -172,6 +172,16 @@ dia_min_bod3 = None
 dia_max_bod3 = "2020-05-08"
 ids_bod3 = [trc1_id]
 testa_busca_por_origem_e_destino('VCP', None, dia_min_bod3, dia_min_bod3, ids_bod3)
+
+# ----------------------------------------------------------------------
+sys.stderr.write("testando {trecho.busca_por_origem}:\n")
+origem = 'VCP'
+ids_ori_bd1 = [trc1_id]
+testa_busca_por_origem(origem, ids_ori_bd1)
+
+origem = 'SDU'
+ids_ori_bd1 = [trc2_id, trc3_id]
+testa_busca_por_origem(origem, ids_ori_bd1)
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {trecho.muda_atributos}:\n")
