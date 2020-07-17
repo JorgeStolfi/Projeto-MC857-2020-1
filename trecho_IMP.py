@@ -151,7 +151,25 @@ def busca_por_origem_e_destino(org, dst, data_min, data_max):
   if dst != None: args['destino'] = dst
   unico = False
   ids = objeto.busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas)
-  # !!! Deveria filtrar resultado por {data_min,data_max} !!!
+
+  #Filtra os campos dia_partida e dia_chegada de acordo com data_min e data_max
+  for id in ids:
+      trc = busca_por_identificador(id)
+
+      #Verifica se data_max foi específicado
+      if(data_max != None):
+        #Verifica se o dia de chegada é maior que a data máxima
+        if(obtem_atributo(trc, 'dia_chegada') > data_max):
+          #Caso o id ainda esteja na lista, remove-o
+          if(id in ids): ids.remove(id)
+
+      #Verifica se data_min foi específicado
+      if(data_min != None):
+        #Verifica se o dia de partida é menor que a data mínima
+        if(obtem_atributo(trc, 'dia_partida') < data_min):
+          #Caso o id ainda esteja na lista, remove-o
+          if(id in ids): ids.remove(id)
+
   return ids
 
 def busca_por_dias(dia_min, dia_max):
