@@ -2,7 +2,6 @@
 
 import html_lista_de_sessoes
 import html_pag_generica
-import html_pag_mensagem_de_erro
 import sessao
 import usuario
 
@@ -13,10 +12,15 @@ def processa(ses, args):
     # request para ver sessões do próprio user
     usr = sessao.obtem_usuario(ses)
     assert usr != None
-    id_usr = usuario.obtem_identificador(usr)
 
     # com o id do usuário da sessao, podemos buscar suas sessões no banco
-    ids_sessoes = sessao.busca_por_campo('usr', id_usr)
-    ht_conteudo = html_lista_de_sessoes.gera(ids_sessoes)
+    sessoes = usuario.sessoes_abertas(usr)
+    ids_sessoes = []
+    for i in sessoes:
+        if (i != ses):
+            ids_sessoes.append(sessao.obtem_identificador(i))
+
+    ht_conteudo = html_lista_de_sessoes.gera(ids_sessoes, True, True)
     pag = html_pag_generica.gera(ses, ht_conteudo, None)
+    
     return pag

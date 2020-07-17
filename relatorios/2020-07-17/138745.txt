@@ -1,0 +1,22 @@
+Luiz Antonio Andia 138771
+
+Tarefa: "[U] Mensagem diz "voce tem 2 sessoes abertas" mas "Minhas sessoes" não mostra nenhuma."
+
+Primeiramente fiz a alteração pedida no arquivo {{html_pag_generica_IMP.py}}
+"ATENÇÃO: após baixar seu branch, comentem a linha 29
+de {html_pag_generica_IMP.py}  (assert)."
+
+Nesta tarefa, identifiquei que o texto estava correto e que o erro estava no fluxo do botão "Minhas sessoes"
+
+Entao alterei o arquivo {{comando_ver_minhas_sessoes_IMP}} para que ele pegasse, todas as sessoes
+abertas que não seja a atual, e colocasse os ids numa lista.
+Acredito que não faça sentido mostrar as sessões fechadas.
+E não mostramos a sessão atual, pois o cliente está usando ela, e caso ele feche a sessão o sistema capota.
+
+Depois mudei o arquivo {{html_lista_de_sessoes_IMP}} para que ele gerasse a tabela com as sessoes do modo correto.
+O comando de fechar sessão está funcionando corretamente, mas o botão ver não, pois acredito que saia do escopo
+desse aula, já que já fiz muitas alterção.
+
+Mudei também os parametros que passamos ao longo do fluxo, adicionando os parametros
+"bt_ver" e "bt_fechar" que são booleanas usados para mostrar ou não os botões "Ver" e "Fechar"
+na lista de sessões.
