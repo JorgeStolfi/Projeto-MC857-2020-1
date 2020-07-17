@@ -150,6 +150,13 @@ def cria_conjunto(trc, txt):
   
 # FUNÇÕES AUXILIARES:
 
+def resume_numeros_e_precos(lista_de_pares):
+  """Recebe uma lista de pares {lista_de_pares}, que se trata de uma lista
+    de tuplas com os atributos {numero} e {preco} de uma poltrona (e.g.:
+    [(2, 90.50), (4B, 20.30), (6A, 30.50)...]) e a partir destes, gera uma representação
+    textual que pode ser utilizada como o argumento {txt} de {poltrona.cria_conjunto}."""
+  return poltrona_IMP.resume_numeros_e_precos(lista_de_pares)
+
 def analisa_esp_conjunto(txt):
   """Destrincha a cadeia {txt}, no formato descrito na função
   {cria_conjunto}.

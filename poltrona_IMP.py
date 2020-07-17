@@ -2,7 +2,7 @@ import objeto
 import poltrona
 import trecho
 import re
-
+from collections import defaultdict
 import tabela_generica
 import tabelas
 import conversao_sql
@@ -250,6 +250,33 @@ def diagnosticos(val):
   return
 
 # FUNÇÕES AUXILIARES:
+
+def resume_numeros_e_precos(lista_de_pares):
+  aux_dict = defaultdict(list)
+
+  for par in lista_de_pares:
+    numero_poltrona, preco_poltrona = par
+    aux_dict[preco_poltrona].append(numero_poltrona)
+
+  str_dict = defaultdict(str)
+  aux_str = ''
+
+  for preco in aux_dict:
+    for num_poltrona in aux_dict[preco]:
+      if aux_dict[preco].index(num_poltrona) == (len(aux_dict[preco]) - 1):
+        aux_str = aux_str + f'{num_poltrona}'
+      else:
+        aux_str = aux_str + f'{num_poltrona}, '
+    aux_str = aux_str + f': {preco}; '
+    str_dict[preco] = aux_str
+    aux_str = ''
+
+  return_str = ''
+
+  for str_preco in str_dict:
+    return_str = return_str + str_dict[str_preco]
+
+  return return_str[:-1] # Remove o último caractere da string de retorno, um espaço em branco
 
 def analisa_esp_conjunto(txt):
   global cache, nome_tb, letra_tb, colunas, diags
