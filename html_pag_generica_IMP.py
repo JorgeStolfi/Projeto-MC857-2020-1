@@ -1,5 +1,7 @@
 import sessao
 import usuario
+import compra
+import html_texto
 
 import html_cabecalho
 import html_menu_geral
@@ -49,6 +51,27 @@ def gera(ses, ht_conteudo, erros):
     # Split lines, create a list:
     erros = re.split('[\n]', erros)
   assert type(erros) is list or type(erros) is tuple
+
+  # Menssagens
+  ht_msg = ""
+  if logado and not admin:
+    lista_ids_compras = compra.busca_por_cliente(usuario.obtem_identificador(usr))
+    compras_abertas = 0
+    for id_compra in lista_ids_compras:
+      obj_compra = compra.busca_por_identificador(id_compra)
+      if compra.obtem_status(obj_compra) == 'aberto':
+        compras_abertas = compras_abertas + 1
+
+    if compras_abertas > 1:
+      cor_texto = "#FF0000"
+      cor_fundo = "#eeeeee"
+      if (compras_abertas == 2):
+        texto = "Você tem mais " + str(compras_abertas-1) + " compra aberta, além da que está no carrinho. Vá no botão Minhas Compras para ver."
+      else:
+        texto = "Você tem mais " + str(compras_abertas-1) + " compras abertas, além da que está no carrinho. Vá no botão Minhas Compras para ver."
+
+      ht_multi_cpr = html_texto.gera(texto, None, "Courier", "16px", "normal", "5px", "center", cor_texto, cor_fundo)
+
   # Cleanup the messages:
   erros = [ er for er in erros if er != None ]
   erros = [ er.strip() for er in erros ]
@@ -67,6 +90,7 @@ def gera(ses, ht_conteudo, erros):
     ht_cabe + "<br/>\n" + \
     ht_menu + "<br/>\n" + \
     ht_multi_ses + "<br/>\n" + \
+    ht_multi_cpr + "<br/>\n" + \
     ht_erros + "<br/>\n" + \
     ht_conteudo + "<br/>\n" + \
     ht_roda

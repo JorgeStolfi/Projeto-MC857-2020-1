@@ -3,16 +3,16 @@ import html_table
 import html_resumo_de_compra
 import html_div
 import sys
+import html_estilo_cabecalho_de_tabela
 
 def gera(ids_compras, ver):
   linhas = [].copy()
 
   # Linha de cabeçalho:
-  estilo_cab = "font-size:20px;font-weight:bold; background-color: #60a3bc; color: white; padding:0px 10px 0px 0px"
   cabs_raw = [ 'Compra', 'Usuário', 'NP', 'Passageiro', 'Documento', 'Preço' ]
   cabs_div = [].copy()
   for cb in cabs_raw:
-    cabs_div.append(html_div.gera(estilo_cab, cb))
+    cabs_div.append(html_div.gera(html_estilo_cabecalho_de_tabela.gera(), cb))
   
   # Linhas das compras:
   for id_cpr in ids_compras:
