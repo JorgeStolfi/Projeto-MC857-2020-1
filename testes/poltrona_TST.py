@@ -165,6 +165,21 @@ poltronas = poltrona.cria_conjunto(trc, "001, 05, 5B, 7-10, 12A-15D: 90.50; 04K-
 print(str(poltronas))
 
 # ----------------------------------------------------------------------
+sys.stderr.write("testando {poltrona.resume_numeros_e_precos}:\n")
+
+lista_de_pares1 = [('2', '90.50'), ('4B', '20.30'), ('6A', '30.50'), ('1122', '90.50')]
+lista_de_pares2 = [('10B', '100'), ('1B', '100'), ('3B', '100'), ('1', '20.0')]
+lista_de_pares3 = [('1', '10.0'), ('2', '20.0'), ('3', '30.0')]
+
+representacao_str1 = poltrona.resume_numeros_e_precos(lista_de_pares1)
+representacao_str2 = poltrona.resume_numeros_e_precos(lista_de_pares2)
+representacao_str3 = poltrona.resume_numeros_e_precos(lista_de_pares3)
+
+sys.stderr.write(representacao_str1 + "\n")
+sys.stderr.write(representacao_str2 + "\n")
+sys.stderr.write(representacao_str3 + "\n")
+
+# ----------------------------------------------------------------------
 sys.stderr.write("testando {poltrona.obtem_dia_e_hora_de_partida}:\n")
 pol3 = pol[3]
 assert poltrona.obtem_identificador(pol3) == "A-00000004"
