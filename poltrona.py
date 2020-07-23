@@ -21,6 +21,7 @@ class Objeto_Poltrona(Objeto_Poltrona_IMP):
     'numero'       número da poltrona no veículo
     'bagagens'     quantidade de bagagens relacionadas a compra, ou {None} se livre.
     'preco'        preço da passagem nesta poltrona.
+    'fez_checkin'  booleano que diz se o passageiro fez check-in em dada poltrona.
     
   Outros atributos (classe, etc.) poderão 
   ser acrescentados no futuro.
@@ -81,6 +82,11 @@ def obtem_atributos(pol):
   """Retorna um dicionário Python que é uma cópia dos atributos da poltrona,
   exceto identificador."""
   return poltrona_IMP.obtem_atributos(pol)
+
+def obtem_numeros_e_precos(ids_poltronas):
+  """Retorna uma lista de tuplas (num, preço), cada uma referente a cada identificador de
+  poltrona da lista {ids_poltronas}, que deve ser uma lista de strings no formato "A-{NNNNNNNN}"."""
+  return poltrona_IMP.obtem_numeros_e_precos(ids_poltronas)
 
 def obtem_atributo(pol, chave):
   """Retorna o atributo da poltrona {pol} com a {chave} dada.
@@ -149,6 +155,13 @@ def cria_conjunto(trc, txt):
   return poltrona_IMP.cria_conjunto(trc, txt)
   
 # FUNÇÕES AUXILIARES:
+
+def resume_numeros_e_precos(lista_de_pares):
+  """Recebe uma lista de pares {lista_de_pares}, que se trata de uma lista
+    de tuplas com os atributos {numero} e {preco} de uma poltrona (e.g.:
+    [(2, 90.50), (4B, 20.30), (6A, 30.50)...]) e a partir destes, gera uma representação
+    textual que pode ser utilizada como o argumento {txt} de {poltrona.cria_conjunto}."""
+  return poltrona_IMP.resume_numeros_e_precos(lista_de_pares)
 
 def analisa_esp_conjunto(txt):
   """Destrincha a cadeia {txt}, no formato descrito na função

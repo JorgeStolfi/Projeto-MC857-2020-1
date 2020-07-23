@@ -10,5 +10,5 @@ def gera(texto, URL, args, cor_fundo):
   valores são acrescentadas ao {URL} no formato
   "?{chave1}={valor1}&{chave2}={valor2}...". Por enquanto, as chaves e
   valores devem ser cadeias só com letras ASCII, dígitos, pontos,
-  hífens, e underscores."""
-  return html_botao_simples_IMP.gera(texto, URL, args, cor_fundo) 
+  hífens e underscores. Os valores aceitam, além desses caracteres, vírgula."""
+  return html_botao_simples_IMP.gera(texto, URL, args, cor_fundo)

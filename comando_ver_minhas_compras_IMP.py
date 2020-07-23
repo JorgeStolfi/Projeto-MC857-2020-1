@@ -17,6 +17,13 @@ def processa(ses, args):
   id_usr = usuario.obtem_identificador(usr)
   ids_compras = compra.busca_por_cliente(id_usr)
   ver_compra = True  # Queremos botão "Ver" em cada compra.
-  ht_conteudo = html_lista_de_compras.gera(ids_compras, ver_compra)
+
+  id_carrinho = ""
+  if(sessao.eh_administrador(ses) == False):
+    carrinho = sessao.obtem_carrinho(ses)
+    if(carrinho != None):
+      id_carrinho = compra.obtem_identificador(carrinho)
+  
+  ht_conteudo = html_lista_de_compras.gera(ids_compras, ver_compra, id_carrinho)
   pag = html_pag_generica.gera(ses, ht_conteudo, None)
   return pag

@@ -44,7 +44,7 @@ def processa(ses, args):
     cprs_ids = compra.busca_por_campos(args)
     cprs = map(lambda id_compra: compra.busca_por_identificador(id_compra), cprs_ids)
     ver = True if sessao.eh_administrador(ses) or args['cliente'] == sessao.obtem_usuario(ses) else False
-    bloco = html_lista_de_compras.gera(cprs, ver)
+    bloco = html_lista_de_compras.gera(cprs, ver, "")
     pag = html_pag_generica.gera(ses, bloco, None)
     return pag
 

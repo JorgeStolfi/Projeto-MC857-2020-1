@@ -23,5 +23,8 @@ def gera(rot, ver):
     ids_trechos_txt = ",".join(ids_trechos)
     ht_ver = html_botao_simples.gera("Ver", "ver_roteiro", {'ids_trechos': ids_trechos_txt}, "#22ff22")
     campos.append(ht_ver)
+    ht_comprar = html_botao_simples.gera("Comprar", "comprar_roteiro", {'ids_trechos': ids_trechos_txt}, "#ffff22")
+    campos.append(ht_comprar)
+
 
   return campos

@@ -14,8 +14,10 @@ import comando_alterar_usuario
 import comando_buscar_trechos
 import comando_cadastrar_usuario
 import comando_comprar_poltrona
+import comando_comprar_roteiro
 import comando_definir_carrinho
 import comando_encerrar_trecho
+import comando_enviar_msg_contato
 import comando_fazer_login
 import comando_fazer_logout
 import comando_fechar_sessao
@@ -545,6 +547,10 @@ def processa_comando(tipo, ses, dados):
       # Quer ver sessões:
       pag = comando_ver_minhas_sessoes.processa(ses, args)
 
+    elif cmd == '/enviar_msg_contato':
+      # Envia mensagem de contato
+      pag = comando_enviar_msg_contato.processa(ses, args)
+
     # --- comandos referentes a roteiros -----------------------
 
     elif cmd == '/solicitar_pag_sugerir_roteiros':
@@ -561,6 +567,10 @@ def processa_comando(tipo, ses, dados):
 
     elif cmd == '/ver_compras_de_usuario':
       pag = comando_ver_compras_de_usuario.processa(ses, args)
+
+      elif cmd == '/comprar_roteiro':
+      # Quer comprar um roteiro específico:
+      pag = comando_comprar_roteiro.processa(ses, args)
 
     # --------------------------------------------------------------
 
