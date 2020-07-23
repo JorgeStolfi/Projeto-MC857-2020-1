@@ -17,10 +17,14 @@ import sys #added by shimeji
 
 def processa(ses, args):
   assert sessao.eh_administrador(ses) # O dono da sessão deve ser administrador.
-  assert 'id' in args # O dicionário {args} deve conter campo 'id'.
   try:
+    if not 'id' in args:
+      pag = html_pag_mensagem_de_erro.gera(ses, 'É necessário adicionar um ID para pesquisar.')
+      return pag
+
     id = args['id']
     if len(id) != 10: raise ErroAtrib("O identificador \"" + id + "\" é inválido")
+    
     letra = id[0]
     if letra == "U":
       usr = usuario.busca_por_identificador(id)
