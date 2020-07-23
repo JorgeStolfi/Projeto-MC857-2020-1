@@ -2,53 +2,37 @@
 
 import base_sql
 import tabelas
-import usuario
 import sessao
-import compra
-import utils_testes; from utils_testes import erro_prog, aviso_prog, mostra
+import utils_testes
 import comando_sugerir_roteiros
 
 import sys
 
+
 sys.stderr.write("Conectando com base de dados...\n")
-res = base_sql.conecta("DB",None,None)
+res = base_sql.conecta("DB", None, None)
 assert res == None
 
 sys.stderr.write("Criando alguns objetos...\n")
 tabelas.cria_todos_os_testes()
 
-ok_global = True # Vira {False} se um teste falha.
-# ----------------------------------------------------------------------
-# Função de teste:
+def testa(rotulo, *args):
+    """Testa {funcao(*args)}, grava resultado
+    em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
 
-def testa_comando_sugerir_roteiros(dados, resultado):
-  global ok_global
+    modulo = comando_sugerir_roteiros
+    funcao = modulo.processa
+    frag = False  # {True} se for apenas um fragmento HTML, {False} se for página completa.
+    pretty = True  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
+    utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-  modulo = comando_sugerir_roteiros
-  pag = modulo.processa(None, dados)
+ses1 = sessao.busca_por_identificador("S-00000001")
+assert ses1 != None
 
-  if (resultado and pag == None):
-    ok_global = False
-    aviso_prog("Não devolveu a pagina quando deveria devolver", True)
-
-  if ((not resultado) and pag != None):
-    ok_global = False
-    aviso_prog("Devolveu a pagina quando não deveria devolver", True)
-    
-# ----------------------------------------------------------------------
-# Executa chamadas
 dados = {
     "origem": "VCP",
-    "destino": "POA",
-    "dia_min": "2020-05-08",
-    "dia_max": "2020-05-09"
+    "destino": "MAO",
+    "dia_min": "2020-01-01",
+    "dia_max": "2020-12-31"
 }
-testa_comando_sugerir_roteiros(dados, True)
-
-# ----------------------------------------------------------------------
-# Veredito final:
-
-if ok_global:
-  sys.stderr.write("Teste terminou sem detectar erro\n")
-else:
-  erro_prog("- teste falhou")
+testa("sucesso-sugerir-roteiros", ses1, dados)
