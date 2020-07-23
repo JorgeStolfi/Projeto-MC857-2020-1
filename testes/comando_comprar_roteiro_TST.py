@@ -31,7 +31,8 @@ ses1 = sessao.busca_por_identificador("S-00000001")
 assert ses1 != None
 
 roteiro = ["T-00000003", "T-00000004"]
-args = {'ids_trechos': roteiro}
+roteiro_txt = ",".join(roteiro)
+args = {'ids_trechos': roteiro_txt}
 testa("comprar_roteiro_usr_logado", ses1, args)
 
 ses2 = sessao.busca_por_identificador("S-00000002")

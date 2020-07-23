@@ -12,7 +12,7 @@ from utils_testes import erro_prog, mostra
 import sys
 
 # VARIÁVEIS GLOBAIS DO MÓDULO
- 
+
 cache = {}.copy()
   # Dicionário que mapeia identificadores para os objetos {Objeto_Trecho} na memória.
   # Todo objeto dessa classe que é criado é acrescentado a esse dicionário,
@@ -20,13 +20,13 @@ cache = {}.copy()
 
 nome_tb = "trechos"
   # Nome da tabela na base de dados.
- 
+
 letra_tb = "T"
   # Prefixo comum dos identificadores de trecho.
 
 colunas = None
   # Descrição das colunas da tabela na base de dados.
-  
+
 diags = False
   # Quando {True}, mostra comandos e resultados em {stderr}.
 
@@ -43,7 +43,7 @@ class Objeto_Trecho_IMP(objeto.Objeto):
 
 def inicializa(limpa):
   global cache, nome_tb, letra_tb, colunas, diags
-  # Descrição da tabela "trechos". 
+  # Descrição da tabela "trechos".
   colunas = \
     ( ( "codigo",       type("foo"), 'TEXT',    False ),  # Código do trecho na empresa (p. ex. "AZ 4623").
       ( "origem",       type("foo"), 'TEXT',    False ),  # Sigla da estação/porto/aeroporto de orígem.
@@ -59,7 +59,7 @@ def inicializa(limpa):
     tabela_generica.limpa_tabela(nome_tb, colunas)
   else:
     tabela_generica.cria_tabela(nome_tb, colunas)
- 
+
 def cria(atrs_mem):
   global cache, nome_tb, letra_tb, colunas, diags
 
@@ -123,7 +123,7 @@ def busca(args):
 def busca_por_identificador(id):
   global cache, nome_tb, letra_tb, colunas, diags
   trc = objeto.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
-  assert trc == None or type(trc) is trecho.Objeto_Trecho 
+  assert trc == None or type(trc) is trecho.Objeto_Trecho
   return trc
 
 def busca_por_origem(cod):
@@ -147,7 +147,7 @@ def busca_por_codigo_e_data(cod, dia, hora):
       return busca_por_identificador(ids[0])
   else:
     # Tipo de retorno inválido -- não deveria acontecer:
-    assert False 
+    assert False
 
 def busca_por_origem_e_destino(org, dst, data_min, data_max):
   global cache, nome_tb, letra_tb, colunas, diags
@@ -173,7 +173,7 @@ def muda_atributos(trc, mods_mem):
 
   erros = valida_atributos(trc, mods_mem)
   if len(erros) != 0: raise ErroAtrib(erros)
-  
+
   objeto.muda_atributos(trc, mods_mem, cache, nome_tb, letra_tb, colunas, def_obj_mem)
   return
 
@@ -245,7 +245,73 @@ def cria_testes():
         'hora_partida': "15:00",
         'dia_chegada':  "2020-05-08",
         'hora_chegada': "19:33",
-        'veiculo':      "AAA-0006", 
+        'veiculo':      "AAA-0006",
+        'aberto':       True
+      },
+      { # T-00000007
+        'codigo':       "GO 3031",
+        'origem':       "VCP",
+        'destino':      "GIG",
+        'dia_partida':  "2020-07-18",
+        'hora_partida': "19:00",
+        'dia_chegada':  "2020-07-18",
+        'hora_chegada': "20:30",
+        'veiculo':      "AAA-0007",
+        'aberto':       True
+      },
+      { # T-00000008
+        'codigo':       "GO 2331",
+        'origem':       "GIG",
+        'destino':      "VCP",
+        'dia_partida':  "2020-07-18",
+        'hora_partida': "22:00",
+        'dia_chegada':  "2020-07-19",
+        'hora_chegada': "01:00",
+        'veiculo':      "AAA-0008",
+        'aberto':       True
+      },
+      { # T-00000009
+        'codigo':       "GO 4040",
+        'origem':       "GIG",
+        'destino':      "CGH",
+        'dia_partida':  "2020-07-17",
+        'hora_partida': "07:00",
+        'dia_chegada':  "2020-07-17",
+        'hora_chegada': "07:55",
+        'veiculo':      "AAA-0009",
+        'aberto':       True
+      },
+      { # T-00000010
+        'codigo':       "AZ 1001",
+        'origem':       "VCP",
+        'destino':      "CFN",
+        'dia_partida':  "2020-07-18",
+        'hora_partida': "12:00",
+        'dia_chegada':  "2020-07-18",
+        'hora_chegada': "13:15",
+        'veiculo':      "AAA-0010",
+        'aberto':       True
+      },
+      { # T-00000011
+        'codigo':       "AZ 1002",
+        'origem':       "CFN",
+        'destino':      "VCP",
+        'dia_partida':  "2020-05-08",
+        'hora_partida': "15:00",
+        'dia_chegada':  "2020-05-08",
+        'hora_chegada': "19:33",
+        'veiculo':      "AAA-0011",
+        'aberto':       True
+      },
+      { # T-00000012
+        'codigo':       "AZ 5521",
+        'origem':       "CFN",
+        'destino':      "BSB",
+        'dia_partida':  "2020-07-18",
+        'hora_partida': "15:00",
+        'dia_chegada':  "2020-07-18",
+        'hora_chegada': "18:50",
+        'veiculo':      "AAA-0012",
         'aberto':       True
       },
     ]
@@ -267,29 +333,29 @@ def diagnosticos(val):
 # FUNÇÕES INTERNAS
 
 def valida_atributos(trc, atrs_mem):
-  """Faz validação nos atributos {atrs_mem}. Devolve uma lista 
+  """Faz validação nos atributos {atrs_mem}. Devolve uma lista
   de strings com descrições dos erros encontrados.
-  
+
   Se {trc} é {None}, supõe que um novo pedido de trechos está sendo criado.
   Se {trc} não é {None}, supõe que {atrs_mem} sao alterações a aplicar nesse
   pedido de trecho. """
   global cache, nome_tb, letra_tb, colunas, diags
-  
+
   erros = [].copy()
-  
+
   return erros
 
 def def_obj_mem(obj, id, atrs_SQL):
   """Se {obj} for {None}, cria um novo objeto da classe {Objeto_Trecho} com
   identificador {id} e atributos {atrs_SQL}, tais como extraidos
   da tabela de trechos.  Extrai a lista de poltronas da tabela
-  correspondente, se houver. O objeto *NÃO* é inserido na base de dados. 
-  
+  correspondente, se houver. O objeto *NÃO* é inserido na base de dados.
+
   Se {obj} não é {None}, deve ser um objeto da classe {Objeto_Trecho}; nesse
   caso a função altera os atributos de {obj}, exceto a lista de poltronas,
-  conforme especificado em {atrs_SQL}. A entrada correspondente na 
+  conforme especificado em {atrs_SQL}. A entrada correspondente na
   base de dados *NÃO* é alterada.
-  
+
   Em qualquer caso, os valores em {atr_SQL} são convertidos para valores
   equivalentes na memória. Se os parâmetros forem inválidos ou incompletos,
   retorna uma ou mais mensagens de erro, na forma de uma lista de strings."""

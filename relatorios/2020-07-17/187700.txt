@@ -1,0 +1,5 @@
+Implementados os botoẽs "trocar" e "excluir"
+em "carrinho > ver poltrona".
+O botao trocar nao funciona pois conserta-lo,sem fazer
+uma mudançca muito grande quebraria
+outras partes do codigo.

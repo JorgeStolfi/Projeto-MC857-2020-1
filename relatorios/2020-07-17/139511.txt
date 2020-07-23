@@ -1,0 +1,5 @@
+
+- No módulo {html_pag_contato}linhas (11-18) adicionado e verificado a funcionabilidade de caixa de texto para mensagens.
+
+Pode-se perceber que o módulo utilizado para a criação da caixa de texto não é o ideal {html_form_table}, uma vez que ele não aceita formatação adicional para a caixa de texto. Como essa parece ser a única ocorrência até agora dessa funcionabilidade no projeto e outros módulo estarem utilizando o {html_form_table}, preferi não modificá-lo ou criar um específico para isso.
+

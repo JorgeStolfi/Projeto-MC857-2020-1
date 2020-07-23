@@ -1,0 +1,8 @@
+Relatorio do dia 17/07/2020
+
+Aluno: Miguel Augusto    RA 174847
+
+
+Tarefa: Ofertas > Ver: a linha de resumo do trecho está ilegível. Tente usar {html_form_dados_de_trecho} ou similar em vez de {html_resumo_de_trecho}.
+
+- html_pag_ver_trecho_IMP.py: Troquei a exibição de "html_resumo_trecho" pelo formulario gerado por "html_form_table", com os dados do trecho em questão.
