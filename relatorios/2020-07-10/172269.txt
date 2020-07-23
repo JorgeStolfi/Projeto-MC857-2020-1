@@ -1,5 +1,0 @@
-Gabriel Marinho da Costa RA172269
-
-Implementei a parte de filtrar a busca de trecho com relação a data, de forma que a data de partida nunca seja menor que a data mínima e a
-data de chegada nunca seja maior que a data máxima, se especificadas. Alterei o módulo Trecho_IMP e realizei a parte de teste no módulo
-Trecho_TST, tomei o devido cuidado para não testar um caso onde a origem e a chegada são None, o que ainda não está implementado.
