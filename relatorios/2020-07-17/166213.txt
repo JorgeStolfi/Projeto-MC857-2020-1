@@ -1,0 +1,8 @@
+Adicionados 6 usuários de teste no arquivo usuario_IMP.py : 
+usuário U-00000004 = "Jurandir Quarto" criado
+usuário U-00000005 = "Josenildo Quinto" criado
+usuário U-00000006 = "Julio Sexto" criado
+usuário U-00000007 = "Jeferson Setimo" criado
+usuário U-00000008 = "Joaquim Oitavo" criado
+usuário U-00000009 = "Jonas Nono" criado
+

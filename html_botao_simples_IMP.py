@@ -13,7 +13,7 @@ def gera(texto, URL, args, cor_fundo):
       if val != None and val != "" and len(key_invalid_characters) == 0:
 
         # Verifica se {val} tem caracteres invalidos
-        val_invalid_characters = re.findall("[^a-zA-Z0-9\.\-_]", val)
+        val_invalid_characters = re.findall("[^a-zA-Z0-9\.\,\-_]", val)
 
         # Adiciona parametro no URL somente se {key} e {val} nao tiverem caracteres invalidos
         if (len(val_invalid_characters) == 0):
