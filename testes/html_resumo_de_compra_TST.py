@@ -32,7 +32,7 @@ utils_testes.mostra(0, "Realizando testes com html_resumo_de_compra...")
 for id_compra in lista_ids:
   cpr = compra.busca_por_identificador(id_compra)
   assert cpr != None
-  testa(id_compra, cpr, False)
-  testa(''.join([id_compra, "_V"]), cpr, True)
+  testa(id_compra, cpr, False, lista_ids[0])
+  testa(''.join([id_compra, "_V"]), cpr, True, lista_ids[1])
 
 utils_testes.mostra(2, "Testes realizados com sucesso!")

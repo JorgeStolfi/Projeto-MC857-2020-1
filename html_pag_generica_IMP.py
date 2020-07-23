@@ -26,7 +26,7 @@ def gera(ses, ht_conteudo, erros):
     num_ses = len(usuario.sessoes_abertas(usr));
     num_cpr = len(usuario.compras_abertas(usr));
     # sys.stderr.write("usuario %s num_ses = %d  num_cpr = %d\n" % (id_usr, num_ses, num_cpr))
-    #assert not (admin and (num_cpr > 0)) # Administradores não devem ter compras.
+    # assert not (admin and (num_cpr > 0)) # Administradores não devem ter compras.
   else:
     nome_usuario = None
     admin = False

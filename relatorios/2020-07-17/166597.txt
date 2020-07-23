@@ -1,0 +1,6 @@
+A tarefa de hoje consistia em criar o comando de envio de mensagem no formulario de contato do usuario.
+O arquivo "comando_enviar_msg_contato" foi criado e adicionado ao mapeamento de 
+"processa_comando_http".
+
+Por hora, este comando apenas retorna uma mensagem padrao para o usuario e imprime
+o formulario de contato em "stderr".

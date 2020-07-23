@@ -172,6 +172,36 @@ if pol3_dhc_res != pol3_dhc_esp:
   ok = False
 
 # ----------------------------------------------------------------------
+sys.stderr.write("---------------------------------------------\n")
+sys.stderr.write("testando {poltrona.obtem_numeros_e_precos}:\n\n")
+
+# O esperado para 'A-00000001' é 45 poi o valor é mudado nos testes das linha 131 a 143, de {poltrona.muda_atributos}
+ids_poltronas = ["A-00000001", "A-00000003", "A-00000005", "A-00000007"]
+esperado = [("45", 10.00), ("02B", 11.00), ("32", 20.00), ("31", 15.00)]
+
+res = poltrona.obtem_numeros_e_precos(ids_poltronas)
+if res != esperado:
+  sys.stderr.write(" devolveu {}, esperado {}\n".format(res, esperado))
+  ok_global = False
+
+res = poltrona.obtem_numeros_e_precos(ids_poltronas[:1])
+if res != esperado[:1]:
+  sys.stderr.write(" devolveu {}, esperado {}\n".format(res, esperado[:1]))
+  ok_global = False
+
+res = poltrona.obtem_numeros_e_precos(ids_poltronas[1:3])
+if res != esperado[1:3]:
+  sys.stderr.write(" devolveu {}, esperado {}\n".format(res, esperado[1:3]))
+  ok_global = False
+
+res = poltrona.obtem_numeros_e_precos(ids_poltronas[1:])
+if res != esperado[1:]:
+  sys.stderr.write(" devolveu {}, esperado {}\n".format(res, esperado[1:]))
+  ok_global = False
+
+sys.stderr.write("---------------------------------------------\n")
+
+# ----------------------------------------------------------------------
 # Veredito final:
 
 if ok_global:
