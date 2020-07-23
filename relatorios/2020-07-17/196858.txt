@@ -1,0 +1,32 @@
+ISSUE 196858:
+[X] > Buscar trechos : Os campos Origem e destino devem ser só o código do aeroporto, sem cidade. Senão a busca não funciona! A busca não está funcionando, consertar.
+------------------------------------------
+
+1) Modulo alterado:
+
+	* html_form_buscar_trechos_IMP.py:
+
+	A primeira coisa que eu fiz foi alterar o placeholder do campo de texto de "Cidade, aeroporto" para "Código do aeroporto".
+
+	Perguntei para o professor qual seria exatamente o erro que estar no comando buscar trechos.
+	Primeiramente, pediu-se para organizar as ordens dos campos de forma mais lógica. Foi definido juntamente com o professor que deve-se ter os campos relacionados à origem antes dos campos do destino. Entao a ordem dos campos ficou desse modo:
+
+		1) origem
+		2) data minima de partida
+		3) horário de partida
+		4) destino
+		5) data áxima de chegada
+		6) horário de chegada
+
+	Em seguida, o professor verificou que se testarmos a busca apenas digitando o campo origem e o campo destino a busca funciona. Entao se digitarmos "VCP" e "SDU" respectivamente, obtemos um resultado esperado. 
+	Por fim, o professor pediu para testar na "mao" os campos para ver se eu encontrava erros. Realizando testes diretamente nos campos:
+		
+		1) Quando eu digito a data mínima de partida e data máxima de chegada com "2020-05-08" com origem e destino "VCP" e "SDU" respectivamente, o resultado ainda é igual e funciona como esperado.
+		2) Preenchendo os campos da hora de partida e hora de chegada com "8:00" e "13:00" respectivamente e os outros campos preenchidos, a tabela da busca vem vazia.
+		3) Preenchendo os campos da hora de partida e hora de chegada com "13:00" e "14:00" respectivamente e os outros campos preenchidos, a tabela da busca vem vazia.
+		4) Preenchendo os campos da hora de partida e hora de chegada com "12:45" e "13:40" respectivamente e os outros campos preenchidos, a tabela da busca vem com o resultado correto.
+
+	Percebe-se que quando nao há um trecho pra busca, a tabela vem vazia e sem nenhuma mensagem avisando ao usuário que nao há nenhum trecho correspondente.
+	Ainda realizando os testes nos campos, se eu inputar a origem "VCP" e destino "SDU" e os outros campos vazios, obtenho dois trechos com resultados corretos. Realizando os mesmos testes do passo anterior eu tenho o mesmo efeito.
+	Aparentemente o comando já estava funcionando sem erros.
+

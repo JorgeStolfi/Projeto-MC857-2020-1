@@ -11,12 +11,12 @@ def gera(atrs, admin):
   ht_cabe = html_cabecalho.gera("Busca de trechos", False)
 
   dados_linhas = (
-      ( "Origem",           "text",        "origem",          "Cidade, aeroporto",    False, ),
-      ( "Destino",          "text",        "destino",         "Cidade, aeroporto",    False, ),
+      ( "Origem",           "text",        "origem",          "Código do aeroporto",    False, ),
       ( "Data mínima de Partida",  "text", "dia_partida",     "aaaa-mm-dd",           False, ),
-      ( "Data máxima de Chegada",  "text", "dia_chegada",     "aaaa-mm-dd",           False, ),
       ( "Horario Partida",  "horario",     "hora_partida",    "hh:mm",                False, ),
-      ( "Horario Chegada",  "horario",     "hora_chegada",    "hh:mm",                False, ),
+      ( "Destino",          "text",        "destino",         "Código do aeroporto",    False, ),
+      ( "Data máxima de Chegada",  "text", "dia_chegada",     "aaaa-mm-dd",           False, ),
+      ( "Horario Chegada",  "horario",     "hora_chegada",    "hh:mm",                False, )
       )
 
   ht_table = html_form_table.gera(dados_linhas, atrs, admin)
