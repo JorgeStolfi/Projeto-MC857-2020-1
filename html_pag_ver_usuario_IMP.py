@@ -21,7 +21,7 @@ def gera(ses, usr1, erros):
 
   ht_botao_sessoes = html_botao_simples.gera("Ver sessões", "ver_sessoes", {'id': id}, '#eeee55')
   ht_botao_compras = html_botao_simples.gera("Ver compras", "ver_minhas_compras", {'id': id}, '#eeee55')
-  ht_botao_poltronas = html_botao_simples.gera("Ver poltronas", "ver_poltronas", {'id': id}, '#eeee55')
+  ht_botao_poltronas = html_botao_simples.gera("Ver poltronas", "ver_poltronas_de_usuario", {'id': id}, '#eeee55')
 
   # Pega a lista de compra do cliente
   cprs = compra.busca_por_cliente(id)
