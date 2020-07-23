@@ -26,12 +26,18 @@ def gera(pol, id_trc, alterar_pol, comprar_pol, trocar_pol, id_cpr):
   oferta_pol = atrs_pol['oferta']
   tx_oferta_pol = ("OFERTA" if oferta_pol else "")
 
+
+  #checkin_pol = atrs_pol['fez_checkin']
+  #tx_checkin_pol = ("REALIZADO" if checkin_pol else "LIVRE")
+
   ht_numero = html_span.gera(None, numero_pol)
   ht_preco = html_span.gera(None, preco_pol)
   ht_oferta = html_span.gera(None, tx_oferta_pol)
   ht_compra = html_span.gera(None, tx_compra_pol)
-
-  linha = [ht_numero, ht_preco, ht_oferta, ht_compra ]
+  #ht_fez_checkin = html_span.gera(None, tx_checkin_pol)
+  ht_fez_checkin = html_span.gera(None, "MOCKED: SIM") #descomentar as linhas acima para funcionar
+  ht_fazer_checkin = html_botao_simples.gera("Checkin", "solicitar_fazer_checkin",None, "55ee55")
+  linha = [ht_numero, ht_preco, ht_oferta, ht_compra, ht_fez_checkin, ht_fazer_checkin ]
 
   if alterar_pol:
     args_alterar = { 'id_poltrona': id_pol }
