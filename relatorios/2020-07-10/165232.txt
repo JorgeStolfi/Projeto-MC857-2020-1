@@ -1,3 +1,0 @@
-- Alterei o botão "Buscar roteiros" para "Sugerir roteiros" em "html_menu_geral_IMP.py"
-- Alterei "Dia mínimo para viagem" para "Dia mínimo de partida" e "Dia máximo para viagem" para "Dia máximo de chegada" em "html_form_sugerir_roteiros_IMP.py"
-- Separei o campo de dia e hora em dois campos diferentes, um para dia e outro para hora em "html_form_sugerir_roteiros_IMP.py".
