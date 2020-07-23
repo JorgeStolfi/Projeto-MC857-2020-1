@@ -1,6 +1,0 @@
-Relatório - João Flores
-
-Acrescentei a linha 40 ao arquivo {html_lista_de_sessoes_IMP} com o comando:
-    linha.append(html_texto.gera(ses, None, None, None, None, None, None, None, None))
-
-Tal comando adiciona uma linha mostrando a sessão corrente.
