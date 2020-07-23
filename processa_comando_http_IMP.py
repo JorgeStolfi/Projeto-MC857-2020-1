@@ -48,6 +48,7 @@ import comando_ver_roteiro
 import comando_ver_sessoes
 import comando_ver_trecho
 import comando_ver_minhas_sessoes
+import comando_ver_compras_de_usuario
 
 import html_span
 import html_div
@@ -481,7 +482,7 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/alterar_compra':
       # Quer formulário para alterar atributos de um pedido de compra
       pag = comando_alterar_compra.processa(ses, args)
-    
+
     elif cmd == '/alterar_pagamento':
         # Quer formulário para alterar atributos de um pedido de compra
         ## Descomentar linha apos implementar
@@ -564,7 +565,10 @@ def processa_comando(tipo, ses, dados):
       # Quer ver um roteiro específico:
       pag = comando_ver_roteiro.processa(ses, args)
 
-    elif cmd == '/comprar_roteiro':
+    elif cmd == '/ver_compras_de_usuario':
+      pag = comando_ver_compras_de_usuario.processa(ses, args)
+
+      elif cmd == '/comprar_roteiro':
       # Quer comprar um roteiro específico:
       pag = comando_comprar_roteiro.processa(ses, args)
 
