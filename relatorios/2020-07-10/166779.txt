@@ -1,3 +1,0 @@
-Para implementar o módulo {comando_comprar_roteiro}, a partir de uma pagina de visualização de roteiro, recupero uma lista de ids de poltronas vazias, comparo o preço de todas as poltronas, escolhendo sempre a menor para adicionar na compra. No final, o método retorna a pagina do carrinho do usuario, caso esteja logado. Caso não esteja, retorna um erro dizendo que precisa estar logado para realizar a compra.
-
-O teste criado para o módulo não consegue de fato comprar um roteiro devido a um erro do SQL que ele não encontra poltronas vazias, retornando, então, sempre um erro dizendo que o trecho se encontra sem poltronas disponíveis para compra.
