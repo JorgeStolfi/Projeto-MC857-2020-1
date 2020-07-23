@@ -1,6 +1,6 @@
 import html_resumo_de_compra_IMP
 
-def gera(cpr, ver):
+def gera(cpr, ver, id_carr):
   """Retorna um fragmento HTML que descreve os dados principais de um 
   pedido de compra {cpr}: identificadores da compra e do cliente, número de
   itens (bilhetes, poltronas), e preço total.  Não mostra a lista de 
@@ -8,4 +8,4 @@ def gera(cpr, ver):
   
   O resultado é uma lista de strings, uma para cada atributo, que pode
   ser incluída como uma linha para {html_table.gera}."""
-  return html_resumo_de_compra_IMP.gera(cpr, ver)
+  return html_resumo_de_compra_IMP.gera(cpr, ver, id_carr)

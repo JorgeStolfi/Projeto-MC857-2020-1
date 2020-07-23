@@ -21,6 +21,7 @@ class Objeto_Poltrona(Objeto_Poltrona_IMP):
     'numero'       número da poltrona no veículo
     'bagagens'     quantidade de bagagens relacionadas a compra, ou {None} se livre.
     'preco'        preço da passagem nesta poltrona.
+    'fez_checkin'  booleano que diz se o passageiro fez check-in em dada poltrona.
     
   Outros atributos (classe, etc.) poderão 
   ser acrescentados no futuro.
@@ -81,6 +82,11 @@ def obtem_atributos(pol):
   """Retorna um dicionário Python que é uma cópia dos atributos da poltrona,
   exceto identificador."""
   return poltrona_IMP.obtem_atributos(pol)
+
+def obtem_numeros_e_precos(ids_poltronas):
+  """Retorna uma lista de tuplas (num, preço), cada uma referente a cada identificador de
+  poltrona da lista {ids_poltronas}, que deve ser uma lista de strings no formato "A-{NNNNNNNN}"."""
+  return poltrona_IMP.obtem_numeros_e_precos(ids_poltronas)
 
 def obtem_atributo(pol, chave):
   """Retorna o atributo da poltrona {pol} com a {chave} dada.

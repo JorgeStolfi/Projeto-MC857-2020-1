@@ -1,0 +1,7 @@
+Relatório
+
+
+Minha tarefa essa semana foi fazer o favicon do site funcionar, tudo que eu fiz foi
+pegar a imagem 13802.png da pasta de imagens, cortei ela em um formato quadrado e também
+fiz uma versão reduzida para 32x32, com as imagens prontas e nomeadas da forma correta eu
+apenas alterei o módulo {html_cabecalho} para referenciar as imagens criadas corretamente.

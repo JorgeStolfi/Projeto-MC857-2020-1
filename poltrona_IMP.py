@@ -32,6 +32,7 @@ colunas = \
     ( 'numero',      type("foo"), 'TEXT',    False ), # Número da poltrona no veículo.
     ( 'bagagens',    type(25),    'INTEGER', True  ), # Quantidade de bagagens na compra, ou {None}.
     ( 'preco' ,      type(3.14),  'FLOAT',   False ), # Preço da passagem nesta poltrona.
+    ( 'fez_checkin', type(False), 'INTEGER', False ), # Diz se o passageiro já fez checkin nessa poltrona.
   )
   # Descrição das colunas da tabela na base de dados.
 
@@ -87,6 +88,21 @@ def obtem_atributos(pol):
 def obtem_atributo(pol, chave):
   global cache, nome_tb, letra_tb, colunas, diags
   return objeto.obtem_atributo(pol,chave)
+
+def obtem_numeros_e_precos(ids_poltronas):
+  global cache, nome_tb, letra_tb, colunas, diags
+  assert isinstance(ids_poltronas, list)
+
+  nums_e_precos = []
+  for id_poltrona in ids_poltronas:
+    assert isinstance(id_poltrona, str)
+    pol = poltrona.busca_por_identificador(id_poltrona)
+    nums_e_precos.append((
+      poltrona.obtem_atributo(pol, 'numero'),
+      poltrona.obtem_atributo(pol, 'preco')
+    ))
+
+  return nums_e_precos
 
 def busca_por_identificador(id):
   global cache, nome_tb, letra_tb, colunas, diags
@@ -156,7 +172,7 @@ def cria_conjunto(trc, txt):
     erros += valida_campo.numero_de_poltrona("número de poltrona", num, False)
     erros += valida_campo.preco("preço", prc, False)
     if len(erros) > 0: raise ErroAtrib(erros)
-    pol_atrs = { 'id_trecho': id_trc, 'numero': num, 'preco': prc, 'oferta': False, 'bagagens': None, 'id_compra': None }
+    pol_atrs = { 'id_trecho': id_trc, 'numero': num, 'preco': prc, 'oferta': False, 'bagagens': None, 'id_compra': None, 'fez_checkin': False }
     pol = cria(pol_atrs)
     pols.append(pol)
   return pols
@@ -167,68 +183,124 @@ def cria_testes():
   lista_atrs = \
     [
       # Poltrona "A-00000001":
-      { 'id_trecho':  "T-00000001",
-        'numero':     "01A",
-        'oferta':     True,
-        'id_compra':  "C-00000001",
-        'preco':      10.00,
-        'bagagens':   0,
+      { 'id_trecho':   "T-00000001",
+        'numero':      "01A",
+        'oferta':      True,
+        'id_compra':   "C-00000001",
+        'preco':       10.00,
+        'bagagens':    0,
+        'fez_checkin': True, 
       },
       # Poltrona "A-00000002":
-      { 'id_trecho':  "T-00000001",
-        'numero':     "02A",
-        'oferta':     True,
-        'id_compra':  None,
-        'preco':      60.00,
-        'bagagens':   None,
+      { 'id_trecho':   "T-00000001",
+        'numero':      "02A",
+        'oferta':      True,
+        'id_compra':   None,
+        'preco':       60.00,
+        'bagagens':    None,
+        'fez_checkin': True, 
       },
       # Poltrona "A-00000003":
-      { 'id_trecho':  "T-00000001",
-        'numero':     "02B",
-        'oferta':     False,
-        'id_compra':  "C-00000002",
-        'preco':      11.00,
-        'bagagens':   1,
+      { 'id_trecho':   "T-00000001",
+        'numero':      "02B",
+        'oferta':      False,
+        'id_compra':   "C-00000002",
+        'preco':       11.00,
+        'bagagens':    1,
+        'fez_checkin': True, 
       },
       # Poltrona "A-00000004":
-      { 'id_trecho':  "T-00000002",
-        'numero':     "31",
-        'oferta':     True,
-        'id_compra':  None,
-        'preco':      20.00,
-        'bagagens':   None,
+      { 'id_trecho':   "T-00000002",
+        'numero':      "31",
+        'oferta':      True,
+        'id_compra':   None,
+        'preco':       20.00,
+        'bagagens':    None,
+        'fez_checkin': True, 
       },
       # Poltrona "A-00000005":
-      { 'id_trecho':  "T-00000002",
-        'numero':     "32",
-        'oferta':     False,
-        'id_compra':  None,
-        'preco':      30.00,
-        'bagagens':   None,
+      { 'id_trecho':   "T-00000002",
+        'numero':      "32",
+        'oferta':      False,
+        'id_compra':   None,
+        'preco':       30.00,
+        'bagagens':    None,
+        'fez_checkin': False, 
       },
       # Poltrona "A-00000006":
-      { 'id_trecho':  "T-00000002",
-        'numero':     "33",
-        'oferta':     False,
-        'id_compra':  "C-00000001",
-        'preco':      12.00,
-        'bagagens':   2,
+      { 'id_trecho':   "T-00000002",
+        'numero':      "33",
+        'oferta':      False,
+        'id_compra':   "C-00000001",
+        'preco':       12.00,
+        'bagagens':    2,
+        'fez_checkin': False, 
       },
       # Poltrona "A-00000007":
-      { 'id_trecho':  "T-00000003",
-        'numero':     "31",
-        'oferta':     True,
-        'id_compra':  None,
-        'preco':      50.00,
-        'bagagens':   None,
+      { 'id_trecho':   "T-00000003",
+        'numero':      "31",
+        'oferta':      True,
+        'id_compra':   None,
+        'preco':       50.00,
+        'bagagens':    None,
+        'fez_checkin': False, 
       },
       # Poltrona "A-00000008":
-      { 'id_trecho':  "T-00000003",
-        'numero':     "33",
+      { 'id_trecho':   "T-00000003",
+        'numero':      "33",
+        'oferta':      False,
+        'id_compra':   "C-00000003",
+        'preco':       13.00,
+        'bagagens':    3,
+        'fez_checkin': False, 
+      },
+      # Poltrona "A-00000009":
+      { 'id_trecho':  "T-00000001",
+        'numero':     "50",
+        'oferta':     True,
+        'id_compra':  "C-00000005",
+        'preco':      15.00,
+        'bagagens':   2,
+      },
+      # Poltrona "A-00000010":
+      { 'id_trecho':  "T-00000002",
+        'numero':     "51",
         'oferta':     False,
-        'id_compra':  "C-00000003",
-        'preco':      13.00,
-        'bagagens':   3,
+        'id_compra':  "C-00000006",
+        'preco':      10.00,
+        'bagagens':   4,
+      },
+      # Poltrona "A-00000011":
+      { 'id_trecho':  "T-00000003",
+        'numero':     "52",
+        'oferta':     True,
+        'id_compra':  "C-00000007",
+        'preco':      18.00,
+        'bagagens':   5,
+      },
+      # Poltrona "A-00000012":
+      { 'id_trecho':  "T-00000002",
+        'numero':     "53",
+        'oferta':     False,
+        'id_compra':  "C-00000008",
+        'preco':      25.00,
+        'bagagens':   2,
+      },
+      # Poltrona "A-00000013":
+      { 'id_trecho':  "T-00000003",
+        'numero':     "54",
+        'oferta':     True,
+        'id_compra':  "C-00000009",
+        'preco':      8.00,
+        'bagagens':   1,
+      },
+      # Poltrona "A-00000014":
+      { 'id_trecho':  "T-00000001",
+        'numero':     "55",
+        'oferta':     False,
+        'id_compra':  "C-00000010",
+        'preco':      20.00,
+        'bagagens':   5,
       },
     ]
   for atrs in lista_atrs:
@@ -295,10 +367,10 @@ def analisa_esp_lista(txt, prc):
       nums_prc_int = analisa_esp_intervalo(num_esp, prc)
       nums_prc += nums_prc_int
   return nums_prc
-  
+
 def analisa_esp_numero(txt):
-  """Destrincha a cadeia {txt}, que deve ser um número de poltrona: um inteiro não 
-  negativo sequido opcionalmente de uma letra maiúscula.  Devolve o inteiro como {int} e a 
+  """Destrincha a cadeia {txt}, que deve ser um número de poltrona: um inteiro não
+  negativo sequido opcionalmente de uma letra maiúscula.  Devolve o inteiro como {int} e a
   letra como {string}. Se não houver letra, o segundo resultado é a cadeia vazia."""
   global cache, nome_tb, letra_tb, colunas, diags
   txt = txt.strip(" ")
@@ -342,14 +414,14 @@ def analisa_esp_intervalo(txt, prc):
   ini_esp = ini_esp_fin_esp[0]
   ini_int, ini_let = analisa_esp_numero(ini_esp)
   ini_let_ix = alfabeto.find(ini_let)
-  
+
   fin_esp = ini_esp_fin_esp[1]
   fin_int, fin_let = analisa_esp_numero(fin_esp)
   fin_let_ix = alfabeto.find(fin_let)
-  
+
   if ini_int > fin_int or ini_let_ix > fin_let_ix:
     raise ErroAtrib("sintaxe inválida em intervalo de poltronas (ordem): \"" + txt + "\"")
-  
+
   nums_prc = [].copy()
   for num_int in range(ini_int, fin_int + 1):
     for num_let_ix in range(ini_let_ix, fin_let_ix + 1):
@@ -372,11 +444,9 @@ def analisa_esp_preco(txt):
 def valida_atributos(pol, atrs_mem):
   """Faz validações específicas nos atributos {atrs_mem}. Devolve uma lista
   de strings com descrições dos erros encontrados.
-
   Se {pol} é {None}, supõe que uma novo poltrona está sendo criado. Se {pol}
   não é {None}, supõe que {atrs_mem} sao alterações a aplicar essa
   poltrona.
-
   Em qualquer caso, não pode haver, ao mesmo tempo, duas poltronas com o mesmo número e trecho. """
 
   global cache, nome_tb, letra_tb, colunas, diags
@@ -417,9 +487,9 @@ def valida_atributos(pol, atrs_mem):
   # alteração ({pol != None}), deve haver apenas uma, e deve ter
   # o mesmo identificador de {pol}.
 
-  
+
   args = {"numero": "","id_trecho": ""}
-  
+
   # verificacao para o caso de atrs_mem nao ter os campos numero ou id_trecho
   if 'numero' in atrs_mem:
     args["numero"] = atrs_mem['numero']
@@ -446,11 +516,9 @@ def def_obj_mem(obj, id, atrs_SQL):
   """Se {obj} for {None}, cria um novo objeto da classe {Objeto_Poltrona} com
   identificador {id} e atributos {atrs_SQL}, tais como extraidos
   da tabela de sessoes. O objeto *NÃO* é inserido na base de dados.
-
   Se {obj} não é {None}, deve ser um objeto da classe {Objeto_Poltrona}; nesse
   caso a função altera os atributos de {obj} conforme especificado em
   {atrs_SQL}. A entrada correspondente na base de dados *NÃO* é alterada.
-
   Em qualquer caso, os valores em {atr_SQL} são convertidos para valores
   equivalentes na memória."""
   global cache, nome_tb, letra_tb, colunas, diags
@@ -467,7 +535,6 @@ def cria_obj_mem(id, atrs_SQL):
   """Cria um novo objeto da classe {Objeto_Poltrona} com
   identificador {id} e atributos {atrs_SQL}, tais como extraidos
   da tabela de sessoes. O objeto *NÃO* é inserido na base de dados.
-
   Os valores em {atr_SQL} são convertidos para valores
   equivalentes na memória."""
 
@@ -487,7 +554,6 @@ def modifica_obj_mem(obj, atrs_SQL):
   """O parâmetro {obj} deve ser um objeto da classe {Objeto_Poltrona}; nesse
   caso a função altera os atributos de {obj} conforme especificado em
   {atrs_SQL}.  A entrada correspondente da base de dados *NÃO* é alterada.
-
   Os valores em {atr_SQL} são convertidos para valores
   equivalentes na memória."""
   global cache, nome_tb, letra_tb, colunas, diags

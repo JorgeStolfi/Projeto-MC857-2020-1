@@ -23,6 +23,6 @@ testa("simples_Cadastrar", "Cadastrar", 'solicitar_pag_cadastrar_usuario', None,
 
 testa("simples_OK",        "OK", 'principal', None, '#55ee55')
 
-testa("url_args_valido",        "Teste com parâmetros de URL válidos", 'principal', {"key1":"val1"}, '#55ee55')
+testa("url_args_valido",        "Teste com parâmetros de URL válidos", 'principal', {"key1":"val1", "key2": "val2,val3"}, '#55ee55')
 
 testa("url_args_invalido",        "Teste com parâmetros de URL inválidos", 'principal', {"valid_key":"inv&lid_value", "inv&lid_key": "valid_value"}, '#55ee55')

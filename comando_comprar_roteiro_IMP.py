@@ -26,7 +26,7 @@ def processa(ses, args):
     compra.cria(ses.cliente, ses.cliente.nome_pass, ses.cliente.doc_pass)
 
   # Recupera os objetos trechos para verificar poltronas
-  ids_trechos = args['ids_trechos']
+  ids_trechos = args['ids_trechos'].split(',')
   obj_trechos = []
   for id in ids_trechos:
     obj_trechos.append(trecho.busca_por_identificador(id))
