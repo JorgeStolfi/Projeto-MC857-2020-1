@@ -105,17 +105,31 @@ def testa_lista_livres(trc, trc_id, atrs):
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {poltrona.cria}:\n")
 
-lista_atrs = \
-  [
-    { 'id_trecho': "T-00000001", 'numero': "01A", 'oferta': True,  'id_compra': "C-00000001", 'preco': 10.00, 'bagagens': 0,    }, # "A-00000001"
-    { 'id_trecho': "T-00000001", 'numero': "02A", 'oferta': True,  'id_compra': None,         'preco':  0.00, 'bagagens': None, }, # "A-00000002"
-    { 'id_trecho': "T-00000001", 'numero': "02B", 'oferta': False, 'id_compra': "C-00000002", 'preco': 11.00, 'bagagens': 1,    }, # "A-00000003"
-    { 'id_trecho': "T-00000002", 'numero': "31",  'oferta': True,  'id_compra': None,         'preco': 50.00, 'bagagens': None, }, # "A-00000004"
-    { 'id_trecho': "T-00000002", 'numero': "32",  'oferta': False, 'id_compra': None,         'preco': 20.00, 'bagagens': None, }, # "A-00000005"
-    { 'id_trecho': "T-00000002", 'numero': "33",  'oferta': False, 'id_compra': "C-00000001", 'preco': 12.00, 'bagagens': 2,    }, # "A-00000006"
-    { 'id_trecho': "T-00000003", 'numero': "31",  'oferta': True,  'id_compra': None,         'preco': 15.00, 'bagagens': None, }, # "A-00000007"
-    { 'id_trecho': "T-00000003", 'numero': "33",  'oferta': False, 'id_compra': "C-00000003", 'preco': 13.00, 'bagagens': 3,    }, # "A-00000008"
-  ]
+polt1 = { 'id_trecho': "T-00000001", 'numero': "01A", 'oferta': True,  'id_compra': "C-00000001", \
+          'preco': 10.00, 'bagagens': 0, 'fez_checkin': True} # "A-00000001"
+
+polt2 = { 'id_trecho': "T-00000001", 'numero': "02A", 'oferta': True,  'id_compra': None, \
+          'preco':  0.00, 'bagagens': None, 'fez_checkin': True} # "A-00000002"
+
+polt3 = { 'id_trecho': "T-00000001", 'numero': "02B", 'oferta': False, 'id_compra': "C-00000002", \
+          'preco': 11.00, 'bagagens': 1, 'fez_checkin': True} # "A-00000003"
+
+polt4 = { 'id_trecho': "T-00000002", 'numero': "31",  'oferta': True,  'id_compra': None, \
+          'preco': 50.00, 'bagagens': None, 'fez_checkin': True} # "A-00000004"
+
+polt5 = { 'id_trecho': "T-00000002", 'numero': "32",  'oferta': False, 'id_compra': None, \
+          'preco': 20.00, 'bagagens': None, 'fez_checkin': False} # "A-00000005"
+
+polt6 = { 'id_trecho': "T-00000002", 'numero': "33",  'oferta': False, 'id_compra': "C-00000001", \
+          'preco': 12.00, 'bagagens': 2, 'fez_checkin': False} # "A-00000006"
+
+polt7 = { 'id_trecho': "T-00000003", 'numero': "31",  'oferta': True,  'id_compra': None, \
+          'preco': 15.00, 'bagagens': None, 'fez_checkin': False} # "A-00000007"
+
+polt8 = { 'id_trecho': "T-00000003", 'numero': "33",  'oferta': False, 'id_compra': "C-00000003", \
+          'preco': 13.00, 'bagagens': 3, 'fez_checkin': False} # "A-00000008"
+
+lista_atrs = [ polt1, polt2, polt3, polt4, polt5, polt6, polt7, polt8]
 
 pol = [None] * len(lista_atrs)
 id_pol = [None] * len(lista_atrs)

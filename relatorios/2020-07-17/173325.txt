@@ -1,0 +1,24 @@
+# Relatório da Atividade do Dia 17/07/2020
+
+Tarefa: Acrescentar atributo 'fez_checkin' ao {Objeto_Poltrona}, que diz se o passageiro já fez checkin nessa poltrona. Só é relevante se a poltrona não está livre.
+
+# O que foi feito ?
+No módulo {poltrona.py} foi adicionado a descrição relevante ao atributo {fez_checkin}.
+
+No módulo {poltrona_IMP.py} foi adicionado a coluna 'fez_checkin' do tipo
+booleano e obrigatório. Além disso, no mesmo módulo na função {cria_conjuntos} foi adicionado
+o atributo {fez_checkin} com o valor {False}. Outra função alterada foi
+{cria_teste}, em que foi nescessario adicionar o campo {fez_checkin} com valores
+{True} e {False}.
+
+Tendo em vista o novo campo obrigatorio {fez_checkin}, foi nescessario alterar
+alguns pontos do modulo {poltrona_TST.py} para incluir valores ao novo campo.
+
+# Testes
+A modificação em {poltrona.py} e {poltrona_IMP.py} não resultou em testes negativos por parte do
+script {testa.sh}.
+
+Além desse teste, foi realizado a inspeção visual e funcional
+do servidor. Na inspeção, foram usadas tanto as contas de cliente e
+administrador. Todos os botões e opções foram inspecionadas. A inspieção não
+quebrou o servidor.
