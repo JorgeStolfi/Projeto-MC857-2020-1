@@ -1,7 +1,0 @@
-Relatorio  10/07/2020
-
-Aluno: Miguel Augusto Silva Guida    RA: 174847
-
-Tarefa: "Buscar roteiros" > "Buscar" : consertar cabeçalho.
-
-- html_lista_de_roteiros_IMP.py: Corrigir cabecalho da tabela de lista de roteiros. Campos adicionados e estilos "azul e branco" adicionados.
