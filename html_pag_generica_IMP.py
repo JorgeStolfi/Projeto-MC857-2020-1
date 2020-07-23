@@ -45,7 +45,7 @@ def gera(ses, ht_conteudo, erros):
       ht_multi_ses = html_span.gera(estilo_multi_ses, "Você tem outras %d sessoes abertas." % (num_ses-1))
   else:
     ht_multi_ses = None
- 
+
   # Mensagem de multiplas compras:
   if num_cpr > 1:
     estilo_multi_cpr = None; # cor_texto = "#FF0000" cor_fundo = "#eeeeee"
@@ -85,4 +85,3 @@ def gera(ses, ht_conteudo, erros):
     ht_conteudo + "<br/>\n" + \
     ht_roda
   return pagina
-
