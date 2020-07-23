@@ -1,0 +1,16 @@
+Relatório - João Flores 199818
+
+Tela "Sugerir roteiros" alterada.
+
+Foram implementadas alterações no arquivo html_form_sugerir_roteiros_IMP, na função gera()
+
+Modificações realizadas:
+- Os campos Origem e destino devem ser só o código do aeroporto, sem cidade. 
+- O campo "Destino" deve vir depois de "Dia mínimo de saída". 
+- A dica dos campos de "Dia" não deve ter a hora. 
+- Os campos "Hora" não devem ser obrigatórios. 
+
+Modificações ainda necessárias:
+O usuário não deve digitar o fuso "UTC"; o "UTC" deve estar no label.
+* Não consegui realizar o get do fuso para apresentar na Label a partir da localização atual, mantendo a implementação atual
+em que é necessária o input do dado pelo usuário
