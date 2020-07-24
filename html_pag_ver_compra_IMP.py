@@ -18,6 +18,15 @@ def gera(ses, cpr, excluir, trocar, erros):
   args_cpr = compra.obtem_atributos(cpr)
   aberto = args_cpr['status'] == 'aberto'
 
+  # validação de compra
+  poltronas_invalidas = compra.verificar_baldeacao(cpr)
+
+  if erros is None:
+      erros = []
+
+  for id_poltrona in poltronas_invalidas:
+      erros.append(f'Poltrona sem tempo para baldeação: {id_poltrona}')
+
   # Determina o dono da sessão {ses}, e se é administrador.
   usr_ses = sessao.obtem_usuario(ses)
   assert usr_ses != None # Não deveria ver compra sem estar logado.
@@ -30,13 +39,13 @@ def gera(ses, cpr, excluir, trocar, erros):
 
   # Determina se a compra é o carrinho da sessão {ses}:
   eh_carrinho = sessao.obtem_carrinho(ses) == cpr
-  
+
   ht_conteudo = ""
   args_bt = { 'id_compra': id_compra }
-  
+
   # Esta compra pode ser alterada?
   editavel = admin or aberto
-  
+
   # Cabeçalho da compra:
   ht_cpr_resumo = html_form_dados_de_compra.gera(cpr, editavel, "Alterar", "alterar_compra")
   ht_conteudo += ht_cpr_resumo
@@ -48,11 +57,15 @@ def gera(ses, cpr, excluir, trocar, erros):
   ht_conteudo += html_lista_de_poltronas_de_compra.gera(ids_poltronas, id_compra, excluir_pol, trocar_pol)
 
   if (eh_carrinho):
+<<<<<<< HEAD
+=======
+
+>>>>>>> Utiliza verificar_baldeacao em html_pag_ver_compra
     ht_conteudo = "<h2> Seu carrinho (compra " + id_compra + ")</h2><br/>\n" + ht_conteudo
   elif aberto and admin == False:
     ht_bt_definir_carrinho = html_botao_simples.gera("Definir Carrinho", 'definir_carrinho', args_bt, '#ff3300')
     ht_conteudo += "<br/>\n" + ht_bt_definir_carrinho
-  
+
   status = compra.obtem_status(cpr)
   if aberto:
     ht_bt_finalizar = html_botao_simples.gera("Finalizar compra", 'finalizar_compra', args_bt, '#ff3300')
@@ -65,7 +78,6 @@ def gera(ses, cpr, excluir, trocar, erros):
   else:
     ht_bt_ok = html_botao_simples.gera("OK", 'principal', None, '#ffdd22')
     ht_conteudo += "<br/>\n" + ht_bt_ok
-    
+
   pag = html_pag_generica.gera(ses, ht_conteudo, erros)
   return pag
- 
