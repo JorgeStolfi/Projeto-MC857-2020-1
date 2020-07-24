@@ -1,0 +1,8 @@
+Usuário não logado:
+
+* Fazer checkin em oferta dá um erro, acho que deveria mostrar a tela de login
+
+Usuário Logado:
+* Ver detalhes da sessão tá errado
+* Trocar detalhes de uma compra dá falha
+* Ver poltronas falha
