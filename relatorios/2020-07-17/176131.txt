@@ -1,6 +1,0 @@
-Na aula de hoje, fiquei responsável pela seguinte tarefa: {poltrona}: definir uma função {poltrona.resume_numeros_e_precos} que recebe uma lista de pares { [ ( num, preco), (num, preco), ... ] } e devolve uma representação string desses dados, que pode ser dada como argumento para {poltrona.cria_conjunto}.
-
-Então, implementei a função {poltrona.resume_numeros_e_precos} em uma solução pouco elegante, porém, que cumpre com as especificações da tarefa. A função foi devidamente testada ao se adicionar
-casos de teste para essa função em {poltrona_TST}. 
-
-A descrição de {poltrona.resume_numeros_e_precos} está na interface do módulo poltrona.

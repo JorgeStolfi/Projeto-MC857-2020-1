@@ -18,7 +18,11 @@ def gera(ses, bt_ver, bt_fechar):
   ht_codigo_usuario = formata_texto(usuario.obtem_identificador(sessao_usuario))
   ht_estado = formata_texto(sessao_esta_aberta(sessao_aberta))
   ht_cookie = formata_texto(sessao_cookie)
-  ht_carrinho = formata_texto(compra.obtem_identificador(sessao_carrinho))
+  if sessao_carrinho == None:
+    tx_carrinho = ""
+  else:
+    tx_carrinho = compra.obtem_identificador(sessao_carrinho)
+  ht_carrinho = formata_texto(tx_carrinho)
 
   ht_campos = [ ht_sessao_id, ht_codigo_usuario, ht_estado, ht_cookie, ht_carrinho ]
   

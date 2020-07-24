@@ -179,9 +179,22 @@ def busca_por_dias(dia_min, dia_max):
   O mes {MM} e o dia {DD} devem ter sempre 2 dígitos."""
   return trecho_IMP.busca_por_dias(dia_min, dia_max)
 
+def resumo_de_trafego(ids_trechos):
+  """Data uma lista {ids_trechos} de identificadores de trechos
+  (voos), devolve um resumo dessa lista.  
+  
+  O resultado é uma tupla {(ntr, npol_tot, npol_pag, renda_tot,
+  npol_chk)} onde {ntr} é o número de trechos em {L}, {npol_tot} é o
+  número total de poltronas desses voos, {npol_pag} é o número de
+  poltronas reservadas ou compradas, {renda_tot} é o total dos preços
+  dessas poltronas, e {npol_chk} é o número de passageiros desses voos
+  que fizeram checkin."""
+  return trecho_IMP.resumo_de_trafego(ids_trechos)
+
 # FUNÇÕES PARA DEPURAÇÃO
 
 def verifica(trc, id, atrs):
+
   """Faz testes de consistência básicos de um objeto {trc} de classe {Objeto_Trecho}, 
   dados o identificador esperado {id}, e os atributos esperados {atrs}.
   

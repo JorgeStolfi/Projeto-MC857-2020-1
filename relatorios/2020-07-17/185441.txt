@@ -1,8 +1,0 @@
-Paulo Afonso Martins Januário - RA185441
-
-Tarefa: [U] > Sugerir roteiros (entrar "VCP" "MAO" "2020-01-01" "00:00" "2020-12-31" "23:59") : Deveria ter um botão "Comprar roteiro". Veja {comando_comprar_roteiro}. Note que a documentação da interface está errada: {args} vai ser um dicionário com um único atributo cuja chave é 'ids_trechos' e cujo valor é uma lista de IDs de trechos separados por vírgulas.
-
-- Adicionei em {html_resumo_de_roteiro} um botão "Comprar" que redireciona para comprar_roteiro. Inicialmente passei em {args} a lista de trechos do roteiro, porém uma lista não poderia ser passada como parâmetro, então utilizei a lista transformada em string que o botão "Ver" já utilizava. 
-- Por conta dessa alteração, precisei alterar em {comando_comprar_roteiro} para que ele reconhecesse que os argumentos seriam passados dessa maneira. Também alterei o comentário da função para descrever corretamente o funcionamento, como especificado na tarefa. O teste correspondente ao módulo também foi alterado de acordo com a mudança.
-- Para o redirecionamento, acrescentei o trecho de código necessário ao {processa_comando_http}, para que ele reconheça o comando comprar_roteiro
-- Percebi que, mesmo com as mudanças feitas, o argumento da função não era passado no redirecionamento porque o botão não aceitava passar uma string com vírgulas no valor. Então alterei o código de {html_botao_simples} para que vírgulas sejam admitidas e a string de ids_trechos passou a ser reconhecida pela página de comprar_roteiro, exibindo os roteiros. 

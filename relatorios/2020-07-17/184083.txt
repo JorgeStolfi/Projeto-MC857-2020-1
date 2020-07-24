@@ -1,9 +1,0 @@
-#184083 Nas listas de poltronas, mostrar um campo adicional do atributo 'fez_checkin' (que ainda não existe, faz de conta. Acrescentar opção de um botão adicional "Checkin" em cada linha de poltrona.
-
-
-Tarefa foi adicionar novos campos na tabela
-Recuperar o campos fez_checkin (comentado) para verificar se a poltrona esta livre ou ja esta ocupada
-Adicionar o button para realizar checkin (post: solicitar_fazer_checkin)
-Ambos nao estao funcionando pois os dois comandos nao estao implementados.
-
-é necessario descomentar as linhas do arquivo para o campo fez_checkin funcionar

@@ -1,2 +1,0 @@
-1. Adicionei o atributo ht_readonlybackground no arquivo html_input_IMP de forma que, quando um input não é editável, a cor do fundo torne-se cinza, dando o affordance visual para campo não editável. Isso é válido para qualquer input do site que não seja editável.
-2. Testei como U e tudo funcionou corretamente.

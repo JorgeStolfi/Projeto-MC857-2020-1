@@ -1,1 +1,0 @@
- Na aula do dia 17/07 arrumei a requisição do botão "Ver Poltronas" na pagina "Checar Objeto", ao clicar no botão não estava vindo a pagina com as poltronas do usuário. O problema era que ao clicar no botão ele estava fazendo requisição POST para ver_poltronas, mas a requisição correta era ver_poltronas_usuario. 

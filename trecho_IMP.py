@@ -73,43 +73,52 @@ def cria(atrs_mem):
 def obtem_identificador(trc):
   global cache, nome_tb, letra_tb, colunas, diags
   assert trc != None
+  assert type(trc) is trecho.Objeto_Trecho
   return objeto.obtem_identificador(trc)
 
 def obtem_atributos(trc):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert type(trc) is trecho.Objeto_Trecho
   return objeto.obtem_atributos(trc)
 
 def obtem_atributo(trc, chave):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert type(trc) is trecho.Objeto_Trecho
   return objeto.obtem_atributo(trc,chave)
 
 def obtem_poltronas(trc):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert type(trc) is trecho.Objeto_Trecho
   return poltrona.busca_por_trecho(trc)
 
 def obtem_poltronas_livres(trc):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert type(trc) is trecho.Objeto_Trecho
   id_pols = poltrona.busca_por_trecho(trc)
   return id_pols
 
 def numero_de_poltronas(trc):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert type(trc) is trecho.Objeto_Trecho
   id_pols = obtem_poltronas(trc)
   return len(id_pols)
 
 def numero_de_poltronas_livres(trc):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert type(trc) is trecho.Objeto_Trecho
   id_pols = poltrona.lista_livres(trc)
   return len(id_pols)
 
 def obtem_dia_e_hora_de_partida(trc):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert type(trc) is trecho.Objeto_Trecho
   dia = trecho.obtem_atributo(trc, 'dia_partida')
   hora = trecho.obtem_atributo(trc, 'hora_partida')
   return dia + " " + hora + " UTC"
 
 def obtem_dia_e_hora_de_chegada(trc):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert type(trc) is trecho.Objeto_Trecho
   dia = trecho.obtem_atributo(trc, 'dia_chegada')
   hora = trecho.obtem_atributo(trc, 'hora_chegada')
   return dia + " " + hora + " UTC"
@@ -122,6 +131,7 @@ def busca(args):
 
 def busca_por_identificador(id):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert type(id) is str and (id[0] == letra_tb)
   trc = objeto.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
   assert trc == None or type(trc) is trecho.Objeto_Trecho
   return trc
@@ -151,7 +161,6 @@ def busca_por_codigo_e_data(cod, dia, hora):
 
 def busca_por_origem_e_destino(org, dst, data_min, data_max):
   global cache, nome_tb, letra_tb, colunas, diags
-  assert (org != None) or (dst != None), "!!! caso {org == dst == None} não implementado"
   args = {}.copy()
   if org != None: args['origem'] = org
   if dst != None: args['destino'] = dst
@@ -167,6 +176,11 @@ def busca_por_dias(dia_min, dia_max):
   if dia_min != dia_max:
     ids += objeto.busca_por_campo("dia_chegada", dia_max, unico, cache, nome_tb, letra_tb, colunas)
   return ids
+
+def resumo_de_trafego(ids_trechos):
+  global cache, nome_tb, letra_tb, colunas, diags 
+  assert False, "!!! IMPLEMENTAR !!!"
+  return resumo
 
 def muda_atributos(trc, mods_mem):
   global cache, nome_tb, letra_tb, colunas, diags

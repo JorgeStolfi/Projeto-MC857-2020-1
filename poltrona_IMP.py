@@ -1,14 +1,16 @@
 import objeto
 import poltrona
 import trecho
-import re
-from collections import defaultdict
+import compra
 import tabela_generica
 import tabelas
 import conversao_sql
 import identificador
 import valida_campo; from valida_campo import ErroAtrib
 from utils_testes import erro_prog, mostra
+
+import re
+from collections import defaultdict
 import sys
 
 # VARIÁVEIS GLOBAIS DO MÓDULO
@@ -70,6 +72,7 @@ def cria(atrs_mem):
 def muda_atributos(pol, mods_mem):
   global cache, nome_tb, letra_tb, colunas, diags
 
+  assert pol != None and type(pol) is poltrona.Objeto_Poltrona
   erros = valida_atributos(pol, mods_mem)
   if len(erros) != 0: raise ErroAtrib(erros)
 
@@ -78,15 +81,17 @@ def muda_atributos(pol, mods_mem):
 
 def obtem_identificador(pol):
   global cache, nome_tb, letra_tb, colunas, diags
-  assert pol != None
+  assert pol != None and type(pol) is poltrona.Objeto_Poltrona
   return objeto.obtem_identificador(pol)
 
 def obtem_atributos(pol):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert pol != None and type(pol) is poltrona.Objeto_Poltrona
   return objeto.obtem_atributos(pol)
 
 def obtem_atributo(pol, chave):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert pol != None and type(pol) is poltrona.Objeto_Poltrona
   return objeto.obtem_atributo(pol,chave)
 
 def obtem_numeros_e_precos(ids_poltronas):
@@ -106,33 +111,30 @@ def obtem_numeros_e_precos(ids_poltronas):
 
 def busca_por_identificador(id):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert type(id) is str and (id[0] == letra_tb)
   pol = objeto.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
   assert pol == None or type(pol) is poltrona.Objeto_Poltrona
   return pol
 
 def busca_por_trecho(trc):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert trc != None and type(trc) is trecho.Objeto_Trecho
   id_trc = trecho.obtem_identificador(trc)
   unico = False
   ids_poltronas = objeto.busca_por_campo('id_trecho', id_trc, unico, cache, nome_tb, letra_tb, colunas)
   return ids_poltronas
 
-def busca_por_numero(trc):
-  global cache, nome_tb, letra_tb, colunas, diags
-  id_trc = trecho.obtem_identificador(trc)
-  unico = False
-  ids_poltronas = objeto.busca_por_campo('numero', id_trc, unico, cache, nome_tb, letra_tb, colunas)
-  return ids_poltronas
-
 def busca_por_compra(cpr):
   global cache, nome_tb, letra_tb, colunas, diags
-  id_cpr = trecho.obtem_identificador(cpr)
+  assert cpr != None and type(cpr) is compra.Objeto_Compra
+  id_cpr = compra.obtem_identificador(cpr)
   unico = False
   ids_poltronas = objeto.busca_por_campo('id_compra', id_cpr, unico, cache, nome_tb, letra_tb, colunas)
   return ids_poltronas
 
 def lista_livres(trc):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert trc != None and type(trc) is trecho.Objeto_Trecho
   id_trc = trecho.obtem_identificador(trc)
   args = { 'id_trecho': id_trc, 'id_compra': None }
   unico = False
@@ -141,18 +143,22 @@ def lista_livres(trc):
 
 def busca_ofertas():
   global cache, nome_tb, letra_tb, colunas, diags
-  # TODO: 'id_compra': None
+  # !!! exigir 'id_compra': None !!!
   args = { 'oferta': True }
   unico = False
   ids_poltronas = objeto.busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas)
   return ids_poltronas
 
 def obtem_dia_e_hora_de_partida(pol):
+  global cache, nome_tb, letra_tb, colunas, diags
+  assert pol != None and type(pol) is poltrona.Objeto_Poltrona
   id_trc = obtem_atributo(pol, 'id_trecho');
   trc = trecho.busca_por_identificador(id_trc);
   return trecho.obtem_dia_e_hora_de_partida(trc)
 
 def obtem_dia_e_hora_de_chegada(pol):
+  global cache, nome_tb, letra_tb, colunas, diags
+  assert pol != None and type(pol) is poltrona.Objeto_Poltrona
   id_trc = obtem_atributo(pol, 'id_trecho');
   trc = trecho.busca_por_identificador(id_trc);
   return trecho.obtem_dia_e_hora_de_chegada(trc)
@@ -160,9 +166,11 @@ def obtem_dia_e_hora_de_chegada(pol):
 def cria_conjunto(trc, txt):
   global cache, nome_tb, letra_tb, colunas, diags
 
+  assert trc != None and type(trc) is trecho.Objeto_Trecho
+  assert txt != None and type(txt) is str
+
   id_trc = trecho.obtem_identificador(trc)
 
-  if trc == None: raise ErroAtrib(["trecho não pode ser nulo"])
   # Obtém a lista de números de poltronas e respectivos preços:
   nums_precos = analisa_esp_conjunto(txt);
   pols = [].copy()
@@ -172,7 +180,15 @@ def cria_conjunto(trc, txt):
     erros += valida_campo.numero_de_poltrona("número de poltrona", num, False)
     erros += valida_campo.preco("preço", prc, False)
     if len(erros) > 0: raise ErroAtrib(erros)
-    pol_atrs = { 'id_trecho': id_trc, 'numero': num, 'preco': prc, 'oferta': False, 'bagagens': None, 'id_compra': None, 'fez_checkin': False }
+    pol_atrs = { 
+      'id_trecho': id_trc, 
+      'numero': num, 
+      'preco': prc, 
+      'oferta': False, 
+      'bagagens': None, 
+      'id_compra': None, 
+      'fez_checkin': False 
+    }
     pol = cria(pol_atrs)
     pols.append(pol)
   return pols
@@ -261,6 +277,7 @@ def cria_testes():
         'id_compra':  "C-00000005",
         'preco':      15.00,
         'bagagens':   2,
+        'fez_checkin': False,
       },
       # Poltrona "A-00000010":
       { 'id_trecho':  "T-00000002",
@@ -269,6 +286,7 @@ def cria_testes():
         'id_compra':  "C-00000006",
         'preco':      10.00,
         'bagagens':   4,
+        'fez_checkin': False,
       },
       # Poltrona "A-00000011":
       { 'id_trecho':  "T-00000003",
@@ -277,6 +295,7 @@ def cria_testes():
         'id_compra':  "C-00000007",
         'preco':      18.00,
         'bagagens':   5,
+        'fez_checkin': False,
       },
       # Poltrona "A-00000012":
       { 'id_trecho':  "T-00000002",
@@ -285,6 +304,7 @@ def cria_testes():
         'id_compra':  "C-00000008",
         'preco':      25.00,
         'bagagens':   2,
+        'fez_checkin': False,
       },
       # Poltrona "A-00000013":
       { 'id_trecho':  "T-00000003",
@@ -293,6 +313,7 @@ def cria_testes():
         'id_compra':  "C-00000009",
         'preco':      8.00,
         'bagagens':   1,
+        'fez_checkin': False,
       },
       # Poltrona "A-00000014":
       { 'id_trecho':  "T-00000001",
@@ -301,6 +322,7 @@ def cria_testes():
         'id_compra':  "C-00000010",
         'preco':      20.00,
         'bagagens':   5,
+        'fez_checkin': False,
       },
     ]
   for atrs in lista_atrs:
@@ -314,7 +336,10 @@ def cria_testes():
   return
 
 def verifica(pol, id, atrs):
-  return objeto.verifica(pol, poltrona.Objeto_Poltrona, id, atrs, cache, nome_tb, letra_tb, colunas, def_obj_mem)
+  return objeto.verifica \
+    ( pol, poltrona.Objeto_Poltrona, 
+      id, atrs, cache, nome_tb, letra_tb, colunas, def_obj_mem
+    )
 
 def diagnosticos(val):
   global cache, nome_tb, letra_tb, colunas, diags

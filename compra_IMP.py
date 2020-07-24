@@ -68,27 +68,32 @@ def cria(cliente, nome_pass, doc_pass):
 
 def obtem_identificador(cpr):
   global cache, nome_tb, letra_tb, colunas, diags
-  assert cpr != None
+  assert cpr != None and type(cpr) is compra.Objeto_Compra
   return objeto.obtem_identificador(cpr)
 
 def obtem_atributos(cpr):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert cpr != None and type(cpr) is compra.Objeto_Compra
   return objeto.obtem_atributos(cpr)
 
 def obtem_atributo(cpr, chave):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert cpr != None and type(cpr) is compra.Objeto_Compra
   return objeto.obtem_atributo(cpr,chave)
 
 def obtem_cliente(cpr):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert cpr != None and type(cpr) is compra.Objeto_Compra
   return objeto.obtem_atributo(cpr, 'cliente')
 
 def obtem_status(cpr):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert cpr != None and type(cpr) is compra.Objeto_Compra
   return objeto.obtem_atributo(cpr, 'status')
 
 def obtem_poltronas(cpr):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert cpr != None and type(cpr) is compra.Objeto_Compra
   ids_pols = poltrona.busca_por_compra(cpr)
   ids_pols.sort(key = lambda id : poltrona.obtem_dia_e_hora_de_partida(poltrona.busca_por_identificador(id)))
   return ids_pols
@@ -101,15 +106,21 @@ def busca_por_campos(args):
 
 def busca_por_identificador(id):
   global cache, nome_tb, letra_tb, colunas, diags
+  if id == None: return None
+  assert type(id) is str and (id[0] == letra_tb)
   cpr = objeto.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
   return cpr
 
 def busca_por_cliente(id_cliente):
+  global cache, nome_tb, letra_tb, colunas, diags
+  assert type(id_cliente) is str and (id_cliente[0] == "U")
   unico = False
   ids_compras = objeto.busca_por_campo('cliente', id_cliente, unico, cache, nome_tb, letra_tb, colunas)
   return ids_compras
 
 def calcula_preco(cpr):
+  global cache, nome_tb, letra_tb, colunas, diags
+  assert cpr != None and type(cpr) is compra.Objeto_Compra
   preco = 0
   for polt in obtem_poltronas(cpr):
     polt = poltrona.busca_por_identificador(polt)
@@ -118,6 +129,7 @@ def calcula_preco(cpr):
 
 def muda_atributos(cpr, mods_mem):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert cpr != None and type(cpr) is compra.Objeto_Compra
 
   erros = valida_atributos(cpr, mods_mem)
   if len(erros) != 0: raise ErroAtrib(erros)
@@ -127,9 +139,9 @@ def muda_atributos(cpr, mods_mem):
 
 def fecha(cpr):
   global cache, nome_tb, letra_tb, colunas, diags
-  if (cpr is not None) and (compra.obtem_atributo(cpr,'status')):
-    mods_mem = { 'status': 'pagando' }
-    muda_atributos(cpr, mods_mem)
+  assert cpr != None and type(cpr) is compra.Objeto_Compra
+  mods_mem = { 'status': 'pagando' }
+  muda_atributos(cpr, mods_mem)
 
 def cria_testes():
   global cache, nome_tb, letra_tb, colunas, diags

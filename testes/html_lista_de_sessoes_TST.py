@@ -13,7 +13,6 @@ assert res == None
 sys.stderr.write("Criando alguns objetos...\n")
 tabelas.cria_todos_os_testes()
 
-
 sessoes = ["S-00000001", "S-00000002", "S-00000003"]
 
 def testa(rotulo, *args):
@@ -26,5 +25,8 @@ def testa(rotulo, *args):
     pretty = False  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-testa("testa_multiplas_sessoes", sessoes)
-testa("testa_lista_vazia", [])
+for ver in (False, True):
+  for fechar in (False, True):
+    tag = "ver" + str(ver)[0] + "-fechar" + str(fechar)[0] 
+    testa("muitas-" + tag, sessoes, ver, fechar)
+    testa("lhufas-" + tag, [], ver, fechar)

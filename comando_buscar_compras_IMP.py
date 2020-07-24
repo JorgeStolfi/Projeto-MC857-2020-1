@@ -30,6 +30,8 @@ def processa(ses, args):
     return html_pag_mensagem_de_erro.gera(ses, "Sessão deveria estar aberta")
 
   try:
+    carrinho = sessao.obtem_carrinho(ses)
+    id_carrinho = compra.obtem_identificador(carrinho) if carrinho != None else None
     if not sessao.eh_administrador(ses):
       # Usuário comum só pode buscar as próprias compras:
       usr = sessao.obtem_usuario(ses) # Dono da sessao.
@@ -44,7 +46,7 @@ def processa(ses, args):
     cprs_ids = compra.busca_por_campos(args)
     cprs = map(lambda id_compra: compra.busca_por_identificador(id_compra), cprs_ids)
     ver = True if sessao.eh_administrador(ses) or args['cliente'] == sessao.obtem_usuario(ses) else False
-    bloco = html_lista_de_compras.gera(cprs, ver, "")
+    bloco = html_lista_de_compras.gera(cprs, ver, id_carrinho)
     pag = html_pag_generica.gera(ses, bloco, None)
     return pag
 

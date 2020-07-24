@@ -1,3 +1,0 @@
-Para adicionar o indicativo de que uma das compras é o carrinho atual do usuário, modifiquei o módulo {html_resumo_de_compra} para que recebesse o identificador do carrinho atual. Caso seja igual, adiciona um ícone de carrinho em unicode {&#128722;} em uma nova coluna criada no módulo {html_lista_de_compras}.presente 
-
-Os os outros arquivos alterados foram para adequar à nova chamada da interface {html_resumo_de_compra}.

@@ -1,8 +1,0 @@
-André Papoti de Oliveira RA:166380
-
-
-Tarefa: (id = "U-00000001") "Checar objeto": Fazer aparecer uma linha "O usuário tem N poltronas reservadas". Deve contar apenas poltronas do usuário em trechos que não foram encerrados.
-
-Fiz toda a implementação necessária para fazer a contagem das poltronas, porém a função obtem_poltronas(cpr) de compra está me gerando erro. Apesar de estar fora do escopo da minha atividade tentei alterar a função na tentativa de arruma-la porem não consegui.
-
-Fiz o Push apenas com a implementação da minha atividade, sem alterações na implementação de compra

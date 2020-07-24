@@ -5,7 +5,7 @@ from utils_testes import erro_prog
 import sys
 
 def gera(dados_linhas, atrs, admin, ignora_admin=False):
-  sys.stderr.write("TABELA: atrs = %s\n" %str(atrs))
+  # sys.stderr.write("{html_form_table_IMP.gera}: atrs = %s\n" %str(atrs))
 
   # Converte os dados brutos das linhas para fragmentos HTML:
   linhas = [].copy()

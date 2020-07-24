@@ -51,6 +51,10 @@ def verifica_trecho(rotulo, trc, ident, atrs):
 
 def testa_cria_trecho(rotulo, ident, atrs):
   """Testa criação de trecho com atributos {atrs}.  Retorna o trecho."""
+  sys.stderr.write("  %s %s" % (ident, atrs['codigo']));
+  sys.stderr.write("  %s %s %s" % (atrs['origem'], atrs['dia_partida'], atrs['hora_partida']))
+  sys.stderr.write("  %s %s %s" % (atrs['destino'], atrs['dia_chegada'], atrs['hora_chegada']))
+  sys.stderr.write("\n")
   trc = trecho.cria(atrs)
   verifica_trecho(rotulo, trc, ident, atrs)
   return trc
@@ -142,36 +146,62 @@ trc3_ind = 2
 trc3_id = "T-00000003"
 trc3 = testa_cria_trecho("trc3", trc3_id, trc3_atrs)
 
+trc4_atrs = {
+  'codigo':       "BU 2115",
+  'origem':       "MAO",
+  'destino':      "VCP",
+  'dia_partida':  "2020-05-07",
+  'hora_partida': "17:15",
+  'dia_chegada':  "2020-05-08",
+  'hora_chegada': "07:70",
+  'veiculo':      "PQ-NAO",
+  'aberto':       True,
+}
+trc4_ind = 3
+trc4_id = "T-00000004"
+trc4 = testa_cria_trecho("trc4", trc4_id, trc4_atrs)
+
 # ----------------------------------------------------------------------
-sys.stderr.write("testando {trecho.busca_por_dias}:\n")
+sys.stderr.write("testando {trecho.busca_por_dias}\n")
 dia_min_bd1 = "2020-05-08"
 dia_max_bd1 = "2020-05-09"
+sys.stderr.write("buscando %s .. %s:\n" % (dia_min_bd1, dia_max_bd1))
 ids_bd1 = [trc1_id, trc2_id, trc3_id]
 testa_busca_por_dias(dia_min_bd1, dia_max_bd1, ids_bd1)
 
-dia_min_bd2 = "2020-05-08"
+dia_min_bd2 = "2020-05-06"
 dia_max_bd2 = "2020-05-08"
-ids_bd2 = [trc1_id, trc2_id]
-testa_busca_por_dias(dia_min_bd2, dia_min_bd2, ids_bd2)
+sys.stderr.write("buscando %s .. %s:\n" % (dia_min_bd2, dia_max_bd2))
+ids_bd2 = [trc1_id, trc2_id, trc4_id]
+testa_busca_por_dias(dia_min_bd2, dia_max_bd2, ids_bd2)
 
 sys.stderr.write("%s\n" % ("-" * 70))
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {trecho.busca_por_origem_e_destino}:\n")
-dia_min_bod1 = "2020-05-08"
-dia_max_bod1 = "2020-05-08"
+org_bod1 = "SDU"
+data_min_bod1 = "2020-05-08 00:00 UTC"
+dst_bod1 = "VCP"
+data_max_bod1 = "2020-05-08 23:59 UTC"
+sys.stderr.write("buscando (%s %s) .. (%s %s):\n" % (str(org_bod1), data_min_bod1, str(dst_bod1), data_max_bod1))
 ids_bod1 = [trc2_id]
-testa_busca_por_origem_e_destino('SDU', 'VCP', dia_min_bod1, dia_max_bod1, ids_bod1)
+testa_busca_por_origem_e_destino(org_bod1, dst_bod1, data_min_bod1, data_max_bod1, ids_bod1)
 
-dia_min_bod2 = "2020-05-09"
-dia_max_bod2 = "2020-05-09"
-ids_bod2 = [trc3_id]
-testa_busca_por_origem_e_destino(None, 'VCP', dia_min_bod2, dia_min_bod2, ids_bod2)
+org_bod2 = None
+data_min_bod2 = "2020-05-08 00:00 UTC"
+dst_bod2 = "VCP"
+data_max_bod2 = "2020-05-09 23:59 UTC"
+sys.stderr.write("buscando (%s %s) .. (%s %s):\n" % (str(org_bod2), data_min_bod2, str(dst_bod2), data_max_bod2))
+ids_bod2 = [trc2_id, trc3_id]
+testa_busca_por_origem_e_destino(org_bod2, dst_bod2, data_min_bod2, data_max_bod2, ids_bod2)
 
-dia_min_bod3 = None
-dia_max_bod3 = "2020-05-08"
+org_bod3 = "VCP"
+data_min_bod3 = None
+dst_bod3 = None
+data_max_bod3 = "2020-05-08 23:59 UTC"
 ids_bod3 = [trc1_id]
-testa_busca_por_origem_e_destino('VCP', None, dia_min_bod3, dia_min_bod3, ids_bod3)
+sys.stderr.write("buscando (%s %s) .. (%s %s):\n" % (str(org_bod3), data_min_bod3, str(dst_bod3), data_max_bod3))
+testa_busca_por_origem_e_destino(org_bod3, dst_bod3, data_min_bod3, data_min_bod3, ids_bod3)
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {trecho.busca_por_origem}:\n")
@@ -217,7 +247,7 @@ verifica_trecho("trc3_m", trc3, trc3_id, trc3_atrs_m)
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {trecho.obtem_dia_e_hora_de_partida}:\n")
 trc2_dhp_res = trecho.obtem_dia_e_hora_de_partida(trc2);
-trc2_dhp_esp = "2020-05-09 19:45"
+trc2_dhp_esp = "2020-05-08 19:45 UTC"
 if trc2_dhp_res != trc2_dhp_esp:
   sys.stderr.write("{trecho.obtem_dia_e_hora_de_partida(trc2)}:")
   sys.stderr.write(" devolveu %s, esperado %s\n" % (trc2_dhp_res, trc2_dhp_esp))
@@ -226,7 +256,7 @@ if trc2_dhp_res != trc2_dhp_esp:
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {trecho.obtem_dia_e_hora_de_chegada}:\n")
 trc2_dhc_res = trecho.obtem_dia_e_hora_de_chegada(trc2);
-trc2_dhc_esp = "2020-05-09 20:40"
+trc2_dhc_esp = "2020-05-08 20:40 UTC"
 if trc2_dhc_res != trc2_dhc_esp:
   sys.stderr.write("{trecho.obtem_dia_e_hora_de_chegada(trc2)}:")
   sys.stderr.write(" devolveu %s, esperado %s\n" % (trc2_dhc_res, trc2_dhc_esp))

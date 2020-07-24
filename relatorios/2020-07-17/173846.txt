@@ -1,6 +1,0 @@
-Relatório 173846 do dia 2020-07-17
-
-Tarefa: 173846 [X] > Ofertas: o cabecalho da tabela deve ter "PTOT" "PLIV" com legenda abaixo da tabela.
-
-Para realizar essa tarefa tive que alterar o módulo html_lista_de_trechos, que é o responsável por gerar a tabela em questão.
-Alterei o cabeçalho e adicionei a legenda requisitada. Rodei o módulo de teste e está funcionando como esperado.

@@ -568,7 +568,7 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/ver_compras_de_usuario':
       pag = comando_ver_compras_de_usuario.processa(ses, args)
 
-      elif cmd == '/comprar_roteiro':
+    elif cmd == '/comprar_roteiro':
       # Quer comprar um roteiro específico:
       pag = comando_comprar_roteiro.processa(ses, args)
 

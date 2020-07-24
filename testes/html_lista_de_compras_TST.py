@@ -29,6 +29,5 @@ def testa(rotulo, *args):
     pretty = False  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-
 testa("testa_sem_ver", compras_ids, False, cpr1_id)
 testa("testa_com_ver", compras_ids, True, cpr1_id)

@@ -73,6 +73,7 @@ def testa_acrescenta_trecho_invalido(id_trecho_ult, id_trecho_prox):
   testa("Inv", ses, args)
   trc_novo = trecho.busca_por_identificador(id_trecho_prox)
   assert trc_novo == None
-
-testa_acrescenta_trecho_com_sucesso("T-00000006", "T-00000007")
-testa_acrescenta_trecho_invalido("T-00000007", "T-00000008")
+  
+# Verifica último identificador criado:
+testa_acrescenta_trecho_com_sucesso("T-00000012", "T-00000013")
+testa_acrescenta_trecho_invalido("T-00000013", "T-00000014")

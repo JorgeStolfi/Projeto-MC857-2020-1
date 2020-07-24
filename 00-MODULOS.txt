@@ -1,4 +1,9 @@
-# Módulos na ordem a testar (N = não testar, A = OK, * = bug no módulo, @ = bug no teste):
+# Módulos na ordem a testar 
+#
+#   N = não testar 
+#   A = OK 
+#   * = possivelmente bug no módulo
+#   @ = bug no teste ou falta teste
 
 # --- Programas principais (Não testar)
 
@@ -22,7 +27,7 @@ A usuario
 A compra
 A poltrona
 A sessao
-@ trecho
+A trecho
 
 A tabelas
 
@@ -64,7 +69,7 @@ A html_pag_mensagem_de_erro
 A html_form_dados_de_usuario
 A html_resumo_de_usuario
 
-A html_pag_ver_usuario
+* html_pag_ver_usuario
 
 A html_pag_cadastrar_usuario
 A comando_solicitar_pag_cadastrar_usuario
@@ -84,7 +89,7 @@ A comando_buscar_usuarios
 
 A html_resumo_de_poltrona_de_compra
 A html_resumo_de_poltrona_de_trecho
-@ html_resumo_de_poltrona_de_usuario
+A html_resumo_de_poltrona_de_usuario
 
 A html_form_dados_de_poltrona
 A html_pag_ver_poltrona
@@ -104,6 +109,8 @@ A comando_comprar_poltrona
 A comando_excluir_poltrona
 A comando_trocar_poltrona
 
+A comando_executa_checkin
+
 # --- Módulos que lidam principalmente com {Objeto_Sessao}
 
 A html_sessao
@@ -111,8 +118,8 @@ A html_resumo_de_sessao
 A html_form_dados_de_sessao
 A html_pag_ver_sessao
 
-A html_lista_de_sessoes
-A comando_ver_sessoes
+* html_lista_de_sessoes
+* comando_ver_sessoes
 
 A html_form_login
 A html_pag_login
@@ -131,7 +138,7 @@ A html_form_dados_de_trecho
 A html_pag_ver_trecho
 A comando_ver_trecho
 
-A html_pag_acrescentar_trecho
+* html_pag_acrescentar_trecho
 A comando_solicitar_pag_acrescentar_trecho
 A comando_solicitar_pag_clonar_trecho
 A comando_acrescentar_trecho
@@ -166,6 +173,7 @@ A comando_solicitar_pag_buscar_compras
 A html_lista_de_compras
 A comando_buscar_compras
 A comando_ver_minhas_compras
+* comando_ver_compras_de_usuario
 
 A comando_alterar_compra
 
@@ -182,6 +190,7 @@ A comando_finalizar_compra
 A html_form_contato
 A html_pag_contato
 A comando_solicitar_pag_contato
+A comando_enviar_msg_contato
 
 # --- Módulos que lidam principalmente com roteiros
 
@@ -201,5 +210,5 @@ A comando_comprar_roteiro
 # --- Objetos genéricos
 
 A html_form_ver_objeto
-A comando_ver_objeto
+* comando_ver_objeto
 

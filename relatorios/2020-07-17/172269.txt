@@ -1,5 +1,0 @@
-Gabriel Marinho da Costa RA172269
-
-Acrescentei mais 6 compras na lista do método cria_testes do módulo compra_IMP, também acrescentei mais 6 poltronas nos testes do módulo
-poltrona_IMP para atrelar às novas compras, de forma que todas tenham preço e bagagem. Nenhuma compra ou poltrona nova está atrelada à uma
-compra ou poltrona antiga.

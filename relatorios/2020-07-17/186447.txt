@@ -1,9 +1,0 @@
-Tarefa - Eliminar duplicacoes na checagem de sessoes
-
-Eliminado chamada do metodo {ht_bloco_ses = html_sessao.gera(ses1)} para retirar
-duplicações em {html_pag_ver_sessao_IMP.py}. Apagado linhas de concatenacoes de
-blocos.
-
-Adicionado chamada do método {data_login = sessao.obtem_data_login(ses)} em
-{html_form_dados_de_sessao_IMP.py} para adicionar o campo "Criado em" no
-formulário da sessão checada.

@@ -4,9 +4,8 @@ import compra
 import poltrona
 import html_botao_simples
 
-def gera(cpr, ver, id_carr):
+def gera(cpr, ver, id_carrinho):
 
-  cpr_carrinho = ""
   id_cpr = compra.obtem_identificador(cpr)
   usr = compra.obtem_cliente(cpr)
   id_usr = usuario.obtem_identificador(usr)
@@ -18,11 +17,10 @@ def gera(cpr, ver, id_carr):
   ids_poltronas = poltrona.busca_por_compra(cpr)
   num_poltronas = len(ids_poltronas)
 
-  if(id_cpr == id_carr):
-    cpr_carrinho = "&#128722;"
+  icone_carrinho = "<b>&#128722;</b>" if id_cpr == id_carrinho else ""
 
   # !!! Definir um estilo decente para os campos? Ou definir fora do {html_table}? !!!
-  ht_carrinho = cpr_carrinho
+  ht_carrinho = icone_carrinho
   ht_cpr = id_cpr
   ht_usr = id_usr
   ht_num_poltronas = str(num_poltronas)

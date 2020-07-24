@@ -1,3 +1,0 @@
-Na página ver_objeto, caso buscado um Usuario:
-Adicionei a linha "O usuário tem N compras abertas", sendo N o número de compras abertas.
-Mostrará 0 caso não haja compras abertas.
