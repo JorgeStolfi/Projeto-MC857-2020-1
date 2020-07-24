@@ -1,0 +1,18 @@
+Dado que a minha tarefa é verificar os botões, foram encontrados os seguintes problemas:
+- [X] > "Ofertas" > "Ver {qualquer oferta}" > "Checkin em {qualquer poltrona}": Gera o erro "Erro: ** comando POST "/solicitar_fazer_checkin" inválido";
+- [X] > "Sugerir Roteiros" > "{preencher campos com dados válidos}" > "Buscar": Não retorna uma lista com roteiros sugeridos, mesmo inserindo origem, destino, dias mínimos e máximos de um trecho existente. Trecho usado: "SDU 2020-05-08 19:45 VCP 2020-05-08 20:40";
+- [U] > "Minha Conta" > "Confirmar": Gera uma exceção "re.error: bad escape \u at position 479 (line 7, column 25)";
+- [U] > "Minha Conta" > "Ver poltronas": Gera o erro "Erro: ** comando POST "/ver_poltronas" inválido";
+- [U] > "Minhas Sessões" > "Ver {qualquer sessão}": Gera o erro "Erro: ** comando POST "/ver_detalhes_sessao" inválido";
+- [U] > "Contato": É possível enviar uma mensagem sem qualquer informação (todos os campos vazios);
+- [U] > "Meu Carrinho" > "Alterar": Gera uma exceção "re.error: bad escape \u at position 605 (line 10, column 29)";
+- [U] > "Meu Carrinho" > "Ver {trecho}" > "Trocar": Gera a exceção KeyError: 'id_compra' no arquivo comando_trocar_poltrona.py, linha 13;
+- [U] > "Meu Carrinho" > "Finalizar Compra" > "Confirmar": Gera o erro "Erro: ** Adicionar atributo forma_pag a compra.py e descomentar implementacao do comando alterar_pagamento";
+- [A] > "Ofertas" > "Ver {oferta}" > "Alterar {poltrona}" > "Alterar": Gera o erro "Erro: ** comando POST "/alterar_dados_de_poltrona" inválido"
+- [A] > "Buscar Trechos" > "Origem: SDU" e "Destino: VCP" > "Buscar" > "Alterar": Gera a exceção NameError: name 'id_trc' is not defined no arquivo comando_solicitar_pag_alterar_trecho_IMP.py, linha 18;
+- [A] > "Minha Conta": Não é possível alterar o ID do usuário, servidor retorna conflito de CPFs e email já existentes
+- [A] > "Minhas Sessões" > "Fechar Sessão": Gera a exceção AssertionError no arquivo compra_IMP.py", linha 71;
+- [A] (Após ter fechado uma sessão aberta) > "Minhas sessões": Não mostra nenhuma sessão aberta, enquanto "Minha Conta" > "Ver sessões" apresenta corretamente as sessões;
+- [A] > "Minha Conta" > "Ver sessões" > "Ver": Gera o erro Erro: ** comando POST "/ver_detalhes_sessao" inválido;
+- [A] > "Minha Conta" > "Ver Sessões" > "Fechar sessão atual" > "Entrar": Antes de, de fato, entrar novamente, os botões com privilégio de administrador aparecem. Nesse estado, "Minha Conta" e "Minhas sessões" retorna uma exceção (deveria haver uma sessão aberta), assim como "Acrescentar trecho" e Checar Objeto", que necessitam de privilégios de administrador.
+- [A] > "Acrescentar trecho": Existem dois botões "Cancelar" que enviam para a página principal;
