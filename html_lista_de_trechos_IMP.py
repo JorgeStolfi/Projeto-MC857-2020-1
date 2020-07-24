@@ -30,9 +30,9 @@ def gera(trcs, alterar):
   bold =  'font-weight: bold;'
 
   legendas = html_span.gera(estilo_texto+bold, 'Legenda<br>')
-  legendas += html_span.gera(estilo_texto+bold, 'PTOT: ')
-  legendas += html_span.gera(estilo_texto, 'Total de poltronas no trecho<br>')
   legendas += html_span.gera(estilo_texto+bold, 'PLIV: ')
   legendas += html_span.gera(estilo_texto, 'Poltronas livres<br>')
+  legendas += html_span.gera(estilo_texto+bold, 'PTOT: ')
+  legendas += html_span.gera(estilo_texto, 'Total de poltronas no trecho<br>')
 
   return ht_itens + legendas
