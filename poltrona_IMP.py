@@ -324,6 +324,33 @@ def cria_testes():
         'bagagens':   5,
         'fez_checkin': False,
       },
+      # Poltrona "A-00000015":
+      { 'id_trecho':   "T-00000001",
+        'numero':      "01B",
+        'oferta':      True,
+        'id_compra':   None,
+        'preco':       25.00,
+        'bagagens':    None,
+        'fez_checkin': False,
+      },
+      # Poltrona "A-00000016":
+      { 'id_trecho':   "T-00000004",
+        'numero':      "01B",
+        'oferta':      True,
+        'id_compra':   None,
+        'preco':       25.00,
+        'bagagens':    None,
+        'fez_checkin': False,
+      },
+      # Poltrona "A-00000017":
+      { 'id_trecho':   "T-00000005",
+        'numero':      "01B",
+        'oferta':      True,
+        'id_compra':   None,
+        'preco':       25.00,
+        'bagagens':    None,
+        'fez_checkin': False,
+      },
     ]
   for atrs in lista_atrs:
     pol = cria(atrs)
