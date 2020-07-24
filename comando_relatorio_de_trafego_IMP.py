@@ -13,8 +13,10 @@ def processa(ses, args):
 
     resumo_origem = trecho.resumo_de_trafego(origem)
     resumo_destino = trecho.resumo_de_trafego(destino)
-    resumos.append(aeroporto, resumo_origem, resumo_destino)
+    resumos.append((aeroporto, resumo_origem, resumo_destino))
   
-  pag = html_resumo_de_trafego.gera(resumos)
-
+  # Para fins de teste
+  sys.stderr.write("dados: %s" % resumos)
+  
+  pag = html_relatorio_de_trafego.gera(resumos)
   return pag
