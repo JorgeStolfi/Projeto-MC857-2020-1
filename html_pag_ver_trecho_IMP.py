@@ -16,7 +16,8 @@ import sys
 
 from trecho import obtem_atributos, obtem_poltronas
 
-def gera(ses, trc, comprar_pols, alterar_trc, erros):
+def gera(ses, trc, comprar_pols, alterar_trc, ver_oferta_pols, ver_fez_checkin,\
+         checkin_pols, erros):
 
   if comprar_pols:
     assert (ses != None) and (not sessao.eh_administrador(ses)) # Paranóia.
@@ -60,6 +61,7 @@ def gera(ses, trc, comprar_pols, alterar_trc, erros):
   sys.stderr.write(" alterar_pols = %s\n" % str(alterar_pols))
   sys.stderr.write(" comprar_pols = %s\n" % str(comprar_pols))
   sys.stderr.write(" id_cpr = %s\n" % str(id_cpr))
-  ht_pols = html_lista_de_poltronas_de_trecho.gera(pols_ids, id_trc, alterar_pols, comprar_pols, id_cpr)
+  ht_pols = html_lista_de_poltronas_de_trecho.gera(pols_ids, id_trc, \
+    alterar_pols, comprar_pols, ver_oferta_pols, ver_fez_checkin, checkin_pols, id_cpr)
   ht_conteudo = ht_form + "<br/>" + ht_pols
   return html_pag_generica.gera(ses, ht_conteudo, erros)

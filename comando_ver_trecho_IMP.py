@@ -25,5 +25,9 @@ def processa(ses, args):
     admin = sessao.eh_administrador(ses)
     comprar_pols = (ses != None) and not admin
     alterar_trc = admin
-    pag = html_pag_ver_trecho.gera(ses, trc, comprar_pols, alterar_trc, None)
+    ver_oferta_pols = admin
+    ver_fez_checkin = admin
+    checkin_pols = admin
+    pag = html_pag_ver_trecho.gera(ses, trc, comprar_pols, alterar_trc, ver_oferta_pols,\
+      ver_fez_checkin, checkin_pols, None)
   return pag

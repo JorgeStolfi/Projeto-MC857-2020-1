@@ -1,6 +1,7 @@
 import html_resumo_de_poltrona_de_trecho_IMP
 
-def gera(pol, id_trc, alterar_pol, comprar_pol, trocar_pol, id_cpr):
+def gera(pol, id_trc, alterar_pol, comprar_pol, trocar_pol, ver_oferta_pol,
+         ver_fez_checkin, realizar_checkin, id_cpr):
   """Devolve uma lista de fragmentos HTML que decrevem a poltrona {pol},
   um objeto da classe {Objeto_Poltrona}.  A poltrona deve pertencer ao
   trecho {id_trc}.  A lista terá um elemento string separado
@@ -40,4 +41,5 @@ def gera(pol, id_trc, alterar_pol, comprar_pol, trocar_pol, id_cpr):
   dono do pedido de compra {id_cpr}, e este pedido estiver em aberto.
   Portanto {comprar_pol} e {trocar_pol} não podem ser ambos {True}.)"""
   return html_resumo_de_poltrona_de_trecho_IMP.gera \
-    (pol, id_trc, alterar_pol, comprar_pol, trocar_pol, id_cpr)
+    (pol, id_trc, alterar_pol, comprar_pol, trocar_pol, ver_oferta_pol,
+         ver_fez_checkin, realizar_checkin, id_cpr)
