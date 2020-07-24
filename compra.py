@@ -7,7 +7,7 @@
 import usuario
 
 # Implementaçao deste módulo:
-import compra_IMP; from compra_IMP import Objeto_Compra_IMP 
+import compra_IMP; from compra_IMP import Objeto_Compra_IMP
 
 class Objeto_Compra(Objeto_Compra_IMP):
   """Um objeto desta classe representa um pedido de compra
@@ -35,27 +35,27 @@ class Objeto_Compra(Objeto_Compra_IMP):
 
   Os itens são uma lsta de bilhetes individuais.  Cada
   bihete é representado por um objeto de tipo {Objeto_Poltrona}
-  (vide {poltrona.py}).  
-  
-  Cada bilhete (poltrona) deve pertencer a um trecho 
-  ({Objeto_Trecho}) distinto. 
-  
+  (vide {poltrona.py}).
+
+  Cada bilhete (poltrona) deve pertencer a um trecho
+  ({Objeto_Trecho}) distinto.
+
   Os bilhetes devem estar em ordem cronológica;
   ou seja, a data+hora da chegada do trecho de cada bilhete
   deve ser menor que a data+hora de partida do trecho
-  do bilhete seguinte. 
-  
+  do bilhete seguinte.
+
   Note que os itens do pedido de compra não são armazenados na
   tabela "compras", mas numa tabela separada "itens_de_compras".
 
-  Cada pedido de compra pertence a um unico usuário da loja, mas cada 
+  Cada pedido de compra pertence a um unico usuário da loja, mas cada
   pode ter vários pedidos ainda não finalizados ao mesmo tempo. Por
   exemplo, o cliente da loja virtual pode ser uma agência de turismo,
   que teria um pedido de compra separada para cada um de seus clientes.
-  
+
   Note que o pasageiro (atributo 'nome_pass') não é necessariamete
   o usuário da loja virtual que está montando o pedido (atributo 'cliente'),
-  e não precisa estar cadastrado na loja virtual. 
+  e não precisa estar cadastrado na loja virtual.
 
   REPRESENTAÇÃO NA BASE DE DADOS
 
@@ -166,6 +166,11 @@ def fecha(cpr):
   """Muda o status do pedido de compra {cpr} de 'aberto' para 'pagando' e salva o novo
   status da compra no banco de dados."""
   compra_IMP.fecha(cpr)
+
+def verificar_baldeacao(cpr):
+  """Devolve uma lista de identificadores de {cpr} que não têm tempo suficiente de
+  baldeação."""
+  return compra_IMP.verificar_baldeacao(cpr)
 
 # DEPURAÇÂO
 
