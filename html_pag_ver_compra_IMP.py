@@ -57,10 +57,6 @@ def gera(ses, cpr, excluir, trocar, erros):
   ht_conteudo += html_lista_de_poltronas_de_compra.gera(ids_poltronas, id_compra, excluir_pol, trocar_pol)
 
   if (eh_carrinho):
-<<<<<<< HEAD
-=======
-
->>>>>>> Utiliza verificar_baldeacao em html_pag_ver_compra
     ht_conteudo = "<h2> Seu carrinho (compra " + id_compra + ")</h2><br/>\n" + ht_conteudo
   elif aberto and admin == False:
     ht_bt_definir_carrinho = html_botao_simples.gera("Definir Carrinho", 'definir_carrinho', args_bt, '#ff3300')
