@@ -91,6 +91,7 @@ def gera_botoes_linha_2():
 
   botoes = (
     html_botao_simples.gera("Acrescentar trecho", "solicitar_pag_acrescentar_trecho", None, '#ffdd22'),
+    html_botao_simples.gera("Trafego", "comando_relatorio_de_trafego", None, '#FF00FF'),
     html_form.gera(form_content)
 
 

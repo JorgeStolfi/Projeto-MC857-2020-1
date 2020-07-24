@@ -49,6 +49,7 @@ import comando_ver_sessoes
 import comando_ver_trecho
 import comando_ver_minhas_sessoes
 import comando_ver_compras_de_usuario
+import comando_relatorio_de_trafego
 
 import html_span
 import html_div
@@ -374,6 +375,10 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/solicitar_pag_contato':
       # Quer formulário para mandar mensagens aos administradores:
       pag = comando_solicitar_pag_contato.processa(ses, args)
+    
+    elif cmd == 'comando_relatorio_de_trafego':
+      # Quer formulário para mandar mensagens aos administradores:
+      pag = comando_relatorio_de_trafego.processa(ses, args)
 
     # --- comandos referentes a {Objeto_Usuario} ------------------------
 
