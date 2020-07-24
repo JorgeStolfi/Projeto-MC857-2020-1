@@ -10,7 +10,7 @@ import html_cabecalho
 def gera(ids_sessoes, bt_ver, bt_fechar):
 
   # Linha de cabeçalho:
-  cabs_raw = ['Sessão', 'Usuário', 'Aberta?', 'Cookie', 'Carrinho']
+  cabs_raw = ['Sessão', 'Usuário', 'Aberta?', 'Cookie', 'Carrinho', 'Data de Criação']
   cabs_div = [].copy()
   for cb in cabs_raw:
     cabs_div.append(html_div.gera(html_estilo_cabecalho_de_tabela.gera(), cb))

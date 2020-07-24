@@ -12,19 +12,21 @@ def gera(ses, bt_ver, bt_fechar):
   sessao_aberta = sessao.obtem_atributo(ses, 'abrt')
   sessao_cookie = sessao.obtem_atributo(ses, 'cookie')
   sessao_carrinho = sessao.obtem_atributo(ses, 'carrinho')
+  sessao_data = sessao.obtem_atributo(ses, 'criacao')
 
   # Formata informações em HTML:
   ht_sessao_id = formata_texto(sessao_id)
   ht_codigo_usuario = formata_texto(usuario.obtem_identificador(sessao_usuario))
   ht_estado = formata_texto(sessao_esta_aberta(sessao_aberta))
   ht_cookie = formata_texto(sessao_cookie)
+  ht_data = formata_texto(sessao_data)
   if sessao_carrinho == None:
     tx_carrinho = ""
   else:
     tx_carrinho = compra.obtem_identificador(sessao_carrinho)
   ht_carrinho = formata_texto(tx_carrinho)
 
-  ht_campos = [ ht_sessao_id, ht_codigo_usuario, ht_estado, ht_cookie, ht_carrinho ]
+  ht_campos = [ ht_sessao_id, ht_codigo_usuario, ht_estado, ht_cookie, ht_carrinho, ht_data ]
   
   args_bt = {'id_sessao': sessao_id} # Argumentos para os botões.
   cor_bt_admin = '#FFA700' # Cor para botões de adminstrador.
