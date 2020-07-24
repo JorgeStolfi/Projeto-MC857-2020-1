@@ -163,6 +163,13 @@ def obtem_dia_e_hora_de_chegada(pol):
   trc = trecho.busca_por_identificador(id_trc);
   return trecho.obtem_dia_e_hora_de_chegada(trc)
 
+def obtem_origem_destino(pol):
+  id_trc = obtem_atributo(pol, 'id_trecho');
+  trc = trecho.busca_por_identificador(id_trc);
+  origem = trecho.obtem_atributo(trc, 'origem')
+  destino = trecho.obtem_atributo(trc, 'destino')
+  return origem, destino
+
 def cria_conjunto(trc, txt):
   global cache, nome_tb, letra_tb, colunas, diags
 
