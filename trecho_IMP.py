@@ -179,7 +179,26 @@ def busca_por_dias(dia_min, dia_max):
 
 def resumo_de_trafego(ids_trechos):
   global cache, nome_tb, letra_tb, colunas, diags 
-  assert False, "!!! IMPLEMENTAR !!!"
+
+  custo_total = 0
+  total_checkins = 0
+  total_poltronas = 0
+  total_poltronas_pagas = 0
+  for id in ids_trechos:
+    trc = busca_por_identificador(id)
+    total_poltronas += numero_de_poltronas(trc)
+    total_poltronas_pagas += (total_poltronas - numero_de_poltronas_livres(trc))
+    poltronas = obtem_poltronas(trc)
+    for id_poltrona in poltronas:
+      pol = poltrona.busca_por_identificador(id_poltrona)
+      custo_total += poltrona.obtem_atributo(pol, 'preco')
+      if poltrona.obtem_atributo(pol, 'fez_checkin'):
+        total_checkins += 1
+
+
+  #O resultado é uma tupla {(ntr, npol_tot, npol_pag, renda_tot, npol_chk)}
+  resumo = (len(ids_trechos),total_poltronas,total_poltronas_pagas,custo_total,total_checkins)
+  
   return resumo
 
 def muda_atributos(trc, mods_mem):
