@@ -96,7 +96,7 @@ def obtem_poltronas(cpr):
   global cache, nome_tb, letra_tb, colunas, diags
   assert cpr != None and type(cpr) is compra.Objeto_Compra
   ids_pols = poltrona.busca_por_compra(cpr)
-  # ids_pols.sort(key = lambda id : poltrona.obtem_dia_e_hora_de_partida(poltrona.busca_por_identificador(id)))
+  ids_pols.sort(key = lambda id : poltrona.obtem_dia_e_hora_de_partida(poltrona.busca_por_identificador(id)))
   return ids_pols
 
 def busca_por_campos(args):
@@ -195,23 +195,16 @@ def cria_testes():
   # Identificador de usuários e lista de poltronas de cada pedido de compra:
   lista_cupsf = \
     [
-<<<<<<< HEAD
       ( "C-00000001", "U-00000001", "Amanda Almeida",  "45.246.235-2",   True, ),
       ( "C-00000002", "U-00000001", "Basílio Barros",  "234.764.987-23", True, ),
-      ( "C-00000003", "U-00000002", "Carlos Costa",    "76.863.987-5",   True, ),   
-      ( "C-00000004", "U-00000002", "Diego Dias",      "654.987.098-09", False,), 
-      ( "C-00000005", "U-00000002", "Romario Silva",   "122.787.038-05", False,), 
-      ( "C-00000006", "U-00000001", "Fabio Santos",    "555.957.058-05", True, ), 
-      ( "C-00000007", "U-00000001", "Renato Augusto",  "111.227.338-03", False,), 
-      ( "C-00000008", "U-00000001", "Carlos Tevez",    "666.967.698-06", True, ), 
-      ( "C-00000009", "U-00000002", "André Santos",    "554.181.018-01", False,), 
-      ( "C-00000010", "U-00000002", "Victor Cantillo", "444.955.085-08", True, ), 
-=======
-      ( "C-00000001", "U-00000001", "Amanda Almeida", "45.246.235-2",   True,  ),
-      ( "C-00000002", "U-00000001", "Basílio Barros", "234.764.987-23", True,  ),
-      ( "C-00000003", "U-00000002", "Carlos Costa",   "76.863.987-5",   True,  ),
-      ( "C-00000004", "U-00000002", "Diego Dias",     "654.987.098-09", False, ),
->>>>>>> Adiciona verificar_baldeacao a compra
+      ( "C-00000003", "U-00000002", "Carlos Costa",    "76.863.987-5",   True, ),
+      ( "C-00000004", "U-00000002", "Diego Dias",      "654.987.098-09", False,),
+      ( "C-00000005", "U-00000002", "Romario Silva",   "122.787.038-05", False,),
+      ( "C-00000006", "U-00000001", "Fabio Santos",    "555.957.058-05", True, ),
+      ( "C-00000007", "U-00000001", "Renato Augusto",  "111.227.338-03", False,),
+      ( "C-00000008", "U-00000001", "Carlos Tevez",    "666.967.698-06", True, ),
+      ( "C-00000009", "U-00000002", "André Santos",    "554.181.018-01", False,),
+      ( "C-00000010", "U-00000002", "Victor Cantillo", "444.955.085-08", True, ),
     ]
   for id_cpr_esp, id_cliente, nome_pass, doc_pass, aberto in lista_cupsf:
     cliente = usuario.busca_por_identificador(id_cliente)
