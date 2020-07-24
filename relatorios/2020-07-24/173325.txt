@@ -28,9 +28,13 @@ Tendo em vista os arquivos alterados acima, forma executados os seguintes testes
 - sessao_TST.py
 - html_lista_de_sessoes
 
+Somado a esse teste, foi realizado o teste pelo Makefile.
+
 Além desses, foi realizado uma inspeção visual.
 
 # Resultado dos testes
 
-Segundo os testes executados, as modificações não causaram erros. Além disso, a
-inspeção visual resultou no comportamento esperado sem erros.
+Segundo os testes executados, as modificações não causaram erros. O unico teste
+errado foi do módulo {comando_alterar_compra}, tal teste já estava com
+resultado de erros antes da modificação. Por fim, a inspeção visual resultou
+no comportamento esperado sem erros.
