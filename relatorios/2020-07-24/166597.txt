@@ -1,0 +1,18 @@
+A tarefa de hoje consistia em navegar pela plataforma e encontrar problemas:
+
+- Como usuário comum:
+1) Não é possível fazer check-in (Ofertas -> Ver oferta -> Realizar check-in)
+Erro: ** comando POST "/solicitar_fazer_checkin" inválido
+
+2) Não é possível escolher forma de pagamento durante compra de oferta 
+Erro: ** Adicionar atributo forma_pag a compra.py e descomentar implementacao do comando alterar_pagamento
+
+3) Não é possível realizar troca de poltrona
+
+4) Não é possível ver poltronas (Minha conta -> Ver poltronas)
+
+- Como administrador:
+1) Não é possível ver detalhes de sessão (Minhas sessões -> Ver)
+Erro: ** comando POST "/ver_detalhes_sessao" inválido
+
+2) Não é possível fechar sessões abertas (Minha Conta -> Ver sessões -> Fechar)
