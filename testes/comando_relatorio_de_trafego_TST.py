@@ -25,4 +25,4 @@ def testa(rotulo, *args):
   pretty = False
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-testa("teste", ses, args)
+testa("relatorio", ses, args)
