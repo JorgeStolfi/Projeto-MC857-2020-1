@@ -1,6 +1,7 @@
 import html_label
 import html_input
 import html_table
+import html_textarea
 from utils_testes import erro_prog
 import sys
 
@@ -73,5 +74,9 @@ def gera_campo(tipo, chave, val, vmin, dica, editavel):
   else:
     ht_dica = None
 
-  ht_campo = html_input.gera(None, tipo, chave, ht_valor, ht_vmin, editavel, ht_dica, None)
+  if tipo != "textarea":
+    ht_campo = html_input.gera(None, tipo, chave, ht_valor, ht_vmin, editavel, ht_dica, None)
+  else:
+    ht_campo = html_textarea.gera(None, tipo, chave, ht_valor, ht_vmin, editavel, ht_dica, None)
+  
   return ht_campo

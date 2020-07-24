@@ -11,7 +11,7 @@ def gera(atrs, admin):
       ( "Email",          "text",        "email",         "Email",     False, ),
       ( "Telefone",       "text",        "telefone",      "Telefone",  False, ),
       ( "Assunto",        "text",        "assunto",       "Assunto",   False, ),
-      ("Mensagem", "text", "mensagem",   "Digite sua mensagem aqui",   False,),
+      ("Mensagem", "textarea", "mensagem",   "Digite sua mensagem aqui",   False,),
       )
 
   ht_table = html_form_table.gera(dados_linhas, atrs, admin)
