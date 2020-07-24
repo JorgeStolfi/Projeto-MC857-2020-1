@@ -109,6 +109,15 @@ def numero_de_poltronas_livres(trc):
   id_pols = poltrona.lista_livres(trc)
   return len(id_pols)
 
+def verificar_disponibilidade(trc):
+  global cache, nome_tb, letra_tb, colunas, diags
+  assert type(trc) is trecho.Objeto_Trecho
+
+  aberto = trecho.obtem_atributo(trc, 'aberto')
+  num_poltronas_livres = trecho.numero_de_poltronas_livres(trc)
+
+  return aberto and num_poltronas_livres > 0
+
 def obtem_dia_e_hora_de_partida(trc):
   global cache, nome_tb, letra_tb, colunas, diags
   assert type(trc) is trecho.Objeto_Trecho
@@ -260,7 +269,7 @@ def cria_testes():
         'dia_chegada':  "2020-05-08",
         'hora_chegada': "19:33",
         'veiculo':      "AAA-0006",
-        'aberto':       True
+        'aberto':       False
       },
       { # T-00000007
         'codigo':       "GO 3031",

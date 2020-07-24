@@ -11,7 +11,7 @@ import roteiro_IMP
 # tempo mínimo em certas escalas para mudança de veículo, alfândega, controle de
 # passaportes, etc..
 
-def descobre_todos(origem, destino, data_min, data_max):
+def descobre_todos(origem, destino, data_min, data_max, apenas_disponivel):
   """Encontra possíveis roteiros começando no aeroporto de código {origem}
   a partir da data {data_min}, e terminando no aeroporto de código {destino}
   até a data {data_max}.
@@ -21,7 +21,7 @@ def descobre_todos(origem, destino, data_min, data_max):
 
   A resposta é uma lista, possivelmente vazia, de roteiros que
   satisfazem as condições dadas."""
-  return roteiro_IMP.descobre_todos(origem, destino, data_min, data_max)
+  return roteiro_IMP.descobre_todos(origem, destino, data_min, data_max, apenas_disponivel)
 
 def obtem_identificadores_de_trechos(rot):
   """Dado um roteiro {rot} (lista objetos da classe {Objeto_Trecho}),

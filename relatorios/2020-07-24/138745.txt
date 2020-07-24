@@ -1,0 +1,29 @@
+Nesse dia a minha tarefa foi de não exibir roteiros na página Sugerir Roteiros que tinham trechos não disponíveis.
+
+Primeiramente criei a função {verificar_disponibilidade} em trecho.py que retorna True ou False de acordo com a disponibilidade
+do trecho em qeustão. Disponível é o trecho que está com atributo {aberto} == True e tem poltronas disponíveis.
+
+Adicionei o parâmetro {apenas_disponivel} à função {descobre_todos} de roteiro.py, esse parâmetro chaveia entre retornar
+todos os roteiros, independente de sua disponibilidade ou apenas os diponíveis.
+Alterei todas as chamadas à função {roteiro.descobre_todos} adicionando esse novo parâmetro.
+
+Dentro da função recursiva, que encontra os roteiros, adicionei a lógica que utilina ou não trecho de acordo com essa flag
+e a disponibilidade do trecho. Isso realiza a filtragem dos trechos de acordo com sua disponibilidade para exibição dos
+roteiros sugeridos.
+
+Após execução do servidor, notei que nenhum trecho estava com o atributo {aberto} == False e existiam vários trechos que não
+tinham nenhuma poltrona registrada. Então, adicionei pelo menos uma poltrona a todos os trechos existentes e deixei um trecho
+como "fechado". Agora é possível verificar corretamente o comportamento esperado na página Sugerir Roteiros.
+
+A inclusão do parâmetro de chaveamento {apenas_disponivel} em {roteiro.descobre_todos} impactaria nos seguintes arquivos:
+  - html_lista_de_roteiros_TST
+  - html_pag_ver_roteiro_TST
+  - html_resumo_de_roteiro_TST
+  - roteiro_TST
+  - comando_sugerir_roteiros (Módulo que motivou a mudança)
+
+Executei todos os testes desses módulos e todos continuam funcionando correatemente.
+
+Adicionei um teste em trecho_TST que testa a nova função {trecho.verificar_disponibilidade}. Para isso, adicionei um trecho novo
+com o atributo {aberto] == False e adicionei uma poltrona ao Trecho 4, assim criando um cenário com um trecho disponível (Trecho 4)
+e outro com um trecho indisponível (Trecho 5). Executei o teste e tudo funciona como esperado.
