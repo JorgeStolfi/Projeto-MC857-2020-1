@@ -1,0 +1,2 @@
+1. Alterei o cabeçalho "Nº de Poltrona" em html_lista_de_Poltrona para "NP" e adicionei uma legenda abaixo da tabela para indicar o significado da sigla no novo cabeçalho.
+2. Testei como "U" e tudo funcionou corretamente.
