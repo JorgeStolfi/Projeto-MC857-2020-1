@@ -8,6 +8,6 @@ def processa(ses, args):
   todos os voos, passados ou futuros.
   
   Usa {trecho.resumo_de_trafego} para resumir os dados dos voos de chegada
-  ou partida em cada aeroporto.  Usa {html_resumo_de_trafego.gera} para
+  ou partida em cada aeroporto.  Usa {html_relatorio_de_trafego.gera} para
   formatar esses resumos."""
   return comando_relatorio_de_trafego_IMP.processa(ses, args)
