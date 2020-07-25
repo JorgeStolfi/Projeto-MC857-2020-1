@@ -1,0 +1,21 @@
+Tarefa: 185441 [X] Entre no site, verifique todos os botões que puder, e relate os problemas que você perceber.
+
+As seguintes operações foram feitas logado como usuário comum:
+- Botão trocar na página de ver poltrona não faz o redirecionamento correto (vai para uma página quebrada)
+- Ao tentar realizar o pagamento na compra de um roteiro aparece a seguinte mensagem: Erro: ** Adicionar atributo forma_pag a compra.py e descomentar implementacao do comando alterar_pagamento
+- Em Buscar Trechos, preenchi os campos e cliquei em buscar e redirecionou para uma página quebrada
+- Depois de navegar um pouco (após acontecer os erros citados acima) o botão ofertas no menu principal para de funcionar e o servidor retorna um erro que termina com 
+    "File "/html_resumo_de_trecho_IMP.py", line 23, in gera
+        a_partir_de = str(min(precos))
+     ValueError: min() arg is an empty sequence"
+  ao reiniciar o servidor, o erro para de acontecer
+- Em "Ofertas > Ver > Checkin" aparece "Não foi possível completar a operação Erro: ** comando POST "/solicitar_fazer_checkin" inválido"
+- Em "Minhas Sessões", nada aparece na tabela
+- Em "Meu carrinho > Excluir" redireciona para uma página quebrada
+- Em "Minhas Compras > Ver" redireciona para uma página quebrada
+
+As seguintes operações foram feitas logado como administrador:
+- Aparece "Você tem outra sessao aberta." abaixo do menu principal ao logar pela primeira vez
+- "Minhas Sessões > Fechar" redireciona para uma página quebrada (mas conserta o problema citado acima)
+- Ao copiar a sessão atual do "Outros dados" no final da página e colocar o id no campo de checar objeto e clicar em fechar sessão o site redireciona para a página principal, depois disso ao ir para qualquer outra página aparece o menu como se estivesse o admin logado e as páginas "Minha Conta" e "Minhas Sessões" quebram. Ao clicar em "Sair" aparece "Erro: Precisa entrar no site antes de sair"
+ 
