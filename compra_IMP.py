@@ -9,6 +9,7 @@ import identificador
 import valida_campo; from valida_campo import ErroAtrib
 from utils_testes import erro_prog, mostra
 import sys
+import datetime
 
 # VARIÁVEIS GLOBAIS DO MÓDULO
 
@@ -137,6 +138,51 @@ def muda_atributos(cpr, mods_mem):
   objeto.muda_atributos(cpr, mods_mem, cache, nome_tb, letra_tb, colunas, def_obj_mem)
   return
 
+def verificar_baldeacao(cpr):
+
+  # pega poltronas de compra, ordenadas por partida
+  ids_poltronas = obtem_poltronas(cpr)
+  obj_poltronas = []
+
+  ultima_chegada = None
+  ultimo_destino = None
+
+  poltronas_invalidas = []
+  for id_poltrona in ids_poltronas:
+
+    # lendo poltrona atual
+    obj_poltrona = poltrona.busca_por_identificador(id_poltrona)
+    partida = poltrona.obtem_dia_e_hora_de_partida(obj_poltrona)
+    chegada = poltrona.obtem_dia_e_hora_de_chegada(obj_poltrona)
+    origem, destino = poltrona.obtem_origem_destino(obj_poltrona)
+
+    # convertendo string para data
+    formato = "%Y-%m-%d %H:%M UTC"
+    partida = datetime.datetime.strptime(partida, formato)
+    chegada = datetime.datetime.strptime(chegada, formato)
+
+    # baldeacoes
+    baldeacao_curta = datetime.timedelta(minutes=15)
+    baldeacao_longa = datetime.timedelta(hours=2)
+
+    # comparando com última poltrona
+    if ultima_chegada is not None and ultimo_destino is not None:
+
+        delta = partida - ultima_chegada
+        # mudança de aeroporto, tempo de baldeação é de 2 horas
+        if origem != ultimo_destino:
+            if  delta < baldeacao_longa:
+                poltronas_invalidas.append(id_poltrona)
+        # mesmo aeroporto, tempo de baldeação é de 15 minutos
+        else:
+            if delta < baldeacao_curta:
+                poltronas_invalidas.append(id_poltrona)
+
+    ultima_chegada = chegada
+    ultimo_destino = destino
+
+  return poltronas_invalidas
+
 def fecha(cpr):
   global cache, nome_tb, letra_tb, colunas, diags
   assert cpr != None and type(cpr) is compra.Objeto_Compra
@@ -151,14 +197,14 @@ def cria_testes():
     [
       ( "C-00000001", "U-00000001", "Amanda Almeida",  "45.246.235-2",   True, ),
       ( "C-00000002", "U-00000001", "Basílio Barros",  "234.764.987-23", True, ),
-      ( "C-00000003", "U-00000002", "Carlos Costa",    "76.863.987-5",   True, ),   
-      ( "C-00000004", "U-00000002", "Diego Dias",      "654.987.098-09", False,), 
-      ( "C-00000005", "U-00000002", "Romario Silva",   "122.787.038-05", False,), 
-      ( "C-00000006", "U-00000001", "Fabio Santos",    "555.957.058-05", True, ), 
-      ( "C-00000007", "U-00000001", "Renato Augusto",  "111.227.338-03", False,), 
-      ( "C-00000008", "U-00000001", "Carlos Tevez",    "666.967.698-06", True, ), 
-      ( "C-00000009", "U-00000002", "André Santos",    "554.181.018-01", False,), 
-      ( "C-00000010", "U-00000002", "Victor Cantillo", "444.955.085-08", True, ), 
+      ( "C-00000003", "U-00000002", "Carlos Costa",    "76.863.987-5",   True, ),
+      ( "C-00000004", "U-00000002", "Diego Dias",      "654.987.098-09", False,),
+      ( "C-00000005", "U-00000002", "Romario Silva",   "122.787.038-05", False,),
+      ( "C-00000006", "U-00000001", "Fabio Santos",    "555.957.058-05", True, ),
+      ( "C-00000007", "U-00000001", "Renato Augusto",  "111.227.338-03", False,),
+      ( "C-00000008", "U-00000001", "Carlos Tevez",    "666.967.698-06", True, ),
+      ( "C-00000009", "U-00000002", "André Santos",    "554.181.018-01", False,),
+      ( "C-00000010", "U-00000002", "Victor Cantillo", "444.955.085-08", True, ),
     ]
   for id_cpr_esp, id_cliente, nome_pass, doc_pass, aberto in lista_cupsf:
     cliente = usuario.busca_por_identificador(id_cliente)
@@ -167,13 +213,13 @@ def cria_testes():
     assert cpr != None and type(cpr) is compra.Objeto_Compra
     id_cpr = compra.obtem_identificador(cpr)
     if not aberto: compra.fecha(cpr)
-    
+
     # Paranóia:
     assert id_cpr == id_cpr_esp
     cliente_1 = compra.obtem_cliente(cpr)
     id_cliente_1 = usuario.obtem_identificador(cliente_1)
     assert id_cliente_1 == id_cliente
-    
+
     sys.stderr.write("compra %s de %s criada\n" % (id_cpr, id_cliente))
   return
 
