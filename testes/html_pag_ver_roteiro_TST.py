@@ -29,7 +29,7 @@ def testa(rotulo, *args):
 
 ses1 = sessao.busca_por_identificador("S-00000001")
 
-rots = roteiro.descobre_todos("VCP", "MAO", "2020-05-07", "2020-05-10")
+rots = roteiro.descobre_todos("VCP", "MAO", "2020-05-07", "2020-05-10", False)
 rot = rots[0]
 
 testa("N-E0", None, rot, None) # Sem login

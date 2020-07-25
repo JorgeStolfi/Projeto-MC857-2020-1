@@ -35,7 +35,8 @@ def processa(ses, args):
     if (origem is not None and destino is not None and dia_min is not None and dia_max is not None):
       
       #chamando a função que decobre esses trechos
-      roteiros = roteiro.descobre_todos(origem, destino, dia_min, dia_max)
+      apenas_disponivel = True
+      roteiros = roteiro.descobre_todos(origem, destino, dia_min, dia_max, apenas_disponivel)
 
       #chamo modulo 
       roteiros_html = html_lista_de_roteiros.gera(roteiros)

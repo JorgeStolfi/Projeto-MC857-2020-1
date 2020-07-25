@@ -163,6 +163,13 @@ def obtem_dia_e_hora_de_chegada(pol):
   trc = trecho.busca_por_identificador(id_trc);
   return trecho.obtem_dia_e_hora_de_chegada(trc)
 
+def obtem_origem_destino(pol):
+  id_trc = obtem_atributo(pol, 'id_trecho');
+  trc = trecho.busca_por_identificador(id_trc);
+  origem = trecho.obtem_atributo(trc, 'origem')
+  destino = trecho.obtem_atributo(trc, 'destino')
+  return origem, destino
+
 def cria_conjunto(trc, txt):
   global cache, nome_tb, letra_tb, colunas, diags
 
@@ -322,6 +329,114 @@ def cria_testes():
         'id_compra':  "C-00000010",
         'preco':      20.00,
         'bagagens':   5,
+        'fez_checkin': False,
+      },
+      # Poltrona "A-00000015":
+      {'id_trecho': "T-00000004",
+       'numero': "56",
+       'oferta': False,
+       'id_compra': None,
+       'preco': 30.00,
+       'bagagens': None,
+       'fez_checkin': False,
+       },
+      # Poltrona "A-00000016":
+      {'id_trecho': "T-00000005",
+       'numero': "57",
+       'oferta': False,
+       'id_compra': None,
+       'preco': 30.00,
+       'bagagens': None,
+       'fez_checkin': False,
+       },
+      # Poltrona "A-00000017":
+      {'id_trecho': "T-00000006",
+       'numero': "58",
+       'oferta': False,
+       'id_compra': None,
+       'preco': 30.00,
+       'bagagens': None,
+       'fez_checkin': False,
+       },
+      # Poltrona "A-00000018":
+      {'id_trecho': "T-00000007",
+       'numero': "59",
+       'oferta': False,
+       'id_compra': None,
+       'preco': 30.00,
+       'bagagens': None,
+       'fez_checkin': False,
+       },
+      # Poltrona "A-00000019":
+      {'id_trecho': "T-00000008",
+       'numero': "60",
+       'oferta': False,
+       'id_compra': None,
+       'preco': 30.00,
+       'bagagens': None,
+       'fez_checkin': False,
+       },
+      # Poltrona "A-00000020":
+      {'id_trecho': "T-00000009",
+       'numero': "61",
+       'oferta': False,
+       'id_compra': None,
+       'preco': 30.00,
+       'bagagens': None,
+       'fez_checkin': False,
+       },
+      # Poltrona "A-00000021":
+      {'id_trecho': "T-00000010",
+       'numero': "62",
+       'oferta': False,
+       'id_compra': None,
+       'preco': 30.00,
+       'bagagens': None,
+       'fez_checkin': False,
+       },
+      # Poltrona "A-00000022":
+      {'id_trecho': "T-00000011",
+       'numero': "63",
+       'oferta': False,
+       'id_compra': None,
+       'preco': 30.00,
+       'bagagens': None,
+       'fez_checkin': False,
+       },
+      # Poltrona "A-00000023":
+      {'id_trecho': "T-00000012",
+       'numero': "64",
+       'oferta': False,
+       'id_compra': None,
+       'preco': 30.00,
+       'bagagens': None,
+       'fez_checkin': False,
+       }
+      # Poltrona "A-00000024":
+      { 'id_trecho':   "T-00000001",
+        'numero':      "01B",
+        'oferta':      True,
+        'id_compra':   None,
+        'preco':       25.00,
+        'bagagens':    None,
+        'fez_checkin': False,
+      },
+      # Poltrona "A-00000025":
+      { 'id_trecho':   "T-00000004",
+        'numero':      "01B",
+        'oferta':      True,
+        'id_compra':   None,
+        'preco':       25.00,
+        'bagagens':    None,
+        'fez_checkin': False,
+      },
+      # Poltrona "A-00000026":
+      { 'id_trecho':   "T-00000005",
+        'numero':      "01B",
+        'oferta':      True,
+        'id_compra':   None,
+        'preco':       25.00,
+        'bagagens':    None,
         'fez_checkin': False,
       },
     ]

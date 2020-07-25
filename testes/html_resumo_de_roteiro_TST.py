@@ -27,7 +27,7 @@ def testa(rotulo, *args):
 
 # Roteiro para teste:
 
-rots = roteiro.descobre_todos("VCP", "MAO", "2020-05-07", "2020-05-10")
+rots = roteiro.descobre_todos("VCP", "MAO", "2020-05-07", "2020-05-10", False)
 rot = rots[0]
 
 for rotulo, ver in ( \

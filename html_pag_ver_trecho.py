@@ -1,6 +1,7 @@
 import html_pag_ver_trecho_IMP
 
-def gera(ses, trc, comprar_pols, alterar_trc, erros):
+def gera(ses, trc, comprar_pols, alterar_trc, ver_oferta_pols, ver_fez_checkin,
+         checkin_pols, erros):
   """Retorna uma página HTML que mostra os dados do trecho {trc}
   (que deve ser um objeto de tipo {Objeto_Trecho}).
 
@@ -36,4 +37,5 @@ def gera(ses, trc, comprar_pols, alterar_trc, erros):
   'id_trecho' o identificador {id_trecho} do trecho {trc}.
 
   """
-  return html_pag_ver_trecho_IMP.gera(ses, trc, comprar_pols, alterar_trc, erros)
+  return html_pag_ver_trecho_IMP.gera(ses, trc, comprar_pols, alterar_trc,
+    ver_oferta_pols, ver_fez_checkin, checkin_pols, erros)

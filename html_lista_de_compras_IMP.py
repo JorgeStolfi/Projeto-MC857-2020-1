@@ -13,11 +13,11 @@ def gera(ids_compras, ver, id_carrinho):
   estilo_cab = "font-size:20px;font-weight:bold; background-color: #60a3bc; color: white; padding:0px 10px 0px 0px"
 
   # Linha de cabeçalho:
-  cabs_raw = ['Carrinho', 'Compra', 'Usuário', 'NP', 'Passageiro', 'Documento', 'Preço' ]
+  cabs_raw = ['CR', 'Compra', 'Usuário', 'NP', 'Passageiro', 'Documento', 'Preço' ]
   cabs_div = [].copy()
   for cb in cabs_raw:
     cabs_div.append(html_div.gera(html_estilo_cabecalho_de_tabela.gera(), cb))
-  
+
   # Linhas das compras:
   for id_cpr in ids_compras:
     # Obtem o objeto correspondente
@@ -36,10 +36,12 @@ def gera(ids_compras, ver, id_carrinho):
   # Gera a tabela HTML a partir da lista de linhas
   ht_itens = html_table.gera(linhas, cabs_div)
 
+  ht_legenda = "CR: Seu Carrinho, NP: Número da Poltrona"
+
   ht_conteudo = \
         ht_cabe + "<br/>\n" + \
-        ht_itens
+        ht_itens + "<br/>\n" + \
+        ht_legenda
 
   # Devolve a tabela HTML
   return ht_conteudo
- 

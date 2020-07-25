@@ -24,16 +24,15 @@ def gera(trcs, alterar):
     linha = html_resumo_de_trecho.gera(trc, bt_ver_trc, bt_alterar_trc, bt_clonar_trc, bt_fechar_trc)
     linhas.append(linha)
 
-  ht_itens = html_table.gera(linhas, cabecalho)
-
+  ht_itens = html_table.gera(linhas, cabs_div)
 
   estilo_texto = f"font-family: Courier; font-size: 14px; padding: 2px; text-align: left;"
   bold =  'font-weight: bold;'
 
   legendas = html_span.gera(estilo_texto+bold, 'Legenda<br>')
-  legendas += html_span.gera(estilo_texto+bold, 'PTOT: ')
-  legendas += html_span.gera(estilo_texto, 'Total de poltronas no trecho<br>')
   legendas += html_span.gera(estilo_texto+bold, 'PLIV: ')
   legendas += html_span.gera(estilo_texto, 'Poltronas livres<br>')
+  legendas += html_span.gera(estilo_texto+bold, 'PTOT: ')
+  legendas += html_span.gera(estilo_texto, 'Total de poltronas no trecho<br>')
 
   return ht_itens + legendas

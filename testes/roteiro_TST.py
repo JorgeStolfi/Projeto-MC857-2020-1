@@ -17,10 +17,10 @@ def verifica_roteiro(rot):
 """
 Testa função {descobre_todos} do módulo {roteiros}.
 """
-def testa_descobre_todos(origem, destino, dia_min, dia_max):
+def testa_descobre_todos(origem, destino, dia_min, dia_max, apenas_disponivel):
     try:
         sys.stderr.write("Testando {descobre_todos}\n")
-        roteiros = roteiro.descobre_todos(origem, destino, dia_min, dia_max)
+        roteiros = roteiro.descobre_todos(origem, destino, dia_min, dia_max, apenas_disponivel)
         sys.stderr.write("Roteiros retornados:" + str(roteiros) + '\n')
         for rot in roteiros:
             if not verifica_roteiro(rot):
@@ -63,7 +63,7 @@ ok = True
 ok = ok and testa_obtem_resumo(rot1)
 ok = ok and testa_obtem_resumo(rot2)
 ok = ok and testa_obtem_resumo(rot3)
-ok = ok and testa_descobre_todos('VCP', 'MAO', '2020-05-08', '2020-05-23')
+ok = ok and testa_descobre_todos('VCP', 'MAO', '2020-05-08', '2020-05-23', False)
 
 if ok:
   sys.stderr.write("Teste terminou sem detectar erro\n")

@@ -1,0 +1,10 @@
+
+184083 [X] Entre no site, verifique todos os botões que puder, e relate os problemas que você perceber.
+
+# cenario logado como login "terceiro"
+- botao ver minhas sessoes nao funciona http://127.0.0.1:8081/ver_minhas_sessoes
+- botao fecharminhas sesssoes tb nao funciona
+- solicitar comando fazer checkin nao funciona
+- na pagina ver_trecho existe um "MOCEKD" que provavelmente alguem deve estar corrigindo nessa tarefa
+- buscar trechos nao emite erro quando nao existe o trecho, exemplo: http://127.0.0.1:8081/buscar_trechos?origem=001&dia_partida=&hora_partida=&destino=&dia_chegada=&hora_chegada=
+- o mesmo ocorre parar sugerir roteiros http://127.0.0.1:8081/sugerir_roteiros?origem=sao+paulo&destino=1&dia_min=1&hora_min=1&dia_max=11&hora_max=1

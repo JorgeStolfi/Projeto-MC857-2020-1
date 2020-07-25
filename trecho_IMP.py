@@ -109,6 +109,15 @@ def numero_de_poltronas_livres(trc):
   id_pols = poltrona.lista_livres(trc)
   return len(id_pols)
 
+def verificar_disponibilidade(trc):
+  global cache, nome_tb, letra_tb, colunas, diags
+  assert type(trc) is trecho.Objeto_Trecho
+
+  aberto = trecho.obtem_atributo(trc, 'aberto')
+  num_poltronas_livres = trecho.numero_de_poltronas_livres(trc)
+
+  return aberto and num_poltronas_livres > 0
+
 def obtem_dia_e_hora_de_partida(trc):
   global cache, nome_tb, letra_tb, colunas, diags
   assert type(trc) is trecho.Objeto_Trecho
@@ -140,6 +149,12 @@ def busca_por_origem(cod):
   global cache, nome_tb, letra_tb, colunas, diags
   unico = False
   ids = objeto.busca_por_campo('origem', cod, unico, cache, nome_tb, letra_tb, colunas)
+  return ids
+
+def busca_por_destino(cod):
+  global cache, nome_tb, letra_tb, colunas, diags
+  unico = False
+  ids = objeto.busca_por_campo('destino', cod, unico, cache, nome_tb, letra_tb, colunas)
   return ids
 
 def busca_por_codigo_e_data(cod, dia, hora):
@@ -179,7 +194,26 @@ def busca_por_dias(dia_min, dia_max):
 
 def resumo_de_trafego(ids_trechos):
   global cache, nome_tb, letra_tb, colunas, diags 
-  assert False, "!!! IMPLEMENTAR !!!"
+
+  custo_total = 0
+  total_checkins = 0
+  total_poltronas = 0
+  total_poltronas_pagas = 0
+  for id in ids_trechos:
+    trc = busca_por_identificador(id)
+    total_poltronas += numero_de_poltronas(trc)
+    total_poltronas_pagas += (total_poltronas - numero_de_poltronas_livres(trc))
+    poltronas = obtem_poltronas(trc)
+    for id_poltrona in poltronas:
+      pol = poltrona.busca_por_identificador(id_poltrona)
+      custo_total += poltrona.obtem_atributo(pol, 'preco')
+      if poltrona.obtem_atributo(pol, 'fez_checkin'):
+        total_checkins += 1
+
+
+  #O resultado é uma tupla {(ntr, npol_tot, npol_pag, renda_tot, npol_chk)}
+  resumo = (len(ids_trechos),total_poltronas,total_poltronas_pagas,custo_total,total_checkins)
+  
   return resumo
 
 def muda_atributos(trc, mods_mem):
@@ -260,7 +294,7 @@ def cria_testes():
         'dia_chegada':  "2020-05-08",
         'hora_chegada': "19:33",
         'veiculo':      "AAA-0006",
-        'aberto':       True
+        'aberto':       False
       },
       { # T-00000007
         'codigo':       "GO 3031",

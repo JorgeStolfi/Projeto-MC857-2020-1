@@ -1,0 +1,6 @@
+187700 [X] Acrescentar {comando_relatorio_de_trafego} em @{processa_comando_http} e
+acrescentar um botão "Trafego" no menu de administrador que aciona esse comando.
+
+Foi acrescentado o comando_relatorio_de_trafego no módulo especificado,
+junto com o botão no menu. O botão não tem funcionalidade ainda pois o modulo 
+comando_relatorio_de_trafego_IMP ainda nao foi implementado. 

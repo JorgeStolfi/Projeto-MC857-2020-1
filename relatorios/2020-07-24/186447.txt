@@ -1,0 +1,18 @@
+Tarefa - Entre no site, verifique todos os botões que puder, e relate os problemas
+que você perceber.
+
+Botão "Principal" funcional em todas as paginas.
+Realizando o caminho "Ofertas -> Ver -> Check-in", a opção check-in não funciona.
+Quando realizado com um usuário administrador, além do botão "check-in", temos o
+botão "Alterar", e o mesmo também não funciona.
+
+Realizando o caminho "Buscar Trechos -> Busca", o resultado e somente o cabeçalho
+da tabela, sem as informações do trecho.
+
+Logado como administrador, em "Minhas sessẽes", o botão "Ver" e "Fechar" não funciona
+Quando fecho a sessão, a mesma é fechada e mas o layout da pagina se mantem como
+se estivesse logado como administrador.
+
+Logado como usuário comum, consigo selecionar um assento e somente há erro na hora
+finalizar o pagamento.
+Ao esvaziar o carrinho, ocorre erro e não encontra a pagina do carrinho vazio
