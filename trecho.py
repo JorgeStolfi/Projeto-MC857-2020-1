@@ -138,6 +138,11 @@ def busca_por_origem(cod):
   através de uma string ORG do aeroporto."""
   return trecho_IMP.busca_por_origem(cod)
 
+def busca_por_destino(cod):
+  """Devolve uma lista de identificadores (NÃO objetos) de todos os trechos
+  através de uma string ORG do aeroporto."""
+  return trecho_IMP.busca_por_destino(cod)
+
 def busca_por_codigo_e_data(cod, dia, hora):
   """Localiza um trecho cujo 'codigo' é {cod}, 'dia_partida'
   é {dia}, e 'hora_partida' é {hora}, e devolve o identificador 

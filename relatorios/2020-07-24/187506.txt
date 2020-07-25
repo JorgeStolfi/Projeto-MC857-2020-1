@@ -1,0 +1,1 @@
+Comecei fazer o modulo {comando_relatorio_de_trafego}, para usa-lo utilizei uma lista fixa de aeroportos. Listei pra cada aeroporto trechos de saida e chegada e a partir disso gerar os relatoórios por aeroporto. também criei uma função em {trecho} para buscar por destino {trecho.busca_por_destino}

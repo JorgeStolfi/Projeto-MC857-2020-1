@@ -151,6 +151,12 @@ def busca_por_origem(cod):
   ids = objeto.busca_por_campo('origem', cod, unico, cache, nome_tb, letra_tb, colunas)
   return ids
 
+def busca_por_destino(cod):
+  global cache, nome_tb, letra_tb, colunas, diags
+  unico = False
+  ids = objeto.busca_por_campo('destino', cod, unico, cache, nome_tb, letra_tb, colunas)
+  return ids
+
 def busca_por_codigo_e_data(cod, dia, hora):
   global cache, nome_tb, letra_tb, colunas, diags
   args = { 'codigo': cod, 'dia_partida': dia, 'hora_partida': hora }
