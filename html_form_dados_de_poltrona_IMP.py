@@ -77,7 +77,7 @@ def gera(id_pol, atrs_pol, alterar, comprar, excluir, id_cpr, ver_poltrona):
   if excluir:
     ht_botao = html_botao_submit.gera("Excluir", "excluir_poltrona_de_compra", None, '#bca360')
   elif alterar:
-    ht_botao = html_botao_submit.gera("Alterar", "alterar_dados_de_poltrona", None, '#bca360')
+    ht_botao = html_botao_submit.gera("Alterar", "alterar_poltrona", None, '#bca360')
   elif comprar:
     ht_botao = html_botao_submit.gera("Comprar", "comprar_poltrona", args_pol_submit, '#bca360')
   else:
