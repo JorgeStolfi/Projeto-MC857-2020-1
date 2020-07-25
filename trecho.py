@@ -129,6 +129,10 @@ def numero_de_poltronas_livres(trc):
   """Devolve o numero {num} de poltronas livres em um trecho."""
   return trecho_IMP.numero_de_poltronas_livres(trc)
 
+def verificar_disponibilidade(trc):
+  """Retorna se o trecho está disponível. Ou seja, se está com atributo {aberto} == True e tem poltronas livres"""
+  return trecho_IMP.verificar_disponibilidade(trc)
+
 def busca_por_origem(cod):
   """Devolve uma lista de identificadores (NÃO objetos) de todos os trechos
   através de uma string ORG do aeroporto."""

@@ -2,7 +2,7 @@ import trecho
 from utils_testes import erro_prog
 import sys
 
-def descobre_todos_rec(origem, destino, dia_min, dia_max, rotas, rota):
+def descobre_todos_rec(origem, destino, dia_min, dia_max, apenas_disponivel, rotas, rota):
   '''Função auxiliar da função {descobre_todos}, calcula recursivamente todas os
   roteiros cujo o destino seja atingivel pela origem no intervalo de tempo
   exigido.
@@ -32,9 +32,16 @@ def descobre_todos_rec(origem, destino, dia_min, dia_max, rotas, rota):
     partida = "{} {}".format(d_part, h_part)
     chegada = "{} {}".format(d_cheg, h_cheg)
 
+    trc_disponivel = trecho.verificar_disponibilidade(trc)
+
     # Verifica se o trecho parte antes do trecho esperado,
     # procure outro trecho
     if partida < dia_min:
+      continue
+
+    # Desconsidera o trecho se a busca exigir apenas trechos disponíveis e
+    # o trecho em questão não está dispoível
+    if apenas_disponivel and not trc_disponivel:
       continue
 
     rota.append(trc)
@@ -44,16 +51,16 @@ def descobre_todos_rec(origem, destino, dia_min, dia_max, rotas, rota):
     if dest == destino and chegada <= dia_max:
       rotas.append(rota.copy())
     else:
-      descobre_todos_rec(dest, destino, chegada, dia_max, rotas, rota)
+      descobre_todos_rec(dest, destino, chegada, dia_max, apenas_disponivel, rotas, rota)
 
     rota.pop()
 
-def descobre_todos(origem, destino, dia_min, dia_max):
+def descobre_todos(origem, destino, dia_min, dia_max, apenas_disponivel):
   if origem == destino:
     erro_prog("origem e destino devem ser diferentes")
   rotas = [].copy()
   rota = [].copy()
-  descobre_todos_rec(origem, destino, dia_min, dia_max, rotas, rota)
+  descobre_todos_rec(origem, destino, dia_min, dia_max, apenas_disponivel, rotas, rota)
   return rotas
 
 def obtem_identificadores_de_trechos(rot):

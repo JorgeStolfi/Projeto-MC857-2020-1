@@ -1,6 +1,7 @@
 #! /usr/bin/python3
 
 import trecho
+import poltrona
 import tabela_generica
 import base_sql
 import identificador
@@ -15,6 +16,7 @@ base_sql.conecta("DB",None,None)
 # ----------------------------------------------------------------------
 sys.stderr.write("Inicializando módulo {trecho}, limpando tabela:\n")
 trecho.inicializa(True)
+poltrona.inicializa(True)
 
 # ----------------------------------------------------------------------
 # Funções de teste:
@@ -161,6 +163,32 @@ trc4_ind = 3
 trc4_id = "T-00000004"
 trc4 = testa_cria_trecho("trc4", trc4_id, trc4_atrs)
 
+poltrona_atrs = {
+  'id_trecho':   trc4_id,
+  'numero':      "01A",
+  'oferta':      True,
+  'id_compra':   "C-00000001",
+  'preco':       10.00,
+  'bagagens':    0,
+  'fez_checkin': False,
+}
+poltrona.cria(poltrona_atrs)
+
+trc5_atrs = {
+  'codigo':       "TT 2115",
+  'origem':       "MAO",
+  'destino':      "VCP",
+  'dia_partida':  "2020-05-07",
+  'hora_partida': "17:15",
+  'dia_chegada':  "2020-05-08",
+  'hora_chegada': "07:70",
+  'veiculo':      "PQ-NAO",
+  'aberto':       False,
+}
+trc5_ind = 4
+trc5_id = "T-00000005"
+trc5 = testa_cria_trecho("trc5", trc5_id, trc5_atrs)
+
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {trecho.busca_por_dias}\n")
 dia_min_bd1 = "2020-05-08"
@@ -172,7 +200,7 @@ testa_busca_por_dias(dia_min_bd1, dia_max_bd1, ids_bd1)
 dia_min_bd2 = "2020-05-06"
 dia_max_bd2 = "2020-05-08"
 sys.stderr.write("buscando %s .. %s:\n" % (dia_min_bd2, dia_max_bd2))
-ids_bd2 = [trc1_id, trc2_id, trc4_id]
+ids_bd2 = [trc1_id, trc2_id, trc4_id, trc5_id]
 testa_busca_por_dias(dia_min_bd2, dia_max_bd2, ids_bd2)
 
 sys.stderr.write("%s\n" % ("-" * 70))
@@ -260,6 +288,24 @@ trc2_dhc_esp = "2020-05-08 20:40 UTC"
 if trc2_dhc_res != trc2_dhc_esp:
   sys.stderr.write("{trecho.obtem_dia_e_hora_de_chegada(trc2)}:")
   sys.stderr.write(" devolveu %s, esperado %s\n" % (trc2_dhc_res, trc2_dhc_esp))
+  ok = False
+
+# ----------------------------------------------------------------------
+sys.stderr.write("testando {trecho.verificar_disponibilidade}:\n")
+trc4_disp_res = trecho.verificar_disponibilidade(trc4)
+trc4_disp_esp = True
+
+trc5_disp_res = trecho.verificar_disponibilidade(trc5)
+trc5_disp_esp = False
+
+if trc4_disp_res != trc4_disp_esp:
+  sys.stderr.write("{trecho.verificar_disponibilidade(trc4)}:")
+  sys.stderr.write(" devolveu %s, esperado %s\n" % (trc4_disp_res, trc4_disp_esp))
+  ok = False
+
+if trc5_disp_res != trc5_disp_esp:
+  sys.stderr.write("{trecho.verificar_disponibilidade(trc5)}:")
+  sys.stderr.write(" devolveu %s, esperado %s\n" % (trc5_disp_res, trc5_disp_esp))
   ok = False
 
 # ----------------------------------------------------------------------
