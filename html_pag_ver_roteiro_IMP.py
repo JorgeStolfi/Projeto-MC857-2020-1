@@ -8,7 +8,7 @@ import trecho
 def gera(ses, rot, erros):
   ver_roteiro = False # Já estamos vendo o roteiro.
   campos_resumo = html_resumo_de_roteiro.gera(rot, ver_roteiro)
-  ht_resumo = " ".join(str(campos_resumo))
+  ht_resumo = "".join(str(campos_resumo))
   
   # ??? EXPANDIR COMO {html_pag_ver_compra}
   
