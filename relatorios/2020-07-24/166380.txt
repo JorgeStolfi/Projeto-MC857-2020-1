@@ -1,0 +1,12 @@
+André Papoti de Oliveira RA:166380
+
+
+Tarefa: [U] > Minhas sessoes > Ver. Fazer funcionar. Implementar e ativar @{comando_ver_sessao}
+
+Criei o comando ver_sessao e o implementei. Também corrigi o botao ver em [U] > Minhas sessoes que estava chamando o comando errado (ver_detalhe_sessao).
+
+Fiz com que o comando ver_sessao responda com uma pagina html onde o usuario pode ver sessoes que sao de sua posse com detalhes e também lhe da a opção de fechar essa através de um botão.
+
+Depois criei os teste, um para um acesso normal, outro para o usuario acessando uma sessao que não é dele e um acesso sem argumentos
+
+Tudo funcionou sem problemas

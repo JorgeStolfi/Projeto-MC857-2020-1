@@ -46,6 +46,7 @@ import comando_ver_poltrona
 import comando_ver_poltronas_de_usuario
 import comando_ver_roteiro
 import comando_ver_sessoes
+import comando_ver_sessao
 import comando_ver_trecho
 import comando_ver_minhas_sessoes
 import comando_ver_compras_de_usuario
@@ -543,6 +544,9 @@ def processa_comando(tipo, ses, dados):
       # !!! ESCLARECER !!!
       # Quer ver sessões:
       pag = comando_ver_sessoes.processa(ses, args)
+
+    elif cmd == '/ver_sessao':
+      pag = comando_ver_sessao.processa(ses, args)
 
     elif cmd == '/fechar_sessao':
       # Quer encerrar uma sessão em aberto:
