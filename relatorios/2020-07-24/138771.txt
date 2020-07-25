@@ -1,0 +1,24 @@
+Luiz Antonio Andia - 138771
+
+Tarefa:"[X] Entre no site, verifique todos os botões que puder, e relate os problemas que você perceber."
+
+Botão sugerir "Sugerir Roteiros", ele funciona, mas nunca tem uma sugestão de texto. Isso acontece em todos os estados, ADM, LOGADO, e DESLOGADO.
+
+Usuario LOGADO
+	- Botão "Ver poltronas" dentro da pagina "Minha Conta" não funciona.
+	- Botão "Ver" dentro de "Minhas Sessões" não funciona.
+	- Se vc entrar em uma compra e clicar no botão "Ver" da poltrona e ai apertar o botão "Trocar" o site capota.
+	- Se vc entra em uma compra, e aperta o botao "Trocar" e depois clicar no botão "Checkin" o site capota.
+	- Quando vc entra no "Meu carrinho" e clicar no botão "Alterar" ele atualiza a pagina, mas não atualiza os dados.
+
+Administrador LOGADO
+	- Se vc for em "Acrescentar trecho" nessa tela tem dois botões "Cancelar", porem os dois funcionam. kkk
+	- Nessa mesmo tela de "Acrescentar trenho" eu nãos consegui colocar nenhum trecho, quando colocamos um sintaxe valida no campo Poltrona, o site capota.
+	- Quando colocamos o id "C-00000001" e clicar no botão "Checar Objeto" temos a opçãod e finalizar uma compra
+	- Os botões de "Alterar" dos objetos que podemos checar usando o botão "Checar Objeto" estão dando erro ou capotando o site
+
+
+Problema com o botão finalizar Compra, ele finaliza a compra antes de vc selecionar o pagamento.
+Quando vc na tela de escolher o pagamento, seleciona um, pagamento e aperta no botão "Confirmar" da erro. O botão "Cancelar" redireciona para a Home page, porem como disse anteriormente a compra acaba sendo finalziada.
+
+
