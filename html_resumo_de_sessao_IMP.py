@@ -3,10 +3,9 @@ import compra
 import usuario
 import html_span
 import html_botao_simples
-
+import html_label
 def gera(ses, bt_ver, bt_fechar):
   sessao_id = sessao.obtem_identificador(ses)
-
   # Pega/monta atributos a mostrar:
   sessao_usuario = sessao.obtem_atributo(ses, 'usr')
   sessao_aberta = sessao.obtem_atributo(ses, 'abrt')
@@ -40,6 +39,12 @@ def gera(ses, bt_ver, bt_fechar):
   if bt_fechar and sessao_aberta:
     ht_bt_fechar = html_botao_simples.gera("Fechar", 'fechar_sessao', args_bt, cor_bt_admin)
     ht_campos.append(ht_bt_fechar)
+
+  if sessao_carrinho != None:
+    tx_carrinho = compra.obtem_identificador(sessao_carrinho)
+    if tx_carrinho[-1] == "1":
+      ht_bt_fechar = html_label.gera("Sessão Atual", None)
+      ht_campos.append(ht_bt_fechar)
 
   return ht_campos
 
