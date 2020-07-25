@@ -1,7 +1,8 @@
 
 import html_lista_de_poltronas_de_trecho_IMP
 
-def gera(ids_poltronas, id_trc, alterar_pols, comprar_pols, id_cpr):
+def gera(ids_poltronas, id_trc, alterar_pols, comprar_pols, ver_oferta_pols,
+         ver_fez_checkin, checkin_pols, id_cpr):
   """Retorna um trecho de HTML que descreve as poltronas cujos identificadores
   estão na lista {ids_poltronas}.  Todas as poltronas devem pertencer ao 
   trecho cujo identficador é {id_trc}, que supõe-se ter sido
@@ -20,4 +21,5 @@ def gera(ids_poltronas, id_trc, alterar_pols, comprar_pols, id_cpr):
   Se {comprar_pols} for {True} mas nenhuma das poltronas estiver reservada
   para essa compra, todas as poltronas livres terão um botão "Comprar"."""
   return html_lista_de_poltronas_de_trecho_IMP.gera \
-    (ids_poltronas, id_trc, alterar_pols, comprar_pols, id_cpr)
+    (ids_poltronas, id_trc, alterar_pols, comprar_pols, ver_oferta_pols,
+      ver_fez_checkin, checkin_pols, id_cpr)
