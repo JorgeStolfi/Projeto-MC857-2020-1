@@ -1,0 +1,29 @@
+Tarefa do dia: [U] "Sugerir roteiros" > (VCP, SDU, 2020-01-01 00:00 2020-12-31-23:59) "Buscar" > "Comprar": Não funciona.
+
+Inicialmente, loguei como o usuário primeiro, mas na hora da busca, acabei buscando pelo trecho {{ (VCP, MAO, 2020-01-01 00:00 2020-12-31-23:59) }}, e quando cliquei para comprar obtive o erro de que não tinham mais poltronas livres em um dos trechos (AZ 4044 (T-00000004)).
+
+Depois, quando busquei pelo trecho da tarefa, resultou no mesmo erro, mas para o trecho AZ 4024 (T-00000001). 
+
+Então, fui analisar o código dos comandos de sugerir roteiros, comprar roteiro e comprar poltronas. Todos pareciam ok.
+
+Quando olhei o carrinho do usuário tinha duas poltronas para o mesmo trecho. Reiniciando o servidor, o estado inicial da massa de testes apresentava só uma poltrona do trecho T-1 e o botão comprar no sugerir roteiros funcionava.
+
+Ou seja, no estado inicial do servidor, o roteiro {{ (VCP, MAO, 2020-01-01 00:00 2020-12-31-23:59) }} não tem poltronas disponíveis em todos seus trechos, mas mesmo assim adiciona poltronas ao carrinho, que foi o que aconteceu comigo quando comecei a testar.
+
+O professor sugeriu de adicionar mais uma poltrona a cada um dos trecho do roteiro {{ (VCP, MAO, 2020-01-01 00:00 2020-12-31-23:59) }} e garantir que a compra desse roteiro adicionasse as tres poltronas ao carrinho com sucesso.
+
+O roteiro {{ (VCP, MAO, 2020-01-01 00:00 2020-12-31-23:59) }} é composto pelos trechos T-00000001, T-00000004 e T-00000005. Então, em {{ poltrona_IMP.cria_testes() }} adicionei poltronas como a seguinte, mudando apenas o trecho ao pertenciam, adicionando uma a cada trecho do roteiro.
+
+  # Poltrona "A-00000015":
+  { 'id_trecho':   "T-00000001",
+    'numero':      "01B",
+    'oferta':      True,
+    'id_compra':   None,
+    'preco':       25.00,
+    'bagagens':    None,
+    'fez_checkin': False,
+  },
+
+Reiniciando o servidor mais uma vez, entrei como o usuário primeiro, conferi que o carrinho tinha exatamente duas poltronas,busquei pelo roteiro em questão, cliquei para comprá-lo e o comando foi bem sucedido, não apresentou erros e adicionou as tres poltronas ao carrinho.
+
+O professor sugeriu validar como usuário administrador, se o fluxo ainda era o mesmo. Reiniciei o servidor e loguei como o usuário terceiro. O botão de sugerir roteiro estava presente, então cliquei nele e busquei por um dos roteiros que traria resultados. O resultado foi carregado, inclusive com o botão de comprar. E então, o botão de comprar falhou, pois usuários administradores não têm carrinho, então a página quebra.
