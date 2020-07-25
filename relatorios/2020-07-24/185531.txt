@@ -1,0 +1,4 @@
+Arrumei o cabeçalho da tabela que estava sem formatação, após logar como o usuário "primeiro", entrar nesse link para ver o resultado:
+- http://0.0.0.0:8081/ver_roteiro?ids_trechos=T-00000001,T-00000004,T-00000005
+Ou basta rodar o `./testa.sh html_lista_de_trechos` e ver as páginas resultantes
+Além disso consertei a string do resumo do trecho que aparece logo acima da tabela, que antes continha vários espaços entre os caracteres

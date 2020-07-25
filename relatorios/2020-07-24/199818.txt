@@ -1,0 +1,11 @@
+Relatório - João Flores 199818
+
+"Minhas Sessoes": Deve apontar qual é a sessão corrente. 
+Coloque um parâmetro em @{html_resumo_de_sessao} para esse fim; 
+veja {html_resumo_de_compra}.
+
+Foi implementada uma label que segue a linha em que mostra a sessão corrente, mostrando que ela se trata da sessão atual
+Para isso, é analizado o carrinho que possui o indice 1, pois ele se trata da sessão atual, pelo que pude analisar pelos códigos
+implementados em html_resumo_de_compra.
+O código foi implementado no arquivo html_resumo_de_sessao.
+

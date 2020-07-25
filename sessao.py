@@ -15,6 +15,8 @@ class Objeto_Sessao(Objeto_Sessao_IMP):
     'abrt'     {bool}       estado da sessao.
     'cookie'   {str}        cookie da sessao.
     'carrinho' {Objeto_Compra}  o carrinho de compras associado à sessao.
+    'criacao'  {str}        data da criação da sessão no formato ISO 
+                            (aaaa-mm-dd hh:mm:ss fuso).
 
   Outros atributos (data, IP, etc.) poderão ser acrescentados no futuro.
 

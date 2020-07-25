@@ -1,0 +1,15 @@
+Relatório
+
+Minha tarefa essa semana foi explorar o site e encontrar erros.
+O primeiro que encontrei foi ao tentar finalizar uma compra, aparece sempre uma mensagem
+de erro, aparentemente falta adicionar um atributo para que a compra funcione.
+Indo em ofertas -> ver, aparecem poltronas e o botão checkin, que creio que não deveria
+aparecer nesse fluxo, quando clico no botão checkin aparece um erro dizendo que o comando
+"solicitar_fazer_checkin" não existe.
+Indo em minhas compras -> ver uma delas -> ver um dos trechos -> trocar, aparece página
+de erro do navegador.
+Indo em meu carrinho -> excluir uma dos itens, foi para página de erro do navegador e
+depois disso não consegui mais entrar com o usuário que eu tinha criado, pois sempre
+que clico em entrar vai pra página de erro, com outros usuários continuou funcionando.
+Criando um novo usuário, fazendo login com ele e indo direto em meu carrinho aparece a
+página de erro do navegador, ao invés de apenas aparecer o carrinho vazio.

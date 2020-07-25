@@ -13,7 +13,7 @@ def gera(ids_poltronas, id_compra, excluir, trocar):
   linhas = [].copy()
 
   # Cabeçalho:
-  cabs_raw = [ 'Trecho', 'Origem', 'Partida', 'Destino', 'Chegada', 'Nº Poltrona', 'Preço', '', '', '']
+  cabs_raw = [ 'Trecho', 'Origem', 'Partida', 'Destino', 'Chegada', 'NP', 'Preço', '', '', '']
   cabs_div = [].copy()
   for cb in cabs_raw:
     cabs_div.append(html_div.gera(html_estilo_cabecalho_de_tabela.gera(), cb))
@@ -32,5 +32,5 @@ def gera(ids_poltronas, id_compra, excluir, trocar):
   # Gerar '<table>' e adicionar 'style' com espaçamento
   ht_res = html_table.gera(linhas, cabs_div)
   ht_res = ht_res.replace('<table>', '<table style="border-spacing:20px;">')
-
+  ht_res += "<p>NP: Número de Poltrona</p>"
   return ht_res

@@ -1,0 +1,7 @@
+Relatorio do dia 24/07/2020
+
+Aluno: Miguel Augusto Silva Guida    RA: 174847
+
+Tarefa: @{html_cabecalho} Acrescentar um fundo colorido no cabeçalho.
+
+- html_cabecalho_IMP.py: Adiciona style ao h1 e h2, incluindo "font-family" e "background-color"

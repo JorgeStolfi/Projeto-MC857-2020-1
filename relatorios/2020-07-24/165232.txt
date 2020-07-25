@@ -1,0 +1,1 @@
+- Em "html_lista_de_compras_IMP.py", alterei "Carrinho" para "CR" e adicionei um legenda abaixo da tabela com CR: Seu carrinho e NP: Número da poltrona.

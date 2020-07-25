@@ -163,6 +163,13 @@ def obtem_dia_e_hora_de_chegada(pol):
   trc = trecho.busca_por_identificador(id_trc);
   return trecho.obtem_dia_e_hora_de_chegada(trc)
 
+def obtem_origem_destino(pol):
+  id_trc = obtem_atributo(pol, 'id_trecho');
+  trc = trecho.busca_por_identificador(id_trc);
+  origem = trecho.obtem_atributo(trc, 'origem')
+  destino = trecho.obtem_atributo(trc, 'destino')
+  return origem, destino
+
 def cria_conjunto(trc, txt):
   global cache, nome_tb, letra_tb, colunas, diags
 
@@ -405,6 +412,33 @@ def cria_testes():
        'bagagens': None,
        'fez_checkin': False,
        }
+      # Poltrona "A-00000024":
+      { 'id_trecho':   "T-00000001",
+        'numero':      "01B",
+        'oferta':      True,
+        'id_compra':   None,
+        'preco':       25.00,
+        'bagagens':    None,
+        'fez_checkin': False,
+      },
+      # Poltrona "A-00000025":
+      { 'id_trecho':   "T-00000004",
+        'numero':      "01B",
+        'oferta':      True,
+        'id_compra':   None,
+        'preco':       25.00,
+        'bagagens':    None,
+        'fez_checkin': False,
+      },
+      # Poltrona "A-00000026":
+      { 'id_trecho':   "T-00000005",
+        'numero':      "01B",
+        'oferta':      True,
+        'id_compra':   None,
+        'preco':       25.00,
+        'bagagens':    None,
+        'fez_checkin': False,
+      },
     ]
   for atrs in lista_atrs:
     pol = cria(atrs)

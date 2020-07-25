@@ -5,7 +5,8 @@ import html_botao_submit
 import html_botao_simples
 import sys
 
-def gera(pol, id_trc, alterar_pol, comprar_pol, trocar_pol, id_cpr):
+def gera(pol, id_trc, alterar_pol, comprar_pol, trocar_pol, ver_oferta_pol,
+         ver_fez_checkin, realizar_checkin, id_cpr):
 
   assert id_trc != None
   trc = trecho.busca_por_identificador(id_trc)
@@ -21,28 +22,21 @@ def gera(pol, id_trc, alterar_pol, comprar_pol, trocar_pol, id_cpr):
 
   # Pedido de compra à qual a poltrona pertence, ou "LIVRE":
   id_cpr_pol = atrs_pol['id_compra']
-  tx_compra_pol = (id_cpr_pol if id_cpr_pol != None else "LIVRE")
-
   oferta_pol = atrs_pol['oferta']
-  tx_oferta_pol = ("OFERTA" if oferta_pol else "")
+  tx_compra_pol = (id_cpr_pol if id_cpr_pol != None and oferta_pol == False else "LIVRE")
 
 
-  #checkin_pol = atrs_pol['fez_checkin']
-  #tx_checkin_pol = ("REALIZADO" if checkin_pol else "LIVRE")
+  checkin_pol = atrs_pol['fez_checkin']
+  tx_checkin_pol = ("REALIZADO" if checkin_pol else "LIVRE")
 
   ht_numero = html_span.gera(None, numero_pol)
   ht_preco = html_span.gera(None, preco_pol)
-  ht_oferta = html_span.gera(None, tx_oferta_pol)
   ht_compra = html_span.gera(None, tx_compra_pol)
-  #ht_fez_checkin = html_span.gera(None, tx_checkin_pol)
-  ht_fez_checkin = html_span.gera(None, "MOCKED: SIM") #descomentar as linhas acima para funcionar
-  ht_fazer_checkin = html_botao_simples.gera("Checkin", "solicitar_fazer_checkin",None, "55ee55")
-  linha = [ht_numero, ht_preco, ht_oferta, ht_compra, ht_fez_checkin, ht_fazer_checkin ]
+  ht_fez_checkin = html_span.gera(None, tx_checkin_pol)
+  linha = [ht_numero, ht_preco]
 
-  if alterar_pol:
-    args_alterar = { 'id_poltrona': id_pol }
-    ht_alterar = html_botao_simples.gera("Alterar", "solicitar_pag_alterar_poltrona", args_alterar, '#bca360')
-    linha.append(ht_alterar)
+  if ver_oferta_pol:
+    linha.append(ht_compra)
 
   if trecho.obtem_atributo(trc, 'aberto'):
     if comprar_pol and id_cpr_pol == None:
@@ -54,5 +48,18 @@ def gera(pol, id_trc, alterar_pol, comprar_pol, trocar_pol, id_cpr):
       args_trocar = { 'id_poltrona': id_pol }
       ht_comprar = html_botao_simples.gera("Trocar", 'trocar_poltrona', args_trocar, '#ff0000')
       linha.append(ht_comprar)
+
+  if alterar_pol:
+    args_alterar = { 'id_poltrona': id_pol }
+    ht_alterar = html_botao_simples.gera("Alterar", "solicitar_pag_alterar_poltrona", args_alterar, '#bca360')
+    linha.append(ht_alterar)
+
+  if ver_fez_checkin:
+    linha.append(ht_fez_checkin)
+
+  if realizar_checkin:
+    args_checkin = { 'id_poltrona': id_pol }
+    ht_checkin = html_botao_simples.gera("Checkin", "solicitar_fazer_checkin", args_checkin, "55ee55")
+    linha.append(ht_checkin)
 
   return linha
