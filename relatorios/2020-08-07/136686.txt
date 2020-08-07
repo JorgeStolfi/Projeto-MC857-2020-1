@@ -1,0 +1,6 @@
+Checagem Botoes e objeto
+
+Na página de Ofertas, ao clicar no botão ver da primeira opção (que funciona adequadamente) e clicar em realizar  checkin, aparece erro comando Post inválido. Botão OK também nao responde como esperado e não volta para o início. Em todas as ofertas os botões não respondem corretamente.
+Botão buscar trechos funciona corretamente, porém ao clicar no botão ver para detalhar, erro acontece novamente.
+Botão sugerir roteiros funciona adequadamente após o preenchimento de todos os campos obrigatórios.
+Botão entrar funciona corretamente, com o alerta caso algum dos campos não esteja preenchido ou usuário não encontrado.
