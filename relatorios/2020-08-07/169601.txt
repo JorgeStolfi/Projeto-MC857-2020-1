@@ -1,0 +1,11 @@
+Tarefa: Para administradores: acrescentar um botão "Buscar passageiro", com campo ao lado para digitar o nome ou documento do passageiro, que lista todas as compras feitas para esse passageiro. Veja o botão "Checar objeto".
+
+Primeiramente adicionei o campo de busca com o novo botão no menu principal copiando o código do botão "Checar Objeto" no módulo {html_menu_geral} e mudando os devidos parâmetros. Quando clicado, o botão "Buscar passageiro" irá emitir o comando HTTP {buscar_compras} passando o parâmetro de URL {passageiro} com o nome ou documento do passageiro que foi digitado no campo do formulário.
+
+Depois, precisei editar o módulo {comando_buscar_compras} para aceitar tratar o parâmetro {passageiro} e convertê-lo para os parâmetros {nome_pass} ou {doc_pass}, presentes no {Objeto_Compra}, a partir dos quais o módulo {comando_buscar_compras} consegue buscar as compras na base de dados.
+
+Essa diferenciação é feita com uma expressão regular que testa o valor do parâmetro {passageiro} contra os formatos de documento (RG ou CPF) com ou sem caracteres de divisão ("." e "-"). Se o valor satisfizer esse padrão, o parâmetro {passageiro} é passado para o parâmetro {doc_pass}, caso contrário vai para {nome_pass}. A partir desse ponto, o módulo {comando_buscar_compras} segue sua execução normalmente usando a função {compra.busca_por_campos} para retornar a lista de compras com base no respectivo parâmetro.
+
+Na hora de testar, obtive um erro no módulo {processa_comando_http} falando que o módulo {comando_buscar_compras} não existia. Resolvi isso importando o segundo módulo no primeiro, já que isso não estava feito.
+
+No entanto, tive outro erro relacionado às funções básicas de encontrar compras. Como arrumar essas funções estava fora do escopo da tarefa, não consegui concluir os testes. Mas dada a descrição do módulo, ele deve funcionar se as funções auxiliares forem consertadas.

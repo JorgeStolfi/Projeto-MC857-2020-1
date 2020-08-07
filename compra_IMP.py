@@ -137,11 +137,11 @@ def trecho_eh_compativel(cpr, trc):
   for id_pol in obtem_poltronas(cpr):
     pol = poltrona.busca_por_identificador(id_pol)
     id_trc_pol = poltrona.obtem_atributo(pol, 'id_trecho')
-    # Verifca se {trc} é compatível com o trecho da polrona {pol}: 
+    # Verifca se {trc} é compatível com o trecho da polrona {pol}:
     trc_pol = None if id_trc_pol == None else trecho.busca_por_identificador(id_trc_pol)
     assert trc_pol != None # Paranóia.
     if not trecho.horarios_sao_compativeis(trc, trc_pol): return False
-  # Todos compatíveis  
+  # Todos compatíveis
   return preco
 
 def muda_atributos(cpr, mods_mem):

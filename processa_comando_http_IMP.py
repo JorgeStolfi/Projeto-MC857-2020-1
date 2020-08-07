@@ -12,6 +12,7 @@ import comando_alterar_poltrona
 import comando_alterar_trecho
 import comando_alterar_usuario
 import comando_buscar_trechos
+import comando_buscar_compras
 import comando_cadastrar_usuario
 import comando_comprar_poltrona
 import comando_comprar_roteiro
@@ -375,7 +376,7 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/solicitar_pag_contato':
       # Quer formulário para mandar mensagens aos administradores:
       pag = comando_solicitar_pag_contato.processa(ses, args)
-    
+
     elif cmd == 'comando_relatorio_de_trafego':
       # Quer formulário para mandar mensagens aos administradores:
       pag = comando_relatorio_de_trafego.processa(ses, args)
