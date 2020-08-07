@@ -1,9 +1,10 @@
 
 import html_estilo_cabecalho_de_tabela
+import html_pag_generica
 import html_span
 import html_table
 
-def gera(dados):
+def gera(ses, dados):
 
   # Converte dados no formato gerado por {trecho.resumo_de_trafego} para
   # formato aceito por {html_table}
@@ -43,4 +44,4 @@ def gera(dados):
   ht_linha_cab = map(lambda x : html_span.gera(estilo_cab, x), linha_cab)
 
   ht_table = html_table.gera(ht_linhas_dados, ht_linha_cab)
-  return ht_table
+  return html_pag_generica.gera(ses, ht_table, None)
