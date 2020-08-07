@@ -4,6 +4,7 @@ import poltrona
 import tabelas
 import utils_testes
 import sys
+import compra
 
 sys.stderr.write("Conectando com base de dados...\n")
 res = base_sql.conecta("DB",None,None)
@@ -52,7 +53,19 @@ testes = ( \
 
 for id_pol in ( "A-00000001", "A-00000002",  "A-00000003", "A-00000004"):
   for alterar, comprar, excluir, fazer_checkin in testes:
+    
     rot = id_pol;
+    
+    # Estamos garantindo que a poltrona A-00000001 está com status pago e checkin não realizado, para testar o botão de checkin
+    if id_pol == "A-00000001":
+      ptr  = poltrona.busca_por_identificador(id_pol)
+      poltrona.muda_atributos(ptr, {'fez_checkin' : False})
+      id_compra = poltrona.obtem_atributo(ptr, "id_compra")
+      if id_compra != None :
+        cpr = compra.busca_por_identificador(id_compra)
+        estado = compra.obtem_atributo(cpr, 'status')
+        compra.muda_atributos(cpr, {'status' : 'pago'})
+
     pol = poltrona.busca_por_identificador(id_pol);
     assert pol != None
     rot += "-alter" + str(alterar)[0];
