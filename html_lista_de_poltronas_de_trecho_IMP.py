@@ -12,6 +12,7 @@ def gera(ids_poltronas, usr, carr):
   
   admin = False if usr == None else usuario.obtem_atributo(usr, 'administrador')
   fazer_checkin = admin # Por enquanto.
+  embarcar = admin #Por enquanto
   
   if admin or usr == None: assert carr == None # Administrador e não-logado não tem carrinho.
   id_carr = None if carr == None else compra.obtem_identificador(carr)
@@ -42,7 +43,7 @@ def gera(ids_poltronas, usr, carr):
     excluir = (cpr_pol != None) and (usr_pol == usr) and poltrona.pode_excluir(usr, pol)
     
     # Gera os campos da linha:
-    linha = html_resumo_de_poltrona_de_trecho.gera(pol, alterar, comprar, excluir, fazer_checkin)
+    linha = html_resumo_de_poltrona_de_trecho.gera(pol, alterar, comprar, excluir, fazer_checkin, embarcar)
     assert type(linha) is list or type(linha) is tuple # Paranóia.
     linhas.append(linha)
 
