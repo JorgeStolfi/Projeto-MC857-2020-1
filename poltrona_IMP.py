@@ -238,11 +238,26 @@ def distancia(pol1, pol2):
   
 def livre_mais_proxima(pol, preco_max):
   global cache, nome_tb, letra_tb, colunas, diags
-  # !!! IMPLEMENTAR !!!
-  ids_livres = lista_livres(trc);
-  id_pol = None if len(ids_livres) == 0 else ids_livres[0]
-  pol = None if id_pol == None else poltrona.busca_por_identificador(id_pol)
-  return pol
+  dist_pol_desejada = -1
+  id_trc = poltrona.obtem_atributo(pol, 'id_trecho')
+  trc = trecho.busca_por_identificador(id_trc)
+  ids_livres = lista_livres(trc)
+  id_pol = poltrona.obtem_identificador(pol)
+  pol_desejada = None
+  if len(ids_livres) != 0:
+    for id in ids_livres:
+        if (id != id_pol):
+            pol_aux = poltrona.busca_por_identificador(id)
+            dist_aux = distancia(pol, pol_aux)
+            preco_aux = obtem_atributo(pol_aux, 'preco')
+            if (dist_pol_desejada == -1 and preco_aux <= preco_max):
+                pol_desejada = pol_aux
+                dist_pol_desejada = dist_aux
+            else:
+                if (dist_aux < dist_pol_desejada and preco_aux <= preco_max):
+                    pol_desejada = pol_aux
+                    dist_pol_desejada = dist_aux
+  return pol_desejada
 
 def busca_ofertas():
   global cache, nome_tb, letra_tb, colunas, diags
