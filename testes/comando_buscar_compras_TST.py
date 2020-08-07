@@ -17,7 +17,7 @@ res = base_sql.conecta("DB", None, None)
 assert res is None
 
 sys.stderr.write("Criando alguns objetos...\n")
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 # Sessao de teste
 ses = sessao.busca_por_identificador("S-00000001")
@@ -33,7 +33,7 @@ def testa(rotulo, ses, *args):
   utils_testes.testa_modulo_html(modulo, rotulo, pag, frag, pretty)
 
 #testa('0-None',           ses, { 'cliente': None },)
-testa('1-usr-aber',        ses, {'cliente': "U-000001",'status': "aberto"},    )
-testa('2-usr-pend',        ses, {'cliente': "U-000001",'status': "pendente"},  )
+testa('1-usr-aber',        ses, {'cliente': "U-000001", 'status': "comprando"},    )
+testa('2-usr-pend',        ses, {'cliente': "U-000001", 'status': "pendente"},  )
 testa('3-admin-pend',      ses, {'cliente': "U-000003", 'status': "pendente"}, )
 

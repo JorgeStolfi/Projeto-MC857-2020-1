@@ -22,7 +22,7 @@ class Objeto_Compra(Objeto_Compra_IMP):
 
   O atributo 'status' por enquanto, pode ser:
 
-   'aberto': O cliente ainda está montando o pedido, escolhendo forma de pagamento, etc.
+   'comprando': O cliente ainda está montando o pedido, escolhendo forma de pagamento, etc.
    'pagando':  O cliente finalizou o pedido de compra, e a loja está aguardando o pagamento.
    'pago': A loja já recebeu o pagamento e está finalizando as reservas.
    'finalizado': A loja já finalizou as reservas.
@@ -85,7 +85,7 @@ def cria(cliente, nome_pass="", doc_pass=""):
   objeto da classe {Objeto_Usuario}), acrescentando-o à tabela de compras da
   base de dados. inicialmente aberta, com o cookie inicial {cookie} e
   carrinho de pedidos de compra {carrinho}. O status será inicialmente
-  'aberto'. Atribui um identificador único à compra, derivado do seu
+  'comprando'. Atribui um identificador único à compra, derivado do seu
   índice na tabela.
 
   Em caso de sucesso, retorna o objeto.  Se os parâmetros
@@ -114,7 +114,7 @@ def obtem_cliente(cpr):
   return compra_IMP.obtem_cliente(cpr)
 
 def obtem_status(cpr):
-  """Retorna o estado do pedido de compra {cpr} ('aberto', 'pagando', etc.).
+  """Retorna o estado do pedido de compra {cpr} ('comprando', 'pagando', etc.).
   Equivale a {compra.obtem_atributos(cpr,'status')}."""
   return compra_IMP.obtem_status(cpr)
 
@@ -152,6 +152,11 @@ def calcula_preco(cpr):
   """Devolve o preço total da compra, que é a soma dos
   preços de todos os bilhetes (poltronas) atualmente na mesma."""
   return compra_IMP.calcula_preco(cpr)
+  
+def trecho_eh_compativel(cpr, trc):
+  """Devolve {True} se os horários e aeroportos do trecho {trc} são 
+  compatíveis com os dos trechos atualmente em {cpr}."""
+  return compra_IMP.trecho_eh_compativel(cpr, trc)
 
 def muda_atributos(cpr, mods_mem):
   """Recebe um dicionário Python {mods_mem} cujas chaves são um subconjunto
@@ -163,7 +168,7 @@ def muda_atributos(cpr, mods_mem):
   compra_IMP.muda_atributos(cpr, mods_mem)
 
 def fecha(cpr):
-  """Muda o status do pedido de compra {cpr} de 'aberto' para 'pagando' e salva o novo
+  """Muda o status do pedido de compra {cpr} de 'comprando' para 'pagando' e salva o novo
   status da compra no banco de dados."""
   compra_IMP.fecha(cpr)
 
@@ -185,14 +190,17 @@ def verifica(cpr, id, atrs):
   imprme diagnósticos em {sys.stderr}."""
   return compra_IMP.verifica(cpr, id, atrs)
 
-def cria_testes():
+def cria_testes(verb):
   """Limpa a tabela de pedidos de compras com {inicializa(True)}, e cria alguns
   pedidos para fins de teste, incluindo-as na tabela.  Não devolve nenhum resultado.
 
   Deve ser chamada apenas uma vez no ínicio da execução do programa,
   depois de chamar {base_sql.conecta}.Supõe que a tabela de usuários
-  já foi inicializada e tem pelo menos três entradas."""
-  compra_IMP.cria_testes()
+  já foi inicializada e tem pelo menos três entradas.
+  
+  Se {verb} for {True}, escreve uma linha em {sys.stderr}
+  para cada objeto criado."""
+  compra_IMP.cria_testes(verb)
 
 def diagnosticos(val):
   """Habilita (se {val=True}) ou desabilita (se {val=False}) a

@@ -35,9 +35,9 @@ A tabelas
 
 A html_span
 A html_div
-A html_texto
 A html_paragrafo
 A html_input
+A html_textarea
 A html_label
 A html_table
 A html_imagem
@@ -69,13 +69,11 @@ A html_pag_mensagem_de_erro
 A html_form_dados_de_usuario
 A html_resumo_de_usuario
 
-* html_pag_ver_usuario
+A html_pag_usuario
 
-A html_pag_cadastrar_usuario
 A comando_solicitar_pag_cadastrar_usuario
 A comando_cadastrar_usuario
 
-A html_pag_alterar_usuario
 A comando_solicitar_pag_alterar_usuario
 A comando_alterar_usuario
 
@@ -107,108 +105,110 @@ A comando_ver_poltronas_de_usuario
 
 A comando_comprar_poltrona
 A comando_excluir_poltrona
-A comando_trocar_poltrona
 
 A comando_executa_checkin
 
 # --- Módulos que lidam principalmente com {Objeto_Sessao}
 
-A html_sessao
 A html_resumo_de_sessao
 A html_form_dados_de_sessao
-A html_pag_ver_sessao
+
+* html_pag_sessao
+* comando_ver_sessao
 
 * html_lista_de_sessoes
 * comando_ver_sessoes
 
-A html_form_login
-A html_pag_login
-A comando_solicitar_pag_login
-A comando_fazer_login
-A comando_fazer_logout
+* html_form_login
+* html_pag_login
+* comando_solicitar_pag_login
+* comando_fazer_login
+* comando_fazer_logout
 
-A comando_ver_minhas_sessoes
-A comando_fechar_sessao
+* comando_ver_minhas_sessoes
+* comando_fechar_sessao
 
 # --- Módulos que lidam principalmente com {Objeto_Trecho}
 
-A html_resumo_de_trecho
-A html_form_dados_de_trecho
+* html_resumo_de_trecho
+* html_form_dados_de_trecho
 
-A html_pag_ver_trecho
-A comando_ver_trecho
+* html_pag_ver_trecho
+* comando_ver_trecho
 
 * html_pag_acrescentar_trecho
-A comando_solicitar_pag_acrescentar_trecho
-A comando_solicitar_pag_clonar_trecho
-A comando_acrescentar_trecho
+* comando_solicitar_pag_acrescentar_trecho
+* comando_solicitar_pag_clonar_trecho
+* comando_acrescentar_trecho
 
-A html_pag_alterar_trecho
-A comando_solicitar_pag_alterar_trecho
-A comando_alterar_trecho
+* html_pag_alterar_trecho
+* comando_solicitar_pag_alterar_trecho
+* comando_alterar_trecho
 
-A html_form_buscar_trechos
-A html_pag_buscar_trechos
-A comando_solicitar_pag_buscar_trechos
-A html_lista_de_trechos
-A comando_buscar_trechos
+* html_form_buscar_trechos
+* html_pag_buscar_trechos
+* comando_solicitar_pag_buscar_trechos
+* html_lista_de_trechos
+* comando_buscar_trechos
 
-A comando_encerrar_trecho
+* comando_encerrar_trecho
 
-A html_pag_ofertas
-A comando_solicitar_pag_ofertas
+* html_pag_ofertas
+* comando_solicitar_pag_ofertas
+
+* html_relatorio_de_trafego
+* comando_relatorio_de_trafego
 
 # --- Módulos que lidam principalmente com {Objeto_Compra}
 
-A html_resumo_de_compra
-A html_form_dados_de_compra
+* html_resumo_de_compra
+* html_form_dados_de_compra
 
-A html_pag_ver_compra
-A comando_ver_compra
-A comando_ver_carrinho
+* html_pag_ver_compra
+* comando_ver_compra
+* comando_ver_carrinho
 
-A html_form_buscar_compras
-A html_pag_buscar_compras
-A comando_solicitar_pag_buscar_compras
-A html_lista_de_compras
-A comando_buscar_compras
-A comando_ver_minhas_compras
+* html_form_buscar_compras
+* html_pag_buscar_compras
+* comando_solicitar_pag_buscar_compras
+* html_lista_de_compras
+* comando_buscar_compras
+* comando_ver_minhas_compras
 * comando_ver_compras_de_usuario
 
-A comando_alterar_compra
+* comando_alterar_compra
 
-A html_form_escolher_pagamento
-A html_pag_escolher_pagamento
-A comando_solicitar_pag_escolher_pagamento
-A comando_alterar_pagamento
+* html_form_escolher_pagamento
+* html_pag_escolher_pagamento
+* comando_solicitar_pag_escolher_pagamento
+* comando_alterar_pagamento
 
-A comando_definir_carrinho
-A comando_finalizar_compra
+* comando_definir_carrinho
+* comando_finalizar_compra
 
 # --- Módulos para contato
 
-A html_form_contato
-A html_pag_contato
-A comando_solicitar_pag_contato
-A comando_enviar_msg_contato
+* html_form_contato
+* html_pag_contato
+* comando_solicitar_pag_contato
+* comando_enviar_msg_contato
 
 # --- Módulos que lidam principalmente com roteiros
 
-A roteiro
+* roteiro
 
-A html_pag_ver_roteiro
-A comando_ver_roteiro
+* html_pag_ver_roteiro
+* comando_ver_roteiro
 
-A html_form_sugerir_roteiros
-A html_pag_sugerir_roteiros
-A comando_solicitar_pag_sugerir_roteiros
-A html_resumo_de_roteiro
-A html_lista_de_roteiros
-A comando_sugerir_roteiros
-A comando_comprar_roteiro
+* html_form_sugerir_roteiros
+* html_pag_sugerir_roteiros
+* comando_solicitar_pag_sugerir_roteiros
+* html_resumo_de_roteiro
+* html_lista_de_roteiros
+* comando_sugerir_roteiros
+* comando_comprar_roteiro
 
 # --- Objetos genéricos
 
-A html_form_ver_objeto
 * comando_ver_objeto
 

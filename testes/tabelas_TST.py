@@ -20,7 +20,7 @@ assert res == None
 
 sys.stderr.write("Abrindo as tabelas...\n")
 tabelas.inicializa_todas(False)
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 # ----------------------------------------------------------------------
 sys.stderr.write("verificando tabela \"usuarios\" usr = %s\n" % "usr1") 

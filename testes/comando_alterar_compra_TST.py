@@ -18,7 +18,7 @@ res = base_sql.conecta("DB", None, None)
 assert res is None
 
 sys.stderr.write("Criando alguns objetos...\n")
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 # Sessao de teste
 ses = sessao.busca_por_identificador("S-00000004")
@@ -41,7 +41,7 @@ def testa_novo_passageiro():
 
   # Novos valores
   nome_pass = 'Novo Passageiro'
-  args = {'id_cpr': id_cpr, 'status': status, 'nome_pass': nome_pass}
+  args = {'id_compra': id_cpr, 'status': status, 'nome_pass': nome_pass}
  
   testa("NovoPass", ses, args)
 
@@ -60,7 +60,7 @@ def testa_nome_passageiro_null():
   nome_pass_org = compra.obtem_atributo(cpr, 'nome_pass')
 
   # Novos valores
-  args = {'id_cpr': id_cpr, 'id_usr': id_usr, 'status': status}
+  args = {'id_compra': id_cpr, 'id_usr': id_usr, 'status': status}
  
   testa("NoPass", ses, args)
 

@@ -1,11 +1,14 @@
 import html_lista_de_poltronas_de_trecho
 import base_sql
 import tabelas
-import poltrona
 import utils_testes
-import sessao
+
+import usuario
 import compra
 import trecho
+import sessao
+import poltrona
+
 import sys
 
 sys.stderr.write("Conectando com base de dados...\n")
@@ -13,7 +16,7 @@ res = base_sql.conecta("DB",None,None)
 assert res == None
 
 sys.stderr.write("Criando alguns objetos...\n")
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 def testa(rotulo, *args):
   """Testa {funcao(*args)}, grava resultado
@@ -25,13 +28,26 @@ def testa(rotulo, *args):
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-trc1_id = "T-00000001"
-trc1 = trecho.busca_por_identificador(trc1_id)
-trc1_pols_ids = poltrona.busca_por_trecho(trc1)
+testes = ( \
+  ( "U-00000001", "T-00000001", ), # Cliente comum.
+  ( "U-00000001", "T-00000002", ), # Cliente comum.
+  ( "U-00000003", "T-00000003"  ), # Admin.
+  ( "U-00000003", "T-00000004", ), # Admin.
+  ( None,         "T-00000005", ), # Usuario deslogado.
 
-cpr1_id = "C-00000002"
+)
+for usr_id, trc_id in testes:
+  usr = None if usr_id == None else usuario.busca_por_identificador(usr_id)
+  admin = False if usr == None else usuario.obtem_atributo(usr, 'administrador')
+  usr_cprs = [] if usr == None else usuario.compras_abertas(usr)
+  carr = None if len(usr_cprs) == 0 else usr_cprs[0] # Faz de conta que a primeira compra é o carrinho.
+  id_carr = None if carr == None else compra.obtem_identificador(carr)
+  
+  trc = None if trc_id == None else trecho.busca_por_identificador(trc_id)
+  assert trc != None
+  ids_pols = trecho.obtem_poltronas(trc);
 
-testa("aF-cF", trc1_pols_ids, trc1_id, False, False, cpr1_id)
-testa("aF-cT", trc1_pols_ids, trc1_id, False, True,  cpr1_id)
-testa("aT-cF", trc1_pols_ids, trc1_id, True,  False, cpr1_id)
-testa("aT-cT", trc1_pols_ids, trc1_id, True,  True,  cpr1_id)
+  rot = trc_id + "-" + str(usr_id) + "-" + str(id_carr)
+  rot += "-admin" + str(admin)[0];
+  rot += "-fzck" + str(fazer_checkin)[0];
+  testa(rot, ids_pols, usr, carr)

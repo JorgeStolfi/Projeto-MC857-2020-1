@@ -8,19 +8,21 @@ import roteiro
 import trecho
 
 def processa(ses, args):
-  if args == None or 'ids_trechos' not in args or type(args['ids_trechos']) is not str:
-    erros = ["Roteiro inválido!"]
-    return html_pag_mensagem_de_erro.gera(ses, erros)
+
+  # Obtem os identificadores dos trechos do roteiro a mostrar:
+  ids_trcs_str = args['ids_trechos'] if 'ids_trechos' in args else None
+  assert ids_trcs_str != None and type(ids_trcs_str) is str # Paranóia (formulário deveria fornecer).
+  ids_trcs = ids_trcs_str.split(",")
   
-  # Monta página:
-  ids_trechos = args['ids_trechos'].split(",")
-  rot = []
-  for id_trecho in ids_trechos:
-    rot.append(trecho.busca_por_identificador(id_trecho))
+  # Obtem o roteiro (lista de trechos):
+  rot = [].copy()
+  for id_trc in ids_trcs:
+    trc = trecho.busca_por_identificador(id_trc)
+    rot.append(trc)
 
-  if rot == None or len(rot) == 0:
+  if len(rot) == 0:
     erros = ["Roteiro vazio!"]
-    return html_pag_mensagem_de_erro.gera(ses, erros)
-
-  pag = html_pag_ver_roteiro.gera(ses, rot, None)
+    pag = html_pag_mensagem_de_erro.gera(ses, erros)
+  else:
+    pag = html_pag_ver_roteiro.gera(ses, rot, None)
   return pag

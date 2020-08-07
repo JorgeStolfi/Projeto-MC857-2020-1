@@ -18,7 +18,7 @@ sys.stderr.write("Conectando com base de dados...\n")
 base_sql.conecta("DB", None, None)
 
 tabelas.inicializa_todas(True)
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 usr1_id = "U-00000001"
 usr1 = usuario.busca_por_identificador(usr1_id)  

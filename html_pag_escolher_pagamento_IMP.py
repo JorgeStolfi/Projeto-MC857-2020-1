@@ -5,7 +5,6 @@ import usuario
 
 import html_pag_generica
 import html_form
-import html_input
 import html_botao_submit
 import html_botao_simples
 

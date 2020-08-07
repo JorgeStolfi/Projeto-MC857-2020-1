@@ -5,7 +5,6 @@ import trecho
 import html_form
 import html_table
 import html_label
-import html_input
 import html_botao_submit
 import html_div
 import html_input
@@ -116,7 +115,7 @@ def html_cpr_campo(rotulo, nome, valores, tipo, dica, editavel):
     nmin = nome + "_min"
     vmin = (valores[nmin] if nmin in valores else None)
     if val != None: dica = None
-    ht_val = html_input.gera(None, tipo, nome, val, vmin, editavel, dica, None)
+    ht_val = html_input.gera(None, tipo, nome, val, vmin, editavel, False, dica, None)
     
   return (ht_lab, ht_val)
   

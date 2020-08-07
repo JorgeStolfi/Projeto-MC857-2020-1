@@ -1,27 +1,33 @@
 import roteiro_IMP
 
-# Um roteiro é uma lista de um ou mais trechos (objetos da classe {objeto_Trecho})
-# que podem ser usados em seqüência para formar uma viagem.  Normalmente, o destino 
-# de cada trecho deve ser a origem do trecho
-# seguinte, e a data + hora de chegada de cada trecho deve ser menor ou igual
-# à data + hora de partida do trecho sequinte.  Além disso, cada trecho deve ter
-# pelo menos uma poltrona livre.
+# Um roteiro é uma lista de um ou mais trechos (objetos da classe
+# {objeto_Trecho}) que podem ser usados em seqüência para formar uma
+# viagem. Normalmente, o destino de cada trecho deve ser a origem do
+# trecho seguinte, e a data + hora de chegada de cada trecho deve ser
+# menor ou igual à data + hora de partida do trecho sequinte. Além
+# disso, cada trecho não pode estar encerrado e deve ter pelo menos uma poltrona
+# livre.
 
 # Mais condições podem ser acrescentadas mais tarde; por exemplo, um
 # tempo mínimo em certas escalas para mudança de veículo, alfândega, controle de
 # passaportes, etc..
 
-def descobre_todos(origem, destino, data_min, data_max, apenas_disponivel):
+def descobre_todos(origem, data_min, destino, data_max, soh_disponiveis):
   """Encontra possíveis roteiros começando no aeroporto de código {origem}
   a partir da data {data_min}, e terminando no aeroporto de código {destino}
   até a data {data_max}.
 
   Os aeroportos devem ser distintos. As datas devem ter o dia no formato ISO
-  e horas e minutos ("aaaa-mm-dd HH:MM"), ambos referentes ao fuso horário UTC.
+  e horas e minutos ("aaaa-mm-dd HH:MM UTC").
 
   A resposta é uma lista, possivelmente vazia, de roteiros que
-  satisfazem as condições dadas."""
-  return roteiro_IMP.descobre_todos(origem, destino, data_min, data_max, apenas_disponivel)
+  satisfazem as condições dadas.
+  
+  Se o parâmetro {soh_disponiveis} for {True}, cconsidera apenas
+  trechos que estão disponíveis para compra e com
+  poltronas livres. Este é o caso normal.  A opção {False} serve
+  para testes. """
+  return roteiro_IMP.descobre_todos(origem, data_min, destino, data_max, soh_disponiveis)
 
 def obtem_identificadores_de_trechos(rot):
   """Dado um roteiro {rot} (lista objetos da classe {Objeto_Trecho}),
@@ -34,9 +40,13 @@ def obtem_resumo(rot):
   com os dados resumidos do roteiro:
 
     'origem', 'dia_partida', 'hora_partida': obtidos do primeiro trecho.
+
     'destino', 'dia_chegada', 'hora_chegada':  obtidos do último trecho.
+
     'num_escalas': número de trechos menos 1 (inteiro).
-    'preco_min': soma dos precos das poltronas livres mais baratos, um em cada trecho.
+
+    'preco_min': soma dos precos das poltronas livres mais baratas,
+      uma de cada trecho.
 
   Mais atributos podem ser acrescentados mais tarde.
 

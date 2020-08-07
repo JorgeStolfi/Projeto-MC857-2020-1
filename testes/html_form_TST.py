@@ -16,27 +16,27 @@ def cria_form_completo():
   
   # cria campo de texto com valor inicial
   ht_rotulo = html_label.gera("campo de texto", ": ")
-  ht_campo = html_input.gera(None, "text", "texto1", "blabla", None, True, None, None)
+  ht_campo = html_input.gera(None, "text", "texto1", "blabla", None, True, True, None, None)
   linhas.append((ht_rotulo, ht_campo,))
 
   # cria campo de texto sem valor inicial, com dica
   ht_rotulo = html_label.gera("campo de texto", ": ")
-  ht_campo = html_input.gera(None, "text", "texto2", None, None, True, "Lorem ipusm", None)
+  ht_campo = html_input.gera(None, "text", "texto2", None, None, True, False, "Lorem ipusm", None)
   linhas.append((ht_rotulo, ht_campo,))
 
   # cria campo de senha
   ht_rotulo = html_label.gera("campo de senha", ": ")
-  ht_campo = html_input.gera(None, "password", "senha", None, None, True, None, None)
+  ht_campo = html_input.gera(None, "password", "senha", None, None, True, True, None, None)
   linhas.append((ht_rotulo, ht_campo,))
 
   # cria campo numerico
   ht_rotulo = html_label.gera("campo numerico", ": ")
-  ht_campo = html_input.gera(None, "number", "pernas", "17", "5", True, None, None)
+  ht_campo = html_input.gera(None, "number", "pernas", "17", "5", True, False, None, None)
   linhas.append((ht_rotulo, ht_campo,))
 
   # cria campo escondido
   ht_rotulo = html_label.gera("campo escondido", ": ")
-  ht_campo = html_input.gera(None, "hidden", "segredo", "boo", None, True, None, None)
+  ht_campo = html_input.gera(None, "hidden", "segredo", "boo", None, True, False, None, None)
   linhas.append((ht_rotulo, ht_campo,))
 
   # Monta a tabela com os fragmentos HTML:

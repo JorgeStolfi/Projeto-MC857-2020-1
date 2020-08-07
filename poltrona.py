@@ -158,6 +158,55 @@ def cria_conjunto(trc, txt):
   mensagem explicativa como argumento."""
   return poltrona_IMP.cria_conjunto(trc, txt)
 
+def lista_livres(trc):
+  """Retorna uma lista das poltronas do trecho {trc} que estão livres."""
+  return poltrona_IMP.lista_livres(trc)
+  
+def pode_comprar(usr, pol, cpr):
+  """Devolve {True} se e somente se o usuário {usr} pode acrescentar a 
+  poltrona {pol} à compra {cpr}.  Condições para isso incluem:
+  a poltrona {pol} está livre, o trecho a que {pol} pertence não foi encerrado,
+  a compra {cpr} pertence a {usr} e ainda está aberta, e não há conflito de horários com
+  outras poltronas em {cpr}."""
+  return poltrona_IMP.pode_comprar(usr, pol, cpr)
+  
+def pode_excluir(usr, pol):
+  """Devolve {True} se o usuario {ur} pode excluir a poltrona
+  {pol}.  As condições incluem: a poltrona {pol} deve estar
+  reservada para alguma compra {cpr}, o usuário {usr} deve ser administrador 
+  ou o dono da compra {cpr}, o trecho ao qual {pol} pertence não foi encerrado,
+  e a compra {cpr} ainda está aberta.""" 
+  return poltrona_IMP.pode_excluir(usr, pol)
+  
+def pode_trocar(usr, pol):
+  """Devolve {True} se o usuario {ur} pode trocar a poltrona
+  {pol}.  As condições incluem: a poltrona {pol} deve estar
+  reservada para alguma compra {cpr}, o usuário {usr} deve ser 
+  o dono da compra {cpr}, o trecho ao qual {pol} pertence não foi encerrado,
+  e a compra {cpr} ainda está aberta. Devolve {False} se
+  qualquer dos argumentos for {None}""" 
+  return poltrona_IMP.pode_trocar(usr, pol)
+
+def distancia(pol1, pol2):
+  """Calcula a distância psicológica entre as poltronas {pol1} e {pol2},
+  que devem estar no mesmo trecho.  
+  
+  A distância é definida como 100 vezes a diferença absoluta entre os
+  números, mais a diferença absoluta entre as letras. Por exemplo, a
+  distância entre "17A" e "12A" é 500, entre "12D" e "12A" é 3, e entre
+  "12C" e "17A" é 502.
+  
+  Se o número da poltrona não tiver letra, a função supõe letra "A"."""
+  return poltrona_IMP.distancia(pol1,pol2)
+  
+def livre_mais_proxima(pol, preco_max):
+
+  """Retorna a poltrona {pol_prox} do mesmo trecho {trc} de {pol} cujo preço 
+  é menor ou igual a {preco_max} e está mais perto de {pol},
+  segundo {distancia(pol,pol_prox)}.  Se não houver tal poltrona, ou o trecho 
+  foi encerrado, devolve {None}."""
+  return poltrona_IMP.livre_mais_proxima(pol, preco_max)
+
 # FUNÇÕES AUXILIARES:
 
 def resume_numeros_e_precos(lista_de_pares):
@@ -189,17 +238,16 @@ def verifica(pol, id, atrs):
   imprme diagnósticos em {sys.stderr}."""
   return poltrona_IMP.verifica(pol, id, atrs)
 
-def cria_testes():
+def cria_testes(verb):
   """Limpa a tabela de poltronas com {inicializa(True)}, e cria pelo menos três poltronas
   para fins de teste, incluindo-os na tabela.  Não devolve nenhum resultado.
 
   Deve ser chamada apenas uma vez no ínicio da execução do programa,
-  depois de chamar {base_sql.conecta}."""
-  poltrona_IMP.cria_testes()
-
-def lista_livres(trc):
-  """Retorna uma lista das poltronas do trecho {trc} que estão livres."""
-  return poltrona_IMP.lista_livres(trc)
+  depois de chamar {base_sql.conecta}.
+  
+  Se {verb} for {True}, escreve uma linha em {sys.stderr}
+  para cada objeto criado."""
+  poltrona_IMP.cria_testes(verb)
 
 def diagnosticos(val):
   """Habilita (se {val=True}) ou desabilita (se {val=False}) a

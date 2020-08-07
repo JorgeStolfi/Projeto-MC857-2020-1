@@ -14,7 +14,7 @@ res = base_sql.conecta("DB",None,None)
 assert res == None
 
 utils_testes.mostra(0, "Criando alguns objetos...")
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 # Compras teste
 lista_ids = ["C-00000001", "C-00000002", "C-00000003"]

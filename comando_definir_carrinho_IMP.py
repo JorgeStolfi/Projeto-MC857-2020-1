@@ -24,11 +24,8 @@ def processa(ses, args):
     erros = ["compra \"" + id_compra + "\" não existe"]
     return html_pag_mensagem_de_erro(ses, erros)
 
-  # trocar o carrinho pela compra
-  attrs = {
-    'carrinho': cpr
-  }
-  sessao.muda_atributos(ses, attrs)
+  # Trocar o carrinho pela compra
+  sessao.muda_atributos(ses, {'carrinho': cpr})
 
-  # mostrar carrinho atualizado
+  # Mostrar carrinho atualizado
   return comando_ver_carrinho.processa(ses, args)

@@ -12,7 +12,7 @@ res = base_sql.conecta("DB", None, None)
 assert res is None
 
 utils_testes.mostra(0, "Conectando com base de dados...")
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 # Sessao de teste (administrador)
 ses = sessao.busca_por_identificador("S-00000004")

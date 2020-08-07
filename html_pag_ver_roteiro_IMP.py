@@ -20,13 +20,13 @@ def gera(ses, rot, erros):
   ids_trechos = roteiro.obtem_identificadores_de_trechos(rot)
   ids_trechos_txt = ",".join(ids_trechos)
 
-  # verifica se todos os trechos estao abertos
-  roteiro_aberto = True
+  # verifica se todos os trechos estao disponivels
+  roteiro_disponivel = True
   for id_trc in ids_trechos:
     trc = trecho.busca_por_identificador(id_trc)
-    roteiro_aberto = roteiro_aberto and trecho.obtem_atributo(trc, 'aberto')
+    roteiro_disponivel = roteiro_disponivel and not trecho.obtem_atributo(trc, 'encerrado')
 
-  if roteiro_aberto:
+  if roteiro_disponivel:
     atrs_comprar =  {'ids_trechos': ids_trechos_txt}
     ht_comprar = html_botao_simples.gera("Comprar", "comprar_roteiro", atrs_comprar, "#22ff22")
     ht_conteudo += "<br/>" + ht_comprar

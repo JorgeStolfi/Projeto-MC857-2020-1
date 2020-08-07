@@ -58,53 +58,57 @@ def cria(usr, cookie, carrinho):
   return sessao_IMP.cria(usr, cookie, carrinho)
 
 def obtem_identificador(ses):
-  """Devolve o identificador 'S-{NNNNNNNN}' da sessão {ses}."""
+  """Devolve o identificador 'S-{NNNNNNNN}' da sessão {ses}.
+  Dá erro se {ses} é {None}."""
   return sessao_IMP.obtem_identificador(ses)
 
 def obtem_atributos(ses):
-  """Retorna um dicionário Python que é uma cópia dos atributos da sessão {ses},
-  exceto identificador."""
+  """Retorna um dicionário Python que é uma cópia dos atributos da
+  sessão {ses}, exceto identificador.
+  Dá erro se {ses} é {None}."""
   return sessao_IMP.obtem_atributos(ses)
 
 def obtem_atributo(ses, chave):
   """Retorna o atributo da sessão {ses} com a {chave} dada.
-  Equivale a {obtem_atributos(ses)[chave]}"""
+  Equivale a {obtem_atributos(ses)[chave]}.
+  Dá erro se {ses} é {None}."""
   return sessao_IMP.obtem_atributo(ses, chave)
 
 def obtem_usuario(ses):
   """Retorna o objeto da classe {Objeto_Usuario} correspondente ao usuario que
-  fez login na sessao {ses}.  Equivale a {sessao.obtem_atributo(ses,'usr')}. """
+  fez login na sessao {ses}.  Equivale a {sessao.obtem_atributo(ses,'usr')}.
+  Dá erro se {ses} é {None}."""
   return sessao_IMP.obtem_usuario(ses)
 
 def aberta(ses):
   """Retorna o estado da sessão {ses}: {True} se a sessao ainda esta aberta,
-  {False} se o usuário deu logout.  Equivale a {sessao.obtem_atributo(ses,'abrt')}."""
+  {False} se o usuário deu logout.  Equivale a {sessao.obtem_atributo(ses,'abrt')}.
+  Dá erro se {ses} é {None}."""
   return sessao_IMP.aberta(ses)
-
-def eh_administrador(ses):
-  """Retorna {True} se a sessão {ses} não é {None}, está aberta, e
-  o usuário da mesma é um adminstrador."""
-  return sessao_IMP.eh_administrador(ses)
 
 def obtem_cookie(ses):
   """Devolve o cookie da sessão {ses}.
-  Equivale a {sessao.obtem_atributos(ses,'cookie')}."""
+  Equivale a {sessao.obtem_atributos(ses,'cookie')}.
+  Dá erro se {ses} é {None}."""
   return sessao_IMP.obtem_cookie(ses)
 
 def obtem_carrinho(ses):
   """Devolve o carrinho de compras da sessão {ses}.
-  Equivale a {sessao.obtem_atributos(ses,'carrinho')}."""
+  Equivale a {sessao.obtem_atributos(ses,'carrinho')}.
+  Dá erro se {ses} é {None}."""
   return sessao_IMP.obtem_carrinho(ses)
 
-def obtem_criacao(ses):
+def obtem_data_de_criacao(ses):
   """Devolve a data de criação da sessão {ses}.
-  Equivale a {sessao.obtem_atributos(ses,'criacao')}."""
-  return sessao_IMP.obtem_criacao(ses)
+  Equivale a {sessao.obtem_atributos(ses,'criacao')}.
+  Dá erro se {ses} é {None}."""
+  return sessao_IMP.obtem_data_de_criacao(ses)
 
-def obtem_data_login(ses):
-  """Devolve a data de criação da sessão {ses}.
-  Equivale ao método acima."""
-  return sessao_IMP.obtem_criacao(ses)
+def eh_administrador(ses):
+  """Retorna {True} se a sessão {ses} não é {None}, está aberta, e
+  o usuário da mesma é um administrador.  Devolve {False} se {ses}
+  é {None}."""
+  return sessao_IMP.eh_administrador(ses)
 
 def busca_por_identificador(id):
   """Localiza uma sessao com identificador {id} (uma string da forma
@@ -112,16 +116,16 @@ def busca_por_identificador(id):
   Se {id} é {None} ou tal sessão não existe, devolve {None}."""
   return sessao_IMP.busca_por_identificador(id)
 
-def busca_por_usuario(id):
-  """Localiza uma sessao com id_usuario {id} (uma string da forma
-  "U-{NNNNNNNN}"), e devolve a mesma na forma de um objeto ou lista de objetos da classe {Objeto_Sessao}.
-  Se {id} é {None} ou tal sessão não existe, devolve {None}."""
-  return sessao_IMP.busca_por_usuario(id)
-
 def busca_por_campo(campo, val):
   """Localiza todas as sessões cujo atributo {campo} seja {valor}. Retorna a lista de ids
   dessas sessões."""
   return sessao_IMP.busca_por_campo(campo, val)  
+
+def busca_por_usuario(id):
+  """Localiza todas as sessões do usuário com identificador {id} (uma string da forma
+  "U-{NNNNNNNN}")Retorna uma lista de identificadores dessas sessões.
+  Se {id} é {None} ou não existem tais sessões, devolve uma lista vazia."""
+  return sessao_IMP.busca_por_usuario(id)
 
 def muda_atributos(ses, mods_mem):
   """Recebe um dicionário Python {mods_mem} cujas chaves são um subconjunto
@@ -151,15 +155,18 @@ def verifica(ses, id, atrs):
   imprme diagnósticos em {sys.stderr}."""
   return sessao_IMP.verifica(ses, id, atrs)
 
-def cria_testes():
+def cria_testes(verb):
   """Limpa a tabela de sessoes com {inicializa(True)}, e cria três sessões
   para fins de teste, incluindo-as na tabela.  As sessões estarão
   inicialmente abertas.  Não devolve nenhum resultado.
 
   Deve ser chamada apenas uma vez no ínicio da execução do programa,
   depois de chamar {base_sql.conecta}.Supõe que a tabela de usuários
-  já foi inicializada e tem pelo menos três entradas."""
-  sessao_IMP.cria_testes()
+  já foi inicializada e tem pelo menos três entradas.
+  
+  Se {verb} for {True}, escreve uma linha em {sys.stderr}
+  para cada objeto criado."""
+  sessao_IMP.cria_testes(verb)
 
 def diagnosticos(val):
   """Habilita (se {val=True}) ou desabilita (se {val=False}) a

@@ -5,6 +5,7 @@
 
 
 import html_form_dados_de_usuario
+import html_botao_submit
 import usuario
 import identificador
 import base_sql
@@ -12,8 +13,6 @@ import tabelas
 import utils_testes
 
 import sys
-
-from usuario import obtem_atributos, obtem_identificador
 
 
 def testa(rotulo, *args):
@@ -33,9 +32,28 @@ res = base_sql.conecta("DB",None,None)
 assert res == None
 
 sys.stderr.write("Criando alguns objetos...\n")
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 # Testes das funções de {gera_html_form}:
 usr1 = usuario.busca_por_identificador("U-00000001")
 assert usr1 != None
-testa("N", obtem_identificador(usr1), obtem_atributos(usr1), None, "MeuTexto", "http://google.com")
+id_usr1 = usuario.obtem_identificador(usr1)
+atrs_usr1 = usuario.obtem_atributos(usr1)
+assert not usuario.obtem_atributo(usr1, 'administrador')
+
+usr3 = usuario.busca_por_identificador("U-00000003")
+assert usr3 != None
+id_usr3 = usuario.obtem_identificador(usr3)
+atrs_usr3 = usuario.obtem_atributos(usr3)
+assert usuario.obtem_atributo(usr3, 'administrador')
+
+atrs_usr0 = atrs_usr1;
+del atrs_usr0['nome']
+del atrs_usr0['telefone']
+
+ht_bt_coisar = html_botao_submit.gera("Coisar", "coisar", { 'coisa': "568" }, "#ffaa00")
+
+testa("admF_usrN", None,    atrs_usr0, False, ht_bt_coisar)
+testa("admF_usrC", id_usr1, atrs_usr1, False, ht_bt_coisar)
+testa("admT_usrC", id_usr1, atrs_usr1, True,  ht_bt_coisar)
+testa("admT_usrA", id_usr3, atrs_usr3, True,  ht_bt_coisar)

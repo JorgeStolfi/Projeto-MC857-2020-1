@@ -12,7 +12,7 @@ res = base_sql.conecta("DB", None, None)
 assert res is None
 
 utils_testes.mostra(0, "Conectando com base de dados...")
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 # Sessao de teste (administrador)
 ses = sessao.busca_por_identificador("S-00000004")
@@ -55,17 +55,6 @@ def testa_novos_valores():
     assert atributos_atualizados['oferta'] == False, "Oferta não atualizada"
     assert atributos_atualizados['preco'] == float(novo_preco), "Preco não atualizado"
 
-def testa_id_invalido():
-    # Argumentos com id de poltrona inexistente no banco (outros valores nao importam)
-    args = {'id_poltrona': 'A-0000000X',
-     'id_trecho': 'x', 
-     'id_compra': 'x', 
-     'numero': 'x', 
-     'oferta': 'x', 
-     'preco': '0.00'}
-    
-    testa("IdInvalido", ses, args)
-
 def testa_valores_criticos_invalidos():
     id1 = "A-00000001"
     ptr1 = poltrona.busca_por_identificador(id1)
@@ -89,9 +78,6 @@ def testa_valores_criticos_invalidos():
 
 utils_testes.mostra(0, "Testando alteração bem sucedida...")
 testa_novos_valores()
-
-utils_testes.mostra(0, "Testando alteração com id inválido...")
-testa_id_invalido()
 
 utils_testes.mostra(0, "Testando alteração com valores críticos inválidos...")
 testa_valores_criticos_invalidos()

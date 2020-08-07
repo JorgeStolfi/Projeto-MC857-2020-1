@@ -4,6 +4,8 @@ import objeto
 import usuario
 import sessao
 import compra
+import trecho
+import poltrona
 
 import tabela_generica
 import tabelas
@@ -74,8 +76,13 @@ def muda_atributos(usr, mods_mem):
 
   erros = valida_atributos(usr, mods_mem)
   if len(erros) != 0: raise ErroAtrib(erros)
-
+  
+  sys.stderr.write("\n")
+  sys.stderr.write("usr antes = %s\n" % str(usr))
+  sys.stderr.write("mods_mem = %s\n" % str(mods_mem))
   objeto.muda_atributos(usr, mods_mem, cache, nome_tb, letra_tb, colunas, def_obj_mem)
+  sys.stderr.write("usr depois = %s\n" % str(usr))
+  sys.stderr.write("\n")
   return
 
 def obtem_identificador(usr):
@@ -126,7 +133,29 @@ def compras_abertas(usr):
   abertas_usr = list(filter(lambda cpr: compra.obtem_status(cpr) != 'fechado', compras_usr))
   return abertas_usr
   
-def cria_testes():
+def poltronas_abertas(usr):
+  id_usr = usuario.obtem_identificador(usr)
+  
+  abertas_usr = [].copy()
+  ids_compras = compra.busca_por_cliente(id_usr)
+  for id_cpr in ids_compras:
+    cpr = compra.busca_por_identificador(id_cpr)
+    assert cpr != None # Paranóia.
+    # Pega o id das poltronas de cada uma dessas compras
+    ids_poltronas = compra.obtem_poltronas(cpr)
+    for id_pol in ids_poltronas:
+      # Para cada um desses ids pega o objeto da poltrona
+      pol = poltrona.busca_por_identificador(id_pol)
+      assert pol != None # Paranóia.
+      assert poltrona.obtem_atributo(pol, 'id_compra') == id_cpr # Paranóia.
+      # Verifica se o trecho não foi encerrado
+      id_trc = poltrona.obtem_atributo(pol, 'id_trecho')
+      trc = trecho.busca_por_identificador(id_trc)
+      if not trecho.obtem_atributo(trc, 'encerrado'):
+        abertas_usr.append(pol)
+  return abertas_usr
+  
+def cria_testes(verb):
   global cache, nome_tb, letra_tb, colunas, diags
   inicializa(True)
   lista_atrs = \
@@ -201,7 +230,7 @@ def cria_testes():
         'CPF': "666.666.666-66", 
         'telefone': "+55(19)9 9898-1216",
         'documento': '1.234.567-4 SSP-SP',
-        'administrador' : False,
+        'administrador' : True,
       },
       { # U-00000009
         'nome': "Jonas Nono", 
@@ -219,7 +248,7 @@ def cria_testes():
     assert usr != None and type(usr) is usuario.Objeto_Usuario
     id_usr = usuario.obtem_identificador(usr)
     nome = usuario.obtem_atributo(usr,'nome')
-    sys.stderr.write("usuário %s = \"%s\" criado\n" % (id_usr, nome))
+    if verb: sys.stderr.write("usuário %s = \"%s\" criado\n" % (id_usr, nome))
   return
 
 def confere_e_elimina_conf_senha(args):

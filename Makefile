@@ -13,7 +13,7 @@ MODULOS_BUG_NO_TST := ${shell gawk '/^[@]/{ print $$2; }' 00-MODULOS.txt}
 # Módulos cujos testes falharam na última verificação:
 MODULOS_BUG_NO_IMP := ${shell gawk '/^[*]/{ print $$2; }' 00-MODULOS.txt}
 
-MODULOS_RUINS := ${MODULOS_BUG_NO_IMP} ${MODULOS_BUG_NO_TST}
+MODULOS_RUINS := ${shell gawk '/^[*@]/{ print $$2; }' 00-MODULOS.txt}
 
 # Todos os módulos testáveis:
 MODULOS_TODOS := ${shell gawk '/^[*A@]/{ print $$2; }' 00-MODULOS.txt}
@@ -43,7 +43,11 @@ testes_de_modulos:
 # MODULO := usuario
 # MODULO := sessao 
 # MODULO := compra
-MODULO := html_pag_cadastrar_usuario
+# MODULO := html_form_dados_de_trecho
+# MODULO := html_pag_trecho
+# MODULO := html_form_dados_de_poltrona
+# MODULO := html_pag_poltrona
+MODULO := html_input
 
 teste_unico:
 	./testa.sh ${MODULO}

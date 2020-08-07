@@ -1,30 +1,21 @@
 # Implementação do módulo {comando_solicitar_pag_alterar_poltrona}. 
 
-import html_pag_alterar_poltrona
+import html_pag_poltrona
 import sessao
 import usuario
 import poltrona
 
 def processa(ses, args):
-  erro = ''
-  if ses == None or not sessao.aberta(ses):
-    erro = "sessão deveria estar aberta"
-  else:
-    usr_ses = sessao.obtem_usuario(ses)
-    admin = usuario.obtem_atributo(usr_ses, 'administrador')
-    
-  if args == {} or args['id_poltrona'] == None :
-    # O 'id_poltrona' nao foi especificado:
-    erro = 'Poltrona não identificada'
-    return erro
-  elif args['id_poltrona'] != None:
-    # O 'id_poltrona' foi especificado; obtém dados do dito cujo.
-    id_pol = args['id_poltrona']
-    pol = poltrona.busca_por_identificador(id_pol)
-  else:
-    erro = "Poltrona não identificada"
+  
+  admin = False if ses == None else sessao.eh_administrador(ses)
+  assert admin # Paranóia (cliente comum e deslogado não deveria ter acesso a este cmd).
 
-  atrs = poltrona.obtem_atributos(pol)
-  pag = html_pag_alterar_poltrona.gera(ses, id_pol, atrs, erro)
+  # Obtem a poltrona a alterar:
+  id_pol = args['id_poltrona'] if 'id_poltrona' in args else None
+  assert id_pol != None # Paranóia (formulário deveria especificar).
+  pol = poltrona.busca_por_identificador(id_pol)
+  assert pol != None # Paranóia.
+
+  pag = html_pag_poltrona.gera(ses, pol, None, None)
   return pag
     

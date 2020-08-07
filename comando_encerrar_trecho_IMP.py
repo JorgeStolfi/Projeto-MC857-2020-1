@@ -1,7 +1,7 @@
 # Implementação do módulo {comando_encerrar_trecho}.
 
 import html_pag_login
-import html_pag_ver_trecho
+import html_pag_trecho
 import usuario
 import trecho
 import poltrona
@@ -21,24 +21,21 @@ def processa(ses, args):
   args = args.copy() # Por via das dúvidas.
 
   # Trecho a alterar:
-  assert 'id_trecho' in args, "Faltou o parâmetro 'id_trecho'"
-  id_trc = args["id_trecho"]
+  id_trc = args["id_trecho"] if 'id_trecho' in args else None
+  assert id_trc != None # Paranoia (formulario deve incluir).
   args.pop("id_trecho")
+  trc = trecho.busca_por_identificador(id_trc)
+  assert trc != None
+  
   try:
-    trc = trecho.busca_por_identificador(id_trc)
-    atrs_muda = { 'aberto': False }
+    atrs_muda = { 'encerrado': True }
     trecho.muda_atributos(trc, atrs_muda)
 
     # Repete a página de ver trecho com valores correntes (alterados):
-    comprar_pols = False  # Pois o dono da sessão deve ser admin, que não pode comprar.
-    alterar_trc = True    # Pois o dono da sessão deve ser admin.
-    pag = html_pag_ver_trecho.gera(ses, trc, comprar_pols, alterar_trc, None)
+    pag = html_pag_trecho.gera(ses, trc, None, "Trecho encerrado")
 
   except ErroAtrib as ex:
     erros = ex.args[0]
     # Repete a página de ver trecho com os mesmos argumentos e mens de erro:
-    comprar_pols = False  # Pois o dono da sessão deve ser admin, que não pode comprar.
-    alterar_trc = True    # Pois o dono da sessão deve ser admin.
-    pag = html_pag_ver_trecho.gera(ses, trc, compar_pols, alterar_trc, erros)
-
+    pag = html_pag_trecho.gera(ses, trc, args, erros)
   return pag

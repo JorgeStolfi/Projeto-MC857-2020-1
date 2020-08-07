@@ -15,7 +15,7 @@ res = base_sql.conecta("DB",None,None)
 assert res == None
 
 sys.stderr.write("Criando alguns objetos...\n")
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 def testa(rotulo, *args):
   """Testa {funcao(*args)}, grava resultado 
@@ -27,6 +27,6 @@ def testa(rotulo, *args):
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-rots = roteiro.descobre_todos("VCP", "MAO", "2020-05-07", "2020-05-10", False)
+rots = roteiro.descobre_todos("VCP", "2020-05-07", "MAO", "2020-05-10", False)
 
 testa("N", rots)

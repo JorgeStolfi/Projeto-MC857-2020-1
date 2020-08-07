@@ -4,7 +4,7 @@ def processa(ses, args):
   """Esta função é chamada quando o usuário aperta o botão "Escolher pagamento"
   numa página de compra.
   
-  A compra deve ter status 'aberto'.  O argumento {ses} deve ser uma sessão atualmente aberta,
+  A compra deve ter status 'comprando'.  O argumento {ses} deve ser uma sessão atualmente aberta,
   e  o usuário da sessão deve ser um administrador ou o mesmo usuário associado 
   ao pedido de compra.
   

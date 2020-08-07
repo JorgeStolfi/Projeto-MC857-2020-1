@@ -1,6 +1,6 @@
 import html_pag_buscar_compras_IMP
 
-def gera(ses, args, admin, erros):
+def gera(ses, atrs, admin, erros):
   """ Retorna uma página contendo o formulário para buscar pedidos de compra.
   Normalmente é usada por administradores. Os campos do formulário são 
   um subconjuto dos atributos de um objeto da classe {Objeto_Compra}.
@@ -12,4 +12,4 @@ def gera(ses, args, admin, erros):
   quando acionado, emite uma ação POST com comando 'buscar_trechos. 
   Haverá também um botão simples com texto "Cancelar" que emite
   o comando 'principal'."""
-  return html_pag_buscar_compras_IMP.gera(ses, args, admin, erros)
+  return html_pag_buscar_compras_IMP.gera(ses, atrs, admin, erros)

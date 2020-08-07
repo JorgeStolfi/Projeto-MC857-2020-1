@@ -3,7 +3,6 @@ import trecho
 import poltrona
 
 import html_label
-import html_input
 import html_table
 import html_botao_submit
 import html_botao_simples
@@ -12,51 +11,66 @@ import html_form
 import html_imagem
 from utils_testes import erro_prog, mostra
 import sys
-import os.path
+import re
 
-def gera(id_trecho, atrs, texto_bt, comando_bt):
-  if id_trecho != None:
-    # Supõe que é mostrar trecho existente:
-    # Inclui campo 'id_trecho' no formulário:
-    ht_id_trecho = html_input.gera(None, "hidden", "id_trecho", id_trecho, None, True, None, None)
+def gera(id_trecho, atrs, admin, ht_submit):
+
+  if atrs == None: atrs = {} # Por via das dúvidas.
+  atrs = atrs.copy() # Para que as alterações sejam locais.
+  
+  # Mostra logotipo da empresa:
+  if 'codigo' in atrs and atrs['codigo'] != None:
+    cod_empresa = atrs['codigo'].split()[0]
+    assert re.fullmatch(r'[A-Za-z]+', cod_empresa)
+    ht_logotipo = html_imagem.gera(cod_empresa + '.png', 'Logotipo empresa ' + cod_empresa, 200)
   else:
-    # Supõe que é criação de novo trecho, ou buscar:
-    alterar = False
-    ht_id_trecho = ""
+    ht_logotipo = ""
 
-  if atrs == None: atrs = {}.copy() # Por via das dúvidas.
-  dados_linhas = [
-    ( "Código",           "text",       "codigo",         "XX NNNN",                True, ),
-    ( "Origem",           "text",       "origem",         "XXX",                    True, ),
-    ( "Dia de partida",   "text",       "dia_partida",    "YYYY-MM-DD",             True, ),
-    ( "Hora de partida",  "text",       "hora_partida",   "HH:MM",                  True, ),
-    ( "Destino",          "text",       "destino",        "XXX",                    True, ),
-    ( "Dia de chegada",   "text",       "dia_chegada",    "YYYY-MM-DD",             True, ),
-    ( "Hora de chegada",  "text",       "hora_chegada",   "HH:MM",                  True, ),
-    ( "Veículo",          "text",       "veiculo",        "XXX-NNNN",               True, ),
-    ( "Poltronas",        "text",       "poltronas",      "1A-20D,33: 90.00; ...",  True, ),
-    ( "Dispoível",        "checkbox",   "aberto",         None,                     True, ),
+  # Dados para {html_form_table.gera}
+  # {(rotulo,tipo,chave,dica,visivel,editavel,obrigatorio)}
+  dados_linhas = [].copy()
+
+  if id_trecho != None:
+    # Mostrando trecho existente; inclui campo 'id_trecho' no formulário.
+    # O campo é visível para administrador, mas readonly.
+    atrs['id_trecho'] = id_trecho
+    dados_linhas.append(
+      ( "ID",              "text",       "id_trecho",      None,         admin, False, True )
+    )
+    novo = False
+  else:
+    # Criando um novo trecho. Não há campo 'id_trecho' no formulário.
+    novo = True
+
+  # Todos os campos a seguir são readonly para clientes normais.
+  # Todos os campos são obrigatórios se criando trecho.
+  # Campos de tipo "checkbox" não podem ser obrigatórios pois isso significa "obrig. True".
+  dados_linhas += [
+    ( "Código",           "text",       "codigo",         "XX NNNN",        True, novo,  novo,  ),
+    ( "Origem",           "text",       "origem",         "XXX",            True, novo,  novo,  ),
+    ( "Dia de partida",   "text",       "dia_partida",    "YYYY-MM-DD",     True, admin, novo,  ),
+    ( "Hora de partida",  "text",       "hora_partida",   "HH:MM",          True, admin, novo,  ),
+    ( "Destino",          "text",       "destino",        "XXX",            True, novo,  novo,  ),
+    ( "Dia de chegada",   "text",       "dia_chegada",    "YYYY-MM-DD",     True, admin, novo,  ),
+    ( "Hora de chegada",  "text",       "hora_chegada",   "HH:MM",          True, admin, novo,  ),
+    ( "Veículo",          "text",       "veiculo",        "XXX-NNNN",       True, admin, novo,  ),
+    ( "Encerrado",        "checkbox",   "encerrado",      None,             True, admin, False, ),
   ]
+  if novo:
+    # Acrescenta um campo para especificar a lista compacta de poltronas:
+    dados_linhas.append(
+      ( "Poltronas",        "text",       "poltronas",      "1A-20D,33: 90.00; ...",  True, True, True, ),
+    )
+    
 
   # Monta a tabela com os fragmentos HTML:
-  ht_table = html_form_table.gera(dados_linhas, atrs, True)
-
-  ht_bt_acao = html_botao_submit.gera(texto_bt, comando_bt, None, '#55ee55')
-
-  ht_bt_cancelar = html_botao_simples.gera("Cancelar", 'principal', None, '#ff2200')
+  ht_campos = html_form_table.gera(dados_linhas, atrs)
 
   ht_conteudo = \
-    ( "    " + ht_id_trecho + "\n" if ht_id_trecho != "" else "") + \
-    ( ht_table + "\n" ) + \
-    ( "    " + ht_bt_acao + "\n" ) + \
-    ( "    " + ht_bt_cancelar + "\n" )
+    ht_logotipo + '<br clear="all" />' + \
+    ht_campos + "<br/>" + \
+    ht_submit
 
-  ht = html_form.gera(ht_conteudo)
+  ht_form = html_form.gera(ht_conteudo)
 
-  if 'codigo' in atrs:
-    cod_empresa = atrs['codigo'].split()[0]
-    if os.path.isfile('imagens/' + cod_empresa + '.png'):
-      img_empresa = html_imagem.gera('/' + cod_empresa + '.png', 'Logotipo empresa ' + cod_empresa, 200)
-      return img_empresa + '<br clear="all" />' + ht
-
-  return ht
+  return ht_form

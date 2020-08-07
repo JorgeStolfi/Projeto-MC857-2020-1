@@ -83,7 +83,7 @@ def gera_botoes_linha_2():
   geral.  Estes botões são mostrados apenas se o usuário está logado
   e é um administrador."""
 
-  ht_input = html_input.gera(None, "text", "id", None, None, True, "Id do objeto", None)
+  ht_input = html_input.gera(None, "text", "id", None, None, True, True, "Id do objeto", None)
   ht_bt_submit = html_botao_submit.gera("Checar Objeto", "ver_objeto", None, '#ffdd22')
   form_content = \
     ht_input + \

@@ -116,9 +116,14 @@ def sessoes_abertas(usr):
 
 def compras_abertas(usr):
   """Retorna uma lista com cada {Objeto_Compra} do usuário {usr}
-  que ainda não está finaliizada."""
+  que ainda não está finalizada."""
   return usuario_IMP.compras_abertas(usr)
   
+def poltronas_abertas(usr):
+  """Retorna uma lista com cada {Objeto_Poltrona} reservado para compras do usuário {usr}
+  que ainda estão em aberto, em trechos que ainda estao disponíveis."""
+  return usuario_IMP.poltronas_abertas(usr)
+
 # UTILIDADES
 
 def confere_e_elimina_conf_senha(args):
@@ -145,13 +150,16 @@ def verifica(usr, id, atrs):
   imprme diagnósticos em {sys.stderr}."""
   return usuario_IMP.verifica(usr, id, atrs)
 
-def cria_testes():
+def cria_testes(verb):
   """Limpa a tabela de usuários com {inicializa(True)}, e cria pelo menos três usuários
   para fins de teste, incluindo-os na tabela.  Não devolve nenhum resultado.
   
   Deve ser chamada apenas uma vez no ínicio da execução do programa, 
-  depois de chamar {base_sql.conecta}.""" 
-  usuario_IMP.cria_testes()
+  depois de chamar {base_sql.conecta}.
+  
+  Se {verb} for {True}, escreve uma linha em {sys.stderr}
+  para cada objeto criado.""" 
+  usuario_IMP.cria_testes(verb)
 
 def diagnosticos(val):
   """Habilita (se {val=True}) ou desabilita (se {val=False}) a

@@ -9,58 +9,37 @@ import sys
 
 from valida_campo import ErroAtrib
 
-def verifica_pelo_menos_um_campo(campos, dic):
-  """ Garante que:
-     - Todos os campos da busca são suportados pelo Objeto_Trecho.
-     - Todos os campos da busca estão definidos com algo diferente de None.
-     - Pelo menos um campo de busca está definido.
-  """
-  sys.stderr.write("dic = %s\n" % str(dic))
-  for campo_busca in list(dic.keys()):
-    if campo_busca not in campos:
-      del dic[campo_busca]
-
-  tem_campo = False
-  for campo in campos:
-    if campo in dic and dic[campo] is not None:
-      if dic[campo] is None:
-        del dic[campo]
-      else:
-        tem_campo = True
-        break
-
-  return tem_campo
-
 def processa(ses, args):
   try:
-    campos = ['origem', 'destino', 'dia_partida', 'dia_chegada', 'hora_partida', 'hora_chegada']
-    if not verifica_pelo_menos_um_campo(campos, args):
-      raise ErroAtrib("Pelo menos um dos campos da busca precisa estar preenchido")
+    # Por via das dúvidas:
+    if args == None: args = {}.copy()
+    
+    erros = [].copy()
 
-    for campo in campos:
-      if campo not in args:
-        args[campo] = None
+    # Obtem os campos sem defaults:
+    origem = args['origem'] if 'origem' in args else None
+    dia_partida = args['dia_partida'] if 'dia_partida' in args else None
+    destino = args['destino'] if 'destino' in args else None
+    dia_chegada = args['dia_chegada'] if 'dia_chegada' in args else None
+    
+    # Verifica campos obrigatórios:
+    if origem == None and destino == None:
+      erros.append("um dos campos 'origem' e 'destino' deve ser especificado")
+    if dia_partida == None: erros.append("o campo 'dia_partida' deve ser especificado")
+    if dia_chegada == None: erros.append("o campo 'dia_chegada' deve ser especificado")
+    
+    # Obtem horas e providencia defaults:
+    hora_partida = args['hora_partida'] if 'hora_partida' in args else "00:00"
+    hora_chegada = args['hora_chegada'] if 'hora_chegada' in args else "00:00"
 
-    data_min = args['dia_partida']
+    if len(erros) > 0: raise ErroAtrib(erros)
 
-    if data_min is not None:
-      if args['hora_partida'] is None:
-        data_min = data_min + " 00:00"
-      else:
-        data_min = data_min + " " + args['hora_partida']
+    # Monta datas completas:
+    data_min = dia_partida + " " + hora_partida + " UTC"
+    data_max = dia_chegada + " " + hora_chegada + " UTC"
 
-    data_max = args['dia_chegada']
-
-    if data_max is not None:
-      if args['hora_chegada'] is None:
-        data_max = data_max + " 23:59"
-      else:
-        data_max = data_max + " " + args['hora_chegada']
-
-    if args['origem'] == args['destino'] == None:
-      raise ErroAtrib("Pelo menos a origem ou destino precisam estar definidos")
-
-    trcs_ids = trecho.busca_por_origem_e_destino(args['origem'], args['destino'], data_min, data_max)
+    # Busca trechos:
+    trcs_ids = trecho.busca_por_origem_e_destino(origem, destino, data_min, data_max)
     trcs = map(lambda id_trecho: trecho.busca_por_identificador(id_trecho), trcs_ids)
     alterar_trcs = sessao.eh_administrador(ses)
     bloco = html_lista_de_trechos.gera(trcs, alterar_trcs)
@@ -69,7 +48,7 @@ def processa(ses, args):
 
   except ErroAtrib as ex:
     erros = ex.args[0]
-    # Repete a página com mensagem de erro:
+    # Repete a página com mensagens de erro:
     admin = sessao.eh_administrador(ses)
     pag = html_pag_buscar_trechos.gera(ses, args, admin, erros)
     return pag

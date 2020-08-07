@@ -4,25 +4,27 @@ import html_botao_simples
 import re
 
 def gera(erros):
-  # Cabeçalho espalhafatoso:
-  estilo_cabecalho = f"font-family: Courier; font-size: 24px; font-weight: bold; padding: 5px; text-align: left; color: #880000;"
-  ht_tit = html_span.gera(estilo_cabecalho, "Não foi possível completar a operação")
-
   if type(erros) is list or type(erros) is tuple:
     erros = "\n".join(erros)
 
   # Processa quebras de linha em {erros}:
   erros = re.sub(r'\n', r'<br/>Erro: \n', erros)
 
-  # Formata a mensagem:
-  estilo_erro = f"font-family: Courier; font-size: 20px; font-weight: bold; padding: 5px; text-align: left; color: #000000;"
+  # Formata as mensagens:
+  estilo_erro = \
+    "font-family:Courier;" + \
+    "font-size:20px;" + \
+    "font-weight:bold;" + \
+    "padding: 2px;" + \
+    "text-align:left;" + \
+    "color: #880000;"
   ht_erros = html_span.gera(estilo_erro, erros)
 
-  # Junta as partes:
-  ht_tudo = ht_tit + "<br/>" + ht_erros
+  # Formata como parágrafo:
+  estilo_parag = \
+    "margin-top:2px;" + \
+    "margin-bottom:2px;" + \
+    "text-indent:0px;"
+  ht_res = html_paragrafo.gera(estilo_parag, ht_erros)
 
-  # Formata:
-  estilo_parag = " width: 600px; margin-top: 2px;margin-bottom: 2px; text-indent: 0px; align: center;"
-  bloco_final = html_paragrafo.gera(estilo_parag, ht_tudo)
-
-  return bloco_final
+  return ht_res

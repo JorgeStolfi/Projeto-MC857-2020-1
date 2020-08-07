@@ -10,7 +10,7 @@ res = base_sql.conecta("DB", None, None)
 assert res is None
 
 sys.stderr.write("Criando alguns objetos...\n")
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 def testa(rotulo, *args):
   """Testa {funcao(*args)}, grava resultado
@@ -23,14 +23,12 @@ def testa(rotulo, *args):
   utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
 testes = ( \
-  ( "veT-exT-trT", "A-00000001", "C-00000001", True,  True,  True,  ),
-  ( "veF-exF-trT", "A-00000003", "C-00000002", False, False, True,  ),  
-  ( "veF-exT-trF", "A-00000003", "C-00000002", False, True,  False, ),  
-  ( "veT-exF-trF", "A-00000006", "C-00000001", True,  False, False, ),  
-  ( "veF-exF-trF", "A-00000008", "C-00000003", False, False, False, ), 
+  ( "veT-exT", "A-00000001", "C-00000001", True,  True,  ),
+  ( "veF-exF", "A-00000003", "C-00000002", False, False, ),  
+  ( "veF-exT", "A-00000003", "C-00000002", False, True,  ),  
 )
 
-for rot, id_pol, id_compra, ver, excluir, trocar in testes:
+for rot, id_pol, id_compra, ver, excluir, in testes:
   pol = poltrona.busca_por_identificador(id_pol)
   assert pol != None
-  testa(rot, pol, id_compra, ver, excluir, trocar)
+  testa(rot, pol, id_compra, ver, excluir)

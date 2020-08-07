@@ -18,10 +18,10 @@ base_sql.conecta("DB",None,None)
 
 # ----------------------------------------------------------------------
 sys.stderr.write("Inicializando módulo {usuario}, limpando tabela, criando usuários para teste:\n")
-usuario.cria_testes()
+usuario.cria_testes(False)
 
 sys.stderr.write("Inicializando módulo {compra}, limpando tabela, criando compras para teste:\n")
-compra.cria_testes()
+compra.cria_testes(False)
 
 sys.stderr.write("Inicializando módulo {sessao}, limpando tabela:\n")
 sessao.inicializa(True)

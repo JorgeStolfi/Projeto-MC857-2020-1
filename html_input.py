@@ -1,11 +1,12 @@
 import html_input_IMP
 
-def gera(rotulo, tipo, nome, val_ini, val_min, editavel, dica, cmd, obrigatorio=False):
+def gera(rotulo, tipo, nome, val_ini, val_min, editavel, obrigatorio, dica, cmd):
   """Gera o HTML para um campo de dados "<input ... />" com atributos dados.
   Este fragmento geralmente é incluído em um formulário "<form>...</form>".
   
-  O parâmetro {rotulo} é um rótulo opcional. Se não for {None}, será inserido na frente
-  do elemento "<input.../>" na forma de um elemento "<label>{rotulo}</label>".
+  O parâmetro {rotulo} é um rótulo opcional. Se não for {None}, e {tipo}
+  não for "hidden", será inserido na frente do elemento "<input.../>" na
+  forma de um elemento "<label>{rotulo}</label>".
   
   O parâmetro {tipo} é o tipo de campo, por exemplo "text", "email", 
   "hidden", "password", "number", etc. (resulta em "<input type='{tipo}'.../>").
@@ -27,8 +28,13 @@ def gera(rotulo, tipo, nome, val_ini, val_min, editavel, dica, cmd, obrigatorio=
   não for {None}, deve ser um string que define o valor mínimo que o
   usuário pode digitar neste campo ("<input ... min='{val_min}' .../>").
   
-  O valor do campo poderá ser editado pelo usuário apenas se {editavel} for {True}.
-  Se for {False}, {val_ini} não pode ser {None}.
+  O parâmetro {editavel} é um booleano que diz se o valor deste campo
+  poderá ser editado pelo usuário. Se for {False}, {val_ini} não pode ser {None}.
+  Este parâmetro é ignorado se {tipo} for "hidden".
+
+  O parâmetro {obrigatorio} indica se o campo deve ser obrigatóriamente preenchido ou não.
+  Isso altera visualmente a forma como o campo é exibido para o usuário pelo navegador.
+  Este parãmetro é ignorado se o tipo for "hidden", ou {editavel} for {False}.
   
   O parâmetro {dica} é um texto que será mostrado no campo, se {val_ini}
   for {None}, para orientar o preenchimento (resulta em "<input ...
@@ -39,12 +45,10 @@ def gera(rotulo, tipo, nome, val_ini, val_min, editavel, dica, cmd, obrigatorio=
   servidor via POST, quando o usuário alterar este campo, em vez do
   "action" default do formulário.
   
-  O elemento terá também um atributo {id} ("<input ... id='{id}' .../>") que
-  é "{nome}.{val_ini}", ou apenas "{nome}" se {val_ini} for {None}.
-
-  O parâmetro {obrigatorio} indica se o campo deve ser obrigatóriamente preenchido ou não.
-  Isso altera visualmente a forma como o campo é exibido para o usuário pelo navegador. O valor
-  default deste parâmetro é False, por questões de compatibilidade.
-
-  """  
-  return html_input_IMP.gera(rotulo, tipo, nome, val_ini, val_min, editavel, dica, cmd, obrigatorio)
+  Em geral, cada campo deve ter um {nome} distinto. Porém, todos os
+  elementos de tipo "radio" que são mutuamente exclusivos devem ter o
+  mesmo nome, sendo distinguidos pelo {val_ini}. Portanto, o terá também
+  um atributo {id} ("<input ... id='{id}' .../>") que é
+  "{nome}.{val_ini}" se o tipo for "radio", ou apenas "{nome}" nos
+  demais casos. """  
+  return html_input_IMP.gera(rotulo, tipo, nome, val_ini, val_min, editavel, obrigatorio, dica, cmd)

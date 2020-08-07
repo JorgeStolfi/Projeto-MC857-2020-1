@@ -14,11 +14,7 @@ res = base_sql.conecta("DB",None,None)
 assert res == None
 
 sys.stderr.write("Criando alguns objetos...\n")
-tabelas.cria_todos_os_testes()
-
-# sessão usada no teste
-sessao1 = sessao.busca_por_identificador("S-00000001")
-assert sessao1 != None
+tabelas.cria_todos_os_testes(False)
 
 def testa(rotulo, *args):
     """Testa {comando_solicitar_pag_alterar_poltrona.processa(*args)}, grava resultado
@@ -30,10 +26,12 @@ def testa(rotulo, *args):
     pretty = True  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
-args1 = {}
-# Teste mostra os dados do dono da sessão
-testa("S-semID", sessao1, args1)
+# sessão usada no teste
+ses1 = sessao.busca_por_identificador("S-00000004")
+assert ses1 != None
+assert sessao.eh_administrador(ses1)
 
 args1['id_poltrona'] = "A-00000001"
-# Teste mostra os dados do dono do identificador passado
-testa("S-comID", sessao1, args1)
+
+# Teste mostra os dados da poltrona especificada
+testa("S-comID", ses1, args1)

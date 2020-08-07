@@ -22,7 +22,7 @@ def testa(rotulo, *args):
 linhas = [].copy()
 
 label_de_teste_input = html_label.gera("Teste das funcionalidades de html_table, coloque um input aqui embaixo", ":")
-input_de_teste = html_input.gera(None, "text", "input", None, None, True, "Me edite!", None)
+input_de_teste = html_input.gera(None, "text", "input", None, None, True, False, "Me edite!", None)
 
 label_de_teste_botao = html_label.gera("Aperte o botão para ser redirecionado à URL principal", "!")
 botao_de_teste = html_botao_simples.gera("OK", 'principal', None, '#55ee55')

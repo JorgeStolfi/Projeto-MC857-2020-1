@@ -14,7 +14,7 @@ res = base_sql.conecta("DB",None,None)
 assert res == None
 
 sys.stderr.write("Criando alguns objetos...\n")
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 # Sessao de teste
 ses = sessao.busca_por_identificador("S-00000001")

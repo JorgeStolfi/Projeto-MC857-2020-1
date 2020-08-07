@@ -6,7 +6,7 @@ import html_table
 import html_div
 import html_estilo_cabecalho_de_tabela
 
-def gera(ids_poltronas, id_compra, excluir, trocar):
+def gera(ids_poltronas, id_compra, excluir):
   # Validação de argumentos:
   assert id_compra != None
 
@@ -23,8 +23,7 @@ def gera(ids_poltronas, id_compra, excluir, trocar):
 
     ver_pol = True
     excluir_pol = excluir
-    trocar_pol = trocar
-    linha = html_resumo_de_poltrona_de_compra.gera(pol, id_compra, ver_pol, excluir_pol, trocar_pol)
+    linha = html_resumo_de_poltrona_de_compra.gera(pol, id_compra, ver_pol, excluir_pol)
     assert type(linha) is list or type(linha) is tuple
 
     linhas.append(linha)

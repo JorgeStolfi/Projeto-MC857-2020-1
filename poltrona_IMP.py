@@ -1,5 +1,6 @@
 import objeto
 import poltrona
+import usuario
 import trecho
 import compra
 import tabela_generica
@@ -140,6 +141,108 @@ def lista_livres(trc):
   unico = False
   ids_poltronas = objeto.busca_por_campos(args, unico, cache, nome_tb, letra_tb, colunas)
   return ids_poltronas
+  
+def pode_comprar(usr, pol, cpr):
+  global cache, nome_tb, letra_tb, colunas, diags
+  
+  if cpr == None or pol == None or cpr == None: return False
+
+  assert type(usr) is usuario.Objeto_Usuario
+  assert type(pol) is poltrona.Objeto_Poltrona
+  assert type(cpr) is compra.Objeto_Compra
+  
+  # A compra {cpr} ainda está aberta?
+  if compra.obtem_atributo(cpr, 'status') != 'comprando': return False
+  
+  # A poltrona {pol} está livre?
+  id_cpr_pol = poltrona.obtem_atributo(pol, 'id_compra');
+  if id_cpr_pol != None: return False
+  
+  # O trecho da poltrona {pol} ainda está disponível?
+  id_trc_pol = poltrona.obtem_atributo(pol, 'id_trecho');
+  trc_pol = None if id_trc_pol == None else trecho.busca_por_identificador(id_trc_pol)
+  assert trc_pol != None # Paranóia.
+  if trecho.obtem_atributo(trc_pol, 'encerrado'): return False
+  
+  # Há incompatibilidade de horários com as poltronas já em {cpr}?
+  if not compra.trecho_eh_compativel(cpr, trc_pol): return False
+  
+  # Pode comprar, parece:
+  return True
+   
+def pode_excluir(usr, pol):
+  global cache, nome_tb, letra_tb, colunas, diags
+
+  if usr == None or pol == None: return False
+
+  assert type(usr) is usuario.Objeto_Usuario
+  assert type(pol) is poltrona.Objeto_Poltrona
+  
+  # A poltrona {pol} está reservada a alguma compra?
+  id_cpr = poltrona.obtem_atributo(pol, 'id_compra'); 
+  if id_cpr == None: return False
+
+  # A compra {cpr} ainda está aberta?
+  cpr = compra.busca_por_identificador(id_cpr)
+  assert cpr != None # Paranóia.
+  if compra.obtem_atributo(cpr, 'status') != 'comprando': return False
+  
+  # O trecho da poltrona {pol} ainda não foi encerrado?
+  id_trc_pol = poltrona.obtem_atributo(pol, 'id_trecho');
+  trc_pol = None if id_trc_pol == None else trecho.busca_por_identificador(id_trc_pol)
+  assert trc_pol != None # Paranóia.
+  if trecho.obtem_atributo(trc_pol, 'encerrado'): return False
+  
+  # O usuário tem direito de excluir?
+  admin = usuario.obtem_atributo(usr, 'administrador')
+  dono = (compra.obtem_cliente(cpr) == usr)
+  if not (admin or dono): return False
+  
+  # Pode excluir, parece:
+  return True
+
+def pode_trocar(usr, pol):
+  global cache, nome_tb, letra_tb, colunas, diags
+
+  if usr == None or pol == None: return False
+
+  assert type(usr) is usuario.Objeto_Usuario
+  assert type(pol) is poltrona.Objeto_Poltrona
+  
+  # A poltrona {pol} está reservada a alguma compra?
+  id_cpr = poltrona.obtem_atributo(pol, 'id_compra'); 
+  if id_cpr == None: return False
+  
+  # A compra {cpr} ainda está aberta?
+  cpr = compra.busca_por_identificador(id_cpr)
+  assert cpr != None # Paranóia.
+  if compra.obtem_atributo(cpr, 'status') != 'comprando': return False
+
+  # O trecho da poltrona {pol} ainda não foi encerrado?
+  id_trc_pol = poltrona.obtem_atributo(pol, 'id_trecho');
+  trc_pol = None if id_trc_pol == None else trecho.busca_por_identificador(id_trc_pol)
+  assert trc_pol != None # Paranóia.
+  if trecho.obtem_atributo(trc_pol, 'encerrado'): return False
+  
+  # O usuário tem direito de excluir e comprar nessa compra?
+  dono = (compra.obtem_cliente(cpr) == usr)
+  if not dono: return False
+  
+  # Pode trocar, parece:
+  return True
+
+def distancia(pol1, pol2):
+  global cache, nome_tb, letra_tb, colunas, diags
+  # !!! IMPLEMENTAR !!!
+  return 100
+  
+def livre_mais_proxima(pol, preco_max):
+  global cache, nome_tb, letra_tb, colunas, diags
+  # !!! IMPLEMENTAR !!!
+  ids_livres = lista_livres(trc);
+  id_pol = None if len(ids_livres) == 0 else ids_livres[0]
+  pol = None if id_pol == None else poltrona.busca_por_identificador(id_pol)
+  return pol
 
 def busca_ofertas():
   global cache, nome_tb, letra_tb, colunas, diags
@@ -200,7 +303,7 @@ def cria_conjunto(trc, txt):
     pols.append(pol)
   return pols
 
-def cria_testes():
+def cria_testes(verb):
   global cache, nome_tb, letra_tb, colunas, diags
   inicializa(True)
   lista_atrs = \
@@ -221,7 +324,7 @@ def cria_testes():
         'id_compra':   None,
         'preco':       60.00,
         'bagagens':    None,
-        'fez_checkin': True, 
+        'fez_checkin': False, 
       },
       # Poltrona "A-00000003":
       { 'id_trecho':   "T-00000001",
@@ -230,16 +333,16 @@ def cria_testes():
         'id_compra':   "C-00000002",
         'preco':       11.00,
         'bagagens':    1,
-        'fez_checkin': True, 
+        'fez_checkin': False, 
       },
       # Poltrona "A-00000004":
       { 'id_trecho':   "T-00000002",
         'numero':      "31",
-        'oferta':      True,
+        'oferta':      False,
         'id_compra':   None,
         'preco':       20.00,
         'bagagens':    None,
-        'fez_checkin': True, 
+        'fez_checkin': False, 
       },
       # Poltrona "A-00000005":
       { 'id_trecho':   "T-00000002",
@@ -278,145 +381,145 @@ def cria_testes():
         'fez_checkin': False, 
       },
       # Poltrona "A-00000009":
-      { 'id_trecho':  "T-00000001",
-        'numero':     "50",
-        'oferta':     True,
-        'id_compra':  "C-00000005",
-        'preco':      15.00,
-        'bagagens':   2,
+      { 'id_trecho':   "T-00000001",
+        'numero':      "50",
+        'oferta':      True,
+        'id_compra':   "C-00000005",
+        'preco':       15.00,
+        'bagagens':    2,
         'fez_checkin': False,
       },
       # Poltrona "A-00000010":
-      { 'id_trecho':  "T-00000002",
-        'numero':     "51",
-        'oferta':     False,
-        'id_compra':  "C-00000006",
-        'preco':      10.00,
-        'bagagens':   4,
+      { 'id_trecho':   "T-00000002",
+        'numero':      "51",
+        'oferta':      False,
+        'id_compra':   "C-00000006",
+        'preco':       10.00,
+        'bagagens':     4,
         'fez_checkin': False,
       },
       # Poltrona "A-00000011":
-      { 'id_trecho':  "T-00000003",
-        'numero':     "52",
-        'oferta':     True,
-        'id_compra':  "C-00000007",
-        'preco':      18.00,
-        'bagagens':   5,
+      { 'id_trecho':   "T-00000003",
+        'numero':      "52",
+        'oferta':      True,
+        'id_compra':   "C-00000007",
+        'preco':       18.00,
+        'bagagens':    5,
         'fez_checkin': False,
       },
       # Poltrona "A-00000012":
-      { 'id_trecho':  "T-00000002",
-        'numero':     "53",
-        'oferta':     False,
-        'id_compra':  "C-00000008",
-        'preco':      25.00,
-        'bagagens':   2,
+      { 'id_trecho':   "T-00000002",
+        'numero':      "53",
+        'oferta':      False,
+        'id_compra':   "C-00000008",
+        'preco':       25.00,
+        'bagagens':    2,
         'fez_checkin': False,
       },
       # Poltrona "A-00000013":
-      { 'id_trecho':  "T-00000003",
-        'numero':     "54",
-        'oferta':     True,
-        'id_compra':  "C-00000009",
-        'preco':      8.00,
-        'bagagens':   1,
+      { 'id_trecho':   "T-00000003",
+        'numero':      "54",
+        'oferta':      True,
+        'id_compra':   "C-00000009",
+        'preco':       8.00,
+        'bagagens':    1,
         'fez_checkin': False,
       },
       # Poltrona "A-00000014":
-      { 'id_trecho':  "T-00000001",
-        'numero':     "55",
-        'oferta':     False,
-        'id_compra':  "C-00000010",
-        'preco':      20.00,
-        'bagagens':   5,
+      { 'id_trecho':   "T-00000001",
+        'numero':      "55",
+        'oferta':      False,
+        'id_compra':   "C-00000010",
+        'preco':       20.00,
+        'bagagens':    5,
         'fez_checkin': False,
       },
       # Poltrona "A-00000015":
-      {'id_trecho': "T-00000004",
-       'numero': "56",
-       'oferta': False,
-       'id_compra': None,
-       'preco': 30.00,
-       'bagagens': None,
-       'fez_checkin': False,
-       },
+      { 'id_trecho':   "T-00000004",
+        'numero':      "56",
+        'oferta':      False,
+        'id_compra':   None,
+        'preco':       30.00,
+        'bagagens':    None,
+        'fez_checkin': False,
+      },
       # Poltrona "A-00000016":
-      {'id_trecho': "T-00000005",
-       'numero': "57",
-       'oferta': False,
-       'id_compra': None,
-       'preco': 30.00,
-       'bagagens': None,
-       'fez_checkin': False,
-       },
+      { 'id_trecho':   "T-00000005",
+        'numero':      "57",
+        'oferta':      False,
+        'id_compra':   "C-00000010",
+        'preco':       30.00,
+        'bagagens':    None,
+        'fez_checkin': False,
+      },
       # Poltrona "A-00000017":
-      {'id_trecho': "T-00000006",
-       'numero': "58",
-       'oferta': False,
-       'id_compra': None,
-       'preco': 30.00,
-       'bagagens': None,
-       'fez_checkin': False,
-       },
+      { 'id_trecho':   "T-00000006",
+        'numero':      "58",
+        'oferta':      False,
+        'id_compra':   None,
+        'preco':       30.00,
+        'bagagens':    None,
+        'fez_checkin': False,
+      },
       # Poltrona "A-00000018":
-      {'id_trecho': "T-00000007",
-       'numero': "59",
-       'oferta': False,
-       'id_compra': None,
-       'preco': 30.00,
-       'bagagens': None,
-       'fez_checkin': False,
-       },
+      { 'id_trecho':   "T-00000007",
+        'numero':      "59",
+        'oferta':      False,
+        'id_compra':   None,
+        'preco':       30.00,
+        'bagagens':    None,
+        'fez_checkin': False,
+      },
       # Poltrona "A-00000019":
-      {'id_trecho': "T-00000008",
-       'numero': "60",
-       'oferta': False,
-       'id_compra': None,
-       'preco': 30.00,
-       'bagagens': None,
-       'fez_checkin': False,
-       },
+      { 'id_trecho':   "T-00000008",
+        'numero':      "60",
+        'oferta':      False,
+        'id_compra':   "C-00000001",
+        'preco':       30.00,
+        'bagagens':    None,
+        'fez_checkin': False,
+      },
       # Poltrona "A-00000020":
-      {'id_trecho': "T-00000009",
-       'numero': "61",
-       'oferta': False,
-       'id_compra': None,
-       'preco': 30.00,
-       'bagagens': None,
-       'fez_checkin': False,
-       },
+      { 'id_trecho':   "T-00000009",
+        'numero':      "61",
+        'oferta':      False,
+        'id_compra':   "C-00000002",
+        'preco':       30.00,
+        'bagagens':    None,
+        'fez_checkin': True,
+      },
       # Poltrona "A-00000021":
-      {'id_trecho': "T-00000010",
-       'numero': "62",
-       'oferta': False,
-       'id_compra': None,
-       'preco': 30.00,
-       'bagagens': None,
-       'fez_checkin': False,
-       },
+      { 'id_trecho':   "T-00000010",
+        'numero':      "62",
+        'oferta':      False,
+        'id_compra':   "C-00000003",
+        'preco':       30.00,
+        'bagagens':    None,
+        'fez_checkin': False,
+      },
       # Poltrona "A-00000022":
-      {'id_trecho': "T-00000011",
-       'numero': "63",
-       'oferta': False,
-       'id_compra': None,
-       'preco': 30.00,
-       'bagagens': None,
-       'fez_checkin': False,
-       },
+      { 'id_trecho':   "T-00000011",
+        'numero':      "63",
+        'oferta':      False,
+        'id_compra':   "C-00000004",
+        'preco':       30.00,
+        'bagagens':    None,
+        'fez_checkin': True,
+      },
       # Poltrona "A-00000023":
-      {'id_trecho': "T-00000012",
-       'numero': "64",
-       'oferta': False,
-       'id_compra': None,
-       'preco': 30.00,
-       'bagagens': None,
-       'fez_checkin': False,
-       }
+      { 'id_trecho':   "T-00000012",
+        'numero':      "64",
+        'oferta':      False,
+        'id_compra':   None,
+        'preco':       30.00,
+        'bagagens':    None,
+        'fez_checkin': False,
+      },
       # Poltrona "A-00000024":
       { 'id_trecho':   "T-00000001",
         'numero':      "01B",
         'oferta':      True,
-        'id_compra':   None,
+        'id_compra':   "C-00000004",
         'preco':       25.00,
         'bagagens':    None,
         'fez_checkin': False,
@@ -425,10 +528,10 @@ def cria_testes():
       { 'id_trecho':   "T-00000004",
         'numero':      "01B",
         'oferta':      True,
-        'id_compra':   None,
+        'id_compra':   "C-00000002",
         'preco':       25.00,
         'bagagens':    None,
-        'fez_checkin': False,
+        'fez_checkin': True,
       },
       # Poltrona "A-00000026":
       { 'id_trecho':   "T-00000005",
@@ -447,7 +550,7 @@ def cria_testes():
     id_trc = poltrona.obtem_atributo(pol, 'id_trecho')
     id_cpr = poltrona.obtem_atributo(pol, 'id_compra')
     if id_cpr == None: id_cpr = "LIVRE"
-    sys.stderr.write("poltrona %s no trecho %s (compra %s) criado\n" % (id_ass, id_trc, id_cpr))
+    if verb: sys.stderr.write("poltrona %s no trecho %s (compra %s) criado\n" % (id_ass, id_trc, id_cpr))
   return
 
 def verifica(pol, id, atrs):

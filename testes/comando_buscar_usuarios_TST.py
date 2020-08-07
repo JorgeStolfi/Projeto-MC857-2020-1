@@ -16,7 +16,7 @@ res = base_sql.conecta("DB", None, None)
 assert res == None
 
 sys.stderr.write("Criando alguns objetos...\n")
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 # Sessão em que o usuário dela é o administrador. Apenas o administrador pode executar este comando de busca.
 ses_adm = sessao.busca_por_identificador("S-00000004")

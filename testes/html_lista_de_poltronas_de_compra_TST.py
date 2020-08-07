@@ -13,7 +13,7 @@ res = base_sql.conecta("DB",None,None)
 assert res == None
 
 sys.stderr.write("Criando alguns objetos...\n")
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 def testa(rotulo, *args):
   """Testa {funcao(*args)}, grava resultado
@@ -29,7 +29,5 @@ cpr1_id = "C-00000001"
 cpr1 = compra.busca_por_identificador(cpr1_id)
 cpr1_pols_ids = poltrona.busca_por_compra(cpr1)
 
-testa("eF-tF", cpr1_pols_ids, cpr1_id, False, False)
-testa("eF-tT", cpr1_pols_ids, cpr1_id, False, True )
-testa("eT-tF", cpr1_pols_ids, cpr1_id, True,  False)
-testa("eT-tT", cpr1_pols_ids, cpr1_id, True,  True )
+testa("eF", cpr1_pols_ids, cpr1_id, False,)
+testa("eT", cpr1_pols_ids, cpr1_id, True, )

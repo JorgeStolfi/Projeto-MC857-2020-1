@@ -4,86 +4,127 @@ import poltrona
 import html_span
 import html_botao_submit
 import html_botao_simples
+import html_estilo_cabecalho_de_tabela
 import sys
 
-def gera(pol, id_trc, admin, comprar_pol, trocar_pol, ver_oferta_pol, id_cpr):
-  alterar_pol = admin
-  ver_fez_checkin = admn
-  realizar_checkin = admin
+def gera(pol, alterar, comprar, excluir, fazer_checkin):
+  
+  assert int(alterar) + int(comprar) + int(excluir) <= 1 # No máximo um deve ser "True"
 
-  assert id_trc != None
-  trc = trecho.busca_por_identificador(id_trc)
+  campos = [].copy() # Campos a devolver
 
+  estilo = "font-size:20px;font-weight:bold;" 
+
+  # Obtem atributos da poltrona:
   id_pol = poltrona.obtem_identificador(pol)
   atrs_pol = poltrona.obtem_atributos(pol)
-  if atrs_pol['id_trecho'] != id_trc:
-    sys.stderr.write("atrs_pol = %s\n" % str(atrs_pol))
-  assert atrs_pol['id_trecho'] == id_trc
 
-  preco_pol = atrs_pol['preco']
-  numero_pol = atrs_pol['numero']
+  numero = atrs_pol['numero']
+  preco = atrs_pol['preco']
+  oferta = atrs_pol['oferta'] # Se a poltrona está em oferta.
+  id_cpr = atrs_pol['id_compra'] # Pedido de compra que reservou a poltrona, ou {None}
+  fez_checkin = atrs_pol['fez_checkin'] # Passageiro já fez checkin?
+  if id_cpr != None:
+    # Poltrona está reservada.  Determina a compra:
+    cpr = compra.busca_por_identificador(id_cpr)
+    assert cpr != None # Paranóia.
+  else:
+    # Poltrona está livre:
+    cpr = None
 
-  # Pedido de compra à qual a poltrona pertence, ou "LIVRE":
-  id_cpr_pol = atrs_pol['id_compra']
-  oferta_pol = atrs_pol['oferta']
-  tx_compra_pol = (id_cpr_pol if id_cpr_pol != None and oferta_pol == False else "LIVRE")
+  args_cmd = { 'íd_poltrona': id_pol } # Argumentos para os comandos.
 
-#139511 24-07-2020
-  #obtendo o objeto da poltrona pelo identificador da poltrona
-  id_compra = poltrona.busca_por_identificador(id_pol)
-  atrs_clt = poltrona.obtem_atributos(id_compra)
-  id_compra = atrs_clt["id_compra"]
+  # Número da poltrona sempre aparece:
+  ht_numero = html_span.gera(estilo, numero)
+  campos.append(ht_numero)
 
-  checagem = alterar_pol and (id_compra != None)
-  if checagem:
-    # obtendo o objeto do comprador pelo id do comprador
-    atrs_cliente = compra.busca_por_identificador(id_compra)
-    id_cliente = compra.obtem_atributos(atrs_cliente)
-    nome_cliente = id_cliente["nome_pass"]
-    doc_cliente = id_cliente["doc_pass"]
-    ht_nome = html_span.gera(None, nome_cliente)
-    ht_doc = html_span.gera(None, doc_cliente)
-#/139511 24-07-2020
+  # Preço da poltrona senmpre aparece:
+  ht_preco = html_span.gera(estilo, preco)
+  campos.append(ht_preco)
 
-  checkin_pol = atrs_pol['fez_checkin']
-  tx_checkin_pol = ("REALIZADO" if checkin_pol else "LIVRE")
+  # Indicação de oferta sempre aparece:
+  ht_oferta = html_span.gera(estilo + "color:'#ffbb00';", "&#9733;" if oferta else "")
+  campos.append(ht_oferta)
 
-  ht_numero = html_span.gera(None, numero_pol)
-  ht_preco = html_span.gera(None, preco_pol)
-  ht_compra = html_span.gera(None, tx_compra_pol)
-  ht_fez_checkin = html_span.gera(None, tx_checkin_pol)
-  ht_fazer_checkin = html_botao_simples.gera("Checkin", "fazer_checkin",None, "55ee55")
+  # Coluna de identificador da compra sempre aparece:
+  ht_id_cpr = html_span.gera(estilo, id_cpr if cpr != None else "LIVRE")
+  campos.append(ht_id_cpr);
 
-  if checagem:
-    ht_numero = ht_numero + " " + ht_nome + " " + ht_doc
+  # Coluna de "fez checkin" sempre aparece:
+  ht_fez_checkin = html_span.gera(estilo, "CK" if fez_checkin else "")
+  campos.append(ht_fez_checkin);
 
-  linha = [ht_numero, ht_preco, ht_oferta, ht_compra, ht_fez_checkin, ht_fazer_checkin ]
+  # Coluna do botão "Ver" sempre aparece:
+  ht_bt_ver = html_botao_simples.gera("Ver", "ver_poltrona", args_cmd, "55ee55")
+  campos.append(ht_bt_ver);
 
-  if ver_oferta_pol:
-    linha.append(ht_compra)
+  # Coluna do botão de ação:
+  if alterar:
+    ht_bt_acao = html_botao_simples.gera("Alterar", "solicitar_pag_alterar_poltrona", args_cmd, '#bca360')
+  elif comprar:
+    ht_bt_acao = html_botao_simples.gera("Comprar", 'comprar_poltrona', args_cmd, '#ff0000')
+  elif excluir:
+    ht_bt_acao = html_botao_simples.gera("Excluir", 'excluir_poltrona', args_cmd, '#ff0000')
+  else:
+    ht_bt_acao = ""
+  campos.append(ht_bt_acao);
 
-  if trecho.obtem_atributo(trc, 'aberto'):
-    if comprar_pol and id_cpr_pol == None:
-      args_comprar = { 'id_poltrona': id_pol, 'id_compra': id_cpr }
-      ht_comprar = html_botao_simples.gera("Comprar", 'comprar_poltrona', args_comprar, '#ff0000')
-      linha.append(ht_comprar)
+  if fazer_checkin:
+    # Campos para checkin:
+    if cpr != None:
+      # Nome e documento do passageiro, e botão de fazer checkin:
+      nome_pass = compra.obtem_atributo(cpr, 'nome_pass')
+      doc_pass = compra.obtem_atributo(cpr, 'doc_pass')
 
-    if trocar_pol and id_cpr_pol == id_cpr:
-      args_trocar = { 'id_poltrona': id_pol }
-      ht_comprar = html_botao_simples.gera("Trocar", 'trocar_poltrona', args_trocar, '#ff0000')
-      linha.append(ht_comprar)
+      ht_nome_pass = html_span.gera(estilo, nome_pass)
+      campos.append(ht_nome_pass);
 
-  if alterar_pol:
-    args_alterar = { 'id_poltrona': id_pol }
-    ht_alterar = html_botao_simples.gera("Alterar", "solicitar_pag_alterar_poltrona", args_alterar, '#bca360')
-    linha.append(ht_alterar)
+      ht_doc_pass = html_span.gera(estilo, doc_pass)
+      campos.append(ht_doc_pass);
 
-  if ver_fez_checkin:
-    linha.append(ht_fez_checkin)
+      if fez_checkin:
+        ht_bt_checkin = ""
+      else:
+        ht_bt_checkin = html_botao_simples.gera("Checkin", 'fazer_checkin', args_cmd, '#55ee55')
+      campos.append(ht_bt_checkin);
+    else:
+      # Campos em branco:
+      campos.append("");
+      campos.append("");
+      campos.append("");
 
-  if realizar_checkin:
-    args_checkin = { 'id_poltrona': id_pol }
-    ht_checkin = html_botao_simples.gera("Checkin", "solicitar_fazer_checkin", args_checkin, "55ee55")
-    linha.append(ht_checkin)
+  return campos
 
-  return linha
+def gera_cabecalho(fazer_checkin):
+
+  campos = [].copy() # Campos a devolver
+
+  # Devolve a linha de cabeçalho:
+  estilo = html_estilo_cabecalho_de_tabela.gera()
+  campos.append(html_span.gera(estilo, "NP"))      # Número da poltrona.
+  campos.append(html_span.gera(estilo, "Preço"))   # Preço.
+  campos.append(html_span.gera(estilo, "OF"))      # É oferta?
+  campos.append(html_span.gera(estilo, "Compra"))  # Compra que reservou.
+  campos.append(html_span.gera(estilo, "CK"))      # Passageiro fez checkin?
+  campos.append("");                               # Botão "Ver".
+  campos.append("");                               # Botão "Alterar"/"Comprar"/"Excluir".
+
+  if fazer_checkin:
+    campos.append(html_span.gera(estilo, "Passageiro"))   # Nome do passageiro.
+    campos.append(html_span.gera(estilo, "Documento"))    # Docmento do passageiro.
+    campos.append("")                                     # Botão "Checkin.
+  
+  return campos
+
+def gera_legenda(fazer_checkin):
+
+  estilo = "font-size:20px;font-weight:bold;" 
+  
+  legenda_txt = \
+    "<br/>" + \
+    "NP = Número da poltrona<br/>" + \
+    "OF = Passagem em promoção<br/>" + \
+    "CK = Passageiro já fez checkin<br/>"
+  
+  ht_legenda = html_span.gera(estilo, legenda_txt)
+  return ht_legenda

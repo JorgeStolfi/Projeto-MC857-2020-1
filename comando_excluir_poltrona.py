@@ -3,14 +3,17 @@ import comando_excluir_poltrona_IMP
 
 
 def processa(ses, args):
-  """Esta função é chamada quando o usuário aperta o botão "Excluir" no
-  formulário que lista as poltronas na página "Meu carrinho".
+  """Esta função é chamada quando o usuário pede para excluir uma poltrona de 
+  uma de suas compras.
 
-  O parâmetro {args} é um dicionário que contém os elementos corrrespondente às chaves
-  {id_poltrona} e {id_compra} fazendo refêrencia à poltrona que será excluída e a compra  que ela pertence
-   - e.g.: {{'id_poltrona': "A-00000001", 'id_compra':"C-00000001"}}. A função será responsável por buscar um
-   {Objeto_Poltrona} com esse identificador e definir seu atributo {id_compra} como {None}.
+  O parâmetro {args} é um dicionário que contém um campo com chave 'id_poltrona' 
+  cujo valor é o identificador {id_pol} da poltrona a excluir; p. ex.
+  {{'id_poltrona': "A-00000001"}}. Essa poltrona deve estar reservada para 
+  alguma compra.  A função cancela essa reseva, liberando a poltrona.
+  
+  A sessão {ses} não pode ser {None}. Se dono da sessão {ses} não for
+  administrador, deve ser o dono da compra a alterar;
+  se essa compra não for o carrinho desse usuário, ela passa a ser.
 
-  O resultado deve ser uma página "Meu carrinho" atualizada (com o trecho excluído sem ser
-  listado), gerada por {html_ver_compra.gera}."""
+  O resultado será uma página que mostra essa compra. {html_ver_compra.gera}."""
   return comando_excluir_poltrona_IMP.processa(ses, args)

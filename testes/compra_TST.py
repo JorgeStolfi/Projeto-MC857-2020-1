@@ -17,10 +17,10 @@ base_sql.conecta("DB",None,None)
 
 # ----------------------------------------------------------------------
 sys.stderr.write("Inicializando módulo {usuario}, limpando tabela, criando usuários para teste:\n")
-usuario.cria_testes()
+usuario.cria_testes(False)
 
 sys.stderr.write("Inicializando módulo {compra}, limpando tabela, criando compras para teste:\n")
-compra.cria_testes()
+compra.cria_testes(False)
 
 sys.stderr.write("Inicializando módulo {compra}, limpando tabela:\n")
 compra.inicializa(True)
@@ -85,21 +85,21 @@ compra1 = compra.cria(usr1, nome_pass1, doc_pass1)
 # print(compra.obtem_atributos(compra1))
 compraIndice1 = 1
 compraId1 = "C-00000001"
-verifica_compra("c1", compra1, compraId1, usr1, 'aberto', nome_pass1, doc_pass1)
+verifica_compra("c1", compra1, compraId1, usr1, 'comprando', nome_pass1, doc_pass1)
 
 nome_pass2 = usuario.obtem_atributos(usr2)['nome']
 doc_pass2 = usuario.obtem_atributos(usr2)['documento']
 compra2 = compra.cria(usr2, nome_pass2, doc_pass2)
 compraIndice2 = 2
 compraId2 = "C-00000002"
-verifica_compra("c2", compra2, compraId2, usr2, 'aberto', nome_pass2, doc_pass2)
+verifica_compra("c2", compra2, compraId2, usr2, 'comprando', nome_pass2, doc_pass2)
 
 nome_pass3 = "Giovanni Pereira"
 doc_pass3 = "36.987.986-0"
 compra3 = compra.cria(usr1, nome_pass3, doc_pass3)
 compraIndice3 = 3
 compraId3 = "C-00000003"
-verifica_compra("c3", compra3, compraId3, usr1, 'aberto', nome_pass3, doc_pass3)
+verifica_compra("c3", compra3, compraId3, usr1, 'comprando', nome_pass3, doc_pass3)
 
 sys.stderr.write("testando {compra.fecha}:\n")
 compra.fecha(compra1)

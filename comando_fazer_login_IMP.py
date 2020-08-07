@@ -79,7 +79,7 @@ def define_carrinho(usr, id_usuario):
       # pega a substring NNNNNNNN do identificador C-{NNNNNNNN}'
       substring_indice_compra = id_compra[2:10]
 
-      if compra.obtem_status(obj_compra) == 'aberto':
+      if compra.obtem_status(obj_compra) == 'comprando':
         lista_ids_compras_abertos.insert(posicao, substring_indice_compra)
         posicao = posicao + 1
 

@@ -27,7 +27,7 @@ def dispara():
   testando = True # Que base de dados deve usar?
   if testando:
     # Inicializa a base com algumas entradas para testes:
-    tabelas.cria_todos_os_testes()
+    tabelas.cria_todos_os_testes(False)
   else:
     # Usa a base de dados existente:
     limpa = False # Começa com tabelas vazias?

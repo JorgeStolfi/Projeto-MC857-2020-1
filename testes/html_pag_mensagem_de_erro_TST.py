@@ -15,11 +15,11 @@ sys.stderr.write("Conectando com base de dados...\n")
 res = base_sql.conecta("DB",None,None)
 assert res == None
 usuario.inicializa(False)
-usuario.cria_testes()
+usuario.cria_testes(False)
 compra.inicializa(False)
-compra.cria_testes()
+compra.cria_testes(False)
 sessao.inicializa(False)
-sessao.cria_testes()
+sessao.cria_testes(False)
 ses = sessao.busca_por_identificador("S-00000001")
 assert ses != None
 

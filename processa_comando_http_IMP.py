@@ -37,7 +37,6 @@ import comando_solicitar_pag_login
 import comando_solicitar_pag_ofertas
 import comando_solicitar_pag_sugerir_roteiros
 import comando_sugerir_roteiros
-import comando_trocar_poltrona
 import comando_ver_carrinho
 import comando_ver_compra
 import comando_ver_minhas_compras
@@ -471,10 +470,6 @@ def processa_comando(tipo, ses, dados):
      # Quer excluir uma potrona de um pedido de compra:
      pag = comando_excluir_poltrona.processa(ses, args)
 
-    elif cmd == '/trocar_poltrona':
-      # Quer trocar uma poltrona que comprou em um trecho:
-      pag = comando_trocar_poltrona.processa(ses, args)
-
     elif cmd == '/ver_poltronas_de_usuario':
       # Quer ver todas as poltronas compradas por um usuário:
       pag = comando_ver_poltronas_de_usuario.processa(ses, args)
@@ -540,6 +535,10 @@ def processa_comando(tipo, ses, dados):
       # ATENÇÃO: devolve também a nova sessão (que geralmente vai ser {None}).
       pag, ses_nova = comando_fazer_logout.processa(ses, args)
 
+    elif cmd == '/fechar_sessao':
+      # Quer encerrar uma sessão dada:
+      pag, ses_nova = comando_fechar_sessao.processa(ses, args)
+
     elif cmd == '/ver_sessoes':
       # !!! ESCLARECER !!!
       # Quer ver sessões:
@@ -547,10 +546,6 @@ def processa_comando(tipo, ses, dados):
 
     elif cmd == '/ver_sessao':
       pag = comando_ver_sessao.processa(ses, args)
-
-    elif cmd == '/fechar_sessao':
-      # Quer encerrar uma sessão em aberto:
-      pag = comando_fechar_sessao.processa(ses, args)
 
     elif cmd == '/ver_minhas_sessoes':
       # Quer ver sessões:

@@ -12,7 +12,7 @@ res = base_sql.conecta("DB", None, None)
 assert res == None
 
 sys.stderr.write("Criando alguns objetos...\n")
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 def testa(rotulo, *args):
     """Testa {comando_solicitar_pag_clonar_trecho.processa(ses, *args)}, grava resultado
@@ -26,10 +26,8 @@ def testa(rotulo, *args):
 
 
 # sessão usada no teste
-sessao1 = sessao.busca_por_identificador("S-00000001")
-assert sessao1 != None
+ses1 = sessao.busca_por_identificador("S-00000004")
+assert ses1 != None
+assert sessao.eh_administrador(ses1)
 
-# Testa duas vezes: com uma sessão válida e também com uma sessão inválida (nula), para testar
-# o comportamento do módulo em diferentes cenários, garantindo sua funcionalidade.
-testa("teste_clonar_trecho_sessao_valida", sessao1, {"id_trecho": "T-00000001"})
-testa("teste_clonar_trecho_sessao_nula", None, {"id_trecho": "T-00000001"})
+testa("teste_clonar_trecho_sessao_valida", ses1, {"id_trecho": "T-00000001"})

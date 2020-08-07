@@ -13,7 +13,7 @@ res = base_sql.conecta("DB",None,None)
 assert res == None
 
 sys.stderr.write("Criando alguns objetos...\n")
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 # ----------------------------------------------------------------------
 def testa(rotulo, *args):
@@ -27,7 +27,7 @@ def testa(rotulo, *args):
 
 # Roteiro para teste:
 
-rots = roteiro.descobre_todos("VCP", "MAO", "2020-05-07", "2020-05-10", False)
+rots = roteiro.descobre_todos("VCP", "2020-05-07", "MAO", "2020-05-10", False)
 rot = rots[0]
 
 for rotulo, ver in ( \

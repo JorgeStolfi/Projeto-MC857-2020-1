@@ -2,13 +2,12 @@
 
 #import html_lista_de_potronas
 import html_pag_generica
-#import html_resumo_de_trecho
 import html_erro
-import html_pag_ver_trecho
+import html_pag_trecho
 import sessao
-#import usuario
+import usuario
 import trecho
-#import poltrona
+import poltrona
 
 def processa(ses, args):
 
@@ -22,12 +21,5 @@ def processa(ses, args):
     erros = ["trecho \"" + id_trecho + "\" não existe"]
     pag = html_pag_mensagem_de_erro(ses, erros)
   else:
-    admin = sessao.eh_administrador(ses)
-    comprar_pols = (ses != None) and not admin
-    alterar_trc = admin
-    ver_oferta_pols = admin
-    ver_fez_checkin = admin
-    checkin_pols = admin
-    pag = html_pag_ver_trecho.gera(ses, trc, comprar_pols, alterar_trc, ver_oferta_pols,\
-      ver_fez_checkin, checkin_pols, None)
+    pag = html_pag_trecho.gera(ses, trc, None, None)
   return pag

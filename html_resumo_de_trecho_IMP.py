@@ -9,13 +9,13 @@ def gera(trc, bt_ver, bt_alterar, bt_clonar, bt_fechar):
   atrs_trc = trecho.obtem_atributos(trc)
   # Pega/monta atributos a mostrar:
   
-  map_poltronas_disponiveis = trecho.obtem_poltronas_livres(trc)
-  if not map_poltronas_disponiveis:
+  ids_pols_livres = trecho.obtem_poltronas_livres(trc)
+  if not ids_pols_livres:
     a_partir_de = "Esgotado"
   else:
     precos = [].copy()
-    for id_poltrona in map_poltronas_disponiveis:
-      pol = poltrona.busca_por_identificador(id_poltrona)
+    for id_pol in ids_pols_livres:
+      pol = poltrona.busca_por_identificador(id_pol)
       atrs_pol = poltrona.obtem_atributos(pol)
       if(atrs_pol['id_compra'] is None):
         precos.append(atrs_pol['preco'])

@@ -28,7 +28,9 @@ def id_para_objeto(id):
   onde {modulo} é o módulo indicado pela letra ({usuario}, {sessao}, etc.)."""
   return tabelas_IMP.id_para_objeto(id)
 
-def cria_todos_os_testes():
+def cria_todos_os_testes(verb):
   """Limpa todas as tabelas com {inicializa_todas(True)}, e cria três 
-  objetos de cada classe, incluindo-os nas respectivas tabelas.  Não devolve nenhum resultado.""" 
-  tabelas_IMP.cria_todos_os_testes()
+  objetos de cada classe, incluindo-os nas respectivas tabelas.  
+  Se {verb} for {True}, escreve uma linha em {sys.stderr} para
+  cada objeto criado. Não devolve nenhum resultado.""" 
+  tabelas_IMP.cria_todos_os_testes(False)

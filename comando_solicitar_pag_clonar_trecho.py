@@ -7,6 +7,5 @@ def processa(ses, args):
   o identificador desse trecho.  
   
   A função retorna uma página para a criação de um novo trecho, com cada
-  atributo inicializado a partir do dicionário {args}, ou, se não
-  estiver lá, a partir dos atributos correntes do trecho {trc}."""
+  atributo inicializado com os atributos correntes do trecho {trc}."""
   return comando_solicitar_pag_clonar_trecho_IMP.processa(ses, args)

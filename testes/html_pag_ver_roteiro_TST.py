@@ -15,7 +15,7 @@ res = base_sql.conecta("DB",None,None)
 assert res == None
 
 sys.stderr.write("Criando alguns objetos...\n")
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 def testa(rotulo, *args):
   """Testa {funcao(*args)}, grava resultado 
@@ -29,7 +29,7 @@ def testa(rotulo, *args):
 
 ses1 = sessao.busca_por_identificador("S-00000001")
 
-rots = roteiro.descobre_todos("VCP", "MAO", "2020-05-07", "2020-05-10", False)
+rots = roteiro.descobre_todos("VCP", "2020-05-07 00:05 UTC", "MAO", "2020-05-10 20:05 UTC", False)
 rot = rots[0]
 
 testa("N-E0", None, rot, None) # Sem login

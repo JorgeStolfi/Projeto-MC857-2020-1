@@ -7,28 +7,75 @@ def testa(rotulo, *args):
   """Testa {funcao(*args, "elucubrar")}, grava resultado 
   em "testes/saida/{modulo}.{funcao}.{rotulo}.html"."""
   modulo = html_input
-  funcao = modulo.gera
+  funcao = html_input.gera
   frag = True  # {True} se for apenas um fragmento HTML, {False} se for página completa.
   pretty = False # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
   utils_testes.testa_gera_html(modulo, modulo.gera, rotulo, frag, pretty, *args)
-   
-testa("text_dica",   "Peso", "text", "peso", None,    None, True,  "Máximo 50 kg", "vade_retro")
-testa("text_vini",   "Peso", "text", "peso", "30 kg", None, True,  None,           "vade_retro")
-testa("text_rdonly", "Peso", "text", "peso", "30 kg", None, False, None,           "vade_retro")
+  
+for typ in ("text", "number", "email", "password", "textarea", "date", "checkbox", "radio", ):
+  tag_typ = typ
+  for val in ("N", "V", "M", "D"): 
+    tag_val = "val" + str(val)[0]
 
-testa("num_dica",   "Peso (kg)", "number", "peso", None, None,  True, "Máximo 50", "vade_retro")
-testa("num_vini",   "Peso (kg)", "number", "peso", "30", None,  True, None,        "vade_retro")
-testa("num_vmin",   "Peso (kg)", "number", "peso", "30", "3",   True, None,        "vade_retro")
-testa("num_rdonly", "Peso (kg)", "number", "peso", "30", None,  False,None,        "vade_retro")
+    vmin = None
+    dica = None
+    if typ == "text":
+      nome = "peso"
+      vini = "30 kg"
+      dica = "NN.N kg"
+    elif typ == "number":
+      nome = "pernas"
+      vini = "30"
+      vmin = "3"
+      dica = "NNN"
+    elif typ == "email":
+      nome = "endereco"
+      vini = "primeiro@gmail.com"
+      dica = "XXX@YYY.ZZZ"
+    elif typ == "password":
+      nome = "senha"
+      vini = "123456789"
+      dica = "uma senha segura"
+    elif typ == "textarea":
+      nome = "mensagem"
+      vini = "Lorem ipsum est diviso in partes tres."
+      dica = "Escreva sua mensagem aqui"
+    elif typ == "date":
+      nome = "dia_fatidico"
+      vini = "2020-08-07"
+      vmin = "2020-08-01"
+      dica = "AAAA-MM-DD"
+    elif typ == "checkbox":
+      nome = "sublime"
+      vini = "on"
+    elif typ == "radio":
+      nome = "flor"
+      vini = "rosa"
+    else:
+      assert False
 
-testa("email_dica",  "Email", "email", "email", None,               None,  True, "{user}@{host}", "do_it")
-testa("email_vini",  "Email", "email", "email", "jose@tatu.gov.br", None,  True, None,            "do_it")
+    if val == "N":
+      vini = None; vmin = None; dica = None;
+    elif val == "V":
+      vmin = None; dica = None;
+    elif val == "M":
+      if vmin == None: continue
+      dica = None
+    elif val == "D":
+      if dica == None: continue
+      vini = None; vmin = None;
+    else:
+      assert False
 
-testa("senha_dica",  "Senha", "password", "senha", None, None,  True, "Máximo 2 letras", "do_it")
-testa("senha_vini",  "Senha", "password", "senha", "99", None,  True, None,              "do_it")
+    rotulo = nome.title()
 
-testa("hidden_vini",  None, "hidden", "user", "U-12345678", None, False, None,   "do_it")
-
-testa("text_obrigatorio",  None, "text", "user", "U-12345678", None, True, None,   "do_it", True)
-testa("text_not_obrigatorio",  None, "text", "user", "U-12345678", None, True, None,   "do_it", False)
-testa("text_not_obrigatorio_default",  None, "text", "user", "U-12345678", None, True, None,   "do_it")
+    for edt in (False, True):
+      tag_edt = "edt" + str(edt)[0]
+      for obr in (False, True):
+        tag_obr = "obr" + str(obr)[0]
+        
+        if obr and not edt: continue
+        
+        tag = tag_typ + "-" + tag_val + "-" + tag_edt + "-" + tag_obr
+            
+        testa(tag, rotulo, typ, nome, vini, vmin, edt, obr, dica, "carpe_diem")

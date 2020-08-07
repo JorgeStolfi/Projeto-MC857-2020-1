@@ -78,31 +78,37 @@ def cria(usr, cookie, carrinho):
 
 def obtem_identificador(ses):
   global cache, nome_tb, letra_tb, colunas, diags
-  assert ses != None
+  assert (ses != None) and type(ses) is sessao.Objeto_Sessao
   return objeto.obtem_identificador(ses)
 
 def obtem_atributos(ses):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert (ses != None) and type(ses) is sessao.Objeto_Sessao
   return objeto.obtem_atributos(ses)
 
 def obtem_atributo(ses, chave):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert (ses != None) and type(ses) is sessao.Objeto_Sessao
   return objeto.obtem_atributo(ses, chave)
 
 def obtem_usuario(ses):
   global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.obtem_atributo(ses,'usr')
+  assert (ses != None) and type(ses) is sessao.Objeto_Sessao
+  return objeto.obtem_atributo(ses, 'usr')
 
-def obtem_criacao(ses):
+def obtem_data_de_criacao(ses):
   global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.obtem_atributo(ses,'criacao')
+  assert (ses != None) and type(ses) is sessao.Objeto_Sessao
+  return objeto.obtem_atributo(ses, 'criacao')
 
 def aberta(ses):
   global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.obtem_atributo(ses,'abrt')
+  assert (ses != None) and type(ses) is sessao.Objeto_Sessao
+  return objeto.obtem_atributo(ses, 'abrt')
 
 def obtem_cookie(ses):
   global cache, nome_tb, letra_tb, colunas, diags
+  assert (ses != None) and type(ses) is sessao.Objeto_Sessao
   return objeto.obtem_atributo(ses,'cookie')
 
 def eh_administrador(ses):
@@ -113,15 +119,18 @@ def eh_administrador(ses):
 
 def obtem_carrinho(ses):
   global cache, nome_tb, letra_tb, colunas, diags
-  return objeto.obtem_atributo(ses,'carrinho')
+  assert (ses != None) and type(ses) is sessao.Objeto_Sessao
+  return objeto.obtem_atributo(ses, 'carrinho')
 
 def busca_por_identificador(id):
   global cache, nome_tb, letra_tb, colunas, diags
+  if id == None: return None
   ses = objeto.busca_por_identificador(id, cache, nome_tb, letra_tb, colunas, def_obj_mem)
   return ses
 
 def busca_por_usuario(id):
   global cache, nome_tb, letra_tb, colunas, diags
+  if id == None: return [].copy()
   ses = objeto.busca_por_campo("usr", id, False, cache, nome_tb, letra_tb, colunas)
   return ses
 
@@ -145,7 +154,7 @@ def fecha(ses):
     mods_mem = { 'abrt': False }
     muda_atributos(ses, mods_mem)
 
-def cria_testes():
+def cria_testes(verb):
   global cache, nome_tb, letra_tb, colunas, diags
   inicializa(True)
   # Identificador de usuários e cookie de cada sessão:
@@ -169,7 +178,7 @@ def cria_testes():
     id_ses = sessao.obtem_identificador(ses)
     usr = sessao.obtem_usuario(ses)
     id_usr = usuario.obtem_identificador(usr) if usr != None else "ninguém"
-    sys.stderr.write("sessão %s de %s criada\n" % (id_ses, id_usr))
+    if verb: sys.stderr.write("sessão %s de %s criada\n" % (id_ses, id_usr))
   return
 
 def verifica(ses, id, atrs):

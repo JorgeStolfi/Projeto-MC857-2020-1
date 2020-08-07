@@ -13,7 +13,7 @@ res = base_sql.conecta("DB", None, None)
 assert res == None  # Verifica que a conexão teve sucesso
 
 sys.stderr.write("Criando alguns objetos...\n")
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 # Sessão usada no teste
 sessao1 = sessao.busca_por_identificador("S-00000001")
 assert sessao1 != None

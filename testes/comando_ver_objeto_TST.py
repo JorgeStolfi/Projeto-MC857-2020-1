@@ -17,7 +17,7 @@ res = base_sql.conecta("DB",None,None)
 assert res == None
 
 sys.stderr.write("Criando alguns objetos...\n")
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 # Obtem uma sessao de um usuario que é de administrador:
 ses1 = sessao.busca_por_identificador("S-00000004")

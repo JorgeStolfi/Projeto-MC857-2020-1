@@ -1,13 +1,16 @@
-import objeto
-import usuario
-import compra
-import poltrona
 import tabela_generica
 import tabelas
 import conversao_sql
 import identificador
 import valida_campo; from valida_campo import ErroAtrib
 from utils_testes import erro_prog, mostra
+
+import objeto
+import usuario
+import compra
+import poltrona
+import trecho
+
 import sys
 import datetime
 
@@ -46,7 +49,7 @@ def inicializa(limpa):
   # Descrição da tabela "compras".
   colunas = \
     ( ( "cliente",   usuario.Objeto_Usuario, 'TEXT',    False ), # Cliente que está montando o pedido de compra.
-      ( "status",    type("foo"),            'TEXT',    False ), # Estado do pedido de compra ('aberto', etc.).
+      ( "status",    type("foo"),            'TEXT',    False ), # Estado do pedido de compra ('comprando', etc.).
       ( "nome_pass", type("foo"),            'TEXT',    False ), # Nome do passageiro que vai fazer a viagem.
       ( "doc_pass",  type("foo"),             'TEXT',    True  ), # Número do documento de identidade (RG, pasaporte, etc.)
     )
@@ -58,7 +61,7 @@ def inicializa(limpa):
 def cria(cliente, nome_pass, doc_pass):
   global cache, nome_tb, letra_tb, colunas, diags
 
-  atrs_mem = { 'cliente': cliente, 'status': 'aberto', 'nome_pass': nome_pass, 'doc_pass': doc_pass}
+  atrs_mem = { 'cliente': cliente, 'status': 'comprando', 'nome_pass': nome_pass, 'doc_pass': doc_pass}
 
   erros = valida_atributos(None, atrs_mem)
   if len(erros) != 0: raise ErroAtrib(erros)
@@ -123,9 +126,22 @@ def calcula_preco(cpr):
   global cache, nome_tb, letra_tb, colunas, diags
   assert cpr != None and type(cpr) is compra.Objeto_Compra
   preco = 0
-  for polt in obtem_poltronas(cpr):
-    polt = poltrona.busca_por_identificador(polt)
-    preco = preco + poltrona.obtem_atributo(polt, 'preco')
+  for id_pol in obtem_poltronas(cpr):
+    pol = poltrona.busca_por_identificador(id_pol)
+    preco = preco + poltrona.obtem_atributo(pol, 'preco')
+  return preco
+
+def trecho_eh_compativel(cpr, trc):
+  global cache, nome_tb, letra_tb, colunas, diags
+  assert cpr != None and type(cpr) is compra.Objeto_Compra
+  for id_pol in obtem_poltronas(cpr):
+    pol = poltrona.busca_por_identificador(id_pol)
+    id_trc_pol = poltrona.obtem_atributo(pol, 'id_trecho')
+    # Verifca se {trc} é compatível com o trecho da polrona {pol}: 
+    trc_pol = None if id_trc_pol == None else trecho.busca_por_identificador(id_trc_pol)
+    assert trc_pol != None # Paranóia.
+    if not trecho.horarios_sao_compativeis(trc, trc_pol): return False
+  # Todos compatíveis  
   return preco
 
 def muda_atributos(cpr, mods_mem):
@@ -189,7 +205,7 @@ def fecha(cpr):
   mods_mem = { 'status': 'pagando' }
   muda_atributos(cpr, mods_mem)
 
-def cria_testes():
+def cria_testes(verb):
   global cache, nome_tb, letra_tb, colunas, diags
   inicializa(True)
   # Identificador de usuários e lista de poltronas de cada pedido de compra:
@@ -206,13 +222,13 @@ def cria_testes():
       ( "C-00000009", "U-00000002", "André Santos",    "554.181.018-01", False,),
       ( "C-00000010", "U-00000002", "Victor Cantillo", "444.955.085-08", True, ),
     ]
-  for id_cpr_esp, id_cliente, nome_pass, doc_pass, aberto in lista_cupsf:
+  for id_cpr_esp, id_cliente, nome_pass, doc_pass, comprando in lista_cupsf:
     cliente = usuario.busca_por_identificador(id_cliente)
 
     cpr = cria(cliente, nome_pass, doc_pass)
     assert cpr != None and type(cpr) is compra.Objeto_Compra
     id_cpr = compra.obtem_identificador(cpr)
-    if not aberto: compra.fecha(cpr)
+    if not comprando: compra.fecha(cpr)
 
     # Paranóia:
     assert id_cpr == id_cpr_esp
@@ -220,7 +236,7 @@ def cria_testes():
     id_cliente_1 = usuario.obtem_identificador(cliente_1)
     assert id_cliente_1 == id_cliente
 
-    sys.stderr.write("compra %s de %s criada\n" % (id_cpr, id_cliente))
+    if verb: sys.stderr.write("compra %s de %s criada\n" % (id_cpr, id_cliente))
   return
 
 def verifica(cpr, id, atrs):

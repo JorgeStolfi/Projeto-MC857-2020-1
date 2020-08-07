@@ -4,7 +4,7 @@ import html_span
 import html_botao_submit
 import html_botao_simples
 
-def gera(pol, id_compra, ver, excluir, trocar):
+def gera(pol, id_compra, ver, excluir):
 
   # Atributos da poltrona:
   id_pol = poltrona.obtem_identificador(pol)
@@ -48,10 +48,5 @@ def gera(pol, id_compra, ver, excluir, trocar):
     args_excluir = { 'id_poltrona': id_pol, 'id_compra': id_compra }
     ht_excluir = html_botao_simples.gera("Excluir", 'excluir_poltrona', args_excluir, '#ff4422')
     linha.append(ht_excluir)
-
-  if trocar:
-    args_trocar = { 'id_poltrona': id_pol, 'id_compra': id_compra, 'id_trecho':id_trecho }
-    ht_trocar = html_botao_simples.gera("Trocar", 'trocar_poltrona', args_trocar, '#ff8800')
-    linha.append(ht_trocar)
 
   return linha

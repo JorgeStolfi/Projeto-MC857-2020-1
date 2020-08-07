@@ -2,52 +2,51 @@ import sessao
 import usuario
 import poltrona
 
-import html_pag_ver_poltrona
+import html_pag_poltrona
 import html_pag_mensagem_de_erro
 
 def processa(ses, args):
 
   # Determina se usuario é administrador
   assert sessao.eh_administrador(ses)
+  
+  # Obtem a poltrona: 
+  id_poltrona = args['id_poltrona']
+  assert id_poltrona != None # Paranóia (o formulário deve incluir).
+  del args['id_poltrona']
+  pol = poltrona.busca_por_identificador(id_poltrona)
+  assert pol != None # Paranóia.
+  pol_atrs = poltrona.obtem_atributos(pol)
+  
+  id_trecho = args['id_trecho']
+  assert id_trecho == pol_atrs['id_trecho'] # Deve ser readonly no form.
+  
+  id_compra = args['id_compra']
+  assert id_compra == pol_atrs['id_compra'] # Deve ser readonly no form.
 
-  # Extrair dados de {args}
-  try:
-    # Obter id da poltrona
-    id_poltrona = args['id_poltrona']
-    assert id_poltrona is not None, 'id_poltrona obrigatório para atualizar'
-
-    id_trecho = args['id_trecho']
-    assert id_trecho is not None, 'id_trecho obrigatório para atualizar'
-
-    id_compra = args['id_compra']
-    assert id_compra is not None, 'id_compra obrigatório para atualizar'
-
-    numero = args['numero']
-    assert numero is not None, 'numero obrigatório para atualizar'
-
-    oferta = args['oferta']
-    assert oferta is not None, 'oferta obrigatório para atualizar'
-
-    preco = args['preco']
-    assert preco is not None, 'preco obrigatório para atualizar'
-
-
-  except KeyError as ex:
-    return html_pag_mensagem_de_erro.gera(ses, ("** Erro ao extrair os dados do dicionario de argumentos. Verifique se os campos foram preenchidos**"))
+  numero = args['numero']
+  assert numero == pol_atrs['numero'] # Deve ser readonly no form.
+ 
+  # Monta dicionário com alterações:
+  atrs_a_mudar = {}.copy()
+  
+  oferta = args['oferta'] if 'oferta' in args else None  # Alterável.
+  if oferta != None and type(oferta) is str: oferta = (oferta == "on")
+  if oferta != None: atrs_a_mudar['oferta'] = oferta
+  
+  preco = args['preco'] if 'preco' in args else None  # Alterável.
+  if preco != None and type(preco) is str: preco = float(preco)
+  if preco != None: atrs_a_mudar['preco'] = preco
 
   # Editar poltrona
   try:
-    pol = poltrona.busca_por_identificador(id_poltrona)
-    mods = { 
-      'id_trecho': id_trecho,
-      'numero': numero,
-      'oferta': oferta == 'on',
-      'preco': float(preco)
-    }
-    poltrona.muda_atributos(pol, mods)
-    pag = html_pag_ver_poltrona.gera(ses, pol, None, False, None)
+    poltrona.muda_atributos(pol, atrs_a_mudar)
+    # Mostra poltrona com dados alterados:
+    pag = html_pag_poltrona.gera(ses, pol, None, None)
 
-  except:
-    pag = html_pag_mensagem_de_erro.gera(ses, ("** Um erro ocorreu ao alterar a poltrona **"))
+  except ErroAtrib as ex:
+    # Mostra novamente a poltrona com mesmos args e mens de erro:
+    erros = ex[0]
+    pag = html_pag_poltrona.gera(ses, pol, args, erros)
   
   return pag

@@ -2,7 +2,7 @@ import trecho_IMP; from trecho_IMP import Objeto_Trecho_IMP
 
 class Objeto_Trecho(Objeto_Trecho_IMP):
   """Um objeto desta classe representa uma viagem de um veículo entre duas
-  escalas, em uma determinada data e hora, armazena seus atributos. É
+  escalas, em uma determinada data e horário, armazena seus atributos. É
   uma subclasse de {Objeto}.
   
   O identificador de um trecho é uma string da forma
@@ -20,10 +20,12 @@ class Objeto_Trecho(Objeto_Trecho_IMP):
     'dia_chegada'  data de chegada (string "{YYYY}-{MM}-{DD}").
     'hora_chegada' horário de chegada (string "{hh}:{mm}").
     'veiculo'      código identificador do onibus/aeronave (formato livre).
-    'aberto'       disponibilidade do trecho (booleano).
+    'encerrado'    a atribuição de poltronas não pode mais mudar (booleano).
     
-  As datas e horários são sempre referentes ao fuso horário UTC.  Outros atributos 
-  poderão ser acrescentados no futuro.
+  As datas e horários são sempre referentes ao fuso horário UTC.  O atributo
+  'disponive' começa {True} e vira {False} se o voo é cancelado ou quando o embarque 
+  é encerrado, e as poltronas não podem mais ser vendidas, canceladas, ou trocadas.
+  Outros atributos poderão ser acrescentados no futuro.
   
   REPRESENTAÇÃO NA BASE DE DADOS
 
@@ -130,17 +132,18 @@ def numero_de_poltronas_livres(trc):
   return trecho_IMP.numero_de_poltronas_livres(trc)
 
 def verificar_disponibilidade(trc):
-  """Retorna se o trecho está disponível. Ou seja, se está com atributo {aberto} == True e tem poltronas livres"""
+  """Retorna se o trecho está disponível para compra. Ou seja, se está 
+  com atributo 'disponinvel' {True} e tem poltronas livres"""
   return trecho_IMP.verificar_disponibilidade(trc)
 
 def busca_por_origem(cod):
   """Devolve uma lista de identificadores (NÃO objetos) de todos os trechos
-  através de uma string ORG do aeroporto."""
+  com código de aeroporto de origem {cod}."""
   return trecho_IMP.busca_por_origem(cod)
 
 def busca_por_destino(cod):
   """Devolve uma lista de identificadores (NÃO objetos) de todos os trechos
-  através de uma string ORG do aeroporto."""
+  com código de aeroporto de destino {cod}."""
   return trecho_IMP.busca_por_destino(cod)
 
 def busca_por_codigo_e_data(cod, dia, hora):
@@ -200,6 +203,20 @@ def resumo_de_trafego(ids_trechos):
   que fizeram checkin."""
   return trecho_IMP.resumo_de_trafego(ids_trechos)
 
+def horarios_sao_compativeis(trc1, trc2):
+  """Devolve {True} se e somente se os horários e aeroportos 
+  dos trechos {trc1} e {trc2} são compatíveis, nessa ordem. Ou seja, 
+  a data (dia, hora, e minuto) de chegada do trecho {trc1} 
+  é anterior à data de pearida do trecho {trc2}, e
+  o intervalo entre eles é suficiente para fazer a baldeação 
+  entre os mesmos."""
+  return trecho_IMP.horarios_sao_compativeis(trc1, trc2)
+
+def todos_os_aeroportos():
+  """Retorna uma lista de todos os códigos de aeroportos de partida ou chegada
+  em todos os trechos na base de dados, em ordem alfabética, sem repetições."""
+  return trecho_IMP.todos_os_aeroportos()
+
 # FUNÇÕES PARA DEPURAÇÃO
 
 def verifica(trc, id, atrs):
@@ -214,16 +231,24 @@ def verifica(trc, id, atrs):
   imprme diagnósticos em {sys.stderr}."""
   return trecho_IMP.verifica(trc, id, atrs)
 
-def cria_testes():
+def cria_testes(verb):
   """Limpa a tabela de trechos com {inicializa(True)}, e cria pelo menos três trechos
   para fins de teste, incluindo-os na tabela.  Não devolve nenhum resultado.
   
   Deve ser chamada apenas uma vez no ínicio da execução do programa, 
-  depois de chamar {base_sql.conecta}.""" 
-  trecho_IMP.cria_testes()
+  depois de chamar {base_sql.conecta}.
+  
+  Se {verb} for {True}, escreve uma linha em {sys.stderr}
+  para cada objeto criado.""" 
+  trecho_IMP.cria_testes(verb)
 
 def diagnosticos(val):
   """Habilita (se {val=True}) ou desabilita (se {val=False}) a
   impressão em {sys.stderr} de mensagens de diagnóstico pelas 
   funções deste módulo."""
   trecho_IMP.diagnosticos(val)
+
+def mostra(trc):
+  """Retorna uma cadeia que descreve sucintamente o trecho {trc},
+  para fins de depuração."""
+  return trecho_IMP.mostra(trc)

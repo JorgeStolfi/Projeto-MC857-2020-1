@@ -18,7 +18,7 @@ res = base_sql.conecta("DB", None, None)
 assert res is None
 
 sys.stderr.write("Criando alguns objetos...\n")
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 # Sessao de teste do usuário admin
 ses = sessao.busca_por_identificador("S-00000004")
@@ -44,7 +44,7 @@ def testa_encerra_trecho():
   trc = trecho.busca_por_identificador("T-00000001")
 
   # Verifica se alterou:
-  assert not trecho.obtem_atributo(trc, 'aberto'), "Não encerrou o trecho"
+  assert trecho.obtem_atributo(trc, 'encerrado'), "Não encerrou o trecho"
 
 # Executa os testes
 

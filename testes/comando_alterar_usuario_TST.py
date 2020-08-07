@@ -17,11 +17,7 @@ res = base_sql.conecta("DB", None, None)
 assert res is None
 
 sys.stderr.write("Criando alguns objetos...\n")
-tabelas.cria_todos_os_testes()
-
-# Sessao de teste
-ses = sessao.busca_por_identificador("S-00000001")
-
+tabelas.cria_todos_os_testes(False)
 
 def testa(rotulo, *args):
     """Testa {funcao(*args)}, grava resultado
@@ -33,34 +29,60 @@ def testa(rotulo, *args):
     pretty = False  # Se {True}, formata HTML para legibilidate (mas introduz brancos nos textos).
     utils_testes.testa_gera_html(modulo, funcao, rotulo, frag, pretty, *args)
 
+def testa_atualiza_atributo(rot, ses, args):
+  assert 'id_usuario' in args
+  testa(rot, ses, args)
+  id_usr = args['id_usuario']
+  usr = usuario.busca_por_identificador(id_usr)
+  atrs_usr = usuario.obtem_atributos(usr)
+  for ch, val in atrs_usr.items():
+    if ch in args:
+      assert val == args[ch], ("campo '%s' = '%s' não foi alterado para '%s'\n" % (ch, val, args[ch]))
 
-def testa_atualiza_atributo_com_sucesso():
-    novo_nome = "John First"
-    args = {
-        'id_usuario': "U-00000001",
-        'nome': novo_nome,
-    }
-    testa("Suc", ses, args)
+# ----------------------------------------------------------------------
+# Usuário comum alterando seus próprios dados:
+ses_com1 = sessao.busca_por_identificador("S-00000001")
+usr_com1 = sessao.obtem_usuario(ses_com1)
+assert not usuario.obtem_atributo(usr_com1, 'administrador')
+id_usr_com1 = usuario.obtem_identificador(usr_com1);
 
-    updated_user = usuario.busca_por_identificador("U-00000001")
+args_alt1_com1 = args = { 
+   'id_usuario': id_usr_com1, 
+   'nome': "John First", 
+   'telefone': "007", 
+   'senha': "111",
+   'conf_senha': "111",
+ }
 
-    assert usuario.obtem_atributo(updated_user, "nome") == novo_nome, "Nome não atualizado"
+testa_atualiza_atributo("sesC-usrC", ses_com1, args_alt1_com1)
+   
+# ----------------------------------------------------------------------
+# Administrador alterando usuário comum e promovendo a administrador:
+ses_adm3 = sessao.busca_por_identificador("S-00000004")
+usr_adm3 = sessao.obtem_usuario(ses_adm3)
+assert usuario.obtem_atributo(usr_adm3, 'administrador')
+id_usr_adm3 = usuario.obtem_identificador(usr_adm3);
 
+args_alt2_com1 = args = { 
+  'id_usuario': id_usr_com1, 
+  'nome': "Giovanni Primo", 
+  'telefone': "(011)2-2322",
+  'administrador': True,
+ }
 
-def testa_atualiza_atributo_invalido():
-    cpf_invalido = "123.123.123"
-    args = {
-        'id_usuario': "U-00000001",
-        'CPF': cpf_invalido,
-    }
-    testa("Inv", ses, args)
+testa_atualiza_atributo("sesA-usrC", ses_adm3, args_alt2_com1)
 
-    updated_user = usuario.busca_por_identificador("U-00000001")
+# ----------------------------------------------------------------------
+# Administrador alterando outro administrador e rebaixando:
+usr_adm8 = usuario.busca_por_identificador("U-00000008")
+assert usuario.obtem_atributo(usr_adm8, 'administrador')
+id_usr_adm8 = usuario.obtem_identificador(usr_adm8);
 
-    assert usuario.obtem_atributo(updated_user, "nome") != cpf_invalido, "CPF atualizado, mas não deveria"
+args_alt3_adm8 = args = { 
+  'id_usuario': id_usr_adm8, 
+  'nome': "François Huitième", 
+  'telefone': "+99(99)9-999",
+  'administrador': False,
+ }
 
-# Executa os testes
-
-
-testa_atualiza_atributo_com_sucesso()
-testa_atualiza_atributo_invalido()
+testa_atualiza_atributo("sesA-usrA", ses_adm3, args_alt3_adm8)

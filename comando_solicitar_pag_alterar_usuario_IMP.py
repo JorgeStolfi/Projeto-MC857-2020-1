@@ -1,6 +1,6 @@
 # Implementação do módulo {comando_solicitar_pag_alterar_usuario}. 
 
-import html_pag_alterar_usuario
+import html_pag_usuario
 import sessao
 import usuario
 
@@ -23,6 +23,6 @@ def processa(ses, args):
     erro_prog("usuário não identificado")
 
   atrs = usuario.obtem_atributos(usr)
-  pag = html_pag_alterar_usuario.gera(ses, id_usr, atrs, admin, None)
+  pag = html_pag_usuario.gera(ses, usr, atrs, None)
   return pag
     

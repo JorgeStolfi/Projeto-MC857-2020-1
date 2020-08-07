@@ -33,7 +33,7 @@ trc1_atrs = \
     'dia_chegada':  "2020-05-09",
     'hora_chegada': "20:40",
     'veiculo':      "AAA-0002",
-    'aberto':       True
+    'encerrado':   False
   }
 trc1 = trecho.cria(trc1_atrs)
 trc2_atrs = \
@@ -46,7 +46,7 @@ trc2_atrs = \
     'dia_chegada':  "2020-05-08",
     'hora_chegada': "20:40",
     'veiculo':      "AAA-0002",
-    'aberto':       True
+    'encerrado':    False
   }
 trc2 = trecho.cria(trc2_atrs)
 
@@ -185,20 +185,20 @@ pol3 = pol[3]
 assert poltrona.obtem_identificador(pol3) == "A-00000004"
 assert poltrona.obtem_atributo(pol3, 'id_trecho') == "T-00000002", "epa, trecho errado"
 pol3_dhp_res = poltrona.obtem_dia_e_hora_de_partida(pol3);
-pol3_dhp_esp = "2020-05-08 19:45"
+pol3_dhp_esp = "2020-05-08 19:45 UTC"
 if pol3_dhp_res != pol3_dhp_esp:
   sys.stderr.write("{poltrona.obtem_dia_e_hora_de_partida(pol3)}:")
   sys.stderr.write(" devolveu %s, esperado %s\n" % (pol3_dhp_res, pol3_dhp_esp))
-  ok = False
+  ok_global = False
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {poltrona.obtem_dia_e_hora_de_chegada}:\n")
 pol3_dhc_res = poltrona.obtem_dia_e_hora_de_chegada(pol3);
-pol3_dhc_esp = "2020-05-08 20:40"
+pol3_dhc_esp = "2020-05-08 20:40 UTC"
 if pol3_dhc_res != pol3_dhc_esp:
   sys.stderr.write("{poltrona.obtem_dia_e_hora_de_chegada(pol3)}:")
   sys.stderr.write(" devolveu %s, esperado %s\n" % (pol3_dhc_res, pol3_dhc_esp))
-  ok = False
+  ok_global = False
 
 # ----------------------------------------------------------------------
 sys.stderr.write("---------------------------------------------\n")

@@ -103,6 +103,7 @@ def testa_busca_por_origem_e_destino(org, dst, data_min, data_max, ids):
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {trecho.cria}:\n")
 
+# Cria trecho {trc1}, disponivel, sem poltronas:
 trc1_atrs = {
   'codigo':       "AZ 4024",
   'origem':       "VCP",
@@ -112,12 +113,12 @@ trc1_atrs = {
   'dia_chegada':  "2020-05-08",
   'hora_chegada': "13:40",
   'veiculo':      "PP-CAI",
-  'aberto':       True,
+  'encerrado':   False,
 }
-trc1_ind = 1
 trc1_id = "T-00000001"
 trc1 = testa_cria_trecho("trc1", trc1_id, trc1_atrs)
 
+# Cria trecho {trc2}, disponivel, sem poltronas:
 trc2_atrs = {
   'codigo':       "AZ 4036",
   'origem':       "SDU",
@@ -127,12 +128,12 @@ trc2_atrs = {
   'dia_chegada':  "2020-05-08",
   'hora_chegada': "20:40",
   'veiculo':      "PP-BUM",
-  'aberto':       True,
+  'encerrado':   False,
 }
-trc2_ind = 2
 trc2_id = "T-00000002"
 trc2 = testa_cria_trecho("trc2", trc2_id, trc2_atrs)
 
+# Cria trecho {trc3}, disponivel, sem poltronas:
 trc3_atrs = {
   'codigo':       "AZ 4036",
   'origem':       "SDU",
@@ -142,12 +143,12 @@ trc3_atrs = {
   'dia_chegada':  "2020-05-09",
   'hora_chegada': "20:40",
   'veiculo':      "PP-PAU",
-  'aberto':       True,
+  'encerrado':   False,
 }
-trc3_ind = 2
 trc3_id = "T-00000003"
 trc3 = testa_cria_trecho("trc3", trc3_id, trc3_atrs)
 
+# Cria trecho T-00000004, não encerrado e com uma poltrona ocupada:
 trc4_atrs = {
   'codigo':       "BU 2115",
   'origem':       "MAO",
@@ -157,13 +158,12 @@ trc4_atrs = {
   'dia_chegada':  "2020-05-08",
   'hora_chegada': "07:70",
   'veiculo':      "PQ-NAO",
-  'aberto':       True,
+  'encerrado':   False,
 }
-trc4_ind = 3
 trc4_id = "T-00000004"
 trc4 = testa_cria_trecho("trc4", trc4_id, trc4_atrs)
 
-poltrona_atrs = {
+pol1_atrs = {
   'id_trecho':   trc4_id,
   'numero':      "01A",
   'oferta':      True,
@@ -172,8 +172,9 @@ poltrona_atrs = {
   'bagagens':    0,
   'fez_checkin': False,
 }
-poltrona.cria(poltrona_atrs)
+poltrona.cria(pol1_atrs)
 
+# Cria trecho 5, fechado, sem poltronas:
 trc5_atrs = {
   'codigo':       "TT 2115",
   'origem':       "MAO",
@@ -183,11 +184,48 @@ trc5_atrs = {
   'dia_chegada':  "2020-05-08",
   'hora_chegada': "07:70",
   'veiculo':      "PQ-NAO",
-  'aberto':       False,
+  'encerrado':   True,
 }
-trc5_ind = 4
 trc5_id = "T-00000005"
 trc5 = testa_cria_trecho("trc5", trc5_id, trc5_atrs)
+
+# Cria trecho 6, não encerrado, com uma poltrona livre e uma ocupada:
+trc6_atrs = {
+  'codigo':       "AZ 9999",
+  'origem':       "POA",
+  'destino':      "VCP",
+  'dia_partida':  "2020-05-07",
+  'hora_partida': "14:15",
+  'dia_chegada':  "2020-05-08",
+  'hora_chegada': "04:70",
+  'veiculo':      "PQ-SIM",
+  'encerrado':   False,
+}
+trc6_id = "T-00000006"
+trc6 = testa_cria_trecho("trc6", trc6_id, trc6_atrs)
+
+pol2_atrs = {
+  'id_trecho':   trc6_id,
+  'numero':      "21A",
+  'oferta':      True,
+  'id_compra':   "C-00000001",
+  'preco':       10.00,
+  'bagagens':    0,
+  'fez_checkin': False,
+}
+poltrona.cria(pol2_atrs)
+
+pol3_atrs = {
+  'id_trecho':   trc6_id,
+  'numero':      "21B",
+  'oferta':      True,
+  'id_compra':   None,
+  'preco':       10.00,
+  'bagagens':    0,
+  'fez_checkin': False,
+}
+poltrona.cria(pol3_atrs)
+
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {trecho.busca_por_dias}\n")
@@ -200,7 +238,7 @@ testa_busca_por_dias(dia_min_bd1, dia_max_bd1, ids_bd1)
 dia_min_bd2 = "2020-05-06"
 dia_max_bd2 = "2020-05-08"
 sys.stderr.write("buscando %s .. %s:\n" % (dia_min_bd2, dia_max_bd2))
-ids_bd2 = [trc1_id, trc2_id, trc4_id, trc5_id]
+ids_bd2 = [trc1_id, trc2_id, trc4_id, trc5_id, trc6_id]
 testa_busca_por_dias(dia_min_bd2, dia_max_bd2, ids_bd2)
 
 sys.stderr.write("%s\n" % ("-" * 70))
@@ -250,7 +288,7 @@ trc1_mods = {
   'dia_partida':  "2020-05-08",
   'hora_partida': "12:33",
   'veiculo':      "PU-MBA",
-  'aberto':       False
+  'encerrado':   True
 }
 trecho.muda_atributos(trc1, trc1_mods)
 trc1_atrs_m = trc1_atrs
@@ -267,46 +305,88 @@ verifica_trecho("trc2", trc2, trc2_id, trc2_atrs_m)
 # Testando troca de todos os atributos por outros valores.
 trc3_mods = trc2_atrs.copy() 
 trc3_mods['dia_partida'] = "2020-05-10" # Para evitar duplicação de {(cod,dia,hora)}
-trc3_mods['aberto'] = False
+trc3_mods['encerrado'] = True
 trc3_atrs_m = trc3_mods.copy()
 trecho.muda_atributos(trc3, trc3_mods) # Deveria assumir os valores do trc3
 verifica_trecho("trc3_m", trc3, trc3_id, trc3_atrs_m)
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {trecho.obtem_dia_e_hora_de_partida}:\n")
+
 trc2_dhp_res = trecho.obtem_dia_e_hora_de_partida(trc2);
 trc2_dhp_esp = "2020-05-08 19:45 UTC"
+
 if trc2_dhp_res != trc2_dhp_esp:
   sys.stderr.write("{trecho.obtem_dia_e_hora_de_partida(trc2)}:")
   sys.stderr.write(" devolveu %s, esperado %s\n" % (trc2_dhp_res, trc2_dhp_esp))
-  ok = False
+  ok_global = False
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {trecho.obtem_dia_e_hora_de_chegada}:\n")
+
 trc2_dhc_res = trecho.obtem_dia_e_hora_de_chegada(trc2);
 trc2_dhc_esp = "2020-05-08 20:40 UTC"
+
 if trc2_dhc_res != trc2_dhc_esp:
   sys.stderr.write("{trecho.obtem_dia_e_hora_de_chegada(trc2)}:")
   sys.stderr.write(" devolveu %s, esperado %s\n" % (trc2_dhc_res, trc2_dhc_esp))
-  ok = False
+  ok_global = False
+
+# ----------------------------------------------------------------------
+sys.stderr.write("testando {trecho.numero_de_poltronas}:\n")
+
+trc4_np_res = trecho.numero_de_poltronas(trc4);
+trc4_np_esp = 1
+
+if trc4_np_res != trc4_np_esp:
+  sys.stderr.write("{trecho.trecho.numero_de_poltronas(trc4)}:")
+  sys.stderr.write(" devolveu %s, esperado %s\n" % (trc4_np_res, trc4_np_esp))
+  ok_global = False
+
+trc6_np_res = trecho.numero_de_poltronas(trc6);
+trc6_np_esp = 2
+
+if trc6_np_res != trc6_np_esp:
+  sys.stderr.write("{trecho.trecho.numero_de_poltronas(trc6)}:")
+  sys.stderr.write(" devolveu %s, esperado %s\n" % (trc6_np_res, trc6_np_esp))
+  ok_global = False
+
+# ----------------------------------------------------------------------
+sys.stderr.write("testando {trecho.numero_de_poltronas_livres}:\n")
+
+trc4_np_res = trecho.numero_de_poltronas_livres(trc4);
+trc4_np_esp = 0
+
+if trc4_np_res != trc4_np_esp:
+  sys.stderr.write("{trecho.trecho.numero_de_poltronas_livres(trc4)}:")
+  sys.stderr.write(" devolveu %s, esperado %s\n" % (trc4_np_res, trc4_np_esp))
+  ok_global = False
+
+trc6_np_res = trecho.numero_de_poltronas_livres(trc6);
+trc6_np_esp = 1
+
+if trc6_np_res != trc6_np_esp:
+  sys.stderr.write("{trecho.trecho.numero_de_poltronas_livres(trc6)}:")
+  sys.stderr.write(" devolveu %s, esperado %s\n" % (trc6_np_res, trc6_np_esp))
+  ok_global = False
 
 # ----------------------------------------------------------------------
 sys.stderr.write("testando {trecho.verificar_disponibilidade}:\n")
 trc4_disp_res = trecho.verificar_disponibilidade(trc4)
-trc4_disp_esp = True
-
-trc5_disp_res = trecho.verificar_disponibilidade(trc5)
-trc5_disp_esp = False
+trc4_disp_esp = False
 
 if trc4_disp_res != trc4_disp_esp:
   sys.stderr.write("{trecho.verificar_disponibilidade(trc4)}:")
   sys.stderr.write(" devolveu %s, esperado %s\n" % (trc4_disp_res, trc4_disp_esp))
-  ok = False
+  ok_global = False
 
-if trc5_disp_res != trc5_disp_esp:
-  sys.stderr.write("{trecho.verificar_disponibilidade(trc5)}:")
-  sys.stderr.write(" devolveu %s, esperado %s\n" % (trc5_disp_res, trc5_disp_esp))
-  ok = False
+trc6_disp_res = trecho.verificar_disponibilidade(trc6)
+trc6_disp_esp = True
+
+if trc6_disp_res != trc6_disp_esp:
+  sys.stderr.write("{trecho.verificar_disponibilidade(trc6)}:")
+  sys.stderr.write(" devolveu %s, esperado %s\n" % (trc6_disp_res, trc6_disp_esp))
+  ok_global = False
 
 # ----------------------------------------------------------------------
 # Veredito final:

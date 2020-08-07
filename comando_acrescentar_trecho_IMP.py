@@ -1,7 +1,6 @@
 # Implementação do módulo {comando_acrescentar_trecho}.
 
-import html_pag_acrescentar_trecho
-import html_pag_ver_trecho
+import html_pag_trecho
 import trecho
 import sessao
 import poltrona
@@ -22,23 +21,18 @@ def processa(ses, atrs):
       del atrs['poltronas']
     else:
       raise ErroAtrib("Coloque as poltronas do trecho.\"")
-    # Tenta criar o trecho:
 
-    if 'aberto' not in atrs:
-        atrs['aberto'] = False
-    else:
-        atrs['aberto'] = atrs['aberto'] == 'on' or atrs['aberto']
+    # Tenta criar o trecho:
+    assert 'encerrado' in atrs
+    if atrs['encerrado'] == 'on': atrs['encerrado'] = True # Necessario?
 
     trc = trecho.cria(atrs)
     pols = poltrona.cria_conjunto(trc, esp_pols)
 
     # Mostra o trecho criado:
-    comprar_pols = False  # Pois o dono da sessão deve ser admin, que não pode comprar.
-    alterar_trc = True    # Pois o dono da sessão deve ser admin.
-    id_cpr = None         # Pois o dono da sessão deve ser admin, que não tem carrinho.
-    pag = html_pag_ver_trecho.gera(ses, trc, comprar_pols, alterar_trc, id_cpr)
+    pag = html_pag_trecho.gera(ses, trc, None, "Trecho criado")
   except ErroAtrib as ex:
     erros = ex.args[0]
     # Repete a página de acrescentar trecho com os mesmos argumentos e mens de erro:
-    pag = html_pag_acrescentar_trecho.gera(ses, atrs, erros)
+    pag = html_pag_trecho.gera(ses, None, atrs, erros)
   return pag

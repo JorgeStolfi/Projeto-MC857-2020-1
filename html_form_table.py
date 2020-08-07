@@ -1,24 +1,64 @@
 import html_form_table_IMP
 
-def gera(dados_linhas, atrs, admin, ignora_admin=False):
-  """Retorna HTML de uma tabela com duas colunas: rótulos "<label>...<label/> e campos
-  editáveis <input.../>".  Os valores iniciais dos campos são obtidos do
-  dicionário {atrs}.  O parâmetro booleano {admin} diz se o usuário
-  que pediu o formulário é administrador ({True}) ou cliente ({False}).
+def gera(dados_linhas, atrs):
+  """Retorna HTML de um elemento <table>...</table> com duas colunas:
+  rótulos (<label>...<label/>) e campos (<input.../> ou
+  <textarea>...</textarea>). 
+  
+  O parâmetro {dados_linhas} deve ser uma lista de tuplas.
+  Cada tupla especifica uma linha da tabela (um campo do formulário).
+  
+  Os valores iniciais dos campos são obtidos do dicionário {atrs}. Eles
+  serão convertidos para um formato adequado para inclusão no HTML.  Em 
+  particular, valores de tipo {bool} são convertidos para "on" ou "off", e
+  valores {float} são formatados com 2 casas decimais.
+  
+  Cada elemento de {dados_linhas} é uma sextupla
+  
+    {(rotulo,tipo,chave,dica,visivel,editavel,obrigatorio)}
+  
+  onde:
+  
+    {rotulo} é um string que será usado como rótulo visível do campo; por
+    exemplo, "Nome do passageiro".  Se for {None}, o rótulo será
+    omitido.
+    
+    {tipo} é o tipo de elemento.  Pode ser um dos valores do atributo "type" do
+    <input> ("text", "email", "password", "date", "number", etc.) segundo 
+    o padrão HTML.  O tipo também pode ser "textarea", e nesse caso o elemento será um
+    <textarea>...</textarea> em vez de <input>.
+    
+    {chave} é a chave do valor correspondente no dicionário {atrs}, e também
+    será o nome do campo quando o mesmo for enviado ao servidor pelo botão
+    de submit.  Por exemplo, 'id_compra' ou 'senha'.
+    
+    {dica} é um texto de exemplo ("placeholder") que será mostrado quando o
+    campo não estiver preenchido, para orientar o usuário sobre a natureza 
+    e o formato do dado.  Por exemplo, "HH:MM" ou "+XX(XX)XXXX-XXXX".
+    
+    {visivel} é um booleano que diz se o campo será visível na página
+    gerada. Se for {False}, o campo será excluido da <table> mas
+    incluido imediatamente após o </table>, como um <input> de tipo
+    "hidden". O valor correspondente será enviado ao servidor quando o
+    <form> for submetido.
+    
+    {editavel} é um booleano que diz se o campo é editável pelo usuário.
+    Se for false, o campo será "readonly". Este parãmetro é ignorado
+    se {visivel} é {False}
+    
+    {obrigatorio} é um booleano que diz se o campo é obtigatório.  Afeta a 
+    apresentação do campo. Este parãmetro é ignorado
+    se {visivel} e/ou {editavel} são {False}
+    
+  Se o {tipo} for "number", e {atrs} tiver uma chave '{chave}_min',
+  o <input> terá também o atributo "min='{vmin}'" onde {vmin} é o valor
+  associado a essa chave.
+  
+  NOTE: o resultado devolvido NÃO é um <form>...</form> mas apenas 
+  o conteúdo parcial do mesmo.  Pelo menos um botão de tipo <submit>
+  deve ser concatenado, antes ou depois desta tabela, e então tudo
+  deve ser incluido em um <form>...</form> para
+  ter efeito. Veja {html_form.gera}.
 
-  O parâmetro {ignora_admin} tem valor default False. Se o seu valor for passado
-  como True, o valor do parâmetro admin será ignorado. Os campos gerados
-  na tabela serão readonly se adm_only=True, e serão editáveis caso contrário.
-
-  O parâmetro {dados_linhas} é uma seqüência de quíntuplas
-  {(rot,tipo,chave,dica,adm_only)}, uma para cada linha da tabela.
-
-  O elemento {rot} é o texto a mostrar no rótulo, ou {None} para omitir o rótulo.
-  O elemento {adm_only} é um booleano que diz se o campo só deve ser editável
-  para administradores. Se for {True}, o campo será "readonly" para usuários normais.
-
-  O campo editável será
-  "<input type='{tipo}' name='{chave}' id='{chave}' value='{val}' placeholder='{dica}'/>"
-  onde {val} é o valor {atrs[chave]} apropriadamente convertido para HTML.
-  Se o {tipo} for "numeric" também tem "min='1'."""
-  return html_form_table_IMP.gera(dados_linhas, atrs, admin, ignora_admin)
+  """
+  return html_form_table_IMP.gera(dados_linhas, atrs)

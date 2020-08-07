@@ -12,5 +12,5 @@ def gera(texto, URL, args, cor_fundo):
   valores são acrescentadas como campos 'hidden' junto ao 
   botão propriamente dito. Por enquanto, as chaves e
   valores devem ser cadeias só com letras ASCII, dígitos, pontos,
-  hífens, e underscores."""
+  hífens, vírgulas, e underscores."""
   return html_botao_submit_IMP.gera(texto, URL, args, cor_fundo)

@@ -53,7 +53,7 @@ def inicializa(limpa):
       ( "dia_chegada",  type("foo"), 'TEXT',    False ),  # Data UTC de chegada, "{YYYY}-{MM}-{DD}".
       ( "hora_chegada", type("foo"), 'TEXT',    False ),  # Hora UTC de chegada, "{hh}:{mm}".
       ( "veiculo",      type("foo"), 'TEXT',    False ),  # Código do veículo (onibus/aeronave)".
-      ( "aberto",       type(True),  'INTEGER', False ),  # Disponibilidade do Trecho.
+      ( "encerrado",    type(True),  'INTEGER', False ),  # Poltronas não podem mais ser vendidas/alteradas.
     )
   if limpa:
     tabela_generica.limpa_tabela(nome_tb, colunas)
@@ -113,10 +113,10 @@ def verificar_disponibilidade(trc):
   global cache, nome_tb, letra_tb, colunas, diags
   assert type(trc) is trecho.Objeto_Trecho
 
-  aberto = trecho.obtem_atributo(trc, 'aberto')
+  encerrado = trecho.obtem_atributo(trc, 'encerrado')
   num_poltronas_livres = trecho.numero_de_poltronas_livres(trc)
 
-  return aberto and num_poltronas_livres > 0
+  return (not encerrado) and num_poltronas_livres > 0
 
 def obtem_dia_e_hora_de_partida(trc):
   global cache, nome_tb, letra_tb, colunas, diags
@@ -210,11 +210,28 @@ def resumo_de_trafego(ids_trechos):
       if poltrona.obtem_atributo(pol, 'fez_checkin'):
         total_checkins += 1
 
-
   #O resultado é uma tupla {(ntr, npol_tot, npol_pag, renda_tot, npol_chk)}
   resumo = (len(ids_trechos),total_poltronas,total_poltronas_pagas,custo_total,total_checkins)
-  
   return resumo
+
+def horarios_sao_compativeis(trc1, trc2):
+  global cache, nome_tb, letra_tb, colunas, diags 
+
+  assert trc1 != None and type(trc1) is trecho.Objeto_Trecho
+  assert trc2 != None and type(trc2) is trecho.Objeto_Trecho
+  
+  data_chg1 = obtem_dia_e_hora_de_chegada(trc1)
+  data_sai2 = obtem_dia_e_hora_de_partida(trc2)
+  bad = (data_chg1 >= data_sai2)
+  sys.stderr.write("(%s >= %s) == %s\n" %(data_chg1, data_sai2, str(bad)))
+  if bad: return False
+  # !!! IMPLEMENTAR INTERVALO MÍNIMO PARA BALDEAÇÃO !!!
+  return True # Para permtir outros testes.
+
+def todos_os_aeroportos():
+  # !!! IMPLEMENTAR !!!
+  cods = [ "GRU", "MAO", "POA", "SDU", "VCP" ]
+  return cods
 
 def muda_atributos(trc, mods_mem):
   global cache, nome_tb, letra_tb, colunas, diags
@@ -225,7 +242,7 @@ def muda_atributos(trc, mods_mem):
   objeto.muda_atributos(trc, mods_mem, cache, nome_tb, letra_tb, colunas, def_obj_mem)
   return
 
-def cria_testes():
+def cria_testes(verb):
   global cache, nome_tb, letra_tb, colunas, diags
   inicializa(True)
   # Atributos dos trechos:
@@ -239,7 +256,7 @@ def cria_testes():
         'dia_chegada':  "2020-05-08",
         'hora_chegada': "13:40",
         'veiculo':      "AAA-0001",
-        'aberto':       True
+        'encerrado':   False
       },
       { # T-00000002
         'codigo':       "AZ 4036",
@@ -250,7 +267,7 @@ def cria_testes():
         'dia_chegada':  "2020-05-08",
         'hora_chegada': "20:40",
         'veiculo':      "AAA-0002",
-        'aberto':       True
+        'encerrado':   False
       },
       { # T-00000003
         'codigo':       "GO 2133",
@@ -261,7 +278,7 @@ def cria_testes():
         'dia_chegada':  "2020-05-08",
         'hora_chegada': "20:27",
         'veiculo':      "AAA-0003",
-        'aberto':       True
+        'encerrado':   False
       },
       { # T-00000004
         'codigo':       "AZ 4044",
@@ -272,7 +289,7 @@ def cria_testes():
         'dia_chegada':  "2020-05-09",
         'hora_chegada': "06:25",
         'veiculo':      "AAA-0004",
-        'aberto':       True
+        'encerrado':   False
       },
       { # T-00000005
         'codigo':       "AZ 4092",
@@ -283,7 +300,7 @@ def cria_testes():
         'dia_chegada':  "2020-05-09",
         'hora_chegada': "13:20",
         'veiculo':      "AAA-0005",
-        'aberto':       True
+        'encerrado':   False
       },
       { # T-00000006
         'codigo':       "GO 2121",
@@ -294,7 +311,7 @@ def cria_testes():
         'dia_chegada':  "2020-05-08",
         'hora_chegada': "19:33",
         'veiculo':      "AAA-0006",
-        'aberto':       False
+        'encerrado':   True
       },
       { # T-00000007
         'codigo':       "GO 3031",
@@ -305,7 +322,7 @@ def cria_testes():
         'dia_chegada':  "2020-07-18",
         'hora_chegada': "20:30",
         'veiculo':      "AAA-0007",
-        'aberto':       True
+        'encerrado':   False
       },
       { # T-00000008
         'codigo':       "GO 2331",
@@ -316,7 +333,7 @@ def cria_testes():
         'dia_chegada':  "2020-07-19",
         'hora_chegada': "01:00",
         'veiculo':      "AAA-0008",
-        'aberto':       True
+        'encerrado':   False
       },
       { # T-00000009
         'codigo':       "GO 4040",
@@ -327,7 +344,7 @@ def cria_testes():
         'dia_chegada':  "2020-07-17",
         'hora_chegada': "07:55",
         'veiculo':      "AAA-0009",
-        'aberto':       True
+        'encerrado':   False
       },
       { # T-00000010
         'codigo':       "AZ 1001",
@@ -338,7 +355,7 @@ def cria_testes():
         'dia_chegada':  "2020-07-18",
         'hora_chegada': "13:15",
         'veiculo':      "AAA-0010",
-        'aberto':       True
+        'encerrado':   False
       },
       { # T-00000011
         'codigo':       "AZ 1002",
@@ -349,7 +366,7 @@ def cria_testes():
         'dia_chegada':  "2020-05-08",
         'hora_chegada': "19:33",
         'veiculo':      "AAA-0011",
-        'aberto':       True
+        'encerrado':   False
       },
       { # T-00000012
         'codigo':       "AZ 5521",
@@ -360,14 +377,14 @@ def cria_testes():
         'dia_chegada':  "2020-07-18",
         'hora_chegada': "18:50",
         'veiculo':      "AAA-0012",
-        'aberto':       True
+        'encerrado':   False
       },
     ]
   for atrs in lista_trechos:
     trc = cria(atrs)
     assert trc != None and type(trc) is trecho.Objeto_Trecho
     id_trc = trecho.obtem_identificador(trc)
-    sys.stderr.write("trecho %s criado\n" % id_trc)
+    if verb: sys.stderr.write("trecho %s criado\n" % id_trc)
   return
 
 def verifica(trc, id, atrs):
@@ -461,3 +478,13 @@ def filtra_por_datas(trcs_ids, data_min, data_max):
          lista_retorno.append(trecho.obtem_identificador(trc))
 
   return lista_retorno
+
+def mostra(trc):
+  if trc == None:
+    return "None"
+  else:
+    origem = obtem_atributo(trc, 'origem');
+    data_sai = obtem_dia_e_hora_de_partida(trc);  origem = obtem_atributo(trc, 'origem');
+    destino = obtem_atributo(trc, 'destino');
+    data_chg = obtem_dia_e_hora_de_chegada(trc);
+    return origem + " " + data_sai + "   " + destino + " " + data_chg

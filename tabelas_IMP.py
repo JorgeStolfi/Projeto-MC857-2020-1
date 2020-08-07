@@ -33,13 +33,13 @@ def id_para_objeto(id):
     erro_prog("identificador '" + id + " inválido")
   return obj
 
-def cria_todos_os_testes():
+def cria_todos_os_testes(verb):
   # A ordem é importante:
-  poltrona.cria_testes() # Não tem atributos de tipo objeto.
-  usuario.cria_testes() # Não tem atributos de tipo objeto.
-  trecho.cria_testes()  # Não tem atributos de tipo objeto.
-  compra.cria_testes()  # Tem atributos de tipo {Objeto_Usuario}, {Objeto_Poltrona}.
-  sessao.cria_testes()  # Tem atributos de tipo {Objeto_Usuario}, {Objeto_Compra}.
+  poltrona.cria_testes(verb) # Não tem atributos de tipo objeto.
+  usuario.cria_testes(verb) # Não tem atributos de tipo objeto.
+  trecho.cria_testes(verb)  # Não tem atributos de tipo objeto.
+  compra.cria_testes(verb)  # Tem atributos de tipo {Objeto_Usuario}, {Objeto_Poltrona}.
+  sessao.cria_testes(verb)  # Tem atributos de tipo {Objeto_Usuario}, {Objeto_Compra}.
   
 
 

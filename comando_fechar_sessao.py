@@ -11,6 +11,12 @@ def processa(ses, args):
   
   A função fecha a sessão cujo ID é args['id_sessao'] e retorna o HTML da página 
   principal (homepage) da loja. 
+  
+  Caso a sessão a ser fechada seja a sessão atual do usuário,
+  equivale a fazer logout.
 
-  Caso a sessão a ser fechada seja a sessão atual do usuário, redireciona pra homepage após encerrar."""
+  ATENÇÃO: este comando retors dois resultados, {pag, ses_nova};  onde
+  {pag} é a página a exibir, e {ses_nova} é {None} se a sessão {ses} foi
+  fechada, senão é a própria {ses}.
+  """
   return comando_fechar_sessao_IMP.processa(ses, args)

@@ -13,7 +13,7 @@ res = base_sql.conecta("DB",None,None)
 assert res == None
 
 sys.stderr.write("Criando alguns objetos...\n")
-tabelas.cria_todos_os_testes()
+tabelas.cria_todos_os_testes(False)
 
 # Sessão que será utilizada no teste
 ses1 = sessao.busca_por_identificador("S-00000001")
@@ -33,12 +33,10 @@ def testa(rotulo, *args):
 
 # Testa com e sem a opção de excluir habilitada
 testes = ( \
-    ( "exT-trT-E0", True,  True,  None, ),
-    ( "exT-trT-E1", True,  True,  "Tem algo de podre no Reino de Dinamarca" ),
-    ( "exT-trF-E0", True,  False, None, ),
-    ( "exF-trT-E0", False, True,  None, ),
-    ( "exF-trF-E0", False, False, None, ),
+    ( "exT-E0", True,  None, ),
+    ( "exT-E1", True,  "Tem algo de podre no Reino de Dinamarca" ),
+    ( "exF-E0", False, None, ),
   )
 
-for rot, excluir, trocar, erros in testes:
-  testa(rot, ses1, cpr1, excluir, trocar,  None)
+for rot, excluir, erros in testes:
+  testa(rot, ses1, cpr1, excluir, None)
