@@ -1,1 +1,0 @@
-Foi implementada a função de resumo de trechos, que recebe uma lista de ids e devolve informações somadas sobre os trechos informados
