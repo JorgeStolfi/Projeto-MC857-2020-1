@@ -67,6 +67,7 @@ usr1_atrs = {
   'CPF': "123.456.789-00", 
   'telefone': "+55(19)9 9876-5432",
   'documento': "1.234.567-9 SSP-SP",
+  'milhagem': 100,
   'administrador': False
 }
 uindice1 = 1
@@ -80,6 +81,7 @@ usr2_atrs = {
   'CPF': "987.654.321-99", 
   'telefone': "+55(19)9 9898-1212",
   'documento': 'CD98765-43 PF',
+  'milhagem': 200,
   'administrador': False
 }
 uindice2 = 2
@@ -94,6 +96,7 @@ usr3_atrs = {
   'CPF': "111.111.111-11", \
   'telefone': "+55(19)9 9999-9999",
   'documento': None,
+  'milhagem': None,
   'administrador': True
 }
 uindice3 = 3
