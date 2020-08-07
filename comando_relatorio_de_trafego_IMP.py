@@ -4,7 +4,7 @@ import sys
 
 def processa(ses, args):
   assert ses != None   # Deveria acontecer.
-  lista_aeroportos = ["VCP", "SDU", "POA", "MAO", "GIG", "CGH", "CFN", "BSB"]
+  lista_aeroportos = trecho.todos_os_aeroportos()
 
   resumos = []
   for aeroporto in lista_aeroportos:
