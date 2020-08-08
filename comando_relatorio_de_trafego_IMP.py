@@ -18,5 +18,5 @@ def processa(ses, args):
   # Para fins de teste
   sys.stderr.write("dados: %s" % resumos)
   
-  pag = html_relatorio_de_trafego.gera(resumos)
+  pag = html_relatorio_de_trafego.gera(ses, resumos)
   return pag
