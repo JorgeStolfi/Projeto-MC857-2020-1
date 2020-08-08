@@ -1,0 +1,7 @@
+186447 [U] "Minhas Sessoes" > "Ver" (primeira) > "Fechar sessão": fazer funcionar
+
+No modulo {comando_fechar_sessao}, quando é solicitado o fechamento da sessão
+ativa, é realizado o logout da sessao. Teste para este caso funcionou
+Já quando a sessao solicitada a ser fechada é outra o correto seria fechar
+esta sessao e retornar para a pagina de sessoes, mas não consegui implementar
+esta parte, e teste falhou

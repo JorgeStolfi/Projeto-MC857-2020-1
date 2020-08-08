@@ -6,29 +6,26 @@ import html_pag_principal
 import sessao
 
 def processa(ses, args):
-  assert ses != None and sessao.aberta(ses) # Paranóia.
-  
-  # Obtem a sessão a fechar (pode ser diferente de {ses}:
-  id_ses_fech = args['id_sessao'] if 'id_sessao' in args else None
-  assert id_ses_fech != None # Paranóia (formulário deveria especificar)
-  ses_fech = sessao.busca_por_identificador(id_ses_fech)
-  assert ses_fech != None # Paranóia.
-  
-  try:
-    sessao.fecha(ses_fech)
-    erros = []
-  except ErroAtrib as ex:
-    erros = ex[0]
+    assert ses != None and sessao.aberta(ses)
 
-  if ses == ses_fech and not sessao.aberta(ses):
-    # A sessao que foi fechada é a sessao corrente.
-    # Fazer como em comando_fazer_logout:
-    pag = html_pag_principal.gera(None, erros)
-    ses_nova = None
-  else:
-    # A sessão corrente não foi fechada.
-    # Mostra a página da sessão que deveria ser fechada, com erros se houve:
-    pag = html_pag_sessao.gera(ses, ses_fech, erros)
-    ses_nova = ses
+    id_ses = args['id_sessao']
+    ses_exit = sessao.busca_por_identificador(id_ses)
 
-  return pag, ses_nova
+    # Se for fechar a sessao ativa, feito logout
+    if ses == ses_exit:
+        sessao.fecha(ses)
+        ses_nova = None
+        pag = html_pag_principal.gera(ses_nova, None)
+    # caso nao seja a sessao ativa, somente fecha e retorna para pagina de sessoes
+    else:
+        sessao.fecha(ses)
+        ses_nova = None
+        pag = html_pag_principal.gera(ses_nova, None)
+
+    return pag, ses_nova
+""" TENTATIVA DE IMPLEMENTAÇÃO PARA SESSAO NAO ATIVA
+    else:
+        sessao.fecha(ses_exit)]
+        pag = html_pag_sessao.gera(ses,ses,None)
+        ses_nova = ses
+"""
