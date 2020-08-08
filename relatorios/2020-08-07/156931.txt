@@ -1,0 +1,3 @@
+Minha tarefa do dia 07-08 era "[X] "Ofertas" > "Ver" (primeira) > "Ver" (primeira): fazer funcionar."
+Fiz a modificação necessaria, passando um dict com o id da poltrona, pois isso não estava sendo passado, e por esse motivo não estava funcionando.
+Os modulos alterados ja possuem testes, que foram executados e esta tudo ok.
