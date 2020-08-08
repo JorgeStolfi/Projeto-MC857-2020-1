@@ -1,6 +1,6 @@
 import html_resumo_de_poltrona_de_trecho_IMP
 
-def gera(pol, alterar, comprar, excluir, fazer_checkin):
+def gera(pol, alterar, comprar, excluir, fazer_checkin, embarcar):
   """Devolve uma lista de fragmentos HTML que decrevem a poltrona {pol},
   que deve ser um objeto da classe {Objeto_Poltrona}. A lista terá um
   elemento string separado para cada campo ou botão. Esta tupla deve ser
@@ -28,6 +28,8 @@ def gera(pol, alterar, comprar, excluir, fazer_checkin):
   emite o comando "fazer_checkin". Estas tres colunas estarão em branco
   se a poltrona estiver livre. O botão "Checkin" só deve existr se o
   passageiro ainda não fez checkin. 
+
+  O parâmetro {embarcar} solicita a inclusao de um botão "Embarcar"
   
   Todos os comandos emitidos pelos botões terão argumento {'id_poltrona': id_pol}.
   
@@ -52,7 +54,7 @@ def gera(pol, alterar, comprar, excluir, fazer_checkin):
   ainda ainda estiver em aberto, e este trecho não pode estar.)
   
   Se {fazer_checkin} for {True}, {alterar_pol} deveria ser {True}.)"""
-  return html_resumo_de_poltrona_de_trecho_IMP.gera(pol, alterar, comprar, excluir, fazer_checkin)
+  return html_resumo_de_poltrona_de_trecho_IMP.gera(pol, alterar, comprar, excluir, fazer_checkin, embarcar)
 
 def gera_cabecalho(fazer_checkin):
   """Devolve uma lista com os cabeçalhos para as colunas

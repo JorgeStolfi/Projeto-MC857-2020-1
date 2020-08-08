@@ -22,6 +22,7 @@ class Objeto_Poltrona(Objeto_Poltrona_IMP):
     'bagagens'     quantidade de bagagens relacionadas a compra, ou {None} se livre.
     'preco'        preço da passagem nesta poltrona.
     'fez_checkin'  booleano que diz se o passageiro fez check-in em dada poltrona.
+    'embarcou'  booleano que diz se o passageiro embarcou
 
   Outros atributos (classe, etc.) poderão
   ser acrescentados no futuro.

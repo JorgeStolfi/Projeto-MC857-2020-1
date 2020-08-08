@@ -52,6 +52,7 @@ testes = ( \
 
 for id_pol in ( "A-00000001", "A-00000002",  "A-00000003", "A-00000004"):
   for alterar, comprar, excluir, fazer_checkin in testes:
+    embarcar = fazer_checkin
     rot = id_pol;
     pol = poltrona.busca_por_identificador(id_pol);
     assert pol != None
@@ -60,6 +61,6 @@ for id_pol in ( "A-00000001", "A-00000002",  "A-00000003", "A-00000004"):
     rot += "-exclu" + str(excluir)[0];
     rot += "-fzchk" + str(fazer_checkin)[0];
     testa_gera_cabecalho(rot, fazer_checkin)
-    testa_gera(rot, pol, alterar, comprar, excluir, fazer_checkin)
+    testa_gera(rot, pol, alterar, comprar, excluir, fazer_checkin, embarcar)
     testa_gera_legenda(rot, fazer_checkin)
     

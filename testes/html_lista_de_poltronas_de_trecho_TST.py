@@ -47,6 +47,8 @@ for usr_id, trc_id in testes:
   assert trc != None
   ids_pols = trecho.obtem_poltronas(trc);
 
+  fazer_checkin = admin #por enquanto
+
   rot = trc_id + "-" + str(usr_id) + "-" + str(id_carr)
   rot += "-admin" + str(admin)[0];
   rot += "-fzck" + str(fazer_checkin)[0];

@@ -36,6 +36,7 @@ colunas = \
     ( 'bagagens',    type(25),    'INTEGER', True  ), # Quantidade de bagagens na compra, ou {None}.
     ( 'preco' ,      type(3.14),  'FLOAT',   False ), # Preço da passagem nesta poltrona.
     ( 'fez_checkin', type(False), 'INTEGER', False ), # Diz se o passageiro já fez checkin nessa poltrona.
+    ( 'embarcou',    type(False), 'INTEGER', False ), # Diz se o passageiro já embarcou.
   )
   # Descrição das colunas da tabela na base de dados.
 
@@ -312,7 +313,8 @@ def cria_conjunto(trc, txt):
       'oferta': False, 
       'bagagens': None, 
       'id_compra': None, 
-      'fez_checkin': False 
+      'fez_checkin': False, 
+      'embarcou': False 
     }
     pol = cria(pol_atrs)
     pols.append(pol)
@@ -331,6 +333,7 @@ def cria_testes(verb):
         'preco':       10.00,
         'bagagens':    0,
         'fez_checkin': True, 
+        'embarcou': True,
       },
       # Poltrona "A-00000002":
       { 'id_trecho':   "T-00000001",
@@ -340,6 +343,7 @@ def cria_testes(verb):
         'preco':       60.00,
         'bagagens':    None,
         'fez_checkin': False, 
+        'embarcou': False,
       },
       # Poltrona "A-00000003":
       { 'id_trecho':   "T-00000001",
@@ -349,6 +353,7 @@ def cria_testes(verb):
         'preco':       11.00,
         'bagagens':    1,
         'fez_checkin': False, 
+        'embarcou': False,
       },
       # Poltrona "A-00000004":
       { 'id_trecho':   "T-00000002",
@@ -358,6 +363,7 @@ def cria_testes(verb):
         'preco':       20.00,
         'bagagens':    None,
         'fez_checkin': False, 
+        'embarcou': False,
       },
       # Poltrona "A-00000005":
       { 'id_trecho':   "T-00000002",
@@ -367,6 +373,7 @@ def cria_testes(verb):
         'preco':       30.00,
         'bagagens':    None,
         'fez_checkin': False, 
+        'embarcou': False,
       },
       # Poltrona "A-00000006":
       { 'id_trecho':   "T-00000002",
@@ -376,6 +383,7 @@ def cria_testes(verb):
         'preco':       12.00,
         'bagagens':    2,
         'fez_checkin': False, 
+        'embarcou': False,
       },
       # Poltrona "A-00000007":
       { 'id_trecho':   "T-00000003",
@@ -385,6 +393,7 @@ def cria_testes(verb):
         'preco':       50.00,
         'bagagens':    None,
         'fez_checkin': False, 
+        'embarcou': False,
       },
       # Poltrona "A-00000008":
       { 'id_trecho':   "T-00000003",
@@ -394,6 +403,7 @@ def cria_testes(verb):
         'preco':       13.00,
         'bagagens':    3,
         'fez_checkin': False, 
+        'embarcou': False,
       },
       # Poltrona "A-00000009":
       { 'id_trecho':   "T-00000001",
@@ -403,6 +413,7 @@ def cria_testes(verb):
         'preco':       15.00,
         'bagagens':    2,
         'fez_checkin': False,
+        'embarcou': False,
       },
       # Poltrona "A-00000010":
       { 'id_trecho':   "T-00000002",
@@ -412,6 +423,7 @@ def cria_testes(verb):
         'preco':       10.00,
         'bagagens':     4,
         'fez_checkin': False,
+        'embarcou': False,
       },
       # Poltrona "A-00000011":
       { 'id_trecho':   "T-00000003",
@@ -421,6 +433,7 @@ def cria_testes(verb):
         'preco':       18.00,
         'bagagens':    5,
         'fez_checkin': False,
+        'embarcou': False,
       },
       # Poltrona "A-00000012":
       { 'id_trecho':   "T-00000002",
@@ -430,6 +443,7 @@ def cria_testes(verb):
         'preco':       25.00,
         'bagagens':    2,
         'fez_checkin': False,
+        'embarcou': False,
       },
       # Poltrona "A-00000013":
       { 'id_trecho':   "T-00000003",
@@ -439,6 +453,7 @@ def cria_testes(verb):
         'preco':       8.00,
         'bagagens':    1,
         'fez_checkin': False,
+        'embarcou': False,
       },
       # Poltrona "A-00000014":
       { 'id_trecho':   "T-00000001",
@@ -448,6 +463,7 @@ def cria_testes(verb):
         'preco':       20.00,
         'bagagens':    5,
         'fez_checkin': False,
+        'embarcou': False,
       },
       # Poltrona "A-00000015":
       { 'id_trecho':   "T-00000004",
@@ -457,6 +473,7 @@ def cria_testes(verb):
         'preco':       30.00,
         'bagagens':    None,
         'fez_checkin': False,
+        'embarcou': False,
       },
       # Poltrona "A-00000016":
       { 'id_trecho':   "T-00000005",
@@ -466,6 +483,7 @@ def cria_testes(verb):
         'preco':       30.00,
         'bagagens':    None,
         'fez_checkin': False,
+        'embarcou': False,
       },
       # Poltrona "A-00000017":
       { 'id_trecho':   "T-00000006",
@@ -475,6 +493,7 @@ def cria_testes(verb):
         'preco':       30.00,
         'bagagens':    None,
         'fez_checkin': False,
+        'embarcou': False,
       },
       # Poltrona "A-00000018":
       { 'id_trecho':   "T-00000007",
@@ -484,6 +503,7 @@ def cria_testes(verb):
         'preco':       30.00,
         'bagagens':    None,
         'fez_checkin': False,
+        'embarcou': False,
       },
       # Poltrona "A-00000019":
       { 'id_trecho':   "T-00000008",
@@ -493,6 +513,7 @@ def cria_testes(verb):
         'preco':       30.00,
         'bagagens':    None,
         'fez_checkin': False,
+        'embarcou': False,
       },
       # Poltrona "A-00000020":
       { 'id_trecho':   "T-00000009",
@@ -502,6 +523,7 @@ def cria_testes(verb):
         'preco':       30.00,
         'bagagens':    None,
         'fez_checkin': True,
+        'embarcou': True,
       },
       # Poltrona "A-00000021":
       { 'id_trecho':   "T-00000010",
@@ -511,6 +533,7 @@ def cria_testes(verb):
         'preco':       30.00,
         'bagagens':    None,
         'fez_checkin': False,
+        'embarcou': False,
       },
       # Poltrona "A-00000022":
       { 'id_trecho':   "T-00000011",
@@ -520,6 +543,7 @@ def cria_testes(verb):
         'preco':       30.00,
         'bagagens':    None,
         'fez_checkin': True,
+        'embarcou': True,
       },
       # Poltrona "A-00000023":
       { 'id_trecho':   "T-00000012",
@@ -529,6 +553,7 @@ def cria_testes(verb):
         'preco':       30.00,
         'bagagens':    None,
         'fez_checkin': False,
+        'embarcou': False,
       },
       # Poltrona "A-00000024":
       { 'id_trecho':   "T-00000001",
@@ -538,6 +563,7 @@ def cria_testes(verb):
         'preco':       25.00,
         'bagagens':    None,
         'fez_checkin': False,
+        'embarcou': False,
       },
       # Poltrona "A-00000025":
       { 'id_trecho':   "T-00000004",
@@ -547,6 +573,7 @@ def cria_testes(verb):
         'preco':       25.00,
         'bagagens':    None,
         'fez_checkin': True,
+        'embarcou': True,
       },
       # Poltrona "A-00000026":
       { 'id_trecho':   "T-00000005",
@@ -556,6 +583,7 @@ def cria_testes(verb):
         'preco':       25.00,
         'bagagens':    None,
         'fez_checkin': False,
+        'embarcou': False,
       },
     ]
   for atrs in lista_atrs:
