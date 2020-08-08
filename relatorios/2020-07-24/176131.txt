@@ -1,9 +1,0 @@
-Na aula de hoje, fui responsável pela seguinte tarefa: 176131 [A] > "Checar objeto" (A-00000001) > (trocar preço) "Alterar": Fazer funcionar. @{comando_alterar_poltrona}
-
-O problema era que o botão alterar em html_form_dados_de_poltrona_IMP.py estava sendo
-criado de forma incorreta. No lugar de chamar o comando 'alterar_poltrona', ele
-estava chamando o comando 'alterar_dados_de_poltrona', que é um comando inexistente.
-
-Bastou fazer essa troca que o botão passou a funcionar corretamente.
-
-Apenas para garantir, o foram executados novamente os testes de comando_alterar_poltrona.TST, todos executados com sucesso.
