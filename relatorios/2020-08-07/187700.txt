@@ -1,0 +1,2 @@
+Comando relatorio trafego agora usa a funcao
+"todos_os_aeroportos" do trecho.
