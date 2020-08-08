@@ -49,6 +49,7 @@ def inicializa(limpa):
     (
       ( "usr",          usuario.Objeto_Usuario, 'TEXT',    False ),  # Objeto/id do usuário logado na sessão.
       ( "criacao",      type("foo"),            'TEXT',    False ),  # Momento de criação da sessão.
+      ( "fechamento",   type("foo"),            'TEXT',    False ),  # Momento de fechamento da sessão.  
       ( "abrt",         type(False),            'INTEGER', False ),  # Estado da sessao (1 = aberta).
       ( "cookie",       type("foo"),            'TEXT',    False ),  # Cookie da sessao.
       ( "carrinho",     compra.Objeto_Compra,   'TEXT',    True  ),  # Objeto compra que é o carrinho da sessão.
@@ -64,6 +65,7 @@ def cria(usr, cookie, carrinho):
   atrs_mem = {
     'usr': usr,
     'criacao': datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S %z"),
+    'fechamento' : datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S %z"),
     'abrt': True,
     'cookie': cookie,
     'carrinho' : carrinho
@@ -151,7 +153,7 @@ def muda_atributos(ses, mods_mem):
 def fecha(ses):
   global cache, nome_tb, letra_tb, colunas, diags
   if (ses is not None) and (sessao.obtem_atributo(ses,'abrt')):
-    mods_mem = { 'abrt': False }
+    mods_mem = { 'abrt': False , 'fechamento': datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S %z")}
     muda_atributos(ses, mods_mem)
 
 def cria_testes(verb):

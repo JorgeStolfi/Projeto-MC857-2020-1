@@ -1,0 +1,1 @@
+Modificado o arquivo sessao_IMP.py para acrescentar a coluna "fechamento" em uma sessão, que recebe a data e hora do momento do encerramento da sessão.
