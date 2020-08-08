@@ -1,0 +1,5 @@
+Dado que a minha tarefa era "Acrescentar um campo numérico "milhagem" ao objeto usuário. Mostrar na {html_pag_usuario}, mas editável só para administradores.", adicionei o campo {milhagem} na classe {usuario}. Para refletir as mudanças no banco de dados, foi necessário alterar o módulo {valida_campo} para incluir a validação do novo campo.
+
+O módulo {comando_ver_objeto} foi modificado para que fosse possível checar o objeto usuario no site - a estava quebrada.
+
+Por fim, adicionei a entrada "Milhagem" na criação do formulário do usuário no módulo {html_form_dados_de_usuario}, tornando o campo editável apenas para adm e visivel para ambos.

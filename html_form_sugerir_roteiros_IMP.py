@@ -14,7 +14,7 @@ def gera():
 
   ht_rotulo = html_label.gera("Data mínima de partida", ": ")
   ht_campo = html_input.gera(None, "text", "dia_min", None, None, True, True, "aaaa-mm-dd", None)
-  ht_campo2 = html_input.gera(None, "text", "hora_min", None, None, True, True, "HH:MM", None, False)
+  ht_campo2 = html_input.gera(None, "text", "hora_min", None, None, True, True, "HH:MM", None)
   ht_rotulo2 = html_label.gera("UTC", "")
   linhas.append((ht_rotulo, ht_campo, ht_campo2, ht_rotulo2))
 

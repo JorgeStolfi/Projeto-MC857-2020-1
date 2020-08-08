@@ -89,10 +89,17 @@ def gera_botoes_linha_2():
     ht_input + \
     ht_bt_submit
 
+  ht_input2 = html_input.gera(None, "text", "passageiro", None, None, True, True, "Nome ou documento", None)
+  ht_bt_submit2 = html_botao_submit.gera("Buscar passageiro", "buscar_compras", None, '#ffdd22')
+  form_content2 = \
+    ht_input2 + \
+    ht_bt_submit2
+
   botoes = (
     html_botao_simples.gera("Acrescentar trecho", "solicitar_pag_acrescentar_trecho", None, '#ffdd22'),
     html_botao_simples.gera("Trafego", "comando_relatorio_de_trafego", None, '#FF00FF'),
-    html_form.gera(form_content)
+    html_form.gera(form_content),
+    html_form.gera(form_content2)
 
 
     # html_botao_simples.gera("Alterar trecho", "solicitar_pag_alterar_trecho", None, '#ffdd22'),

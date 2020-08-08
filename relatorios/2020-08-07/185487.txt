@@ -1,0 +1,9 @@
+Relatório
+
+
+A principio minha tarefa era fazer um botão na tela inical para o administrador
+checar os trechos de um veiculo, mas pelo fato de faltar muitos módulos para realizar
+essa tarefa o professor acabou mudando para eu colocar um campo para busca por Veiculo
+no {html_form_buscar_trechos} caso o usuário seja administrador, portanto foi isso que
+eu fiz, alterei o módulo {html_form_buscar_trechos} para adicionar esse campo só em
+sessões de administrador.

@@ -16,7 +16,7 @@ def gera(ids_poltronas, usr, carr):
   
   Cada linha da tabela é gerada por
   {html_resumo_de_poltrona_de_trecho.gera} com argumentos {(pol,
-  alterar, comprar, excluir, fazer_checkin)}. O parâmetro {alterar} será
+  alterar, comprar, excluir, fazer_checkin, embarcar)}. O parâmetro {alterar} será
   {True} se e somente se {usr} for administrador. O parãmetro {comprar}
   será {True} se e somente se {usr} não for nem {None} nem
   administrador, a poltrona {pol} estiver livre, não houver impedimento

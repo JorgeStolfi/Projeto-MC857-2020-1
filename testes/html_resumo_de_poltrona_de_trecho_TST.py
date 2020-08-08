@@ -53,7 +53,7 @@ testes = ( \
 
 for id_pol in ( "A-00000001", "A-00000002",  "A-00000003", "A-00000004"):
   for alterar, comprar, excluir, fazer_checkin in testes:
-    
+    embarcar = fazer_checkin
     rot = id_pol;
     
     # Estamos garantindo que a poltrona A-00000001 está com status pago e 
@@ -74,6 +74,6 @@ for id_pol in ( "A-00000001", "A-00000002",  "A-00000003", "A-00000004"):
     rot += "-exclu" + str(excluir)[0];
     rot += "-fzchk" + str(fazer_checkin)[0];
     testa_gera_cabecalho(rot, fazer_checkin)
-    testa_gera(rot, pol, alterar, comprar, excluir, fazer_checkin)
+    testa_gera(rot, pol, alterar, comprar, excluir, fazer_checkin, embarcar)
     testa_gera_legenda(rot, fazer_checkin)
     

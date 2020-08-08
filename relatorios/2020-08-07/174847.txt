@@ -1,0 +1,20 @@
+Relatorio do dia 07/08/2020
+
+Aluno: Miguel Augusto S Guida    RA: 174847
+
+Tarefa: Acrescentar um campo booleano 'embarcou' no obejto poltrona. Mostre esse campo na lista de potrona onde aparece o atributo 'fez_checkin', 
+        e acrescente o botão "Embarcou" onde aparece "Checkin".
+
+- poltrona_IMP.py: Adicionei nova clona 'embarcou' e populei os testes.
+
+- html_resumo_de_poltona_de_trecho_IMP.py: 
+        - Adicionei um novo parametro "embarcar" no metodo gera().
+        - Adicionei a coluna "EM" referente ao embarque e adiciono o botão "Embarcar" caso o parâmetro "embarcar" seja True e se o usuario já fez Checkin
+        - Adiciono legenda para o "EM"
+
+- Incluí o campo embarcar nas especificações e nas chamadas de html_resumo_de_poltona_de_trecho.gera().
+
+- Adicionei o campo embarcar nos testes.
+
+
+
