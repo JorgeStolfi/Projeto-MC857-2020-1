@@ -90,8 +90,10 @@ def gera(pol, alterar, comprar, excluir, fazer_checkin, embarcar):
       if fez_checkin:
         ht_bt_checkin = ""
       else:
-        ht_bt_checkin = html_botao_simples.gera("Checkin", 'fazer_checkin', args_cmd, '#55ee55')
-      campos.append(ht_bt_checkin);
+        # Apresentando o botão fazer checkin somente quando o status é pago
+        if compra.obtem_atributo(cpr, 'status') == 'pago':
+          ht_bt_checkin = html_botao_simples.gera("Checkin", 'fazer_checkin', args_cmd, '#55ee55')
+          campos.append(ht_bt_checkin);
     else:
       # Campos em branco:
       campos.append("");

@@ -1,0 +1,14 @@
+João Flores 199818
+
+Task: Botão "fazer checkin" só deve aparecer se a compra estiver no estado "pago".
+
+Nesse relatório foram alterados os arquivos 
+html_resumo_de_poltrona_de_trecho_TST e html_resumo_de_poltrona_de_trecho_IMP
+
+html_resumo_de_poltrona_de_trecho_IMP:
+    Foi implementada a condição de aparecer o botão "fazer checkin" somente quando o status é "pago",
+    nas linhas 88 a 91.
+
+html_resumo_de_poltrona_de_trecho_TST:
+    Foi alterado o teste para verificar a mudança realizada na tarefa, modificando uma das poltronas de teste
+    para o status "pago" e 'fez_checkin' para false.
