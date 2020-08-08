@@ -18,6 +18,7 @@ def gera(atrs, admin):
     ( "Destino",                "text",  "destino",      "Código do aeroporto",  True, True, False, ),
     ( "Data máxima de chegada", "text",  "dia_chegada",  "aaaa-mm-dd",           True, True, False, ),
     ( None,                     "text",  "hora_chegada", "hh:mm",                True, True, False, ),
+    ( "Veiculo",                "text",   "veiculo",     "Código do veiculo",    admin, True, False)
   )
 
   ht_table = html_form_table.gera(dados_linhas, atrs)
