@@ -1,4 +1,0 @@
-- {html_resumo_de_poltrona_de_trecho_IMP} adicionado o nome e documento relacionado às poltrona do trecho.
-- Arquivo de teste {html_resumo_de_poltrona_de_trecho_TST} não apresentou problemas.
-  O problema consistiu em identificar os atributos procurados, partindo indiretamente de outros objetos (poltrona->compra).
-  A formatação está tosca, apenas os atributos pedidos foram colocados na pagina.
