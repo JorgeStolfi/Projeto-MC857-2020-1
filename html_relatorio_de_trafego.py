@@ -1,6 +1,6 @@
 import html_relatorio_de_trafego_IMP
 
-def gera(dados):
+def gera(ses, dados):
   """Formata um relatório {dados} de tráfego por aeroporto.
   
   A entrada é uma lista cujos elementos são tuplas {(codigo, rel_chegada, rel_saida)},
@@ -11,4 +11,4 @@ def gera(dados):
   
   O resultado deve ser esses dados formatados como um <table>...</table> HTML.
   As colunas devem ter cabeçalhos no estilo padrão."""
-  return html_relatorio_de_trafego_IMP.gera(dados)
+  return html_relatorio_de_trafego_IMP.gera(ses, dados)

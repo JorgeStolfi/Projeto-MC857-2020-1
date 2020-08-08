@@ -18,6 +18,7 @@ class Objeto_Usuario(Objeto_Usuario_IMP):
     'CPF'           número CPF ("{XXX}.{YYY}.{ZZZ}-{KK}")
     'telefone'      telefone completo com DDI e DDD ("+{XX}({YY}){MMMM}-{NNNN}").
     'documento'     número do documento de identidade (RG, passaporte, etc.).
+    'milhagem'      numero de pontos no sistema de milhagem.
     'administrador' {True} se o usuário é administrador, {False} se cliente.
    
   O 'documento' é opcional.  Os demais atributos são obrigatórios.

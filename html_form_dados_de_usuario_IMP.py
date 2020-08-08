@@ -34,6 +34,7 @@ def gera(id_usr, atrs, admin, ht_bt_submit):
   cps.append(( "CPF",             "text",     "CPF",           "xxx.xxx.xxx-xx",      True,  ec_edit, True, ))
   cps.append(( "Telefone",        "text",     "telefone",      "+xx(xx)x-xxxx-xxxx",  True,  True,    True, ))
   cps.append(( "Documento",       "text",     "documento",     "Número, tipo, órgão", True,  True,    True, ))
+  cps.append(( "Milhagem",        "text",     "milhagem",      "Número não-negativo", True,  id_vis,  True, ))
   cps.append(( "Senha",           "password", "senha",         None,                  True,  True,    True, ))
   cps.append(( "Confirmar senha", "password", "conf_senha",    None,                  True,  True,    True, ))
   if admin:

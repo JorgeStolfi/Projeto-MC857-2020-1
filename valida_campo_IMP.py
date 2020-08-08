@@ -60,6 +60,17 @@ def documento(rotulo, val, nulo_ok):
   # !!! Implementar !!!
   return []
 
+def milhagem(rotulo, val, nulo_ok):
+  erros = []
+  if val == None:
+    if not nulo_ok: erros += [ "campo '%s' não pode ser omitido" % rotulo, ]
+  else:
+    if type(val) is not int:
+      erros += [ "campo '%s' = \"%s\" deve ser inteiro positivo" % (rotulo, str(val)) ]
+    elif val < 0:
+      erros += [ "campo '%s' tem valor inválido, deveria ser inteiro não-negativo" % rotulo ]
+  return erros
+
 def booleano(rotulo, val, nulo_ok):
   erros = []
   if val == None:

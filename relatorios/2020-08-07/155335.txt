@@ -1,0 +1,15 @@
+* Corrige o comando para gerar o relatório de tráfego.
+
+O comando não estava sendo processado corretamente pela função que processa
+todos os comandos. Além disso, a função original implementava errado a 
+função "map" do Python.
+
+Fiz as correções no processamento de comando e na função original. Então eu
+notei que a função gerava o relatório em um HTML direto, sem usar do
+módulo de página genérica. Isso quebrava os acentos pois faltava o cabeçalho
+de UTF-8 e também fazia com que a tabela ficasse solta.
+
+Eu adicionei a tabela na função de página genérica e então notei que o usuário
+era deslogado logo em seguida. Isso ocorria porque a sessão não era passada
+pela função. Corrigi isso também, fazendo com que o relatório funcione de
+forma totalmente integrada com a aplicação

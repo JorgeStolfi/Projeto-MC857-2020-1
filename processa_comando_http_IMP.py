@@ -376,9 +376,9 @@ def processa_comando(tipo, ses, dados):
     elif cmd == '/solicitar_pag_contato':
       # Quer formulário para mandar mensagens aos administradores:
       pag = comando_solicitar_pag_contato.processa(ses, args)
-
-    elif cmd == 'comando_relatorio_de_trafego':
-      # Quer formulário para mandar mensagens aos administradores:
+    
+    elif cmd == '/comando_relatorio_de_trafego':
+      # Quer relatório de tráfego nos aeroportos:
       pag = comando_relatorio_de_trafego.processa(ses, args)
 
     # --- comandos referentes a {Objeto_Usuario} ------------------------

@@ -31,7 +31,7 @@ def processa(ses, args):
       usr = usuario.busca_por_identificador(id)
       if usr == None: raise ErroAtrib("Não existe usuário com identificador " + id)
       usr_atrs = usuario.obtem_atributos(usr)
-      usr_atrs['id_usuario'] = id_usr
+      usr_atrs['id_usuario'] = usuario.obtem_identificador(usr)
       pag = html_pag_usuario.gera(ses, usr, usr_atrs, None)
     elif letra == "C":
       cpr = compra.busca_por_identificador(id)
@@ -44,7 +44,7 @@ def processa(ses, args):
     elif letra == "S":
       ses_a_ver = sessao.busca_por_identificador(id)
       if ses_a_ver == None: raise ErroAtrib("Não existe sessão com identificador" + id)
-      pag = html_pag_sessao.gera(ses, ses_a_ver, None, None)
+      pag = html_pag_sessao.gera(ses, ses_a_ver, None)
     elif letra == "A":
       pol = poltrona.busca_por_identificador(id)
       if pol == None: raise ErroAtrib("Não existe poltrona com identificador" + id)

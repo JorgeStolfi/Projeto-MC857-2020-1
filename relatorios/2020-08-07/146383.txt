@@ -1,0 +1,6 @@
+- Foi criado o comando clonar_compra (comando_clonar_compra.py e comando_clonar_compra_IMP.py)
+- Adicionado o comando no processoa_comando_htttp_IMP.py
+
+Foi criado um botão de "Clonar" na listagem de compras que executaria o comando clonar_compra.
+A ideia do comando era usar como base o comando ver_compra para puxar as informações da compra a ser clonado, com exceção da poltrona.
+Contudo o módulo de "compra" apresentou problemas na busca por identificador, o que impossibilitou o avanço da atividade.

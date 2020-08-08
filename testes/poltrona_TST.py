@@ -227,7 +227,23 @@ res = poltrona.obtem_numeros_e_precos(ids_poltronas[1:])
 if res != esperado[1:]:
   sys.stderr.write(" devolveu {}, esperado {}\n".format(res, esperado[1:]))
   ok_global = False
+  
+sys.stderr.write("---------------------------------------------\n")
 
+# ----------------------------------------------------------------------
+sys.stderr.write("testando {poltrona.livre_mais_proxima}:\n")
+
+polt_res = poltrona.livre_mais_proxima(pol[1], 95.0)
+id_res = poltrona.obtem_identificador(polt_res)
+sys.stderr.write("Devolveu a poltrona de id %s\n" % id_res)
+sys.stderr.write("Ainda e necessario implementar poltrona.dist\n")
+polt_res_esp = "Ainda e necessario implementar poltrona.dist"
+if polt_res == None: # Mesmo com a distancia aleatoria a resposta nao pode ser None com um preco max de 95 pois ha poltronas livres por 90.5
+  sys.stderr.write(" devolveu %s, esperado %s\n" % (polt_res, 'algo diferente de None'))
+  ok_global = False
+  
+  
+  
 sys.stderr.write("---------------------------------------------\n")
 
 # ----------------------------------------------------------------------

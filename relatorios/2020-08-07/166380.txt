@@ -1,0 +1,11 @@
+André Papoti de Oliveira RA:166380
+
+
+Tarefa: Implementar a função {poltrona.livre_mais_proxima(pol, preco_max)}
+
+
+Implementei a função poltrona.livre_mais_proxima() pegando a poltrona recebida por parametro e descobrindo a que trecho esta pertence. Logo em seguida pego todas as poltronas livres deste trecho e comparo com a poltrona recebida pelo parametro para descobrir qual destas esta mais proxima usando a funcao distancia() cujo preco esteja abaixo do pararametero preco_max.
+
+Tambem adicionei o teste dessa funcao ao arquivo poltrona_TST.py que rodou sem problemas
+
+Vale lembrar que a funcao distancia ainda precisa ser implementada pois esta esta com um "placeholder" e sempre retornando o valor 100

@@ -55,7 +55,7 @@ def gera(pol, alterar, comprar, excluir, fazer_checkin):
   campos.append(ht_fez_checkin);
 
   # Coluna do botão "Ver" sempre aparece:
-  ht_bt_ver = html_botao_simples.gera("Ver", "ver_poltrona", args_cmd, "55ee55")
+  ht_bt_ver = html_botao_simples.gera("Ver", "ver_poltrona", {'id_poltrona': id_pol}, "55ee55")
   campos.append(ht_bt_ver);
 
   # Coluna do botão de ação:

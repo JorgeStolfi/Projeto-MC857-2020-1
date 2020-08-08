@@ -36,6 +36,7 @@ colunas = \
     ( 'CPF',           type("foo"), 'TEXT',    False ), # Número CPF ("{XXX}.{YYY}.{ZZZ}-{KK}")
     ( 'telefone',      type("foo"), 'TEXT',    False ), # Telefone com DDI e DDD ("+{XXX}({YYY}){MMMMM}-{NNNN}").
     ( 'documento',     type("foo"), 'TEXT',    True  ), # Número do documento de identidade (RG, pasaporte, etc.)
+    ( 'milhagem',      type(10000), 'INTEGER', True  ),
     ( 'administrador', type(False), 'INTEGER', False ), # Define se o usuário é administrador (1=administrador)
   )
   # Descrição das colunas da tabela na base de dados.
@@ -167,6 +168,7 @@ def cria_testes(verb):
         'CPF': "123.456.789-00", 
         'telefone': "+55(19)9 9876-5432",
         'documento': "1.234.567-9 SSP-SP",
+        'milhagem': 100,
         'administrador': False,
       },
       { # U-00000002
@@ -176,6 +178,7 @@ def cria_testes(verb):
         'CPF': "987.654.321-99", 
         'telefone': "+55(19)9 9898-1212",
         'documento': 'CD98765-43 PF',
+        'milhagem': 200,
         'administrador' : False,
       },
       { # U-00000003
@@ -185,6 +188,7 @@ def cria_testes(verb):
         'CPF': "111.111.111-11",
         'telefone': "+55(19)9 9999-9999",
         'documento': None,
+        'milhagem': None,
         'administrador' : True,
       },
       { # U-00000004
@@ -194,6 +198,7 @@ def cria_testes(verb):
         'CPF': "222.222.222-22", 
         'telefone': "+55(19)9 9898-1211",
         'documento': '1.234.567-8 SSP-SP',
+        'milhagem': 400,
         'administrador' : False,
       },
       { # U-00000005
@@ -203,6 +208,7 @@ def cria_testes(verb):
         'CPF': "333.333.333-33", 
         'telefone': "+55(19)9 9898-1213",
         'documento': '1.234.567-7 SSP-SP',
+        'milhagem': 500,
         'administrador' : False,
       },
       { # U-00000006
@@ -212,6 +218,7 @@ def cria_testes(verb):
         'CPF': "444.444.444-44", 
         'telefone': "+55(19)9 9898-1214",
         'documento': '1.234.567-6 SSP-SP',
+        'milhagem': 600,
         'administrador' : False,
       },
       { # U-00000007
@@ -221,6 +228,7 @@ def cria_testes(verb):
         'CPF': "555.555.555-55", 
         'telefone': "+55(19)9 9898-1215",
         'documento': '1.234.567-5 SSP-SP',
+        'milhagem': 700,
         'administrador' : False,
       },
       { # U-00000008
@@ -230,6 +238,7 @@ def cria_testes(verb):
         'CPF': "666.666.666-66", 
         'telefone': "+55(19)9 9898-1216",
         'documento': '1.234.567-4 SSP-SP',
+        'milhagem': None,
         'administrador' : True,
       },
       { # U-00000009
@@ -239,6 +248,7 @@ def cria_testes(verb):
         'CPF': "777.777.777-77", 
         'telefone': "+55(19)9 9898-1217",
         'documento': '1.234.567-3 SSP-SP',
+        'milhagem': None,
         'administrador' : True,
       },
 
@@ -288,7 +298,7 @@ def valida_atributos(usr, atrs_mem):
   com mesmo email ou CPF. """
   global cache, nome_tb, letra_tb, colunas, diags
   
-  erros = [].copy();
+  erros = [].copy()
   
   # Validade dos campos fornecidos:
   if 'nome' in atrs_mem:
@@ -299,10 +309,12 @@ def valida_atributos(usr, atrs_mem):
     erros += valida_campo.CPF('CPF', atrs_mem['CPF'], False)
   if 'telefone' in atrs_mem:
     erros += valida_campo.telefone('Telefone', atrs_mem['telefone'], False)
-  if 'administrador' in atrs_mem:
-    erros += valida_campo.cidade_UF('Administrador', atrs_mem['administrador'], False)
   if 'documento' in atrs_mem:
     erros += valida_campo.documento('Documento', atrs_mem['documento'], True)
+  if 'milhagem' in atrs_mem:
+    erros += valida_campo.milhagem('Milhagem', atrs_mem['milhagem'], True)
+  if 'administrador' in atrs_mem:
+    erros += valida_campo.cidade_UF('Administrador', atrs_mem['administrador'], False)
      
   # Pega a senha, se tiver:
   if 'senha' in atrs_mem:
