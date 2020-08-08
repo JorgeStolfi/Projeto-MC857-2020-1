@@ -61,6 +61,10 @@ def documento(rotulo, val, nulo_ok):
   """ !!! documentar !!! """
   return valida_campo_IMP.documento(rotulo, val, nulo_ok)
 
+def milhagem(rotulo, val, nulo_ok):
+  """ !!! documentar !!! """
+  return valida_campo_IMP.milhagem(rotulo, val, nulo_ok)
+
 def booleano(rotulo, val, nulo_ok):
   """Exige que o parâmetro {val} seja um booleano."""
   return valida_campo_IMP.booleano(rotulo, val, nulo_ok)

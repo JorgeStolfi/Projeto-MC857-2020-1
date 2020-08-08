@@ -42,6 +42,7 @@ dados1 = {
     'CPF': "456.456.123-00", 
     'telefone': "+55(19)9 1324-5432",
     'documento': "1.432.567-9 SSP-SP",
+    'milhagem': 100,
     'administrador': False,
   }
 verifica_cadastrar_usuario(None, dados1, True)
@@ -53,6 +54,7 @@ dados2 = {
     'CPF': "456.456.432-00", 
     'telefone': "+55(19)9 1324-1234",
     'documento': "1.987.567-9 SSP-SP",
+    'milhagem': 200,
     'administrador': False,
   }
 verifica_cadastrar_usuario(None, dados2, False)
@@ -64,6 +66,7 @@ dados3 = {
     'CPF': "456.752.143-00", 
     'telefone': "+55(19)9 4268-1438",
     'documento': "1.432.746-9 SSP-SP",
+    'milhagem': None,
     'administrador': True,
   }
 verifica_cadastrar_usuario(None, dados3, True)
@@ -75,6 +78,7 @@ dados4 = {
     'CPF': "456.456.432-00", 
     'telefone': "+55(19)9 1945-1234",
     'documento': "1.132.567-9 SSP-SP",
+    'milhagem': None,
     'administrador': True,
   }
 verifica_cadastrar_usuario(None, dados4, False)

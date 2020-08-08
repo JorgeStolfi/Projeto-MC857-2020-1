@@ -67,6 +67,7 @@ usr_new1_atrs = {
   'CPF': "999.888.777-00", 
   'telefone': "+55(19)9 9876-5432",
   'documento': "9.999.999-9 SSP-SP",
+  'milhagem': 999,
   'administrador': False
 }
 
@@ -76,6 +77,7 @@ usr_alt1_atrs = {
   'senha': "111111111", 
   'email': "primeiro@gmail.com", 
   'CPF': "123.456.789-00", 
+  'milhagem': None,
   'administrador': False
 }
 
