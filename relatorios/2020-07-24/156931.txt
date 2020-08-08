@@ -1,3 +1,0 @@
-Minha tarefa era "> "Contato" : O campo para digitar mensagem deve ser um <textarea> não um "";"
-Inseri o textarea, colocando a restrição de 10 linhas e maximo de 5000 caracteres como instruido pelo professor.
-Tambem implementei o modulo de teste relacionado ao novo modulo inserido.
