@@ -1,0 +1,45 @@
+# Relatório da Atividade do Dia 07/08/2020
+
+Tarefa: DISPENSADO
+
+# O que foi feito ?
+
+O aluno fora dispensado de fazer tarefas como consta na issue a seguir:
+
+# Issue
+
+TAREFAS PARA A AULA DE 2020-08-07
+
+136686 [A] "Checar objeto"("U-00000001"): fazer funcionar
+138745 DISPENSADO
+138771 Implementar a função {poltrona.distancia(pol1,pol2)}
+139511 Unificar os módulos {html_pag_{ver,alterar}_poltrona} em um novo módulo {html_pag_poltrona}, deixando os argumentos e a implementação similares a {html_pag_usuario}. Alterar os módulos que usam esses módulos.
+146383 Implementar um botão "Clonar compra" numa página de ver compra. Deve criar outra compra para o mesmo cliente, com os mesmos trechos, mas com outras poltronas. Em cada techo, a nova poltrona deve ser a poltrona livre mais próxima à poltrona original, devolvida por {poltrona.livre_mais_proxima}; se possível, com mesmo preço ou menor. Se não conseguir em algum trecho, aborta a compra inteira.
+155335 [A] "Trafego" : fazer funcionar
+156931 [X] "Ofertas" > "Ver" (primeira) > "Ver" (primeira): fazer funcionar.
+158044 DISPENSADO
+165232 DISPENSADO
+166213 Acrescentar campo "data_fechamento" no objeto sessao. Alterar onde for necessario.
+166301 DISPENSADO
+166380 Implementar a função {poltrona.livre_mais_proxima(pol, preco_max)}.
+166597 Comando "trocar_poltrona": deve excluir a polrona de sua compra atual, e mostrar o trecho da mesma para que o usuário escolha uma das poltronas.
+166779 Acrescentar um campo numérico "milhagem" ao objeto usuário. Mostrar na {html_pag_usuario}, mas editável só para administradores.
+167494 DISPENSADO
+169601 Para administradores: acrescentar um botão "Buscar passageiro", com campo ao lado para digitar o nome ou documento do passageiro, que lista todas as compras feitas para esse passageiro. Veja o botão "Checar objeto".
+170012 DISPENSADO
+172269 DISPENSADO
+173325 DISPENSADO
+173846 DISPENSADO
+174847 Acrescentar um campo booleano 'embarcou' no obejto poltrona. Mostre esse campo na lista de potrona onde aparece o atributo 'fez_checkin', e acrescente o botão "Embarcou" onde aparece "Checkin".
+175715 [X] "Sugerir roteiros" : fazer funcionar
+176131 DISPENSADO
+178472 Implementar botão de administrador "Cancelar trecho" em página de trecho disponível, que cancela todas as compras de poltronas do trecho, marca o trecho como indisponível, e mostra uma lista de IDs de usuários afetados.
+184083 DISPENSADO
+185441 DISPENSADO
+185487 Para administradores: acrescentar um botão "Checar veículo", com campo ao lado para digitar a identificação do veículo, que lista todos os trechos daquele veículo. Veja o botão "Checar objeto".
+185531 Criar módulo {html_mapa_de_poltronas.gera(trc)} que produz uma representação gráfica dos assentos do trecho {trc}. Supõe que poltrona "17C" é a poltrona "C" na fileira "17". Cada poltrona deve ser representada por um botão pequeno que mostra o número, com o estado indicado pela cor (cinza = ocupado, verde = livre, amarelo = livre e oferta, etc.). O botão deve executar um ver-poltrona. Mostrar esse mapa na página de ver trecho, após a lista normal de poltronas.
+186447 [U] "Minhas Sessoes" > "Ver" (primeira) > "Fechar sessão": fazer funcionar
+187506 DISPENSADO
+187700 Implementar a função {trecho.todos_os_aeroportos}. Usar em {comando_relatorio_de_trafego}
+196858 DISPENSADO
+199818 Botão "fazer checkin" só deve aparecer se a compra estiver no estado "pago".
