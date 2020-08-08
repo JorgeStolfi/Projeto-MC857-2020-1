@@ -8,6 +8,10 @@ import html_pag_generica
 import html_pag_buscar_compras
 import html_pag_mensagem_de_erro
 
+# Mósulo das regex
+import re
+
+
 from valida_campo import ErroAtrib
 
 
@@ -40,7 +44,22 @@ def processa(ses, args):
         raise ErroAtrib("Você não tem acesso a essa informação")
       args['cliente'] = usr_id
 
-    campos = ['cliente', 'status']
+    # Se recebeu parâmetro genérico "passageiro", converte ele para "doc_pass" ou
+    # "nome_pass"
+    if 'passageiro' in args:
+        matchList = re.findall("([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})" , args['passageiro'])
+
+        # É um documento
+        if len(matchList) > 0:
+            args['doc_pass'] = args['passageiro']
+        # É um nome
+        else:
+            args['nome_pass'] = args['passageiro']
+
+        del args['passageiro']
+
+
+    campos = ['cliente', 'status', 'nome_pass', 'doc_pass']
     verifica_campos(args, campos)
 
     cprs_ids = compra.busca_por_campos(args)
